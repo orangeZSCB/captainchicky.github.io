@@ -2,7 +2,6 @@
 Here is my github page.
 
 
-haha i need to fix this lmao 
+Currently i have a slew of unfinished project i will need to complete.
 
-
-# ok, i'm sorta getting how to do this, but oh man, will the code get massive lol
+### Don't touch the idiot sublink lol actually dont i still need to fix
