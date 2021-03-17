@@ -8,6 +8,7 @@
             p {
                 color: navy;
                 font-family: "Verdana", Sans-serif;
+                margin-right: 375px;
             }
             h2 {
                 padding-left: 25px;
@@ -17,6 +18,24 @@
                 color: darkblue;
                 font-family: "Verdana", Sans-serif;
             }
+            aside {
+             	float: right;
+            	clear: right;
+              	width: 20vw;
+             	margin-right: 0.5vw;
+            	margin-bottom: 0.5rem;
+            	background-color: rgba(0, 255, 255, 0.308);
+            	font-size: 0.8rem;
+              	padding: 0.5rem;
+             	overflow: auto;
+            }
+            aside :first-child {
+              	margin-top: 0;
+            }
+            aside :last-child {
+               	margin-bottom: 0;
+            }
+
         </style>
     </head>
     <body>
@@ -26,17 +45,98 @@
         <h2>What is a zip bomb?</h2>
         <p>First and foremost, let's start with the definitions.<br>
         <br>
-        <span>A <b>zip bomb</b> is a <i>usually</i> malicious compressed file that is usually designed to render useless an antivirus engine to create an openning for another computer virus.</span>
-        <p>Normally, a zip bomb negates an antivirus engine by tricking it into scanning the entire archive, which takes up an unimaginably large amount of time, disk space, and memory. However, modern antivirus engines are able to recongnize when a file is a zip bomb, and will avoid scanning through it.</p>
-        <p>Despite this, what I'm looking at isn't its ability to destroy antivirus engines or create openning for other viruses to attack - instead, let's take a look into the marvelous compression ability of zip bombs, and the science behind it.</p>
+        <span>
+            A <b>zip bomb</b> is a <i>usually</i> malicious compressed file that is usually designed to render useless 
+            an antivirus engine to create an openning for another computer virus.
+        </span>
+        <p>
+            Normally, a zip bomb negates an antivirus engine by tricking it into scanning the entire archive, 
+            which takes up an unimaginably large amount of time, disk space, and memory. However, 
+            modern antivirus engines are able to recongnize when a file is a zip bomb, and will avoid scanning through it.
+        </p>
+        <p>
+            Despite this, what I'm looking at isn't its ability to destroy antivirus engines or create openning for other 
+            viruses to attack - instead, let's take a look into the marvelous compression ability of zip bombs, and the science behind it.
+        </p>
         <p>When talking about zip bombs, I will split them into two catagories:</p>
         <ol>
             <li><b>Traditional zip bombs.</b></li>
             <li><b>The "better" zip bombs.</b></li>
         </ol>
-        <p>You have have heard of another type of "zip bomb": the <b>zip quine</b>. However, I would like for you to note that this is an entirely different thing compared to a zip bomb. While it <i>can</i> be used in theory to disable antivirus engines &c like how zip bombs do, they are <i>much more sophisticated</i> compared to zip bombs and deserves its own article that I will write sometime in the future.</p>
+        <p>
+            You have have heard of another type of "zip bomb": the <b>zip quine</b>. 
+            However, I would like for you to note that this is an entirely different thing compared to a zip bomb. 
+            While it <i>can</i> be used in theory to disable antivirus engines &c like how zip bombs do, 
+            they are <i>much more sophisticated</i> compared to zip bombs and deserves its own article that I will write sometime in the future.
+        </p>
         <p>That leaves us with the two types of zip bombs, the traditional and the better ones. So without further ado, let's take a look at them.</p>
         <h2>Traditional zip bombs</h2>
-        <p></p>
+        <p>
+            A traditional zip bomb is one that uses recursive zipping to acheive high levels of compression. A zip bomb that use the .zip format
+            must cope with the fact that the compression algorithm .zips most commonly use, <i>DEFLATE</i>,
+            cannot achieve a compression ratio greater than 1032. Why? Well let's take a look at this.
+        </p>
+        <p>
+            First, let's understand what compression does. Take a look at the image below:
+            <br><br>
+            <img src="Zip Bomb Files/Figure1.png">
+            <br><br>
+            How would you describe this image?
+            <br>
+            Well, we can say that: <u>the <i>top-left box is blue</i>, the <i>top-middle box is blue</i>, the <i>top-right box is blue</i>, 
+            the <i>middle-left box is blue</i>, the <i>middle-middle box is blue</i>, the <i>middle-right box is blue</i>,
+            the <i>bottom-left box is blue</i>, the <i>bottom-middle box is blue</i>, and the <i>bottom right box is blue</i>.</u>
+            <br><br>
+            <i>Whew</i>, that was certainly a mouthful wasn't it? If you were trying to describe to someone this image in the most efficient and effective way,
+            the method I used would certainly <b>not</b> be a viable one. So instead, let's try something else. 
+            <br><br>
+            How about this? We can say that: <u>there are <i>9 boxes</i>, arranged in a <i>3x3 pattern</i>, where <i>all the boxes are blue.</i></u>
+            <br><br>
+            That was certainly a much more efficient way of describing the image, without the redundancies of having to denote each box as blue individually.
+            What we have done here, is what data compression does. It takes a file and subtracts the redundancies that may be contained in the file, effectively
+            compressing it, lowering the file size.
+            <br><br>
+            Now notice something - we can shorten the description even further! Looking back at our "compressed" description, we see that we can take away 
+            "<u>there are <i>9 boxes</i></u>" and still have our description be feasibly understood, and reconstructed perfectly.
+        </p>
+        <p>
+            Empirically, <i>DEFLATE</i> is capable of compression factors exceeding 1000:1. 
+            You can test this by creating a 50MB file filled with zeros and compress it using <i>DEFLATE</i>. 
+            It should compress to be roughly around 49KB as demonstrated <a href="./Zip Bomb Files/0.zip">here</a>.
+        </p>
+        <p>
+            To find the theoretical limit, let's dive deeper into the <i>DEFLATE</i> algorithm and zip file structure itself.
+            The limit comes from the fact that one length/distance pair can represent at most 258 output bytes. 
+            A length requires at least one bit and a distance requires at least one bit, so two bits in can give 258 bytes out, 
+            or eight bits in give 1032 bytes out. A dynamic block has no length restriction, so you could get arbitrarily close to the limit of 1032:1.
+        </p>
+        <p>
+            We can also note that the current implementation limits its dynamic blocks to about 8 KB (corresponding to 8MB of input data); 
+            together with a few bits of overhead, this implies an actual compression limit of about 1030.3:1. 
+            Not only that, but the compressed data stream is itself likely to be rather compressible (in this special case only), 
+            so running it through deflate again should produce further gains.
+        </p>
+        <p>
+            Due to this reason, traditional zip bombs rely on recursive decompression,
+            nesting zip files within zip files to get an extra factor of 1032 with each layer.
+            But the trick only works on implementations that unzip recursively, and most do not.
+            The best-known zip bomb, <a href="./42.html">42.zip</a>,
+            expands to a formidable <data value="4507981343026016">4.5 <abbr title=petabyte>PB</abbr></data>
+            if all six of its layers are recursively unzipped,
+            but a trifling <data value="558432">0.6 <abbr title=megabyte>MB</abbr></data> at the top layer.
+            Zip quines,
+            like those of <a href="https://web.archive.org/web/20160130230432/http://www.steike.com/code/useless/zip-file-quine/">Ellingsen</a>
+            and <a href="https://research.swtch.com/zip">Cox</a>,
+            which contain a copy of themselves
+            and thus expand infinitely if recursively unzipped,
+            are likewise perfectly safe to unzip once.
+        </p>
+        <aside>
+            <span>
+            I would like to know/credit the maker of
+            42.zip but haven't been able to find a source—<a href=#contact>let me know</a>
+            if you have any info.
+            </span>
+        </aside>
     </body>
 </html>
