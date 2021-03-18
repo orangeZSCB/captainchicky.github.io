@@ -28,6 +28,10 @@
                 padding-left: 25px;
                 font-family: "Georgia", serif;
             }
+            h3 {
+                padding-left: 15px;
+                color: midnightblue; 
+            }
             span {
                 color: darkblue;
                 font-family: "Verdana", Sans-serif;
@@ -88,8 +92,14 @@
         <p>
             <span>A <b>traditional zip bomb</b> is one that <i>uses recursive zipping to acheive high levels of compression.</i></span> A zip bomb that use the .zip format
             must cope with the fact that the compression algorithm .zips most commonly use, <i>DEFLATE</i>,
-            cannot achieve a compression ratio greater than 1032. Why? Well let's take a look at this.
+            cannot achieve a compression ratio greater than 1032. Why? Well let's take a look.
         </p>
+        <h3>
+            Compression
+        </h3>
+        <h4>
+            <u>Example 1</u>
+        </h4>
         <p>
             First, let's understand what compression actually is. Take a look at the image below:
             <br><br>
@@ -124,9 +134,21 @@
         <p>
             Now, let's look at zip files. While zip files may use a variety of compression algorithms, the compression algorithm
             <i>DEFLATE</i> is the <a href="https://en.wikipedia.org/wiki/ZIP_(file_format)#:~:text=DEFLATE%20is%20the%20most%20common.">most common</a>.
-            As a result, almost all zip bombs utilize this algorithm, and thus, let's take a look at this algorithm in particular.
-            <br><br>
-            By intuition, a compression algorithm will work the best if a file is extremely redundant; for instance, a file filled with zeroes.
+            As a result, almost all zip bombs utilize this algorithm, and thus, we'll take a look at this algorithm in particular.
+        </p>
+        <p>
+            Let's take a dive into a more rigorous example of compression. 
+        </p>
+        <h4>
+            <u>Example 2</u>
+        </h4>
+        <p>
+            In a typical file, the data is divided into <i>bytes</i>. Unless there is a special exception, a byte is 8 bits long, where a single bit is a 0 or a 1.
+            Each byte is generally large enough to represent a single character1
+        </p>
+        boundary lol
+        <p>
+            By intuition, and by the example above, a compression algorithm will work the best if a file is extremely redundant; for instance, a file filled with zeroes.
             So therefore, let's test how well <i>DEFLATE</i> can compress a file filled with a lot of zeroes.
             <br><br>
             Empirically, <i>DEFLATE</i> is capable of compression factors exceeding 1000:1. 
@@ -138,28 +160,30 @@
             The limit comes from the fact that one length/distance pair can represent at most 258 output bytes. 
             A length requires at least one bit and a distance requires at least one bit, so two bits in can give 258 bytes out, 
             or eight bits in give 1032 bytes out. A dynamic block has no length restriction, so you could get arbitrarily close to the limit of 1032:1.
-        </p>
+        </p>"Georgia", serif
         <p>
             We can also note that the current implementation limits its dynamic blocks to about <data value="8000">8<abbr title=Kilobyte(s)>KB</abbr></data> 
             (corresponding to <data value="8000000">8<abbr title=Megabyte(s)>MB</abbr></data> of input data); together with a few bits of overhead, this implies 
             an actual compression limit of about 1030.3:1. Not only that, but the compressed data stream is itself likely to be rather compressible 
             (in this special case only), so running it through <i>DEFLATE</i> again should produce further gains.
         </p>
+
         <p>
             Due to this reason, traditional zip bombs rely on recursive decompression, nesting zip files within zip files to get an extra factor of ~1032 with each layer.
             Referring back to the original purpose of these traditional zip bombs - to disable antiviruses, these nested zips will only work on antivirus engines
             that scan recursively into each nest of zips, and now as of March 2021, most will not. 
-            <br><br>
-            The best-known zip bomb, <a href="./42.html">42.zip</a>, expands to a formidable <data value="4503599626321920">4.5<abbr title=Petabyte(s)>PB</abbr></data> 
-            if all six of its layers are fully and recursively unzipped, but a negligable <data value="558432">0.6<abbr title=Megabyte(s)>MB</abbr></data>
-            if one were to only unzip the top layer.
-            <br><br>
-            To be continued lmao
         </p>
         <aside>
             <span>
-            Future comments go here :)
+            I haven't been able to find the original author for 42.zip. If anyone knows, please ping me on twitter(profile link is on my github homepage).
             </span>
         </aside>
+        <p>
+            The best-known zip bomb, <a href="./42.html">42.zip</a>, expands to a formidable <data value="4503599626321920">4.5<abbr title=Petabyte(s)>PB</abbr></data> 
+            if all six of its layers are fully and recursively unzipped, but a negligable <data value="558432">0.6<abbr title=Megabyte(s)>MB</abbr></data>
+            if one were to only unzip the top layer.
+        </p>
+
+        <p>Tobecontinue</p>
     </body>
 </html>
