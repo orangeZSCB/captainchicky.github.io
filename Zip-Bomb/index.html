@@ -156,29 +156,22 @@
             We can see how this still describes our image, but when trying to reconstruct it, we don't know how many boxes there are. We can estimate that there may be
             around 4-16 of them, but we can't be sure, since there is no information regarding it after compression.
         </p>
-        <p>
-            Now, let's look at zip files. While zip files may use a variety of compression algorithms, the compression algorithm
-            <i>DEFLATE</i> is the <a href="https://en.wikipedia.org/wiki/ZIP_(file_format)#:~:text=DEFLATE%20is%20the%20most%20common.">most common</a>.
-            As a result, almost all zip bombs utilize this algorithm, and thus, we'll take a look at this algorithm in particular.
-        </p>
-        <p>
-            Let's take a dive into a more rigorous example of compression. 
-        </p>
+        <p>Let's take a dive into a more rigorous example of compression.</p>
         <h4>
             <u>Example 2</u>
         </h4>
         <p>
             In a typical file, the data is divided into <i>bytes</i>. Unless there is a special exception, a byte is 8 bits long, where a single bit is a 0 or a 1.
-            In UTF-8 encoding, each byte represents a single character. For example, the character, and in this case, byte "0" is encoded by the bits "00110000". 
-            Note that in other non-latin based languages, such as Chinese or Arabic, a character may be multiple bytes.
+            In UTF-8 encoding, each byte represents a single character. For example, the character, and in this case, byte, "0" is encoded by the bits "00110000". 
+            Note that in other non-latin based languages, such as Mandarin or Arabic, a character may be multiple bytes.
             <br><br>
             However, not every byte of data encodes as much information as others in a sense. For example, think of all the English words you can that start with "Q" or "T". 
-            How many of them don't have a "U" or "H" immediately superceeding it? Likely none of them! Knowing this, how much "information" do you think the "U" and "H" 
-            actually contain, in a sense? What if you omit the "U" and "H"s, or replace them with a single character?
+            How many of them don't have a "U" or "H" immediately superceeding the "Q" or "T"? Likely none of them! Knowing this, how much "information" do you think the "U" and "H" 
+            actually contain, in a sense? What if you omit the "U" and "H"s, or replace the two letter pairs with a just a single character?
             <br><br>
-            Again, we can see the points I have shown in <font size="1"><u><b>Example 1</b></u></font> surface - this is the essence of data compression.
+            Again, we can see the points I have shown in <font size="1"><u><b>Example 1</b></u></font> surface: remove the redundant information - this is the essence of data compression.
             <br><br>
-            Now let's think of vowels in the English language. Vowels are part of a very small set of the alphabet, and thus are not important. 
+            Now let's think of vowels in the English language. Vowels are part of a very small set of the alphabet, and thus will convey less information than consonants. 
             In fact, you could get rid of vowels completely and still understand what a sentence means. For example, let's trying to take away the vowels from the following sentence:
         </p>
         <blockquote>This is a sentence without vowels and will still be readable.</blockquote>
@@ -190,10 +183,31 @@
         <blockquote>This is a sentence without consonants and will <b>not</b> be readable.</blockquote>
         <blockquote>i i a eee iou ooa a i <b>o</b> e eaae.</blockquote>
         <p>
-            This isn't to say that vowels are unimportant, but as they convey less information, they 
-            don't need to be the same size as consonants.
+            Now there, this <b><i>does not</i></b> mean that vowels are not important, and that they can be ignored. This just means they carry less information than 
+            consonants, and when compressing, can be valued less than consonants. This is what data compression tries to achieve: it looks at data, 
+            gets an idea of how much information each character conveys, and then tries to minimize that. And as a result, a single character may no longer be 8 bits long - 
+            a very common character may be represented by only a few bits.
+            <br><br>
+            Revisiting the "QU" and "TH" observation I have noted above, we have that groups of characters may be common enough that we can represent them by a smaller number of bytes. 
+            For example, with the "QU" example above, if you're using "QU" words often enough, we could replace them with fewer than 16 bits. And words with "TH" in them? 
+            We could also replace every instance of "TH" with something less than 16 bits. What about the word "THE"? 
+            That's a very common word that takes up 24 bits uncompressed, but could take up fewer bits.
+            <br><br>
+            I believe this is good enough of an analogy. If you, dear reader, still don't understand parts of these two examples, please give it a slow and detailed re-read.<br>
+            With that, we can move on: let's look at zip files.
         </p>
-        boundary lol
+        <h4>
+            <u>Zip files and the DEFLATE algorithm</u>
+        </h4>
+        <p>
+            While zip files may use a variety of compression algorithms, the compression algorithm
+            <i>DEFLATE</i> is the <a href="https://en.wikipedia.org/wiki/ZIP_(file_format)#:~:text=DEFLATE%20is%20the%20most%20common.">most common</a>.
+            As a result, almost all zip bombs utilize this algorithm, and thus, we'll take a look at this algorithm in particular.
+        </p>
+        <p>explain LZ77 and Huffman Coding, and CRC32 check of a zip file using DEFLATE alg.<br>2bcontinue</p>
+        <h4>
+            <u>A DEFLATE encoded zip's compression limit</u>
+        </h4>
         <p>
             By intuition, and by the example above, a compression algorithm will work the best if a file is extremely redundant; for instance, a file filled with zeroes.
             So therefore, let's test how well <i>DEFLATE</i> can compress a file filled with a lot of zeroes.
@@ -207,7 +221,7 @@
             The limit comes from the fact that one length/distance pair can represent at most 258 output bytes. 
             A length requires at least one bit and a distance requires at least one bit, so two bits in can give 258 bytes out, 
             or eight bits in give 1032 bytes out. A dynamic block has no length restriction, so you could get arbitrarily close to the limit of 1032:1.
-        </p>"Georgia", serif
+        </p>
         <p>
             We can also note that the current implementation limits its dynamic blocks to about <data value="8000">8<abbr title=Kilobyte(s)>KB</abbr></data> 
             (corresponding to <data value="8000000">8<abbr title=Megabyte(s)>MB</abbr></data> of input data); together with a few bits of overhead, this implies 
