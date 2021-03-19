@@ -224,10 +224,7 @@
             I believe this is good enough of an analogy. If you, dear reader, still don't understand parts of these two examples, please give it a slow and detailed re-read.<br>
             With that, we can move on: let's look at zip files.
         </p>
-        <h3>Zip files</h3>
-        <h4>
-            <u>Zip files and the DEFLATE algorithm</u>
-        </h4>
+        <h3>Zip and DEFLATE</h3>
         <p>
             While zip files may use a variety of compression algorithms, the compression algorithm
             <i>DEFLATE</i> is the <a href="https://en.wikipedia.org/wiki/ZIP_(file_format)#:~:text=DEFLATE%20is%20the%20most%20common.">most common</a>.
@@ -237,6 +234,40 @@
             The algorithm <i>DEFLATE</i> is actually a combination of two algorithms, LZ77 and Huffman Coding.
         </p>
         <img src="Zip Bomb Files/deflate_process.png">
+        <h4>
+            <u>LZ77</u>
+        </h4>
+        <p>
+            LZ77 is a <b>dictionary based</b> compression algorithm.
+        </p>
+        <blockquote>
+            A <b>dictionary based algorithm</b> is one that replaces an occurrence of a particular sequence of bytes in data with a reference to a previous occurrence of that sequence.
+        </blockquote>
+        <p>
+            What LZ77 does is that it looks for groupings of bytes, and when it finds a repeat of a grouping, it will encode the superceeding groups in a <b>length-distance pair</b>. 
+        </p>
+        <blockquote>
+            A <b>length-distance pair</b> denotes the amount of characters that are repeated - L, the distance where the preceeding repeating group can be found - D, and
+            the character immediately superceeding the longest matching group - C.
+        </blockquote>
+        <img src="Zip Bomb Files/LZ77_process.png">
+        <p>
+                    
+
+            The algorithm doesn't generally store the entire document, but only looks at some fixed number of bytes at a time. This is to keep the distance number 
+            from getting really big -- in some huge multi-gigabyte document where you use the word "moist" once at the beginning and once at the end, it really 
+            doesn't make much sense to have a distance value that represents a position several gigabytes in size (as at some point, the number of bits needed to 
+            store the length-distance pair may be bigger than the bytes you're compressing). This fixed number of bytes is known as the sliding window, and in ZIP files is 32kb in size.
+
+            LZ77 compression algorithm works by using a sliding window to find sequences of data that are repeated, 
+            and encoding each repeated sequence by a pair of numbers called a length-distance pair.
+        </p>
+        <h4>
+            <u>Huffman Coding</u>
+        </h4>
+        <p>
+
+        </p>
         <h4>
             <u>A DEFLATE encoded zip's compression limit</u>
         </h4>
