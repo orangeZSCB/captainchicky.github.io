@@ -301,6 +301,10 @@
             Notive that due to the really inefficient way I've chosen to represent the length-distance pairs, and because this is a very small example, 
             we've actually made the example string longer. However, even with my inefficient representation, longer strings with more repetition would show noticeable size improvements.
         </p>
+        <p>
+            An interesting side-note is that in a length-distance pair, the length can actually be greater that the distance value. 
+            So you could have "length 5, distance 1" which would mean copying the last character five times.
+        </p>
         <h4>
             <u>Huffman Coding</u>
         </h4>
@@ -428,6 +432,12 @@
             To the right is a chart showing the frequencies and bits that encode each character after using Huffman Coding. Encoding the sentence with this code requires 135 bits, 
             as opposed to 288 bits if 36 characters of 8 bits were used. Of course, this assumes that the code tree structure is known to the decoder and thus does not need to be 
             counted as part of the transmitted information.
+        </p>
+        <p>
+            All of this assumes that characters don't occur with the exact same frequency, which is generally true of human languages. 
+            Random data however may have all bytes having identical frequencies, in which case the data becomes incompressible. 
+            Thus, by intuition we can see that this is why you generally can't run a .zip file through <i>DEFLATE</i> and get a smaller file out of it. 
+            In fact, doing so may sometimes result in a slightly larger file, as zips have a certain amount of overhead to describe the files it stores.
         </p>
         <h4>
             <u>A DEFLATE encoded zip's compression limit</u>
