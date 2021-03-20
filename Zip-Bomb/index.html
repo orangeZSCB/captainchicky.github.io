@@ -45,6 +45,11 @@
                 padding-left: 28px;
                 color:rgb(40, 69, 73)
             }
+            code {
+                color:rgb(0, 152, 199);
+                text-shadow: 0 0 1px #FF0000, 0 0 2px #0000FF;
+                font-size: 150%;
+            }
             img {
                 margin-left: 25px; 
             }
@@ -250,18 +255,29 @@
             A <b>length-distance pair</b> denotes the amount of characters that are repeated - L, the distance where the preceeding repeating group can be found - D, and
             the character immediately superceeding the longest matching group - C.
         </blockquote>
-        <img src="Zip Bomb Files/LZ77_process.png">
         <p>
-                    
-
-            The algorithm doesn't generally store the entire document, but only looks at some fixed number of bytes at a time. This is to keep the distance number 
-            from getting really big -- in some huge multi-gigabyte document where you use the word "moist" once at the beginning and once at the end, it really 
-            doesn't make much sense to have a distance value that represents a position several gigabytes in size (as at some point, the number of bits needed to 
-            store the length-distance pair may be bigger than the bytes you're compressing). This fixed number of bytes is known as the sliding window, and in ZIP files is 32kb in size.
-
-            LZ77 compression algorithm works by using a sliding window to find sequences of data that are repeated, 
-            and encoding each repeated sequence by a pair of numbers called a length-distance pair.
+            Firt off, I would like to remark the fact that the "C" aspect of a length-distance pair is usually a temporary element, and will be excluded from the final result.
+            The reason of adding the third element C in the length-distance pair is for handling the case where no match is found in the search buffer. 
+            In that case, the values of both D and L are 0, and C is the first character in current look-ahead buffer.
         </p>
+        <p>
+            Now there, note that searches for length-distance pairs do not occur across the entire file, but instead only is made in a fixed number of bytes at one time. 
+            This is to keep the distance number from getting really big and impairing the data compression efforts. For example, suppose you're trying to compress a multi-gigabyte 
+            word document explaining the proof for Fermat's Last Theorem where you use the word "cringe" once at the beginning and once at the end, it won't make sense to have a distance 
+            value that represents a position several gigabytes in size, since at some point, the number of bits needed to store the length-distance pair will surpass the bytes 
+            you're compressing. This fixed number of bytes is the <b>sliding window</b>.
+        </p>
+        <blockquote>The <b>sliding window</b> is the length of bytes the LZ77 algorithm will look in to data group repeats, and maintains the historical data for future reference.</blockquote>
+        <p>
+            The sliding window contains two parts, a <i>search buffer</i>, and a <i>look-ahead buffer</i>. The search buffer contains the dictionary - the recent encoded data, 
+            and the look-ahead buffer contains the next portion of input data sequence to be encoded. 
+            In ZIP files, the sliding window is usually <data value="32000">32<abbr title=Kilobyte(s)>KB</abbr></data>.
+        </p>
+        <p>
+            As an example, I have created a visual on the LZ77 algorithm that will "compress" the string "<code>axrrmaxrbaxssr</code>" below. If you don't understand any part of it,
+            please give it a careful re-analysis and refer to the color-coding of the different elements I've included.
+        </p>
+        <img src="Zip Bomb Files/LZ77_process.png">
         <h4>
             <u>Huffman Coding</u>
         </h4>
