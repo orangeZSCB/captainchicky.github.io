@@ -126,6 +126,9 @@
               color: rgb(0, 0, 0);
             }
         </style>
+        <!--MathJax latex integration-->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </head>
     <body>
         <center>
@@ -489,7 +492,7 @@
             The Traditional Zip Bomb
         </h3>
         <p>
-            Ok, I lied. Although in theory, the ratio 1030:1 is the greatest the <i>DEFLATE</i> algorithm can achieve, we underestimated file redundancy and how that can 
+            Ok, I lied. Although <i>in theory</i>, the ratio 1030:1 is the greatest the <i>DEFLATE</i> algorithm can achieve, we underestimated file redundancy and how that can 
             dramatically compress a file. <a href="./Zip Bomb Files/0 (2).zip">Here</a> we can see how compressing a <data value="4000000000">4<abbr title=Gigabyte(s)>GB</abbr></data>
             file of zeros becomes <data value="137508">138<abbr title=Kilobyte(s)>KB</abbr></data>, giving us a ratio of 29089:1.
         </p>
@@ -497,7 +500,8 @@
             Why is this? Well, the length-distance pairs although limited at a maximum of 258 bytes, is extremely repetitive. In a <data value="4000000000">4<abbr title=Gigabyte(s)>GB</abbr></data>
             file of repeating data, there would be such a frequent occurance of the <i>same</i> length-distance pairs such that when <i>DEFLATE</i> applies the Huffman Algorithm, 
             the encoding of the length-distance pairs will be shortenned to the extent that they may be just 1 single bit. This will drastically increase compression ratio, 
-            beyond even the theoretical limit. 
+            beyond even the theoretical limit. In our initial calculation, we assumed the Huffman Algorithm was capped in it's efficiecy by the restrictions of the length-distance pairs themselves,
+            but it would appear to be not so.
         </p>
         <p>
             As we test compressing larger and larger files, as shown <a href="Zip Bomb Files/0-First level compression.zip">here</a>, we see that our ratio remains at a similar point as the previous
@@ -513,7 +517,11 @@
         </ul>
         <span><font size="-2">(Uh if you're looking at the files inside the zips and asking why they are repeating characters I'll explain why below in the "Constructing a traditional zip bomb" section lol.)</font></span>
         <p>
-            It would seem that the maximum compression ratio evens out at around 29100:1. 
+            It would seem that the maximum compression ratio evens out at around 29100:1. Let's attempt to calculate why this is. By dividing 29100 by 1032, we arrive at \( \frac{2425}{86}\approx 28.2 \). We can reason
+            that the efficiency of the Huffman Algorithm must account for 28 times more efficiency. Math time!
+        </p>
+        <p>
+            We have that \[ \frac{10000}{10000-(10000\cdot x\%)}=28 \]
         </p>
         <h4>
             <u>Constructing a traditional zip bomb</u>
@@ -521,5 +529,6 @@
         <p>
             Now let's move onto creating these marvelous compression phenomenon. We shall do this 
         </p>
+        
     </body>
 </html>
