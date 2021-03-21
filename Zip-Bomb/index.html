@@ -469,7 +469,7 @@
         <p>
             We can also note that the current implementation limits its dynamic blocks to about <data value="8000">8<abbr title=Kilobyte(s)>KB</abbr></data> 
             (corresponding to <data value="8000000">8<abbr title=Megabyte(s)>MB</abbr></data> of input data); together with a few bits of overhead, this implies 
-            an actual compression limit of about 1030.3:1. Not only that, but the compressed data stream is itself likely to be rather compressible 
+            an actual compression limit of about 1030:1. Not only that, but the compressed data stream is itself likely to be rather compressible 
             (in this special case only), so running it through <i>DEFLATE</i> again should produce further gains.
         </p>
         <p>
@@ -478,7 +478,7 @@
             that scan recursively into each nest of zips, and now as of March 2021, most will not. 
         </p>
         <aside>
-            I haven't been able to find the original author for 42.zip. If anyone knows, please ping me on twitter(profile link is on my github homepage).
+            I haven't been able to find the original author for 42.zip. If anyone knows, please ping me on twitter(profile link is on my github account homepage).
         </aside>
         <p>
             The best-known zip bomb, <a href="./42.html">42.zip</a>, expands to a formidable <data value="4503599626321920">4.5<abbr title=Petabyte(s)>PB</abbr></data> 
@@ -489,9 +489,14 @@
             The Traditional Zip Bomb
         </h3>
         <p>
-            Ok, I lied. Although in theory, the ratio 1030.3:1 is the greatest the <i>DEFLATE</i> algorithm can achieve, we underestimated file redundancy and how that can 
+            Ok, I lied. Although in theory, the ratio 1030:1 is the greatest the <i>DEFLATE</i> algorithm can achieve, we underestimated file redundancy and how that can 
             dramatically compress a file. <a href="./Zip Bomb Files/0 (2).zip">Here</a> we can see how compressing a <data value="4000000000">4<abbr title=Gigabyte(s)>GB</abbr></data>
             file of zeros becomes <data value="137508">138<abbr title=Kilobyte(s)>KB</abbr></data>, giving us a ratio of 29089:1.
         </p>
+        <p>
+            Why is this? Well, the length-distance pairs although limited at a maximum of 258 bytes, is extremely repetitive. In a <data value="4000000000">4<abbr title=Gigabyte(s)>GB</abbr></data>
+            file of repeating data, there would be such a frequent occurance of the <i>same</i> length-distance pairs such that when <i>DEFLATE</i> applies the Huffman Algorithm, 
+            the encoding of the length-distance pairs will be shortenned to the extent that they may be just 1 single bit. This will drastically increase compression ratio, 
+            beyond even the theoretical limit.
     </body>
 </html>
