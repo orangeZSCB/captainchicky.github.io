@@ -92,14 +92,14 @@
 		.isAndroid.Chrome .speechCorner{display:none}
 		.isAndroid.Firefox .content{padding-top:30%}
 		.isAndroid.Samsung .content,.isAndroid.UC .content{padding-bottom:45%}
-		form {
+		.form {
         border-style: solid;
         border-width: 3px;
         border-left-width: 3px;
         border-right-width: 3px;
         border-color: rgb(0, 47, 255);
-		position: fixed;
-		padding: 5px;
+		position: absolute;
+		padding: 8px;
         }
 		.captcha:hover {
             box-shadow: 0 0 10px 1px rgb(0, 191, 255);
@@ -108,7 +108,7 @@
 </head>
 
 <body class="Chrome en style1" style="height: 979px;">
-<div style="margin-left:800px;margin-right:50px;" class="wrapper">
+<div style="margin-left:800px;margin-top:50px;" class="wrapper">
 	<div class="content">
 		<div class="speechWrap column speechPadding" id="speechWrap">
 			<div class="speech column scale" id="speech">
@@ -184,39 +184,55 @@
 		</div>
 	</div>
 </div>
-<img class="captcha" style="margin-top:-100px;margin-left:600px;" src="index-files/captcha.png"><br>
+<img class="captcha" style="margin-top:-150px;margin-left:600px;" src="index-files/captcha.png"><br>
 
-<form target="_blank" style="margin-left:590px;margin-top:-20px;" id='captcha-sumbit' name='captcha-sumbit' action="">
-	<label for="input">Please type the Captacha. Note that spacing and capitalization do matter:</label><br><br>
+<p class="form" style="margin-left: 590px;margin-top: -80px;">
+	<label for="input">Please type the Captcha. Note that spacing and capitalization do matter:</label><br><br>
 	<input type='text' id='input' name='input'>
-    <button id="SubmitButon" onclick='redirect();'>Submit</button>
-</form>
+    <button id="SubmitButton" onclick="CheckCount(); redirect();">Submit</button>
+</p>
+<div style="padding-left:590px;padding-top:10px;color:blueviolet;" id="buttonclickcount"></div>
+
 
 <script type='text/javascript'>
 function redirect() {
 	var input = document.getElementById('input').value;
 	switch(input) {
 		case 'Based Cringe':
-			location.href('./Human.html');
+		    window.open('./Human.html', '_blank');
 			break;
 		default:
-			location.href('./Bot.html');
+			window.open('./Bot.html', '_blank');
 			break;
 	}
 }
 </script>
 
-<!--may be useful later idk
-	var count = 0;
-	onEvent("button26", "click", function(){
-		if(count > 2){
-		  setScreen("TrollScreen");
-		  playSound("sound://default.mp3", false);
-		}else{
-		  count++;
-		}
-	});-->
+<script>    
+    //create a variable to check how many times the button has been clicked
+    var buttonClick = 0;
 
+    function CheckCount() {
+        //Check if the buttonClick variable is three
+        if (buttonClick == 4) {
+            //if it is equal to five, display the screen and play the sound
+            
+            //below commented out for sake of demo
+            var audio = new Audio('./index-files/cringe.wav');
+            audio.play();
+			alert('Uhm... haven\'t you had enough tries already?')
+            document.getElementById('buttonclickcount').innerHTML = "Uhm you submitted an entry like 5+ times already. What are you trying to do lol?";
+
+        } else {
+        //if it is not so, then increment the buttonClick variable by 1
+        buttonClick++
+
+	  //could be useful for future reference?
+      //so you can see how many times the button has been clicked, you know? lol
+      //.getElementById('buttonclickcount').innerHTML = buttonClick;
+      }
+    };
+</script>
 
 <script src="./index-files/jquery-2.1.4.js" type="text/javascript"></script>
 <script src="./index-files/main.js" type="text/javascript"></script>
