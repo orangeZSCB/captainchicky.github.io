@@ -1,5 +1,5 @@
 /* 
-* I have no idea what this does lol, I'll analyze this in the future xD. It's from a scam page btw
+* This .js file helps animate the robot, but other than that I don't understand the code below at all lol, so I'll analyze this in the future xD. <It's from a scam page btw> kek
 */
 
 "use strict";
