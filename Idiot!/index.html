@@ -73,6 +73,13 @@
             }
             :link { color: #009ec5; border: none; }
             :visited { color: #00459e; border: none; }
+            .html {
+                filter: invert(100%);
+                font-family: monospace;
+                font-size: 18px;
+                background-color: #ffffff;
+                padding: 2%;
+            }
         </style>
         <style id="Popup-CSS">
             /*
@@ -277,7 +284,9 @@
                 </li>
             </ul>
             <p>
-                Note that the JavaScript is really outdated, but can be edited so it works on modern browsers. I probably can do it, as I already converted the Flash embed,
+                Note that the JavaScript is really outdated, and Internet Explorer 11 has been made so that it will block the JavaScript(or ActiveX as it's called)
+                control unless the domain has been added to the trusted list(or checking the option in the "Advanced --> Security" setting that allows Javascript/ActiveX
+                control from a file:/// aka local link). However it can be edited so it works on modern browsers. I probably can do it, as I already converted the Flash embed,
                 but considering the fact that I'm too lazy and that it still works on the Internet Explorer 11, which is likely the last version of said browser, probably not. 
                 <br><br>I'll give ya'll an update once I do it, or not do it in the space below 😅:
                 <br>
@@ -381,7 +390,97 @@
             <p>
                 Of course, the sizing bug really bothered me, and I didn't want to go through all that code Adobe Animate generated to fix it. Thus, I opted
                 to create the animation from scratch.
+                <br><br>
+                The animation itself was simple enough. Two alternating images and some autoplaying audio. The alternating images was pretty straightforward.
+                We can use the following html below...<br>
             </p>
+            <pre class="html">
+                <span style="color: black;">&lt;</span><span style="color: #dc143c;">div</span> <span style="color: #008000;">class</span><span style="color: black;">=</span><span style="color: #483d8b;">"wrapper"</span><span style="color: black;">></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: black;">&lt;</span><span style="color: #dc143c;">img</span> <span style="color: #008000;">src</span><span style="color: black;">=</span><span style="color: #483d8b;">"./<i>path</i>/black.png"</span><span style="color: black;">></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: black;">&lt;</span><span style="color: #dc143c;">img</span> <span style="color: #008000;">src</span><span style="color: black;">=</span><span style="color: #483d8b;">"./<i>path</i>/white.png"</span><span style="color: black;">></span>
+                <span style="color: black;">&lt;</span><span style="color: #dc143c;">/div</span><span style="color: black;">></span></pre>
+            <p>
+                ...and by adding a fade-in and fade-out CSS and then positioning them on top of each other, as shown below...
+            </p>
+            <pre class="html">
+                <span style="color: #dc143c;font-weight:bold;">@keyframes</span> <span style="color: #ff7700;">img-1</span> <span style="color: black;">{
+                    0% {</span>
+                        <span style="color: #66cc66;">opacity</span><span style="color: black;">:</span> <span style="color: #008000;">1</span><span style="color: black;">;</span>
+                    <span style="color: black;">}
+                    44% {</span>
+                        <span style="color: #66cc66;">opacity</span><span style="color: black;">:</span> <span style="color: #008000;">1</span><span style="color: black;">;</span>
+                    <span style="color: black;">}
+                    50% {</span>
+                        <span style="color: #66cc66;">opacity</span><span style="color: black;">:</span> <span style="color: #008000;">0</span><span style="color: black;">;</span>
+                    <span style="color: black;">}
+                    94% {</span>
+                        <span style="color: #66cc66;">opacity</span><span style="color: black;">:</span> <span style="color: #008000;">0</span><span style="color: black;">;</span>
+                    <span style="color: black;">}
+                    100% {</span>
+                        <span style="color: #66cc66;">opacity</span><span style="color: black;">:</span> <span style="color: #008000;">1</span><span style="color: black;">;</span>
+                    <span style="color: black;">}
+                }</span>
+                <span style="color: #dc143c;font-weight:bold;">@keyframes</span> <span style="color: #ff7700;">img-2</span> <span style="color: black;">{
+                    0% {</span>
+                        <span style="color: #66cc66;">opacity</span><span style="color: black;">:</span> <span style="color: #008000;">0</span><span style="color: black;">;</span>
+                    <span style="color: black;">}
+                    44% {</span>
+                        <span style="color: #66cc66;">opacity</span><span style="color: black;">:</span> <span style="color: #008000;">0</span><span style="color: black;">;</span>
+                    <span style="color: black;">}
+                    50% {</span>
+                        <span style="color: #66cc66;">opacity</span><span style="color: black;">:</span> <span style="color: #008000;">1</span><span style="color: black;">;</span>
+                    <span style="color: black;">}
+                    94% {</span>
+                        <span style="color: #66cc66;">opacity</span><span style="color: black;">:</span> <span style="color: #008000;">1</span><span style="color: black;">;</span>
+                    <span style="color: black;">}
+                    100% {</span>
+                        <span style="color: #66cc66;">opacity</span><span style="color: black;">:</span> <span style="color: #008000;">0</span><span style="color: black;">;</span>
+                    <span style="color: black;">}
+                }</span>
+                <span style="color: #003249;">.wrapper</span> <span style="color: #000000;">{</span>
+                    <span style="color: #66cc66;">margin-left</span><span style="color: black;">:</span> <span style="color: #008000;">16.5%</span> <span style="color: rgb(145, 156, 79);font-weight:bold;">!important</span><span style="color: black;">;</span>
+                    <span style="color: #66cc66;">position</span><span style="color: black;">:</span> <span style="color: #008000;">relative</span><span style="color: black;">;</span>
+                    <span style="color: #66cc66;">height</span><span style="color: black;">:</span> <span style="color: #008000;">100%</span><span style="color: black;">;</span>
+                    <span style="color: #66cc66;">width</span><span style="color: black;">:</span> <span style="color: #008000;">68%</span><span style="color: black;">;
+                }</span>
+                <span style="color: #003249;">.wrapper img:first-child</span> <span style="color: black;">{</span>
+                    <span style="color: #66cc66;">position</span><span style="color: black;">:</span> <span style="color: #008000;">absolute</span><span style="color: black;">;</span>
+                    <span style="color: #66cc66;">width</span><span style="color: black;">:</span> <span style="color: #008000;">100%</span><span style="color: black;">;</span>
+                    <span style="color: #66cc66;">opacity</span><span style="color: black;">:</span> <span style="color: #008000;">1</span><span style="color: black;">;</span>
+                    <span style="color: #66cc66;">animation</span><span style="color: black;">: img-1</span> <span style="color: #008000;">0.4s</span> <span style="color: black;">infinite</span><span style="color: black;">;
+                }</span>
+                <span style="color: #003249;">.wrapper img:last-child</span> <span style="color: black;">{</span>
+                    <span style="color: #66cc66;">position</span><span style="color: black;">:</span><span style="color: #008000;">absolute</span><span style="color: black;">;</span>
+                    <span style="color: #66cc66;">width</span><span style="color: black;">:</span> <span style="color: #008000;">100%</span><span style="color: black;">;</span>
+                    <span style="color: #66cc66;">opacity</span><span style="color: black;">:</span> <span style="color: #008000;">0</span><span style="color: black;">;</span>
+                    <span style="color: #66cc66;">animation</span><span style="color: black;">: img-2</span> <span style="color: #008000;">0.4s</span> <span style="color: black;">infinite</span><span style="color: black;">;
+                }</span></pre>
+            <p>
+                ...we're basically halfway done!<br>
+                Unfortunately, this is where it get's really tricky. Putting the audio on the page isn't hard. Autoplaying it is. 
+                Because most modern browsers do not support autoplaying audio, I wanted to first guarentee the autoplay worked on Internet Explorer (11), 
+                and then work towards getting it to work on other browsers such as FireFox, Google Chrome, or Microsoft Edge.
+                According to <a href="https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome">this</a> StackOverflow question,
+                we can use an &lt;iframe&gt; tag to autoplay. Thus, we have that
+            </p>
+            <pre class="html">
+    <span style="color: black;">&lt;</span><span style="color: #dc143c;">iframe</span> <span style="color: #008000;">src</span><span style="color: black;">=</span><span style="color: #483d8b;">"./<i>path</i>/Idiot!.mp3"</span> <span style="color: #008000;">type</span><span style="color: black;">=</span><span style="color: #483d8b;">"audio/mp3"</span> <span style="color: #008000;">allow</span><span style="color: black;">=</span><span style="color: #483d8b;">"autoplay"</span> <span style="color: #008000;">id</span><span style="color: black;">=</span><span style="color: #483d8b;">"audio"</span> <span style="color: #008000;">style</span><span style="color: black;">=</span><span style="color: #483d8b;">"display:none"</span><span style="color: black;">&lt;</span><span style="color: #dc143c;">/iframe</span><span style="color: black;"></span><span style="color: black;">></span>
+    <span style="color: black;">&lt;</span><span style="color: #dc143c;">audio</span> <span style="color: #008000;">autoplay loop</span><span style="color: black;">>&lt;</span><span style="color: #dc143c;">source</span> <span style="color: #008000;">src</span><span style="color: black;">=</span><span style="color: #483d8b;">"./<i>path</i>/Idiot!.mp3"</span> <span style="color: #008000;">type</span><span style="color: black;">=</span><span style="color: #483d8b;">"audio/mp3"</span><span style="color: black;">>&lt;</span><span style="color: #dc143c;">/audio</span><span style="color: black;">></span></pre>
+            <p>
+                Good! Now, let's give it a test run! We open it up in Internet Explorer, the flashing images are working, the audio is autoplaying... wait... what's this?
+            </p>
+            <center><img src="./index_files/downloadmp3prompt.png"></center>
+            <p>
+                That's not good. It seems Internet Explorer registers the &lt;iframe> tag as a download trigger, and all subsequent windows the you.js that we will 
+                want to implement in the page in the future will have such a notification.
+                <br><br>
+                Hmm... let's try something different. What about... this?
+            </p>
+            <pre class="html">
+        <span style="color: black;">&lt;</span><span style="color: #dc143c;">audio</span> <span style="color: #008000;">id</span><span style="color: black;">=</span><span style="color: #483d8b;">"IdiotAudio"</span> <span style="color: #008000;">loop</span><span style="color: black;">>&lt;</span><span style="color: #dc143c;">source</span> <span style="color: #008000;">src</span><span style="color: black;">=</span><span style="color: #483d8b;">"./Idiot!_files/Idiot!.mp3"</span> <span style="color: #008000;">type</span><span style="color: black;">=</span><span style="color: #483d8b;">"audio/mp3"</span><span style="color: black;">>&lt;</span><span style="color: #dc143c;">/audio</span><span style="color: black;">></span>
+        <span style="color: black;">&lt;</span><span style="color: #dc143c;">script</span><span style="color: black;">></span>
+            <span style="color: #66cc66;">var</span> <span style="color: black;">myaudio = document.getElementById(</span><span style="color: rgb(145, 156, 79);">"IdiotAudio"</span><span style="color: black;">).autoplay = </span><span style="color: #66cc66;">true</span><span style="color: black;">;</span>
+        <span style="color: black;">&lt;</span><span style="color: #dc143c;">/script</span><span style="color: black;">></span></pre>
         </div>
     </body>
 </html>
