@@ -135,6 +135,7 @@
                 font-weight: bold;
             }
         </style>
+        <!-- jquery and the modal thing with the html popup JS -->
         <script src="./index_files/jquery.js"></script>
         <script>
             $(window).load(function () {
@@ -145,6 +146,23 @@
                     $('.hover_bkgr_fricc').hide();
                 });
             });
+        </script>
+        <!-- copy text to clipboard -->
+        <script>
+            function myFunction() {
+              var copyText = document.getElementById("FlashLink");
+              copyText.select();
+              copyText.setSelectionRange(0, 99999);
+              document.execCommand("copy");
+              
+              var tooltip = document.getElementById("myTooltip");
+              tooltip.innerHTML = "Copied: " + copyText.value;
+            }
+            
+            function outFunc() {
+              var tooltip = document.getElementById("myTooltip");
+              tooltip.innerHTML = "Copy link to clipboard";
+            }
         </script>
     </head>
     <body>
@@ -249,8 +267,8 @@
                 <br><br><br>
                 And that's it. There's nothing else to it! 😄. Now time to go over my re-creations! 👍
             </p><br>
-            <h1>Original recreation, with Flash</h1>
-            <p id="Flash-Recreation">
+            <h1 id="Flash-Recreation">Original recreation, with Flash</h1>
+            <p>
                 Let me get straight to the point here. Flash v32.0.0.380 and above died on January 12th, 2021 with Adobe's implementation of a timed kill switch. 
                 So thus, in order for this to work, you must fix this. Please try this on a Virtual Machine. You have been warned. Now, let's do this 🙂. 
                 <br><br>
@@ -292,9 +310,23 @@
             </p>
             <center><img src="./index_files/FPv1.5.png"></center>
             <p>This should return system-wide Flash access. In case anything goes haywire, run the FlashPatch application again and press <i>Restore</i> to revert any changes that it made.</p>
-            <h2>The site</h2>
-            <p>Before I give the link, </p>
-            <p id="AdobeAnimate-Recreation"></p>
+            <h2>The Flash site</h2>
+            <p>
+                Before I give the link, note that again, <b><u>you should be doing this on a Virtual Machine</u></b>. Now that is out of the way, open Internet Explorer, which should come preinstalled with
+                all Windows 10 installation media/.isos that were created before August 17th, 2021. 
+                <br><br>
+                In the browser link entry box, enter/navigate to 
+                <abbr title="AGAIN, TAKE GREAT PRECAUTION WHEN GOING HERE!">
+                    <input style="width:318px" type="text" value="https://captainchicky.github.io/Idiot!/Original/Idiot!.html" id="FlashLink">
+                </abbr>
+                <div style="margin-top:-39px;margin-left:670px;" class="tooltip">
+                    <button onclick="myFunction()" onmouseout="outFunc()">
+                      <span class="tooltiptext" id="myTooltip">Copy link to clipboard</span>
+                    </button>
+                </div>
+            </p>
+            <p>Good luck 😉.</p><br>
+            <h1 id="AdobeAnimate-Recreation">First html5 Adobe Animate converted recreation</h1>
             <p id="Hand-Recreation"></p>
         </div>
     </body>
