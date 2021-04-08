@@ -183,52 +183,70 @@
                 Trojan.JS.YouAreAnIdiot is a <u>trojan website</u>. Since it is purely JavaScript/Web based, it will not delete files or anything of that sort;
                 instead it is a fork bomb. Originally, it was hosted on <i>https://youdontknowwhoiam.com</i> which was created in 2002, later turning into a
                 pornography portal, and finally shutting down in a few years later. A mirror, <i>https://youareanidiot.org</i>, created in 2004 was also availible for 
-                a few years, before turning into a different, basically blank page in 2009.
+                a few years, before turning into a different, basically blank page after 2009. In around 2015, the YouTuber going by the name danooct1 recreated the site, 
+                but it was taken down, and now the link redirects to a pastebin. In 2018, the YouTuber going by the name Endermanch hosted another mirror of 
+                the trojan at <i>https://youareanidiot.cc</i>. However, it seems that it was unfortunately taken down in 2021.
                 <br><br>
-                Before 2010, if you went to <i>https://youareanidiot.org</i> and then tried to close the tab, you were greeted with the meaning of life:
+                Before 2021, if you went to <i>https://youareanidiot.cc</i> on Internet Explorer and then tried to close the tab, you were greeted with the meaning of life:
             </p>
             <ul style="color: rgb(61, 61, 11);"><li>Windows flying around your screen with a .swf file flashing, displaying "you are an idiot!" while singing beautifully about the fact that you are an idiot! 😳</li></ul>
             <p>
-                Now though, both sites are down and broken 😔<br>
+                Now though, all four of the sites are down and broken 😔<br>
                 But worry not! Here, I've recreated not only the original site, but created two copies of it converted into html5 as well! 😄
-                If you're wanting to directly access the recreations, and <u>have already read the warning and disclaimer</u>, here are the links:
+                If you're wanting to directly access the recreations, don't feel like reading through all the text that will commence, 
+                and <u>have already read the warning and disclaimer</u>, here are the links:
             </p>
-            <ul style="color: rgb(61, 61, 11));">
+            <ul style="color: rgb(61, 61, 11);">
                 <li><a href="#Flash-Recreation">Original recreation, with flash.</a></li>
                 <li><a href="#AdobeAnimate-Recreation">First html5 Adobe Animate converted recreation.</a></li>
                 <li><a href="#Hand-Recreation">Second html5 hand converted recreation.</a></li>
             </ul>
             <p>
-                You Are An Idiot is an animated file that consists of the following text in the Times New Roman font. Note that the exclamation point is 
-                small enough that it is barely visible without zooming in.
-
-                payload
-                you are an idiot!
-                ☺ ☺ ☺
-                The screen will flashes into black and white, followed by choirs singing: "You are an idiot! ha ha ha ha ha ha ha", annoying the user.
-
-                
-                You Are An Idiot
-                You Are An Idiot was the original version of the virus. If the user enters the domain: YouAreAnIdiot.org and closed the window immediately, 6 additional windows of the website would spawn and move across the screen, annoying the user until their computer would eventually crash from lag due to the computer running out of RAM and CPU power to keep running the browser windows. If the user managed to close one, it would spawn 6 more windows of the You Are An Idiot windows. Pressing Ctrl+Alt+Del and Alt+F4 on the keyboard wouldn't work. Instead, it displayed a dialogue box saying You are an idiot!, and clicking OK or the X button would just close the window. They could turn it off by restarting their computer or killing the browser tasks with Task Manager.
-                
-                The original name of this Trojan is named Trojan.JS.Offiz according to the antivirus program, Kaspersky.
-                
-                Today, the website only just plays the video and does not open up any other windows anymore. However, the site was revived in three different web addresses with the code slightly modified. Older versions of the website can also be found on the Wayback Machine. If the user tries using it on The Wayback Machine today, there's a small chance it will duplicate, and a large chance only 1 window will bounce around.
-                
-                You Are An Idiot 2
-                File:Hey!!!!!!! My new virus!-0
-                ComputerVirusWatch demonstrates his website.
-                You Are An Idiot 2 is very similar to You Are An Idiot. This threat was created by Computer Virus Watch in 2013. The goal of the threat is to demonstrate how the original You Are An Idiot threat exploits vulnerabilities in the system. This threat's code was removed from the website on the same year, but was later recreated and modified in two different websites and is now cross-platform.
-                
-                YouareanIdiot.cc
-                Endermanch recreated the website with Flash and the popups. Chrome does a good job dealing with the popups. On Chrome OS It Is Easy to Deal with By right clicking google chrome and then clicking close but on Microsoft Windows the only way to deal with it is to Restart as in Chrome OS you cant restart.
-                
-                Description
-                In Internet Explorer, Google Chrome, Firefox, and Opera browsers without the popup blocker, when the website is visited, the malware shows a big window that flies over the user's screen, singing that the user is an idiot to pay attention. When the window is closed, it opens 6 more windows to spam the user's computer, and they open the same page, which sings the same You Are An Idiot! song and would fly over the screen, as opposed to the original version. However, this usually can break out into a big pile of error messages.
-                
-                If the user's version of Internet Explorer is lower than 6.0, the threat sets the user's homepage to its own website. The threat will not work on newer versions, Chrome, Firefox, Microsoft Edge, or other desktop browsers unless its popup blocker is completely disabled, excluding IE versions newer than 6.0.
+                Anyhow, let's talk about the site structure itself.<br>
+                The website is constructed very simply. It has a JavaScript reference and a Flash embed.<br>
+                The flash embed consists of of some words in Times New Roman font, and an exclamation point that is small enough such that it 
+                is barely visible without zooming in, structured like this:
             </p>
-            <p id="Flash-Recreation"></p>
+            <pre>
+            you are an idiot!<br>
+                  ☺️ ☺️ ☺️
+            </pre>
+            <p>
+                The animation inverts 3 times per second, followed by an audio singing: "You are an idiot! ha ha ha ha ha ha ha <i>&c</i>".<br>
+                The JavaScript has a few payloads:
+            </p>
+            <ul style="color: rgb(61, 61, 11);">
+                <li>
+                    <b>bookmark() and changeTitle()</b>:<br><span style="color:rgb(82, 30, 30)">On Internet Explorer, this will bookmark the site on the user's browser, 
+                    and if the user's version of Internet Explorer is lower than 6.0, the JavaScript will also set the user's homepage to its own website. This won't work
+                    in other browsers, as they don't have the same bookmarking methods nor homepage setting methods.</span>
+                </li>
+                <li>
+                    <b>openWindow() and procreate()</b>:<br><span style="color:rgb(82, 30, 30)">This will open six small windows directing to another .html file,
+                    with the same embed and JavaScript. In browsers other than Internet Explorer, there may be errors in window size.</span>
+                </li>
+                <li>
+                    <b>altf4key(), ctrlwkey(), and delkey()</b>:<br><span style="color:rgb(82, 30, 30)">This disables the shortcuts for closing a window, which are
+                    <i>ctrl+w</i>, <i>alt+f4</i>, along with the escaping shortcut <i>ctrl+alt+del</i>. If a user attempted to use one of these shortcuts on 
+                    Internet Explorer, they will be notified with a popup alert that "[they] are an idiot!" 😉. Unfortunately, this doesn't work correctly on other browsers.</span>
+                </li>
+                <li>
+                    <b>A plethora of window sizing functions and playBall()</b>:<br><span style="color:rgb(82, 30, 30)">This is the fun part that makes the windows bounce around
+                    the screen and making them extremely hard to close 😋.</span>
+                </li>
+            </ul>
+            <p>
+                Note that the JavaScript is really outdated, but can be edited so it works on modern browsers. I probably can do it, as I already converted the flash embed,
+                but considering the fact that I'm too lazy and that it still works on the Internet Explorer 11, which is likely the last version of said browser, probably not. 
+                I'll give ya'll an update once I do it, or not do it in the space below 😅:
+                <br><br>
+                <font style="font-size:23px; color:rgb(30, 82, 30)">Have I updated the JavaScript yet?</font>&nbsp;&nbsp;&nbsp;&nbsp;<marquee width="5%"><span style="background-color: red;">&nbsp;&nbsp;No&nbsp;&nbsp;</span></marquee>
+                <br><br><br>
+                And that's it. There's nothing else to it! 😄. Now time to go over my re-creations! 👍
+            </p>
+            <p id="Flash-Recreation">
+
+            </p>
             <p id="AdobeAnimate-Recreation"></p>
             <p id="Hand-Recreation"></p>
         </div>
