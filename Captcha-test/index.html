@@ -118,6 +118,9 @@
 		.captcha:hover {
             box-shadow: 0 0 10px 1px rgb(0, 191, 255);
         }
+		span {
+			color: black;
+		}
 	</style>
 	<script type='text/javascript'>
 		function redirect() {
@@ -166,8 +169,8 @@
 		<script src="./index-files/main.js" type="text/javascript"></script>		
 </head>
 
-<body class="Chrome en style1" style="height: 979px;">
-<div style="margin-left:800px;margin-top:50px;" class="wrapper">
+<body>
+<div style="padding-left:35%;padding-top:5%;" class="wrapper">
 	<div class="content">
 		<div class="speechWrap column speechPadding" id="speechWrap">
 			<div class="speech column scale" id="speech">
@@ -243,17 +246,37 @@
 		</div>
 	</div>
 </div>
-<img class="captcha" style="margin-top:-150px;margin-left:600px;" src="index-files/captcha.png"><br>
-<p class="form" style="margin-left: 590px;margin-top: -80px;">
-	<label for="input">Please type the Captcha. Note that spacing and capitalization do matter:</label><br><br>
+<br><br>
+<img class="captcha" style="margin-top:-13%;margin-left:27%;" src="index-files/captcha.png"><br>
+<p class="form" style="margin-left:25%;margin-top:-10%;">
+	<label for="input"><span>Please type the Captcha. Note that spacing and capitalization do matter:</span></label><br><br>
 	<input type='text' id='input' name='input'>
     <button id="SubmitButton" onclick="CheckCount(); redirect();">Submit</button>
 </p>
 <div style="padding-left:590px;padding-top:10px;color:blueviolet;" id="buttonclickcount"></div>
 <!-- iframe time(for popups lol :D) -->
-    <iframe src="https://captainchicky.github.io/Captcha-test/sort-this-out/popups.html" style="height:200px;width:300px;border:none;margin-bottom:1%;" id="iframe1">
-    </iframe>
-    <iframe src="https://captainchicky.github.io/Captcha-test/sort-this-out/secondpopup.html" style="height:400px;width:500px;border:none;margin-left:1%;" id="iframe2">
-    </iframe>
+<script>
+	function getRandomUrl(urls) {
+    var minIndex = 0;
+    var maxIndex = urls.length - 1;
+    var randomIndex = Math.floor(Math.random() * (maxIndex - minIndex)) + minIndex;
+    return urls[randomIndex];
+    }
+    var urls = [
+    "url1",
+    "url2",
+    "url3"];
+
+    var randomSelectedUrl = getRandomUrl(urls);
+
+    $("#hereComesTheIframeInto").html(
+    "<iframe class='random-iframe' src='" + randomSelectedUrl + "' width='100%' height='700' frameborder='0' scrolling='yes' seamless='seamless'></iframe>");
+</script>
+<div id="hereComesTheIframeInto"></div>
+<div id="hereComesTheIframeInto"></div>
+<iframe src="https://captainchicky.github.io/Captcha-test/sort-this-out/popups.html" style="height:200px;width:300px;border:none;margin-bottom:1%;" id="iframe1">
+</iframe>
+<iframe src="https://captainchicky.github.io/Captcha-test/sort-this-out/secondpopup.html" style="height:400px;width:500px;border:none;margin-left:1%;" id="iframe2">
+</iframe>
 </body>
 </html>
