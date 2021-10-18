@@ -1,0 +1,55 @@
+Download a video youtube-dl fails to do:
+Find the m3u8 file, or something of the like.
+In an elevated command prompt, --> ffmpeg -i "https://link" -acodec copy -vcodec copy "path/file.mp4" <--
+
+Hide a file using hidden and system attributes:
+In an elevated command prompt, --> attrib +s +h "path/file" <--
+Remove +s or +h when necessary. +s is for system attribute, +h is the hidden attribute.
+
+Activate the "Administrator" account on this computer:
+In an elevated command prompt, --> net user administrator /active:yes <--
+Change the "yes" to a "no" when needed. No will deactivate, yes will activate.
+
+Convert mp4 to gif:
+In command prompt, 
+--> ffmpeg -i "name.mp4" -vf "fps=10,scale=3000:-1:flags=lanczos" -c:v pam -f image2pipe - | convert -delay 10 - -loop 0 -layers optimize name.gif <--
+where you change name.mp4 and name.gif to the file names, respectively, and modify the fps=x to the best choice.
+
+Convert mov to gif:
+In command prompt.
+--> ffmpeg -i input.mov -pix_fmt rgb24 output.gif <--
+
+Convert mov to mp4:
+In command prompt,
+--> ffmpeg -i "name.mov" -c:v libx264 -c:a aac -vf format=yuv420p -movflags +faststart "name.mp4" <--
+where you change name.mp4 and name.gif to the file names, respectively.
+
+Remove audio from mp4:
+In command prompt,
+--> ffmpeg -i "name.mp4" -c copy -an "name.mp4" <--
+where you change name.mp4 and name.gif to the file names, respectively.
+
+Magnet link to torrent file:
+Install qBittorent.
+In file explorer, open the following path --> %userprofile%\AppData\Local\qBittorrent\BT_backup <--
+Open the magnet link via qBittorent, wait for metadata to download, and then copy the torrent hash.
+In the same directory in file explorer, find " *torrent hash* .torrent". That is the torrent file of the magnet link.
+
+Convert .png/.jpg/.tiff etc file to .ico:
+In command prompt, cd to the path where the .png/.jpg/.tiff etc file is.
+Then --> convert "name.png" -scale 16 -> 256 "name.ico"
+
+Download youtube subtitles:
+In command prompt, with the youtube-dl environmental variable added, --> youtube-dl --write-sub --sub-lang en --skip-download URL  *link* <--
+The second and third switches are optional and you can modify the second one to fit the correct language.
+
+wget website download: 
+wget --mirror --page-requisites --convert-links --adjust-extension --compression=auto --reject-regex "/search|/rss" --no-if-modified-since --no-check-certificate --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36" "https:// website"
+
+Discord bots:
+>>>Start musey 
+cd "C:\Users\maxfa\Documents\Discord bots"
+node index.js
+>>>Open musey to talk
+cd "C:\Users\maxfa\Downloads\livebot-darwin-x64\LiveBot-master"
+npm start
