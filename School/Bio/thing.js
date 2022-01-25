@@ -1,133 +1,118 @@
 //1 function for sequencing selection and iteration
 //purpose = find the length of the name
 //paramteter "name" the name the user wants to input
-var rawDNA = "";
-onEvent("button1", "click", function( ) {
-  rawDNA = getText("text_input1");
-  console.log(convertraw(rawDNA));
-  console.log(DNAparser(DNAinput));
-  console.log(mRNAjoiner(mRNAoutput));
-  console.log(mRNAconverter(mRNAinput));
-});
+
+//onEvent("button1", "click", function( ) {
+ // rawDNA = getText("text_input1");
+  //console.log(convertraw(rawDNA));
+  //console.log(DNAparser(DNAinput));
+  //console.log(mRNAjoiner(mRNAoutput));
+  //console.log(mRNAconverter(mRNAinput));
+//});
 
 
 //function 0
 //var rawDNA = 'tacgactgggtcatcgtacgctgggggatc';
+var rawDNA = "tacgactgggtcatcgtacgctgggggatc";
 var DNAinput = [];
-function convertraw(rawDNA){
+var mRNAoutput = [];
+var mRNAinput = [];
+var AAoutput = [];
+
+function convert(rawDNA){
+  //part 1
   for (var i = 0; i < rawDNA.length; i++) {
   var temp2 = rawDNA[i].toUpperCase();
-  appendItem(DNAinput, temp2);
+  DNAinput.append(temp2);
   }
-  return DNAinput;
-}
-//console.log(convertraw(rawDNA));
-
-
-//function 1
-
-var mRNAoutput = [];
-function DNAparser(DNAinput) {
+  //part 2
   for (var i = 0; i < DNAinput.length; i++) {
     if (DNAinput[i] == "T") {
-      appendItem(mRNAoutput, "A");
+      mRNAoutput.append("A");
     }
     else if (DNAinput[i] == "A") {
-      appendItem(mRNAoutput, "U");
+      mRNAoutput.append("U");
     } 
     else if (DNAinput[i] == "C") {
-      appendItem(mRNAoutput, "G");
+      mRNAoutput.append("G");
     }
     else if (DNAinput[i] == "G") {
-      appendItem(mRNAoutput, "C");
+      mRNAoutput.append("C");
     }
   }
-  return mRNAoutput;
-}
-//console.log(DNAparser(DNAinput));
-
-//function 2
-var mRNAinput = [];
-function mRNAjoiner(mRNAoutput){
+  //part 3
   for (var i = 0; i < mRNAoutput.length-2; i+=3) {
     var temp = mRNAoutput[i] + mRNAoutput[i+1] + mRNAoutput[i+2];
-    appendItem(mRNAinput, temp);
+    mRNAinput.append(temp);
   }
-  return mRNAinput;
-}
-//console.log(mRNAjoiner(mRNAoutput));
-
-//function 3
-var AAoutput = [];
-function mRNAconverter(mRNAinput) {
+  //paert 4
   for (var i = 0; i < mRNAinput.length; i++) {
     if (mRNAinput[i] == "UUU" || mRNAinput[i] == "UUC") {
-      appendItem(AAoutput, "Phe");
+      AAoutput.append("Phe");
     }
     else if (mRNAinput[i] == "UUA" || mRNAinput[i] == "UUG" || mRNAinput[i] == "CUU" || mRNAinput[i] == "CUC" || mRNAinput[i] == "CUA" || mRNAinput[i] == "CUG") {
-      appendItem(AAoutput, "Leu");
+      AAoutput.append("Leu");
     } 
     else if (mRNAinput[i] == "AUU" || mRNAinput[i] == "AUC" || mRNAinput[i] == "AUA") {
-      appendItem(AAoutput, "Ile");
+      AAoutput.append("Ile");
     }
     else if (mRNAinput[i] == "AUG") {
-      appendItem(AAoutput, "Met");
+      AAoutput.append("Met");
     }
     else if (mRNAinput[i] == "GUU" || mRNAinput[i] == "GUC" || mRNAinput[i] == "GUA" || mRNAinput[i] == "GUG") {
-      appendItem(AAoutput, "Val");
+      AAoutput.append("Val");
     }
     else if (mRNAinput[i] == "UCU" || mRNAinput[i] == "UCC" || mRNAinput[i] == "UCA" || mRNAinput[i] == "UCG" || mRNAinput[i] == "AGU" || mRNAinput[i] == "AGC") {
-      appendItem(AAoutput, "Ser");
+      AAoutput.append("Ser");
     }
     else if (mRNAinput[i] == "CCU" || mRNAinput[i] == "CCC" || mRNAinput[i] == "CCA" || mRNAinput[i] == "CCG") {
-      appendItem(AAoutput, "Pro");
+      AAoutput.append("Pro");
     }
     else if (mRNAinput[i] == "ACU" || mRNAinput[i] == "ACC" || mRNAinput[i] == "ACA" || mRNAinput[i] == "ACG") {
-      appendItem(AAoutput, "Thr");
+      AAoutput.append("Thr");
     }
     else if (mRNAinput[i] == "GCU" || mRNAinput[i] == "GCC" || mRNAinput[i] == "GCA" || mRNAinput[i] == "GCG") {
-      appendItem(AAoutput, "Ala");
+      AAoutput.append("Ala");
     }
     else if (mRNAinput[i] == "UAU" || mRNAinput[i] == "UAC") {
-      appendItem(AAoutput, "Tyr");
+      AAoutput.append("Tyr");
     }
     else if (mRNAinput[i] == "CAU" || mRNAinput[i] == "CAC") {
-      appendItem(AAoutput, "His");
+      AAoutput.append("His");
     }
     else if (mRNAinput[i] == "CAA" || mRNAinput[i] == "CAG") {
-      appendItem(AAoutput, "Gln"); 
+      AAoutput.append("Gln"); 
     }
     else if (mRNAinput[i] == "AAU" || mRNAinput[i] == "AAC") {
-      appendItem(AAoutput, "Asn"); 
+      AAoutput.append("Asn"); 
     }
     else if (mRNAinput[i] == "AAA" || mRNAinput[i] == "AAG") {
-      appendItem(AAoutput, "Lys");
+      AAoutput.append("Lys");
     }
     else if (mRNAinput[i] == "GAU" || mRNAinput[i] == "GAC") {
-      appendItem(AAoutput, "Asp");
+      AAoutput.append("Asp");
     }
     else if (mRNAinput[i] == "GAA" || mRNAinput[i] == "GAG") {
-      appendItem(AAoutput, "Glu");
+      AAoutput.append("Glu");
     }
     else if (mRNAinput[i] == "UGU" || mRNAinput[i] == "UGC") {
-      appendItem(AAoutput, "Cys"); 
+      AAoutput.append("Cys"); 
     }
     else if (mRNAinput[i] == "UGG") {
-      appendItem(AAoutput, "Trp");
+      AAoutput.append("Trp");
     }
     else if (mRNAinput[i] == "CGY" || mRNAinput[i] == "CGC" || mRNAinput[i] == "CGA" || mRNAinput[i] == "CGG") {
-      appendItem(AAoutput, "Arp"); 
+      AAoutput.append("Arp"); 
     }
     else if (mRNAinput[i] == "AGA" || mRNAinput[i] == "AGG") {
-      appendItem(AAoutput, "Arg");
+      AAoutput.append("Arg");
     }
     else if (mRNAinput[i] == "GGU" || mRNAinput[i] == "GGC" || mRNAinput[i] == "GGA" || mRNAinput[i] == "GGG") {
-      appendItem(AAoutput, "Gly");
+      AAoutput.append("Gly");
     }
     else if (mRNAinput[i] == "UAA" || mRNAinput[i] == "UAG" || mRNAinput[i] == "UGa") {
-      appendItem(AAoutput, "Stop");
+      AAoutput.append("Stop");
     }
   }
   return AAoutput;
 }
-//console.log(mRNAconverter(mRNAinput));
