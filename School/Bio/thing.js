@@ -13,7 +13,7 @@
 
 //function 0
 //var rawDNA = 'tacgactgggtcatcgtacgctgggggatc';
-var rawDNA = "tacgactgggtcatcgtacgctgggggatc";
+var rawDNA = "";
 var DNAinput = [];
 var mRNAoutput = [];
 var mRNAinput = [];
