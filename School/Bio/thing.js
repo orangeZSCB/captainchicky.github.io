@@ -41,7 +41,11 @@ var aminoMapped= "";
 function mrnaConv(){
   //define var rawDNA as the internal (entered) value of textbox element "dna_input"
   var rawDNA= document.getElementById("dna_input").value;
-  
+    
+  //clearing vars
+  MRNAbuffer= "";
+  aminoMapped= "";
+
   for (var i=0; i < rawDNA.length; i++) {
     //appending to MRNAbuffer, after reading from rawDNA[i] using character as named index 
     MRNAbuffer+= DNAtoMRNA[rawDNA[i].toUpperCase()];
@@ -60,5 +64,6 @@ function toAmino(){
   console.log(aminoMapped);
   //now in context of the DOM, append a div and populate with result
   resultDiv= document.getElementById('result');
+  resultDiv.val("");
   resultDiv.append("Result: "+aminoMapped);
 }
