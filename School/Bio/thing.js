@@ -30,3 +30,35 @@ const aminoToRNA= {
   AGA: 'Arg', AGG: 'Arg',
   GGU: 'Gly', GGC: 'Gly', GGA: 'Gly', GGG: 'Gly'
 };
+
+//define buffer vars
+//var rawDNA = "tacgactgggtcatcgtacgctgggggatc";
+var MRNAbuffer= "";
+var aminoMapped= "";
+
+//step 1: translation from dna to mrna sequence using defined mapping
+//this function is called on button press, hence no need to explicitly run it 
+function mrnaConv(){
+  //define var rawDNA as the internal (entered) value of textbox element "dna_input"
+  var rawDNA= document.getElementById("dna_input").value;
+  
+  for (var i=0; i < rawDNA.length; i++) {
+    //appending to MRNAbuffer, after reading from rawDNA[i] using character as named index 
+    MRNAbuffer+= DNAtoMRNA[rawDNA[i].toUpperCase()];
+  }
+  //return MRNAbuffer;
+  //chaining next function
+  toAmino();
+}
+
+//step 2: conversion from mrna to protein sequence
+function toAmino(){
+  for (var i=0; i < MRNAbuffer.length; i+=3) {
+    //appending to aminoMapped, after extracting every 3 chars from str MRNAbuffer and used to index the mapping aminotoRNA
+    aminoMapped+= aminoToRNA[MRNAbuffer.substr(i, 3)]+'\n';
+  }
+  console.log(aminoMapped);
+  //now in context of the DOM, append a div and populate with result
+  resultDiv= document.getElementById('result');
+  resultDiv.append("Result: "+aminoMapped);
+}
