@@ -64,6 +64,6 @@ function toAmino(){
   console.log(aminoMapped);
   //now in context of the DOM, append a div and populate with result
   resultDiv= document.getElementById('result');
-  resultDiv.val("");
+  document.getElementById('result').innerHTML = "";
   resultDiv.append("Result: "+aminoMapped);
 }
