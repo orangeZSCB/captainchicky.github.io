@@ -1,118 +1,69 @@
-//1 function for sequencing selection and iteration
-//purpose = find the length of the name
-//paramteter "name" the name the user wants to input
+//define mappings between dna, mrna and amino acids
+//this completely mitigates the need for a massive block of elifs
+const DNAtoMRNA = {
+  T: 'A', 
+  A: 'U', 
+  C: 'G', 
+  G: 'C'
+};
 
-//onEvent("button1", "click", function( ) {
- // rawDNA = getText("text_input1");
-  //console.log(convertraw(rawDNA));
-  //console.log(DNAparser(DNAinput));
-  //console.log(mRNAjoiner(mRNAoutput));
-  //console.log(mRNAconverter(mRNAinput));
-//});
+const aminoToRNA= {
+  UUU: 'Phe', UUC: 'Phe', 
+  UUA: 'Leu', UUG: 'Leu', CUU: 'Leu', CUC: 'Leu', CUA: 'Leu', CUG: 'Leu',  AUG: 'Leu', 
+  AUU: 'Ile', AUC: 'Ile', AUA: 'Ile', 
+  GUU: 'Val', GUC: 'Val', GUA: 'Val', GUG: 'Val', 
+  UCU: 'Ser', UCC: 'Ser', UCA: 'Ser', UCG: 'Ser', AGU: 'Ser', AGC: 'Ser', 
+  CCU: 'Pro', CCC: 'Pro', CCA: 'Pro', CCG: 'Pro', 
+  ACU: 'Thr', ACC: 'Thr', ACA: 'Thr', ACG: 'Thr',
+  GCU: 'Ala', GCC: 'Ala', GCA: 'Ala', GCG: 'Ala',
+  UAU: 'Tyr', UAC: 'Tyr',
+  UAA: 'Stop', UAG: 'Stop', UGA: 'Stop',
+  CAU: 'His', CAC: 'His',
+  CAA: 'Gln', CAG: 'Gln',
+  AAU: 'Asn', AAC: 'Asn',
+  AAA: 'Lys', AAG: 'Lys',
+  GAU: 'Asp', GAC: 'Asp',
+  GAA: 'Glu', GAG: 'Glu',
+  UGU: 'Cys', UGC: 'Cys',
+  UGG: 'Trp',
+  CGU: 'Arp', CGC: 'Arp', CGA: 'Arp', CGG: 'Arp',
+  AGA: 'Arg', AGG: 'Arg',
+  GGU: 'Gly', GGC: 'Gly', GGA: 'Gly', GGG: 'Gly'
+};
 
+//define buffer vars
+//var rawDNA = "tacgactgggtcatcgtacgctgggggatc";
+var MRNAbuffer= "";
+var aminoMapped= "";
 
-//function 0
-//var rawDNA = 'tacgactgggtcatcgtacgctgggggatc';
-var rawDNA = "";
-var DNAinput = [];
-var mRNAoutput = [];
-var mRNAinput = [];
-var AAoutput = [];
+//step 1: translation from dna to mrna sequence using defined mapping
+//this function is called on button press, hence no need to explicitly run it 
+function mrnaConv(){
+  //define var rawDNA as the internal (entered) value of textbox element "dna_input"
+  var rawDNA= document.getElementById("dna_input").value;
+    
+  //clearing vars
+  MRNAbuffer= "";
+  aminoMapped= "";
 
-function convert(rawDNA){
-  //part 1
-  for (var i = 0; i < rawDNA.length; i++) {
-  var temp2 = rawDNA[i].toUpperCase();
-  DNAinput.push(temp2);
+  for (var i=0; i < rawDNA.length; i++) {
+    //appending to MRNAbuffer, after reading from rawDNA[i] using character as named index 
+    MRNAbuffer+= DNAtoMRNA[rawDNA[i].toUpperCase()];
   }
-  //part 2
-  for (var i = 0; i < DNAinput.length; i++) {
-    if (DNAinput[i] == "T") {
-      mRNAoutput.push("A");
-    }
-    else if (DNAinput[i] == "A") {
-      mRNAoutput.push("U");
-    } 
-    else if (DNAinput[i] == "C") {
-      mRNAoutput.push("G");
-    }
-    else if (DNAinput[i] == "G") {
-      mRNAoutput.push("C");
-    }
+  //return MRNAbuffer;
+  //chaining next function
+  toAmino();
+}
+
+//step 2: conversion from mrna to protein sequence
+function toAmino(){
+  for (var i=0; i < MRNAbuffer.length; i+=3) {
+    //appending to aminoMapped, after extracting every 3 chars from str MRNAbuffer and used to index the mapping aminotoRNA
+    aminoMapped+= aminoToRNA[MRNAbuffer.substr(i, 3)]+'\n';
   }
-  //part 3
-  for (var i = 0; i < mRNAoutput.length-2; i+=3) {
-    var temp = mRNAoutput[i] + mRNAoutput[i+1] + mRNAoutput[i+2];
-    mRNAinput.push(temp);
-  }
-  //paert 4
-  for (var i = 0; i < mRNAinput.length; i++) {
-    if (mRNAinput[i] == "UUU" || mRNAinput[i] == "UUC") {
-      AAoutput.push("Phe");
-    }
-    else if (mRNAinput[i] == "UUA" || mRNAinput[i] == "UUG" || mRNAinput[i] == "CUU" || mRNAinput[i] == "CUC" || mRNAinput[i] == "CUA" || mRNAinput[i] == "CUG") {
-      AAoutput.push("Leu");
-    } 
-    else if (mRNAinput[i] == "AUU" || mRNAinput[i] == "AUC" || mRNAinput[i] == "AUA") {
-      AAoutput.push("Ile");
-    }
-    else if (mRNAinput[i] == "AUG") {
-      AAoutput.push("Met");
-    }
-    else if (mRNAinput[i] == "GUU" || mRNAinput[i] == "GUC" || mRNAinput[i] == "GUA" || mRNAinput[i] == "GUG") {
-      AAoutput.push("Val");
-    }
-    else if (mRNAinput[i] == "UCU" || mRNAinput[i] == "UCC" || mRNAinput[i] == "UCA" || mRNAinput[i] == "UCG" || mRNAinput[i] == "AGU" || mRNAinput[i] == "AGC") {
-      AAoutput.push("Ser");
-    }
-    else if (mRNAinput[i] == "CCU" || mRNAinput[i] == "CCC" || mRNAinput[i] == "CCA" || mRNAinput[i] == "CCG") {
-      AAoutput.push("Pro");
-    }
-    else if (mRNAinput[i] == "ACU" || mRNAinput[i] == "ACC" || mRNAinput[i] == "ACA" || mRNAinput[i] == "ACG") {
-      AAoutput.push("Thr");
-    }
-    else if (mRNAinput[i] == "GCU" || mRNAinput[i] == "GCC" || mRNAinput[i] == "GCA" || mRNAinput[i] == "GCG") {
-      AAoutput.push("Ala");
-    }
-    else if (mRNAinput[i] == "UAU" || mRNAinput[i] == "UAC") {
-      AAoutput.push("Tyr");
-    }
-    else if (mRNAinput[i] == "CAU" || mRNAinput[i] == "CAC") {
-      AAoutput.push("His");
-    }
-    else if (mRNAinput[i] == "CAA" || mRNAinput[i] == "CAG") {
-      AAoutput.push("Gln"); 
-    }
-    else if (mRNAinput[i] == "AAU" || mRNAinput[i] == "AAC") {
-      AAoutput.push("Asn"); 
-    }
-    else if (mRNAinput[i] == "AAA" || mRNAinput[i] == "AAG") {
-      AAoutput.push("Lys");
-    }
-    else if (mRNAinput[i] == "GAU" || mRNAinput[i] == "GAC") {
-      AAoutput.push("Asp");
-    }
-    else if (mRNAinput[i] == "GAA" || mRNAinput[i] == "GAG") {
-      AAoutput.push("Glu");
-    }
-    else if (mRNAinput[i] == "UGU" || mRNAinput[i] == "UGC") {
-      AAoutput.push("Cys"); 
-    }
-    else if (mRNAinput[i] == "UGG") {
-      AAoutput.push("Trp");
-    }
-    else if (mRNAinput[i] == "CGY" || mRNAinput[i] == "CGC" || mRNAinput[i] == "CGA" || mRNAinput[i] == "CGG") {
-      AAoutput.push("Arp"); 
-    }
-    else if (mRNAinput[i] == "AGA" || mRNAinput[i] == "AGG") {
-      AAoutput.push("Arg");
-    }
-    else if (mRNAinput[i] == "GGU" || mRNAinput[i] == "GGC" || mRNAinput[i] == "GGA" || mRNAinput[i] == "GGG") {
-      AAoutput.push("Gly");
-    }
-    else if (mRNAinput[i] == "UAA" || mRNAinput[i] == "UAG" || mRNAinput[i] == "UGa") {
-      AAoutput.push("Stop");
-    }
-  }
-  return AAoutput;
+  console.log(aminoMapped);
+  //now in context of the DOM, append a div and populate with result
+  resultDiv= document.getElementById('result');
+  document.getElementById('result').innerHTML = "";
+  resultDiv.append("Result: "+aminoMapped);
 }
