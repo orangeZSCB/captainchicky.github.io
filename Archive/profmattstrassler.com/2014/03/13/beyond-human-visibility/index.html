@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en">
+<![endif]-->
+<!--[if (!IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+<meta charset="UTF-8" />
+<title>Beyond Human Visibility | Of Particular Significance</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://profmattstrassler.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large' />
+<meta name="google-site-verification" content="atBcEfQYCIwhTkcOnVU26d7Pp3Jj8sJQ8u-frrJyoi8" />
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.parentNode.removeChild( dom_node ); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[ i ].parentNode.removeChild( dom_nodes[ i ] );
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+					+ '//' + window.location.hostname
+					+ '&postid=7369'
+					+ '&is_singular=1';
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly9wcm9mbWF0dHN0cmFzc2xlci5jb20%3D"
+		+ "&wpcomid=24633746"
+		+ "&time=1633127523";
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//profmattstrassler.wordpress.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Feed" href="https://profmattstrassler.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Comments Feed" href="https://profmattstrassler.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Beyond Human Visibility Comments Feed" href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkt1SAyEMhV9IFrfOtPbC8Vn4yWDawDIEuvL2UkaddWtXbxgOyZccAnKOwkwhQ8jSFxGpOAws52gmL9gjQV2pwTA/yN+xBKQyWBEnziu1hRGegeUJclTmLLq6Sf/KdaVJDcm1SAJ5GcdhPzxKXZCs1DT1AjqpVCXnSvBdCIOhYq99WHqwqIDAdyMLEUlVSILAKVMHj+FvvMWW+gd033x3urizqlPJwiW0K9v/LpFUxuD4Dr6Y9nVu7dxHdWt+A5vROmiv2lI+9yLD+zbS/43WMQGzaKvH4kV+a736A7/6l3H/tDvuDsfD8+kDj5z1pg==?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s1.wp.com/_static/??-eJyFi0EKAjEMAD9kDAsV9SC+pRtiraRJaVMWf++KF0XQ2wzM4FKBTJ3V0a9cuGMdM5K1KFkZu9+Ft9T7Bv+UWelVw1LJytdTBlQZKWvHxAZiFD2bfghcJOb2a208i6UVE67Vmz6nczlNYXcM4bCfwu0Bks1RNg==?cssminify=yes' type='text/css' media='all' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-4-1' href='https://s1.wp.com/_static/??-eJxti8sKgCAQAH8o297RIfoWE1NjdaVV+v3o0CHqNAzMwBmFopB0SOCziJiNCwyROIkNpTuArTxcMA9LxVzA/8WknESBZOgtnylZ7TWD7cAgrRLvYPFzPbT12PRTX+0XZRA3zg==?cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"24633746","siteName":"Of Particular Significance","siteURL":"https:\/\/profmattstrassler.com","siteHost":"profmattstrassler.com","icon":"<img alt='' src='https:\/\/secure.gravatar.com\/blavatar\/9192dd01619d8fdbea0a34ba4b097323?s=50&d=https%3A%2F%2Fs2.wp.com%2Fi%2Flogo%2Fwpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/coraline","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2014%252F03%252F13%252Fbeyond-human-visibility%252F","themeURL":"","xhrURL":"https:\/\/profmattstrassler.com\/wp-admin\/admin-ajax.php","nonce":"716d0a60ff","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"c6efabe250\" \/>","referer":"https:\/\/profmattstrassler.com\/2014\/03\/13\/beyond-human-visibility\/","canFollow":"1","feedID":"241531","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/profmattstrassler.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fprofmattstrassler.wordpress.com%2F2014%2F03%2F13%2Fbeyond-human-visibility%2F","postID":"7369","shortlink":"https:\/\/wp.me\/p1Fmmu-1UR","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/profmattstrassler.com\/7369","statsLink":"https:\/\/wordpress.com\/stats\/post\/7369\/profmattstrassler.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Coraline","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 15,952 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2014%252F03%252F13%252Fbeyond-human-visibility%252F\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=profmattstrassler.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??-eJyFjtEKwjAMRX/IrBaZPonfMrdYWpq0Ji1zf28HCnMvPl3CPTlcM2cYExfkYoKanLQQqg4Ou6AH89tSuvuIUBWlAVzA8yPtOaqQY3We1QjGoeAEq3V3fb88j7FOqKs+PCvK8omOPP+FgLyTJt3Cm70SC2RJr6V1N7ra88lejr21fXgDNTpbfw=='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://profmattstrassler.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/" />
+<link rel='shortlink' href='https://wp.me/p1Fmmu-1UR' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fprofmattstrassler.com%2F2014%2F03%2F13%2Fbeyond-human-visibility%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fprofmattstrassler.com%2F2014%2F03%2F13%2Fbeyond-human-visibility%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Beyond Human Visibility" />
+<meta property="og:url" content="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/" />
+<meta property="og:description" content="A couple of interesting scientific stories are making the rounds today, and worth a little physics and general science commentary. The first reminds us just how incredibly limited our sensory perce…" />
+<meta property="article:published_time" content="2014-03-13T20:55:02+00:00" />
+<meta property="article:modified_time" content="2014-03-13T22:13:10+00:00" />
+<meta property="og:site_name" content="Of Particular Significance" />
+<meta property="og:image" content="http://www.lpi.usra.edu/education/fieldtrips/2005/activities/ir_spectrum/images/emspectrum.jpg" />
+<meta property="og:image:width" content="534" />
+<meta property="og:image:height" content="290" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:creator" content="@MattStrassler" />
+<meta name="twitter:site" content="@MattStrassler" />
+<meta name="twitter:text:title" content="Beyond Human Visibility" />
+<meta name="twitter:image" content="http://www.lpi.usra.edu/education/fieldtrips/2005/activities/ir_spectrum/images/emspectrum.jpg?w=640" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="apple-touch-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=114" />
+<link rel='openid.server' href='https://profmattstrassler.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://profmattstrassler.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://profmattstrassler.com/osd.xml" title="Of Particular Significance" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<meta name="theme-color" content="#fefae3" />
+<style type="text/css">
+.widget_twitter li {
+	word-wrap: break-word;
+}
+</style>
+<meta name="application-name" content="Of Particular Significance" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="Conversations About Science with Theoretical Physicist Matt Strassler" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://profmattstrassler.com/feed/;icon-uri=https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=16" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="A couple of interesting scientific stories are making the rounds today, and worth a little physics and general science commentary. The first reminds us just how incredibly limited our sensory perceptions are in telling us about the world, by forcing us to imagine how it may look to animals whose perceptions are slightly different. The&hellip;" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #fefae3; }
+</style>
+	<link rel="amphtml" href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/amp/"></head>
+
+<body class="post-template-default single single-post postid-7369 single-format-standard custom-background customizer-styles-applied two-column sidebar-content highlander-enabled highlander-light">
+<div id="container" class="hfeed contain">
+	<div id="header">
+		<div id="masthead" role="banner">
+						<div id="site-title">
+				<span>
+					<a href="https://profmattstrassler.com/" title="Of Particular Significance" rel="home">Of Particular Significance</a>
+				</span>
+			</div>
+			<div id="site-description">Conversations About Science with Theoretical Physicist Matt Strassler</div>
+		</div><!-- #masthead -->
+
+		<div id="access" role="navigation">
+		  			<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+						<div class="menu"><ul>
+<li ><a href="https://profmattstrassler.com/">Home</a></li><li class="page_item page-item-1026 page_item_has_children"><a href="https://profmattstrassler.com/about/">About</a>
+<ul class='children'>
+	<li class="page_item page-item-2 page_item_has_children"><a href="https://profmattstrassler.com/about/about-me/">About Me</a>
+	<ul class='children'>
+		<li class="page_item page-item-5295"><a href="https://profmattstrassler.com/about/about-me/a-new-career-phase/">A New Career&nbsp;Phase</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-1029"><a href="https://profmattstrassler.com/about/about-this-site-and-how-to-use-it/">About This Site and How to Use&nbsp;It</a></li>
+</ul>
+</li>
+<li class="page_item page-item-26 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/">Articles</a>
+<ul class='children'>
+	<li class="page_item page-item-64 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/">Large Hadron Collider&nbsp;FAQ</a>
+	<ul class='children'>
+		<li class="page_item page-item-196"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/how-to-figure-out-what-happened-in-a-microcollision/">How We Learn What Happened in a Proton-Proton&nbsp;Collision</a></li>
+		<li class="page_item page-item-67"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/introduction-to-the-large-hadron-collider/">Introduction to the&nbsp;LHC</a></li>
+		<li class="page_item page-item-70"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/photosofthelhc/">Photos Of The&nbsp;LHC</a></li>
+		<li class="page_item page-item-498 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/">Some Technical Concepts</a>
+		<ul class='children'>
+			<li class="page_item page-item-661"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/fermions-and-bosons/">Fermions and Bosons</a></li>
+			<li class="page_item page-item-497"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-gev-and-tev/">GeV and TeV</a></li>
+			<li class="page_item page-item-461"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-invariant-mass/">Invariant Mass</a></li>
+			<li class="page_item page-item-568"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/what-are-anti-particles/">What are anti-particles?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1560 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/">The Trigger: Discarding All But the&nbsp;Gold</a>
+		<ul class='children'>
+			<li class="page_item page-item-7821"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/trigger-failure-and-repair/">Trigger Failure, and Repair, at the&nbsp;LHC</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-602"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-hadron-as-in-large-hadron-collider/">What&#8217;s a Hadron?</a></li>
+		<li class="page_item page-item-152 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/">What&#8217;s a Proton,&nbsp;Anyway?</a>
+		<ul class='children'>
+			<li class="page_item page-item-2668"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/checking-whats-inside-a-proton/">Checking What&#8217;s Inside a&nbsp;Proton</a></li>
+			<li class="page_item page-item-2613"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/proton-collisions-vs-quarkgluonantiquark-mini-collisions/">Proton Collisions Vs. Quark/Gluon/Antiquark Mini-Collisions</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-15 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/">Large Hadron Collider&nbsp;News</a>
+	<ul class='children'>
+		<li class="page_item page-item-340"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/a-historic-day-or-just-an-important-one/">A Historic Day? Or Just an Important&nbsp;One?</a></li>
+		<li class="page_item page-item-49"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/gangbusters/">Gangbusters!</a></li>
+		<li class="page_item page-item-10"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/hey-where-did-my-higgs-go/">Hey Where&#8217;d My Higgs&nbsp;Go?</a></li>
+		<li class="page_item page-item-1703"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/higgs-search-atlas-and-cms-summer-data-combined/">Higgs Search: ATLAS and CMS Summer Data&nbsp;Combined</a></li>
+		<li class="page_item page-item-1395"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/multi-lepton-events-a-good-place-to-look-for-new-physics/">Multi-Lepton Events: A Good Place to Look for New&nbsp;Physics</a></li>
+		<li class="page_item page-item-2241 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/">Old Pages (Of Historical&nbsp;Interest)</a>
+		<ul class='children'>
+			<li class="page_item page-item-2240"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-december-higgs-update/">The December 2011 Higgs&nbsp;Update</a></li>
+			<li class="page_item page-item-2251"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-july-2011-higgs-hints/">The July 2011 Higgs&nbsp;Hints</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1049 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/">Searches for New Phenomena (as of&nbsp;9/2011)</a>
+		<ul class='children'>
+			<li class="page_item page-item-1050 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/">Searches Aimed at&nbsp;Supersymmetry</a>
+			<ul class='children'>
+				<li class="page_item page-item-1091"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-new-particles-with-long-lifetimes/">Seeking New Particles with Long&nbsp;Lifetimes</a></li>
+				<li class="page_item page-item-1051"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-photonszs-and-something-undetectable/">Seeking Photons/Zs and Something&nbsp;Undetectable</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-4216 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/">Triggering: Advances in&nbsp;2012</a>
+		<ul class='children'>
+			<li class="page_item page-item-4205"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/data-parking-at-cms/">Data Parking at&nbsp;CMS</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1539"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/two-photons-data-and-theory-disagree/">Two-Photons: Data and Theory&nbsp;Disagree</a></li>
+		<li class="page_item page-item-753"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/what-do-current-mid-august-2011-lhc-results-imply-about-supersymmetry/">What do current LHC results (mid-August 2011) imply about&nbsp;supersymmetry?</a></li>
+		<li class="page_item page-item-114"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/why-so-quiet-at-lhc/">Why so quiet at&nbsp;LHC?</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-413 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/">Particle Physics Basics</a>
+	<ul class='children'>
+		<li class="page_item page-item-5927"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/c-p-t-and-their-combinations/">C, P, T (And Their&nbsp;Combinations)</a></li>
+		<li class="page_item page-item-1249"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/cerenkov-radiation/">Cerenkov Radiation</a></li>
+		<li class="page_item page-item-4267 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/">Fields and Their Particles: With&nbsp;Math</a>
+		<ul class='children'>
+			<li class="page_item page-item-4269 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/">1. Ball on a Spring&nbsp;(Classical)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4611"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/1a-resonance/">1a. Resonance</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4272"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-quantum/">2. Ball on a Spring&nbsp;(Quantum)</a></li>
+			<li class="page_item page-item-4376"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-form/">3. Waves (Classical&nbsp;Form)</a></li>
+			<li class="page_item page-item-4402 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/">4. Waves (Classical Equation of&nbsp;Motion)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4442"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/waves-the-quick-calculation/">4a. Waves (The Quick&nbsp;Calculation)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4450"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/5-waves-quantum/">5. Waves (Quantum)</a></li>
+			<li class="page_item page-item-4468 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/">6. Fields</a>
+			<ul class='children'>
+				<li class="page_item page-item-4501"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/chicken-and-egg-matter-and-field/">6a. Chicken and Egg; Matter and&nbsp;Field</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4526 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/">7. Particles Are&nbsp;Quanta</a>
+			<ul class='children'>
+				<li class="page_item page-item-4536"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/7a-how-bosons-and-fermions-differ/">7a. How Bosons and Fermions&nbsp;Differ</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4627"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/8-how-particles-and-fields-interact/">8. How Particles and Fields Interact (an&nbsp;introduction)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4585 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/">How the Higgs Field Works (with&nbsp;math)</a>
+		<ul class='children'>
+			<li class="page_item page-item-4663 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/">1. The Basic&nbsp;Idea</a>
+			<ul class='children'>
+				<li class="page_item page-item-4587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/1-the-basic-idea/">1. The Basic Idea (1st&nbsp;version)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4710"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/2-why-the-higgs-field-is-non-zero-on-average/">2. Why the Higgs Field is Non-Zero on&nbsp;Average</a></li>
+			<li class="page_item page-item-4789"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/3-how-the-higgs-particle-arises/">3. How the Higgs Particle&nbsp;Arises</a></li>
+			<li class="page_item page-item-5032"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/4-why-the-higgs-field-is-necessary/">4. Why the Higgs Field is&nbsp;Necessary</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3077 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/">Mass, Energy, Matter,&nbsp;Etc.</a>
+		<ul class='children'>
+			<li class="page_item page-item-3118 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/">Mass and Energy</a>
+			<ul class='children'>
+				<li class="page_item page-item-3321"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/how-did-einstein-do-it/">How Did Einstein Do&nbsp;It?</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3079"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/matter-and-energy-a-false-dichotomy/">Matter and Energy: A False&nbsp;Dichotomy</a></li>
+			<li class="page_item page-item-6247 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/">More on Mass</a>
+			<ul class='children'>
+				<li class="page_item page-item-6245"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/the-two-definitions-of-mass-and-why-i-use-only-one/">The Two Definitions of &#8220;Mass&#8221;, And Why I Use Only&nbsp;One</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3452 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/">The Energy That Holds Things&nbsp;Together</a>
+			<ul class='children'>
+				<li class="page_item page-item-3534"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/neutron-stability-in-atomic-nuclei/">Neutron Stability in Atomic&nbsp;Nuclei</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-1213 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/">Neutrinos</a>
+		<ul class='children'>
+			<li class="page_item page-item-1791 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/">How One Detects&nbsp;Neutrinos</a>
+			<ul class='children'>
+				<li class="page_item page-item-6044"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/icecube-a-giant-frozen-neutrino-catcher/">IceCube: A Giant Frozen Neutrino&nbsp;Catcher</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1793"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/making-neutrino-beams/">Making Neutrino Beams</a></li>
+			<li class="page_item page-item-1212 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/">Neutrino Types and Neutrino&nbsp;Oscillations</a>
+			<ul class='children'>
+				<li class="page_item page-item-1229"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/velocity-differences-of-neutrinos/">Velocity Differences of&nbsp;Neutrinos</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1737 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/">Neutrinos Faster Than&nbsp;Light?</a>
+			<ul class='children'>
+				<li class="page_item page-item-1811"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-additional-supporting-info/">OPERA: Additional Supporting&nbsp;Info</a></li>
+				<li class="page_item page-item-1736"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-comparing-the-two-versions/">OPERA: Comparing the Two&nbsp;Versions</a></li>
+				<li class="page_item page-item-1799 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/">OPERA: Some Arguments&nbsp;Against</a>
+				<ul class='children'>
+					<li class="page_item page-item-1801"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/cohen-glashow-opera-is-self-contradictory/">Cohen-Glashow: OPERA is Self-Contradictory</a></li>
+					<li class="page_item page-item-1805"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-vs-icarus/">OPERA vs ICARUS</a></li>
+					<li class="page_item page-item-1802"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-another-speed-bump/">OPERA: Another Speed&nbsp;Bump</a></li>
+					<li class="page_item page-item-1782"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/supernovas-and-neutrino-speeds/">Supernovas and Neutrino&nbsp;Speeds</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-1795 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/">OPERA: The First Few&nbsp;Days</a>
+				<ul class='children'>
+					<li class="page_item page-item-1784"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-paper-my-initial-reaction/">OPERA&#8217;s Paper: My Initial&nbsp;Reaction</a></li>
+					<li class="page_item page-item-1788"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-presentation-my-initial-comments/">OPERA&#8217;s Presentation: My Initial&nbsp;Comments</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-3160 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/">OPERA: What Went&nbsp;Wrong</a>
+				<ul class='children'>
+					<li class="page_item page-item-3185"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/how-opera-and-lvd-confirmed-operas-problem/">How LVD Helped Solve OPERA&#8217;s&nbsp;Mystery</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-412"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particle-physics-why-do-it-and-why-do-it-that-way/">Particle Physics: Why do it? And why do it *that*&nbsp;way?</a></li>
+		<li class="page_item page-item-3090"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particleanti-particle-annihilation/">Particle/Anti-Particle Annihilation</a></li>
+		<li class="page_item page-item-6499"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/quantum-fluctuations-and-their-energy/">Quantum Fluctuations and Their&nbsp;Energy</a></li>
+		<li class="page_item page-item-721 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/">The Hierarchy Problem</a>
+		<ul class='children'>
+			<li class="page_item page-item-6461 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/">Naturalness and the Standard&nbsp;Model</a>
+			<ul class='children'>
+				<li class="page_item page-item-6594"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/adding-curves/">How to Add 2&nbsp;Curves</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-566 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/">The Known (Apparently-) Elementary&nbsp;Particles</a>
+		<ul class='children'>
+			<li class="page_item page-item-1396 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/">Jets: The Manifestation of Quarks and&nbsp;Gluons</a>
+			<ul class='children'>
+				<li class="page_item page-item-2919"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/b-tagging-identifying-jets-from-bottom-quarks/">B-tagging: Identifying Jets from Bottom&nbsp;Quarks</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1401"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/tau-leptons/">Tau Leptons</a></li>
+			<li class="page_item page-item-616"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/the-known-particles-if-the-higgs-field-were-zero/">The Known Particles &#8212; If The Higgs Field Were&nbsp;Zero</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-6088 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/">The Known Forces of&nbsp;Nature</a>
+		<ul class='children'>
+			<li class="page_item page-item-6072"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/the-strength-of-the-known-forces/">The Strengths of the Known&nbsp;Forces</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3621 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/">The Structure of&nbsp;Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5096 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/">Atoms: Building Blocks of&nbsp;Molecules</a>
+			<ul class='children'>
+				<li class="page_item page-item-5184"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-of-an-isotope-are-identical-literally/">Atoms of an Isotope Are Identical,&nbsp;Literally</a></li>
+				<li class="page_item page-item-5363"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-their-inner-workings/">Atoms: Their Inner&nbsp;Workings</a></li>
+				<li class="page_item page-item-5177"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/isotopes-variations-on-an-atom/">Isotopes: Variations on an&nbsp;Atom</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-5416"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/electrons-on-the-outskirts-of-atoms/">Electrons: On the Outskirts of&nbsp;Atoms</a></li>
+			<li class="page_item page-item-5815"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/protons-and-neutrons/">Protons and Neutrons: The Massive Pandemonium in&nbsp;Matter</a></li>
+			<li class="page_item page-item-3618"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-molecular-structure-of-matter/">The Molecular Structure of&nbsp;Matter</a></li>
+			<li class="page_item page-item-5564 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/">The Nuclei of Atoms: At the Heart of&nbsp;Matter</a>
+			<ul class='children'>
+				<li class="page_item page-item-5592"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/what-holds-nuclei-together/">What Holds Nuclei&nbsp;Together?</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-7624"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/theories-and-vacua/">Theories and Vacua</a></li>
+		<li class="page_item page-item-7587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/tunneling-a-quantum-process/">Tunneling: A Quantum&nbsp;Process</a></li>
+		<li class="page_item page-item-1285"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/virtual-particles-what-are-they/">Virtual Particles: What are&nbsp;they?</a></li>
+		<li class="page_item page-item-3080 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/">Why Do Particles&nbsp;Decay?</a>
+		<ul class='children'>
+			<li class="page_item page-item-531"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-why/">Most Particles Decay &#8212; But&nbsp;Why?</a></li>
+			<li class="page_item page-item-1333"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-yet-some-dont/">Most Particles Decay &#8212; Yet Some&nbsp;Don&#8217;t!</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-1819 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/">Relativity, Space, Astronomy and&nbsp;Cosmology</a>
+	<ul class='children'>
+		<li class="page_item page-item-1672"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/big-bang-classic-confusions/">Big Bang, Classic&nbsp;Confusions</a></li>
+		<li class="page_item page-item-7183 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/">Black Holes</a>
+		<ul class='children'>
+			<li class="page_item page-item-7185"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/black-hole-information-paradox-an-introduction/">Black Hole Information Paradox: An&nbsp;Introduction</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3366 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/">Dark Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5907"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/current-hints-of-dark-matter-413/">Current Hints of Dark Matter&nbsp;(4/13)</a></li>
+			<li class="page_item page-item-7903"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/searching-for-dark-matter-at-the-lhc/">Searching for Dark Matter at the&nbsp;LHC</a></li>
+			<li class="page_item page-item-3365"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/dark-matter-annihilation/">Seeing Signs of Dark Matter&nbsp;Annihilation</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-7383 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/">History of the&nbsp;Universe</a>
+		<ul class='children'>
+			<li class="page_item page-item-7390"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/before-inflation/">Before Inflation</a></li>
+			<li class="page_item page-item-7426"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/big-bang-expansion-not-explosion/">Big Bang: Expansion, NOT&nbsp;Explosion</a></li>
+			<li class="page_item page-item-7407"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/hot-big-bang/">Hot Big Bang</a></li>
+			<li class="page_item page-item-7393 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/">Inflation</a>
+			<ul class='children'>
+				<li class="page_item page-item-7840"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/dust-thou-art-bicep2/">Dust Thou Art,&nbsp;BICEP2</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-7505"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/some-definitions-for-cosmology/">Some Definitions for&nbsp;Cosmology</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3681"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/parallax-seeing-in-depth/">Parallax: Seeing in&nbsp;Depth</a></li>
+		<li class="page_item page-item-2698"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/reflections-on-beauty-in-motion/">Reflections on Beauty in&nbsp;Motion</a></li>
+		<li class="page_item page-item-1821"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/the-first-principle-of-relativity/">The First Principle of&nbsp;Relativity</a></li>
+		<li class="page_item page-item-3706"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/transit-of-venus-and-the-distance-to-the-sun/">Transit of Venus and the Distance to the&nbsp;Sun</a></li>
+		<li class="page_item page-item-6167 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/">Why Do Astronauts&nbsp;Float?</a>
+		<ul class='children'>
+			<li class="page_item page-item-6231"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/how-strong-is-gravity-at-the-space-station/">How Strong Is Gravity at the Space&nbsp;Station?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-755 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/">Some Speculative Theoretical Ideas for the&nbsp;LHC</a>
+	<ul class='children'>
+		<li class="page_item page-item-1574 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/">Extra Dimensions</a>
+		<ul class='children'>
+			<li class="page_item page-item-1575 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/">Extra Dimensions &#8211; How to Think About&nbsp;Them</a>
+			<ul class='children'>
+				<li class="page_item page-item-1642"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/dimensions-of-physical-space/">Dimensions of Physical&nbsp;Space</a></li>
+				<li class="page_item page-item-2290"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/what-is-an-extra-dimension-an-example/">What is an &#8220;Extra&#8221; Dimension? Some&nbsp;Examples</a></li>
+				<li class="page_item page-item-1584"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-1-spatial-dimension/">Worlds of 1 Spatial&nbsp;Dimension</a></li>
+				<li class="page_item page-item-1668"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-2-spatial-dimensions/">Worlds of 2 Spatial&nbsp;Dimensions</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2331 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/">How to Look for Signs of Extra&nbsp;Dimensions</a>
+			<ul class='children'>
+				<li class="page_item page-item-3815"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/extra-dimensions-newtons-gravity/">Extra Dimensions &amp; Newton&#8217;s&nbsp;Gravity</a></li>
+				<li class="page_item page-item-3764"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/how-big-could-an-extra-dimension-be/">How Big Could an Extra Dimension&nbsp;Be?</a></li>
+				<li class="page_item page-item-2350"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-1/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;1</a></li>
+				<li class="page_item page-item-2364"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-2/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;2</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-758 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/">Supersymmetry</a>
+		<ul class='children'>
+			<li class="page_item page-item-697 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/">How to Look for Supersymmetry at the&nbsp;LHC</a>
+			<ul class='children'>
+				<li class="page_item page-item-808 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/">When The Standard Assumptions About Supersymmetry are&nbsp;Relaxed</a>
+				<ul class='children'>
+					<li class="page_item page-item-4172"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/test-page/">Test Page</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+			<li class="page_item page-item-660"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-what-is-it/">Supersymmetry &#8212; What Is&nbsp;It?</a></li>
+			<li class="page_item page-item-1399"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-and-multi-lepton-events/">Supersymmetry and Multi-Lepton&nbsp;Events</a></li>
+			<li class="page_item page-item-7017"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-122013/">Where Stands Supersymmetry (as of&nbsp;12/2013)</a></li>
+			<li class="page_item page-item-3411"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-as-of-42012/">Where Stands Supersymmetry (as of&nbsp;4/2012)?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-210 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/">Tevatron News</a>
+	<ul class='children'>
+		<li class="page_item page-item-222"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/a-rare-and-interesting-decay-of-a-b-meson/">A Rare and Interesting Decay of a &#8220;B meson&#8221; &#8211; update&nbsp;2</a></li>
+		<li class="page_item page-item-894"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/apparent-unexpected-asymmetries-in-the-production-of-quarks/">Apparent Unexpected Asymmetries in the Production of&nbsp;Quarks</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-362 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/">The Higgs Particle</a>
+	<ul class='children'>
+		<li class="page_item page-item-3956 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/">Discovery of the&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-4009"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-higgs/">Higgs Discovery: Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4015"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-simplest-higgs/">Higgs Discovery: Is it a Simplest&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4100"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-personal-reflections/">Higgs Discovery: Personal&nbsp;Reflections</a></li>
+			<li class="page_item page-item-3980"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-skill-and-a-little-luck/">Higgs Discovery: Skill and A Little&nbsp;Luck</a></li>
+			<li class="page_item page-item-3958"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-the-data/">Higgs Discovery: The&nbsp;Data</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2198"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/holiday-higgs-hints-confidence-inspiring-or-not/">Holiday Higgs Hints: Confidence-Inspiring or&nbsp;Not?</a></li>
+		<li class="page_item page-item-4265"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/how-the-higgs-field-works/">How The Higgs Field&nbsp;Works</a></li>
+		<li class="page_item page-item-960"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/implications-of-higgs-searches-as-of-92011/">Implications of Higgs Searches (as of&nbsp;9/2011)</a></li>
+		<li class="page_item page-item-7236 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/">Non-Standard Decays of the Observed Higgs&nbsp;Particle</a>
+		<ul class='children'>
+			<li class="page_item page-item-7282"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decay-to-unknown-spin-one-particles/">Higgs Decay to Unknown Spin-One&nbsp;Particles</a></li>
+			<li class="page_item page-item-7218"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decays-to-unknown-spin-zero-particles/">Higgs Decays to Unknown Spin-Zero&nbsp;Particles</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-5394 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/">Taking Stock of the &#8220;Higgs&#8221; (Jan.&nbsp;2013)</a>
+		<ul class='children'>
+			<li class="page_item page-item-5446"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/1-is-it-a-higgs/">1. Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5447"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/2-perhaps-composite/">2. Perhaps Composite?</a></li>
+			<li class="page_item page-item-5448"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/3-a-higgs-of-simplest-type/">3. A Higgs of Simplest&nbsp;Type?</a></li>
+			<li class="page_item page-item-5454"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/4-more-than-one-higgs/">4. More Than One&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5460"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/5-supersymmetry/">5. Supersymmetry?</a></li>
+			<li class="page_item page-item-5494"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/6-surprises/">6. Surprises?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4690"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">The Higgs FAQ&nbsp;2.0</a></li>
+		<li class="page_item page-item-4693 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/">The Old Higgs&nbsp;FAQ</a>
+		<ul class='children'>
+			<li class="page_item page-item-360"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/higgs-faq-1-0/">The Higgs FAQ&nbsp;1.0</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2000 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/">The Standard Model&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-2004"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/decays-of-the-standard-model-higgs/">Decays of the Standard Model&nbsp;Higgs</a></li>
+			<li class="page_item page-item-2509 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/">Lightweight Higgs: A `Sensitive&nbsp;Creature&#8217;</a>
+			<ul class='children'>
+				<li class="page_item page-item-2587 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/">A Quantitative Addendum to the Sensitive&nbsp;Creature</a>
+				<ul class='children'>
+					<li class="page_item page-item-5855 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/">Non-SM h Decays</a>
+					<ul class='children'>
+						<li class="page_item page-item-6041"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/table-of-decays/">Table of Decays</a></li>
+					</ul>
+</li>
+				</ul>
+</li>
+				<li class="page_item page-item-3649"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/decay-to-unusual-jets/">Decay to Unusual&nbsp;Jets</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2002"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/production-of-the-standard-model-higgs-particle/">Production of the Standard Model Higgs&nbsp;Particle</a></li>
+			<li class="page_item page-item-2007"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/seeking-and-studying-the-standard-model-higgs-particle/">Seeking and Studying the Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1932 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/">Why is it Hard to Find the Higgs&nbsp;Particle?</a>
+		<ul class='children'>
+			<li class="page_item page-item-1935"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/a-lightweight-standard-model-higgs-particle/">A Lightweight Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3892 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/">Why the Higgs Particle&nbsp;Matters</a>
+		<ul class='children'>
+			<li class="page_item page-item-3908"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/why-the-higgs-particle-matters-2/">Why the Higgs Particle Matters (Old&nbsp;Version)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-443"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-hints-of-higgs-currently-rest-on-uncertain-ground/">Why The Hints of Higgs Currently Rest on Uncertain&nbsp;Ground</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-291 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/">Thoughts on the Scientific&nbsp;Process</a>
+	<ul class='children'>
+		<li class="page_item page-item-1808"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/scientific-scepticism-isnt-just-politics/">Scientific Scepticism Isn&#8217;t Just&nbsp;Politics</a></li>
+		<li class="page_item page-item-286"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/why-is-the-tevatron-so-busy-with-hints-of-new-physics/">Why is the Tevatron So Busy with Hints of New&nbsp;Physics?</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="page_item page-item-90"><a href="https://profmattstrassler.com/videoclips/">Movie Clips</a></li>
+<li class="page_item page-item-1032"><a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a></li>
+<li class="page_item page-item-1018 page_item_has_children"><a href="https://profmattstrassler.com/technical-zone/">Technical Zone</a>
+<ul class='children'>
+	<li class="page_item page-item-10344"><a href="https://profmattstrassler.com/technical-zone/test-page/">Test Page</a></li>
+</ul>
+</li>
+<li class="page_item page-item-159 page_item_has_children"><a href="https://profmattstrassler.com/xotica/">Xotica</a>
+<ul class='children'>
+	<li class="page_item page-item-2302"><a href="https://profmattstrassler.com/xotica/hurriquake-2011-what-are-the-chances/">Hurriquake 2011: What are the&nbsp;Chances?</a></li>
+	<li class="page_item page-item-5354 page_item_has_children"><a href="https://profmattstrassler.com/xotica/sunrise/">Sunrise</a>
+	<ul class='children'>
+		<li class="page_item page-item-215"><a href="https://profmattstrassler.com/xotica/sunrise/sunrise_old/">Sunrise (older version)</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-2300"><a href="https://profmattstrassler.com/xotica/the-grand-si11iness-of-111111-111111/">The Grand Si11iness of 11/11/11&nbsp;11:11:11</a></li>
+</ul>
+</li>
+</ul></div>
+		</div><!-- #access -->
+
+		<div id="branding">
+						<a href="https://profmattstrassler.com/">
+									<img src="https://profmattstrassler.files.wordpress.com/2011/06/cropped-cerntunnel1.jpg" width="990" height="180" alt="" />
+							</a>
+					</div><!-- #branding -->
+	</div><!-- #header -->
+
+	<div id="content-box">
+
+<div id="content-container">
+	<div id="content" role="main">
+
+	
+		<div id="nav-above" class="navigation">
+			<div class="nav-previous"><a href="https://profmattstrassler.com/2014/03/11/dark-matter-unseen-but-yet-again-in-the-limelight/" rel="prev"><span class="meta-nav">&larr;</span> Dark Matter: Unseen, But Yet Again in the&nbsp;Limelight</a></div>
+			<div class="nav-next"><a href="https://profmattstrassler.com/2014/03/14/higgs-experts-a-small-but-important-correction-to-a-previous-post/" rel="next">Higgs Experts: A Small But Important Correction to a Previous&nbsp;Post <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-above -->
+
+		<div id="post-7369" class="post-7369 post type-post status-publish format-standard hentry category-evolution-and-biology category-geology tag-earthquakes tag-environment tag-geology-2 tag-light">
+
+			
+			<h1 class="entry-title">Beyond Human Visibility</h1>
+							<div class="entry-meta">
+					<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/" title="4:55 PM" rel="bookmark"><span class="entry-date">March 13, 2014</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comments">38 Comments</a></span>
+									</div><!-- .entry-meta -->
+			
+			<div class="entry-content">
+				<p>A couple of interesting scientific stories are making the rounds today, and worth a little physics and general science commentary. The first reminds us just how incredibly limited our sensory perceptions are in telling us about the world, by forcing us to imagine how it may look to animals whose perceptions are slightly different. The second reminds us just how little we know about our own planet.<span id="more-7369"></span></p>
+<p><a href="http://www.independent.co.uk/environment/powerlines-disturb-animal-habitats-by-appearing-as-disturbing-flashes-of-uv-light-invisible-to-the-human-eye-9187631.html" target="_blank">One story that got my attention</a> is that apparently the flashes of ultraviolet light randomly emitted by insulators on electrical power lines are visible to many mammals with whom we share the planet.  And these flashes, up and down a long power line, may be scaring the heck out of them.</p>
+<p>Light, or more generally, electromagnetic waves, can occur at any wavelength (the wavelength being the distance from one wavecrest to the next). But we humans see only an extremely narrow range of wavelengths &#8212; from about 0.4 millionths of a meter to about 0.70 millionths of a meter. (For scale; an atom is about 0.0003 millionths of a meter across.  0.7 millionths of a meter is also called 700 nanometers.)</p>
+<div style="width: 544px" class="wp-caption aligncenter"><img style="font-size:14px;line-height:1.7;cursor:-webkit-zoom-in;" alt="" src="https://i2.wp.com/www.lpi.usra.edu/education/fieldtrips/2005/activities/ir_spectrum/images/emspectrum.jpg" width="534" height="290" /><p class="wp-caption-text">Visible light occupies a tiny part (vastly overestimated in this picture!) of the immense range of wavelengths over which electromagnetic radiation is found in nature, which extends from a good fraction of the size of the universe down to distances far smaller than an atomic nucleus. A nanometer is 0.000,000,001 meters, or about 3 times the size of an atom; we can see only light waves with wavelengths in a small range around 525 nanometers. Many animals can see light that lies a bit to the left of our visible range (i.e. at smaller wavelengths, &#8220;ultraviolet&#8221;) than humans can see; others can see some infrared light (to the right of our visible range, at larger wavelengths). Picture from <a href="http://www.lpi.usra.edu/education/fieldtrips/2005/activities/" rel="nofollow">http://www.lpi.usra.edu/education/fieldtrips/2005/activities/</a> .</p></div>
+<p style="text-align:left;"><span style="font-size:14px;color:#444444;line-height:1.7;">It&#8217;s been known that many animals see light extending down to somewhat smaller wavelengths, but apparently this was thought not to be true of mammals. But recently <a href="http://www.bbc.co.uk/news/science-environment-13529152" target="_blank">reindeer were discovered</a> to have eyes sensitive to light that reaches down to 0.3 millionths of a meter. (We call this &#8220;ultra-violet&#8221; light simply because it is &#8220;beyond-the-violet&#8221; &#8212; smaller wavelengths than the smallest ones that we can see, which appear violet to our brains. It&#8217;s sometimes called near-ultraviolet or UVA, because it&#8217;s just beyond the human visible range.) </span></p>
+<p>That slightly broader range of vision is apparently enough to make power line flashes visible to their eyes. It&#8217;s been known that reindeer and other animals have been widely avoiding the areas with power lines, with the effect of fragmenting their habitat and populations (which can endanger them), but it hasn&#8217;t been understood why.  Now it is suggested that these flashes might be the reason.  There may be similar effects on other animals in other places, because it turns out that <a href="http://rspb.royalsocietypublishing.org/content/281/1780/20132995.abstract" target="_blank">humans and monkeys may be unusual among mammals in not being able to see this slightly ultraviolet light</a>. It may therefore be important, on environmental grounds, for power companies to prevent these flashes completely, which are caused by a buildup of electric charge that is suddenly released into the atmosphere.  It&#8217;s yet another example of the many unexpected and unintended consequences of modern life&#8230; and of the limitations of perceiving the world with only human senses.</p>
+<p>Next comes the report that a major step has been taken in the debate as to how much water is stored in part of the Earth&#8217;s interior.</p>
+<p>Using earthquake waves as a probe over the past century, geologists have assembled a picture of the Earth (which has a radius of 6400 kilometers [4000 miles]) as consisting of a core of radius of nearly 3500 kilometers, and a mantle, extending from the top of the core nearly to the outer edge of radius of about 2900 kilometers, with a thin crust (typically 10 to a few tens of kilometers [6 &#8211; tens of miles] thick) on which all the continental land and oceans rest. The dense material in the mantle is in some ways like a solid and in some ways like an extremely viscous liquid that can be squeezed and deformed very slowly. <em>(Caution: that&#8217;s a quick over-simplification; the mantle&#8217;s more complex than that.)</em> The mantle&#8217;s details are probably still incompletely known, but there is an upper region extending from the crust down to about 410 km below the surface, and below that is a &#8220;transition zone&#8221; (410–660 km below the surface, or from about 5710 km to about 5960 km from the Earth&#8217;s center), which separates the upper and lower mantle.</p>
+<p>There&#8217;s been a long-running debate as to whether the transition zone has a significant amount of water, perhaps dragged down from the ocean floor via the process of <a href="http://earthguide.ucsd.edu/eoc/teachers/t_tectonics/p_subduction.html" target="_blank">subduction</a>. And just recently there&#8217;s been evidence (which I&#8217;ll describe in a moment) that the watery point of view is correct.</p>
+<p>In the reporting on this story, a small number of press reports about this have actually bordered on saying that the Earth is now thought to have an underground ocean!  Not so.  A somewhat larger fraction of the press reports have said there&#8217;s an underground &#8220;ocean&#8221;, whatever those quotation marks are supposed to mean. Either way, it&#8217;s pretty misleading. If the water actually is down there, it&#8217;s not stored as liquid water. It would be stored in &#8220;hydrous&#8221; minerals, which contain water not as droplets or pools or puddles but by incorporating individual water <a title="Atoms: Building Blocks of Molecules" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/" target="_blank">molecules</a> into their molecular structure. An example of a hydrous mineral is <a href="http://www.newark.osu.edu/facultystaff/personal/jstjohn/Documents/Common-minerals/Opal.htm" target="_blank">opal</a>, which certainly isn&#8217;t a puddle.</p>
+<p>Also, an &#8220;ocean&#8217;s-worth&#8221; of water may sound like a lot, and in a way it is a lot, but then again, not that much relatively speaking. Let&#8217;s do a little calculation to see what we&#8217;re talking about.</p>
+<p>The volume of a sphere of radius r is (4/3) π r<sup>3</sup>, so if you dig out your on-line or off-line calculator, you can check:</p>
+<ul>
+<li>the volume of the earth is about 1.1 trillion km<sup>3</sup>  (where a trillion = a million times a million)</li>
+<li>the volume of the core is about 0.2 trillion km<sup>3</sup></li>
+<li>so the volume of the mantle, the difference of the two, is about 0.9 trillion km<sup>3</sup> ~ 82% of Earth&#8217;s volume</li>
+<li>the transition zone has 4/3 π ([5960 km]<sup>3</sup> &#8211; [5710 km]<sup>3</sup>) = 0.1 trillion km<sup>3</sup> = 9% of Earth&#8217;s volume</li>
+<li><span style="font-size:14px;color:#444444;line-height:1.7;">the volume of the world&#8217;s oceans = 1.3 billion km</span><sup>3</sup><span style="font-size:14px;color:#444444;line-height:1.7;"> = 0.0013 trillion km³ = 0.1% of Earth&#8217;s volume</span></li>
+</ul>
+<p>Right &#8212; the ocean looks big, but the Earth is 1000 times bigger by volume.  So that means that <strong>even if</strong> an amount of water equal to the earth&#8217;s oceans is inside the mantle&#8217;s transition zone, it is only (by volume) about 1% of the volume of the entire transition zone, and about 0.1% by volume of the Earth as a whole.  Since water is less dense than rock (i.e., it has less mass for the same volume, which is why it is easier to lift a cup of water than a cup filled with rocks), the stored water is a lot less than 1% of the mass of the transition zone, etc.</p>
+<p>The new story this week is that a <a href="http://www.scientificamerican.com/article/rare-diamond-confirms-that-earths-mantle-holds-an-oceans-worth-of-water/" target="_blank">small ugly diamond from deep underground has been found to contain a tiny, tiny crystal of blue ringwoodite</a> (a very-high-pressure modification of olivine, containing magnesium, iron, silicon and oxygen).  As often happens, the discovery was an accident; the geologists were studying the diamond for another reason.  Ringwoodite, a beautiful blue crystal, is expected to form geologically only in the mantle&#8217;s transition zone, because of the extreme pressure required to make it.  This is the first geologically-produced ringwoodite ever found, and as direct information about the transition zone, it has geologists very excited; maybe, if they look harder, they&#8217;ll find many more examples.</p>
+<div style="width: 278px" class="wp-caption alignright"><img style="font-size:14px;line-height:1.7;" alt="" src="http://upload.wikimedia.org/wikipedia/commons/8/8f/BlueRingwoodite.jpg" width="268" height="234" /><p class="wp-caption-text">Synthesized ringwoodite; from Wikipedia commons.</p></div>
+<p>Moreover, ringwoodite is a hydrous min<span style="font-size:14px;color:#444444;line-height:1.7;">eral, and this tiny ringwoodite crystal turns out to have a small amount of water incorporated into its structure. And that connects us to our watery story.  From this one tiny piece of evidence, a huge claim has been made that the entire transition zone must be 1% (or so) water, and that therefore there&#8217;s as much water down there as all the world&#8217;s oceans. Or so says the media based on the claims of at least one of the scientists who discovered this evidence.</span></p>
+<p><em>&#8220;It&#8217;s actually the confirmation that there is a very, very large amount of water that&#8217;s trapped in a really distinct layer in the deep Earth,&#8221; said Graham Pearson, lead study author and a geochemist at the University of Alberta in Canada.&#8221;</em></p>
+<p>But a non-expert like me is bound to ask: shouldn&#8217;t we have a bit more evidence before drawing such a sweeping conclusion? All we could possibly know so far is that at least one part of the transition zone has water incorporated in it. That&#8217;s still interesting, and a strong argument against those who&#8217;ve argued that the transition zone has virtually no water in it. But for all we know, the transition zone may have a highly variable water density, and so there&#8217;s simply no way to draw a conclusion about its total water content from one crystal from one location.  On purely logical grounds, <strong><em>we can&#8217;t yet have confidence that there&#8217;s an ocean&#8217;s-worth of water in the mantle&#8217;s transition zone&#8230; </em></strong><em>despite what the media&#8217;s been saying and that Pearson is implying.  </em>After other scientists have found a few more blue pieces of evidence from completely different locations and found that most or all contain water, then maybe we can start to infer something about the transition region as a whole.</p>
+<p>In any case, one shouldn&#8217;t go around thinking of the planet as made of water. Even if it turns out to be true that there&#8217;s as much water in the mantle as there is above ground, we&#8217;re still talking about a few tenths of a percent of the planet&#8217;s volume, and even less of its mass.  Even if it might be a tiny bit wetter than some scientists thought, it&#8217;s still a rocky planet.</p>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-7369" class="share-twitter sd-button share-icon" href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/?share=twitter" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-7369" class="share-facebook sd-button share-icon" href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/?share=facebook" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-end"></li></ul></div></div></div><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-24633746-7369-61578c6332887' data-src='//widgets.wp.com/likes/index.html?ver=20210818#blog_id=24633746&amp;post_id=7369&amp;origin=profmattstrassler.wordpress.com&amp;obj_id=24633746-7369-61578c6332887&amp;domain=profmattstrassler.com' data-name='like-post-frame-24633746-7369-61578c6332887' data-title='Like or Reblog'><h3 class='sd-title'>Like this:</h3><div class='likes-widget-placeholder post-likes-widget-placeholder' style='height: 55px;'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>							</div><!-- .entry-content -->
+
+			<div class="entry-info">
+							This entry was posted in <a href="https://profmattstrassler.com/category/evolution-and-biology/" rel="category tag">Evolution and Biology</a>, <a href="https://profmattstrassler.com/category/geology/" rel="category tag">Geology</a> and tagged <a href="https://profmattstrassler.com/tag/earthquakes/" rel="tag">earthquakes</a>, <a href="https://profmattstrassler.com/tag/environment/" rel="tag">environment</a>, <a href="https://profmattstrassler.com/tag/geology-2/" rel="tag">geology</a>, <a href="https://profmattstrassler.com/tag/light/" rel="tag">light</a>. Bookmark the <a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/" title="Permalink to Beyond Human Visibility" rel="bookmark">permalink</a>.							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		<div id="nav-below" class="navigation">
+			<div class="nav-previous"><a href="https://profmattstrassler.com/2014/03/11/dark-matter-unseen-but-yet-again-in-the-limelight/" rel="prev"><span class="meta-nav">&larr;</span> Dark Matter: Unseen, But Yet Again in the&nbsp;Limelight</a></div>
+			<div class="nav-next"><a href="https://profmattstrassler.com/2014/03/14/higgs-experts-a-small-but-important-correction-to-a-previous-post/" rel="next">Higgs Experts: A Small But Important Correction to a Previous&nbsp;Post <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-below -->
+
+		
+<div id="comments">
+
+	
+			<h3 id="comments-title">
+			38 responses to &ldquo;<span>Beyond Human Visibility</span>&rdquo;		</h3>
+
+		
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-181056">
+		<div id="comment-181056">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/fc7724a6713629b471e57bd43d6796bb?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">kashyap vasavada</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181056">
+				March 13, 2014 at 5:44 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>The fact about UVA flashes from power lines is interesting .I remember  few years back there was a scare that people who live near power lines had a higher incidence of cancer. The people who proposed it could not prove it for the simple reason that biological effects may take some 30 years to manifest. So the power companies simply brushed it aside. Do you think the proponents of cancer theory considered UVA or is it a new discovery?  If I remember right, this was from a physicist or electrical engineer from Pittsburgh.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor odd alt depth-2 highlander-comment" id="li-comment-181059">
+		<div id="comment-181059">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181059">
+				March 13, 2014 at 5:58 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I don&#8217;t see how bright flashes of light from a hundred feet away are going to make you sick even though they might scare you.  They won&#8217;t penetrate past your skin.  Ultraviolet light from power lines couldn&#8217;t possibly cause anything other than surface damage (skin cancer and cataracts)&#8230; it&#8217;s not going to cause internal problems. And it certainly isn&#8217;t going to bother you when you&#8217;re inside your house.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-3 highlander-comment" id="li-comment-181294">
+		<div id="comment-181294">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9e61681e5edc0e198bcf4d775f0b2d35?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Carl 'SAI' Mitchell</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181294">
+				March 14, 2014 at 10:47 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>There may be a real effect, but it&#8217;s likely psychological. If people are worried about power lines causing health issues they are likely to become stressed. Stress causes health issues, and may lead to behaviors which increase the risk of cancer, such as smoking or increased alcohol use. Even if it doesn&#8217;t cause you to increase risky behaviors for cancer it does directly weaken the immune system, and some opportunistic viral infections have been linked to cancer. </p>
+<p>Attempts to determine the danger of power lines (or anything else) need to take the perceived danger into account as well. In some cases the real danger will be significantly lower than the perceived danger, and &#8220;theatrical&#8221; fixes that purport to solve the problem without actually changing anything will actually have a beneficial effect, due to reducing stress.</p>
+<p><a href="http://www.cancer.gov/cancertopics/factsheet/Risk/stress" rel="nofollow ugc">http://www.cancer.gov/cancertopics/factsheet/Risk/stress</a></p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt depth-3 highlander-comment" id="li-comment-185915">
+		<div id="comment-185915">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b9f67b92988a9917192aa02f9f20d0c5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">elm</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-185915">
+				March 27, 2014 at 2:54 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>To Matt:It (=if power lines cause health problems) depends on how they are interacting with and imparting energy to its surroundings (including with which energy range, what type, how often? at what density, etc.). For example, are we sure that they only emit UV within those measured already or they could emit electromagnetic waves in other range (higher or lower frequency outside of UV range) even though only occasionally? They should measure broader energy range, how often they are observed, and in which directions they are more likely to find the radiation off the line or parts of pylons. (&#8220;..but the cameras only record a very narrow range of UV.&#8221; <a href="http://www.theguardian.com/environment/2014/mar/12/animals-powerlines-sky-wildlife" rel="nofollow ugc">http://www.theguardian.com/environment/2014/mar/12/animals-powerlines-sky-wildlife</a>) It should be determined which (biological and other) molecules absorb how much energy from electromagnetic radiation at what wavelength, probability and if this changes any molecular structure.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even depth-3 highlander-comment" id="li-comment-185985">
+		<div id="comment-185985">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b9f67b92988a9917192aa02f9f20d0c5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">elm</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-185985">
+				March 27, 2014 at 8:52 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>&#8220;..couldn’t possibly cause anything other than surface damage (skin cancer and cataracts).&#8221; &#8220;..it’s not going to cause internal problems&#8221; -&gt; sounds imprecise or possibly incorrect. Depending on the frequencies, they can penetrate deeper. And, even if they cannot penetrate deep and damage tissues directly, they could affect health via secondary mechanisms like ROS generation, UV-induced cytokine release from affected surface area (=skin and a bit beneath) and UV-induced immunosuppression etc.).</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt depth-3 highlander-comment" id="li-comment-185987">
+		<div id="comment-185987">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b9f67b92988a9917192aa02f9f20d0c5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">elm</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-185987">
+				March 27, 2014 at 9:02 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>To Matt:is the claim of the following paper (&#8220;Why arguments based on photon energy may be highly misleading for power line frequency electromagnetic fields&#8221; <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=11255216" rel="nofollow ugc">http://www.ncbi.nlm.nih.gov/pubmed/?term=11255216</a>) valid or consistent with your understanding of quantum electrodynamics/standard model? (yes/no:how so?) particularly: &#8220;There is in principle no difference in how much energy an electron can pick up from a low frequency electric field as compared to from a high frequency photon. Thus, the total gain in energy is not limited to the energy carried by a single photon..&#8221; -&gt;true? how so? Do near-field light/photon (=evanescent light? =non-propagating light?) behave and interact with electrons/molecules/materials very differently from how propagating light does or what is predicted by quantum electrodynamics/standard model? Could an electron(s) inside biological tissues (or any common molecules in air, building, clothes etc.) pick up enough energy(=be excited) via resonance etc. under fluctuating EM field (around power lines) to release photons in UV or higher energy range occasionally? Or, could such fluctuating EM field break chemical bonds or add sufficient energy to the electrons in the bonds to alter the (biological) molecular structures?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even depth-2 highlander-comment" id="li-comment-181325">
+		<div id="comment-181325">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/4e53e6f0750e049eea4773d3274afc06?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">TomH</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181325">
+				March 14, 2014 at 12:21 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>My recollection is this power line/cancer association was conclusively refuted by some long-term, Scandinavian epidemiological studies.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-181066">
+		<div id="comment-181066">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/132c0f1013ca862e7361b58137b18be6?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://www.facebook.com/stevenzenith' rel='external nofollow ugc' class='url'>Steven Ericsson-Zenith</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181066">
+				March 13, 2014 at 6:44 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Curious that a physicist should complain about extrapolations from flimsy evidence. 🙂</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor even depth-2 highlander-comment" id="li-comment-181068">
+		<div id="comment-181068">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181068">
+				March 13, 2014 at 6:48 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Is your goal to insult me personally, or physicists in general? 🙂</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-3 highlander-comment" id="li-comment-181084">
+		<div id="comment-181084">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/132c0f1013ca862e7361b58137b18be6?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://www.facebook.com/stevenzenith' rel='external nofollow ugc' class='url'>Steven Ericsson-Zenith</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181084">
+				March 13, 2014 at 8:02 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>No insult intended, simply a humorous observation. 🙂</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor even depth-4 highlander-comment" id="li-comment-181107">
+		<div id="comment-181107">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181107">
+				March 13, 2014 at 9:41 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Well &#8212; ok &#8212; but it isn&#8217;t clear whether it&#8217;s sarcasm, irony, teasing or poking.  So still hard to figure out&#8230;</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-5 highlander-comment" id="li-comment-181298">
+		<div id="comment-181298">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9e61681e5edc0e198bcf4d775f0b2d35?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Carl 'SAI' Mitchell</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181298">
+				March 14, 2014 at 11:03 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Especially due to the incredibly stringent requirements  for evidence that must be met for a discovery in physics to be considered real. </p>
+<p>Which isn&#8217;t to say that there aren&#8217;t quite a few theories in physics which are popular but unsupported by evidence. There&#8217;s nothing wrong with that, as long as they don&#8217;t get treated as theories do in other fields of science. Physicists tend to use a definition of theory much closer to that used by mathematicians, so if there isn&#8217;t math it&#8217;s a hypothesis, if there&#8217;s (working, consistent) math it&#8217;s a theory, and if there&#8217;s good evidence it&#8217;s a supported/well-supported theory. </p>
+<p>Some, like the multiverse theories, will likely never be supported by evidence, since they predict things which can never be detected even if they exist. Others are theories of totally imaginary worlds, known to be unlike the real world, but which provide interesting mathematics and can help solve problems in the real world. N=4 Super Yang-Mills is probably the best-known example of this type of imaginary world. </p>
+<p>So physicists do extrapolate from flimsy evidence, but that doesn&#8217;t imply that such extrapolations are generally accepted as finding the real way the world works.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-kimmorouvari even depth-2 highlander-comment" id="li-comment-181154">
+		<div id="comment-181154">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/503a3ee5e84c915924add8e54ff8a137?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.toebi.com/blog/' rel='external nofollow ugc' class='url'>Kimmo Rouvari</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181154">
+				March 14, 2014 at 12:31 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I&#8217;ll go with sarcasm! 🙂</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-181070">
+		<div id="comment-181070">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/112dafa6147616b95445dbb35db02045?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Curious George</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181070">
+				March 13, 2014 at 6:50 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Matt, you are right that a new far-reaching &#8220;discovery&#8221; is frequently published without a careful analysis. Probably the &#8220;publish or perish&#8221; is at work. You have analyzed the ringwoodite diamond claim. Regarding a powerline corona discharge claim, I expect most of optical energy to be emitted in 1 eV  to 3 eV range, infrared to optical (ionization energy of air molecules). There is of course a UV component as well, but how scary it is to a reindeer deserves more research. Conservation biology is for me connected to Prof. Paul Ehrlich of many predictions.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor even depth-2 highlander-comment" id="li-comment-181105">
+		<div id="comment-181105">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181105">
+				March 13, 2014 at 9:38 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Well, somebody perhaps made an error, and I don&#8217;t have time to check it right now&#8230; but here&#8217;s what one of the articles says, and perhaps you can track it down.  &#8220;The study, published in the journal Conservation Biology and funded by the Biotechnology and Biological Sciences Research Council, analysed the UV corona associated with power lines in southern Norway, where there are now 23 distinct populations of wild reindeer as a result of habitat fragmentation caused by human infrastructure such as roads and overhead electricity cables, said Nick Tyler of the University of Tromsø in Norway.&#8221;</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-181326">
+		<div id="comment-181326">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/4e53e6f0750e049eea4773d3274afc06?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">TomH</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181326">
+				March 14, 2014 at 12:27 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Paul R. Ehrlich&#8217;s beliefs and alarmist predictions of &#8220;unsustainable&#8221; population growth and &#8220;limited resources&#8221; have proven spectacularly WRONG.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-susanjfeingold even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-181080">
+		<div id="comment-181080">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e591235c29fac658e0bf6f1aba3d1489?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">thetasteofscience</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181080">
+				March 13, 2014 at 7:41 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Reblogged this on <a href="http://thetasteofscience.wordpress.com/2014/03/13/beyond-human-visibility/" rel="nofollow">thetasteofscience</a> and commented:<br />
+The part of this blog about the amount of water beneath the surface of the earth is particularly interesting &#8211; water being stored &#8220;in &#8216;hydrous&#8217; minerals, which contain water not as droplets or pools or puddles but by incorporating individual water molecules into their molecular structure. An example of a hydrous mineral is opal, which certainly isn’t a puddle.&#8221;</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-181081">
+		<div id="comment-181081">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b2e57fd1d189ed1d75c7b61ad83293d9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://www.facebook.com/tim.donahue.754' rel='external nofollow ugc' class='url'>Tim Donahue</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181081">
+				March 13, 2014 at 7:44 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Say, Matt, I want clarification on something you said in another blog post fairly recently, about Stephen Hawking&#8217;s expression of new ideas on Black Holes. I believe you said that his statements were not a Theory, because they did not include calculations, equations. Is that correct? If so, what does that say about Evolution? Calculations, equations?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-2 highlander-comment" id="li-comment-181101">
+		<div id="comment-181101">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/739df6e04ec29d1bd95cc491615df1c0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Xezlec</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181101">
+				March 13, 2014 at 9:26 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>The theory of evolution has quite a few equations and calculations!  More than you care to learn about, I&#8217;d imagine.  Which is probably why you haven&#8217;t.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor odd alt depth-2 highlander-comment" id="li-comment-181103">
+		<div id="comment-181103">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181103">
+				March 13, 2014 at 9:33 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>You bet evolution comes with equations.  Just because you&#8217;ve never seen them just means you never studied them.   Here are some very elementary ones <a href="http://faculty.uca.edu/benw/biol4415/PopGNotes.pdf" rel="nofollow ugc">http://faculty.uca.edu/benw/biol4415/PopGNotes.pdf</a> .  Here&#8217;s some more sophisticated ones.  <a href="http://www.stats.ox.ac.uk/~mcvean/notes4.pdf" rel="nofollow ugc">http://www.stats.ox.ac.uk/~mcvean/notes4.pdf</a>  This isn&#8217;t new; here&#8217;s a 1964 paper by Richard Lewontin, who taught me years ago at Harvard: <a href="http://www.genetics.org/content/49/1/49.full.pdf" rel="nofollow ugc">http://www.genetics.org/content/49/1/49.full.pdf</a></p>
+<p>But the real problem is that the equations you <strong>should</strong> use are extremely complex coupled partial differential equations &#8212; which are beyond what anyone can easily solve.  This makes details of evolutionary theory hard to check.  This is why the theory, though well-defined, can only be checked in certain contexts.</p>
+<p>Equations are very actively used in genomics, which is used to track certain processes in evolution.  That&#8217;s why Eric Lander the mathematician, Leonid Kruglyak the former physicist, and many others with mathematical backgrounds have risen to prominent roles in these fields.</p>
+<p>Any notion that evolutionary biology and its related fields lack math is simply due to the fact that the subject involves such difficult math that progress has been limited, and therefore (unlike particle physics, where the math you have to solve is much easier and progress has been much more rapid) it is still possible to describe much of the subject in words.  But this has been rapidly changing in the last twenty years; modern advances in evolutionary biology are already beyond this point.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-181082">
+		<div id="comment-181082">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7487a343b25109c91bcd932819bf2b33?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Tony (Racz) Rotz</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181082">
+				March 13, 2014 at 7:52 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>So called stray voltage has been known to affect the health and milk production of dairy cattle. That of course has nothing to do with ultra violet light, but stray voltage could also be sensed by some animals. What it may or may not do to human health I don&#8217;t know.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-181100">
+		<div id="comment-181100">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/739df6e04ec29d1bd95cc491615df1c0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Xezlec</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181100">
+				March 13, 2014 at 9:23 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Stray voltage has the same effect on everybody: it shocks you.  If you notice any stray voltage, you should notify the power company.  If they refuse to fix it, I&#8217;d suggest legal action.  That is something that really should not happen.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-181099">
+		<div id="comment-181099">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/739df6e04ec29d1bd95cc491615df1c0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Xezlec</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181099">
+				March 13, 2014 at 9:20 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>How hard is it to eliminate the corona discharge effect completely?  I know they use all kinds of spines and metal shapes to dissipate it, but can those eliminate it completely?  Would the cost be prohibitive?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-181134">
+		<div id="comment-181134">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/112dafa6147616b95445dbb35db02045?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Curious George</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181134">
+				March 13, 2014 at 11:19 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Actually, spikes do cause corona discharge &#8211; you try to get rid of them: if a tip of a long spike has a radius R, the electric field is proportional to 1/R**2. Frequently utilities use 3 parallel wires arranged in a triangle, that homogenizes the field. Next, you can decrease the voltage under a &#8220;corona onset voltage&#8221;, but then you limit the power transmitted. Finally, you can use DC instead of AC, because AC has 2 peaks in each period.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-181120">
+		<div id="comment-181120">
+		<div class="comment-author vcard">
+			<img alt='' src='https://i2.wp.com/pbs.twimg.com/profile_images/378800000496310027/54a28e711d92d2851f6cd0d83fff28e2_normal.jpeg?resize=48%2C48' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://twitter.com/Oaktree_' rel='external nofollow ugc' class='url'>Oaktree (@Oaktree_)</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181120">
+				March 13, 2014 at 10:30 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Prof, does quantum entanglement suggest a single point (singularity) of origin of the universe and if so that there is a unification theory? </p>
+<p>Are fields plane waves are can they be confined to a spherical volume and propagate from the center outwards and back again. Much like a 3D ripple on a pond. If so, would this spherical oscillating field create a negative force &#8220;outside&#8221; it&#8217;s confined volume, much like a massive shell, the G force anywhere inside is zero which any mass outside obeys -Gm1m2/r2 law?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor odd alt depth-2 highlander-comment" id="li-comment-181144">
+		<div id="comment-181144">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181144">
+				March 13, 2014 at 11:50 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>1) I&#8217;m afraid not.<br />
+2) Yes they can be confined to a spherical volume under the right conditions.<br />
+3) No this doesn&#8217;t create a negative force outside.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-181210">
+		<div id="comment-181210">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/18d4ba6233bff951a1245661cc0bf2e7?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://gravatar.com/aashami' rel='external nofollow ugc' class='url'>aashami</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181210">
+				March 14, 2014 at 5:29 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>You said : &#8221; Which appear violet to our brain &#8221;<br />
+Sorry Matt. Nothing appears anything to our brain , there are no end of the line sensation IN the brain , so what you said should be read : &#8221; Which appear violet to our Mind &#8220;.<br />
+Thanks</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor odd alt depth-2 highlander-comment" id="li-comment-181314">
+		<div id="comment-181314">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181314">
+				March 14, 2014 at 11:47 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Fine.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even depth-2 highlander-comment" id="li-comment-181370">
+		<div id="comment-181370">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/579dd78672700d7a0c70520f29f65a87?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Richard</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181370">
+				March 14, 2014 at 3:40 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Matt&#8217;s &#8220;Fine&#8221; as in: no point in engaging.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-181232">
+		<div id="comment-181232">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c75d4087fa2fc264bea17290c39d01a9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://neuraloutlet.wordpress.com/2014/02/27/full-spectrum-photography-mapping/' rel='external nofollow ugc' class='url'>Neural Outlet..</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181232">
+				March 14, 2014 at 6:17 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>That power-lines information is Intriguing&#8230; I have a modified camera (350-1000nm) and a shortband UV pass filter (320-390nm). </p>
+<p>What do you think my chances are of capturing it?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor even depth-2 highlander-comment" id="li-comment-181312">
+		<div id="comment-181312">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181312">
+				March 14, 2014 at 11:43 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Sounds like it should be pretty good.  I assume we&#8217;re talking here about insulators on the big high-tension long-distance power lines.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-181338">
+		<div id="comment-181338">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/112dafa6147616b95445dbb35db02045?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Curious George</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181338">
+				March 14, 2014 at 1:04 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Make sure the line carries power &#8211; you should hear faint cracking sounds caused by the discharge.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-123bielefeld even thread-even depth-1 highlander-comment" id="li-comment-181240">
+		<div id="comment-181240">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cef5970926315df2a16854e3d0879ae9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">veeramohan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181240">
+				March 14, 2014 at 6:54 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>/Though evolution left us with many wonderful abilities, it does seem that, year by year, humans are becoming less and less practically useful.   But at least our dogs will comfort us in our obsolescence./<br />
+/(We call this “ultra-violet” light simply because it is “beyond-the-violet” — smaller wavelengths than the smallest ones that we can see, which appear violet to our brains./<br />
+/It’s yet another example of the many unexpected and unintended consequences of modern life… and of the limitations of perceiving the world with only human senses./</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-duffieldjohn odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-181259">
+		<div id="comment-181259">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/00b11d0aa023eac6955681e03a1c226e?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://johnduffieldblog.wordpress.com' rel='external nofollow ugc' class='url'>duffieldjohn</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181259">
+				March 14, 2014 at 8:41 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>See <a href="http://en.wikipedia.org/wiki/Aphakia" rel="nofollow">Aphakia</a>, where you can read this: <i>&#8220;Aphakia is the absence of the lens of the eye&#8230; Aphakic people are reported to be able to see ultraviolet wavelengths (400 nm &#8211; 300 nm) that are normally excluded by the lens&#8230;&#8221;</i></p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-2 highlander-comment" id="li-comment-181283">
+		<div id="comment-181283">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/626ffa744a555c58b347aac9a96961ae?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://xkcd.com/722/' rel='external nofollow ugc' class='url'>Mike Anthis</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181283">
+				March 14, 2014 at 10:05 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>In college, I used to see flashes at night, in an area where the only things around were the &#8220;telephone lines,&#8221; and the little observatory.  I always saw them in peripheral vision.  Perhaps my young eyes were picking up UV flashes?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-181292">
+		<div id="comment-181292">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a84cc13c8997a90d7fd4baf87fa008c8?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">S. Dino</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181292">
+				March 14, 2014 at 10:47 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Interesting stories Matt. (I wonder how long it will take those who literally interpret certain religious texts to latch unto the water beneath the Earth story).</p>
+<p>As to the UV emissions, I knew that bees and butterflies can see in UV, but I did not know that deer could. Now that I read about it I see that even dogs and cats may be able to see UV that humans cannot! I have also heard that even ordinary camara film can pick up UV that humans cannot see. From what I understand UV from 400 nm down to ~340 nm is basically harmless. UV lighting in bars and clubs operates in the 360 nm range.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-181321">
+		<div id="comment-181321">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7e1e597a29b6e0fe6283f307ae8d352d?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Marshall Eubanks</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-181321">
+				March 14, 2014 at 12:01 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Many birds have 4 &#8220;cones&#8221; in their retina (we humans only have 3), with one being clearly optimized for UV reception (see the figure in the link below). I imagine that to the birds (I live with parrots) the colors in our interior lighting, windows, photographs and TV screens all appear to be &#8220;off,&#8221;  much as if we lived our lives behind rose-colored glasses. </p>
+<p><a href="http://www.webexhibits.org/causesofcolor/17B.html" rel="nofollow ugc">http://www.webexhibits.org/causesofcolor/17B.html</a></p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-230433">
+		<div id="comment-230433">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/82f3285214313a49c46a0928add80ecb?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://profile.reogen.com/groups/tips-on-buying-car-engines/' rel='external nofollow ugc' class='url'>Wilbur</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2014/03/13/beyond-human-visibility/#comment-230433">
+				September 20, 2014 at 6:20 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I do believe all of the ideas you&#8217;ve presented on your post.<br />
+They are really convincing and will definitely work.<br />
+Still, the posts are very brief ffor novices. Coukd you please extend them a bbit from nest time?</p>
+<p>Thank you for the post.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+		</ol>
+
+		
+	
+	
+</div><!-- #comments -->
+	
+	</div><!-- #content -->
+</div><!-- #content-container -->
+
+
+		
+		<div id="primary" class="widget-area" role="complementary">
+					<ul class="xoxo">
+
+			<li id="text-2" class="widget-container widget_text"><h3 class="widget-title">First Time Visitor?</h3>			<div class="textwidget">This site addresses various aspects of science, with a current focus on particle physics.  I aim to serve the public, including those with no background knowledge of physics.  If you're not yourself an expert, you might want to click on "<a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a>" or "<a href="https://profmattstrassler.com/about/">About</a>" to get started. If you'd like to watch my hour-long public lecture about the <a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">Higgs particle</a>, try ``<a href="https://profmattstrassler.com/videoclips/">Movie Clips</a>''.</div>
+		</li><li id="media_image-4" class="widget-container widget_media_image"><style>.widget.widget_media_image { overflow: hidden; }.widget.widget_media_image img { height: auto; max-width: 100%; }</style><div style="width: 310px" class="wp-caption alignnone"><a href="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png"><img width="300" height="172" src="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" class="image wp-image-10515 alignnone attachment-300x172 size-300x172" alt="" loading="lazy" style="max-width: 100%; height: auto;" srcset="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300 300w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=600 600w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=150 150w" sizes="(max-width: 300px) 100vw, 300px" data-attachment-id="10515" data-permalink="https://profmattstrassler.com/htogammagamma_v1/" data-orig-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png" data-orig-size="640,366" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="HtoGammaGamma_v1" data-image-description="" data-image-caption="" data-medium-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" data-large-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=500" /></a><p class="wp-caption-text">From the CMS experiment at the Large Hadron collider, a proton-proton collision that created a Higgs boson, which subsequently decayed to two particles of light (shown as green rods.)</p></div></li><li id="search-3" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="https://profmattstrassler.com/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search" />
+				</div>
+			</form></li>
+		<li id="recent-posts-3" class="widget-container widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="https://profmattstrassler.com/2021/04/12/physics-is-broken/">Physics is Broken!!!</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/11/25/has-a-new-force-of-nature-been-discovered/">Has a New Force of Nature Been&nbsp;Discovered?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/28/the-new-york-times-remembers-a-great-physicist/">The New York Times Remembers A Great&nbsp;Physicist</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/06/a-catastrophic-weekend-for-theoretical-high-energy-physics/">A Catastrophic Weekend for Theoretical High Energy&nbsp;Physics</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo/">A Ring of Controversy Around a Black Hole&nbsp;Photo</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/16/the-black-hole-photo-seeing-more-clearly/">The Black Hole `Photo&#8217;: Seeing More&nbsp;Clearly</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/15/the-black-hole-photo-what-are-we-looking-at/">The Black Hole `Photo&#8217;: What Are We Looking&nbsp;At?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/10/a-black-day-and-a-happy-one-in-scientific-history/">A Black Day (and a Happy One) In Scientific&nbsp;History</a>
+									</li>
+					</ul>
+
+		</li><li id="categories-4" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3><form action="https://profmattstrassler.com" method="get"><label class="screen-reader-text" for="cat">Categories</label><select  name='cat' id='cat' class='postform' >
+	<option value='-1'>Select Category</option>
+	<option class="level-0" value="4003">Astronomy</option>
+	<option class="level-0" value="175813">black holes</option>
+	<option class="level-0" value="51517">Dark Matter</option>
+	<option class="level-0" value="545298">Evolution and Biology</option>
+	<option class="level-0" value="39338">Geology</option>
+	<option class="level-0" value="133890">Gravitational Waves</option>
+	<option class="level-0" value="738724">Higgs</option>
+	<option class="level-0" value="27530">History of Science</option>
+	<option class="level-0" value="19640">Housekeeping</option>
+	<option class="level-0" value="59940768">LHC Background Info</option>
+	<option class="level-0" value="11550283">LHC News</option>
+	<option class="level-0" value="59940787">Other Collider News</option>
+	<option class="level-0" value="12547">Particle Physics</option>
+	<option class="level-0" value="1211">Physics</option>
+	<option class="level-0" value="560543">Public Outreach</option>
+	<option class="level-0" value="36114049">Quantum Field Theory</option>
+	<option class="level-0" value="119528">Quantum Gravity</option>
+	<option class="level-0" value="59940867">Science and Modern Society</option>
+	<option class="level-0" value="7682">Science News</option>
+	<option class="level-0" value="26444">String Theory</option>
+	<option class="level-0" value="41175177">The Scientific Process</option>
+	<option class="level-0" value="1">Uncategorized</option>
+</select>
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+			</li><li id="pd_top_rated-3" class="widget-container top_rated"><h3 class="widget-title">Popular Pages</h3><div id="pd_top_rated_holder" class="pd_top_rated_holder_pages"></div><script language="javascript" src="https://polldaddy.com/js/rating/top-rated.js"></script><script language="javascript" type="text/javascript">PDRTJS_TOP = new PDRTJS_RATING_TOP( 4811599, 0, 0, '010', 5 );PDRTJS_TOP.get_top( 'pages', '0' );</script></li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+		
+			</div><!-- #content-box -->
+
+	<div id="footer" role="contentinfo">
+		
+<div id="footer-widget-area" role="complementary">
+
+	<div id="first" class="widget-area">
+		<ul class="xoxo">
+			<li id="text-3" class="widget-container widget_text">			<div class="textwidget"><font color="FF0000"><b>I went to college at <a href="http://www.simons-rock.edu"> Simon's Rock.  </a></b></font></div>
+		</li>		</ul>
+	</div><!-- #first .widget-area -->
+
+
+	<div id="third" class="widget-area">
+		<ul class="xoxo">
+			<li id="rss_links-3" class="widget-container widget_rss_links"><h3 class="widget-title">Add this site to your RSS feed</h3><p class="size-small"><a class="feed-image-link" href="https://profmattstrassler.com/feed/" title="Subscribe to Posts"><img src="https://profmattstrassler.com/i/rss/red-small.png" alt="RSS Feed" /></a>&nbsp;<a href="https://profmattstrassler.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p>
+</li><li id="linkcat-8548552" class="widget-container widget_links"><h3 class="widget-title">My Facebook Page</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.facebook.com/ProfMattStrassler" rel="me" target="_blank">http://www.facebook.com/ProfMattStrassler</a></li>
+
+	</ul>
+</li>
+		</ul>
+	</div><!-- #third .widget-area -->
+
+	<div id="fourth" class="widget-area">
+		<ul class="xoxo">
+			<li id="twitter-2" class="widget-container widget_twitter"><h3 class="widget-title"><a href='http://twitter.com/MattStrassler'>Follow me on Twitter</a></h3><ul class='tweets'>
+			<li>
+				@<a href='http://twitter.com/StevenLowette'>StevenLowette</a> @<a href='http://twitter.com/CatDogLUofM'>CatDogLUofM</a> @<a href='http://twitter.com/suchi_kulkarni'>suchi_kulkarni</a> @<a href='http://twitter.com/jsheltino'>jsheltino</a> Good to be a part of it.  We need to open these communicatio… <a href="https://twitter.com/i/web/status/1443656122460741633"> twitter.com/i/web/status/1…</a> 				<a href="http://twitter.com/MattStrassler/statuses/1443656122460741633" class="timesince">1&nbsp;day&nbsp;ago</a>
+			</li>
+
+			</ul><a href="http://twitter.com/MattStrassler"  class='twitter-follow-button' data-show-count='false' data-link-color='#0060ff' data-text-color='#333333'>Follow @MattStrassler</a></li>		</ul>
+	</div><!-- #fourth .widget-area -->
+
+</div><!-- #footer-widget-area -->
+		<div id="colophon">
+			<span class="generator-link"><a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a></span>
+					</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #container -->
+
+<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202139y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-fc7724a6713629b471e57bd43d6796bb">
+	</div>
+	<div class="grofile-hash-map-adeb244d3a56730027286aae9204ecc5">
+	</div>
+	<div class="grofile-hash-map-9e61681e5edc0e198bcf4d775f0b2d35">
+	</div>
+	<div class="grofile-hash-map-b9f67b92988a9917192aa02f9f20d0c5">
+	</div>
+	<div class="grofile-hash-map-4e53e6f0750e049eea4773d3274afc06">
+	</div>
+	<div class="grofile-hash-map-132c0f1013ca862e7361b58137b18be6">
+	</div>
+	<div class="grofile-hash-map-503a3ee5e84c915924add8e54ff8a137">
+	</div>
+	<div class="grofile-hash-map-112dafa6147616b95445dbb35db02045">
+	</div>
+	<div class="grofile-hash-map-e591235c29fac658e0bf6f1aba3d1489">
+	</div>
+	<div class="grofile-hash-map-b2e57fd1d189ed1d75c7b61ad83293d9">
+	</div>
+	<div class="grofile-hash-map-739df6e04ec29d1bd95cc491615df1c0">
+	</div>
+	<div class="grofile-hash-map-7487a343b25109c91bcd932819bf2b33">
+	</div>
+	<div class="grofile-hash-map-f823fcedb73242744e03d0b5bef58cf8">
+	</div>
+	<div class="grofile-hash-map-18d4ba6233bff951a1245661cc0bf2e7">
+	</div>
+	<div class="grofile-hash-map-579dd78672700d7a0c70520f29f65a87">
+	</div>
+	<div class="grofile-hash-map-c75d4087fa2fc264bea17290c39d01a9">
+	</div>
+	<div class="grofile-hash-map-cef5970926315df2a16854e3d0879ae9">
+	</div>
+	<div class="grofile-hash-map-00b11d0aa023eac6955681e03a1c226e">
+	</div>
+	<div class="grofile-hash-map-626ffa744a555c58b347aac9a96961ae">
+	</div>
+	<div class="grofile-hash-map-a84cc13c8997a90d7fd4baf87fa008c8">
+	</div>
+	<div class="grofile-hash-map-7e1e597a29b6e0fe6283f307ae8d352d">
+	</div>
+	<div class="grofile-hash-map-82f3285214313a49c46a0928add80ecb">
+	</div>
+	</div>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/profmattstrassler.com\/2014\/03\/13\/beyond-human-visibility\/":7369};
+	</script>
+				<script src='https://platform.twitter.com/widgets.js?ver=20111117' id='twitter-widgets-js'></script>
+<script id='sharing-js-js-extra'>
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjskSwiAQRH9IQrkkVR4svwVhNINAcAay+PXOQQ96MKeepV916ykrO6QCqWjP2sGIFvLceN7o75d/VKDlLQ2mEWFatXko2di7ImB8wq89VpVDvWFiHfAOrAWq0JvkAtAfs3ERk7oY0tFwAZJJFZIcXi00ZTtElWmYFyklNy4fBpMN1UkLgWSFeAHXSNCfInngoq7BIGnuDWG6fVSgczxtu1132O3bY+tft6aG7A=='></script>
+<script type='text/javascript'>
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-twitter' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-twitter' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+</script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>	<iframe src='https://widgets.wp.com/likes/master.html?ver=20210818#ver=20210818&amp;origin=https://profmattstrassler.com' scrolling='no' id='likes-master' name='likes-master' style='display:none;'></iframe>
+	<div id='likes-other-gravatars'>
+		<div class="likes-text">
+			<span>%d</span> bloggers like this:		</div>
+		<ul class="wpl-avatars sd-like-gravatars"></ul>
+	</div>
+	
+		<script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'24633746','blog_tz':'-4','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'24633746','v':'wpcom','tz':'-4','user_id':'0','post':'7369','subd':'profmattstrassler'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eXFaMjhuQz1aPzNNMy12XUZlK1VEaF9ZMkRhXS9kfnpXU3U3LUtbLSZsakpoUnExOGVDJWhWOExpbVNyb3VnLX5PX2MrR3FkWHdMQj96Y0JwLWFITyxJN3F6a1FfQW1sMGFdLUUtQU50dVNRdm5lST9XZ2lXYVQyMGkzeFZKMldUdURXOS8yJjhsVnxvTkMxLVZ+M3NJeWovWmxtaV0sfjE9OXNMUyUyPUxJYkhGLUNDX3F1MXVSWkY3Vm1nLSV2aTNPVltRYlNncjQscVt6Vz8vYXAldUhYZ2xOc0MwZ1AvRk9qMHpxRw=='}]);
+_stq.push([ 'clickTrackerInit', '24633746', '7369' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script></body>
+</html>

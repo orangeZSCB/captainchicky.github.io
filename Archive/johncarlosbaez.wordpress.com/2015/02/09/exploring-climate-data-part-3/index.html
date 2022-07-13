@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Exploring Climate Data (Part 3) | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Exploring Climate Data (Part&nbsp;3) Comments Feed" href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F02%2F09%2Fexploring-climate-data-part-3%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2015\/02\/09\/exploring-climate-data-part-3\/","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F02%2F09%2Fexploring-climate-data-part-3%2F","postID":"19177","shortlink":"https:\/\/wp.me\/pRBZ9-4Zj","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/19177","statsLink":"https:\/\/wordpress.com\/stats\/post\/19177\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F02%2F09%2Fexploring-climate-data-part-3%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-4Zj' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F02%2F09%2Fexploring-climate-data-part-3%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F02%2F09%2Fexploring-climate-data-part-3%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Exploring Climate Data (Part 3)" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/" />
+<meta property="og:description" content="post by Nadja Kutz This blog article is about the temperature data used in the reports of the Intergovernmental panel on Climate Change (IPCC). I present the results of an investigation into the co…" />
+<meta property="article:published_time" content="2015-02-09T16:22:13+00:00" />
+<meta property="article:modified_time" content="2015-02-10T19:37:55+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://www.randform.org/blog/wp-content/2015/02/EurasiaAfrica2009Jan400.jpg" />
+<meta property="og:image:width" content="300" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Exploring Climate Data (Part&nbsp;3)" />
+<meta name="twitter:image" content="http://www.randform.org/blog/wp-content/2015/02/EurasiaAfrica2009Jan400.jpg?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="post by Nadja Kutz This blog article is about the temperature data used in the reports of the Intergovernmental panel on Climate Change (IPCC). I present the results of an investigation into the completeness of global land surface temperature records. There are noticeable gaps in the data records, but I leave discussion about the implications&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-19177 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-19177 post type-post status-publish format-standard hentry category-climate" id="post-19177">
+			<h2>Exploring Climate Data (Part&nbsp;3)</h2>
+
+			<div class="entry">
+				<p><i>post by <b><a href="http://www.azimuthproject.org/azimuth/show/Nadja+Kutz">Nadja Kutz</a></b></i></p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/EurasiaAfrica2009Jan400.jpg"><img src="https://i2.wp.com/www.randform.org/blog/wp-content/2015/02/EurasiaAfrica2009Jan400.jpg" alt="" title="EurasiaAfrica2009Jan400" width="300" class="aligncenter size-full wp-image-5796" /></a></p>
+<p>This blog article is about the temperature data used in the reports of the <a href="http://en.wikipedia.org/wiki/Intergovernmental_Panel_on_Climate_Change">Intergovernmental panel on Climate Change (IPCC)</a>.  I present the results of an investigation into the completeness of global land surface temperature records.  There are noticeable gaps in the data records, but I leave discussion about the implications of these gaps to the readers.</p>
+<p>The data used in the newest IPCC report, namely the <a href="http://en.wikipedia.org/wiki/IPCC_Fifth_Assessment_Report">Fifth Assessment Report (AR5)</a> is, as it seems, at the time of writing <a href="http://www.ipcc-data.org/observ/index.html">not yet available at the IPCC data distribution centre.</a></p>
+<p>The temperature databases used for the previous report, AR4, are <a href="http://www.ipcc-data.org/observ/clim/ar4_global.html">listed here</a> on the website of the IPCC.  These databases are:</p>
+<p>&bull; <a href="http://www.metoffice.gov.uk/hadobs/crutem3/">CRUTEM3</a>,</p>
+<p>&bull; <a href="http://en.wikipedia.org/wiki/National_Climatic_Data_Center">NCDC</a> (probably as a guess using the data set <a href="https://www.ncdc.noaa.gov/ghcnm/v3.php"> GHCNM v3</a>),</p>
+<p>&bull; <a href="http://data.giss.nasa.gov/gistemp/">GISTEMP</a>, and</p>
+<p>&bull; the collection of <a href="http://cdiac.ornl.gov/trends/temp/lugina/lugina.html">Lugina <i>et al</i></a>.</p>
+<p>The temperature collection CRUTEM3 was put together by the <a href="http://www.cru.uea.ac.uk/">Climatic Research Unit (CRU)</a> at the University of East Anglia.  According to the <a href="http://www.cru.uea.ac.uk/cru/data/temperature/">CRU temperature page</a>  the CRUTEM3 data and in particular the CRUTEM3 land air temperature anomalies on a 5° &times; 5° grid-box basis has now been superseded by the so-called CRUTEM4 collection.</p>
+<p>Since the CRUTEM collection appeared to be an important data source for the IPCC, I started by investigating the land air temperature data collection CRUTEM4. In what follows, only the availability of so-called land air temperature measurements will be investigated.  (The collections often also contain sea surface temperature (SST) measurements.)</p>
+<p>Usually only &#8216;temperature grid data&#8217; or other averaged data is used for the climate assessments.  Here &#8216;grid&#8217; means that data is averaged over regions that cover the earth in a grid.  However, the data is originally generated by temperature measuring stations around the world.  So, I was interested in this original data and its quality. For the CRUTEM collection the latest station data is called the <a href="http://www.cru.uea.ac.uk/cru/data/temperature/crutem4/station-data.htm">CRUTEM4 station data collection.</a></p>
+<p>I downloaded the station&#8217;s data file, which is a simple text file, from the bottom of the <a href="http://www.cru.uea.ac.uk/cru/data/temperature/crutem4/station-data.htm">CRUTEM4 station data page</a>.  I noticed on a first glance that there are big gaps in the file in some regions of the world. The file is huge, though: it contains monthly measurements starting in January 1701 ending in 2011 and there are altogether 4634 stations.  Quickly finding a gap in such a huge file was a sufficiently disconcerting experience that persuaded my husband <a href="http://www-m10.ma.tum.de/bin/view/Lehrstuhl/TimHoffmann">Tim Hoffmann</a> to help me to investigate this station data in more accessible way, via a visualization.</p>
+<p>The visualization takes a long time to load, and due to some unfortunate software configuration issues (not on our side) it sometimes doesn&#8217;t work at all. Please open it now in a separate tab while reading this article:</p>
+<p>&bull; Nadja Kutz and Tim Hoffman, <a href="http://nad0815.github.io/climate/tempGlobe/">Temperature data from stations around the globe, collected by CRUTEM 4</a>.</p>
+<p>For those who are too lazy to explore the data themselves, or in case the visualization is not working, here are some screenshots from the visualization which documents the missing data in the CRUTEM4 dataset.</p>
+<p>The images should speak for themselves.  However, an additional explanation is provided after the images. One should in particular mention that it looks as if the deterioration of the CRUTEM4 data set has been greater in the years 2000-2009 than in the years 1980-2000.</p>
+<p>Now you could say: okay, we know that there are budget cuts in the UK, and so probably the University of East Anglia was subject to those, but what about all these other collections in the world? This will be addressed after the images.</p>
+<p>&nbsp; <br />
+North America</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/NorthAmerica1980Jan400.jpg"><img loading="lazy" src="https://i0.wp.com/www.randform.org/blog/wp-content/2015/02/NorthAmerica1980Jan400.jpg" alt="" title="NorthAmerica1980Jan400" width="400" height="298" class="aligncenter size-full wp-image-5797" style="border:1px solid black;" /></a><br />
+Jan 1980</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/NorthAmerica2000Jan400.jpg"><img loading="lazy" src="https://i0.wp.com/www.randform.org/blog/wp-content/2015/02/NorthAmerica2000Jan400.jpg" alt="" title="NorthAmerica2000Jan400" width="400" height="298" class="aligncenter size-full wp-image-5798" style="border:1px solid black;" /></a><br />
+Jan 2000</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/NorthAmerica2009Jan400.jpg"><img loading="lazy" src="https://i2.wp.com/www.randform.org/blog/wp-content/2015/02/NorthAmerica2009Jan400.jpg" alt="" title="NorthAmerica2009Jan400" width="400" height="298" class="aligncenter size-full wp-image-5799" style="border:1px solid black;" /></a><br />
+Jan 2009</p>
+<p>&nbsp; <br />
+Africa</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/Africa1980Jan400.jpg"><img loading="lazy" src="https://i2.wp.com/www.randform.org/blog/wp-content/2015/02/Africa1980Jan400.jpg" alt="" title="Africa1980Jan400" width="400" height="298" class="aligncenter size-full wp-image-5788" style="border:1px solid black;" /></a><br />
+Jan 1980</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/Africa2000Jan400.jpg"><img loading="lazy" src="https://i1.wp.com/www.randform.org/blog/wp-content/2015/02/Africa2000Jan400.jpg" alt="" title="Africa2000Jan400" width="400" height="298" class="aligncenter size-full wp-image-5789" style="border:1px solid black;" /></a><br />
+Jan 2000</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/Africa2009Jan400.jpg"><img loading="lazy" src="https://i0.wp.com/www.randform.org/blog/wp-content/2015/02/Africa2009Jan400.jpg" alt="" title="Africa2009Jan400" width="400" height="298" class="aligncenter size-full wp-image-5790" style="border:1px solid black;" /></a><br />
+Jan 2009</p>
+<p>&nbsp; <br />
+Asia</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/Asia1980Jan400.jpg"><img loading="lazy" src="https://i1.wp.com/www.randform.org/blog/wp-content/2015/02/Asia1980Jan400.jpg" alt="" title="Asia1980Jan400" width="400" height="298" class="aligncenter size-full wp-image-5791" style="border:1px solid black;" /></a><br />
+Jan 1980</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/Asia2000Jan400.jpg"><img loading="lazy" src="https://i0.wp.com/www.randform.org/blog/wp-content/2015/02/Asia2000Jan400.jpg" alt="" title="Asia2000Jan400" width="400" height="298" class="aligncenter size-full wp-image-5792" style="border:1px solid black;" /></a><br />
+Jan 2000</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/Asia2009Jan400.jpg"><img loading="lazy" src="https://i2.wp.com/www.randform.org/blog/wp-content/2015/02/Asia2009Jan400.jpg" alt="" title="Asia2009Jan400" width="400" height="298" class="aligncenter size-full wp-image-5793" style="border:1px solid black;" /></a><br />
+Jan 2009</p>
+<p>&nbsp; <br />
+Eurasia/Northern Africa<br />
+<a href="http://www.randform.org/blog/wp-content/2015/02/EurasiaAfrica1980Jan400.jpg"><img loading="lazy" src="https://i1.wp.com/www.randform.org/blog/wp-content/2015/02/EurasiaAfrica1980Jan400.jpg" alt="" title="EurasiaAfrica1980Jan400" width="400" height="298" class="aligncenter size-full wp-image-5794" style="border:1px solid black;" /></a><br />
+Jan 1980</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/EurasiaAfrica2000Jan400.jpg"><img loading="lazy" src="https://i1.wp.com/www.randform.org/blog/wp-content/2015/02/EurasiaAfrica2000Jan400.jpg" alt="" title="EurasiaAfrica2000Jan400" width="400" height="298" class="aligncenter size-full wp-image-5795" style="border:1px solid black;" /></a><br />
+Jan 2000</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/EurasiaAfrica2009Jan400.jpg"><img loading="lazy" src="https://i2.wp.com/www.randform.org/blog/wp-content/2015/02/EurasiaAfrica2009Jan400.jpg" alt="" title="EurasiaAfrica2009Jan400" width="400" height="298" class="aligncenter size-full wp-image-5796" style="border:1px solid black;" /></a><br />
+Jan 2009</p>
+<p>&nbsp; </p>
+<p>Arctic</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/Northpole1980Jan400.jpg"><img loading="lazy" src="https://i0.wp.com/www.randform.org/blog/wp-content/2015/02/Northpole1980Jan400.jpg" alt="" title="Northpole1980Jan400" width="400" height="298" class="aligncenter size-full wp-image-5800" style="border:1px solid black;" /></a><br />
+Jan 1980</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/Northpole2000Jan400.jpg"><img loading="lazy" src="https://i0.wp.com/www.randform.org/blog/wp-content/2015/02/Northpole2000Jan400.jpg" alt="" title="Northpole2000Jan400" width="400" height="298" class="aligncenter size-full wp-image-5801" style="border:1px solid black;" /></a><br />
+Jan 2000</p>
+<p><a href="http://www.randform.org/blog/wp-content/2015/02/Northpole2009Jan400.jpg"><img loading="lazy" src="https://i2.wp.com/www.randform.org/blog/wp-content/2015/02/Northpole2009Jan400.jpg" alt="" title="Northpole2009Jan400" width="400" height="298" class="aligncenter size-full wp-image-5802" style="border:1px solid black;" /></a><br />
+Jan 2009</p>
+<p>&nbsp; <br />
+These screenshots comprise various regions of the world for the month of January for the years 1980, 2000 and 2009.  Each station is represented by a small rectangle around its coordinates.  The color of a rectangle indicates the monthly temperature value for that station: blue is the coldest, red is the hotttest. Black rectangles are what CRU <a href="http://www.cru.uea.ac.uk/cru/data/temperature/crutem4/station-data.htm">calls</a> &#8216;missing data&#8217;, denoted with -999 in the file.  I prefer instead to call it &#8216;invalid&#8217; data, in order to distinguish it from the missing data due to stations that have been closed down.  In the visualization, closed down stations are encoded by a transparent rectangle and their markers are also present.</p>
+<p>We couldn&#8217;t find the reasons for this invalid data.  At the end of the post John Baez has provided some more literature on this question.  It is worth noting that satellites can replace surface measurements only to a certain degree, as was highlighted by Stefan Rahmstorf in a <a href="http://www.realclimate.org/index.php/archives/2013/11/global-warming-since-1997-underestimated-by-half/" target="_blank">blog post</a> on <i>RealClimate</i>:</p>
+<blockquote><p>
+the satellites cannot measure the near-surface temperatures but only those overhead at a certain altitude range in the troposphere. And secondly, there are a few question marks about the long-term stability of these measurements (temporal drift).
+</p></blockquote>
+<h3> What about other collections?</h3>
+<p>Apart from the already mentioned collections, which were used in the IPCC&#8217;s AR4 report, there are actually some more institutional collections, and I also found some private weather collections. However among those private collections I haven&#8217;t found any collection that goes back in time as far as CRUTEM4.  However, it could be that some of those private collections might be more complete in terms of actual data than the collections that reach further back in time.</p>
+<p>After discussing our visualization on the Azimuth Forum it turned out that Nick Stokes, who runs the blog <a href="http://www.moyhu.blogspot.com.au">MOYHU in Australia</a>, had the same idea as me&#8212;however, already in 2011. That is in this year he had visualized station data.  For his visualization he used Google Earth. Moreover, for his visualization he used different temperature collections.</p>
+<p>If you have Google Earth installed then you can see his visualizations here:</p>
+<p>&bull; Nick Stokes, <a href="https://sites.google.com/site/moyhudocs/documents/ALL4.kmz?attredirects=0&amp;d=1">click here</a>.</p>
+<p>The link is from <a href="https://sites.google.com/site/moyhudocs/documents">the documentation page of Nick Stoke&#8217;s website</a>.</p>
+<h3> What are the major collections? </h3>
+<p>As far as we can tell, the major global collections of temperature data that go back to the 18th or 19th or at least early 20th century seem to be following.  First, there are the collections already mentioned, which are also used in the AR4 report:</p>
+<p>&bull; The <a href="http://www.cru.uea.ac.uk/cru/data/temperature/">CRUTEM</a> collection from the University of East Anglia (UK).</p>
+<p>&bull; the <a href="http://data.giss.nasa.gov/gistemp/">GISTEMP</a> collection from the Goddard Institute of Space Science (GISS) at NASA (US).</p>
+<p>&bull; the collection of <a href="http://cdiac.ornl.gov/trends/temp/lugina/lugina.html">Lugina et al</a>, which is a cooperative project involving NCDC/NOAA (US) (see also below), the University of Maryland (US), St. Petersburg State University (Russia) and the State Hydrological Institute, St. Petersburg, (Russia).</p>
+<p>&bull; the <a href="https://en.wikipedia.org/wiki/Global_Historical_Climatology_Network">GHCN</a> collection from NOAA.</p>
+<p>Then there are these:</p>
+<p>&bull; the <a href="http://berkeleyearth.org/data">Berkeley Earth</a> collection, called <a href="http://berkeleyearth.org/data">BEST</a></p>
+<p>&bull; The GSOD (Global Summary Of the Day) and <a href="https://en.wikipedia.org/wiki/Global_Historical_Climatology_Network">Global Historical Climatology Network (GHCN)</a> collections.   Both these are run by the <a href="http://www.ncdc.noaa.gov/data-access/land-based-station-data/land-based-datasets">National Climatic Data Center (NCDC)</a> at <a href="http://en.wikipedia.org/wiki/National_Oceanic_and_Atmospheric_Administration">National Oceanic and Atmospheric Administration (NOAA) (US)</a>.   It is not clear to me to what extent these two databases overlap with those of Lugina <em>et al</em>, which were made in cooperation with <a href="http://en.wikipedia.org/wiki/National_Climatic_Data_Center">NCDC</a>/NOAA.  It is also not clear to me whether the GHCN collection had been used for the AR4 report (it seems so).  There is currently also a very partially working visualization of the GSOD data <a href="http://gis.ncdc.noaa.gov/map/viewer/#app=clim&amp;cfg=cdo&amp;theme=daily&amp;layers=0001&amp;node=gis">here</a>. The sparse data in specific regions (see images above) is also apparent in this visualization.</p>
+<p>&bull; There is a comparatively new initiative called <a href="http://www.surfacetemperatures.org/">International Surface Temperatures Initiative (ISTI)</a> which gathers collections in a databank and seeks to provide temperature data &#8220;from hourly to century timescales&#8221;. As written on <a href="http://surfacetemperatures.blogspot.com.au/2014/08/ccc-gistemp-and-isti.html">their blog</a>, this data seems not to be quality controlled:</p>
+<blockquote><p>
+The ISTI dataset is not quality controlled, so, after re-reading section 3.3 of Lawrimore et al 2011, I implemented an extremely simple quality control scheme, MADQC.
+</p></blockquote>
+<h3> What did you visualize? </h3>
+<p>As far as I had understood in the visualization by Nick Stokes&mdash;which you just opened&mdash;the collection BEST (before 1850-2010), the collections GSOD  (1921-2010) and GHCN v2 (before 1850-1990) from NOAA and CRUTEM3 (before 1850-2000) are represented.</p>
+<p>CRUTEM3 is also visualized in another way <a href="http://clivebest.com/world/Map-data.html">Clive Best.</a>  In Clive Best&#8217;s visualization, it seems however that one has apart from the station name no further access to other data, like station temperatures, etc.  Moreover, it is not possible to set a recent time range, which is important for checking how much the dataset changed in recent times.</p>
+<p>Unfortunately this limited possibility to set a time range holds also true for two visualizations of Nick Stokes <a href="http://www.moyhu.blogspot.com.au/2012/12/universal-station-locator-and-history.html">here</a> and <a href="http://moyhu.blogspot.com.au/2011/12/google-maps-display-of-ghcn-stations.html">here</a>. In his first visualization, which is more exhaustive than the second, the following datasets are shown: GHCNv3 and an adjusted version of it (GADJ), a prelimary dataset from ISTI, BEST and CRUTEM 4. So his first visualization seems quite exhaustive also with respect to newer data.  Unfortunately, as mentioned, setting the time range didn’t work properly (at least when I tested it).  The same holds for his second visualization of GHCN v3 data.  So, I was only able to trace the deterioration of recent data manually (for example, by clicking on individual stations).</p>
+<p>Tim and I visualized CRUTEM4, that is, the updated version of CRUTEM3.</p>
+<h3> What did you not visualize? </h3>
+<p>Newer datasets after 2011/2012, for example from the aforementioned ISTI or from the private collections, are not visualized in the two collections you just opened.</p>
+<p>Moreover in the visualizations mentioned hre, there is no coverage of the GISS collection, which however <a href="http://data.giss.nasa.gov/gistemp/">now uses NOAA&#8217;S GHCN v3 collections</a>.   The historical data of GISS could, however, be different from the other collections.  The visualizations may also not cover the Lugina <i>et al.</i> collection, which was mentioned above in the context of the IPCC report.  Lugina <i>et al.</i> could however be similar to GSOD (and GHCN) due to cooperation.  Moreover, GHCN v3 could be substantially more exhaustive than CRUTEM or GHCN v2 (as shown in Nick Stoves visualization). However here the <a href="http://www.ncdc.noaa.gov/ghcnm/v3.php">last collection</a> was&mdash;like CRUTEM4&mdash;released in the spring of 2011.</p>
+<p>GCHN v3 is also represented in Nick Stokes&#8217;  visualizations (<a href="http://www.moyhu.blogspot.com.au/2012/12/universal-station-locator-and-history.html">here</a> and <a href="http://moyhu.blogspot.com.au/2011/12/google-maps-display-of-ghcn-stations.html">here</a>).  Upon manually investigating it, it didn&#8217;t seem to much crucial additional data not found in CRUTEM4. Since this manual exploration was not exhaustive, I may be wrong&mdash;but I don&#8217;t think so.</p>
+<p>Hence, to our knowledge, in the two visualizations you just opened, quite a lot of the available data is visualized&#8212;and as it seems &#8220;almost all&#8221; (?) of the far-back-reaching original <em>quality controlled</em> global surface temperature data collections as of 2011 or 2012. If you know of other similar collections please let us know.</p>
+<p>As mentioned above private collections and in particular the ISTI collection may contain much more data.  At the point of writing we don&#8217;t know in how far those newer collections will be taken into account for the new IPCC reports and in particular for the AR5 report.  Moreover it seems not so clear how quality control may be ensured for those newer collections.</p>
+<p>In conclusion, the previous IPCC reports seem to have been informed by the collections described here. Thus the coverage problems you see here need to be taken into account in discussions about the scientific base of previous climate descriptions.</p>
+<p>Hopefully the visualizations from Nick Stokes and from Tim and me are ready for exploration!   You can start to explore them yourself, and in particular see that the &#8216;deterioration of data&#8217; is&mdash;just as in our CRUTEM4 visualization&mdash;also visible in Nick&#8217;s collections.</p>
+<p>Note: I would like to thank people at the Azimuth Forum for pointing out references, and in particular Nick Stokes and Nathan Urban.</p>
+<h3>The effects of missing data</h3>
+<p><em>supplement by <strong>John Baez</strong></em></p>
+<p>There have always been fewer temperature recording stations in Arctic regions than other regions.  The following paper initiated a controversy over how this fact affects our picture of the Earth&#8217;s climate:</p>
+<ul>
+<li>Kevin Cowtan and Robert G. Way, <a href="http://onlinelibrary.wiley.com/enhanced/doi/10.1002/qj.2297">Coverage bias in the HadCRUT4 temperature series and its impact on recent temperature trends</a>, <em>Quarterly Journal of the Royal Meteorological Society</em> <em>140</em> (2014), 1935–1944.</li>
+</ul>
+<p>Here is some discussion:</p>
+<p>&bull; Kevin Cowtan, Robert Way, and Dana Nuccitelli, <a href="http://skepticalscience.com/global-warming-since-1997-more-than-twice-as-fast.html" target="_blank">Global warming since 1997 more than twice as fast as previously estimated, new study shows</a>, Skeptical Science, 13 November 2013.</p>
+<p>&bull; Stefan Rahmstorf, <a href="http://www.realclimate.org/index.php/archives/2013/11/global-warming-since-1997-underestimated-by-half/" target="_blank">Global warming since 1997 underestimated by half</a>, RealClimate, 13 November 2013 in which it is highlighted that satellites can replace surface measurements only to a certain degree.</p>
+<p>&bull; <a href="http://blog.hotwhopper.com/2013/11/anthony-watts-protest-about-cowtan-way.html">Anthony Watts&#8217; protest about Cowtan, Way and the Arctic</a>, HotWhopper, 15 November 2013.</p>
+<p>&bull; Victor Venema, <a href="http://variable-variability.blogspot.com.au/2013/11/temperature-trend-over-last-15-years-is.html" target="_blank">Temperature trend over last 15 years is twice as large as previously thought </a>, Variable Variability, 13 November 2013.</p>
+<p>However, these posts seem to say little about the increasing amount of &#8216;missing data&#8217;.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Monday, February 9th, 2015 at 4:22 pm and is filed under <a href="https://johncarlosbaez.wordpress.com/category/climate/" rel="category tag">climate</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2015/02/06/azimuth-news-part-3/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2015/02/14/earth-like-planets-near-red-dwarfs/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">12 Responses to <em>Exploring Climate Data (Part&nbsp;3)</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment byuser comment-author-bilby even thread-even depth-1 highlander-comment" id="comment-63916">
+				<div id="div-comment-63916" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1d9ee09b339818fd5d05cb13c0d14b8d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.moyhu.blogspot.com' rel='external nofollow ugc' class='url'>Nick Stokes</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-63916">9 February, 2015 at 7:48 pm</a>		</div>
+
+		<p>I have tried various other modes of visualisation. <a href="http://www.moyhu.blogspot.com.au/p/blog-page_24.html" rel="nofollow">Here</a> is a collection of WebGL active plots for the last 25 years (you can rotate, zoom etc, also display the stations). <a href="http://moyhu.blogspot.com.au/2014/06/google-maps-portal-to-noaa-station.html" rel="nofollow">Here</a> is a Google Maps version which lets you select stations by various criteria like years of operation. The pop-up information includes links to the GHCN station information. <a href="http://moyhu.blogspot.com.au/2015/02/google-maps-app-showing-ghcn-adjustments.html" rel="nofollow">Here</a> is a recent version which instead shows the effects of adjustment on trends at each station.</p>
+<p>And <a href="http://www.moyhu.blogspot.com.au/2012/12/station-trends-more.html" rel="nofollow">here</a>, in an HTML 5 style, is an active plot showing trends at individual stations over various periods. Again you can show the stations in question.</p>
+<p><i>&#8220;However, these posts seem to say little about the increasing amount of ‘missing data’.&#8221;</i></p>
+<p>There isn&#8217;t an increasing amount of missing data. There is increasing discipline about what is put into the collections. In the early years of both CRUTEM and GHCN, they were concerned to compile the vast amount of data that had fairly recently been digitised. GHCN was a big collaborative grant-funded project. But then it had to be maintained on an ongoing basis, and so they naturally asked &#8211; how much do we need? And they could drop a lot of stations and still have enough. I&#8217;ve written in detail about this process <a href="http://moyhu.blogspot.com/2010/08/reduction-of-station-numbers-in-ghcn.html" rel="nofollow">here</a>.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/?replytocom=63916#respond' data-commentid="63916" data-postid="19177" data-belowelement="div-comment-63916" data-respondelement="respond" data-replyto="Reply to Nick Stokes" aria-label='Reply to Nick Stokes'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-63919">
+				<div id="div-comment-63919" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-63919">9 February, 2015 at 8:43 pm</a>		</div>
+
+		<p>Thanks for this post, Nadja!  It&#8217;s especially useful, for us nonexperts, to have your list of various temperature databases, with links.  I should copy that over to the Azimuth Wiki and keep improving it.</p>
+<p>The question of <i>why</i> we see increasing numbers of black squares, and what they really mean&#8212;that&#8217;s something I hope we can resolve in the discussion here.</p>
+<p>Nick writes:</p>
+<blockquote><p>
+There isn’t an increasing amount of missing data. There is increasing discipline about what is put into the collections.
+</p></blockquote>
+<p>Is there any way to read papers, memos, etc. about this &#8220;increasing discipline&#8221;?  The comments on your blog article include this:</p>
+<p>&bull; Thomas Peterson, Harald Daan and Philip Jones, <a href="http://www.ncdc.noaa.gov/oa/hofn/gsn/gsnselection.pdf" rel="nofollow">Initial selection of a GCOS surface network</a>, <i>Bulletin of the American Meteorological Society</i>, <b>78</b> (1997), 2145&ndash;2152.</p>
+<p>which looks very interesting.  I&#8217;ll have to read it.  But I&#8217;m not sure this will help me understand the black squares appearing later than 1997.  In your blog article you write:</p>
+<blockquote><p>
+The stream of articles that advance various theories about this reduction don&#8217;t take proper account of the way GHCN was actually compiled. It was initially a historical process, where in the early 90&#8217;s with grant funding people gathered together batches of historic records, recently digitised, into a database. After V2 came out, in 1997, at some stage NOAA undertook the task of continuing monthly updates from CLIMAT forms. This made it, for the first time, a recurrent process.</p>
+<p>[Update: Carrot Eater, in comments, has pointed to a very useful and relevant paper by Peterson, Dann and Phil Jones. As he says, the process wasn&#8217;t quite as I&#8217;ve surmised. I should also have included a reference to Peterson&#8217;s overview paper.]</p>
+<p>The big reduction followed changes of policy in going to a recurrent process. As a batch process, it didn&#8217;t really matter if the geographic spread was uneven. If the records were available, they could be included. But as a recurrent process, it makes sense to spread the effort of updating reasonably evenly worldwide.</p>
+<p>If you look carefully at the time sequence of station terminations, it looks like this:</p>
+<p><img src="https://i2.wp.com/www.moyhu.org.s3.amazonaws.com/pics/dropout/GHCNDropByYears.jpg" /></p>
+<p>It clearly consisted of a few major culling events.
+</p></blockquote>
+<p>Later you said &#8220;culling&#8221; wasn&#8217;t the right word.  But what I&#8217;m really curious about is exactly what happened and why it happened&#8230; <i>as explained by the people who did it</i>.   If this data is being used to do science, there should be papers about how the data was chosen.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/?replytocom=63919#respond' data-commentid="63919" data-postid="19177" data-belowelement="div-comment-63919" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 highlander-comment" id="comment-63923">
+				<div id="div-comment-63923" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1d9ee09b339818fd5d05cb13c0d14b8d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.moyhu.blogspot.com' rel='external nofollow ugc' class='url'>Nick Stokes</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-63923">9 February, 2015 at 9:56 pm</a>		</div>
+
+		<blockquote><p>&#8220;But what I’m really curious about is exactly what happened and why it happened… as explained by the people who did it.&#8221;</p></blockquote>
+<p>Well, it&#8217;s not clear &#8220;who did it&#8221;. There were two separate projects &#8211; the historical phase, which ended, and the maintained phase. There was a gap; presumably it took time for someone in NOAA to get the organisation to commit to it.</p>
+<p>GHCN is now basically just <a href="http://www.ogimet.com/gclimat.phtml.en" rel="nofollow">CLIMAT forms</a> and USHCN. USHCN was a major collaborative exercise in planning; there is a NRC review <a href="http://www.nap.edu/catalog/6424/adequacy-of-climate-observing-systems" rel="nofollow">here</a>. CLIMAT forms require international cooperation, and I&#8217;m sure at one level there was a constraint on what some countries are prepared to do. <a href="http://www.nws.noaa.gov/im/wmocovr.htm" rel="nofollow">WMO resolution 40</a> has the gory details.</p>
+<p>To give an idea on &#8220;culling&#8221;, in 1990, Turkey lost about 200 stations. Now Turkey is not a very small country, but still. The original GHCN represented countries that had the best-kept records. Now they try to represent area.</p>
+<p>ps I wouldn&#8217;t focus too much on the black squares. That comes from looking at snapshot grids. In 2009, for example, it looks as if most of Canada is missing. That was actually just because they were submitting CLIMAT forms with the requisite data, but omitting calculated norms which the protocol requires. That got fixed. Maybe the GISS graphic didn&#8217;t.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/?replytocom=63923#respond' data-commentid="63923" data-postid="19177" data-belowelement="div-comment-63923" data-respondelement="respond" data-replyto="Reply to Nick Stokes" aria-label='Reply to Nick Stokes'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-63931">
+				<div id="div-comment-63931" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-63931">10 February, 2015 at 2:02 am</a>		</div>
+
+		<p>Nick thanks for the links. I think you may have a different emphasis in your visualizations. My focus was on the different time periods and the availability of data in those.</p>
+<blockquote><p>There isn’t an increasing amount of missing data. There is increasing discipline about what is put into the collections.</p></blockquote>
+<p>Well every reader may judge him/herself by looking at the visualizations. If you want my opinion: I think this is rather catastrophic. In particular I wouldn&#8217;t wonder if the &#8220;global warming hiatus&#8221; is connected to the gaps.</p>
+<blockquote><p>In 2009, for example, it looks as if most of Canada is missing. That was actually just because they were submitting CLIMAT forms with the requisite data, but omitting calculated norms which the protocol requires.</p></blockquote>
+<p>Upon only briefly looking into your <a href="http://moyhu.blogspot.com.au/2014/06/google-maps-portal-to-noaa-station.html" rel="nofollow">visualization</a> I see by randomly investigating the operation times of some canadian stations e.g. the year 1989 popping up a lot. That is those stations seemed to have been closed.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/?replytocom=63931#respond' data-commentid="63931" data-postid="19177" data-belowelement="div-comment-63931" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-bilby even thread-even depth-1 highlander-comment" id="comment-63933">
+				<div id="div-comment-63933" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1d9ee09b339818fd5d05cb13c0d14b8d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.moyhu.blogspot.com' rel='external nofollow ugc' class='url'>Nick Stokes</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-63933">10 February, 2015 at 2:30 am</a>		</div>
+
+		<p>Nad,</p>
+<p>The Canadian stations weren&#8217;t closed. You&#8217;ll find their data on BEST or ISTI, or even GHCN Daily.</p>
+<p>But GHCN is a compilation for recurrent up-to-date collection of global indices. That is, for calculating a numerical spatial integral. For that you need enough stations, suitably placed, to interpolate.</p>
+<p>In the GHCN inventory, of 7280 stations, there are 1921 from the US. 847 from Canada. 254 from Turkey, and 57 from Brazil. There is no need to maintain 847 stations from Canada.</p>
+<p>What I find frustrating about the approach here is that it is totally unquantitative. People calculate the uncertainty of those integrals. Famously, in the discussion of whether 2014 was the hottest years, some bloggers were shocked to discover that GISS and NOAA had error bars. HADCRUT gives the 95% range as +-0.1C, and GISS and NOAA give sd ranges of about half that. Those CIs are based mainly on coverage. That is, what is the total uncertainty associated with the interpolated values.</p>
+<p>That depends on the number and distribution of stations. BEST claims to reduce the range to maybe half by having tens of thousands of stations. But BEST comes out months in arrears. It&#8217;s a calculated trade-off. You need to do that calculation.</p>
+<p>A common starting point is <a href="http://hadobs.metoffice.com/hadobs/hadcrut3/HadCRUT3_accepted.pdf" rel="nofollow">Brohan 2006</a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/?replytocom=63933#respond' data-commentid="63933" data-postid="19177" data-belowelement="div-comment-63933" data-respondelement="respond" data-replyto="Reply to Nick Stokes" aria-label='Reply to Nick Stokes'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-63973">
+				<div id="div-comment-63973" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-63973">11 February, 2015 at 7:37 am</a>		</div>
+
+		<blockquote><p>The Canadian stations weren’t closed. You’ll find their data on BEST or ISTI, or even GHCN Daily.</p></blockquote>
+<p>I tried to check wether e.g. the station Thule Op station remarked as non-operating anymore in your visualization (termination 1981) can be found on GHCN daily.  The readme.txt says:</p>
+<blockquote><p>
+ALTERNATIVELY, if you only need data for one station:</p>
+<p>  &#8211; Find the station&#8217;s name in &#8220;ghcnd-stations.txt&#8221; and note its station<br />
+    identification code (e.g., PHOENIX AP (Airport) is&#8221;USW00023183&#8243;); and<br />
+  &#8211; Download the data file (i.e., &#8220;.dly&#8221; file) that corresponds to this code<br />
+    (e.g., &#8220;USW00023183.dly&#8221; has the data for PHOENIX AP).<br />
+    Note that the &#8220;.dly&#8221; file is located in the &#8220;all&#8221; subdirectory.
+</p></blockquote>
+<p>I think I found <a href="http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt" rel="nofollow">&#8220;ghcnd-stations.txt.&#8221;</a><br />
+The &#8220;all&#8221; subdirectory in <a href="http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/" rel="nofollow">here</a> is currently not accessible though.<br />
+And I didn&#8217;t want to download the tar files.<br />
+So sofar I just briefly looked into the <a href="http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt" rel="nofollow">inventory file</a> for Thule , which has station ID GLW00017602 and for Thule Op. Unfortunately it seems this inventory file doesn&#8217;t contain opening and closing dates, but I interprete the dates as time periods for which the quantities TMIN, etc. where measured. The inventory doesn&#8217;t though seem to contain the daily temps periods. For Thule one has:</p>
+<blockquote><p>
+GLW00017602  76.5500  -68.8167 TMIN 1946 1952<br />
+GLW00017602  76.5500  -68.8167 PRCP 1946 1952<br />
+GLW00017602  76.5500  -68.8167 SNOW 1946 1952<br />
+GLW00017602  76.5500  -68.8167 SNWD 1946 1952<br />
+GLW00017602  76.5500  -68.8167 FRGB 1946 1946<br />
+GLW00017602  76.5500  -68.8167 FRGT 1946 1946<br />
+GLW00017602  76.5500  -68.8167 WT01 1946 1952<br />
+GLW00017602  76.5500  -68.8167 WT03 1947 1947<br />
+GLW00017602  76.5500  -68.8167 WT04 1947 1952<br />
+GLW00017602  76.5500  -68.8167 WT05 1946 1952<br />
+GLW00017602  76.5500  -68.8167 WT07 1952 1952<br />
+GLW00017602  76.5500  -68.8167 WT08 1951 1952<br />
+GLW00017602  76.5500  -68.8167 WT09 1949 1952<br />
+GLW00017602  76.5500  -68.8167 WT16 1946 1952<br />
+GLW00017602  76.5500  -68.8167 WT18 1946 1952
+</p></blockquote>
+<p>(FRGB = Base of frozen ground layer (cm), FRGT = Top of frozen ground layer (cm), WT are weather types as described in readme.txt)<br />
+For Thule the dates are so much in the past that it seems very much that this station is closed in GCHN daily just as it is in GHCNv3. </p>
+<p>Similar to the Thule Op site which closed according to your visualization in 1981. </p>
+<blockquote><p>
+GLW00017605  76.5167  -68.8333 TMAX 1951 1975<br />
+GLW00017605  76.5167  -68.8333 TMIN 1951 1975<br />
+GLW00017605  76.5167  -68.8333 PRCP 1951 1975<br />
+GLW00017605  76.5167  -68.8333 SNOW 1951 1975<br />
+GLW00017605  76.5167  -68.8333 SNWD 1951 1975<br />
+GLW00017605  76.5167  -68.8333 PGTM 1954 1975<br />
+GLW00017605  76.5167  -68.8333 WDFG 1954 1975<br />
+GLW00017605  76.5167  -68.8333 WESD 1952 1958<br />
+GLW00017605  76.5167  -68.8333 WSFG 1954 1975<br />
+GLW00017605  76.5167  -68.8333 WT01 1951 1975<br />
+GLW00017605  76.5167  -68.8333 WT04 1952 1974<br />
+GLW00017605  76.5167  -68.8333 WT05 1954 1974<br />
+GLW00017605  76.5167  -68.8333 WT06 1954 1973<br />
+GLW00017605  76.5167  -68.8333 WT07 1952 1966<br />
+GLW00017605  76.5167  -68.8333 WT08 1952 1973<br />
+GLW00017605  76.5167  -68.8333 WT09 1951 1975<br />
+GLW00017605  76.5167  -68.8333 WT16 1952 1975<br />
+GLW00017605  76.5167  -68.8333 WT18 1951 1975
+</p></blockquote>
+<p>And as said I had manually checked your BEST visualization and it looked quite as if there was not much difference to the CRUTEM/GHCN data.<br />
+I don&#8217;t know much about the new ISTI data but they said themselves that quality control is an issue (see blog post).</p>
+<p>Apart from that in my blog post I was looking at the data which was used for the last IPCC assessment report, since it is this data which entered the climate change recomendations and not BEST; ISTI or GCHN daily.<br />
+So even IF the data would have been available there (which I currently doubt very much) then it wouldn&#8217;t had made a difference in the evaluations, as it seems.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/?replytocom=63973#respond' data-commentid="63973" data-postid="19177" data-belowelement="div-comment-63973" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 highlander-comment" id="comment-63989">
+				<div id="div-comment-63989" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1d9ee09b339818fd5d05cb13c0d14b8d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.moyhu.blogspot.com' rel='external nofollow ugc' class='url'>Nick Stokes</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-63989">11 February, 2015 at 8:35 pm</a>		</div>
+
+		<p>Well, Thule Op is in Greenland. And it seems that it did close in 1975, or that is when GHCN Daily data stops. There is a gadget <a href="http://moyhu.blogspot.com.au/p/blog-page_12.html" rel="nofollow">here</a> that will help with looking up GHCN Daily. On the first row of buttons above the frame is one for GHCN Daily. Click and  you&#8217;ll see a table (may take some secs) with buttons saying USC, Australia,&#8230;World. Under World is a menu, with various countries, and down the bottom &#8220;Other&#8221;. Select Other, click World, and there is a long list of links, also with start-end dates. Search for THULE (Ctrl-F), there is THULE OP SITE. Click to bring up raw data.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/?replytocom=63989#respond' data-commentid="63989" data-postid="19177" data-belowelement="div-comment-63989" data-respondelement="respond" data-replyto="Reply to Nick Stokes" aria-label='Reply to Nick Stokes'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-64012">
+				<div id="div-comment-64012" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-64012">12 February, 2015 at 7:33 am</a>		</div>
+
+		<p>John, by the way thanks again for the layout fixing. Funnily the images appear to look on your blog more foggy than if I look at them directly.</p>
+<blockquote><p>Well, Thule Op is in Greenland.</p></blockquote>
+<p>Yes sorry. I didn&#8217;t zoom into your visualization, because (just as for mine) zooming doesn&#8217;t work too smoothly and so I  randomly chose one of the tags in your visualization which looked approximately like being located in northern canada&#8230;and oops ended up in Greenland.<br />
+<a href="http://en.wikipedia.org/wiki/Thule" rel="nofollow">Thule</a> is a fictive/outdated name, but I should have gotten a clue from the naming of Thule airbase or the GLW abrreviation inthe stations ID.<br />
+But speaking of closed down Greenland stations, may be one should investigate the danish temperature station management as well.</p>
+<p>So now I picked MACKAR INLET,NW which closed according to your GHCNv3 visualization in 1989 and indeed it seems TMAX seemed to have been at least measured until 1992:</p>
+<blockquote><p>
+CA002402686  68.3000  -85.6667 TMAX 1957 1992<br />
+CA002402686  68.3000  -85.6667 TMIN 1957 1992<br />
+CA002402686  68.3000  -85.6667 PRCP 1957 1992<br />
+CA002402686  68.3000  -85.6667 SNOW 1957 1992<br />
+CA002402686  68.3000  -85.6667 SNWD 1957 1992
+</p></blockquote>
+<p>So if there is no fault in the closing date then maybe there are still some stations living in GHCN daily, which are not in GHCNv3. Interesting, but not here since as said <em>I looked at files which were used by the IPCC.</em></p>
+<blockquote><p>Click and you’ll see a table (may take some secs) with buttons saying USC, Australia,…World. Under World is a menu, with various countries, and down the bottom “Other”. </p></blockquote>
+<p>For MACKAR INLET, NW I clicked on Canada. It seems NW sounds as  Northwestterritories, but by the location in your map it seems to be in NUNAVUT which seems not to exist neither as a region under your Canada pull down menu nor within all the other canadian pull down regions, (if I interpret your regions abbreviations: BC,NWT,Alb,Sas,Man,Ont,Marit correctly (where I couldnt identify Marit, is Marit some abrreviation for some maritime regions?) i.e. I couldn&#8217;t find MACKAR on that table. (by the way Yukon, New Foundland etc. seem also to be missing).</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/?replytocom=64012#respond' data-commentid="64012" data-postid="19177" data-belowelement="div-comment-64012" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-bilby even depth-2 highlander-comment" id="comment-64029">
+				<div id="div-comment-64029" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1d9ee09b339818fd5d05cb13c0d14b8d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.moyhu.blogspot.com' rel='external nofollow ugc' class='url'>Nick Stokes</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-64029">12 February, 2015 at 7:47 pm</a>		</div>
+
+		<p><i>&#8220;NUNAVUT which seems not to exist neither as a region under your Canada pull down menu &#8220;,/i&gt;<br />
+NWT is the old name for Nunavut, used by GHCN. Marit is maritime provinces. I&#8217;m just using (in order) the GHCN classifications indicated by the 3rd digit (001&#8230; etc) in the station code.</p>
+<p></i><i>&#8220;I looked at files which were used by the IPCC&#8221;</i><br />
+What does &#8220;used by the IPCC&#8221; mean? I don&#8217;t think the IPCC is doing anything with these files.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/?replytocom=64029#respond' data-commentid="64029" data-postid="19177" data-belowelement="div-comment-64029" data-respondelement="respond" data-replyto="Reply to Nick Stokes" aria-label='Reply to Nick Stokes'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-64052">
+				<div id="div-comment-64052" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-64052">13 February, 2015 at 6:59 am</a>		</div>
+
+		<blockquote><p>NWT is the old name for Nunavut, used by GHCN. </p></blockquote>
+<p>Aha, OK. I don&#8217;t check this now but I find that a bit strange. But then where is MACKAR?</p>
+<blockquote><p><em>“I looked at files which were used by the IPCC”</em></p>
+<p>What does “used by the IPCC” mean? I don’t think the IPCC is doing anything with these files.</p></blockquote>
+<p>As written above on the <a>IPCC website</a> the for the 4th Assessment report used listed data sets are:</p>
+<p>• CRUTEM3,</p>
+<p>• NCDC (probably as a guess using the data set GHCNM v3),</p>
+<p>• GISTEMP, and</p>
+<p>• the collection of Lugina et al.</p>
+<p>I wrote there &#8220;(probably as a guess using the data set GHCNM v3)&#8221;<br />
+because the <a href="ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/blended/ghcnm-v3.pdf" rel="nofollow">document</a> in link on the AR4 website says:</p>
+<blockquote><p>
+Effective May 2, 2011, the GHCN-M version 3 dataset of monthly mean temperature replaced GHCN-M version 2 monthly mean temperature dataset.<br />
+Beginning with the April 2011 State of the Climate<br />
+Report, GHCN-M version 3 will be used for NCDC climate monitoring activities,<br />
+including calculation of global land surface temperature anomalies&#8230;</p></blockquote>
+<p>which I would interpret as that they are using the monthly data, which is in GHCNv3, which you visualized. I am though not fully sure. That is they link to a data file (which I can&#8217;t currently read), which seems to be based on the GHCNv3 stations data, given the information in the link and the document, but may be not. That is I haven&#8217;t found any clear assignment that this is so. May be this is written in this article which is cited there, to which I don&#8217;t have access.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/?replytocom=64052#respond' data-commentid="64052" data-postid="19177" data-belowelement="div-comment-64052" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 highlander-comment" id="comment-64529">
+				<div id="div-comment-64529" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e9aa08f93ce5bc432fcf239f53299a3d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Hanna Smith</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-64529">25 February, 2015 at 5:47 pm</a>		</div>
+
+		<p>I realized that some folks in the U.S. support the people who say that climate change is only a fantasy.</p>
+<p>Now with the prolonged cold weather in some of the U.S. states (Maryland) they found the opportunity to attack environmentalists again by saying you see? we have snow, so where is global warming now?</p>
+<p>The truth is that these kind of people are producing and sustaining the major polluting activities on this planet because they have great benefits from it and they don&#8217;t care about others who live here along with them.</p>
+<p><a href="http://www.alternative-energies.net/some-people-think-that-extreme-low-temperatures-in-the-u-s-are-a-sign-that-global-warming-is-just-a-joke/" rel="nofollow ugc">http://www.alternative-energies.net/some-people-think-that-extreme-low-temperatures-in-the-u-s-are-a-sign-that-global-warming-is-just-a-joke/</a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/?replytocom=64529#respond' data-commentid="64529" data-postid="19177" data-belowelement="div-comment-64529" data-respondelement="respond" data-replyto="Reply to Hanna Smith" aria-label='Reply to Hanna Smith'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-67102">
+				<div id="div-comment-67102" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-67102">6 June, 2015 at 4:48 am</a>		</div>
+
+		<p><a href="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/#comment-63931" rel="nofollow">I wrote:</a></p>
+<blockquote><p>Well every reader may judge him/herself by looking at the visualizations. If you want my opinion: I think this is rather catastrophic. In particular I wouldn’t wonder if the “global warming hiatus” is connected to the gaps.</p></blockquote>
+<p>In connection to this you might now want to look at this recent article:</p>
+<p><a href="http://www.noaanews.noaa.gov/stories2015/noaa-analysis-journal-science-no-slowdown-in-global-warming-in-recent-years.html" rel="nofollow">Science publishes new NOAA analysis: Data show no recent slowdown in global warming </a></p>
+<blockquote><p>&#8220;Adding in the last two years of global surface temperature data and other improvements in the quality of the observed record provide evidence that contradict the notion of a hiatus in recent global warming trends,&#8221; said Thomas R. Karl, L.H.D., Director, NOAA&#8217;s National Centers for Environmental Information. &#8220;Our new analysis suggests that the apparent hiatus may have been largely the result of limitations in past datasets, and that the rate of warming over the first 15 years of this century has, in fact, been as fast or faster than that seen over the last half of the 20th century.&#8221; </p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/?replytocom=67102#respond' data-commentid="67102" data-postid="19177" data-belowelement="div-comment-67102" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">You can use Markdown or HTML in your comments.  You can also use LaTeX, like this: $latex E = m c^2 $. The word 'latex' comes right after the first dollar sign, with a space after it. <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2015/02/09/exploring-climate-data-part-3/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2015/02/09/exploring-climate-data-part-3/" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='19177' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="173736146b" /></p>
+<input type="hidden" name="genseq" value="1632619611" />
+<input type="hidden" id="ak_js" name="ak_js" value="125"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2015/02/09/exploring-climate-data-part-3/"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,176,998 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-1d9ee09b339818fd5d05cb13c0d14b8d">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-1d9ee09b339818fd5d05cb13c0d14b8d">
+	</div>
+	<div class="grofile-hash-map-a114ddb2d8d68d281202f95cfd64c96c">
+	</div>
+	<div class="grofile-hash-map-e9aa08f93ce5bc432fcf239f53299a3d">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"19177","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+			<div id="jp-carousel-loading-overlay">
+			<div id="jp-carousel-loading-wrapper">
+				<span id="jp-carousel-library-loading">&nbsp;</span>
+			</div>
+		</div>
+		<div class="jp-carousel-overlay" style="display: none;">
+
+		<div class="jp-carousel-container">
+			<!-- The Carousel Swiper -->
+			<div
+				class="jp-carousel-wrap swiper-container jp-carousel-swiper-container jp-carousel-transitions"
+				itemscope
+				itemtype="https://schema.org/ImageGallery">
+				<div class="jp-carousel swiper-wrapper"></div>
+				<div class="jp-swiper-button-prev swiper-button-prev">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskPrev" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="9" height="12">
+							<path d="M16.2072 16.59L11.6496 12L16.2072 7.41L14.8041 6L8.8335 12L14.8041 18L16.2072 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskPrev)">
+							<rect x="0.579102" width="23.8823" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+				<div class="jp-swiper-button-next swiper-button-next">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskNext" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="8" height="12">
+							<path d="M8.59814 16.59L13.1557 12L8.59814 7.41L10.0012 6L15.9718 12L10.0012 18L8.59814 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskNext)">
+							<rect x="0.34375" width="23.8822" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+			</div>
+			<!-- The main close buton -->
+			<div class="jp-carousel-close-hint">
+				<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<mask id="maskClose" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="15" height="14">
+						<path d="M19.3166 6.41L17.9135 5L12.3509 10.59L6.78834 5L5.38525 6.41L10.9478 12L5.38525 17.59L6.78834 19L12.3509 13.41L17.9135 19L19.3166 17.59L13.754 12L19.3166 6.41Z" fill="white"/>
+					</mask>
+					<g mask="url(#maskClose)">
+						<rect x="0.409668" width="23.8823" height="24" fill="#FFFFFF"/>
+					</g>
+				</svg>
+			</div>
+			<!-- Image info, comments and meta -->
+			<div class="jp-carousel-info">
+				<div class="jp-carousel-info-footer">
+					<div class="jp-carousel-pagination-container">
+						<div class="jp-swiper-pagination swiper-pagination"></div>
+						<div class="jp-carousel-pagination"></div>
+					</div>
+					<div class="jp-carousel-photo-title-container">
+						<h2 class="jp-carousel-photo-caption"></h2>
+					</div>
+					<div class="jp-carousel-photo-icons-container">
+						<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-info" aria-label="Toggle photo metadata visibility">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskInfo" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M12.7537 2C7.26076 2 2.80273 6.48 2.80273 12C2.80273 17.52 7.26076 22 12.7537 22C18.2466 22 22.7046 17.52 22.7046 12C22.7046 6.48 18.2466 2 12.7537 2ZM11.7586 7V9H13.7488V7H11.7586ZM11.7586 11V17H13.7488V11H11.7586ZM4.79292 12C4.79292 16.41 8.36531 20 12.7537 20C17.142 20 20.7144 16.41 20.7144 12C20.7144 7.59 17.142 4 12.7537 4C8.36531 4 4.79292 7.59 4.79292 12Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskInfo)">
+										<rect x="0.8125" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+							</span>
+						</a>
+												<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-comments" aria-label="Toggle photo comments visibility">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskComments" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M4.3271 2H20.2486C21.3432 2 22.2388 2.9 22.2388 4V16C22.2388 17.1 21.3432 18 20.2486 18H6.31729L2.33691 22V4C2.33691 2.9 3.2325 2 4.3271 2ZM6.31729 16H20.2486V4H4.3271V18L6.31729 16Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskComments)">
+										<rect x="0.34668" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+
+								<span class="jp-carousel-has-comments-indicator" aria-label="This image has comments."></span>
+							</span>
+						</a>
+											</div>
+				</div>
+				<div class="jp-carousel-info-extra">
+					<div class="jp-carousel-info-content-wrapper">
+						<div class="jp-carousel-photo-title-container">
+							<h2 class="jp-carousel-photo-title"></h2>
+						</div>
+						<div class="jp-carousel-comments-wrapper">
+															<div id="jp-carousel-comments-loading">
+									<span>Loading Comments...</span>
+								</div>
+								<div class="jp-carousel-comments"></div>
+								<div id="jp-carousel-comment-form-container">
+									<span id="jp-carousel-comment-form-spinner">&nbsp;</span>
+									<div id="jp-carousel-comment-post-results"></div>
+																														<form id="jp-carousel-comment-form">
+												<label for="jp-carousel-comment-form-comment-field" class="screen-reader-text">Write a Comment...</label>
+												<textarea
+													name="comment"
+													class="jp-carousel-comment-form-field jp-carousel-comment-form-textarea"
+													id="jp-carousel-comment-form-comment-field"
+													placeholder="Write a Comment..."
+												></textarea>
+												<div id="jp-carousel-comment-form-submit-and-info-wrapper">
+													<div id="jp-carousel-comment-form-commenting-as">
+																													<fieldset>
+																<label for="jp-carousel-comment-form-email-field">Email (Required)</label>
+																<input type="text" name="email" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-email-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-author-field">Name (Required)</label>
+																<input type="text" name="author" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-author-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-url-field">Website</label>
+																<input type="text" name="url" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-url-field" />
+															</fieldset>
+																											</div>
+													<input
+														type="submit"
+														name="submit"
+														class="jp-carousel-comment-form-button"
+														id="jp-carousel-comment-form-button-submit"
+														value="Post Comment" />
+												</div>
+											</form>
+																											</div>
+													</div>
+						<div class="jp-carousel-image-meta">
+							<div class="jp-carousel-title-and-caption">
+								<div class="jp-carousel-photo-info">
+									<h3 class="jp-carousel-caption" itemprop="caption description"></h3>
+								</div>
+
+								<div class="jp-carousel-photo-description"></div>
+							</div>
+							<ul class="jp-carousel-image-exif" style="display: none;"></ul>
+							<a class="jp-carousel-image-download" target="_blank" style="display: none;">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="3" width="19" height="18">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M5.84615 5V19H19.7775V12H21.7677V19C21.7677 20.1 20.8721 21 19.7775 21H5.84615C4.74159 21 3.85596 20.1 3.85596 19V5C3.85596 3.9 4.74159 3 5.84615 3H12.8118V5H5.84615ZM14.802 5V3H21.7677V10H19.7775V6.41L9.99569 16.24L8.59261 14.83L18.3744 5H14.802Z" fill="white"/>
+									</mask>
+									<g mask="url(#mask0)">
+										<rect x="0.870605" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+								<span class="jp-carousel-download-text"></span>
+							</a>
+							<div class="jp-carousel-image-map" style="display: none;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+		<link rel='stylesheet' id='all-css-0-3' href='https://s0.wp.com/_static/??/wp-content/mu-plugins/carousel/swiper-bundle.css,/wp-content/mu-plugins/carousel/jetpack-carousel.css?m=1630955947j&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack-carousel-js-extra'>
+var jetpackSwiperLibraryPath = {"url":"\/wp-content\/mu-plugins\/carousel\/swiper-bundle.js"};
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"31af8ab3d4","display_exif":"1","display_comments":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F02%2F09%2Fexploring-climate-data-part-3%2F","blog_id":"12777403","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"stats_query_args":"blog=12777403&v=wpcom&tz=0&user_id=0&subd=johncarlosbaez","is_public":"1"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTtsOgjAM/SHHAg8mPBi/ZWwN2WRbXTuBv7caeUGiT23PpefoGZXNiSGxDqQdPLwFXJpAJy2UT3aqDujF2RyjyFQBnNYm+rSJNn+sCqc6+kTaOOHVYIqOhhiKbIqLsTfam+RxuFco62c0M0qQwpKXVaIEIz5qIyfEAdyfItaUXAkmHYBR8tUG/PDM3o3ApKkOZItH9jl99T7IUO/qu1N813hpz13ft113bsMTF+6KkQ=='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'19177','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTZnaT0lVHFCY2hJc0l5WUQ4NFBIfHAlJWF3dEpuYTlKcCUwK2lQQzl3S01LcFhPW29ISmNyVXk/Q2ctdnQmWlksdCVDMlJrLDd8UFNxMi4zVG4tTFJbUU8lU0dvYm9xRTZHNz1MTFlFV1F8ZXd3YnUzKyw5MDVWY0V4ZllndSYuSm9MSFpNak55OUZ4YjVKS2RPRld5RDFpUlBrLjNtRmpOdVdmckpGdEw5Zzd0TldLYVldNXF0U05LRWh8VmpKYTdqQTc9YVFNP3xKdjNbKzdkVVAsNz1qRjc='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '19177' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

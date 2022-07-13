@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Network Theory (Part 14) | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Network Theory (Part&nbsp;14) Comments Feed" href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F10%2F15%2Fnetwork-theory-part-14%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"677eca7dd0","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"0272f16312\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2011\/10\/15\/network-theory-part-14\/?replytocom=8325","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F10%2F15%2Fnetwork-theory-part-14%2F%3Freplytocom%3D8325","postID":"5562","shortlink":"https:\/\/wp.me\/pRBZ9-1rI","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/5562","statsLink":"https:\/\/wordpress.com\/stats\/post\/5562\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F10%2F15%2Fnetwork-theory-part-14%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-1rI' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F10%2F15%2Fnetwork-theory-part-14%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F10%2F15%2Fnetwork-theory-part-14%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Network Theory (Part 14)" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/" />
+<meta property="og:description" content="We&#8217;ve been doing a lot of hard work lately. Let&#8217;s take a break and think about a fun example from chemistry! The ethyl cation Suppose you start with a molecule of ethane, which has 2 ca…" />
+<meta property="article:published_time" content="2011-10-15T03:12:52+00:00" />
+<meta property="article:modified_time" content="2011-10-15T03:12:52+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/networks/200px-Ethane-A-3D-balls.png" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Network Theory (Part&nbsp;14)" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/networks/200px-Ethane-A-3D-balls.png?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="We&#039;ve been doing a lot of hard work lately. Let&#039;s take a break and think about a fun example from chemistry! The ethyl cation Suppose you start with a molecule of ethane, which has 2 carbons and 6 hydrogens arranged like this: Then suppose you remove one hydrogen. The result is a positively charged ion,&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-5562 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-5562 post type-post status-publish format-standard hentry category-chemistry category-mathematics category-networks" id="post-5562">
+			<h2>Network Theory (Part&nbsp;14)</h2>
+
+			<div class="entry">
+				<p>We&#8217;ve been doing a lot of hard work lately.  Let&#8217;s take a break and think about a fun example from chemistry! </p>
+<h4> The ethyl cation </h4>
+<p>Suppose you start with a molecule of <a href="http://en.wikipedia.org/wiki/Ethane">ethane</a>, which has 2 carbons and 6 hydrogens arranged like this:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Ethane"><img border="none" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/200px-Ethane-A-3D-balls.png" alt="" /></a>
+</div>
+<p>Then suppose you remove one hydrogen.  The result is a positively charged ion, or <a href="http://en.wikipedia.org/wiki/Ion">&#8216;cation&#8217;</a>.  When I was a kid, I thought the opposite of a cation should be called a &#8216;dogion&#8217;.  Alas, it&#8217;s <a href="http://en.wikipedia.org/wiki/Ion#Anions_and_cations">not</a>.</p>
+<p>This particular cation, formed from removing one hydrogen from an ethane molecule, is called an &#8216;ethyl cation&#8217;.  People used to think it looked like this:</p>
+<div align="center"><a href="http://comporgchem.com/blog/?p=60"><img border="none" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/ethyl_cation_classical.jpg" alt="" /></a></div>
+<p>They also thought a hydrogen could hop from the carbon with 3 hydrogens attached to it to the carbon with 2.  So, they drew a graph with a vertex for each way the hydrogens could be arranged, and an edge for each hop.  It looks really cool:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Desargues_graph"><img border="none" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/300px-Desargues_graph_2COL.svg.png" alt="" /></a>
+</div>
+<p>The red vertices come from arrangements where the <i>first</i> carbon has 2 hydrogens attached to it, and the blue vertices come from those where the <i>second</i> carbon has 2 hydrogens attached to it.  So, each edge goes between a red vertex and a blue vertex.  </p>
+<p>This graph has 20 vertices, which are arrangements or &#8216;states&#8217; of the ethyl cation.  It has 30 edges, which are hops or &#8216;transitions&#8217;.  Let&#8217;s see why those numbers are right.  </p>
+<p>First I need to explain the rules of the game.  The rules say that the 2 carbon atoms are distinguishable: there&#8217;s a &#8216;first&#8217; one and a &#8216;second&#8217; one.  The 5 hydrogen atoms are also distinguishable.  But, all we care about is which carbon atom each hydrogen is bonded to: we don&#8217;t care about further details of its location.  And we require that 2 of the hydrogens are bonded to one carbon, and 3 to the other.</p>
+<p>If you&#8217;re a physicist, you may wonder why the rules work this way: after all, at a fundamental level, identical particles <i>aren&#8217;t</i> really distinguishable.  I&#8217;m afraid I can&#8217;t give a fully convincing explanation right now: I&#8217;m just reporting the rules as they were told to me!</p>
+<p>Given these rules, there are 2 choices of which carbon has two hydrogens attached to it. Then there are </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cbinom%7B5%7D%7B2%7D+%3D+%5Cfrac%7B5+%5Ctimes+4%7D%7B2+%5Ctimes+1%7D+%3D+10%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;binom{5}{2} = &#92;frac{5 &#92;times 4}{2 &#92;times 1} = 10} " class="latex" /> </p>
+<p>choices of which two hydrogens are attached to it.  This gives a total of 2 &times; 10 = 20 states.  These are the vertices of our graph: 10 red and 10 blue.</p>
+<p>The edges of the graph are transitions between states.  Any hydrogen in the group of 3 can hop over to the group of 2.  There are 3 choices for which hydrogen atom makes the jump.  So, starting from any vertex in the graph there are 3 edges.  This means there are <img src="https://s0.wp.com/latex.php?latex=3+%5Ctimes+20+%2F+2+%3D+30&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="3 &#92;times 20 / 2 = 30" class="latex" /> edges.  </p>
+<p>Why divide by 2?  Because each edge touches 2 vertices.  We have to avoid double-counting them.</p>
+<h4> The Desargues graph </h4>
+<p>The idea of using this graph in chemistry goes back to this paper:</p>
+<p>&bull; A. T. Balaban, D. Fǎrcaşiu and R. Bǎnicǎ, Graphs of multiple 1,2-shifts in carbonium ions and related systems, <i>Rev. Roum. Chim.</i> <b>11</b> (1966), 1205.</p>
+<p>This paper is famous because it was the first to use graphs in chemistry to describe molecular transitions, as opposed to using them as pictures of molecules!</p>
+<p>But this particular graph was already famous for other reasons.  It&#8217;s called the <b>Desargues-Levi graph</b>, or <b>Desargues graph</b> for short:</p>
+<p>&bull; <a href="http://en.wikipedia.org/wiki/Desargues_graph">Desargues graph</a>, Wikipedia.</p>
+<p>Later I&#8217;ll say why it&#8217;s called this.  </p>
+<p>There are lots of nice ways to draw the Desargues graph.  For example:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Desargues_graph"><img border="none" src="https://i1.wp.com/math.ucr.edu/home/baez/networks/300px-DesarguesGraph.svg.png" alt="" /></a>
+</div>
+<p>The reason why we can draw such pretty pictures is that the Desargues graph is very symmetrical.  Clearly any permutation of the 5 hydrogens acts as a symmetry of the graph, and so does any permutation of the 2 carbons.  This gives a symmetry group <img src="https://s0.wp.com/latex.php?latex=S_5+%5Ctimes+S_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S_5 &#92;times S_2" class="latex" />, which has <img src="https://s0.wp.com/latex.php?latex=5%21+%5Ctimes+2%21+%3D+240&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="5! &#92;times 2! = 240" class="latex" /> elements.  And in fact this turns out to be the full symmetry group of the Desargues graph.</p>
+<p>The Desargues graph, its symmetry group, and its applications to chemistry are discussed here:</p>
+<p>&bull; Milan Randic, Symmetry properties of graphs of interest in chemistry: II: Desargues-Levi graph, <i><a href="http://onlinelibrary.wiley.com/doi/10.1002/qua.560150610/abstract;jsessionid=0FB39FF9D7D985C1B6454CF4E30D9E92.d03t02">Int. Jour. Quantum Chem.</a></i> <b>15</b> (1997), 663-682.</p>
+<h4> The ethyl cation, revisited </h4>
+<p>We can try to describe the ethyl cation using probability theory.  If at any moment its state corresponds to some vertex of the Desargues graph, and it hops randomly along edges as time goes by, it will trace out a random walk on the Desargues graph.  This is a nice example of a <a href="http://en.wikipedia.org/wiki/Continuous-time_Markov_process">Markov process</a>!  </p>
+<p>We could also try to describe the ethyl cation using quantum mechanics.   Then, instead of having a <i>probability</i> of hopping along an edge, it has an <i>amplitude</i> of doing so.   But as we&#8217;ve seen, a lot of similar math will still apply.  </p>
+<p>It should be fun to compare the two approaches.  But I bet you&#8217;re wondering which approach is correct.  This is a somewhat tricky question, at least for me.  The answer would seem to depend on how much the ethyl cation is interacting with its environment&mdash;for example, bouncing off other molecules.  When a system is interacting a lot with its environment, a probabilistic approach seems to be more appropriate.  The relevant buzzword is <a href="http://en.wikipedia.org/wiki/Quantum_decoherence">&#8216;environmentally induced decoherence&#8217;</a>.   </p>
+<p>However, there&#8217;s something much more basic I have tell you about.</p>
+<p>After the paper by Balaban, Fǎrcaşiu and Bǎnicǎ came out, people gradually realized that the ethyl cation <i>doesn&#8217;t really look like the drawing I showed you!</i>  It&#8217;s what chemists call &#8216;nonclassical&#8217; ion.  What they mean is this: its actual structure is not what you get by taking the traditional ball-and-stick model of an ethane molecule and ripping off a hydrogen.  The ethyl cation really looks like this:</p>
+<div align="center"><a href="http://comporgchem.com/blog/?p=60"><img border="none" src="https://i0.wp.com/math.ucr.edu/home/baez/networks/ethyl_cation_nonclassical.jpg" alt="" /></a></div>
+<p>For more details, and pictures that you can actually rotate, see:</p>
+<p>&bull; Stephen Bacharach, Ethyl cation, <a href="http://comporgchem.com/blog/?p=60">Computational Organic Chemistry</a>.</p>
+<p>So, if we stubbornly insist on applying the Desargues graph to realistic chemistry, we need to find some other molecule to apply it to.</p>
+<h4> Trigonal bipyramidal molecules </h4>
+<p>Luckily, there are lots of options!  They&#8217;re called <a href="http://en.wikipedia.org/wiki/Trigonal_bipyramidal_molecular_geometry">trigonal bipyramidal molecules</a>.  They look like this:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Trigonal_bipyramidal_molecular_geometry"><img border="none" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/Trigonal-bipyramidal-3D-balls.png/200px-Trigonal-bipyramidal-3D-balls.png" alt="" /></a>
+</div>
+<p>The 5 balls on the outside are called &#8216;ligands&#8217;: they could be atoms or bunches of atoms.   In chemistry, &#8216;<a href="http://en.wikipedia.org/wiki/Ligand">ligand</a>&#8216; just means something that&#8217;s stuck onto a central thing.   For example, in <a href="http://en.wikipedia.org/wiki/Phosphorus_pentachloride">phosphorus pentachloride</a> the ligands are chlorine atoms, all attached to a central phosphorus atom:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Phosphorus_pentachloride"><img border="none" src="https://i0.wp.com/math.ucr.edu/home/baez/networks/200px-Phosphorus-pentachloride-3D-balls.png" alt="" /></a>
+</div>
+<p>It&#8217;s a colorless solid, but as you might expect, it&#8217;s pretty <a href="http://www.cbwinfo.com/Chemical/Precursors/p36.html">nasty stuff</a>: it&#8217;s not flammable, but it reacts with water or heat to produce toxic chemicals like hydrogen chloride.</p>
+<p>Another example is <a href="http://en.wikipedia.org/wiki/Iron_pentacarbonyl">iron pentacarbonyl</a>, where 5 carbon-oxygen ligands are attached to a central iron atom:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Iron_pentacarbonyl"><img border="none" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/200px-Iron-pentacarbonyl-from-xtal-3D-balls.png" alt="" /></a>
+</div>
+<p>You can make this stuff by letting powdered iron react with carbon monoxide.  It&#8217;s a straw-colored liquid with a pungent smell!</p>
+<p>Whenever you&#8217;ve got a molecule of this shape, the ligands come in two kinds.  There are the 2 &#8216;axial&#8217; ones, and the 3 &#8216;equatorial&#8217; ones:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Trigonal_bipyramidal_molecular_geometry"><img border="none" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/200px-Trigonal-bipyramidal-3D-balls-ax-eq.png" alt="" /></a>
+</div>
+<p>And the molecule has 20 states&#8230; but only if count the states a certain way.   We have to treat all 5 ligands as distinguishable, but think of two arrangements of them as the same if we can rotate one to get the other.   The trigonal bipyramid has a rotational symmetry group with 6 elements.  So, there are 5! / 6 = 20 states.  </p>
+<p>The transitions between states are devilishly tricky.  They&#8217;re called <b>pseudorotations</b>, and they look like this:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Berry_mechanism"><img border="none" width="450" src="https://i1.wp.com/math.ucr.edu/home/baez/networks/700px-Iron-pentacarbonyl-Berry-mechanism.png" alt="" /></a></div>
+<p>If you look very carefully, you&#8217;ll see what&#8217;s going on.  First the 2 axial ligands move towards each other to become equatorial.<br />
+Now the equatorial ones are no longer in the horizontal plane: they&#8217;re in the plane facing us!   Then 2 of the 3 equatorial ones swing out to become axial.    This fancy dance is called the <a href="http://en.wikipedia.org/wiki/Berry_mechanism">Berry pseudorotation mechanism</a>.</p>
+<p>To get from one state to another this way, we have to pick 2 of the 3 equatorial ligands to swing out and become axial.  There are 3 choices here.   So, if we draw a graph with states as vertices and transitions as edges, it will have 20 vertices and 20 &times; 3 / 2 = 30 edges.  That sounds suspiciously like the Desargues graph!</p>
+<p><b>Puzzle 1</b>.  Show that the graph with states of a trigonal bipyramidal molecule as vertices and pseudorotations as edges is indeed the Desargues graph.</p>
+<p>I think this fact was first noticed here:</p>
+<p>&bull; Paul C. Lauterbur and Fausto Ramirez, Pseudorotation in trigonal-bipyramidal molecules, <a href="http://pubs.acs.org/doi/abs/10.1021/ja01026a029"><i>J. Am. Chem. Soc.</i></a> <b>90</b> (1968), 6722–6726.</p>
+<p>Okay, enough for now!  Next time I&#8217;ll say more about the Markov process or quantum process corresponding to a random walk on the Desargues graph.  But since the Berry pseudorotation mechanism is so hard to visualize, I&#8217;ll <i>pretend</i> that the ethyl cation looks like this:</p>
+<div align="center"><a href="http://comporgchem.com/blog/?p=60"><img border="none" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/ethyl_cation_classical.jpg" alt="" /></a></div>
+<p>and I&#8217;ll use this picture to help us think about the Desargues graph.</p>
+<p>That&#8217;s okay: everything we&#8217;ll figure out can easily be translated to apply to the real-world situation of a trigonal bipyramidal molecule.  The virtue of math is that when two situations are &#8216;mathematically the same&#8217;, or &#8216;isomorphic&#8217;, we can talk about either one, and the results automatically apply to the other.  This is true even if the one we talk about doesn&#8217;t actually exist in the real world!</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Saturday, October 15th, 2011 at 3:12 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/chemistry/" rel="category tag">chemistry</a>, <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/networks/" rel="category tag">networks</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2011/10/11/network-theory-part-13/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2011/10/15/the-science-code-manifesto/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">22 Responses to <em>Network Theory (Part&nbsp;14)</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-even depth-1 highlander-comment" id="comment-8326">
+				<div id="div-comment-8326" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8326">15 October, 2011 at 4:00 am</a>		</div>
+
+		<p>This is how cations and dogions interact:</p>
+<div align="center"><img src="https://thechive.files.wordpress.com/2010/07/cat_provokes_dog.gif?w=450" /></div>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8326#respond' data-commentid="8326" data-postid="5562" data-belowelement="div-comment-8326" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-8325">
+				<div id="div-comment-8325" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/912dd979725431441277af412db6c505?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://golem.ph.utexas.edu/~distler/blog/' rel='external nofollow ugc' class='url'>Jacques Distler</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8325">15 October, 2011 at 4:24 am</a>		</div>
+
+		<p>And why are the ligands treated as distinguishable? Does somebody paint numbers on them?</p>
+<p>Surely one chlorine atom is indistinguishable from another, and these should be treated as identical particles.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8325#respond' data-commentid="8325" data-postid="5562" data-belowelement="div-comment-8325" data-respondelement="respond" data-replyto="Reply to Jacques Distler" aria-label='Reply to Jacques Distler'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-8329">
+				<div id="div-comment-8329" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8329">15 October, 2011 at 10:15 am</a>		</div>
+
+		<p>Yeah, I raised the same issue for the ethyl cation. </p>
+<p>I haven&#8217;t been able to find out if chemists actually <i>do</i> take treat the atomic nuclei as indistinguishable particles in numerical simulations of molecules this size, and how much of a difference it actually makes.  They talk about the Desargues graph, but I haven&#8217;t seen them discuss this issue. </p>
+<p>If the chlorines have enough internal degrees of freedom (all those electrons) and they&#8217;re interacting with enough other stuff in a hot and messy environment, like some phosphorus pentachloride in liquid form, it&#8217;s possible that symmetrizing (or antisymmetrizing) the wavefunction with respect to the chlorine nuclei has a pretty negligible. </p>
+<p>Here&#8217;s a puzzle for beginners (not you) who are interested in this issue.</p>
+<p>In actual water, the two lone protons in the H<sub></sub><sub>2</sub>O are indistinguishable fermions, so we should antisymmetrize the wavefunction with respect to interchanging them.  </p>
+<p>But we can imagine a world where there were two different particles with the same mass and charge as a proton&mdash;say, a proton and a &#8216;schmoton&#8217;.    Then we could make a chemical called &#8216;pseudowater&#8217;, where instead of using two protons for the H&#8217;s in our H<sub></sub><sub>2</sub>O, we used a proton and a schmoton.  Then we would <i>not</i> antisymmetrize the wavefunction with respect to interchanging them.</p>
+<p><b>Puzzle 2.</b>  What would be the easiest way to tell the difference between a molecule of water and a molecule of pseudowater, experimentally?</p>
+<p>Of course we actually <i>can</i> make water using one ordinary hydrogen atom and one deuterium atom.  This is called <b><a href="http://en.wikipedia.org/wiki/Heavy_water#Semiheavy_water" rel="nofollow">semiheavy water</a></b>.    And here again, we don&#8217;t antisymmetrize the wavefunction.  But it&#8217;s easy to tell the difference between semiheavy water and ordinary water, either by weighing it or noticing that it melts and boils at a lower temperature than ordinary water.  So, I need to invent &#8216;pseudowater&#8217; to make my question more interesting.</p>
+<p>Digressing somewhat: in the liquid state, molecules of water trade protons with each other quite often.  So, liquid semiheavy water is not stable: it rapidly turns into a mixture of 25% ordinary water, 25% heavy water and 50% semiheavy water.  The same thing would happen with pseudowater.  This complicates my question a bit more than I want, which is why I spoke of &#8216;a molecule of pseudowater&#8217; instead of a liter of pseudowater.  But in a low-density gas, I think water molecules don&#8217;t trade their protons so quickly.  </p>
+<p>Digressing further, I just discovered that <i><b>rats can taste the difference between ordinary water and heavy water!</b></i>  </p>
+<p>I knew that large eukaryotic organisms (like people and rats) will die if all they drink is heavy water.  But I hadn&#8217;t known that rats actually avoid the stuff:</p>
+<p>&bull; Inglis J. Miller Jr. and Gregory Mooser, Taste responses to deuterium oxide, <i>Physiology &amp; Behavior</i> <b>23</b> (1979), 69-74 </p>
+<blockquote><p>
+<b>Abstract:</b> Substitution of deuterium oxide (D<sub>2</sub>O) as the solvent in taste stimuli elicits neural responses which differ from ordinary water (H<sub>2</sub>O). Previous reports have shown that D<sub></sub><sub>2</sub>O is toxic to many animals and rats avoid drinking it when offered H<sub></sub><sub>2</sub>O simultaneously. In the current study, summated responses were recorded from the chorda tympani nerves of rats after NaCl, KCl, sucrose and quinine were applied to the tongue in solutions of either D<sub></sub><sub>2</sub>O or H<sub></sub><sub>2</sub>O. Both solvents were used as the adapting or rinse solution in separate series. On tongues adapted to H<sub></sub><sub>2</sub>, D<sub>2</sub>O elicited mean responses which were equivalent to 29% of the response to 0.1 M NaCl. The threshold concentration of D<sub></sub><sub>2</sub>O in H<sub></sub><sub>2</sub>O was between 25% and 50%. Solutes in D<sub></sub><sub>2</sub>O yielded responses which were greater than corresponding solutions of H<sub></sub><sub>2</sub>O when adapting rinse was H<sub></sub><sub>2</sub>O.  Adaptation to D<sub></sub><sub>2</sub>O diminished the responses to D<sub></sub><sub>2</sub>O solutions of NaCl, KCl and sucrose but not quinine. This observation suggests that some portion of the augmented response to stimuli in D<sub></sub><sub>2</sub>O  is due to the solvent itself. The taste of water has been examined by both electrophysiological methods and by behavior, but none of the mechanisms espoused for its effect seem adequate to explain the response to D<sub></sub><sub>2</sub>O. Water structure at the interface between molecular components of the cell membrane and the bulk phase of the surrounding medium is considered as a locus for disparity in the taste responses to D<sub></sub><sub>2</sub>O and H<sub></sub><sub>2</sub>O in the rat.
+</p></blockquote>
+<p>I don&#8217;t know if people can taste the difference between ordinary water and heavy water.  I supposed I&#8217;d have heard it if they could.  But maybe only special people, like trained wine tasters, can do it?</p>
+<p>Digressing still further, I got the following very interesting email a while ago, from somebody who&#8217;d been unable to find Greg Egan&#8217;s address:</p>
+<blockquote><p>
+Dear Mr. Egan,</p>
+<p>I recently read, with pleasure, several of your books. I particularly enjoyed &#8220;Diaspora&#8221;. I also note that on your website you have the following erratum regarding the isotopically substituted biosphere on Swift:</p>
+<p>&#8220;The difficulties of either creating a biosphere, or modifying an existing one, to use heavy water are not addressed. Certainly, the chemistry of heavy water is sufficiently different from that of normal water that a complete substitution would be fatal to most organisms in Earth&#8217;s biosphere. Life based on heavy water might well be possible, but it would not be a simple matter to make the substitution.&#8221;</p>
+<p>As a protein NMR spectroscopist by trade, I deal with isotopically substituted organisms on a regular basis. It seems that single-celled microorganisms tolerate 100% heavy water substitution. However, to achieve near 100% substitution of protium with deuterium in all cellular metabolites and macromolecules, a <a href="http://en.wiktionary.org/wiki/perdeuterate" rel="nofollow">perdeuterated</a> carbon source is needed. For protein NMR sample preparations, it is routine to completely substitute at least one of major elements in the molecule (commonly N or C) with a heavier isotope <sup></sup><sup>15</sup>N or <sup></sup><sup>13</sup>C. This is done by producing proteins biosynthetically in <i>E. coli</i> cultures, grown in chemically defined media that contain isotopically substituted compounds: 99% &#8211; <sup></sup><sup>15</sup>N ammonium salts as sole nitrogen source and 99% &#8211; <sup></sup><sup>13</sup>C glucose as sole carbon source. Occasionally, <sup></sup><sup>15</sup>N , <sup></sup><sup>13</sup>C and <sup></sup><sup>2</sup>H substituted samples are prepared (I&#8217;ve done this myself) by using 99.9% D<sub></sub><sub>2</sub>O as solvent for medium, and <sup></sup><sup>13</sup>C,<sup></sup><sup>2</sup>H-glucose as a sole carbon source.  <i>E. coli</i> grow slowly in D<sub></sub><sub>2</sub>O compared to H<sub></sub><sub>2</sub>O, but they do grow. I was told that ~98% of <sup></sup><sup>1</sup>H is substituted with <sup></sup><sup>2</sup>H in samples produced this way.</p>
+<p>Now, bacteria are among simpler forms of life. Eukaryotic organisms, such as yeast and algae, can also grow in 99% D<sub></sub><sub>2</sub>O (again, used in production of isotopically labeled samples for NMR). While complete substitution with heavy water is fatal to higher organisms and their cell cultures, it seems that amino acids completely substituted with <sup></sup><sup>15</sup>N and (or) <sup></sup><sup>13</sup>C are tolerated well enough in animal cell cultures. And apparently mass-spectroscopists produce living rats with <sup></sup><sup>15</sup>N substitution, by using algal feedstock with &gt;98% <sup></sup><sup>15</sup>N. These are meant to study cellular protein composition and modifications under pathological versus normal conditions, so presumably (I do not know how rigorously has this been tested) rats suffer no ill effects from the isotopic substitution itself.</p>
+<p>I do not know how much of this is news to you, and certainly none of the above contradicts your statement that for present terrestrial biosphere substitution with heavy water would not be a simple matter, but I hope you found it somewhat interesting.</p>
+<p>Good luck with upcoming &#8220;Orthogonal&#8221; books.</p>
+<p>Algirdas Vėlyvis<br />
+Toronto
+</p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8329#respond' data-commentid="8329" data-postid="5562" data-belowelement="div-comment-8329" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 parent highlander-comment" id="comment-8338">
+				<div id="div-comment-8338" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1ae569c4b3f79c79cc1339ed7570e28a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Andrew Taube</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8338">15 October, 2011 at 3:24 pm</a>		</div>
+
+		<p>The short answer is that for nuclei heavier than H, there is very little impact from nuclear exchange for molecular structure calculations. In fact, there is relatively little impact from assuming that nuclei are classical! The idea is that the nuclei, being so much more massive than the electrons, are sharply peaked about classical positions (at least at the temperatures relevant to chemistry). For many of the things that chemists care about, It turns out this classical nuclei approximation is really good. At room temperature, the thermal wavelength of a proton is about 0.4 Angstrom, a good bit smaller than internuclear distances in a stable molecule.</p>
+<p>Note that fully taking into account nuclear quantum effects and exchange has philosophical implications as well&#8211;it would completely change the concept of molecular structure and destroy the idea of isomers (same nuclei, different spatial arrangement). Here&#8217;s one recent summary about those issues:</p>
+<p>&bull; Brian Sutcliffe, Permutational symmetry and molecular structure calculations, <i><a href="http://cccc.uochb.cas.cz/70/5/0657/" rel="nofollow">Collect. Czech. Chem. Commun.</a></i> <b>70</b> (2005), 657-676.</p>
+<p>For protons, there can be relatively substantial effects from the quantum nature of the proton, but even then one often ignores exchange, assuming that the nuclei are sufficiently localized (overlap between single particle proton functions is approx. zero) as to make the correction to the energy due to exchange negligible:</p>
+<p>&bull; Benjamin Auer and Sharon Hammes-Schiffer, Localized Hartree product treatment of multiple protons in the nuclear-electronic orbital framework, <a href="http://dx.doi.org/10.1063/1.3332769" rel="nofollow"><i>J. Chem. Phys.</i></a> <b>132</b> (2010), 084110. </p>
+<p>For high accuracy dynamics, taking into account permutation invariance is important:</p>
+<p>&bull; Bastiaan J. Braams and Joel M. Bowman, Permutationally invariant potential energy surfaces in high dimensionality, <a href="http://www.tandfonline.com/doi/abs/10.1080/01442350903234923" rel="nofollow"><i>International Reviews in Physical Chemistry</i></a> <b>8</b> (2009).</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8338#respond' data-commentid="8338" data-postid="5562" data-belowelement="div-comment-8338" data-respondelement="respond" data-replyto="Reply to Andrew Taube" aria-label='Reply to Andrew Taube'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-8340">
+				<div id="div-comment-8340" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8340">15 October, 2011 at 4:29 pm</a>		</div>
+
+		<p>What a wonderfully erudite answer, Andrew!  Thanks for all those references: I was trying to find some, but I wasn&#8217;t having much luck.  I&#8217;m very relieved that I can study phosphorous pentachloride fairly accurately without (anti)symmetrizing over the chlorine nuclei wavefunctions, because I was going to whether I could or not&#8212;I just wanted an excuse to play around with dynamics on the Desargues graph!  </p>
+<p>My &#8216;water versus pseudowater&#8217; puzzle is surely too easy for you, so I&#8217;m glad you didn&#8217;t address it directly&#8230; I hope some other readers, perhaps less knowledgeable in physical chemistry, take a crack at it!</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-8339">
+				<div id="div-comment-8339" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8339">15 October, 2011 at 4:18 pm</a>		</div>
+
+		<p>People are posting important comments about how to save the world, so I feel a bit silly posting another one about heavy-water-drinking rats, but I feel it&#8217;s good to put all this esoteric information in one place.  </p>
+<p>Over on Google+, Bruce Head wrote:</p>
+<blockquote><p>
+I&#8217;m reading <i><a href="http://www.amazon.com/Disappearing-Spoon-Madness-Periodic-Elements/dp/0316051640" rel="nofollow">The Disappearing Spoon: And Other True Tales of Madness, Love, and the History of the World from the Periodic Table of the Elements</a></i> by Sam Kean, and he has the following anecdotes about heavy water:</p>
+<blockquote><p>
+[György] Hevesy [Hungarian radiochemist and Nobel laureate] helped determine how quickly the human body recycles an average water molecule (nine days) by volunteering to drink special &#8220;heavy&#8221; water, in which some hydrogen atoms have an extra neutron, and then having his urine weighed each day &#8230; [he also] performed heavy-water experiments on goldfish as well as himself, and he ended up killing a number of them.</p>
+<p>Gilbert Lewis also used heavy water in a last-ditch effort to win the Nobel Prize in the early 1930s. Lewis knew that Harold Urey&#8217;s discovery of deuterium &#8211; heavy hydrogen with an extra neutron &#8211; would win the Nobel Prize, as did every other scientist in the world, including Urey. (After a mostly lackluster career that included ridicule from his in-laws, he came home right after discovering deuterium and told his wife, &#8220;Honey, our troubles are over.&#8221;)</p>
+<p>Lewis decided to hitch himself to this no-miss prize by investigating the biological effects of water made with heavy hydrogen. Others had the same idea, but Berkeley&#8217;s physics department, headed by Ernest O. Lawrence, happened to have the world&#8217;s largest supply of heavy water, quite by accident. The team had a tank of water it had been using for years in radioactivity experiments, and the tank had a relatively high concentration of heavy water (a few ounces). Lewis begged Lawrence to let him purify the heavy water, and Lawrence agreed &#8211; on the condition that Lewis give it back alter his experiments, since it might prove important in Lawrence&#8217;s research, too.</p>
+<p>Lewis broke his promise. After isolating the heavy water, he decided to give it to a mouse and see what happened. One queer effect of heavy water is that, like ocean water, the more you drink, the more throat-scratchingly thirsty you feel, since the body cannot metabolize it. Hevesy ingested heavy water in trace amounts, so his body really didn&#8217;t notice, but Lewis&#8217;s mouse gulped all the heavy water in a few hours and ended up dead. Killing a mouse was hardly a Nobel Prize-worthy exercise, and Lawrence went apoplectic when he learned a lousy rodent had peed away all his precious heavy water.
+</p></blockquote>
+</blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8339#respond' data-commentid="8339" data-postid="5562" data-belowelement="div-comment-8339" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-8327">
+				<div id="div-comment-8327" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/81b0eda1a755030312d63998980d6b7a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://gravatar.com/geoffreyirving' rel='external nofollow ugc' class='url'>Geoffrey Irving</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8327">15 October, 2011 at 5:42 am</a>		</div>
+
+		<p>Your comment that it&#8217;s tricky to know whether to apply stochastic or quantum mechanics raises an interesting question: what are the equations that smoothly transition between the two based on the level of external noise?  Is it possible to write these down in a universal way that isn&#8217;t too dependent on the type of noise, or would a different level of noise be required for each state?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8327#respond' data-commentid="8327" data-postid="5562" data-belowelement="div-comment-8327" data-respondelement="respond" data-replyto="Reply to Geoffrey Irving" aria-label='Reply to Geoffrey Irving'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-8331">
+				<div id="div-comment-8331" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8331">15 October, 2011 at 10:47 am</a>		</div>
+
+		<p>Great question!</p>
+<p>I&#8217;m sure people have studied this question, at least for some particular examples of quantum systems.  I haven&#8217;t read the literature on this subject.  But in the particular case of a system whose states are the vertices of the Desargues graph:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Desargues_graph" rel="nofollow"><img border="none" src="https://i1.wp.com/math.ucr.edu/home/baez/networks/300px-DesarguesGraph.svg.png" alt="" /></a></div>
+<p>if we seek a solution that&#8217;s compatible with all 240 <i>symmetries</i> of the Desargues graph, it&#8217;s almost unique.  The symmetries constrain the problem enormously!</p>
+<p>I&#8217;d been planning to talk next time about the classical and quantum versions of this problem, but I could also talk about the almost unique way of interpolating between the classical and quantum cases.  And if I do, you&#8217;ll see this particular way of interpolating works pretty generally.  But I don&#8217;t know how physically reasonable it is, in general.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8331#respond' data-commentid="8331" data-postid="5562" data-belowelement="div-comment-8331" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-linasv even thread-odd thread-alt depth-1 highlander-comment" id="comment-8357">
+				<div id="div-comment-8357" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a221b4b4e6dd199750731c51ee864a91?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://linas.org' rel='external nofollow ugc' class='url'>linasv</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8357">16 October, 2011 at 2:21 am</a>		</div>
+
+		<p>I&#8217;d be interested in knowing the answer to Geoffrey Irving&#8217;s question.  I&#8217;ve been interested in a certain generalization: for any graph, one can define a Markov process; for any graph, you can replace that by a quantum process. Briefly, the edges, instead of being probabilities of transition, become unitary matrices. The verticies are then points in projective spaces (i.e. point in the space on which U(n) acts).  So, for example, a one may define a &#8220;quantum finite automata&#8221; by applying the above steps to a normal probabilistic finite automata. (see wikipedia for details).</p>
+<p>Likewise, given any symmetric space, and a collection of symmetries that act on it, you can generalize Markov by making the points of the graph be elements in the symmetric space, and the edges be valued among the symmetries.</p>
+<p>So, given this rather abstract presentation, I find that  Geoffrey Irving&#8217;s question is in fact quite interesting.  Answering it would seem to shed light on the details  of decoherence.  I only wish I had the time to ponder such things :-(</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8357#respond' data-commentid="8357" data-postid="5562" data-belowelement="div-comment-8357" data-respondelement="respond" data-replyto="Reply to linasv" aria-label='Reply to linasv'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-linasv odd alt thread-even depth-1 highlander-comment" id="comment-8358">
+				<div id="div-comment-8358" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a221b4b4e6dd199750731c51ee864a91?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://linas.org' rel='external nofollow ugc' class='url'>linasv</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8358">16 October, 2011 at 2:28 am</a>		</div>
+
+		<p>p.s. sorry if above was already discussed in earlier posts; I am going back now to read them&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8358#respond' data-commentid="8358" data-postid="5562" data-belowelement="div-comment-8358" data-respondelement="respond" data-replyto="Reply to linasv" aria-label='Reply to linasv'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-odd thread-alt depth-1 highlander-comment" id="comment-8367">
+				<div id="div-comment-8367" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8367">16 October, 2011 at 5:20 am</a>		</div>
+
+		<p>linasv wrote:</p>
+<blockquote><p>I’d be interested in knowing the answer to Geoffrey Irving’s question. I’ve been interested in a certain generalization: for any graph, one can define a Markov process; for any graph, you can replace that by a quantum process.  Briefly, the edges, instead of being probabilities of transition, become unitary matrices.  </p></blockquote>
+<p>I plan to talk about these things, at least a little.  It actually sounds like you mean &#8216;Markov chain&#8217; rather than &#8216;Markov process&#8217; here.  A Markov chain occurs in discrete time while a Markov process occurs in continuous time.  So, to specify a Markov chain we give a transition probability for each pair of states, while to specify a Markov process we give a &#8216;probabilistic rate of transition&#8217; for each pair of states.   For a Markov chain the matrix of transition probabilities is a stochastic matrix, while for a Markov process the matrix of rates is an infinitesimal stochastic matrix, also known as an &#8216;intensity matrix&#8217;.  </p>
+<p>All these concepts were explained more clearly than I&#8217;m doing it now back in <a href="https://johncarlosbaez.wordpress.com/2011/10/04/network-theory-part-11/" rel="nofollow">Part 11</a>.  And, they all have quantum analogues, as explained in <a href="https://johncarlosbaez.wordpress.com/2011/10/09/network-theory-part-12/" rel="nofollow">Part 12</a>. </p>
+<blockquote><p>
+p.s. sorry if above was already discussed in earlier posts; I am going back now to read them…
+</p></blockquote>
+<p>Don&#8217;t feel bad: I&#8217;m happy to review things.  That&#8217;s the only way to keep new people jumping on board.  I don&#8217;t want what I&#8217;m doing to only be comprehensible to people who have been following all along!</p>
+<p>Anyway, from a graph we can get 4 things in a completely natural way: a Markov chain, a Markov process, and the quantum analogues of those two.  We can also get a 1-parameter family of continuous-time dynamical systems interpolating between the Markov process and its quantum analogue.  I haven&#8217;t thought about trying to doing that in the discrete-time case.</p>
+<p>I&#8217;m beginning to see what I should talk about in my next post(s)!  Thanks!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8367#respond' data-commentid="8367" data-postid="5562" data-belowelement="div-comment-8367" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt thread-even depth-1 parent highlander-comment" id="comment-8368">
+				<div id="div-comment-8368" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8368">16 October, 2011 at 5:28 am</a>		</div>
+
+		<p>I hope someone tackles this puzzle, which is really rather fun:</p>
+<p><b>Puzzle 1.</b> Show that the graph with states of a trigonal bipyramidal molecule as vertices and pseudorotations as edges is indeed the Desargues graph.</p>
+<p>I also hope someone tackles my <a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8329" rel="nofollow">pseudowater puzzle</a>.  It was buried in distracting remarks about rats and heavy water, so here it is in a nutshell:</p>
+<p><b>Puzzle 2.</b> Suppose there were a substance called &#8216;pseudowater&#8217;, exactly like ordinary H<sub>2</sub>O except that the Pauli exclusion principle didn&#8217;t apply to the nuclei of the two hydrogen atoms.  What would be the easiest way to tell the difference between water and pseudowater?</p>
+<p>(If you have trouble answering ill-defined counterfactual questions, assume in Puzzle 2 that hydrogen nuclei can be made of two different particles, protons and schmotons, which have the exact same mass, charge, etcetera but differ in some internal degree of freedom.  &#8216;Pseudowater&#8217; is HH&#8217;O, where H is ordinary hydrogen, and H&#8217; is hydrogen with a schmoton replacing the usual proton.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8368#respond' data-commentid="8368" data-postid="5562" data-belowelement="div-comment-8368" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 parent highlander-comment" id="comment-8374">
+				<div id="div-comment-8374" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/f994fe33ff5c213efea77b23e0acbcc4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Walter Blackstock</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8374">16 October, 2011 at 9:46 am</a>		</div>
+
+		<p>Interesting. Are you talking about <a href="http://en.wikipedia.org/wiki/Spin_isomers_of_hydrogen" rel="nofollow">spin isomers</a>? I would expect a measurable mass difference between the two spin isoforms.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8374#respond' data-commentid="8374" data-postid="5562" data-belowelement="div-comment-8374" data-respondelement="respond" data-replyto="Reply to Walter Blackstock" aria-label='Reply to Walter Blackstock'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-3 parent highlander-comment" id="comment-8379">
+				<div id="div-comment-8379" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8379">16 October, 2011 at 11:38 am</a>		</div>
+
+		<p>Hi, Walter &#8211; hope all&#8217;s well!  </p>
+<p>You got it.   If I were talking about H<sub>2</sub> instead of H<sub>2</sub>O, that article you linked to on <a href="http://en.wikipedia.org/wiki/Spin_isomers_of_hydrogen" rel="nofollow">spin isomers of hydrogen</a> would be exactly right.  But&mdash;for no particularly good reason&mdash;my question was about H<sub>2</sub>O.  </p>
+<p>In fact, I got a bit mixed up&#8230; it turns out I understand the answer for H<sub>2</sub> a lot better than the answer for H<sub>2</sub>O.  So let me see if I can explain it for H<sub>2</sub>.</p>
+<p>There are two kinds of H<sub>2</sub> molecules: <b>orthohydrogen</b>, where the spins of the two protons are lined up, and <b>parahydrogen</b>, where they are anti-aligned:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Spin_isomers_of_hydrogen" rel="nofollow"><img width="300" src="http://upload.wikimedia.org/wikipedia/commons/c/c8/Spinisomersofmolecularhydrogen.gif" /></a></div>
+<p>Since the two protons are identical fermions, the wavefunction of the hydrogen molecule has to change sign when you switch them.  </p>
+<p>In orthohydrogen the protons&#8217; spin state is symmetric: it doesn&#8217;t change when you switch them.   So their position state <i>must</i> change sign when you switch them.  This means that their total orbital angular momentum can&#8217;t be 0: if it were, it would be invariant under rotations, so it wouldn&#8217;t change sign when you switch the two protons!  But it can be 1, or in fact any odd integer.</p>
+<p>On the other hand, in parahydrogen the protons&#8217; spin state is antisymmetric: it changes sign when you switch them.   That&#8217;s not obvious from the picture above, which shows one with spin up and the other with spin down.  That&#8217;s a defect of the picture!   In reality, their spin state is</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D+%5Cleft%28+%5Cuparrow+%5Cotimes+%5Cdownarrow+-+%5Cdownarrow+%5Cotimes+%5Cuparrow+%5Cright%29+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{1}{&#92;sqrt{2}} &#92;left( &#92;uparrow &#92;otimes &#92;downarrow - &#92;downarrow &#92;otimes &#92;uparrow &#92;right) } " class="latex" /></p>
+<p>So, it&#8217;s antisymmetric.  That means their position state must <i>not</i> change sign when you switch them. That means the the total orbital angular momentum of the protons <i>can</i> be 0, or in fact any even integer.</p>
+<p>In short, parahydrogen can have total angular momentum zero, but orthohydrogen can&#8217;t&#8212;it has to be &#8216;rotating&#8217;.  This means the ground state of parahydrogen has lower energy.  And the energy difference <img src="https://s0.wp.com/latex.php?latex=%5CDelta+E&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Delta E" class="latex" /> is significant; according to the Wikipedia article <img src="https://s0.wp.com/latex.php?latex=%5CDelta+E&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Delta E" class="latex" /> divided by Boltzmann&#8217;s constant is about 175 kelvin.</p>
+<p>If instead we had a &#8216;pseudohydrogen&#8217; molecule HH&#8217; built from a proton and a <i>schmoton</i> and two electrons, it would still come in &#8216;ortho&#8217; and &#8216;para&#8217; forms, but the argument I sketched would no longer apply.   So, either form could have any total angular momentum it wanted: 0, 1, 2,&#8230;  </p>
+<p>So for a pseudohydrogen molecule, unlike an ordinary hydrogen molecule, the ground state energy of the para form would equal that of the ortho form.</p>
+<p>Now, what about water?  How would pseudowater differ from water?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8379#respond' data-commentid="8379" data-postid="5562" data-belowelement="div-comment-8379" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-8404">
+				<div id="div-comment-8404" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8404">17 October, 2011 at 10:59 am</a>		</div>
+
+		<p>So nobody is willing to try this puzzle?  What a bunch of wimps!  I won&#8217;t make fun of you if you try to answer it and make a mistake.  But I&#8217;ll <i>definitely</i> make fun of you if you don&#8217;t even try!</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-8443">
+				<div id="div-comment-8443" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.kent.ac.uk/secl/philosophy/staff/corfield.html' rel='external nofollow ugc' class='url'>David Corfield</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8443">18 October, 2011 at 8:05 am</a>		</div>
+
+		<p>With precisely 5 minutes this morning for such fun activity as answering Azimuth puzzles, can&#8217;t we establish for Puzzle 1 an isomorphism between the states and transitions of the trigonal bipyramidal molecule and those of the ethyl cation?  Whether an atom is in the axis of the former corresponds to whether it&#8217;s in the pair end of the latter.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8443#respond' data-commentid="8443" data-postid="5562" data-belowelement="div-comment-8443" data-respondelement="respond" data-replyto="Reply to David Corfield" aria-label='Reply to David Corfield'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-3 highlander-comment" id="comment-8444">
+				<div id="div-comment-8444" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8444">18 October, 2011 at 8:30 am</a>		</div>
+
+		<p>David wrote:</p>
+<blockquote><p>
+With precisely 5 minutes this morning for such fun activity as answering Azimuth puzzles&#8230;
+</p></blockquote>
+<p>I&#8217;m sorry you&#8217;re so busy these days!  Anyway, you&#8217;ve done more than your share of answering Azimuth puzzles&#8212;I think you answered <i>all</i> the Network Theory puzzles until your current state of overwork overtook you.  So I would never make fun of <i>you</i> for not trying this one.  It&#8217;s all the <i>other</i> people who&#8217;re in trouble.</p>
+<blockquote><p>
+&#8230; can’t we establish for Puzzle 1 an isomorphism between the states and transitions of the trigonal bipyramidal molecule and those of the ethyl cation?
+</p></blockquote>
+<p>That&#8217;s indeed the best way to do it.  After all, so far I&#8217;ve basically <i>defined</i> the Desargues graph to be the graph of states and transitions for the ethyl cation.  Sure, I showed you a picture of it too&#8212;but it&#8217;s hard to do much with that.</p>
+<blockquote><p>
+Whether an atom is in the axis of the former corresponds to whether it’s in the pair end of the latter.
+</p></blockquote>
+<p>Hey, that sounds promising.  In case someone didn&#8217;t follow that, David seems to be hinting that the split of chlorines into 3 equatorial ones and 2 axial ones in this trigonal bipyramidal molecule:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Phosphorus_pentachloride" rel="nofollow"><img border="none" src="https://i0.wp.com/math.ucr.edu/home/baez/networks/200px-Phosphorus-pentachloride-3D-balls.png" alt="" /></a>
+</div>
+<p>is analogous to the split of hydrogens into a group 3 and a group of 2 in this ethyl cation:</p>
+<div align="center"><a href="http://comporgchem.com/blog/?p=60" rel="nofollow"><img border="none" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/ethyl_cation_classical.jpg" alt="" /></a></div>
+<p>If so, the next step would to make sure that this analogy sets up a 1-1 correspondence between the <i>states</i> in the two problems, and also the <i>transitions</i>.  </p>
+<p>Consider the transitions, for example.  Does a hydrogen hopping from one carbon to another in the ethyl cation correspond to a &#8216;pseudorotation&#8217; of the trigonal bipyramidal molecule?  Remember, <a href="http://en.wikipedia.org/wiki/Berry_mechanism" rel="nofollow">pseudorotations</a> are a bit funky.  They work like this:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Berry_mechanism" rel="nofollow"><img border="none" width="450" src="https://i1.wp.com/math.ucr.edu/home/baez/networks/700px-Iron-pentacarbonyl-Berry-mechanism.png" alt="" /></a></div>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8444#respond' data-commentid="8444" data-postid="5562" data-belowelement="div-comment-8444" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-8403">
+				<div id="div-comment-8403" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/ab898ad65f360ff9ef0f49113e2e55e5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">James Griffin</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8403">17 October, 2011 at 10:48 am</a>		</div>
+
+		<p>Fascinating, I&#8217;m considering sending the post to my graph theory students.  As for the validity of distinguishing between different identical particles: my approach would be to say that of course you&#8217;re allowed to distinguish between them, just as long as you remember the symmetries.  </p>
+<p>One thing I&#8217;ve always wondered is when in a given physical situation with such a symmetry, which is the right quotient?  The usual one, or the homotopy one?  Let&#8217;s say the symmetry is finite, indeed it could be just a single reflection.  Can one ever see the homology of <img src="https://s0.wp.com/latex.php?latex=C_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C_2" class="latex" /> in a physical system?</p>
+<p>Another question I have is about the construction of these graphs.  Why have we stopped at edges?  Could there be 2-cells?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8403#respond' data-commentid="8403" data-postid="5562" data-belowelement="div-comment-8403" data-respondelement="respond" data-replyto="Reply to James Griffin" aria-label='Reply to James Griffin'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-8433">
+				<div id="div-comment-8433" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8433">18 October, 2011 at 5:01 am</a>		</div>
+
+		<p>James wrote:</p>
+<blockquote>
+<p>&#8230;  I’m considering sending the post to my graph theory students.</p>
+</blockquote>
+<p>If you do, you might tell them that the Desargues-Levi graph is a close relative of the <a href="http://en.wikipedia.org/wiki/Petersen_graph" rel="nofollow">Petersen graph</a>, which they may already know.  The Petersen graph is the universal counterexample to all dumb guesses in graph theory:</p>
+<div align="center"><a href="http://en.wikipedia.org/wiki/Petersen_graph" rel="nofollow"><img src="http://upload.wikimedia.org/wikipedia/commons/9/91/Petersen1_tiny.svg" /></a>
+</div>
+<p>The Desargues-Levi is the &#8216;bipartite double cover&#8217; of the Petersen graph, formed by replacing each Petersen graph vertex by a pair of vertices and each Petersen graph edge by a pair of crossed edges.   </p>
+<p>I think I used to know how you could get the Petersen graph directly from thinking about the ethyl cation.   Maybe just treat the two carbons as indistinguishable?</p>
+<blockquote><p>
+As for the validity of distinguishing between different identical particles: my approach would be to say that of course you’re allowed to distinguish between them, just as long as you remember the symmetries.
+</p></blockquote>
+<p>Well, Distler&#8217;s point was that the Hilbert space of quantum states of phosphorus pentachloride (for example) is smaller than I made it sound.   </p>
+<blockquote><p>
+One thing I’ve always wondered is when in a given physical situation with such a symmetry, which is the right quotient? The usual one, or the homotopy one?
+</p></blockquote>
+<p>People mainly discuss this issue in the treatment of &#8216;gauge&#8217; symmetries in classical field theory.  The traditional approach was to take the usual quotient, but it&#8217;s starting to seem that the homotopy quotient is right.  A good example is whether you should use the moduli <i>space</i> of elliptic curves when studying about strings whose worldsheet has genus 1, or the moduli <i>stack</i>.  The moduli space is an ordinary quotient, while the moduli stack is a homotopy quotient.  As I explained back in <a href="http://math.ucr.edu/home/baez/week125.html" rel="nofollow">&#8220;week125&#8221;</a> of <i>This Week&#8217;s Finds</i>, the Picard group of the moduli stack of elliptic curves is <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BZ%7D%2F12&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{Z}/12" class="latex" />, and this is related to the magic role of the numbers 12 and 24 in this theory&#8212;for example, how the vacuum energy is -1/24, which is part of why the theory is only consistent in 24  + 2 = 26 dimensions.</p>
+<blockquote><p>
+Another question I have is about the construction of these graphs. Why have we stopped at edges? Could there be 2-cells?
+</p></blockquote>
+<p>Heh.  I&#8217;m not doing the n-category schtick anymore.  But if we were studying something like a 2d random field theory, instead of a Markov process or Markov chain (where there&#8217;s just 1 dimension, namely time), that could be natural.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8433#respond' data-commentid="8433" data-postid="5562" data-belowelement="div-comment-8433" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-8463">
+				<div id="div-comment-8463" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/ab898ad65f360ff9ef0f49113e2e55e5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">James Griffin</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8463">18 October, 2011 at 2:09 pm</a>		</div>
+
+		<p>Thank you for the thorough reply, I&#8217;ll need a little time to digest all that.  As for the 2-cells, I was more influenced by group (co)homology than n-category theory.  Essentially the idea in my head was that if it were possible to move two hydrogens at once, then there may be a 2-cell whose boundary records the equivalence between the moves which move only one hydrogen at once.</p>
+<p>The simplest example I can come up with is cyclopropane (C<sub>3</sub>H<sub>6</sub>, a triangle of carbon molecules) with two hydrogens removed, although I have no idea how stable this would be!  I think the graph would have 54 vertices and 144 edges and an action of <img src="https://s0.wp.com/latex.php?latex=S_3+%5Ctimes+S_4&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S_3 &#92;times S_4" class="latex" />.  The 2-cells depend on the model of how hydrogens are allowed to move, but assuming they&#8217;re only allowed to skip over the bonds (rather than over the centre of the triangle) then there are are number of squares attached, perhaps 24.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8463#respond' data-commentid="8463" data-postid="5562" data-belowelement="div-comment-8463" data-respondelement="respond" data-replyto="Reply to James Griffin" aria-label='Reply to James Griffin'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1 highlander-comment" id="comment-8645">
+				<div id="div-comment-8645" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/?p=5876' rel='external nofollow ugc' class='url'>A Math Puzzle Coming From Chemistry « Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8645">23 October, 2011 at 10:30 am</a>		</div>
+
+		<p>Let&#8217;s try this chemistry puzzle again&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8645#respond' data-commentid="8645" data-postid="5562" data-belowelement="div-comment-8645" data-respondelement="respond" data-replyto="Reply to A Math Puzzle Coming From Chemistry « Azimuth" aria-label='Reply to A Math Puzzle Coming From Chemistry « Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-8823">
+				<div id="div-comment-8823" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2011/10/26/network-theory-part-15/' rel='external nofollow ugc' class='url'>Network Theory (Part 15) « Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/#comment-8823">24 October, 2011 at 7:37 am</a>		</div>
+
+		<p>Last time we saw how to get a graph whose vertices are states of a molecule and whose edges are transitions between states. We focused on two beautiful but not completely realistic examples that both give rise to the same highly symmetrical graph: the &#8216;Desargues graph&#8217;. [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8823#respond' data-commentid="8823" data-postid="5562" data-belowelement="div-comment-8823" data-respondelement="respond" data-replyto="Reply to Network Theory (Part 15) « Azimuth" aria-label='Reply to Network Theory (Part 15) « Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-8325">Jacques Distler</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2011/10/15/network-theory-part-14/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="6dd877e3cf" /><input type="hidden" name="_wp_http_referer" value="/2011/10/15/network-theory-part-14/?replytocom=8325" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='5562' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='8325' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="a98e700bea" /></p>
+<input type="hidden" name="genseq" value="1632613904" />
+<input type="hidden" id="ak_js" name="ak_js" value="102"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2011/10/15/network-theory-part-14/?replytocom=8325"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="0272f16312" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,176,959 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-912dd979725431441277af412db6c505">
+	</div>
+	<div class="grofile-hash-map-1ae569c4b3f79c79cc1339ed7570e28a">
+	</div>
+	<div class="grofile-hash-map-81b0eda1a755030312d63998980d6b7a">
+	</div>
+	<div class="grofile-hash-map-a221b4b4e6dd199750731c51ee864a91">
+	</div>
+	<div class="grofile-hash-map-f994fe33ff5c213efea77b23e0acbcc4">
+	</div>
+	<div class="grofile-hash-map-e12fed9193da121c6337ce250d548759">
+	</div>
+	<div class="grofile-hash-map-ab898ad65f360ff9ef0f49113e2e55e5">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=f7f58f7d33","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"5562","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'5562','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTY5V2kxQWdXb1twWGVNSz9OZCUlN0tDNVplb2djandObz9sLG9xW1ZYJWUtb2NNMEtZSER2UzU1MUtqcG9uaXlpTF0sci9wW2MrYXZlQlY4XzM/bUlWYlhLL00laG9xP0ZUXUc3dlEyNFJ+cytmc2ssNjZSS2NhNzR5OVowNFRhWDBYSyZ6YVE9LnUyd3MmSjdzdDI9U3wsQl1pZTNPQ250LW4rSStJX2NDVDlIN0NPcDBYLnlOMmhpdVFucXh0JkhOLT1RNWc1UjBHdHwrMXNIbV1dQSUtQ1dPeg=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '5562' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

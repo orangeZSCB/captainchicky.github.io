@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Coarse-Graining Open Markov Processes | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Coarse-Graining Open Markov&nbsp;Processes Comments Feed" href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2018%2F03%2F04%2Fcoarse-graining-open-markov-processes%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"677eca7dd0","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"0272f16312\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2018\/03\/04\/coarse-graining-open-markov-processes\/","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2018%2F03%2F04%2Fcoarse-graining-open-markov-processes%2F","postID":"24586","shortlink":"https:\/\/wp.me\/pRBZ9-6oy","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/24586","statsLink":"https:\/\/wordpress.com\/stats\/post\/24586\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2018%2F03%2F04%2Fcoarse-graining-open-markov-processes%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-6oy' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2018%2F03%2F04%2Fcoarse-graining-open-markov-processes%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2018%2F03%2F04%2Fcoarse-graining-open-markov-processes%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Coarse-Graining Open Markov Processes" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/" />
+<meta property="og:description" content="Kenny Courser and I have been working hard on this paper for months: &bull; John Baez and Kenny Courser, Coarse-graining open Markov processes. It may be almost done. So, it would be great if peopl…" />
+<meta property="article:published_time" content="2018-03-04T03:55:55+00:00" />
+<meta property="article:modified_time" content="2018-03-20T19:16:25+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/networks/coarse/markov_process.png" />
+<meta property="og:image:width" content="250" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Coarse-Graining Open Markov&nbsp;Processes" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/networks/coarse/markov_process.png?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="Kenny Courser and I have been working hard on this paper for months: &bull; John Baez and Kenny Courser, Coarse-graining open Markov processes. It may be almost done. So, it would be great if people here could take a look and comment on it! It&#039;s a cool mix of probability theory and double categories. I&#039;ve&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-24586 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-24586 post type-post status-publish format-standard hentry category-mathematics category-networks category-physics category-probability" id="post-24586">
+			<h2>Coarse-Graining Open Markov&nbsp;Processes</h2>
+
+			<div class="entry">
+				<p>Kenny Courser and I have been working hard on this paper for months:</p>
+<p>&bull; John Baez and Kenny Courser, <a href="http://math.ucr.edu/home/baez/coarse_graining.pdf">Coarse-graining open Markov processes</a>.</p>
+<p>It may be almost done. So, it would be great if people here could take a look and comment on it!   It&#8217;s a cool mix of probability theory and double categories.  I&#8217;ve posted a similar but non-isomorphic article on the <a href="https://golem.ph.utexas.edu/category/2018/03/coarsegraining_open_markov_pro.html"><i>n</i>-Category Caf&eacute;</a>, where people know a lot about double categories.  But maybe some of you here know more about Markov processes!</p>
+<p>&#8216;Coarse-graining&#8217; is a standard method of extracting a simple Markov process from a more complicated one by identifying states.  We extend coarse-graining to open Markov processes.  An &#8216;open&#8217; Markov process is one where probability can flow in or out of certain states called &#8216;inputs&#8217; and &#8216;outputs&#8217;.  One can build up an ordinary Markov process from smaller open pieces in two basic ways:</p>
+<p>&bull; composition, where we identify the outputs of one open Markov process with the inputs of another,</p>
+<p>and</p>
+<p>&bull; tensoring, where we set two open Markov processes side by side.</p>
+<p>A while back, Brendan Fong,  Blake Pollard and I showed that these constructions make open Markov processes into the morphisms of a symmetric monoidal category:</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/">A compositional framework for Markov processes</a>, <i>Azimuth</i>, January 12, 2016.</p>
+<p>Here Kenny and I go further by constructing a symmetric monoidal <em>double</em> category where the 2-morphisms include ways of coarse-graining open Markov processes.    We also extend the previously defined &#8216;black-boxing&#8217; functor from the category of open Markov processes to this double category.</p>
+<p>But before you dive into the paper, let me explain all this stuff a bit more&#8230;.</p>
+<p>Very roughly speaking, a &#8216;Markov process&#8217; is a stochastic model describing a sequence of transitions between states in which the probability of a transition depends only on the current state.   But the only Markov processes talk about are continuous-time Markov processes with a finite set of states.   These can be drawn as labeled graphs:</p>
+<p><img width="250" src="https://i1.wp.com/math.ucr.edu/home/baez/networks/coarse/markov_process.png" alt="" /></p>
+<p>where the number labeling each edge describes the probability per time of making a transition from one state to another.</p>
+<p>An &#8216;open&#8217; Markov process is a generalization in which probability can also flow in or out of certain states designated as &#8216;inputs&#8217; and outputs&#8217;:</p>
+<p><img width="400" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/coarse/open_markov_process.png" alt="" /></p>
+<p>Open Markov processes can be seen as morphisms in a category, since we can compose two open Markov processes by identifying the outputs of the first with the inputs of the second.   Composition lets us build a Markov process from smaller open parts&#8212;or conversely, analyze the behavior of a Markov process in terms of its parts.</p>
+<p>In this paper, Kenny extend the study of open Markov processes to include coarse-graining.  &#8216;Coarse-graining&#8217; is a widely studied method of simplifying a Markov process by mapping its set of states <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> onto some smaller set <img src="https://s0.wp.com/latex.php?latex=X%27&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X&#039;" class="latex" /> in a manner that respects the dynamics.  Here we introduce coarse-graining for <em>open</em> Markov processes.   And we show how to extend this notion to the case of maps <img src="https://s0.wp.com/latex.php?latex=p%3A+X+%5Cto+X%27&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p: X &#92;to X&#039;" class="latex" /> that are not surjective, obtaining a general concept of morphism between open Markov processes.</p>
+<p>Since open Markov processes are already morphisms in a category, it is natural to treat morphisms between them as morphisms between morphisms, or &#8216;2-morphisms&#8217;.  We can do this using double categories!</p>
+<p>Double categories were first introduced by Ehresmann around 1963.   Since then, they&#8217;ve used in topology and other branches of pure math&#8212;but more recently they&#8217;ve been used to study <a href="http://arxiv.org/abs/1602.01017">open dynamical systems</a> and <a href="http://www.cs.mcgill.ca/~prakash/Pubs/bicats_final.pdf">open discrete-time Markov chains</a>.  So, it should not be surprising that they are also useful for open Markov processes..</p>
+<p>A 2-morphism in a double category looks like this:</p>
+<p><img width="150" src="https://i1.wp.com/math.ucr.edu/home/baez/networks/coarse/2-morphism.png" alt="" /></p>
+<p>While a mere category has only objects and morphisms, here we have a few more types of things. We call <img src="https://s0.wp.com/latex.php?latex=A%2C+B%2C+C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A, B, C" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D" class="latex" /> &#8216;objects&#8217;, <img src="https://s0.wp.com/latex.php?latex=f&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=g&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g" class="latex" /> &#8216;vertical 1-morphisms&#8217;, <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" /> &#8216;horizontal 1-cells&#8217;, and <img src="https://s0.wp.com/latex.php?latex=%5Calpha&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha" class="latex" /> a &#8216;2-morphism&#8217;.   We can compose vertical 1-morphisms to get new vertical 1-morphisms and compose horizontal 1-cells to get new horizontal 1-cells.  We can compose the 2-morphisms in two ways: horizontally by setting squares side by side, and vertically by setting one on top of the other.   The &#8216;interchange law&#8217; relates vertical and horizontal composition of 2-morphisms.</p>
+<p>In a &#8216;strict&#8217; double category all these forms of composition are associative.  In a &#8216;pseudo&#8217; double category, horizontal 1-cells compose in a weakly associative manner: that is, the associative law holds only up to an invertible 2-morphism, the &#8216;associator&#8217;, which obeys a coherence law.   All this is just a sketch; for details on strict and pseudo double categories try the paper by <a href="http://www.numdam.org/article/CTGDC_1999__40_3_162_0.pdf">Grandis and Par&eacute;</a>.</p>
+<p>Kenny and I construct a double category <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BM%7D%5Cmathbf%7Bark%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{M}&#92;mathbf{ark}" class="latex" /> with:</p>
+<ol>
+<li>finite sets as objects, </li>
+<li>maps between finite sets as vertical 1-morphisms,</li>
+<li>open Markov processes as horizontal 1-cells, </li>
+<li>morphisms between open Markov processes as 2-morphisms.</li>
+</ol>
+<p>I won&#8217;t give the definition of item 4 here; you gotta read our paper for that!   Composition of open Markov processes is only weakly associative, so <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BM%7D%5Cmathbf%7Bark%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{M}&#92;mathbf{ark}" class="latex" /> is a pseudo double category.</p>
+<p>This is how our paper goes.    In Section 2 we define open Markov processes and steady state solutions of the open master equation.  In Section 3 we introduce coarse-graining first for Markov processes and then open Markov processes. In Section 4 we construct the double category <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BM%7D%5Cmathbf%7Bark%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{M}&#92;mathbf{ark}" class="latex" /> described above.  We prove this is a symmetric monoidal double category in the sense defined by <a href="http://arxiv.org/abs/1004.0993">Mike Shulman</a>.  This captures the fact that we can not only compose open Markov processes but also &#8216;tensor&#8217; them by setting them side by side.</p>
+<p>For example, if we compose this open Markov process:</p>
+<p><img width="280" src="https://i0.wp.com/math.ucr.edu/home/baez/networks/coarse/open_markov_process_2.png" alt="" /></p>
+<p>with the one I showed you before:</p>
+<p><img width="300" src="https://i0.wp.com/math.ucr.edu/home/baez/networks/coarse/open_markov_process_3.png" alt="" /></p>
+<p>we get this open Markov process:</p>
+<p><img width="400" src="https://i1.wp.com/math.ucr.edu/home/baez/networks/coarse/composite_open_markov_process.png" alt="" /></p>
+<p>But if we tensor them, we get this:</p>
+<p><img width="300" src="https://i0.wp.com/math.ucr.edu/home/baez/networks/coarse/tensored_open_markov_process.png" alt="" /></p>
+<p>As compared with an ordinary Markov process, the key new feature of an <em>open</em> Markov process is that probability can flow in or out.  To describe this we need a generalization of the usual master equation for Markov processes, called the &#8216;open master equation&#8217;.</p>
+<p>This is something that Brendan, Blake and I came up with earlier.    In this equation, the probabilities at input and output states are arbitrary specified functions of time, while the probabilities at other states obey the usual master equation.   As a result, the probabilities are not necessarily normalized.  We interpret this by saying probability can flow either in or out at both the input and the output states.</p>
+<p>If we fix constant probabilities at the inputs and outputs, there typically exist solutions of the open master equation with these boundary conditions that are constant as a function of time.  These are called &#8216;steady states&#8217;.  Often these are <em>nonequilibrium</em> steady states, meaning that there is a nonzero net flow of probabilities at the inputs and outputs.   For example, probability can flow through an open Markov process at a constant rate in a nonequilibrium steady state.  It&#8217;s like a bathtub where water is flowing in from the faucet, and flowing out of the drain, but the level of the water isn&#8217;t changing.</p>
+<p>Brendan, Blake and I studied the relation between probabilities and flows at the inputs and outputs that holds in steady state.  We called the process of extracting this relation from an open Markov process &#8216;black-boxing&#8217;, since it gives a way to forget the internal workings of an open system and remember only its externally observable behavior.   We showed that black-boxing is compatible with composition and tensoring.  In other words, we showed that black-boxing is a symmetric monoidal functor.</p>
+<p>In Section 5 of our new paper, Kenny and I show that black-boxing is compatible with morphisms between open Markov processes.  To make this idea precise, we prove that black-boxing gives a map from the double category <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BM%7D%5Cmathbf%7Bark%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{M}&#92;mathbf{ark}" class="latex" /> to another double category, called <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BL%7D%5Cmathbf%7BinRel%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{L}&#92;mathbf{inRel}" class="latex" />, which has:</p>
+<ol>
+<li>finite-dimensional real vector spaces <img src="https://s0.wp.com/latex.php?latex=U%2CV%2CW%2C%5Cdots&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U,V,W,&#92;dots" class="latex" /> as objects,</li>
+<li>linear maps <img src="https://s0.wp.com/latex.php?latex=f+%3A+V+%5Cto+W&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f : V &#92;to W" class="latex" /> as vertical 1-morphisms from <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=W&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W" class="latex" />,</li>
+<li>linear relations <img src="https://s0.wp.com/latex.php?latex=R+%5Csubseteq+V+%5Coplus+W&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R &#92;subseteq V &#92;oplus W" class="latex" />  as horizontal 1-cells from <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=W&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W" class="latex" />,</li>
+<li>squares<br />
+<img width="200" src="https://i0.wp.com/math.ucr.edu/home/baez/networks/coarse/2-morphism_in_LLinRel.png" alt="" /><br />
+obeying <img src="https://s0.wp.com/latex.php?latex=%28f+%5Coplus+g%29R+%5Csubseteq+S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(f &#92;oplus g)R &#92;subseteq S" class="latex" /> as 2-morphisms.</li>
+</ol>
+<p>Here a &#8216;linear relation&#8217; from a vector space <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> to a vector space <img src="https://s0.wp.com/latex.php?latex=W&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W" class="latex" /> is a linear subspace <img src="https://s0.wp.com/latex.php?latex=R+%5Csubseteq+V+%5Coplus+W&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R &#92;subseteq V &#92;oplus W" class="latex" />.   Linear relations can be composed in the usual way we compose relations.  The double category <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BL%7D%5Cmathbf%7BinRel%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{L}&#92;mathbf{inRel}" class="latex" /> becomes symmetric monoidal using direct sum as the tensor product, but unlike <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BM%7D%5Cmathbf%7Bark%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{M}&#92;mathbf{ark}" class="latex" /> it is a <em>strict</em> double category: that is, composition of linear relations is associative.</p>
+<p>Our main result, Theorem 5.5,  says that black-boxing gives a symmetric monoidal double functor</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cblacksquare+%3A+%5Cmathbb%7BM%7D%5Cmathbf%7Bark%7D+%5Cto+%5Cmathbb%7BL%7D%5Cmathbf%7BinRel%7D+++&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;blacksquare : &#92;mathbb{M}&#92;mathbf{ark} &#92;to &#92;mathbb{L}&#92;mathbf{inRel}   " class="latex" /></p>
+<p>As you&#8217;ll see if you check out our paper, there&#8217;s a lot of nontrivial content hidden in this short statement!  The proof requires a lot of linear algebra and also a reasonable amount of category theory.  For example, we needed <a href="https://golem.ph.utexas.edu/category/2018/02/a_problem_on_pushouts_and_pull.html">this fact</a>: if you&#8217;ve got a commutative cube in the category of finite sets:</p>
+<p><img width="350" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/coarse/cube.png" alt="" /></p>
+<p>and the top and bottom faces are pushouts, and the two left-most faces are pullbacks, and the two left-most arrows on the bottom face are monic, then the two right-most faces are pullbacks.  I think it&#8217;s cool that this is relevant to Markov processes!</p>
+<p>Finally, in Section 6 we state a conjecture.  First we use <a href="http://arxiv.org/abs/1004.0993">a technique invented by Mike Shulman</a> to construct symmetric monoidal bicategories <img src="https://s0.wp.com/latex.php?latex=%5Cmathbf%7BMark%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbf{Mark}" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%5Cmathbf%7BLinRel%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbf{LinRel}" class="latex" /> from the symmetric monoidal double categories <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BM%7D%5Cmathbf%7Bark%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{M}&#92;mathbf{ark}" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BL%7D%5Cmathbf%7BinRel%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{L}&#92;mathbf{inRel}" class="latex" />.  We conjecture that our black-boxing double functor determines a functor between these symmetric monoidal bicategories. This has got to be true.  However, double categories seem to be a simpler framework for coarse-graining open Markov processes.</p>
+<p>Finally, let me talk a bit about some related work.   As I already mentioned, Brendan, Blake and I constructed a symmetric monoidal category where the morphisms are open Markov processes.  However, we formalized such Markov processes in a slightly different way than Kenny and I do now.  We defined a Markov process to be one of the pictures I&#8217;ve been showing you: a directed multigraph where each edge is assigned a positive number called its &#8216;rate constant&#8217;.   In other words, we defined it to be a diagram</p>
+<p><img width="180" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/coarse/graph_with_rates.png" alt="" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> is a finite set of vertices or &#8216;states&#8217;, <img src="https://s0.wp.com/latex.php?latex=E&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="E" class="latex" /> is a finite set of edges or &#8216;transitions&#8217; between states, the functions <img src="https://s0.wp.com/latex.php?latex=s%2Ct+%3A+E+%5Cto+X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s,t : E &#92;to X" class="latex" /> give the source and target of each edge, and <img src="https://s0.wp.com/latex.php?latex=r+%3A+E+%5Cto+%280%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r : E &#92;to (0,&#92;infty)" class="latex" /> gives the rate constant for each transition.   We explained how from this data one can extract a matrix of real numbers <img src="https://s0.wp.com/latex.php?latex=%28H_%7Bi+j%7D%29_%7Bi%2Cj+%5Cin+X%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(H_{i j})_{i,j &#92;in X}" class="latex" /> called the &#8216;Hamiltonian&#8217; of the Markov process, with two properties that are familiar in this game:</p>
+<p>&bull;  <img src="https://s0.wp.com/latex.php?latex=H_%7Bi+j%7D+%5Cgeq+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H_{i j} &#92;geq 0" class="latex" /> if <img src="https://s0.wp.com/latex.php?latex=i+%5Cneq+j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i &#92;neq j" class="latex" />,</p>
+<p>&bull; <img src="https://s0.wp.com/latex.php?latex=%5Csum_%7Bi+%5Cin+X%7D+H_%7Bi+j%7D+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_{i &#92;in X} H_{i j} = 0" class="latex" /> for all <img src="https://s0.wp.com/latex.php?latex=j+%5Cin+X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j &#92;in X" class="latex" />.</p>
+<p>A matrix with these properties is called &#8216;infinitesimal stochastic&#8217;, since these conditions are equivalent to <img src="https://s0.wp.com/latex.php?latex=%5Cexp%28t+H%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;exp(t H)" class="latex" /> being stochastic for all <img src="https://s0.wp.com/latex.php?latex=t+%5Cge+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;ge 0" class="latex" />.</p>
+<p>In our new paper, Kenny and I skip the directed multigraphs and work directly with the Hamiltonians!  In other words, we define a Markov process to be a finite set <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> together with an infinitesimal stochastic matrix <img src="https://s0.wp.com/latex.php?latex=%28H_%7Bij%7D%29_%7Bi%2Cj+%5Cin+X%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(H_{ij})_{i,j &#92;in X}" class="latex" />.  This allows us to work more directly with the Hamiltonian and the all-important &#8216;master equation&#8217;</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B++++%5Cfrac%7Bd+p%28t%29%7D%7Bd+t%7D+%3D+H+p%28t%29++%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{    &#92;frac{d p(t)}{d t} = H p(t)  } " class="latex" /></p>
+<p>which describes the evolution of a time-dependent probability distribution</p>
+<p><img src="https://s0.wp.com/latex.php?latex=p%28t%29+%3A+X+%5Cto+%5Cmathbb%7BR%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(t) : X &#92;to &#92;mathbb{R}" class="latex" /></p>
+<p><a href="http://www.cs.mcgill.ca/~prakash/Pubs/bicats_final.pdf">Clerc, Humphrey and Panangaden</a> have constructed a bicategory with finite sets as objects, &#8216;open discrete labeled Markov processes&#8217; as morphisms, and &#8216;simulations&#8217; as 2-morphisms.  The use the word &#8216;open&#8217; in a pretty similar way to me.   But their open discrete labeled Markov processes are also equipped with a set of &#8216;actions&#8217; which represent interactions between the Markov process and the environment, such as an outside entity acting on a stochastic system.   A &#8216;simulation&#8217; is then a function between the state spaces that map the inputs, outputs and set of actions of one open discrete labeled Markov process to the inputs, outputs and set of actions of another.</p>
+<p>Another compositional framework for Markov processes was discussed by <a href="http://arxiv.org/abs/0901.2434">de Francesco Albasini, Sabadini and Walters</a>.  They constructed an algebra of &#8216;Markov automata&#8217;.  A Markov automaton is a family of matrices with non-negative real coefficients that is indexed by elements of a binary product of sets, where one set represents a set of &#8216;signals on the left interface&#8217; of the Markov automata and the other set analogously for the right interface.</p>
+<p>So, double categories are gradually invading the theory of Markov processes&#8230; as part of the bigger trend toward <a href="https://golem.ph.utexas.edu/category/2017/09/applied_category_theory_1.html">applied category theory</a>.  They&#8217;re natural things; scientists should use them.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Sunday, March 4th, 2018 at 3:55 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/networks/" rel="category tag">networks</a>, <a href="https://johncarlosbaez.wordpress.com/category/physics/" rel="category tag">physics</a>, <a href="https://johncarlosbaez.wordpress.com/category/probability/" rel="category tag">probability</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2018/03/03/nonstandard-integers-as-complex-numbers/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2018/03/09/an-upper-bound-on-reidemeister-moves/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">26 Responses to <em>Coarse-Graining Open Markov&nbsp;Processes</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-110725">
+				<div id="div-comment-110725" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/02b8f7ed2c25ec237e56603cd2669b4e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://plus.google.com/115493421377802406405' rel='external nofollow ugc' class='url'>Kram1032</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-110725">4 March, 2018 at 10:09 am</a>		</div>
+
+		<p>Just a heads up: That link to your paper currently yields a 404</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=110725#respond' data-commentid="110725" data-postid="24586" data-belowelement="div-comment-110725" data-respondelement="respond" data-replyto="Reply to Kram1032" aria-label='Reply to Kram1032'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-110727">
+				<div id="div-comment-110727" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-110727">4 March, 2018 at 3:39 pm</a>		</div>
+
+		<p>Darn it!  Fixed, thanks.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=110727#respond' data-commentid="110727" data-postid="24586" data-belowelement="div-comment-110727" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-110733">
+				<div id="div-comment-110733" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9a2601268a5194646e6c7532947764db?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://statebox.org' rel='external nofollow ugc' class='url'>Jelle</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-110733">4 March, 2018 at 6:13 pm</a>		</div>
+
+		<p>This is very cool John, but the paper link is broken</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=110733#respond' data-commentid="110733" data-postid="24586" data-belowelement="div-comment-110733" data-respondelement="respond" data-replyto="Reply to Jelle" aria-label='Reply to Jelle'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-110734">
+				<div id="div-comment-110734" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9a2601268a5194646e6c7532947764db?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://statebox.org' rel='external nofollow ugc' class='url'>Jelle</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-110734">4 March, 2018 at 6:15 pm</a>		</div>
+
+		<p>oh, I didn&#8217;t see it was fixed :^D</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=110734#respond' data-commentid="110734" data-postid="24586" data-belowelement="div-comment-110734" data-respondelement="respond" data-replyto="Reply to Jelle" aria-label='Reply to Jelle'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 highlander-comment" id="comment-110863">
+				<div id="div-comment-110863" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://i1.wp.com/lh4.googleusercontent.com/-bCo3Ne2-g6Y/AAAAAAAAAAI/AAAAAAAACqs/0ZEtUlrISZY/photo.jpg?resize=32%2C32&#038;ssl=1' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://plus.google.com/112551420371466469735' rel='external nofollow ugc' class='url'>ron davison</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-110863">8 March, 2018 at 4:57 pm</a>		</div>
+
+		<p>And Engineers too!<br />
+Great intro for non math linguistically trained individuals.<br />
+I only have to go look up a few new definitions from math to fully understand. This seems to be relevant to lots of engineering in existence now. A wireless channel over time with intended and unintended inputs could only activate the sparse framework needed in the moment and turn off branches that are not needed in the moment. Once the inputs detect needed state machine subcategories, they can be activated to allow optimization in the moment. A moving car cell signal as it goes from one cell to another is another example, each cell tower and cell phone could have this sparse in the moment, yet robust and full featured as needed.<br />
+This would maximize efficiency with little hit to performance.<br />
+Self driving cars are another, with the constant identification, significant power draw, and non-negotiable requirements.<br />
+On a country road the computation needed is much less than in a city rush hour comparison.<br />
+Mark-on with the Markov multi category progress.<br />
+Captain Obvious here&#8230;Has anyone have more than two Markov categories in a triple or higher #?<br />
+Is it just a matter of extension if yes?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=110863#respond' data-commentid="110863" data-postid="24586" data-belowelement="div-comment-110863" data-respondelement="respond" data-replyto="Reply to ron davison" aria-label='Reply to ron davison'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-110875">
+				<div id="div-comment-110875" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/59193ac4b74a452fd4485049de323df9?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Ammar Husain</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-110875">8 March, 2018 at 7:04 pm</a>		</div>
+
+		<p>Started this yesterday after this post. <a href="https://github.com/Cobord/OpenMarkovTensorFlow" rel="nofollow ugc">https://github.com/Cobord/OpenMarkovTensorFlow</a>. Will still need to implement composition of 1-morphisms and the 2-morphisms.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=110875#respond' data-commentid="110875" data-postid="24586" data-belowelement="div-comment-110875" data-respondelement="respond" data-replyto="Reply to Ammar Husain" aria-label='Reply to Ammar Husain'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-110877">
+				<div id="div-comment-110877" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-110877">8 March, 2018 at 7:12 pm</a>		</div>
+
+		<p>Cool!  If there were some way to show examples visually, rather than in code, that would be really fun for non-coders like me.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=110877#respond' data-commentid="110877" data-postid="24586" data-belowelement="div-comment-110877" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-111844">
+				<div id="div-comment-111844" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/59193ac4b74a452fd4485049de323df9?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Ammar Husain</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-111844">19 March, 2018 at 2:49 am</a>		</div>
+
+		<p>It has some visualization now.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=111844#respond' data-commentid="111844" data-postid="24586" data-belowelement="div-comment-111844" data-respondelement="respond" data-replyto="Reply to Ammar Husain" aria-label='Reply to Ammar Husain'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-even depth-1 parent highlander-comment" id="comment-110881">
+				<div id="div-comment-110881" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-110881">8 March, 2018 at 8:01 pm</a>		</div>
+
+		<p>First Kenny and I wrote a paper about this stuff:</p>
+<p><object data="http://math.ucr.edu/home/baez/coarse_graining.pdf" type="application/pdf" width="100%" height="800" style="height: 800px;"><p><a href="http://math.ucr.edu/home/baez/coarse_graining.pdf">Click to access coarse_graining.pdf</a></p></object></p>
+<p>Then I coarse-grained that paper, summarizing it in a blog post:</p>
+<p><a href="https://golem.ph.utexas.edu/category/2018/03/coarsegraining_open_markov_pro.html" rel="nofollow ugc">https://golem.ph.utexas.edu/category/2018/03/coarsegraining_open_markov_pro.html</a></p>
+<p>Then I coarse-grained <em>that</em> and wrote this Google+ post:</p>
+<p><a href="https://tinyurl.com/baez-coarse" rel="nofollow ugc">https://tinyurl.com/baez-coarse</a></p>
+<p>And then I coarse-grained <em>that</em> and wrote this tweet:</p>
+<div class="embed-twitter">
+<blockquote class="twitter-tweet" data-width="450" data-dnt="true">
+<p lang="en" dir="ltr">An &quot;open Markov process&quot; describes how a frog can randomly hop around, but also hop in or out of the whole picture.  We can compose these, so they&#39;re morphisms in a category.  But we can also &quot;coarse-grain&quot; them and get a double category!  Here&#39;s how: <a href="https://t.co/LwavLpqW3h">https://t.co/LwavLpqW3h</a> <a href="https://t.co/zIgzfX5nQY">pic.twitter.com/zIgzfX5nQY</a></p>
+<p>&mdash; John Carlos Baez (@johncarlosbaez) <a href="https://twitter.com/johncarlosbaez/status/971836740607475712?ref_src=twsrc%5Etfw">March 8, 2018</a></p></blockquote>
+<p><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+<p>If I coarse-grain it any more it&#8217;ll shrink to a single period.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=110881#respond' data-commentid="110881" data-postid="24586" data-belowelement="div-comment-110881" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-110923">
+				<div id="div-comment-110923" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-110923">9 March, 2018 at 10:08 am</a>		</div>
+
+		<p>I don&#8217;t have the time to understand all this category theory, so I tried to make sense of what you are doing here by guessing from the example what you could have meant (this is in general usually faster). But this is of course also error prone, so one question came up:<br />
+Is it correct that if you would have taken the same s as on page 11 in your <a href="http://math.ucr.edu/home/baez/coarse_graining.pdf" rel="nofollow">pdf</a> then there would be a 7 instead of an 8 as a label between the nodes w and y in the second diagramm in the image above (i.e. the twitter image)?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=110923#respond' data-commentid="110923" data-postid="24586" data-belowelement="div-comment-110923" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-3 parent highlander-comment" id="comment-110962">
+				<div id="div-comment-110962" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-110962">10 March, 2018 at 12:34 am</a>		</div>
+
+		<p>Sorry, I don&#8217;t know what &#8220;the same s as on page 11&#8221; means.  I don&#8217;t see anything called s there.  There&#8217;s something called S, which is the set of inputs.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=110962#respond' data-commentid="110962" data-postid="24586" data-belowelement="div-comment-110962" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-110982">
+				<div id="div-comment-110982" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-110982">10 March, 2018 at 5:58 am</a>		</div>
+
+		<p>With s I mean the very first letter in the text: <img src="https://s0.wp.com/latex.php?latex=s%3A+%5Cmathbb%7BR%7D%5E%7BX%27%7D+%5Crightarrow+%5Cmathbb%7BR%7D%5E%7BX%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s: &#92;mathbb{R}^{X&#039;} &#92;rightarrow &#92;mathbb{R}^{X}" class="latex" /> i.e. the alleged &#8220;stochastic section&#8221; of the &#8220;function&#8221; p. I am not sure whether I derived the correct infinitesimal matrix H from your diagram above, but in contrast to the H in the paper (p.10) the corresponding &#8220;lumped&#8221; H&#8217; of the diagram would depend on the choice of the probabilities (or weights?) in s. I derive H&#8217; by multiplying H with s (where I actually replaced 1/3 with P and 2/3 with (1-P) in order to understand the dependencies on the probabilities P better) and then add row 3 and 4 of H.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 highlander-comment" id="comment-111286">
+				<div id="div-comment-111286" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-111286">13 March, 2018 at 7:34 am</a>		</div>
+
+		<p>sorry a typo:<br />
+and then add row 3 and 4 of H <img src="https://s0.wp.com/latex.php?latex=%5Crightarrow&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rightarrow" class="latex" /> and then add row 3 and 4 of Hp.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 parent highlander-comment" id="comment-111827">
+				<div id="div-comment-111827" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-111827">18 March, 2018 at 7:19 am</a>		</div>
+
+		<p>sorry again typo:<br />
+and then add row 3 and 4 of H \rightarrow and then add row 3 and 4 of Hs.<br />
+Adding the rows is what I guessed could be the action of p_*</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-111830">
+				<div id="div-comment-111830" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-111830">18 March, 2018 at 11:47 am</a>		</div>
+
+		<p>I&#8217;m having trouble finding time to look at the paper and do the (easy) calculations needed to check your hypotheses.  But anyway, given finite sets <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" />, a map <img src="https://s0.wp.com/latex.php?latex=p+%3A+X+%5Cto+Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p : X &#92;to Y" class="latex" />, and a vector <img src="https://s0.wp.com/latex.php?latex=v+%5Cin+%5Cmathbb%7BR%7D%5EX&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v &#92;in &#92;mathbb{R}^X" class="latex" />, we have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%28p_%2A+v%29_i+%3D+%5Csum_%7Bj+%5Cin+X+%5Ctextrm%7B+such+that+%7D+p%28j%29+%3D+i%7D+v_j+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ (p_* v)_i = &#92;sum_{j &#92;in X &#92;textrm{ such that } p(j) = i} v_j }" class="latex" /></p>
+<p>for any <img src="https://s0.wp.com/latex.php?latex=i+%5Cin+Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i &#92;in Y" class="latex" />.  So, coarse-graining the Hamiltonian of a Markov process involves some summing.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-111840">
+				<div id="div-comment-111840" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://i0.wp.com/pbs.twimg.com/profile_images/837904101006540800/qwSaYiJw_normal.jpg?resize=32%2C32' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://twitter.com/WHUT' rel='external nofollow ugc' class='url'>Paul Pukite (@WHUT)</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-111840">18 March, 2018 at 11:09 pm</a>		</div>
+
+		<p>Coarse-graining is an approximation as it reduces  dimensionality in the flow diagram at the expense of fidelity.</p>
+<p>If the rate of 4 that describes the w2 to w1 transition was increased to a very large number, the coarse-grain solution would result in the w to y transition asymptotically converging to 9.  This is a basic form of order-reduction for stiff problems.</p>
+<p><a href="https://en.wikipedia.org/wiki/Model_order_reduction" rel="nofollow ugc">https://en.wikipedia.org/wiki/Model_order_reduction</a></p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 parent highlander-comment" id="comment-111849">
+				<div id="div-comment-111849" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-111849">19 March, 2018 at 8:56 am</a>		</div>
+
+		<p>@John<br />
+OK thanks. Now I am more or less sure that I understand what you mean with the notation <img src="https://s0.wp.com/latex.php?latex=p_%2A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_*" class="latex" />. By the way is Kenny reading the comments to this  blog post?<br />
+As said I might have a different approach to derive a Hamiltonian from a diagram, but with the approach I sofar used, the Hamiltonian  <a href="https://twitter.com/johncarlosbaez/status/971836740607475712/photo/1" rel="nofollow">as derived with my approach</a> would not be lumpable:<br />
+<img src="https://s0.wp.com/latex.php?latex=H+%3D+%5Cleft%28+%5Cbegin%7Barray%7D%7Bccccc%7D+-5%260%260%260%260%5C%5C+5%26-11%260%260%260%5C%5C+0%268%26-9%264%260%5C%5C+0%263%260%26-10%260%5C%5C+0%260%269%266%260+%5Cend%7Barray%7D%5Cright%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = &#92;left( &#92;begin{array}{ccccc} -5&amp;0&amp;0&amp;0&amp;0&#92;&#92; 5&amp;-11&amp;0&amp;0&amp;0&#92;&#92; 0&amp;8&amp;-9&amp;4&amp;0&#92;&#92; 0&amp;3&amp;0&amp;-10&amp;0&#92;&#92; 0&amp;0&amp;9&amp;6&amp;0 &#92;end{array}&#92;right)" class="latex" /></p>
+<p>@Paul<br />
+I don&#8217;t see what this have to do with stiffness problems, but if 4 gets big then with the above hamiltonian the w to y transition would converge to 9 only for a specific section.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-111866">
+				<div id="div-comment-111866" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-111866">20 March, 2018 at 5:06 am</a>		</div>
+
+		<p>I doubt Kenny is reading the comments here.  I&#8217;ll tell him about these comments.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even depth-3 parent highlander-comment" id="comment-111889">
+				<div id="div-comment-111889" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/0afefa6994686aa0361aae1acde6e34d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Kenny</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-111889">21 March, 2018 at 7:33 am</a>		</div>
+
+		<p>Hi Nad,</p>
+<p>The image in the tweet was taken from back when we were originally considering more general coarse-grainings of Markov processes. Later on, for category theoretic reasons, we decided to only work with Markov processes that were lumpable, since lumpability is precisely the condition needed for the Hamiltonian of the new Markov process to be independent of the choice of stochastic section s. As you noticed, the image in the tweet isn&#8217;t lumpable (at least not in the manner that is being visually suggested) since the rates of the edges going from both of the states w1 and w2 to the state y are not the same. They are in the example in the paper.</p>
+<p>It&#8217;s also perhaps worth noting that the edge with rate 4 going from the state w2 to the state w1 plays no role in the lumped Markov process, which intuitively makes sense: anything in either of the states w1 or w2 will transition to state y at the same rate in the case where the original Markov process is lumpable, and transitioning between states w1 and w2 will not affect this.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=111889#respond' data-commentid="111889" data-postid="24586" data-belowelement="div-comment-111889" data-respondelement="respond" data-replyto="Reply to Kenny" aria-label='Reply to Kenny'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-4 parent highlander-comment" id="comment-112083">
+				<div id="div-comment-112083" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-112083">22 March, 2018 at 7:26 am</a>		</div>
+
+		<p>Hello Kenny</p>
+<p>thanks for replying. You wrote:</p>
+<blockquote><p>Later on, for category theoretic reasons, we decided to only work with Markov processes that were lumpable, since lumpability is precisely the condition needed for the Hamiltonian of the new Markov process to be independent of the choice of stochastic section s. </p></blockquote>
+<p>Frankly I have problems to see why this is a category theoretic question. In particular I haven&#8217;t sofar understood what this lumpability is needed for. I could have imagined e.g. that an internal lumpability might for example not change the relations between input and outputs of a Markov network, but I haven&#8217;t found a remark similar to that.</p>
+<p>I searched the text for all occasions of the word &#8220;lump&#8221;, but apart from the reference it didn&#8217;t appear in the text after theorem 3.10.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-112183">
+				<div id="div-comment-112183" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-112183">22 March, 2018 at 4:11 pm</a>		</div>
+
+		<p>Nad wrote:</p>
+<blockquote><p>
+  I could have imagined e.g. that an internal lumpability might for example not change the relations between input and outputs of a Markov network, but I haven’t found a remark similar to that.
+</p></blockquote>
+<p>It sounds like you&#8217;re talking about Lemma 5.3, which says that coarse-graining is compatible with black-boxing.  You&#8217;ll note that the proof uses the equation</p>
+<p><img src="https://s0.wp.com/latex.php?latex=p_%2A+H+%3D+H%27+p_%2A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_* H = H&#039; p_*" class="latex" /></p>
+<p>In our paper we define &#8216;lumpability&#8217; in Definition 3.4.   Theorem 3.10 gives 3 equivalent conditions for lumpability.  The best one is condition (ii):</p>
+<p><img src="https://s0.wp.com/latex.php?latex=p_%2A+H+%3D+H%27+p_%2A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_* H = H&#039; p_*" class="latex" /></p>
+<p>This is clearly equivalent to</p>
+<p><img src="https://s0.wp.com/latex.php?latex=p_%2A+%5Cexp%28tH%29+%3D+%5Cexp%28tH%27%29+p_%2A++%5Ctextrm%7B+for+all+%7D+t+%5Cin+%5B0%2C%5Cinfty%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_* &#92;exp(tH) = &#92;exp(tH&#039;) p_*  &#92;textrm{ for all } t &#92;in [0,&#92;infty) " class="latex" /></p>
+<p>This condition says that two things are the same:</p>
+<p>1) evolving a state in time using our original Markov process with Hamiltonian <img src="https://s0.wp.com/latex.php?latex=H&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H" class="latex" /> and then coarse-graining it with <img src="https://s0.wp.com/latex.php?latex=p_%2A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_*" class="latex" />,</p>
+<p>2) coarse-graining a state with <img src="https://s0.wp.com/latex.php?latex=p_%2A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_*" class="latex" /> and then evolving it in time using the coarse-grained Markov process with Hamiltonian <img src="https://s0.wp.com/latex.php?latex=H%27&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H&#039;" class="latex" />.</p>
+<p>Since this is so nice, we build the equation <img src="https://s0.wp.com/latex.php?latex=p_%2A+H+%3D+H%27+p_%2A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_* H = H&#039; p_*" class="latex" /> into the definition of &#8216;morphism between open Markov processes&#8217; in Definition 3.4.  In the rest of the paper we study these morphisms and never mention the word &#8216;lump&#8217;.</p>
+<p>We need the condition <img src="https://s0.wp.com/latex.php?latex=p_%2A+H+%3D+H%27+p_%2A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_* H = H&#039; p_*" class="latex" /> to prove most of the interesting results in the paper.  For example, Lemma 5.3.</p>
+<p>The literature on Markov processes talks about lumpability, but they usually use the equivalent condition (iii) as their definition of lumpability.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 parent highlander-comment" id="comment-112216">
+				<div id="div-comment-112216" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-112216">22 March, 2018 at 8:59 pm</a>		</div>
+
+		<p>John wrote:</p>
+<blockquote><p>It sounds like you’re talking about Lemma 5.3, which says that coarse-graining is compatible with black-boxing. </p></blockquote>
+<p>Well, as said I was looking for a remark like that, but I didn&#8217;t and unfortunately still don&#8217;t see that  &#8220;coarse-graining is compatible with black-boxing&#8221; is explained in Lemma 5.3:</p>
+<blockquote><p>Lemma 5.3: Given a 2-morphism [DIAGRAM]  in Mark, there exists a unique 2-morphism [DIAGRAM] in LinRel.</p></blockquote>
+<p>That is even if you tell me that &#8220;build the equation <img src="https://s0.wp.com/latex.php?latex=p_%2A+H+%3D+H%27+p_%2A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_* H = H&#039; p_*" class="latex" /> into the definition of ‘morphism between open Markov processes&#8221; I don&#8217;t see why Lemma 5.3. says &#8220;coarse-graining is compatible with black-boxing&#8221; and in particular what you mean with &#8220;compatible.&#8221; This seems to be hidden in those cryptic diagrams. But anyways I got now a rough idea of what you were doing here.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-112225">
+				<div id="div-comment-112225" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-112225">22 March, 2018 at 10:03 pm</a>		</div>
+
+		<p>Thanks for being so publicly confused about our paper; having worked on it for a year the meaning of the formalism has become obvious to Kenny and me, but you&#8217;re reminding me that a few sentences here and there could help explain its meaning.</p>
+<p>Lemma 5.3 is about what happens when we apply the 2-functor <img src="https://s0.wp.com/latex.php?latex=%5Cblacksquare&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;blacksquare" class="latex" />, which is <em>black-boxing</em>, to 2-morphisms in Mark, which are <em>morphisms between open Markov processes</em>.  The simplest morphisms between open Markov processes are <em>coarse-grainings</em>.  So, the Lemma says what happens when we black-box a coarse-graining.</p>
+<p>The simplest case is when the maps <img src="https://s0.wp.com/latex.php?latex=f&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=g&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g" class="latex" /> in the diagram are identity functions.  This means that we&#8217;re leaving the input and output states alone.  In this case, Lemma 5.3 says that the relation between input and output probabilities and flows in steady state are <em>the same</em> for the original open Markov process and the coarse-grained open Markov process.</p>
+<p>I thought that might be what you were trying to say here:</p>
+<blockquote><p>
+  I could have imagined e.g. that an internal lumpability might for example not change the relations between input and outputs of a Markov network.
+</p></blockquote>
+<p>This is true if by &#8220;the relations between inputs and outputs&#8221; you mean &#8220;the relation between input and output probabilities and flows in steady state&#8221;.   This relation is what black-boxing gives us.</p>
+<p>The double category formalism, with its supposedly cryptic diagrams, is just a way of drawing open Markov processes and the morphisms between them, e.g. coarse-grainings.  With this style of picture, the coarse-grainings look like rectangles.  The basic operations on coarse-grainings look like ways of sticking together rectangles to get bigger rectangles. The rules these operations obey turn into intuitive rules about sticking together rectangles.</p>
+<p>That&#8217;s the whole point of double categories.  Double categories are &#8220;the algebra of rectangles&#8221;, just as categories are &#8220;the algebra of arrows&#8221;.</p>
+<p>We don&#8217;t explain this, because this paper was written for people who are comfortable with double categories.  Explaining double categories would double the length of this paper.</p>
+<p>I said morphisms between open Markov processes look like rectangles.  But the simplest morphisms between open Markov processes are coarse-grainings, so let me talk just about coarse-grainings.  The two main operations on these are:</p>
+<p>1) We can compose coarse-grainings of open Markov processes &#8220;horizontally&#8221; by attaching the outputs of one to the inputs of another.</p>
+<p>2) We can compose coarse-grainings of open Markov processes &#8220;vertically&#8221; by doing first one and then another: coarse-graining and then coarse-graining some more.</p>
+<p>We can stick together two rectangles either horizontally or vertically, and that&#8217;s how we draw operations 1) and 2).  Some nontrivial laws governing these operations then drawn as obvious-looking laws about sticking rectangles together.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-126729">
+				<div id="div-comment-126729" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2018/08/15/open-petri-nets-part-1/' rel='external nofollow ugc' class='url'>Open Petri Nets | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-126729">15 August, 2018 at 3:24 pm</a>		</div>
+
+		<p>Double categories were introduced in the 1960s by Charles Ehresmann.  More recently they have found their way into applied mathematics.  They been used to study various things, including open dynamical systems:</p>
+<p>&bull;  Eugene Lerman and David Spivak, <a href="http://arxiv.org/abs/1602.01017" rel="nofollow">An algebra of open continuous time dynamical systems and networks</a>.</p>
+<p>open electrical circuits and chemical reaction networks:</p>
+<p>&bull; Kenny Courser, <a href="https://arxiv.org/abs/1605.08100" rel="nofollow">A bicategory of decorated cospans</a>, <i>Theory and Applications of Categories</i> <b>32</b> (2017), 995&ndash;1027.</p>
+<p>open discrete-time Markov chains:</p>
+<p>&bull; Florence Clerc, Harrison Humphrey and P. Panangaden, <a href="http://www.cs.mcgill.ca/~prakash/Pubs/bicats_final.pdf" rel="nofollow">Bicategories of Markov processes</a>, in <i>Models, Algorithms, Logics and Tools</i>, Lecture Notes in Computer Science <b>10460</b>, Springer, Berlin, 2017, pp. 112&ndash;124.</p>
+<p>and coarse-graining for open continuous-time Markov chains:</p>
+<p>&bull; John Baez and Kenny Courser, <a href="https://arxiv.org/abs/1710.11343" rel="nofollow">Coarse-graining open Markov processes</a>.  (Blog article <a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/">here</a>.)</p>
+<p>As noted by Shulman, the easiest way to get a symmetric monoidal bicategory is often to first construct a symmetric monoidal double category:</p>
+<p>&bull; Mike Shulman, <a href="https://arxiv.org/abs/1004.0993" rel="nofollow">Constructing symmetric monoidal bicategories</a>.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=126729#respond' data-commentid="126729" data-postid="24586" data-belowelement="div-comment-126729" data-respondelement="respond" data-replyto="Reply to Open Petri Nets | Azimuth" aria-label='Reply to Open Petri Nets | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1 highlander-comment" id="comment-162834">
+				<div id="div-comment-162834" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2020/07/04/open-markov-processes/' rel='external nofollow ugc' class='url'>Open Markov Processes | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-162834">4 July, 2020 at 12:09 am</a>		</div>
+
+		<p>I&#8217;m giving a talk on work I did with Kenny Courser.  It&#8217;s part of the <a href="https://johncarlosbaez.wordpress.com/2020/06/27/act2020-program/">ACT2020</a> conference, and it&#8217;s happening on 20:40 UTC on Tuesday July 7th, 2020.  (That&#8217;s 1:40 pm here in California, just so I don&#8217;t forget.)</p>
+<p>Like all talks at this conference, you can watch it live <a href="https://mit.zoom.us/j/7055345747" rel="nofollow ugc">on Zoom</a> or <a href="https://www.youtube.com/playlist?list=PLCOXjXDLt3pZDHGYOIqtg1m1lLOURjl1Q" rel="nofollow ugc">on YouTube</a>.  It&#8217;ll also be recorded, so you can watch it later on YouTube too, somewhere <a href="https://www.youtube.com/playlist?list=PLCOXjXDLt3pYot9VNdLlZqGajHyZUywdI" rel="nofollow ugc">here</a>.</p>
+<p>You can see my slides now, and read some other helpful things:</p>
+<p>• <a href="http://math.ucr.edu/home/baez/open_markov/open_markov.pdf" rel="nofollow ugc">Coarse-graining open Markov processes</a>.</p>
+<blockquote><p>
+  <strong>Abstract.</strong> We illustrate some new paradigms in applied category theory with the example of coarse-graining open Markov processes. Coarse-graining is a standard method of extracting a simpler Markov process from a more complicated one by identifying states. Here we extend coarse-graining to &#8216;open&#8217; Markov processes: that is, those where probability can flow in or out of certain states called &#8216;inputs&#8217; and &#8216;outputs&#8217;. One can build up an ordinary Markov process from smaller open pieces in two basic ways: composition, where we identify the outputs of one open Markov process with the inputs of another, and tensoring, where we set two open Markov processes side by side. These constructions make open Markov processes into the morphisms of a symmetric monoidal category. But we can go further and construct a symmetric monoidal double category where the 2-morphisms include ways of coarse-graining open Markov processes. We can describe the behavior of open Markov processes using double functors out of this double category.
+</p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=162834#respond' data-commentid="162834" data-postid="24586" data-belowelement="div-comment-162834" data-respondelement="respond" data-replyto="Reply to Open Markov Processes | Azimuth" aria-label='Reply to Open Markov Processes | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-164231">
+				<div id="div-comment-164231" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2020/08/15/open-systems-a-double-categorical-perspective-part-1/' rel='external nofollow ugc' class='url'>Open Systems: A Double Categorical Perspective (Part 1) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/#comment-164231">15 August, 2020 at 12:49 am</a>		</div>
+
+		<p>My student <a href="https://www.coursicle.com/ucr/professors/Kenny+Courser/" rel="nofollow ugc">Kenny Courser</a>&#8216;s thesis has hit the arXiv:</p>
+<p>• Kenny Courser, <em><a href="https://arxiv.org/abs/2008.02394" rel="nofollow ugc">Open Systems: A Double Categorical Perspective</a></em>, Ph.D. thesis, U. C. Riverside, 2020.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/?replytocom=164231#respond' data-commentid="164231" data-postid="24586" data-belowelement="div-comment-164231" data-respondelement="respond" data-replyto="Reply to Open Systems: A Double Categorical Perspective (Part 1) | Azimuth" aria-label='Reply to Open Systems: A Double Categorical Perspective (Part 1) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">You can use Markdown or HTML in your comments.  You can also use LaTeX, like this: $latex E = m c^2 $. The word 'latex' comes right after the first dollar sign, with a space after it. <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2018/03/04/coarse-graining-open-markov-processes/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="6dd877e3cf" /><input type="hidden" name="_wp_http_referer" value="/2018/03/04/coarse-graining-open-markov-processes/" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='24586' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="c71f29841b" /></p>
+<input type="hidden" name="genseq" value="1632609623" />
+<input type="hidden" id="ak_js" name="ak_js" value="62"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="0272f16312" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,176,919 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-02b8f7ed2c25ec237e56603cd2669b4e">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-9a2601268a5194646e6c7532947764db">
+	</div>
+	<div class="grofile-hash-map-bb6f8bf5a6ab6ed9803c08c11dac3a2c">
+	</div>
+	<div class="grofile-hash-map-59193ac4b74a452fd4485049de323df9">
+	</div>
+	<div class="grofile-hash-map-a114ddb2d8d68d281202f95cfd64c96c">
+	</div>
+	<div class="grofile-hash-map-d065ab48aee72db7106d153786a168ed">
+	</div>
+	<div class="grofile-hash-map-0afefa6994686aa0361aae1acde6e34d">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=f7f58f7d33","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"24586","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'24586','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTY5NXZfPW5wbUFZbFdUSXwxSXI0LUdSWVYubU9lVz1iK3xfaHZDeG9LW0VCbXVvaFVFUG0rWldIVUdIZUJlLUt2MzklaDlXa2E3RW1Pdl1mUmtkVD9RVWRiN2k0MDdVVU9vNzErRCswMklrK0JBb0FbLGZHJnV1WltfREQsQStuMSVLUkMxSFNrNUgwcjdxWW0vSCw2Qj8wRC92aixlWGdKaXA3fFFYP0ZVUW01WkdlSGtHbk5fQThvLk1lXyxwYlliXX5vdVBIPyViYz92Q1E1VDlhOGk0aG5TYw=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '24586' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

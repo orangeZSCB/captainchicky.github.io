@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en">
+<![endif]-->
+<!--[if (!IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+<meta charset="UTF-8" />
+<title>History of Science | Of Particular Significance</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://profmattstrassler.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large' />
+<meta name="google-site-verification" content="atBcEfQYCIwhTkcOnVU26d7Pp3Jj8sJQ8u-frrJyoi8" />
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.parentNode.removeChild( dom_node ); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[ i ].parentNode.removeChild( dom_nodes[ i ] );
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+					+ '//' + window.location.hostname
+					+ '&postid=10438'
+					+ '&is_singular=';
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly9wcm9mbWF0dHN0cmFzc2xlci5jb20%3D"
+		+ "&wpcomid=24633746"
+		+ "&time=1633052645";
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel='dns-prefetch' href='//s1.wp.com' />
+<link rel='dns-prefetch' href='//profmattstrassler.wordpress.com' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Feed" href="https://profmattstrassler.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Comments Feed" href="https://profmattstrassler.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; History of Science Category Feed" href="https://profmattstrassler.com/category/history-of-science/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkttSAyEMhl9IoKwzrb1wfBYOEVOBZQh05e2lO3ZnbWvrDZM/yRd+DmJKzIyxQCwiVJZ8dRhJTMmMgVFAD+1CcUP0JG5jGN8xYmlLcNV87nS1Sw3Z9UoGcZSSb/lG6IreCu1H88k86qxyE1Sah2UQRuOrBRIHEgEsKvAQZhsrkbxqkJkHp0zjAeNjvNfW+hf0t/nZaR8GJamTZdXGWpjLaC9s/3tEVgWjowe4GX+wgcsNl8IilSXJbrOrdzrdec+HpK4Pfgeb0DooHadzzAp83Ufmr6N1ykDE+hqwBlY++l7zT3oLr3L7POyH3X73cvgG1PH1zg==?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s1.wp.com/_static/??-eJyFi0EKAjEMAD9kDAsV9SC+pRtiraRJaVMWf++KF0XQ2wzM4FKBTJ3V0a9cuGMdM5K1KFkZu9+Ft9T7Bv+UWelVw1LJytdTBlQZKWvHxAZiFD2bfghcJOb2a208i6UVE67Vmz6nczlNYXcM4bCfwu0Bks1RNg==?cssminify=yes' type='text/css' media='all' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-4-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"24633746","siteName":"Of Particular Significance","siteURL":"https:\/\/profmattstrassler.com","siteHost":"profmattstrassler.com","icon":"<img alt='' src='https:\/\/secure.gravatar.com\/blavatar\/9192dd01619d8fdbea0a34ba4b097323?s=50&d=https%3A%2F%2Fs2.wp.com%2Fi%2Flogo%2Fwpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/coraline","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2021%252F04%252F12%252Fphysics-is-broken%252F","themeURL":"","xhrURL":"https:\/\/profmattstrassler.com\/wp-admin\/admin-ajax.php","nonce":"f715b72a96","isSingular":"","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"a2d8da805d\" \/>","referer":"https:\/\/profmattstrassler.com\/category\/history-of-science\/","canFollow":"1","feedID":"241531","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/profmattstrassler.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fprofmattstrassler.wordpress.com%2Fcategory%2Fhistory-of-science%2F","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Coraline","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 15,952 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2021%252F04%252F12%252Fphysics-is-broken%252F\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=profmattstrassler.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFykEKwkAMQNELmQ4qtboQz1LbWDJMknGSQXt7K9SFILj6i//CI8Og4igeooWs5oxm/YRNtE34vqxXSgjVsCxAHEhu+sOV5JCLPufPIxlSHdHeM94rlnlNwyR/ETBNpXdc8YXP28OuOx3brt3HF3swRvU='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://profmattstrassler.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="History of Science &#8211; Of Particular Significance" />
+<meta property="og:url" content="https://profmattstrassler.com/category/history-of-science/" />
+<meta property="og:site_name" content="Of Particular Significance" />
+<meta property="og:image" content="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=200&#038;ts=1633052645" />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:creator" content="@MattStrassler" />
+<meta name="twitter:site" content="@MattStrassler" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="apple-touch-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=114" />
+<link rel='openid.server' href='https://profmattstrassler.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://profmattstrassler.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://profmattstrassler.com/osd.xml" title="Of Particular Significance" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<meta name="theme-color" content="#fefae3" />
+<style type="text/css">
+.widget_twitter li {
+	word-wrap: break-word;
+}
+</style>
+<meta name="application-name" content="Of Particular Significance" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="Conversations About Science with Theoretical Physicist Matt Strassler" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://profmattstrassler.com/feed/;icon-uri=https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=16" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="Posts about History of Science written by Matt Strassler" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #fefae3; }
+</style>
+	<!-- There is no amphtml version available for this URL. --></head>
+
+<body class="archive category category-history-of-science category-27530 custom-background customizer-styles-applied two-column sidebar-content highlander-enabled highlander-light">
+<div id="container" class="hfeed contain">
+	<div id="header">
+		<div id="masthead" role="banner">
+						<div id="site-title">
+				<span>
+					<a href="https://profmattstrassler.com/" title="Of Particular Significance" rel="home">Of Particular Significance</a>
+				</span>
+			</div>
+			<div id="site-description">Conversations About Science with Theoretical Physicist Matt Strassler</div>
+		</div><!-- #masthead -->
+
+		<div id="access" role="navigation">
+		  			<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+						<div class="menu"><ul>
+<li ><a href="https://profmattstrassler.com/">Home</a></li><li class="page_item page-item-1026 page_item_has_children"><a href="https://profmattstrassler.com/about/">About</a>
+<ul class='children'>
+	<li class="page_item page-item-2 page_item_has_children"><a href="https://profmattstrassler.com/about/about-me/">About Me</a>
+	<ul class='children'>
+		<li class="page_item page-item-5295"><a href="https://profmattstrassler.com/about/about-me/a-new-career-phase/">A New Career&nbsp;Phase</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-1029"><a href="https://profmattstrassler.com/about/about-this-site-and-how-to-use-it/">About This Site and How to Use&nbsp;It</a></li>
+</ul>
+</li>
+<li class="page_item page-item-26 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/">Articles</a>
+<ul class='children'>
+	<li class="page_item page-item-64 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/">Large Hadron Collider&nbsp;FAQ</a>
+	<ul class='children'>
+		<li class="page_item page-item-196"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/how-to-figure-out-what-happened-in-a-microcollision/">How We Learn What Happened in a Proton-Proton&nbsp;Collision</a></li>
+		<li class="page_item page-item-67"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/introduction-to-the-large-hadron-collider/">Introduction to the&nbsp;LHC</a></li>
+		<li class="page_item page-item-70"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/photosofthelhc/">Photos Of The&nbsp;LHC</a></li>
+		<li class="page_item page-item-498 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/">Some Technical Concepts</a>
+		<ul class='children'>
+			<li class="page_item page-item-661"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/fermions-and-bosons/">Fermions and Bosons</a></li>
+			<li class="page_item page-item-497"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-gev-and-tev/">GeV and TeV</a></li>
+			<li class="page_item page-item-461"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-invariant-mass/">Invariant Mass</a></li>
+			<li class="page_item page-item-568"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/what-are-anti-particles/">What are anti-particles?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1560 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/">The Trigger: Discarding All But the&nbsp;Gold</a>
+		<ul class='children'>
+			<li class="page_item page-item-7821"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/trigger-failure-and-repair/">Trigger Failure, and Repair, at the&nbsp;LHC</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-602"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-hadron-as-in-large-hadron-collider/">What&#8217;s a Hadron?</a></li>
+		<li class="page_item page-item-152 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/">What&#8217;s a Proton,&nbsp;Anyway?</a>
+		<ul class='children'>
+			<li class="page_item page-item-2668"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/checking-whats-inside-a-proton/">Checking What&#8217;s Inside a&nbsp;Proton</a></li>
+			<li class="page_item page-item-2613"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/proton-collisions-vs-quarkgluonantiquark-mini-collisions/">Proton Collisions Vs. Quark/Gluon/Antiquark Mini-Collisions</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-15 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/">Large Hadron Collider&nbsp;News</a>
+	<ul class='children'>
+		<li class="page_item page-item-340"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/a-historic-day-or-just-an-important-one/">A Historic Day? Or Just an Important&nbsp;One?</a></li>
+		<li class="page_item page-item-49"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/gangbusters/">Gangbusters!</a></li>
+		<li class="page_item page-item-10"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/hey-where-did-my-higgs-go/">Hey Where&#8217;d My Higgs&nbsp;Go?</a></li>
+		<li class="page_item page-item-1703"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/higgs-search-atlas-and-cms-summer-data-combined/">Higgs Search: ATLAS and CMS Summer Data&nbsp;Combined</a></li>
+		<li class="page_item page-item-1395"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/multi-lepton-events-a-good-place-to-look-for-new-physics/">Multi-Lepton Events: A Good Place to Look for New&nbsp;Physics</a></li>
+		<li class="page_item page-item-2241 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/">Old Pages (Of Historical&nbsp;Interest)</a>
+		<ul class='children'>
+			<li class="page_item page-item-2240"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-december-higgs-update/">The December 2011 Higgs&nbsp;Update</a></li>
+			<li class="page_item page-item-2251"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-july-2011-higgs-hints/">The July 2011 Higgs&nbsp;Hints</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1049 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/">Searches for New Phenomena (as of&nbsp;9/2011)</a>
+		<ul class='children'>
+			<li class="page_item page-item-1050 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/">Searches Aimed at&nbsp;Supersymmetry</a>
+			<ul class='children'>
+				<li class="page_item page-item-1091"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-new-particles-with-long-lifetimes/">Seeking New Particles with Long&nbsp;Lifetimes</a></li>
+				<li class="page_item page-item-1051"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-photonszs-and-something-undetectable/">Seeking Photons/Zs and Something&nbsp;Undetectable</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-4216 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/">Triggering: Advances in&nbsp;2012</a>
+		<ul class='children'>
+			<li class="page_item page-item-4205"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/data-parking-at-cms/">Data Parking at&nbsp;CMS</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1539"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/two-photons-data-and-theory-disagree/">Two-Photons: Data and Theory&nbsp;Disagree</a></li>
+		<li class="page_item page-item-753"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/what-do-current-mid-august-2011-lhc-results-imply-about-supersymmetry/">What do current LHC results (mid-August 2011) imply about&nbsp;supersymmetry?</a></li>
+		<li class="page_item page-item-114"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/why-so-quiet-at-lhc/">Why so quiet at&nbsp;LHC?</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-413 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/">Particle Physics Basics</a>
+	<ul class='children'>
+		<li class="page_item page-item-5927"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/c-p-t-and-their-combinations/">C, P, T (And Their&nbsp;Combinations)</a></li>
+		<li class="page_item page-item-1249"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/cerenkov-radiation/">Cerenkov Radiation</a></li>
+		<li class="page_item page-item-4267 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/">Fields and Their Particles: With&nbsp;Math</a>
+		<ul class='children'>
+			<li class="page_item page-item-4269 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/">1. Ball on a Spring&nbsp;(Classical)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4611"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/1a-resonance/">1a. Resonance</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4272"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-quantum/">2. Ball on a Spring&nbsp;(Quantum)</a></li>
+			<li class="page_item page-item-4376"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-form/">3. Waves (Classical&nbsp;Form)</a></li>
+			<li class="page_item page-item-4402 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/">4. Waves (Classical Equation of&nbsp;Motion)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4442"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/waves-the-quick-calculation/">4a. Waves (The Quick&nbsp;Calculation)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4450"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/5-waves-quantum/">5. Waves (Quantum)</a></li>
+			<li class="page_item page-item-4468 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/">6. Fields</a>
+			<ul class='children'>
+				<li class="page_item page-item-4501"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/chicken-and-egg-matter-and-field/">6a. Chicken and Egg; Matter and&nbsp;Field</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4526 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/">7. Particles Are&nbsp;Quanta</a>
+			<ul class='children'>
+				<li class="page_item page-item-4536"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/7a-how-bosons-and-fermions-differ/">7a. How Bosons and Fermions&nbsp;Differ</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4627"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/8-how-particles-and-fields-interact/">8. How Particles and Fields Interact (an&nbsp;introduction)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4585 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/">How the Higgs Field Works (with&nbsp;math)</a>
+		<ul class='children'>
+			<li class="page_item page-item-4663 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/">1. The Basic&nbsp;Idea</a>
+			<ul class='children'>
+				<li class="page_item page-item-4587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/1-the-basic-idea/">1. The Basic Idea (1st&nbsp;version)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4710"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/2-why-the-higgs-field-is-non-zero-on-average/">2. Why the Higgs Field is Non-Zero on&nbsp;Average</a></li>
+			<li class="page_item page-item-4789"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/3-how-the-higgs-particle-arises/">3. How the Higgs Particle&nbsp;Arises</a></li>
+			<li class="page_item page-item-5032"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/4-why-the-higgs-field-is-necessary/">4. Why the Higgs Field is&nbsp;Necessary</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3077 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/">Mass, Energy, Matter,&nbsp;Etc.</a>
+		<ul class='children'>
+			<li class="page_item page-item-3118 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/">Mass and Energy</a>
+			<ul class='children'>
+				<li class="page_item page-item-3321"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/how-did-einstein-do-it/">How Did Einstein Do&nbsp;It?</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3079"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/matter-and-energy-a-false-dichotomy/">Matter and Energy: A False&nbsp;Dichotomy</a></li>
+			<li class="page_item page-item-6247 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/">More on Mass</a>
+			<ul class='children'>
+				<li class="page_item page-item-6245"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/the-two-definitions-of-mass-and-why-i-use-only-one/">The Two Definitions of &#8220;Mass&#8221;, And Why I Use Only&nbsp;One</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3452 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/">The Energy That Holds Things&nbsp;Together</a>
+			<ul class='children'>
+				<li class="page_item page-item-3534"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/neutron-stability-in-atomic-nuclei/">Neutron Stability in Atomic&nbsp;Nuclei</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-1213 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/">Neutrinos</a>
+		<ul class='children'>
+			<li class="page_item page-item-1791 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/">How One Detects&nbsp;Neutrinos</a>
+			<ul class='children'>
+				<li class="page_item page-item-6044"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/icecube-a-giant-frozen-neutrino-catcher/">IceCube: A Giant Frozen Neutrino&nbsp;Catcher</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1793"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/making-neutrino-beams/">Making Neutrino Beams</a></li>
+			<li class="page_item page-item-1212 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/">Neutrino Types and Neutrino&nbsp;Oscillations</a>
+			<ul class='children'>
+				<li class="page_item page-item-1229"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/velocity-differences-of-neutrinos/">Velocity Differences of&nbsp;Neutrinos</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1737 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/">Neutrinos Faster Than&nbsp;Light?</a>
+			<ul class='children'>
+				<li class="page_item page-item-1811"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-additional-supporting-info/">OPERA: Additional Supporting&nbsp;Info</a></li>
+				<li class="page_item page-item-1736"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-comparing-the-two-versions/">OPERA: Comparing the Two&nbsp;Versions</a></li>
+				<li class="page_item page-item-1799 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/">OPERA: Some Arguments&nbsp;Against</a>
+				<ul class='children'>
+					<li class="page_item page-item-1801"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/cohen-glashow-opera-is-self-contradictory/">Cohen-Glashow: OPERA is Self-Contradictory</a></li>
+					<li class="page_item page-item-1805"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-vs-icarus/">OPERA vs ICARUS</a></li>
+					<li class="page_item page-item-1802"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-another-speed-bump/">OPERA: Another Speed&nbsp;Bump</a></li>
+					<li class="page_item page-item-1782"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/supernovas-and-neutrino-speeds/">Supernovas and Neutrino&nbsp;Speeds</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-1795 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/">OPERA: The First Few&nbsp;Days</a>
+				<ul class='children'>
+					<li class="page_item page-item-1784"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-paper-my-initial-reaction/">OPERA&#8217;s Paper: My Initial&nbsp;Reaction</a></li>
+					<li class="page_item page-item-1788"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-presentation-my-initial-comments/">OPERA&#8217;s Presentation: My Initial&nbsp;Comments</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-3160 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/">OPERA: What Went&nbsp;Wrong</a>
+				<ul class='children'>
+					<li class="page_item page-item-3185"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/how-opera-and-lvd-confirmed-operas-problem/">How LVD Helped Solve OPERA&#8217;s&nbsp;Mystery</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-412"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particle-physics-why-do-it-and-why-do-it-that-way/">Particle Physics: Why do it? And why do it *that*&nbsp;way?</a></li>
+		<li class="page_item page-item-3090"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particleanti-particle-annihilation/">Particle/Anti-Particle Annihilation</a></li>
+		<li class="page_item page-item-6499"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/quantum-fluctuations-and-their-energy/">Quantum Fluctuations and Their&nbsp;Energy</a></li>
+		<li class="page_item page-item-721 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/">The Hierarchy Problem</a>
+		<ul class='children'>
+			<li class="page_item page-item-6461 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/">Naturalness and the Standard&nbsp;Model</a>
+			<ul class='children'>
+				<li class="page_item page-item-6594"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/adding-curves/">How to Add 2&nbsp;Curves</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-566 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/">The Known (Apparently-) Elementary&nbsp;Particles</a>
+		<ul class='children'>
+			<li class="page_item page-item-1396 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/">Jets: The Manifestation of Quarks and&nbsp;Gluons</a>
+			<ul class='children'>
+				<li class="page_item page-item-2919"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/b-tagging-identifying-jets-from-bottom-quarks/">B-tagging: Identifying Jets from Bottom&nbsp;Quarks</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1401"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/tau-leptons/">Tau Leptons</a></li>
+			<li class="page_item page-item-616"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/the-known-particles-if-the-higgs-field-were-zero/">The Known Particles &#8212; If The Higgs Field Were&nbsp;Zero</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-6088 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/">The Known Forces of&nbsp;Nature</a>
+		<ul class='children'>
+			<li class="page_item page-item-6072"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/the-strength-of-the-known-forces/">The Strengths of the Known&nbsp;Forces</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3621 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/">The Structure of&nbsp;Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5096 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/">Atoms: Building Blocks of&nbsp;Molecules</a>
+			<ul class='children'>
+				<li class="page_item page-item-5184"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-of-an-isotope-are-identical-literally/">Atoms of an Isotope Are Identical,&nbsp;Literally</a></li>
+				<li class="page_item page-item-5363"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-their-inner-workings/">Atoms: Their Inner&nbsp;Workings</a></li>
+				<li class="page_item page-item-5177"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/isotopes-variations-on-an-atom/">Isotopes: Variations on an&nbsp;Atom</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-5416"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/electrons-on-the-outskirts-of-atoms/">Electrons: On the Outskirts of&nbsp;Atoms</a></li>
+			<li class="page_item page-item-5815"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/protons-and-neutrons/">Protons and Neutrons: The Massive Pandemonium in&nbsp;Matter</a></li>
+			<li class="page_item page-item-3618"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-molecular-structure-of-matter/">The Molecular Structure of&nbsp;Matter</a></li>
+			<li class="page_item page-item-5564 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/">The Nuclei of Atoms: At the Heart of&nbsp;Matter</a>
+			<ul class='children'>
+				<li class="page_item page-item-5592"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/what-holds-nuclei-together/">What Holds Nuclei&nbsp;Together?</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-7624"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/theories-and-vacua/">Theories and Vacua</a></li>
+		<li class="page_item page-item-7587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/tunneling-a-quantum-process/">Tunneling: A Quantum&nbsp;Process</a></li>
+		<li class="page_item page-item-1285"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/virtual-particles-what-are-they/">Virtual Particles: What are&nbsp;they?</a></li>
+		<li class="page_item page-item-3080 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/">Why Do Particles&nbsp;Decay?</a>
+		<ul class='children'>
+			<li class="page_item page-item-531"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-why/">Most Particles Decay &#8212; But&nbsp;Why?</a></li>
+			<li class="page_item page-item-1333"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-yet-some-dont/">Most Particles Decay &#8212; Yet Some&nbsp;Don&#8217;t!</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-1819 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/">Relativity, Space, Astronomy and&nbsp;Cosmology</a>
+	<ul class='children'>
+		<li class="page_item page-item-1672"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/big-bang-classic-confusions/">Big Bang, Classic&nbsp;Confusions</a></li>
+		<li class="page_item page-item-7183 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/">Black Holes</a>
+		<ul class='children'>
+			<li class="page_item page-item-7185"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/black-hole-information-paradox-an-introduction/">Black Hole Information Paradox: An&nbsp;Introduction</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3366 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/">Dark Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5907"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/current-hints-of-dark-matter-413/">Current Hints of Dark Matter&nbsp;(4/13)</a></li>
+			<li class="page_item page-item-7903"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/searching-for-dark-matter-at-the-lhc/">Searching for Dark Matter at the&nbsp;LHC</a></li>
+			<li class="page_item page-item-3365"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/dark-matter-annihilation/">Seeing Signs of Dark Matter&nbsp;Annihilation</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-7383 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/">History of the&nbsp;Universe</a>
+		<ul class='children'>
+			<li class="page_item page-item-7390"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/before-inflation/">Before Inflation</a></li>
+			<li class="page_item page-item-7426"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/big-bang-expansion-not-explosion/">Big Bang: Expansion, NOT&nbsp;Explosion</a></li>
+			<li class="page_item page-item-7407"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/hot-big-bang/">Hot Big Bang</a></li>
+			<li class="page_item page-item-7393 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/">Inflation</a>
+			<ul class='children'>
+				<li class="page_item page-item-7840"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/dust-thou-art-bicep2/">Dust Thou Art,&nbsp;BICEP2</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-7505"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/some-definitions-for-cosmology/">Some Definitions for&nbsp;Cosmology</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3681"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/parallax-seeing-in-depth/">Parallax: Seeing in&nbsp;Depth</a></li>
+		<li class="page_item page-item-2698"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/reflections-on-beauty-in-motion/">Reflections on Beauty in&nbsp;Motion</a></li>
+		<li class="page_item page-item-1821"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/the-first-principle-of-relativity/">The First Principle of&nbsp;Relativity</a></li>
+		<li class="page_item page-item-3706"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/transit-of-venus-and-the-distance-to-the-sun/">Transit of Venus and the Distance to the&nbsp;Sun</a></li>
+		<li class="page_item page-item-6167 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/">Why Do Astronauts&nbsp;Float?</a>
+		<ul class='children'>
+			<li class="page_item page-item-6231"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/how-strong-is-gravity-at-the-space-station/">How Strong Is Gravity at the Space&nbsp;Station?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-755 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/">Some Speculative Theoretical Ideas for the&nbsp;LHC</a>
+	<ul class='children'>
+		<li class="page_item page-item-1574 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/">Extra Dimensions</a>
+		<ul class='children'>
+			<li class="page_item page-item-1575 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/">Extra Dimensions &#8211; How to Think About&nbsp;Them</a>
+			<ul class='children'>
+				<li class="page_item page-item-1642"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/dimensions-of-physical-space/">Dimensions of Physical&nbsp;Space</a></li>
+				<li class="page_item page-item-2290"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/what-is-an-extra-dimension-an-example/">What is an &#8220;Extra&#8221; Dimension? Some&nbsp;Examples</a></li>
+				<li class="page_item page-item-1584"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-1-spatial-dimension/">Worlds of 1 Spatial&nbsp;Dimension</a></li>
+				<li class="page_item page-item-1668"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-2-spatial-dimensions/">Worlds of 2 Spatial&nbsp;Dimensions</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2331 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/">How to Look for Signs of Extra&nbsp;Dimensions</a>
+			<ul class='children'>
+				<li class="page_item page-item-3815"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/extra-dimensions-newtons-gravity/">Extra Dimensions &amp; Newton&#8217;s&nbsp;Gravity</a></li>
+				<li class="page_item page-item-3764"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/how-big-could-an-extra-dimension-be/">How Big Could an Extra Dimension&nbsp;Be?</a></li>
+				<li class="page_item page-item-2350"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-1/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;1</a></li>
+				<li class="page_item page-item-2364"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-2/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;2</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-758 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/">Supersymmetry</a>
+		<ul class='children'>
+			<li class="page_item page-item-697 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/">How to Look for Supersymmetry at the&nbsp;LHC</a>
+			<ul class='children'>
+				<li class="page_item page-item-808 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/">When The Standard Assumptions About Supersymmetry are&nbsp;Relaxed</a>
+				<ul class='children'>
+					<li class="page_item page-item-4172"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/test-page/">Test Page</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+			<li class="page_item page-item-660"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-what-is-it/">Supersymmetry &#8212; What Is&nbsp;It?</a></li>
+			<li class="page_item page-item-1399"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-and-multi-lepton-events/">Supersymmetry and Multi-Lepton&nbsp;Events</a></li>
+			<li class="page_item page-item-7017"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-122013/">Where Stands Supersymmetry (as of&nbsp;12/2013)</a></li>
+			<li class="page_item page-item-3411"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-as-of-42012/">Where Stands Supersymmetry (as of&nbsp;4/2012)?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-210 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/">Tevatron News</a>
+	<ul class='children'>
+		<li class="page_item page-item-222"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/a-rare-and-interesting-decay-of-a-b-meson/">A Rare and Interesting Decay of a &#8220;B meson&#8221; &#8211; update&nbsp;2</a></li>
+		<li class="page_item page-item-894"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/apparent-unexpected-asymmetries-in-the-production-of-quarks/">Apparent Unexpected Asymmetries in the Production of&nbsp;Quarks</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-362 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/">The Higgs Particle</a>
+	<ul class='children'>
+		<li class="page_item page-item-3956 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/">Discovery of the&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-4009"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-higgs/">Higgs Discovery: Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4015"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-simplest-higgs/">Higgs Discovery: Is it a Simplest&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4100"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-personal-reflections/">Higgs Discovery: Personal&nbsp;Reflections</a></li>
+			<li class="page_item page-item-3980"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-skill-and-a-little-luck/">Higgs Discovery: Skill and A Little&nbsp;Luck</a></li>
+			<li class="page_item page-item-3958"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-the-data/">Higgs Discovery: The&nbsp;Data</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2198"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/holiday-higgs-hints-confidence-inspiring-or-not/">Holiday Higgs Hints: Confidence-Inspiring or&nbsp;Not?</a></li>
+		<li class="page_item page-item-4265"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/how-the-higgs-field-works/">How The Higgs Field&nbsp;Works</a></li>
+		<li class="page_item page-item-960"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/implications-of-higgs-searches-as-of-92011/">Implications of Higgs Searches (as of&nbsp;9/2011)</a></li>
+		<li class="page_item page-item-7236 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/">Non-Standard Decays of the Observed Higgs&nbsp;Particle</a>
+		<ul class='children'>
+			<li class="page_item page-item-7282"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decay-to-unknown-spin-one-particles/">Higgs Decay to Unknown Spin-One&nbsp;Particles</a></li>
+			<li class="page_item page-item-7218"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decays-to-unknown-spin-zero-particles/">Higgs Decays to Unknown Spin-Zero&nbsp;Particles</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-5394 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/">Taking Stock of the &#8220;Higgs&#8221; (Jan.&nbsp;2013)</a>
+		<ul class='children'>
+			<li class="page_item page-item-5446"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/1-is-it-a-higgs/">1. Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5447"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/2-perhaps-composite/">2. Perhaps Composite?</a></li>
+			<li class="page_item page-item-5448"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/3-a-higgs-of-simplest-type/">3. A Higgs of Simplest&nbsp;Type?</a></li>
+			<li class="page_item page-item-5454"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/4-more-than-one-higgs/">4. More Than One&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5460"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/5-supersymmetry/">5. Supersymmetry?</a></li>
+			<li class="page_item page-item-5494"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/6-surprises/">6. Surprises?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4690"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">The Higgs FAQ&nbsp;2.0</a></li>
+		<li class="page_item page-item-4693 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/">The Old Higgs&nbsp;FAQ</a>
+		<ul class='children'>
+			<li class="page_item page-item-360"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/higgs-faq-1-0/">The Higgs FAQ&nbsp;1.0</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2000 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/">The Standard Model&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-2004"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/decays-of-the-standard-model-higgs/">Decays of the Standard Model&nbsp;Higgs</a></li>
+			<li class="page_item page-item-2509 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/">Lightweight Higgs: A `Sensitive&nbsp;Creature&#8217;</a>
+			<ul class='children'>
+				<li class="page_item page-item-2587 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/">A Quantitative Addendum to the Sensitive&nbsp;Creature</a>
+				<ul class='children'>
+					<li class="page_item page-item-5855 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/">Non-SM h Decays</a>
+					<ul class='children'>
+						<li class="page_item page-item-6041"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/table-of-decays/">Table of Decays</a></li>
+					</ul>
+</li>
+				</ul>
+</li>
+				<li class="page_item page-item-3649"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/decay-to-unusual-jets/">Decay to Unusual&nbsp;Jets</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2002"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/production-of-the-standard-model-higgs-particle/">Production of the Standard Model Higgs&nbsp;Particle</a></li>
+			<li class="page_item page-item-2007"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/seeking-and-studying-the-standard-model-higgs-particle/">Seeking and Studying the Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1932 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/">Why is it Hard to Find the Higgs&nbsp;Particle?</a>
+		<ul class='children'>
+			<li class="page_item page-item-1935"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/a-lightweight-standard-model-higgs-particle/">A Lightweight Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3892 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/">Why the Higgs Particle&nbsp;Matters</a>
+		<ul class='children'>
+			<li class="page_item page-item-3908"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/why-the-higgs-particle-matters-2/">Why the Higgs Particle Matters (Old&nbsp;Version)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-443"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-hints-of-higgs-currently-rest-on-uncertain-ground/">Why The Hints of Higgs Currently Rest on Uncertain&nbsp;Ground</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-291 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/">Thoughts on the Scientific&nbsp;Process</a>
+	<ul class='children'>
+		<li class="page_item page-item-1808"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/scientific-scepticism-isnt-just-politics/">Scientific Scepticism Isn&#8217;t Just&nbsp;Politics</a></li>
+		<li class="page_item page-item-286"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/why-is-the-tevatron-so-busy-with-hints-of-new-physics/">Why is the Tevatron So Busy with Hints of New&nbsp;Physics?</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="page_item page-item-90"><a href="https://profmattstrassler.com/videoclips/">Movie Clips</a></li>
+<li class="page_item page-item-1032"><a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a></li>
+<li class="page_item page-item-1018 page_item_has_children"><a href="https://profmattstrassler.com/technical-zone/">Technical Zone</a>
+<ul class='children'>
+	<li class="page_item page-item-10344"><a href="https://profmattstrassler.com/technical-zone/test-page/">Test Page</a></li>
+</ul>
+</li>
+<li class="page_item page-item-159 page_item_has_children"><a href="https://profmattstrassler.com/xotica/">Xotica</a>
+<ul class='children'>
+	<li class="page_item page-item-2302"><a href="https://profmattstrassler.com/xotica/hurriquake-2011-what-are-the-chances/">Hurriquake 2011: What are the&nbsp;Chances?</a></li>
+	<li class="page_item page-item-5354 page_item_has_children"><a href="https://profmattstrassler.com/xotica/sunrise/">Sunrise</a>
+	<ul class='children'>
+		<li class="page_item page-item-215"><a href="https://profmattstrassler.com/xotica/sunrise/sunrise_old/">Sunrise (older version)</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-2300"><a href="https://profmattstrassler.com/xotica/the-grand-si11iness-of-111111-111111/">The Grand Si11iness of 11/11/11&nbsp;11:11:11</a></li>
+</ul>
+</li>
+</ul></div>
+		</div><!-- #access -->
+
+		<div id="branding">
+						<a href="https://profmattstrassler.com/">
+									<img src="https://profmattstrassler.files.wordpress.com/2011/06/cropped-cerntunnel1.jpg" width="990" height="180" alt="" />
+							</a>
+					</div><!-- #branding -->
+	</div><!-- #header -->
+
+	<div id="content-box">
+
+<div id="content-container">
+	<div id="content" role="main">
+
+		<h1 class="page-title">Category Archives: <span>History of Science</span></h1>
+		
+	<div id="nav-above" class="navigation">
+		<div class="nav-previous"><a href="https://profmattstrassler.com/category/history-of-science/page/2/" ><span class="meta-nav">&larr;</span> Older posts</a></div>
+		<div class="nav-next"></div>
+	</div><!-- #nav-above -->
+
+
+
+
+			<div id="post-10438" class="post-10438 post type-post status-publish format-standard has-post-thumbnail hentry category-history-of-science category-particle-physics category-physics category-quantum-field-theory-2 category-science-and-modern-society category-science-news category-the-scientific-process tag-muon tag-sciencesociety tag-standardmodel">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2021/04/12/physics-is-broken/" rel="bookmark">Physics is Broken!!!</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2021/04/12/physics-is-broken/" title="8:13 AM" rel="bookmark"><span class="entry-date">April 12, 2021</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2021/04/12/physics-is-broken/#comments">26 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				
+<p>Last Thursday, <a href="https://muon-g-2.fnal.gov/">an experiment reported</a> that the magnetic properties of the muon, the electron&#8217;s middleweight cousin, are a tiny bit different from what particle physics equations say they should be.  All around the world, the headlines screamed: <strong>PHYSICS IS BROKEN!!!</strong> And indeed, it&#8217;s been pretty shocking to physicists everywhere. For instance, my equations are working erratically; many of the calculations I tried this weekend came out upside-down or backwards.  Even worse, my stove froze my coffee instead of heating it, I just barely prevented my car from floating out of my garage into the trees, and my desk clock broke and spilled time all over the floor.  What a mess!</p>
+
+
+
+<p>&#8212;</p>
+
+
+
+<p>Broken, eh?  When we say a coffee machine or a computer is broken, it means it doesn&#8217;t work. It&#8217;s unavailable until it&#8217;s fixed.  When a glass is broken, it&#8217;s shattered into pieces.  We need a new one. I know it&#8217;s cute to say that so-and-so&#8217;s video &#8220;broke the internet.&#8221;  But aren&#8217;t we going a little too far now?  Nothing&#8217;s broken about physics; it works just as well today as it did a month ago.</p>
+
+
+
+<p>More reasonable headlines have suggested that &#8220;the laws of physics have been broken&#8221;. That&#8217;s better; I know what it means to break a law.  (Though the metaphor is imperfect, since if I were to break a state law, I&#8217;d be punished, whereas if an object were to break a fundamental law of physics, that law would have to be revised!)  But as is true in the legal system, not all physics laws, and not all violations of law, are equally significant.  </p>
+
+
+
+<p>What&#8217;s a physics law, anyway? Crudely, physics is a strategy for making predictions about the behavior of physical objects, based on a set of equations <em>and</em> a conceptual framework for using those equations.  Sometimes we refer to the equations as laws; sometimes parts of the conceptual framework are referred to that way.  </p>
+
+
+
+<p>But that story has layers.   Physics has an underlying conceptual foundation, which includes the pillar of quantum physics and its view of reality, and the pillar of Einstein&#8217;s relativity and its view of space and time.  (There are other pillars too, such as those of statistical mechanics, but let me not complicate the story now.) That foundation supports many research areas of physics.  Within particle physics itself, these two pillars are combined into a more detailed framework, with concepts and equations that go by the name of &#8220;quantum effective field theory&#8221; (&#8220;QEFT&#8221;).  But QEFT is still very <strong>general</strong>; this framework can describe an enormous number of possible universes, most with completely different particles and forces from the ones we have in our own universe.  We can start making predictions for real-world experiments only when we put the electron, the muon, the photon, and all the other familiar particles and forces into our equations, building up a <strong>specific</strong> example of a QEFT known as &#8220;<a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/">The Standard Model of particle physics</a>.&#8221;  </p>
+
+
+
+<p>All along the way there are equations and rules that you might call &#8220;laws.&#8221;  They too come in layers.  The Standard Model itself, as a specific QEFT, has few high-level laws: there are no principles telling us why quarks exist, why there is one type of photon rather than two, or why the weak nuclear force is so weak.  The few laws it does have are mostly low-level, true of our universe but not essential to it.</p>
+
+
+
+<p>I&#8217;m bringing attention to these layers because an experiment might cause a problem for one layer but not another.   I think you could only fairly suggest that &#8220;physics is broken&#8221; if data were putting a foundational pillar of the entire field into question.  And to say &#8220;the laws of physics have been violated&#8221;, emphasis on the word &#8220;<strong>the</strong>&#8220;, is a bit melodramatic if the only thing that&#8217;s been violated is a low-level, dispensable law.</p>
+
+
+
+<p>&#8212;</p>
+
+
+
+<p>Has physics, as a whole, <strong>ever</strong> broken?  You could argue that Newton&#8217;s 17th century foundation, which underpinned the next two centuries of physics, broke at the turn of the 20th century.   Just after 1900, Newton-style equations had to be replaced by equations of a substantially different type; the ways physicists used the equations changed, and the concepts, the language, and even the goals of physics changed. For instance, in Newtonian physics, you can predict the outcome of any experiment, at least in principle; in post-Newtonian quantum physics, you often can only predict the probability for one or another outcome, even in principle. And in Newtonian physics we all agree what time it is; in Einsteinian physics, different observers experience time differently and there is no universal clock that we all agree on.  These were immense changes in the foundation of the field.</p>
+
+
+
+<p>Conversely, you could also argue that physics didn&#8217;t break; it was just remodeled and expanded.  No one who&#8217;d been studying steam engines or wind erosion or electrical circuit diagrams had to throw out their books and start again from scratch.  In fact this &#8220;broken&#8221; Newtonian physics is still taught in physics classes, and many physicists and engineers never use anything else.  If you&#8217;re studying the physics of weather, or building a bridge, Newtonian physics is just fine. The fact that Newton-style equations are an <strong>incomplete</strong> description of the world &#8212; that there are phenomena they can&#8217;t describe properly &#8212; doesn&#8217;t invalidate them when they&#8217;re applied within their wheelhouse.</p>
+
+
+
+<p>No matter which argument you prefer, it&#8217;s hard to see how to justify the phrase &#8220;physics is broken&#8221; without a profound revolution that overthrows foundational concepts.  It&#8217;s rare for a serious threat to foundations to arise suddenly, because few experiments can single-handedly put fundamental principles at risk.  <em>[The infamous case of the &#8220;faster-than-light neutrinos&#8221; provides an exception.  Had that experiment been correct, it would have invalidated Einstein&#8217;s relativity principles. But few of us were surprised when <a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/">a glaring error turned up</a>.]</em></p>
+
+
+
+<p>&#8212;</p>
+
+
+
+<p>In the Standard Model, the electron, muon and tau particles (known as the &#8220;charged leptons&#8221;) are all identical except for their masses. <em>(More fundamentally, they have different interactions with <a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">the Higgs field</a>, from which their rest masses arise.)</em>  This almost-identity is sometimes stated as a &#8220;principle of lepton universality.&#8221;  <strong><em>Oh, wow, a principle &#8212; a law!</em></strong>  But here&#8217;s the thing.  Some principles are enormously important; the principles of Einsteinian relativity determine how cause and effect work in our universe, and you can&#8217;t drop them without running into big paradoxes.  Other principles are weak, and could easily be discarded without making a mess of any other part of physics.  The principle of lepton universality is one of these.   In fact, if you extend the Standard Model by adding new particles to its equations, it can be difficult to <em>avoid</em> ruining this fragile principle.  <em>[In a sense, the Higgs field has already violated the principle, but we don&#8217;t hold that against it.]</em></p>
+
+
+
+<p>All the fuss is about a new experimental result which confirms an older one and slightly disagrees with the latest theoretical predictions, which are made using the Standard Model&#8217;s equations.  What could be the cause of the discrepancy?  One possibility is that it arises from a previously unknown difference between muons and electrons &#8212; from a violation of the principle of lepton universality.  For those who live and breathe particle physics, breaking lepton universality would be a big deal; there&#8217;d be lots of adventure in trying to figure out which of the many possible extensions of the Standard Model could actually explain what broke this law. That&#8217;s why the scientists involved sound so excited.  </p>
+
+
+
+<p>But the failure of  lepton universality wouldn&#8217;t come as a huge surprise. From certain points of view, the surprise is that the principle has survived this long!  Since this low-level law is easily violated, its demise may not lead us to a profound new understanding of the world. It&#8217;s way too early for <a href="https://www.nytimes.com/2021/04/07/science/particle-physics-muon-fermilab-brookhaven.html">headlines that argue that what&#8217;s at stake is the existence of &#8220;forms of matter and energy vital to the nature and evolution of the cosmos.&#8221;</a> No one can say how much is at stake; it might be a lot, or just a little.</p>
+
+
+
+<p>In particular, there&#8217;s absolutely <em>no</em> evidence that <strong><em>physics</em></strong> is broken, or even that <strong><em>particle physics</em></strong> is broken.  The pillars of physics and QEFT are not (yet) threatened.  Even to say that &#8220;<strong><em>the Standard Model </em></strong>might be broken&#8221; seems a bit melodramatic to me.  Does adding a new wing to a house require &#8220;breaking&#8221; the house? Typically you can still live in the place while it&#8217;s being extended. The Standard Model&#8217;s many successes suggest that it might survive largely intact as a recognizable part of a larger, more complete set of equations.</p>
+
+
+
+<p>In any case, right now it&#8217;s still too early to say <strong>anything</strong> so loudly.  The apparent discrepancy may not survive the heavy scrutiny it is coming under. There&#8217;s <a href="https://www.forbes.com/sites/startswithabang/2021/04/08/why-you-should-doubt-new-physics-from-the-latest-muon-g-2-results/?sh=4443b8616c4b">plenty of controversy</a> about the theoretical prediction for muon magnetism; the required calculation is extraordinarily complex, elaborate and difficult.  </p>
+
+
+
+<p>So, from my perspective, the headlines of the past week are way over the top.  The idea that a single measurement of the muon&#8217;s magnetism could &#8220;<a href="https://www.livescience.com/muon-wobble-could-break-physics.html">shake physics to its core</a>&#8220;, as claimed in another headline I happened upon, is amusing at best.   Physics, and its older subdisciplines, have over time become very difficult to break, or even shake.  That&#8217;s the way it should be, when science is working properly.  And that&#8217;s why we can safely base the modern global economy on scientific knowledge; it&#8217;s unlikely that a single surprise could instantly invalidate large chunks of its foundation.</p>
+
+
+
+<p>Some readers may view the extreme, click-baiting headlines as harmless.  Maybe I&#8217;m overly concerned about them. But don&#8217;t they implicitly suggest that one day we will suddenly find physics &#8220;upended&#8221;, and in need of a complete top-to-bottom overhaul?  To imply physics can &#8220;break&#8221; so easily makes a mockery of science&#8217;s strengths, and obscures the process by which scientific knowledge is obtained.  And how can it be good to claim &#8220;physics is broken&#8221; and &#8220;the laws of physics have been broken&#8221; over and over and over again, in stories that almost never merit that level of hype and eventually turn out to have been much ado about nada?  The constant manufacturing of scientific crisis cannot possibly be lost on readers, who I suspect are becoming increasingly jaded.   At some point readers may become as skeptical of science journalism, and the science it describes, as they are of advertising; <em>it&#8217;s all lies, so <strong>caveat emptor</strong></em>.   That&#8217;s not where we want our society to be.  As we are seeing in spades during the current pandemic, there can be serious consequences when &#8220;<strong>TRUST IN SCIENCE IS BROKEN!!!</strong>&#8221;</p>
+
+
+
+<p>&#8212;</p>
+
+
+
+<p><em>A final footnote: Ironically, the Standard Model itself poses one of the biggest threats to the framework of QEFT. The discovery of the Higgs boson <strong>and nothing else (so far)</strong> at the Large Hadron Collider poses a conceptual challenge &#8212; the <a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/">&#8220;naturalness&#8221; problem</a>. There&#8217;s no sharp paradox, which is why I can&#8217;t promise you that the framework of QEFT will someday break if it isn&#8217;t resolved. But the breakdown of lepton universality might someday <strong>help</strong> solve the naturalness problem, by requiring a more &#8220;natural&#8221; extension of the Standard Model, and thus might actually <strong>save</strong> QEFT instead of &#8220;breaking&#8221; it.</em></p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2021/04/12/physics-is-broken/#comments">26 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/history-of-science/" rel="category tag">History of Science</a>, <a href="https://profmattstrassler.com/category/particle-physics/" rel="category tag">Particle Physics</a>, <a href="https://profmattstrassler.com/category/physics/" rel="category tag">Physics</a>, <a href="https://profmattstrassler.com/category/quantum-field-theory-2/" rel="category tag">Quantum Field Theory</a>, <a href="https://profmattstrassler.com/category/science-and-modern-society/" rel="category tag">Science and Modern Society</a>, <a href="https://profmattstrassler.com/category/science-news/" rel="category tag">Science News</a>, <a href="https://profmattstrassler.com/category/the-scientific-process/" rel="category tag">The Scientific Process</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/muon/" rel="tag">muon</a>, <a href="https://profmattstrassler.com/tag/sciencesociety/" rel="tag">Science&amp;Society</a>, <a href="https://profmattstrassler.com/tag/standardmodel/" rel="tag">StandardModel</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-10236" class="post-10236 post type-post status-publish format-standard hentry category-history-of-science category-lhc-background-info category-lhc-news category-particle-physics category-the-scientific-process tag-cms tag-lhc tag-opendata">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2019/03/19/the-importance-and-challenges-of-open-data-at-the-large-hadron-collider/" rel="bookmark">The Importance and Challenges of &#8220;Open Data&#8221; at the Large Hadron&nbsp;Collider</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2019/03/19/the-importance-and-challenges-of-open-data-at-the-large-hadron-collider/" title="9:35 AM" rel="bookmark"><span class="entry-date">March 19, 2019</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2019/03/19/the-importance-and-challenges-of-open-data-at-the-large-hadron-collider/#comments">25 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p>A little while back I wrote a <a href="https://profmattstrassler.com/2019/02/13/breaking-a-little-new-ground-at-the-large-hadron-collider/">short post</a> about some research that some colleagues and I did using &#8220;open data&#8221; from the <a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/">Large Hadron Collider</a> [LHC]. We used data made public by the <a href="https://home.cern/science/experiments/cms">CMS experimental collaboration</a> &#8212; about 1% of their current data &#8212; to search for a new particle, using a couple of twists (as proposed over 10 years ago) on a standard technique.  (CMS is one of the two general-purpose particle detectors at the LHC; the other is called ATLAS.)  We had two motivations: (1) Even if we didn&#8217;t find a new particle, we wanted to prove that our search method was effective; and (2) we wanted to stress-test the CMS Open Data framework, to assure it really does provide all the information needed for a search for something unknown.</p>
+<p><a href="https://profmattstrassler.com/2019/02/19/a-broad-search-for-fast-hidden-particles/">Recently I discussed</a> (1), and today I want to address (2): to convey why open data from the LHC is useful but controversial, and why we felt it was important, as theoretical physicists <em>(i.e. people who perform particle physics calculations, but do not build and run the actual experiments)</em>, to do something with it that is usually the purview of experimenters.</p>
+<p><strong>The Importance of Archiving Data</strong></p>
+<p>In many subfields of physics and astronomy, data from experiments is made public as a matter of routine. Usually this occurs after an substantial delay, to allow the experimenters who collected the data to analyze it first for major discoveries. That&#8217;s as it should be: the experimenters spent years of their lives proposing, building and testing the experiment, and they deserve an uninterrupted opportunity to investigate its data. To force them to release data immediately would create a terrible disincentive for anyone to do all the hard work!</p>
+<p>Data from particle physics colliders, however, has not historically been made public. More worrying, it has rarely been archived in a form that is easy for others to use at a later date. I&#8217;m not the right person to tell you the history of this situation, but I can give you a sense for why this still happens today. <a href="https://profmattstrassler.com/2019/03/19/the-importance-and-challenges-of-open-data-at-the-large-hadron-collider/#more-10236" class="more-link">Continue reading <span class="meta-nav">&rarr;</span></a></p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2019/03/19/the-importance-and-challenges-of-open-data-at-the-large-hadron-collider/#comments">25 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/history-of-science/" rel="category tag">History of Science</a>, <a href="https://profmattstrassler.com/category/lhc-background-info/" rel="category tag">LHC Background Info</a>, <a href="https://profmattstrassler.com/category/lhc-news/" rel="category tag">LHC News</a>, <a href="https://profmattstrassler.com/category/particle-physics/" rel="category tag">Particle Physics</a>, <a href="https://profmattstrassler.com/category/the-scientific-process/" rel="category tag">The Scientific Process</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/cms/" rel="tag">cms</a>, <a href="https://profmattstrassler.com/tag/lhc/" rel="tag">LHC</a>, <a href="https://profmattstrassler.com/tag/opendata/" rel="tag">OpenData</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-9609" class="post-9609 post type-post status-publish format-standard hentry category-astronomy category-history-of-science tag-astronomy-2 tag-earth tag-eclipse tag-moon tag-space tag-sun">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2017/08/18/an-experience-of-a-lifetime-my-1999-eclipse-adventure/" rel="bookmark">An Experience of a Lifetime: My 1999 Eclipse&nbsp;Adventure</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2017/08/18/an-experience-of-a-lifetime-my-1999-eclipse-adventure/" title="8:30 AM" rel="bookmark"><span class="entry-date">August 18, 2017</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2017/08/18/an-experience-of-a-lifetime-my-1999-eclipse-adventure/#comments">19 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p>Back in 1999 I saw a total solar eclipse in Europe, and it was a life-altering experience.  I wrote about it back then, but was never entirely happy with the article.  This week I&#8217;ve revised it.  It could still benefit from some editing and revision (comments welcome), but I think it&#8217;s now a good read.  It&#8217;s full of intellectual observations, but there are powerful emotions too.</p>
+<p>If you&#8217;re interested, you can <a title="eclipse" href="https://profmattstrassler.files.wordpress.com/2017/08/eclipse1.pdf">read it as a pdf</a>, or just scroll down.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong> A Luminescent Darkness: My 1999 Eclipse Adventure</strong></p>
+<p>© Matt Strassler 1999</p>
+<p>After two years of dreaming, two months of planning, and two hours of packing, I drove to John F. Kennedy airport, took the shuttle to the Air France terminal, and checked in.  I was brimming with excitement. In three days time, with a bit of luck, I would witness one the great spectacles that a human being can experience: a complete, utter and total eclipse of the Sun. <a href="https://profmattstrassler.com/2017/08/18/an-experience-of-a-lifetime-my-1999-eclipse-adventure/#more-9609" class="more-link">Continue reading <span class="meta-nav">&rarr;</span></a></p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2017/08/18/an-experience-of-a-lifetime-my-1999-eclipse-adventure/#comments">19 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/astronomy/" rel="category tag">Astronomy</a>, <a href="https://profmattstrassler.com/category/history-of-science/" rel="category tag">History of Science</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/astronomy-2/" rel="tag">astronomy</a>, <a href="https://profmattstrassler.com/tag/earth/" rel="tag">earth</a>, <a href="https://profmattstrassler.com/tag/eclipse/" rel="tag">eclipse</a>, <a href="https://profmattstrassler.com/tag/moon/" rel="tag">moon</a>, <a href="https://profmattstrassler.com/tag/space/" rel="tag">space</a>, <a href="https://profmattstrassler.com/tag/sun/" rel="tag">sun</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-8681" class="post-8681 post type-post status-publish format-standard hentry category-history-of-science category-lhc-news tag-lhc-higgs-atlas-cms-diphoton">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2016/08/05/the-2016-data-kills-the-two-photon-bump/" rel="bookmark">The 2016 Data Kills The Two-Photon&nbsp;Bump</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2016/08/05/the-2016-data-kills-the-two-photon-bump/" title="1:18 PM" rel="bookmark"><span class="entry-date">August 5, 2016</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2016/08/05/the-2016-data-kills-the-two-photon-bump/#comments">15 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p>Results for <a href="https://profmattstrassler.com/2015/12/18/so-what-is-it/">the bump seen in December</a> have been updated, and indeed, with the new 2016 data &#8212; four times as much as was obtained in 2015 &#8212; neither ATLAS nor CMS [the two general purpose detectors at the Large Hadron Collider] sees an excess where the bump appeared in 2015. Not even a hint, <a href="https://profmattstrassler.com/2016/08/04/a-flash-in-the-pan-flickers-out/">as we already learned inadvertently from CMS yesterday</a>.</p>
+<p>All indications so far are that the bump was a garden-variety statistical fluke, probably <em>(my personal guess! there&#8217;s no evidence!)</em> enhanced slightly by minor imperfections in the 2015 measurements. Should we be surprised? No. If you look back at the history of the 1970s and 1980s, or at the recent past, you&#8217;ll see that it&#8217;s quite common for hints &#8212; even strong hints &#8212; of new phenomena to disappear with more data. This is especially true for hints based on small amounts of data (and there were not many two photon events in the bump &#8212; just a couple of dozen).  There&#8217;s a reason why particle physicists have very high standards for statistical significance before they believe they&#8217;ve seen something real.  <em>(Many other fields, notably medical research, have much lower standards.  Think about that for a while.)</em>  History has useful lessons, if you&#8217;re willing to learn them.</p>
+<p>Back in December 2011, a lot of physicists were persuaded that the data shown by ATLAS and CMS was convincing evidence that the Higgs particle had been discovered. It turned out the data was indeed showing the first hint of the Higgs. But their confidence in what the data was telling them at the time &#8212; what was called &#8220;firm evidence&#8221; by some &#8212; was dead wrong. I took a lot of flack for <a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/holiday-higgs-hints-confidence-inspiring-or-not/">viewing that evidence</a> as a 50-50 proposition (70-30 <a href="https://profmattstrassler.com/2012/05/04/search-workshop-panel-discussion-on-lhc-posted-online/">by March 2012</a>, after more evidence was presented). Yet the December 2015 (<a href="https://profmattstrassler.com/2016/03/18/the-diphoton-excess-improves-a-bit/">March 2016</a>) evidence for the bump at 750 GeV was comparable to what we had in December 2011 for the Higgs. Where&#8217;d it go?  Clearly such a level of evidence is not so firm as people claimed. I, at least, would not have been surprised if that original Higgs hint had vanished, just as I am not surprised now&#8230; though disappointed of course.</p>
+<p>Was this all much ado about nothing? I don&#8217;t think so. There&#8217;s a reason to have fire drills, to run live-fire exercises, to test out emergency management procedures. A lot of new ideas, both in terms of new theories of nature and new approaches to making experimental measurements, were generated by thinking about this bump in the night. The hope for a quick 2016 discovery may be gone, but what we learned will stick around, and make us better at what we do.</p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2016/08/05/the-2016-data-kills-the-two-photon-bump/#comments">15 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/history-of-science/" rel="category tag">History of Science</a>, <a href="https://profmattstrassler.com/category/lhc-news/" rel="category tag">LHC News</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/lhc-higgs-atlas-cms-diphoton/" rel="tag">#LHC #Higgs #ATLAS #CMS #diphoton</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-7963" class="post-7963 post type-post status-publish format-standard hentry category-history-of-science category-public-outreach tag-einstein tag-publicoutreach tag-relativity">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2015/04/16/science-festival-about-to-start-in-cambridge-ma/" rel="bookmark">Science Festival About to Start in Cambridge,&nbsp;MA</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2015/04/16/science-festival-about-to-start-in-cambridge-ma/" title="8:48 AM" rel="bookmark"><span class="entry-date">April 16, 2015</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2015/04/16/science-festival-about-to-start-in-cambridge-ma/#comments">7 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p>It&#8217;s a busy time here in Cambridge, Massachusetts, as the US&#8217;s oldest urban Science Festival opens tomorrow for its 2015 edition.  It has been 100 years since Einstein wrote his equations for gravity, known as his Theory of General Relativity, and so this year a significant part of the festival involves <a href="http://www.cambridgesciencefestival.org/2015Festival/CelebratingEinstein.aspx">Celebrating Einstein</a>.  The festival kicks off tomorrow with <a href="http://www.cambridgesciencefestival.org/2015Festival/CelebratingEinstein.aspx#Einstein">a panel discussion of Einstein and his legacy</a> near Harvard University &#8212; and I hope some of you can go!   Here are more details:</p>
+<p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-</p>
+<p>First Parish in Cambridge, 1446 Massachusetts Avenue, Harvard Square, Cambridge<br />
+Friday, April 17; 7:30pm-9:30pm</p>
+<p>Officially kicking off the Cambridge Science Festival, four influential physicists will sit down to discuss how Einstein&#8217;s work shaped the world we live in today and where his influence will continue to push the frontiers of science in the future!</p>
+<p>Our esteemed panelists include:<br />
+<a href="https://www.physics.harvard.edu/people/facpages/randall" target="_blank"><strong>Lisa Randall</strong></a> | Professor of Physics, Harvard University<br />
+<a href="http://www.astro.yale.edu/priya/" target="_blank"><strong>Priyamvada Natarajan</strong></a> | Professor of Astronomy &amp; Physics, Yale University<br />
+<a href="http://www.phys.ufl.edu/~cmw/" target="_blank"><strong>Clifford Will</strong></a> | Professor of Physics, University of Florida<br />
+<a href="https://www.physics.harvard.edu/people/facpages/galison" target="_blank"><strong>Peter Galison</strong></a> | Professor of History of Science, Harvard University<br />
+<a href="http://web.mit.edu/dikaiser/www/" target="_blank"><strong>David Kaiser</strong></a> | Professor of the History of Science, MIT</p>
+<p>Cost: $10 per person, $5 per student, Tickets available now at <a href="https://speakingofeinstein.eventbrite.com/" target="_blank">https://speakingofeinstein.eventbrite.com</a></p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2015/04/16/science-festival-about-to-start-in-cambridge-ma/#comments">7 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/history-of-science/" rel="category tag">History of Science</a>, <a href="https://profmattstrassler.com/category/public-outreach/" rel="category tag">Public Outreach</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/einstein/" rel="tag">Einstein</a>, <a href="https://profmattstrassler.com/tag/publicoutreach/" rel="tag">PublicOutreach</a>, <a href="https://profmattstrassler.com/tag/relativity/" rel="tag">relativity</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-7635" class="post-7635 post type-post status-publish format-standard hentry category-higgs category-history-of-science category-lhc-news category-particle-physics category-science-and-modern-society tag-doingscience tag-higgs tag-lhc">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2014/05/06/in-memoriam-gerry-guralnik/" rel="bookmark">In Memoriam: Gerry&nbsp;Guralnik</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2014/05/06/in-memoriam-gerry-guralnik/" title="8:43 AM" rel="bookmark"><span class="entry-date">May 6, 2014</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2014/05/06/in-memoriam-gerry-guralnik/#comments">22 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p>For those who haven&#8217;t heard: Professor Gerry Guralnik died. <a href="http://www.nytimes.com/2014/05/04/us/gerald-guralnik-77-a-god-particle-pioneer-dies.html" target="_blank">Here&#8217;s the New York Times obituary</a>, which contains a few physics imperfections (though the most serious mistake in an earlier version was corrected, thankfully), but hopefully avoids any errors about Guralnik&#8217;s life.  Here&#8217;s <a href="http://news.brown.edu/pressreleases/2014/04/guralnik" target="_blank">another press release</a>, from Brown University.</p>
+<p>Guralnik, with Tom Kibble and Carl Hagen, wrote one of <a title="The Twists and Turns of Hi(gg)story" href="https://profmattstrassler.com/2013/10/08/the-twists-and-turns-of-higgstory/" target="_blank">the four 1964 papers</a> which represent the birth of the idea of the <a title="The Higgs FAQ 2.0" href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/" target="_blank">&#8220;Higgs&#8221; field</a>, now understood as the source of mass for <a title="The Known (Apparently-) Elementary Particles" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/" target="_blank">the known elementary particles</a> &#8212; an idea that was confirmed by <a title="Discovery of the Higgs" href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/" target="_blank">the discovery of a type of &#8220;Higgs&#8221; particle in 2012</a> at the Large Hadron Collider.  <em>(I find it sad that the obituary is sullied with a headline that contains the words &#8220;God Particle&#8221; &#8212; a term that no physicist involved in the relevant research ever used, and which was invented in the 1990s, not as science or even as religion, but for $$$&#8230; by someone who was trying <a href="http://www.amazon.com/The-God-Particle-Universe-Question/dp/0618711686" target="_blank">to sell his book</a>.)</em> The other three papers &#8212; the first by Robert Brout and Francois Englert, and the second and third by Peter Higgs, were rewarded with <a title="The Twists and Turns of Hi(gg)story" href="https://profmattstrassler.com/2013/10/08/the-twists-and-turns-of-higgstory/" target="_blank">a Nobel Prize in 2013</a>; it was <a href="http://www.nobelprize.org/nobel_prizes/physics/laureates/2013/" target="_blank">given just to Englert and Higgs</a>, Brout having died too early, in 2011.  Though Guralnik, Hagen and Kibble won many other prizes, they were not awarded a Nobel for their work, a decision that will remain forever controversial.</p>
+<p>But at least Guralnik lived long enough to learn, as Brout sadly did not, that his ideas were realized in nature, and to see <a title="Higgs Discovery: The Data" href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-the-data/" target="_blank">the consequences of these ideas in real data</a>. In the end, that&#8217;s the real prize, and one that no human can award.</p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2014/05/06/in-memoriam-gerry-guralnik/#comments">22 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/tag/higgs/" rel="category tag">Higgs</a>, <a href="https://profmattstrassler.com/category/history-of-science/" rel="category tag">History of Science</a>, <a href="https://profmattstrassler.com/category/lhc-news/" rel="category tag">LHC News</a>, <a href="https://profmattstrassler.com/category/particle-physics/" rel="category tag">Particle Physics</a>, <a href="https://profmattstrassler.com/category/science-and-modern-society/" rel="category tag">Science and Modern Society</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/doingscience/" rel="tag">DoingScience</a>, <a href="https://profmattstrassler.com/tag/higgs/" rel="tag">Higgs</a>, <a href="https://profmattstrassler.com/tag/lhc/" rel="tag">LHC</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-7352" class="post-7352 post type-post status-publish format-standard hentry category-higgs category-history-of-science category-lhc-background-info category-other-collider-news category-particle-physics category-quantum-field-theory-2 category-the-scientific-process tag-einstein tag-energy tag-extradimensions tag-gravity tag-higgs tag-lhc tag-particle-physics-2 tag-relativity">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2014/03/07/what-if-the-large-hadron-collider-finds-nothing-else/" rel="bookmark">What if the Large Hadron Collider Finds Nothing&nbsp;Else?</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2014/03/07/what-if-the-large-hadron-collider-finds-nothing-else/" title="8:40 AM" rel="bookmark"><span class="entry-date">March 7, 2014</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2014/03/07/what-if-the-large-hadron-collider-finds-nothing-else/#comments">83 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p>In <a title="A 100 TeV Proton-Proton Collider?" href="https://profmattstrassler.com/2014/03/03/a-100-tev-proton-proton-collider/">my last post</a>, I expressed the view that a particle accelerator with <a title="What’s a Proton, Anyway?" href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/" target="_blank">proton</a>-proton collisions of (roughly) 100 <a title="GeV and TeV" href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-gev-and-tev/" target="_blank">TeV</a> of energy, significantly more powerful than the currently operational <a title="Introduction to the LHC" href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/introduction-to-the-large-hadron-collider/" target="_blank">Large Hadron Collider</a> [LHC] that helped scientists <a title="Discovery of the Higgs" href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/" target="_blank">discover</a> the <a title="The Higgs FAQ 2.0" href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/" target="_blank">Higgs particle</a>, is an obvious and important next steps in our process of learning about the elementary workings of nature. And I described how we don&#8217;t yet know whether it will be an exploratory machine or a machine with a clear scientific target; it will depend on what the LHC does or does not discover over the coming few years.</p>
+<p>What will it mean, for the 100 TeV collider project and more generally, if the LHC, having made possible the discovery of the Higgs particle, provides us with no more clues?  Specifically, over the next few years, hundreds of tests of the Standard Model (the equations that govern <a title="The Known (Apparently-) Elementary Particles" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/" target="_blank">the known particles and forces</a>) will be carried out in measurements made by the ATLAS, CMS and LHCb experiments at the LHC. Suppose that, as it has so far, the Standard Model passes every test that the experiments carry out? In particular, suppose the Higgs particle discovered in 2012 appears, after a few more years of intensive study, to be, as far the LHC can reveal, a <a title="The Standard Model Higgs" href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/" target="_blank">Standard Model Higgs</a> &#8212; the simplest possible type of Higgs particle?</p>
+<p>Before we go any further, let&#8217;s keep in mind that we already know that the Standard Model isn&#8217;t all there is to nature. The Standard Model does not provide a consistent theory of gravity, nor does it explain <a title="Neutrinos" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/" target="_blank">neutrino</a> masses, <a title="Questions and Answers About Dark Matter post-LUX" href="https://profmattstrassler.com/2013/10/31/questions-and-answers-about-dark-matter-post-lux/" target="_blank">dark matter</a> or &#8220;dark energy&#8221; (also known as <a title="Why You Can’t Easily Dismiss the Cosmological Constant Problem" href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/" target="_blank">the cosmological constant</a>). Moreover, many of its features are just things we have to accept without explanation, such as the strengths of the forces, the existence of &#8220;three generations&#8221; (i.e., that <a title="The Known (Apparently-) Elementary Particles" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/" target="_blank">there are two heavier cousins of the electron, two for the up quark and two for the down quark</a>), the values of the masses of the various particles, etc. However, even though the Standard Model has its limitations, it is possible that everything that can actually be measured at the LHC &#8212; which cannot measure neutrino masses or directly observe dark matter or dark energy &#8212; will be well-described by the Standard Model. What if this is the case?</p>
+<p><strong>Michelson and Morley, and What They Discovered</strong></p>
+<p>In science, giving strong evidence that something <strong>isn&#8217;t</strong> there can be as important as discovering something that <strong>is</strong> there &#8212; and it&#8217;s often harder to do, because you have to thoroughly exclude all possibilities. <em>[It&#8217;s very hard to show that your lost keys are <strong>nowhere</strong> in the house &#8212; you have to convince yourself that you looked <strong>everywhere</strong>.]</em> A famous example is the case of <a href="http://www.nobelprize.org/nobel_prizes/physics/laureates/1907/michelson-bio.html" target="_blank">Albert Michelson</a>, in his two experiments (one in 1881, a second with <a href="http://en.wikipedia.org/wiki/Edward_Morley" target="_blank">Edward Morley</a> in 1887) trying to detect the &#8220;ether wind&#8221;.</p>
+<p>Light had been shown to be a wave in the 1800s; and like all waves known at the time, it was assumed to be a wave <strong>in</strong> something material, just as sound waves are waves <strong>in</strong> air, and ocean waves are waves <strong>in</strong> water. This material was termed the &#8220;luminiferous ether&#8221;. As we can detect our motion through air or through water in various ways, it seemed that it should be possible to detect our motion through the ether, specifically by looking for the possibility that light traveling in different directions travels at slightly different speeds.  This is what Michelson and Morley were trying to do: detect the movement of the Earth through the luminiferous ether.</p>
+<p>Both of Michelson&#8217;s measurements failed to detect any ether wind, and did so expertly and convincingly. And for the convincing method that he invented &#8212; an experimental device called an interferometer, which had many other uses too &#8212; <a href="http://www.nobelprize.org/nobel_prizes/physics/laureates/1907/press.html" target="_blank">Michelson won the Nobel Prize in 1907</a>. Meanwhile the failure to detect the ether drove both <a href="http://philsci-archive.pitt.edu/987/1/Michelson.pdf" target="_blank">FitzGerald and Lorentz to consider radical new ideas about how matter might be deformed</a> as it moves through the ether. Although these ideas weren&#8217;t right, they were important steps that Einstein was able to re-purpose, even more radically, in his 1905 equations of special relativity.</p>
+<p>In Michelson&#8217;s case, <strong><em>the failure to discover the ether was itself a discovery</em></strong>, recognized only in retrospect: a discovery that the ether did not exist. <em>(Or, if you&#8217;d like to say that it <strong>does</strong> exist, which some people do, then what was discovered is that the ether is utterly unlike any normal material substance in which waves are observed; no matter how fast or in what direction you are moving relative to me, <strong>both of us are at rest</strong> relative to the ether.)</em> So one must not be too quick to assume that a lack of discovery is actually a step backwards; it may actually be a huge step forward.</p>
+<p><strong>Epicycles or a Revolution?</strong></p>
+<p>There were various attempts to make sense of Michelson and Morley&#8217;s experiment.   Some interpretations involved  tweaks of the notion of the ether.  Tweaks of this type, in which some original idea (here, the ether) is retained, but adjusted somehow to explain the data, are often referred to as &#8220;epicycles&#8221; by scientists.   <em>(This is analogous to the way <a href="http://en.wikipedia.org/wiki/Deferent_and_epicycle" target="_blank">an epicycle was used by Ptolemy to explain the complex motions of the planets in the sky</a>, in order to retain an earth-centered universe; the sun-centered solar system requires no such epicycles.)</em> A tweak of this sort <strong><em>could</em></strong> have been the right direction to explain Michelson and Morley&#8217;s data, but as it turned out, it was not. Instead, the non-detection of the ether wind required something more dramatic &#8212; for it turned out that waves of light, though at first glance very similar to other types of waves, were in fact extraordinarily different. <em><strong>There simply was no ether wind for Michelson and Morley to detect</strong></em>.</p>
+<p>If the LHC discovers nothing beyond the Standard Model, we will face what I see as a similar mystery.  <a title="Naturalness and the Standard Model" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/" target="_blank">As I explained here</a>, the Standard Model, with no other particles added to it, is a consistent but extraordinarily <em>&#8220;unnatural&#8221;</em> (i.e. extremely non-generic) example of <a title="Quantum Field Theory, String Theory, and Predictions (Part 2)" href="https://profmattstrassler.com/2013/09/24/quantum-field-theory-string-theory-and-predictions-part-2/" target="_blank">a quantum field theory</a>.  This is a big deal. Just as nineteenth-century physicists deeply understood both the <em>theory</em> of waves and many specific <em>examples of waves in nature </em> and had excellent reasons to expect a detectable ether, twenty-first century physicists understand quantum field theory and naturalness both from the theoretical point of view <strong>and</strong> from many examples in nature, and have very good reasons to expect particle physics to be described by a natural theory.  (Our examples come both from condensed matter physics [e.g. metals, magnets, fluids, etc.] and from particle physics [e.g. the physics of <a title="What’s a Hadron?" href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-hadron-as-in-large-hadron-collider/" target="_blank">hadrons</a>].) Extremely <strong><em>unnatural</em></strong> systems &#8212; that is, physical systems described by quantum field theories that are <strong><em>highly non-generic</em></strong> &#8212; simply have not previously turned up in nature&#8230; which is just as we would expect from our theoretical understanding.</p>
+<p><em>[Experts: As I emphasized in <a href="http://online.kitp.ucsb.edu/online/joefest_c14/" target="_blank">my Santa Barbara talk last week</a>, appealing to anthropic arguments about the hierarchy between gravity and the other forces does <strong>not</strong> allow you to escape from the naturalness problem.]</em></p>
+<p>So what might it mean if an unnatural quantum field theory describes all of the measurements at the LHC? It may mean that our understanding of particle physics requires an epicyclic change &#8212; a <em>tweak</em>.  The implications of a tweak would potentially be minor. A tweak might only require us to keep doing what we&#8217;re doing, exploring in the same direction but a little further, working a little harder &#8212; i.e. to keep colliding protons together, but go up in collision energy a bit more, from the LHC to the 100 TeV collider. For instance, perhaps the Standard Model is supplemented by additional particles that, rather than having masses that put them within reach of the LHC, as would inevitably be the case in a <em><strong>natural</strong></em> extension of the Standard Model (here&#8217;s <a title="Supersymmetry — What Is It?" href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-what-is-it/" target="_blank">an example</a>), are just <em>a little bit</em> heavier than expected. In this case the world would be <em>somewhat</em> unnatural, but not too much, perhaps through some relatively minor accident of nature; and a 100 TeV collider would have enough energy per collision to discover and reveal the nature of these particles.</p>
+<p>Or perhaps a tweak is entirely the wrong idea, and instead our understanding is fundamentally amiss. Perhaps another Einstein will be needed to radically reshape the way we think about what we know.  A<span style="font-size:14px;color:#444444;line-height:1.7;"> dramatic rethink is both more exciting and more disturbing. It was an intellectual challenge for 19th century physicists to imagine, from the result of the Michelson-Morley experiment, that key clues to its explanation would be found in seeking violations of Newton&#8217;s equations for <a title="How Did Einstein Do It?" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/how-did-einstein-do-it/" target="_blank">how energy and momentum depend on velocity</a>. (The first experiments on this issue were carried out in 1901, but definitive experiments took another 15 years.) It was an even greater challenge to envision that the <a href="http://www-groups.dcs.st-and.ac.uk/~history/Biographies/Le_Verrier.html" target="_blank">already-known unexplained shift in the orbit of Mercury</a> would also be related to the Michelson-Morley (non)-discovery, as Einstein, in trying to adjust Newton&#8217;s gravity to make it consistent with the theory of special relativity, showed in 1913. </span></p>
+<p><span style="font-size:14px;color:#444444;line-height:1.7;">My point is that the experiments that were needed to properly interpret Michelson-Morley&#8217;s result</span></p>
+<ul>
+<li>did not involve trying to detect motion through the ether,</li>
+<li>did not involve building even more powerful and accurate interferometers,</li>
+<li>and were not immediately obvious to the practitioners in 1888.</li>
+</ul>
+<p>This should give us pause. We might, if we continue as we are, be heading in the wrong direction.</p>
+<p>Difficult as it is to do, we have to take seriously the possibility that <strong>if</strong> (and remember this is still <em><strong>a very big &#8220;if&#8221;</strong></em>) the LHC finds only what is predicted by the Standard Model, the reason may involve a significant reorganization of our knowledge, perhaps even as great as relativity&#8217;s re-making of our concepts of space and time. Were that the case, it is possible that higher-energy colliders would tell us nothing, and give us no clues at all. An exploratory 100 TeV collider is not guaranteed to reveal secrets of nature, any more than a better version of Michelson-Morley&#8217;s interferometer would have been guaranteed to do so. It may be that a completely different direction of exploration, including directions that currently would seem silly or pointless, will be necessary.</p>
+<p>This is not to say that a 100 TeV collider isn&#8217;t needed!  It <em>might</em> be that all we need is a tweak of our current understanding, and then such a machine <em>is</em> exactly what we need, and will be the only way to resolve the current mysteries.  Or it might be that the 100 TeV machine is just what we need to learn something revolutionary.  But we also need to be looking for other lines of investigation, perhaps ones that today would sound unrelated to particle physics, or even unrelated to any known fundamental question about nature.</p>
+<p>Let me provide one example from recent history &#8212; one which did not lead to a discovery, but still illustrates that this is not all about 19th century history.</p>
+<p><strong>An Example</strong></p>
+<p>One of the great contributions to science of Nima Arkani-Hamed, Savas Dimopoulos and Gia Dvali was to observe <em>(in <a href="http://arxiv.org/abs/hep-ph/9803315" target="_blank">a 1998 paper</a> I&#8217;ll refer to as ADD, after the authors&#8217; initials)</em> that no one had ever excluded the possibility that we, and all the particles from which we&#8217;re made, can move around freely in three spatial dimensions, but are stuck (as it were) as though to the corner edge of a thin rod &#8212; a rod as much as one millimeter wide, into which only gravitational fields (but not, for example, electric fields or magnetic fields) may penetrate.  Moreover, they emphasized that the presence of these extra dimensions might explain why gravity is so much weaker than the other known forces.</p>
+<p><div data-shortcode="caption" id="attachment_7354" style="width: 510px" class="wp-caption aligncenter"><a href="https://profmattstrassler.files.wordpress.com/2014/03/addspace.png"><img loading="lazy" aria-describedby="caption-attachment-7354" data-attachment-id="7354" data-permalink="https://profmattstrassler.com/2014/03/07/what-if-the-large-hadron-collider-finds-nothing-else/addspace/" data-orig-file="https://profmattstrassler.files.wordpress.com/2014/03/addspace.png" data-orig-size="1176,451" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="ADDSpace" data-image-description="" data-image-caption="&lt;p&gt;Fig. 1: ADD&#8217;s paper pointed out that no experiment as of 1998 could yet rule out the possibility that our familiar three dimensional world is a corner of a five-dimensional world, where the two extra dimensions are finite but perhaps as large as a millimeter.   &lt;/p&gt;
+" data-medium-file="https://profmattstrassler.files.wordpress.com/2014/03/addspace.png?w=300" data-large-file="https://profmattstrassler.files.wordpress.com/2014/03/addspace.png?w=500" class="size-large wp-image-7354" alt="Fig. 1: ADD's paper pointed out that no experiment as of 1998 could yet rule out the possibility that our familiar three dimensional world is a corner of a five-dimensional world, where the two extra dimensions are finite but perhaps as large as a millimeter.   " src="https://profmattstrassler.files.wordpress.com/2014/03/addspace.png?w=500" width="500" height="191" srcset="https://profmattstrassler.files.wordpress.com/2014/03/addspace.png?w=498 498w, https://profmattstrassler.files.wordpress.com/2014/03/addspace.png?w=996 996w, https://profmattstrassler.files.wordpress.com/2014/03/addspace.png?w=150 150w, https://profmattstrassler.files.wordpress.com/2014/03/addspace.png?w=300 300w, https://profmattstrassler.files.wordpress.com/2014/03/addspace.png?w=768 768w" sizes="(max-width: 500px) 100vw, 500px" /></a><p id="caption-attachment-7354" class="wp-caption-text">Fig. 1: ADD&#8217;s paper pointed out that no experiment as of 1998 could yet rule out the possibility that our familiar three-dimensional world is a corner of a five-dimensional world, where the two extra dimensions are finite but perhaps as large as a millimeter.</p></div></p>
+<p>Given the incredible number of experiments over the past two centuries that have probed distances vastly smaller than a millimeter, the claim that there could exist millimeter-sized unknown dimensions was amazing, and came as a tremendous shock &#8212; certainly to me. At first, I simply didn&#8217;t believe that the ADD paper could be right.  But it was.</p>
+<p>One of the most important immediate effects of the ADD paper was to generate a strong motivation for a new class of experiments that could be done, rather inexpensively, on the top of a table. If the world were as they imagined it might be, then Newton&#8217;s (and Einstein&#8217;s) law for gravity, which states that the force between two stationary objects depends on the distance r between them as 1/r², would increase faster than this at distances shorter than the width of the rod in Figure 1.  This is illustrated in Figure 2.</p>
+<p><div data-shortcode="caption" id="attachment_7353" style="width: 360px" class="wp-caption aligncenter"><a href="https://profmattstrassler.files.wordpress.com/2014/03/addgravitytest.png"><img loading="lazy" aria-describedby="caption-attachment-7353" data-attachment-id="7353" data-permalink="https://profmattstrassler.com/2014/03/07/what-if-the-large-hadron-collider-finds-nothing-else/addgravitytest/" data-orig-file="https://profmattstrassler.files.wordpress.com/2014/03/addgravitytest.png" data-orig-size="563,399" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="ADDGravityTest" data-image-description="" data-image-caption="&lt;p&gt;Fig. 2: If the world were as sketched in Figure 1, then Newton/Einstein&#8217;s law of gravity would be violated at distances shorter than the width of the rod in Figure 1.  The blue line shows Newton/Einstein&#8217;s prediction; the red line shows what a universe like that in Figure 1 would predict instead.  Experiments done in the last few years agree with the blue curve down to a small fraction of a millimeter.&lt;/p&gt;
+" data-medium-file="https://profmattstrassler.files.wordpress.com/2014/03/addgravitytest.png?w=300" data-large-file="https://profmattstrassler.files.wordpress.com/2014/03/addgravitytest.png?w=500" class=" wp-image-7353 " alt="Fig. 2: If the world were as sketched in Figure 1, then Newton/Einstein's law of gravity would be violated at distances shorter than the width of the rod in Figure 1.  The blue line shows Newton/Einstein's prediction; the red line shows what a universe like that in Figure 1 would predict instead.  Experiments done in the last few years agree with the blue curve down to a small fraction of a millimeter." src="https://profmattstrassler.files.wordpress.com/2014/03/addgravitytest.png?w=500" width="350" height="248" srcset="https://profmattstrassler.files.wordpress.com/2014/03/addgravitytest.png?w=350 350w, https://profmattstrassler.files.wordpress.com/2014/03/addgravitytest.png?w=150 150w, https://profmattstrassler.files.wordpress.com/2014/03/addgravitytest.png?w=300 300w, https://profmattstrassler.files.wordpress.com/2014/03/addgravitytest.png 563w" sizes="(max-width: 350px) 100vw, 350px" /></a><p id="caption-attachment-7353" class="wp-caption-text">Fig. 2: If the world were as sketched in Figure 1, then Newton/Einstein&#8217;s law of gravity would be violated at distances shorter than the width of the rod in Figure 1. The blue line shows Newton/Einstein&#8217;s prediction; the red line shows what a universe like that in Figure 1 would predict instead. Experiments done in the last few years agree with the blue curve down to a small fraction of a millimeter.</p></div></p>
+<p>These experiments are not easy &#8212; gravity is very, very weak compared to electrical forces, and lots of electrical effects can show up at very short distances and have to be cleverly avoided. But some of the best experimentalists in the world figured out how to do it (see <a href="http://www.npl.washington.edu/eotwash/sr" target="_blank">here</a> and <a href="http://www.stanford.edu/~aharonk/gravity.html" target="_blank">here</a>). After the experiments were done, Newton/Einstein&#8217;s law was verified down to a few hundredths of a millimeter.  If we live on the corner of a rod, as in Figure 1, it&#8217;s much, much smaller than a millimeter in width.</p>
+<p>But it <strong><em>could</em></strong> have been true. And if it had, it might not have been discovered by a huge particle accelerator. It might have been discovered in these small inexpensive experiments <em>that could have been performed years earlier</em>. The experiments weren&#8217;t carried out earlier<span style="color:#333333;"> mainly because no one had pointed out quite how important they could be.</span></p>
+<p><strong>Ok Fine; What Other Experiments Should We Do?</strong></p>
+<p><span style="font-size:14px;color:#444444;line-height:1.7;">So what are the non-obvious experiments we should be doing now or in the near future?  Well, if I had a really good suggestion for a new class of experiments, I would tell you &#8212; or rather, I would write about it in a scientific paper. (Actually, I <em>do</em> know of <a title="Unexpected Decays of the Higgs Particle: What We Found" href="https://profmattstrassler.com/2014/02/11/non-standard-model-higgs-particle-decays-what-we-found/">an important class of measurements</a>, and I <em>have</em> written <a href="http://arxiv.org/abs/1312.4992" target="_blank">a scientific paper</a> about them; but these are measurements to be done at the LHC, and don&#8217;t involve a entirely new experiment.)  Although I&#8217;m thinking about these things, I do not yet have any good ideas.  Until I do, or someone else does, this is all just <strong><em>talk</em></strong> &#8212; and talk does not impress physicists. </span></p>
+<p><span style="font-size:14px;color:#444444;line-height:1.7;">Indeed, you might object that my remarks in this post have been almost without content, and possibly without merit.  I agree with that objection.</span></p>
+<p>Still, I have some reasons for making these points. In part, I want to highlight, for a wide audience, the possible historic importance of what might now be happening in particle physics. And I especially want to draw the attention of young people. There have been experts in my field who have written that non-discoveries at the LHC constitute a &#8220;nightmare scenario&#8221; for particle physics&#8230; that there might be nothing for particle physicists to do for a long time. But I want to point out that on the contrary, not only may it not be a nightmare, it might actually represent an extraordinary opportunity. Not discovering the ether opened people&#8217;s minds, and eventually opened the door for Einstein to walk through. And if the LHC shows us that particle physics is not described by a natural quantum field theory, it may, similarly, open the door for a young person to show us that our understanding of quantum field theory and naturalness, while as intelligent and sensible and precise as the 19th century understanding of waves, does not apply unaltered to particle physics, and must be significantly revised.</p>
+<p>Of course the LHC is still a young machine, and it may still permit additional major discoveries, rendering everything I&#8217;ve said here moot. But young people entering the field, or soon to enter it, should not assume that the experts necessarily understand where the field&#8217;s future lies. Like FitzGerald and Lorentz, even the most brilliant and creative among us might be suffering from our own hard-won and well-established assumptions, and we might soon need the vision of a brilliant young genius &#8212; perhaps a theorist with a clever set of equations, or perhaps an experimentalist with a clever new question and a clever measurement to answer it &#8212; to set us straight, and put us onto the right path.</p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2014/03/07/what-if-the-large-hadron-collider-finds-nothing-else/#comments">83 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/tag/higgs/" rel="category tag">Higgs</a>, <a href="https://profmattstrassler.com/category/history-of-science/" rel="category tag">History of Science</a>, <a href="https://profmattstrassler.com/category/lhc-background-info/" rel="category tag">LHC Background Info</a>, <a href="https://profmattstrassler.com/category/other-collider-news/" rel="category tag">Other Collider News</a>, <a href="https://profmattstrassler.com/category/particle-physics/" rel="category tag">Particle Physics</a>, <a href="https://profmattstrassler.com/category/quantum-field-theory-2/" rel="category tag">Quantum Field Theory</a>, <a href="https://profmattstrassler.com/category/the-scientific-process/" rel="category tag">The Scientific Process</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/einstein/" rel="tag">Einstein</a>, <a href="https://profmattstrassler.com/tag/energy/" rel="tag">energy</a>, <a href="https://profmattstrassler.com/tag/extradimensions/" rel="tag">ExtraDimensions</a>, <a href="https://profmattstrassler.com/tag/gravity/" rel="tag">gravity</a>, <a href="https://profmattstrassler.com/tag/higgs/" rel="tag">Higgs</a>, <a href="https://profmattstrassler.com/tag/lhc/" rel="tag">LHC</a>, <a href="https://profmattstrassler.com/tag/particle-physics-2/" rel="tag">particle physics</a>, <a href="https://profmattstrassler.com/tag/relativity/" rel="tag">relativity</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-7152" class="post-7152 post type-post status-publish format-standard hentry category-astronomy category-history-of-science category-particle-physics tag-astronomy-2 tag-fermions tag-galileo tag-particle-physics-2 tag-particles">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2014/01/28/galileos-winter/" rel="bookmark">Galileo&#8217;s Winter</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2014/01/28/galileos-winter/" title="8:41 AM" rel="bookmark"><span class="entry-date">January 28, 2014</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2014/01/28/galileos-winter/#comments">13 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p>While the eastern half of the United States is having a cold winter so far, the same has not been true in Italy. The days I spent <a title="Teaching at a “Winter School”" href="https://profmattstrassler.com/2014/01/15/teaching-at-a-winter-school/">teaching in Florence</a> (Firenze), at the <a href="http://ggi-www.fi.infn.it/index.php?p=home.inc" target="_blank">Galileo Galilei Institute</a> (GGI), were somewhat warmer than is apparently the usual, with even low temperatures far above freezing <a title="Moon and Jupiter Galileo-Style, ***This Evening***" href="https://profmattstrassler.com/2014/01/15/moon-and-jupiter-galileo-style-this-evening/" target="_blank">almost every night</a>. A couple of people there said to me that they &#8220;hadn&#8217;t seen any winter yet&#8221;. So I was amused to read, on U.S. news websites, yet more reports of Americans uselessly debating the climate change issue &#8212; as though either the recent cold in the eastern U.S. or the recent warmth in Europe can tell us anything relevant to that discussion. (<a title="Polar Vortex, Climate Change, Red Herring?" href="https://profmattstrassler.com/2014/01/13/polar-vortex-climate-change-red-herring/" target="_blank">Here&#8217;s why it can&#8217;t.</a>) It does seem to be widely forgotten in the United States that our country occupies only about 2% percent of the area of the Earth.</p>
+<p>Of course the warmer Italian weather made my visit more pleasant, especially since the GGI is 20 minutes up a long hill &#8212; the Arcetri hill, of particular significance in scientific history. <em>[I am grateful to the GGI, and the scientist- organizers <a href="http://webtheory.sns.it/ggilectures/" target="_blank">of the school at which I taught</a>, especially <a href="http://inspirehep.net/search?ln=en&amp;p=a+de+curtis%2C+s&amp;of=hb&amp;action_search=Search" target="_blank">Stefania de Curtis</a>, for making my visit to Arcetri and its sites possible.]</em> The University of Florence used to be located there, and there are a number of astronomical observatories on the hill. And for particle physics, there is significance too. The building where I was teaching, and that hosts the GGI, used to be the department of Physics and Astronomy of the university. There, in 1925, Enrico Fermi, one of the greatest physicists of the 20th century, had his first professorial position. And while serving in that position, he figured out the statistical and thermodynamic properties of a gas made from particles that, in his honor, we now call &#8220;fermions&#8221;.  [<a href="http://arxiv.org/pdf/cond-mat/9912229v1.pdf" target="_blank">His paper was recently translated into English</a> by A. Zannoni.]</p>
+<p>All particles in our world &#8212; elementary particles such as electrons and photons, and more complex objects such as atoms &#8212; are either <a title="Fermions and Bosons" href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/fermions-and-bosons/" target="_blank">fermions or bosons</a>; the classic example of a fermion is an <a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/electrons-on-the-outskirts-of-atoms/" target="_blank">electron</a>. The essential property of fermions is that <em>two identical fermions cannot do precisely the same thing at the same time</em>. For electrons in atoms, this is known as the <strong><em>Pauli exclusion principle</em></strong> (due to Wolfgang Pauli in 1925, based on 1924 research by <a href="http://www.stoner.leeds.ac.uk/about/stoner" target="_blank">Edmund Stoner</a>): <em>no two electrons can occupy the same quantum state</em>. All of atomic physics and chemistry, and the very stability of large chunks of matter made from atoms, are dependent upon this principle. The properties of fermions also are crucial to the stability and structure of <a title="The Nuclei of Atoms: At the Heart of Matter" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/" target="_blank">atomic nuclei</a>, the existence of neutron stars, the electrical properties of metals and insulators, and the properties of many materials at cold temperatures.</p>
+<p><div data-shortcode="caption" id="attachment_7153" style="width: 250px" class="wp-caption alignright"><a href="https://profmattstrassler.files.wordpress.com/2014/01/img_20140121_083131_044.jpg"><img loading="lazy" aria-describedby="caption-attachment-7153" data-attachment-id="7153" data-permalink="https://profmattstrassler.com/2014/01/28/galileos-winter/img_20140121_083131_044/" data-orig-file="https://profmattstrassler.files.wordpress.com/2014/01/img_20140121_083131_044.jpg" data-orig-size="1840,3264" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;2.4&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;DROID4&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;4.6&quot;,&quot;iso&quot;:&quot;107&quot;,&quot;shutter_speed&quot;:&quot;0.049974&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="IMG_20140121_083131_044" data-image-description="" data-image-caption="&lt;p&gt;Plaque commemorating Fermi&#8217;s work on what we now call `fermions&#8217;. [Credit: M. Strassler]&lt;/p&gt;
+" data-medium-file="https://profmattstrassler.files.wordpress.com/2014/01/img_20140121_083131_044.jpg?w=169" data-large-file="https://profmattstrassler.files.wordpress.com/2014/01/img_20140121_083131_044.jpg?w=500" class=" wp-image-7153  " alt="Plaque commemorating Fermi's work on what we now call `fermions'. [Credit: M. Strassler]" src="https://profmattstrassler.files.wordpress.com/2014/01/img_20140121_083131_044.jpg?w=500" width="240" height="426" srcset="https://profmattstrassler.files.wordpress.com/2014/01/img_20140121_083131_044.jpg?w=240 240w, https://profmattstrassler.files.wordpress.com/2014/01/img_20140121_083131_044.jpg?w=480 480w, https://profmattstrassler.files.wordpress.com/2014/01/img_20140121_083131_044.jpg?w=85 85w, https://profmattstrassler.files.wordpress.com/2014/01/img_20140121_083131_044.jpg?w=169 169w" sizes="(max-width: 240px) 100vw, 240px" /></a><p id="caption-attachment-7153" class="wp-caption-text">Plaque commemorating Fermi&#8217;s work on what we now call `fermions&#8217;. [Credit: M. Strassler]</p></div>Inside the building is a plaque commemorating Fermi&#8217;s great achievement. But Fermi did not remain long in Florence, or even in Italy. A mere 15 years later, in the midst of the Fascist crisis and war in Europe, and having won a Nobel Prize for his work on radioactive atoms, Fermi had taken a position in the United States. There he directly oversaw the design, building and operation of humanity&#8217;s first nuclear reactor, in a secret underground laboratory at the University of Chicago, paving the way for the nuclear age.</p>
+<p>But the main reason the Arcetri hill is famous for science is, ironically, because of a place of religion.</p>
+<p>Both of Galileo&#8217;s daughters had taken the veil, and in 1631 the aging scientist was prompted to rent a villa on a small farm, within sight and a short walk of their nunnery.  Unfortunately, what must have seemed like an idyllic place to grow old and do science soon turned into a nightmare. After years of coexistence with and even support from within the Catholic Church, he had pushed too hard; his publication in 1632 of a comparison of the old Ptolemaic view of the universe, with the Earth at the center, with the newer Copernican view (to which he had greatly contributed, through his astronomical discoveries, in the 1610s), engendered a powerful backlash from some who viewed it as heretical. He was forced to spend 1633 defending himself in Rome and then living in exile in Sienna. When he was allowed to return to Arcetri in 1634, he was under house arrest and not allowed to have any scientific visitors. Shortly after his return, his 33-year-old daughter, with whom he was very close, died of a sudden and severe illness. His vision failed him, due to unknown diseases, and he was blind by 1638. Unable to go to Florence, his home town, scarcely three miles away, and rarely able to meet visitors, he spent the rest of his time in Arcetri isolated and increasingly ill, finally dying there in 1642.</p>
+<p>Yet despite this, or perhaps because of it, Galileo&#8217;s science did not come to a halt. (This was also partly because of the his support from the Grand Duke of Tuscany, who interceded on his behalf to allow him some scientific assistance after he went blind.) At Arcetri, Galileo discovered the moon did not always present exactly the same face toward the Earth; <a href="http://en.wikipedia.org/wiki/File:Lunar_libration_with_phase_Oct_2007_450px.gif" target="_blank">it appears, to us on Earth, to wobble slightly</a>. The explanation for this so-called &#8220;lunar libration&#8221; awaited Issac Newton&#8217;s laws of motion and of gravity, just 50 years away. And he finished formulating laws of motion (which would also later be explained by Newton), showing that (on Earth) <a href="http://www.youtube.com/watch?v=EUqpyia45PM" target="_blank">objects tossed into the air follow a trajectory that mathematicians call a parabola</a>, until affected by what we now call &#8220;air resistance&#8221;, and showing that uniform motion cannot be detected &#8212; <a title="The First Principle of Relativity" href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/the-first-principle-of-relativity/" target="_blank">the first Principle of Relativity</a>, authored 270 years before Einstein presented his revision of Galileo&#8217;s ideas.</p>
+<p><div data-shortcode="caption" id="attachment_7154" style="width: 410px" class="wp-caption alignright"><a href="https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_062152_830.jpg"><img loading="lazy" aria-describedby="caption-attachment-7154" data-attachment-id="7154" data-permalink="https://profmattstrassler.com/2014/01/28/galileos-winter/img_20140124_062152_830/" data-orig-file="https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_062152_830.jpg" data-orig-size="3264,1840" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;2.4&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;DROID4&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;4.6&quot;,&quot;iso&quot;:&quot;229&quot;,&quot;shutter_speed&quot;:&quot;0.059974&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="IMG_20140124_062152_830" data-image-description="" data-image-caption="&lt;p&gt;Vaulted ceiling in the main entry hall of Galileo&#8217;s rented villa in Arcetri. (No, the light fixture is not original.) [Credit: M. Strassler]&lt;/p&gt;
+" data-medium-file="https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_062152_830.jpg?w=300" data-large-file="https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_062152_830.jpg?w=500" class=" wp-image-7154 " alt="Vaulted ceiling in the main entry hall of Galileo's rented villa in Arcetri. (No, the light fixture is not original.) [Credit: M. Strassler]" src="https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_062152_830.jpg?w=500" width="400" height="225" srcset="https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_062152_830.jpg?w=400 400w, https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_062152_830.jpg?w=798 798w, https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_062152_830.jpg?w=150 150w, https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_062152_830.jpg?w=300 300w, https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_062152_830.jpg?w=768 768w" sizes="(max-width: 400px) 100vw, 400px" /></a><p id="caption-attachment-7154" class="wp-caption-text">Vaulted ceiling in the main entry hall of Galileo&#8217;s rented villa in Arcetri. (No, the light fixture is not original.) [Credit: M. Strassler]</p></div>To step into Galileo&#8217;s villa, as I did a few days ago, is therefore to step into a place of intense personal tragedy and one of great scientific achievement. One can easily imagine him writing by the window, or walking in the garden, or discussing the laws of motion with his assistants, in such a setting. It is also to be reminded that Galileo was not a poor man, thanks to his inventions and to his scientific appointments. The ceilings of the main rooms on the lower floor of the villa are high and vaulted, with attractively carved supports. There is a substantial &#8220;loggia&#8221; on the upper floor &#8212; a balcony, with pillars supporting a wooden roof, that (facing south-east, south and west) would have been ideal, while Galileo could still see, for observing the Moon and planets.</p>
+<p>While Galileo&#8217;s luck ran badly in his later years, he had an extraordinary string of luck, as a younger scientist, at the beginning of the 1600s. First, in 1604, there was a supernova, as bright as the planet Jupiter, that appeared in the sky as a very bright new star. (Humans haven&#8217;t seen a correspondingly close and bright supernova since then, not even supernova 1987a.  <a title="A Not-So-Far-Away Type Ia Supernova" href="https://profmattstrassler.com/2014/01/24/a-not-so-far-away-type-ia-supernova/" target="_blank">There is one you can see with a small telescope right now though.</a>) Observing that the glowing object showed no signs of parallax (<a title="Parallax: Seeing in Depth" href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/parallax-seeing-in-depth/">see here for a description of how parallax can be used to determine the distance to an object</a>), Galileo concluded that it must be further away than the Moon &#8212; and thus served as additional evidence that the heavens are not unchanging. Of course, <a href="http://www.space.com/20670-johannes-kepler-supernova-white-dwarf.html" target="_blank">what was seen was actually an exploding star</a>, one that was nearly a trillion times further from the Earth than is the Moon &#8212; but this Galileo could not know.</p>
+<p>Next, just a few years later, came the invention of the telescope. Hearing of this device, Galileo quickly built his own and figured out how to improve it. In the following years, armed with telescopes that could provide just 20-times magnification (typical binoculars you can buy can provide 10-times, and with much better optical quality than Galileo&#8217;s assistants could manufacture) came his great string of astronomical discoveries and co-discoveries:</p>
+<ul>
+<li>the craters on the Moon (proving the Moon has mountains and valleys like the Earth),</li>
+<li>the moons of Jupiter (proving that not everything orbits the Earth),</li>
+<li>the phases of Venus and its changing apparent size as Venus moves about the sky (proving that Venus orbits the Sun),</li>
+<li>the rings of Saturn (demonstrating Saturn is not merely a simple sphere),</li>
+<li>sunspots (proving the sun is imperfect, changeable, and rotating),</li>
+<li>and the vast number of stars in the Milky Way that aren&#8217;t visible to the naked eye.</li>
+</ul>
+<p>One often hears 1905 referred to as Einstein&#8217;s miracle year, when he explained Brownian motion and calculated the size of atoms, introduced the notion of quanta of light to explain the photoelectric effect, and wrote his first two papers on special relativity. Well, one could say that Galileo had a miracle decade, most of it concentrated in 1610-1612&#8212; playing the decisive role in destroying the previously dominant Ptolemaic view of the universe, in which the Sun, Moon, planets and stars orbit in <a href="http://zebu.uoregon.edu/~soper/Orbits/ptolemy.gif" target="_blank">a complex system of circles-within-circles around a stationary Earth</a>.</p>
+<p>We live in an era where so much more is known about the basic workings of the universe, and where a simple idea or invention is rarely enough to lead to a great change in our understanding of our world and of ourselves. And so I found myself, standing in Galileo&#8217;s courtyard, feeling a moment of nostalgia for that simpler time of the 17th century, cruel and dangerous as it was&#8230; a time when a brilliant scientist could stand on the balcony of his own home, looking through a telescope he&#8217;d designed himself, and change the world-view of a civilization.</p>
+<p><div data-shortcode="caption" id="attachment_7155" style="width: 360px" class="wp-caption aligncenter"><a href="https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_060957_395.jpg"><img loading="lazy" aria-describedby="caption-attachment-7155" data-attachment-id="7155" data-permalink="https://profmattstrassler.com/2014/01/28/galileos-winter/img_20140124_060957_395/" data-orig-file="https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_060957_395.jpg" data-orig-size="1840,3264" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;2.4&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;DROID4&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;4.6&quot;,&quot;iso&quot;:&quot;100&quot;,&quot;shutter_speed&quot;:&quot;0.001076&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="IMG_20140124_060957_395" data-image-description="" data-image-caption="&lt;p&gt;Looking across the enclosed courtyard of the villa, at the second-floor loggia, suitable for telescopic observing.  It is not hard to imagine Galileo standing there and peering into the sky.  [Credit: M. Strassler]&lt;/p&gt;
+" data-medium-file="https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_060957_395.jpg?w=169" data-large-file="https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_060957_395.jpg?w=500" class=" wp-image-7155 " alt="Looking across the enclosed courtyard of the villa, at the second-floor loggia, suitable for telescopic observing.  It is not hard to imagine Galileo standing there and peering into the sky.  [Credit: M. Strassler]" src="https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_060957_395.jpg?w=500" width="350" height="620" srcset="https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_060957_395.jpg?w=350 350w, https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_060957_395.jpg?w=700 700w, https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_060957_395.jpg?w=85 85w, https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_060957_395.jpg?w=169 169w, https://profmattstrassler.files.wordpress.com/2014/01/img_20140124_060957_395.jpg?w=577 577w" sizes="(max-width: 350px) 100vw, 350px" /></a><p id="caption-attachment-7155" class="wp-caption-text">Looking across the enclosed courtyard of the villa, at the second-floor loggia. It is not difficult to imagine Galileo standing there and peering into his telescope. [Credit: M. Strassler]</p></div></p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2014/01/28/galileos-winter/#comments">13 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/astronomy/" rel="category tag">Astronomy</a>, <a href="https://profmattstrassler.com/category/history-of-science/" rel="category tag">History of Science</a>, <a href="https://profmattstrassler.com/category/particle-physics/" rel="category tag">Particle Physics</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/astronomy-2/" rel="tag">astronomy</a>, <a href="https://profmattstrassler.com/tag/fermions/" rel="tag">fermions</a>, <a href="https://profmattstrassler.com/tag/galileo/" rel="tag">Galileo</a>, <a href="https://profmattstrassler.com/tag/particle-physics-2/" rel="tag">particle physics</a>, <a href="https://profmattstrassler.com/tag/particles/" rel="tag">particles</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="https://profmattstrassler.com/category/history-of-science/page/2/" ><span class="meta-nav">&larr;</span> Older posts</a></div>
+					<div class="nav-next"></div>
+				</div><!-- #nav-below -->
+
+	</div><!-- #content -->
+</div><!-- #content-container -->
+
+
+		
+		<div id="primary" class="widget-area" role="complementary">
+					<ul class="xoxo">
+
+			<li id="text-2" class="widget-container widget_text"><h3 class="widget-title">First Time Visitor?</h3>			<div class="textwidget">This site addresses various aspects of science, with a current focus on particle physics.  I aim to serve the public, including those with no background knowledge of physics.  If you're not yourself an expert, you might want to click on "<a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a>" or "<a href="https://profmattstrassler.com/about/">About</a>" to get started. If you'd like to watch my hour-long public lecture about the <a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">Higgs particle</a>, try ``<a href="https://profmattstrassler.com/videoclips/">Movie Clips</a>''.</div>
+		</li><li id="media_image-4" class="widget-container widget_media_image"><style>.widget.widget_media_image { overflow: hidden; }.widget.widget_media_image img { height: auto; max-width: 100%; }</style><div style="width: 310px" class="wp-caption alignnone"><a href="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png"><img width="300" height="172" src="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" class="image wp-image-10515 alignnone attachment-300x172 size-300x172" alt="" loading="lazy" style="max-width: 100%; height: auto;" srcset="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300 300w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=600 600w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=150 150w" sizes="(max-width: 300px) 100vw, 300px" data-attachment-id="10515" data-permalink="https://profmattstrassler.com/htogammagamma_v1/" data-orig-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png" data-orig-size="640,366" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="HtoGammaGamma_v1" data-image-description="" data-image-caption="" data-medium-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" data-large-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=500" /></a><p class="wp-caption-text">From the CMS experiment at the Large Hadron collider, a proton-proton collision that created a Higgs boson, which subsequently decayed to two particles of light (shown as green rods.)</p></div></li><li id="search-3" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="https://profmattstrassler.com/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search" />
+				</div>
+			</form></li>
+		<li id="recent-posts-3" class="widget-container widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="https://profmattstrassler.com/2021/04/12/physics-is-broken/">Physics is Broken!!!</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/11/25/has-a-new-force-of-nature-been-discovered/">Has a New Force of Nature Been&nbsp;Discovered?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/28/the-new-york-times-remembers-a-great-physicist/">The New York Times Remembers A Great&nbsp;Physicist</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/06/a-catastrophic-weekend-for-theoretical-high-energy-physics/">A Catastrophic Weekend for Theoretical High Energy&nbsp;Physics</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo/">A Ring of Controversy Around a Black Hole&nbsp;Photo</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/16/the-black-hole-photo-seeing-more-clearly/">The Black Hole `Photo&#8217;: Seeing More&nbsp;Clearly</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/15/the-black-hole-photo-what-are-we-looking-at/">The Black Hole `Photo&#8217;: What Are We Looking&nbsp;At?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/10/a-black-day-and-a-happy-one-in-scientific-history/">A Black Day (and a Happy One) In Scientific&nbsp;History</a>
+									</li>
+					</ul>
+
+		</li><li id="categories-4" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3><form action="https://profmattstrassler.com" method="get"><label class="screen-reader-text" for="cat">Categories</label><select  name='cat' id='cat' class='postform' >
+	<option value='-1'>Select Category</option>
+	<option class="level-0" value="4003">Astronomy</option>
+	<option class="level-0" value="175813">black holes</option>
+	<option class="level-0" value="51517">Dark Matter</option>
+	<option class="level-0" value="545298">Evolution and Biology</option>
+	<option class="level-0" value="39338">Geology</option>
+	<option class="level-0" value="133890">Gravitational Waves</option>
+	<option class="level-0" value="738724">Higgs</option>
+	<option class="level-0" value="27530" selected="selected">History of Science</option>
+	<option class="level-0" value="19640">Housekeeping</option>
+	<option class="level-0" value="59940768">LHC Background Info</option>
+	<option class="level-0" value="11550283">LHC News</option>
+	<option class="level-0" value="59940787">Other Collider News</option>
+	<option class="level-0" value="12547">Particle Physics</option>
+	<option class="level-0" value="1211">Physics</option>
+	<option class="level-0" value="560543">Public Outreach</option>
+	<option class="level-0" value="36114049">Quantum Field Theory</option>
+	<option class="level-0" value="119528">Quantum Gravity</option>
+	<option class="level-0" value="59940867">Science and Modern Society</option>
+	<option class="level-0" value="7682">Science News</option>
+	<option class="level-0" value="26444">String Theory</option>
+	<option class="level-0" value="41175177">The Scientific Process</option>
+	<option class="level-0" value="1">Uncategorized</option>
+</select>
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+			</li><li id="pd_top_rated-3" class="widget-container top_rated"><h3 class="widget-title">Popular Pages</h3><div id="pd_top_rated_holder" class="pd_top_rated_holder_pages"></div><script language="javascript" src="https://polldaddy.com/js/rating/top-rated.js"></script><script language="javascript" type="text/javascript">PDRTJS_TOP = new PDRTJS_RATING_TOP( 4811599, 0, 0, '010', 5 );PDRTJS_TOP.get_top( 'pages', '0' );</script></li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+		
+			</div><!-- #content-box -->
+
+	<div id="footer" role="contentinfo">
+		
+<div id="footer-widget-area" role="complementary">
+
+	<div id="first" class="widget-area">
+		<ul class="xoxo">
+			<li id="text-3" class="widget-container widget_text">			<div class="textwidget"><font color="FF0000"><b>I went to college at <a href="http://www.simons-rock.edu"> Simon's Rock.  </a></b></font></div>
+		</li>		</ul>
+	</div><!-- #first .widget-area -->
+
+
+	<div id="third" class="widget-area">
+		<ul class="xoxo">
+			<li id="rss_links-3" class="widget-container widget_rss_links"><h3 class="widget-title">Add this site to your RSS feed</h3><p class="size-small"><a class="feed-image-link" href="https://profmattstrassler.com/feed/" title="Subscribe to Posts"><img src="https://profmattstrassler.com/i/rss/red-small.png" alt="RSS Feed" /></a>&nbsp;<a href="https://profmattstrassler.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p>
+</li><li id="linkcat-8548552" class="widget-container widget_links"><h3 class="widget-title">My Facebook Page</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.facebook.com/ProfMattStrassler" rel="me" target="_blank">http://www.facebook.com/ProfMattStrassler</a></li>
+
+	</ul>
+</li>
+		</ul>
+	</div><!-- #third .widget-area -->
+
+	<div id="fourth" class="widget-area">
+		<ul class="xoxo">
+			<li id="twitter-2" class="widget-container widget_twitter"><h3 class="widget-title"><a href='http://twitter.com/MattStrassler'>Follow me on Twitter</a></h3><ul class='tweets'>
+			<li>
+				@<a href='http://twitter.com/StevenLowette'>StevenLowette</a> @<a href='http://twitter.com/CatDogLUofM'>CatDogLUofM</a> @<a href='http://twitter.com/suchi_kulkarni'>suchi_kulkarni</a> @<a href='http://twitter.com/jsheltino'>jsheltino</a> Good to be a part of it.  We need to open these communicatio… <a href="https://twitter.com/i/web/status/1443656122460741633"> twitter.com/i/web/status/1…</a> 				<a href="http://twitter.com/MattStrassler/statuses/1443656122460741633" class="timesince">6&nbsp;hours&nbsp;ago</a>
+			</li>
+
+			</ul><a href="http://twitter.com/MattStrassler"  class='twitter-follow-button' data-show-count='false' data-link-color='#0060ff' data-text-color='#333333'>Follow @MattStrassler</a></li>		</ul>
+	</div><!-- #fourth .widget-area -->
+
+</div><!-- #footer-widget-area -->
+		<div id="colophon">
+			<span class="generator-link"><a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a></span>
+					</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #container -->
+
+		<script type="text/javascript">
+		//<![CDATA[
+		var infiniteScroll = JSON.parse( decodeURIComponent( '%7B%22settings%22%3A%7B%22id%22%3A%22content%22%2C%22ajaxurl%22%3A%22https%3A%5C%2F%5C%2Fprofmattstrassler.com%5C%2F%3Finfinity%3Dscrolling%22%2C%22type%22%3A%22click%22%2C%22wrapper%22%3Atrue%2C%22wrapper_class%22%3A%22infinite-wrap%22%2C%22footer%22%3A%22container%22%2C%22click_handle%22%3A%221%22%2C%22text%22%3A%22Older%20posts%22%2C%22totop%22%3A%22Scroll%20back%20to%20top%22%2C%22currentday%22%3A%2228.01.14%22%2C%22order%22%3A%22DESC%22%2C%22scripts%22%3A%5B%5D%2C%22styles%22%3A%5B%5D%2C%22google_analytics%22%3Afalse%2C%22offset%22%3A1%2C%22history%22%3A%7B%22host%22%3A%22profmattstrassler.com%22%2C%22path%22%3A%22%5C%2Fcategory%5C%2Fhistory-of-science%5C%2Fpage%5C%2F%25d%5C%2F%22%2C%22use_trailing_slashes%22%3Atrue%2C%22parameters%22%3A%22%22%7D%2C%22query_args%22%3A%7B%22category_name%22%3A%22history-of-science%22%2C%22error%22%3A%22%22%2C%22m%22%3A%22%22%2C%22p%22%3A0%2C%22post_parent%22%3A%22%22%2C%22subpost%22%3A%22%22%2C%22subpost_id%22%3A%22%22%2C%22attachment%22%3A%22%22%2C%22attachment_id%22%3A0%2C%22name%22%3A%22%22%2C%22pagename%22%3A%22%22%2C%22page_id%22%3A0%2C%22second%22%3A%22%22%2C%22minute%22%3A%22%22%2C%22hour%22%3A%22%22%2C%22day%22%3A0%2C%22monthnum%22%3A0%2C%22year%22%3A0%2C%22w%22%3A0%2C%22tag%22%3A%22%22%2C%22cat%22%3A27530%2C%22tag_id%22%3A%22%22%2C%22author%22%3A%22%22%2C%22author_name%22%3A%22%22%2C%22feed%22%3A%22%22%2C%22tb%22%3A%22%22%2C%22paged%22%3A0%2C%22meta_key%22%3A%22%22%2C%22meta_value%22%3A%22%22%2C%22preview%22%3A%22%22%2C%22s%22%3A%22%22%2C%22sentence%22%3A%22%22%2C%22title%22%3A%22%22%2C%22fields%22%3A%22%22%2C%22menu_order%22%3A%22%22%2C%22embed%22%3A%22%22%2C%22category__in%22%3A%5B%5D%2C%22category__not_in%22%3A%5B%5D%2C%22category__and%22%3A%5B%5D%2C%22post__in%22%3A%5B%5D%2C%22post__not_in%22%3A%5B%5D%2C%22post_name__in%22%3A%5B%5D%2C%22tag__in%22%3A%5B%5D%2C%22tag__not_in%22%3A%5B%5D%2C%22tag__and%22%3A%5B%5D%2C%22tag_slug__in%22%3A%5B%5D%2C%22tag_slug__and%22%3A%5B%5D%2C%22post_parent__in%22%3A%5B%5D%2C%22post_parent__not_in%22%3A%5B%5D%2C%22author__in%22%3A%5B%5D%2C%22author__not_in%22%3A%5B%5D%2C%22lazy_load_term_meta%22%3Afalse%2C%22posts_per_page%22%3A8%2C%22ignore_sticky_posts%22%3Afalse%2C%22suppress_filters%22%3Afalse%2C%22cache_results%22%3Afalse%2C%22update_post_term_cache%22%3Atrue%2C%22update_post_meta_cache%22%3Atrue%2C%22post_type%22%3A%22%22%2C%22nopaging%22%3Afalse%2C%22comments_per_page%22%3A%2250%22%2C%22no_found_rows%22%3Afalse%2C%22order%22%3A%22DESC%22%7D%2C%22query_before%22%3A%222021-09-30%2021%3A44%3A06%22%2C%22last_post_date%22%3A%222014-01-28%2008%3A41%3A21%22%2C%22body_class%22%3A%22infinite-scroll%22%2C%22loading_text%22%3A%22Loading%20new%20page%22%2C%22stats%22%3A%22blog%3D24633746%26v%3Dwpcom%26tz%3D-4%26user_id%3D0%26subd%3Dprofmattstrassler%26x_pagetype%3Dinfinite-click%22%7D%7D' ) );
+		//]]>
+		</script>
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202139y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	</div>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+			<div id="jp-carousel-loading-overlay">
+			<div id="jp-carousel-loading-wrapper">
+				<span id="jp-carousel-library-loading">&nbsp;</span>
+			</div>
+		</div>
+		<div class="jp-carousel-overlay" style="display: none;">
+
+		<div class="jp-carousel-container">
+			<!-- The Carousel Swiper -->
+			<div
+				class="jp-carousel-wrap swiper-container jp-carousel-swiper-container jp-carousel-transitions"
+				itemscope
+				itemtype="https://schema.org/ImageGallery">
+				<div class="jp-carousel swiper-wrapper"></div>
+				<div class="jp-swiper-button-prev swiper-button-prev">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskPrev" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="9" height="12">
+							<path d="M16.2072 16.59L11.6496 12L16.2072 7.41L14.8041 6L8.8335 12L14.8041 18L16.2072 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskPrev)">
+							<rect x="0.579102" width="23.8823" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+				<div class="jp-swiper-button-next swiper-button-next">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskNext" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="8" height="12">
+							<path d="M8.59814 16.59L13.1557 12L8.59814 7.41L10.0012 6L15.9718 12L10.0012 18L8.59814 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskNext)">
+							<rect x="0.34375" width="23.8822" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+			</div>
+			<!-- The main close buton -->
+			<div class="jp-carousel-close-hint">
+				<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<mask id="maskClose" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="15" height="14">
+						<path d="M19.3166 6.41L17.9135 5L12.3509 10.59L6.78834 5L5.38525 6.41L10.9478 12L5.38525 17.59L6.78834 19L12.3509 13.41L17.9135 19L19.3166 17.59L13.754 12L19.3166 6.41Z" fill="white"/>
+					</mask>
+					<g mask="url(#maskClose)">
+						<rect x="0.409668" width="23.8823" height="24" fill="#FFFFFF"/>
+					</g>
+				</svg>
+			</div>
+			<!-- Image info, comments and meta -->
+			<div class="jp-carousel-info">
+				<div class="jp-carousel-info-footer">
+					<div class="jp-carousel-pagination-container">
+						<div class="jp-swiper-pagination swiper-pagination"></div>
+						<div class="jp-carousel-pagination"></div>
+					</div>
+					<div class="jp-carousel-photo-title-container">
+						<h2 class="jp-carousel-photo-caption"></h2>
+					</div>
+					<div class="jp-carousel-photo-icons-container">
+						<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-info" aria-label="Toggle photo metadata visibility">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskInfo" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M12.7537 2C7.26076 2 2.80273 6.48 2.80273 12C2.80273 17.52 7.26076 22 12.7537 22C18.2466 22 22.7046 17.52 22.7046 12C22.7046 6.48 18.2466 2 12.7537 2ZM11.7586 7V9H13.7488V7H11.7586ZM11.7586 11V17H13.7488V11H11.7586ZM4.79292 12C4.79292 16.41 8.36531 20 12.7537 20C17.142 20 20.7144 16.41 20.7144 12C20.7144 7.59 17.142 4 12.7537 4C8.36531 4 4.79292 7.59 4.79292 12Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskInfo)">
+										<rect x="0.8125" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+							</span>
+						</a>
+												<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-comments" aria-label="Toggle photo comments visibility">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskComments" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M4.3271 2H20.2486C21.3432 2 22.2388 2.9 22.2388 4V16C22.2388 17.1 21.3432 18 20.2486 18H6.31729L2.33691 22V4C2.33691 2.9 3.2325 2 4.3271 2ZM6.31729 16H20.2486V4H4.3271V18L6.31729 16Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskComments)">
+										<rect x="0.34668" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+
+								<span class="jp-carousel-has-comments-indicator" aria-label="This image has comments."></span>
+							</span>
+						</a>
+											</div>
+				</div>
+				<div class="jp-carousel-info-extra">
+					<div class="jp-carousel-info-content-wrapper">
+						<div class="jp-carousel-photo-title-container">
+							<h2 class="jp-carousel-photo-title"></h2>
+						</div>
+						<div class="jp-carousel-comments-wrapper">
+															<div id="jp-carousel-comments-loading">
+									<span>Loading Comments...</span>
+								</div>
+								<div class="jp-carousel-comments"></div>
+								<div id="jp-carousel-comment-form-container">
+									<span id="jp-carousel-comment-form-spinner">&nbsp;</span>
+									<div id="jp-carousel-comment-post-results"></div>
+																														<form id="jp-carousel-comment-form">
+												<label for="jp-carousel-comment-form-comment-field" class="screen-reader-text">Write a Comment...</label>
+												<textarea
+													name="comment"
+													class="jp-carousel-comment-form-field jp-carousel-comment-form-textarea"
+													id="jp-carousel-comment-form-comment-field"
+													placeholder="Write a Comment..."
+												></textarea>
+												<div id="jp-carousel-comment-form-submit-and-info-wrapper">
+													<div id="jp-carousel-comment-form-commenting-as">
+																													<fieldset>
+																<label for="jp-carousel-comment-form-email-field">Email (Required)</label>
+																<input type="text" name="email" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-email-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-author-field">Name (Required)</label>
+																<input type="text" name="author" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-author-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-url-field">Website</label>
+																<input type="text" name="url" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-url-field" />
+															</fieldset>
+																											</div>
+													<input
+														type="submit"
+														name="submit"
+														class="jp-carousel-comment-form-button"
+														id="jp-carousel-comment-form-button-submit"
+														value="Post Comment" />
+												</div>
+											</form>
+																											</div>
+													</div>
+						<div class="jp-carousel-image-meta">
+							<div class="jp-carousel-title-and-caption">
+								<div class="jp-carousel-photo-info">
+									<h3 class="jp-carousel-caption" itemprop="caption description"></h3>
+								</div>
+
+								<div class="jp-carousel-photo-description"></div>
+							</div>
+							<ul class="jp-carousel-image-exif" style="display: none;"></ul>
+							<a class="jp-carousel-image-download" target="_blank" style="display: none;">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="3" width="19" height="18">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M5.84615 5V19H19.7775V12H21.7677V19C21.7677 20.1 20.8721 21 19.7775 21H5.84615C4.74159 21 3.85596 20.1 3.85596 19V5C3.85596 3.9 4.74159 3 5.84615 3H12.8118V5H5.84615ZM14.802 5V3H21.7677V10H19.7775V6.41L9.99569 16.24L8.59261 14.83L18.3744 5H14.802Z" fill="white"/>
+									</mask>
+									<g mask="url(#mask0)">
+										<rect x="0.870605" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+								<span class="jp-carousel-download-text"></span>
+							</a>
+							<div class="jp-carousel-image-map" style="display: none;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+		<script src='https://platform.twitter.com/widgets.js?ver=20111117' id='twitter-widgets-js'></script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s1.wp.com/_static/??-eJyFy00OQDAQQOELGUP8xUKcpWoiZVTTadO4vVhY2LB8L/kwOdCHDWQD7hEcx8VYQa38EYUYJRlHHqZoZ6Zci2T4I1YKTukNnvGFgmGaYVHM5M933Wzch7Ktir5p+rpbL+lvP34=?cssminify=yes' type='text/css' media='all' />
+<script id='jetpack-carousel-js-extra'>
+var jetpackSwiperLibraryPath = {"url":"\/wp-content\/mu-plugins\/carousel\/swiper-bundle.js"};
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/profmattstrassler.com\/wp-admin\/admin-ajax.php","nonce":"3c82387706","display_exif":"1","display_comments":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/profmattstrassler.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fprofmattstrassler.com%2F2014%2F03%2F07%2Fwhat-if-the-large-hadron-collider-finds-nothing-else%2F","blog_id":"24633746","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"stats_query_args":"blog=24633746&v=wpcom&tz=-4&user_id=0&subd=profmattstrassler","is_public":"1"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyNUNtuwjAM/SHcaCDKXia+JU0McpYbsUPp3y9UK2LdhPYUHzvnYqsxg0lRMIpyrCxeyWC+dY436mkUKmRfzxRZUTxRJJkexYu/2gaKMOiigmbB0iqQos0nr0nN210qlun76cZsUoBc0m2Cgq3HsnAoGl8t8p3UIIYBbdeMXgQxuqTK6JVDyc0flsZfmjye0uDQyFpwUbuSxaQ0M8pMmHEuyL/Weoog5NHCWXt/3/IH+kdwmO+xgo13DB9v/W57eN/2/d59ATl6rYQ='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script type="text/javascript">
+			(function() {
+				var extend = function(out) {
+					out = out || {};
+
+					for (var i = 1; i < arguments.length; i++) {
+						if (!arguments[i])
+						continue;
+
+						for (var key in arguments[i]) {
+						if (arguments[i].hasOwnProperty(key))
+							out[key] = arguments[i][key];
+						}
+					}
+
+					return out;
+				};
+				extend( window.infiniteScroll.settings.scripts, ["postmessage","mobile-useragent-info","rlt-proxy","jquery-core","jquery-migrate","jquery","wpcom-actionbar-placeholder","grofiles-cards","wpgroho","twitter-widgets","devicepx","the-neverending-homepage","wpcom-masterbar-tracks-js","jquery.wpcom-proxy-request","wp-embed","jetpack-carousel","swfobject","videopress","tiled-gallery","carousel-wpcom"] );
+				extend( window.infiniteScroll.settings.styles, ["wpcom-smileys","the-neverending-homepage","wp-block-library","mediaelement","wp-mediaelement","jetpack-layout-grid","jetpack-ratings","coblocks-frontend","wpcom-core-compat-playlist-styles","wpcom-text-widget-styles","wpcom-bbpress2-staff-css","coraline","coraline-wpcom","geo-location-flair","reblogging","h4-global","global-styles","jetpack-global-styles-frontend-style","jetpack-carousel-swiper-css","jetpack-carousel","tiled-gallery"] );
+			})();
+		</script>
+				<span id="infinite-aria" aria-live="assertive"></span>
+		<script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'24633746','blog_tz':'-4','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'24633746','v':'wpcom','tz':'-4','user_id':'0','subd':'profmattstrassler'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eXFaMjhuQz1aPzNNMy12XUZlK1VEaF9ZMkRhXS9kfnpXU3U3LUtbLSZsakpoUnExOGVDJWhWOExfalVkX1szODVrXXU4U1N6W3hlXX44Z0hhT2VPcDhuVFpKJi40dDhGR2c/QjAuOE5+aXVtJTB+czJEbnxpdXQ4OHxFWj00QWV8Z1Z1fkRiaG0vbXR4WENxTG1GVlFITmt8ZE5VJSxTSnVJV3x8Q3FnS1NkbV1ffjBLT3J3LVA3U0t+K2M2Wm1yWEcmMDQtdSxEY1djVDlhc25meEo='}]);
+_stq.push([ 'clickTrackerInit', '24633746', '0' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script></body>
+</html>

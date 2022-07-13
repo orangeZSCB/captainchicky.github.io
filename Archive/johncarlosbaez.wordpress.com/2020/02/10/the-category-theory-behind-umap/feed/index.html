@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:media="http://search.yahoo.com/mrss/"
+	
+	>
+<channel>
+	<title>
+	Comments on: The Category Theory Behind UMAP	</title>
+	<atom:link href="https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/feed/" rel="self" type="application/rss+xml" />
+	<link>https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/</link>
+	<description></description>
+	<lastBuildDate>Wed, 03 Mar 2021 10:22:20 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>http://wordpress.com/</generator>
+	<item>
+		<title>
+		By: Zelong Li		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-169655</link>
+
+		<dc:creator><![CDATA[Zelong Li]]></dc:creator>
+		<pubDate>Wed, 03 Mar 2021 10:22:20 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=27460#comment-169655</guid>
+
+					<description><![CDATA[It seems from a TDA-theoretic point of view that all 0-simplex as data points should just have degree of membership 1 by default. Is this correct? At least in an UMAP example it shows like that.]]></description>
+			<content:encoded><![CDATA[<p>It seems from a TDA-theoretic point of view that all 0-simplex as data points should just have degree of membership 1 by default. Is this correct? At least in an UMAP example it shows like that.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Graham Jones		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-159178</link>
+
+		<dc:creator><![CDATA[Graham Jones]]></dc:creator>
+		<pubDate>Sun, 23 Feb 2020 11:04:37 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=27460#comment-159178</guid>
+
+					<description><![CDATA[I have not learned category theory. I suppose I&#039;m waiting for that killer app that will make me take it seriously. Non-linear dimensionality reduction (NLDR) would never be that that application for me because the problem it attempts to solve is so vaguely defined. There is no best way of mapping points on the Earth&#039;s surface to 2D, and the data sets that are fed into NLDR algorithms are much harder than that. Wikipedia lists 29 NLDR algorithms (  https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction ) and I think each one has it&#039;s own unique selling point. UMAP is not the only one where the mathematical inspiration behind the algorithm is more interesting than the algorithm itself.
+
+I get the impression that much of the popularity of t-SNE and UMAP is their ability to detect clusters. But then, I think: if you want to detect clusters, wouldn&#039;t it be better to use a clustering algorithm which is designed for that purpose and not constrained by the need to make nice pictures?
+
+I think I have some insight into why UMAP works well, but it has nothing to do with category theory.
+
+In a high dimensional space, all the distances between pairs of points from a finite set are about the same. This isn&#039;t quite true of course, but if someone hands you a set of high dimensional real-world data, it&#039;s a good guess. Taking the MNIST data for example, over 99% of the pairwise distances are between 9 and 14. Almost all are between 5 and 15. If these are to be sensibly mapped to 2 dimensions, something major needs to happen to this distribution of distances.
+
+Puzzle: how many points can you place in the plane so that the maximum distance between any pair is no more than 3 times the minimum?
+
+To make local distances from each point, UMAP subtracts the distance to the nearest neighbour. This is done to ensure local connectedness. But it has a big effect on the distribution of distances. I guess that roughly speaking, the range 9 to 14 becomes 0 to 5 for a typical point in the MNIST data.
+
+UMAP then converts these to asymmetric similarities which have to be made symmetric using some function f(p,q). I would expect this to satisfy f(p,p) = p. If a pair of similarities are already the same, why would you change them? In UMAP f(p,p) = 2p - p^2. So, for example, a similarity of .9 becomes .99. This corresponds to more squashing of small distances.
+
+In summary, the way that UMAP ensures local connectivity and symmetry have drastic side effects on distances, and these side effects are a good thing if you are making a large reduction in dimensionality.]]></description>
+			<content:encoded><![CDATA[<p>I have not learned category theory. I suppose I&#8217;m waiting for that killer app that will make me take it seriously. Non-linear dimensionality reduction (NLDR) would never be that that application for me because the problem it attempts to solve is so vaguely defined. There is no best way of mapping points on the Earth&#8217;s surface to 2D, and the data sets that are fed into NLDR algorithms are much harder than that. Wikipedia lists 29 NLDR algorithms (  <a href="https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction" rel="nofollow ugc">https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction</a> ) and I think each one has it&#8217;s own unique selling point. UMAP is not the only one where the mathematical inspiration behind the algorithm is more interesting than the algorithm itself.</p>
+<p>I get the impression that much of the popularity of t-SNE and UMAP is their ability to detect clusters. But then, I think: if you want to detect clusters, wouldn&#8217;t it be better to use a clustering algorithm which is designed for that purpose and not constrained by the need to make nice pictures?</p>
+<p>I think I have some insight into why UMAP works well, but it has nothing to do with category theory.</p>
+<p>In a high dimensional space, all the distances between pairs of points from a finite set are about the same. This isn&#8217;t quite true of course, but if someone hands you a set of high dimensional real-world data, it&#8217;s a good guess. Taking the MNIST data for example, over 99% of the pairwise distances are between 9 and 14. Almost all are between 5 and 15. If these are to be sensibly mapped to 2 dimensions, something major needs to happen to this distribution of distances.</p>
+<p>Puzzle: how many points can you place in the plane so that the maximum distance between any pair is no more than 3 times the minimum?</p>
+<p>To make local distances from each point, UMAP subtracts the distance to the nearest neighbour. This is done to ensure local connectedness. But it has a big effect on the distribution of distances. I guess that roughly speaking, the range 9 to 14 becomes 0 to 5 for a typical point in the MNIST data.</p>
+<p>UMAP then converts these to asymmetric similarities which have to be made symmetric using some function f(p,q). I would expect this to satisfy f(p,p) = p. If a pair of similarities are already the same, why would you change them? In UMAP f(p,p) = 2p &#8211; p^2. So, for example, a similarity of .9 becomes .99. This corresponds to more squashing of small distances.</p>
+<p>In summary, the way that UMAP ensures local connectivity and symmetry have drastic side effects on distances, and these side effects are a good thing if you are making a large reduction in dimensionality.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Kenneth D. Harris		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-159091</link>
+
+		<dc:creator><![CDATA[Kenneth D. Harris]]></dc:creator>
+		<pubDate>Fri, 21 Feb 2020 12:35:45 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=27460#comment-159091</guid>
+
+					<description><![CDATA[I’m a biologist who uses UMAP in my work. I have a math background and just spent a year learning category and topos theory, primarily to understand the UMAP paper. I don’t regret this, because category theory is fun. But the main lesson was:
+
+&lt;strong&gt;The details of UMAP are not constrained by category theory.&lt;/strong&gt;
+
+Instead, the algorithm’s details seem to have been chosen to make it work in practice, and sometimes justified by analogy to concepts from pure math. For example
+
+
+UMAP’s score function is based on probability theory, but probability appears nowhere in the Barr/Spivak framework.
+Spivak’s use of the log function was arbitrary, but it plays a key role in UMAP (as mentioned above).
+UMAP sets the distance between nearest-neighboring data points to zero. This is justified by local connectivity of the embedding manifold. But manifolds are always locally connected – this instead makes it non-Hausdorff (and not actually a manifold).
+
+
+It might be possible to come up with a categorical framework from which you can derive UMAP’s details, and that would be a great topic of research which could lead to further improvements in the algorithm. For example, this would involve modifying the Barr/Spivak framework so that UMAP’s cross-entropy score emerges naturally.
+
+UMAP is a great algorithm, whose inventors were inspired by pure math. Which is fine: the discovery of benzene’s ring structure was inspired by a &lt;a href=&quot;https://en.wikipedia.org/wiki/August_Kekul%C3%A9#Kekul%C3%A9&#039;s_dream&quot; rel=&quot;nofollow ugc&quot;&gt;dream&lt;/a&gt; of a snake eating its own tail. Whatever works.
+
+But to claim right now that UMAP is a killer app for category theory would be a mistake. This will just lead to disappointment for those who actually work through the details, and won’t help the field of applied category theory gain respect.]]></description>
+			<content:encoded><![CDATA[<p>I’m a biologist who uses UMAP in my work. I have a math background and just spent a year learning category and topos theory, primarily to understand the UMAP paper. I don’t regret this, because category theory is fun. But the main lesson was:</p>
+<p><strong>The details of UMAP are not constrained by category theory.</strong></p>
+<p>Instead, the algorithm’s details seem to have been chosen to make it work in practice, and sometimes justified by analogy to concepts from pure math. For example</p>
+<p>UMAP’s score function is based on probability theory, but probability appears nowhere in the Barr/Spivak framework.<br />
+Spivak’s use of the log function was arbitrary, but it plays a key role in UMAP (as mentioned above).<br />
+UMAP sets the distance between nearest-neighboring data points to zero. This is justified by local connectivity of the embedding manifold. But manifolds are always locally connected – this instead makes it non-Hausdorff (and not actually a manifold).</p>
+<p>It might be possible to come up with a categorical framework from which you can derive UMAP’s details, and that would be a great topic of research which could lead to further improvements in the algorithm. For example, this would involve modifying the Barr/Spivak framework so that UMAP’s cross-entropy score emerges naturally.</p>
+<p>UMAP is a great algorithm, whose inventors were inspired by pure math. Which is fine: the discovery of benzene’s ring structure was inspired by a <a href="https://en.wikipedia.org/wiki/August_Kekul%C3%A9#Kekul%C3%A9's_dream" rel="nofollow ugc">dream</a> of a snake eating its own tail. Whatever works.</p>
+<p>But to claim right now that UMAP is a killer app for category theory would be a mistake. This will just lead to disappointment for those who actually work through the details, and won’t help the field of applied category theory gain respect.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Umberto Lupo (@umbislupo)		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-159087</link>
+
+		<dc:creator><![CDATA[Umberto Lupo (@umbislupo)]]></dc:creator>
+		<pubDate>Fri, 21 Feb 2020 06:37:31 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=27460#comment-159087</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158979&quot;&gt;amoeba&lt;/a&gt;.
+
+John: Spivak introduces the logarithm in the second paragraph of Section 3 in http://math.mit.edu/~dspivak/files/metric_realization.pdf, though we all agree that that choice is not crucial for the theory.
+
+What I had meant is that the UMAP authors make minimal adaptations of this framework to the case of finite metric spaces, including the non-unique choice of using the logarithm! In UMAP, the finite extended pseudo-metric spaces $latex \mathrm{FinReal}(\Delta^n_{&#060;a})$ in Definition 7 are the counterparts of Spivak&#039;s $latex \mathrm{Real}(\Delta^n_{&#060;a})$ and the logarithm seems to me to have been inspired by Spivak&#039;s -- though I&#039;d agree that there is no well-defined rigorous link.
+
+One could maybe interpret the $latex n$ points in $latex \mathrm{FinReal}(\Delta^n_{&#060;a})$ as the vertices of Spivak&#039;s geometric realizations of the standard fuzzy $latex n$-simplices, in the sense that in both cases pairwise distances grow linearly with $latex -\mathrm{log}(a)$.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158979">amoeba</a>.</p>
+<p>John: Spivak introduces the logarithm in the second paragraph of Section 3 in <a href="http://math.mit.edu/~dspivak/files/metric_realization.pdf" rel="nofollow ugc">http://math.mit.edu/~dspivak/files/metric_realization.pdf</a>, though we all agree that that choice is not crucial for the theory.</p>
+<p>What I had meant is that the UMAP authors make minimal adaptations of this framework to the case of finite metric spaces, including the non-unique choice of using the logarithm! In UMAP, the finite extended pseudo-metric spaces <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BFinReal%7D%28%5CDelta%5En_%7B%3Ca%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{FinReal}(&#92;Delta^n_{&lt;a})" class="latex" /> in Definition 7 are the counterparts of Spivak&#8217;s <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BReal%7D%28%5CDelta%5En_%7B%3Ca%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Real}(&#92;Delta^n_{&lt;a})" class="latex" /> and the logarithm seems to me to have been inspired by Spivak&#8217;s &#8212; though I&#8217;d agree that there is no well-defined rigorous link.</p>
+<p>One could maybe interpret the <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> points in <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BFinReal%7D%28%5CDelta%5En_%7B%3Ca%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{FinReal}(&#92;Delta^n_{&lt;a})" class="latex" /> as the vertices of Spivak&#8217;s geometric realizations of the standard fuzzy <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" />-simplices, in the sense that in both cases pairwise distances grow linearly with <img src="https://s0.wp.com/latex.php?latex=-%5Cmathrm%7Blog%7D%28a%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="-&#92;mathrm{log}(a)" class="latex" />.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: John Baez		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-159081</link>
+
+		<dc:creator><![CDATA[John Baez]]></dc:creator>
+		<pubDate>Fri, 21 Feb 2020 00:39:08 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=27460#comment-159081</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158979&quot;&gt;amoeba&lt;/a&gt;.
+
+The appearance of the logarithm does not follow from Spivak&#039;s theory: he just chooses that function out of the blue, and any function with a few nice properties would work as well for his results.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158979">amoeba</a>.</p>
+<p>The appearance of the logarithm does not follow from Spivak&#8217;s theory: he just chooses that function out of the blue, and any function with a few nice properties would work as well for his results.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Umberto Lupo (@umbislupo)		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-159076</link>
+
+		<dc:creator><![CDATA[Umberto Lupo (@umbislupo)]]></dc:creator>
+		<pubDate>Thu, 20 Feb 2020 23:21:23 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=27460#comment-159076</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158979&quot;&gt;amoeba&lt;/a&gt;.
+
+@Graham, you&#039;re right to say that about logarithms. Indeed I raised that point to one of the authors of UMAP a few weeks ago, and he agreed that the theory should carry through with more general functions (monotonically increasing from $-\infty$ to $+\infty$, roughly speaking). Apparently, the logarithm also happens to give good results in practice, so UMAP sticks to this original choice.
+
+Indeed, the kernel is not really Gaussian in UMAP, it&#039;s rather a &quot;Laplace kernel&quot;.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158979">amoeba</a>.</p>
+<p>@Graham, you&#8217;re right to say that about logarithms. Indeed I raised that point to one of the authors of UMAP a few weeks ago, and he agreed that the theory should carry through with more general functions (monotonically increasing from $-\infty$ to $+\infty$, roughly speaking). Apparently, the logarithm also happens to give good results in practice, so UMAP sticks to this original choice.</p>
+<p>Indeed, the kernel is not really Gaussian in UMAP, it&#8217;s rather a &#8220;Laplace kernel&#8221;.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Graham Jones		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-159074</link>
+
+		<dc:creator><![CDATA[Graham Jones]]></dc:creator>
+		<pubDate>Thu, 20 Feb 2020 20:51:39 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=27460#comment-159074</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158979&quot;&gt;amoeba&lt;/a&gt;.
+
+Spivak&#039;s paper is at
+http://math.mit.edu/~dspivak/files/metric_realization.pdf
+I don&#039;t know category theory, so I may have missed something big, but it doesn&#039;t seem to me that logarithms play an important role. I think (1-x)/x, for example, would work just as well as -lg(x).
+
+Also, the Gaussian uses squared distance, not distance, and squared distance is not a metric.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158979">amoeba</a>.</p>
+<p>Spivak&#8217;s paper is at<br />
+<object data="http://math.mit.edu/~dspivak/files/metric_realization.pdf" type="application/pdf" width="100%" height="800" style="height: 800px;"><p><a href="http://math.mit.edu/~dspivak/files/metric_realization.pdf">Click to access metric_realization.pdf</a></p></object><br />
+I don&#8217;t know category theory, so I may have missed something big, but it doesn&#8217;t seem to me that logarithms play an important role. I think (1-x)/x, for example, would work just as well as -lg(x).</p>
+<p>Also, the Gaussian uses squared distance, not distance, and squared distance is not a metric.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: amoeba		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158979</link>
+
+		<dc:creator><![CDATA[amoeba]]></dc:creator>
+		<pubDate>Tue, 18 Feb 2020 11:12:53 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=27460#comment-158979</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158803&quot;&gt;ulupo&lt;/a&gt;.
+
+It seems I cannot reply to your last comment (perhaps because it&#039;s too nested), so I&#039;m replying here instead.
+
+Thanks! This is very helpful. The points in your list that are most interesting for me are (d) and (f). Regarding (d), I did not realize that the exponentially decaying weights is something that follows naturally from Spivak&#039;s theory! I have now re-read Section 3.1 of the UMAP preprint, and it does not make mention this at all. If true, this is interesting. However, practically speaking, Gaussian kernel (which is exponentially decaying) is by far the most often used kernel in machine learning and statistics, so while it&#039;s nice to have an additional motivation, it does not really yield anything new.
+
+Point (f) is the most interesting one. The cross-entropy loss is arguably the most important UMAP&#039;s ingredient for the comparison with t-SNE. (By the way, this loss was introduced in a method called largeVis back in 2016 without any category theory, and I largely see UMAP as providing a motivation for largeVis). So I think it&#039;s important to understand if there could be various reasonable ways to measure fuzzy set dissimilarity or whether cross-entropy is unique and/or somehow preferred.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158803">ulupo</a>.</p>
+<p>It seems I cannot reply to your last comment (perhaps because it&#8217;s too nested), so I&#8217;m replying here instead.</p>
+<p>Thanks! This is very helpful. The points in your list that are most interesting for me are (d) and (f). Regarding (d), I did not realize that the exponentially decaying weights is something that follows naturally from Spivak&#8217;s theory! I have now re-read Section 3.1 of the UMAP preprint, and it does not make mention this at all. If true, this is interesting. However, practically speaking, Gaussian kernel (which is exponentially decaying) is by far the most often used kernel in machine learning and statistics, so while it&#8217;s nice to have an additional motivation, it does not really yield anything new.</p>
+<p>Point (f) is the most interesting one. The cross-entropy loss is arguably the most important UMAP&#8217;s ingredient for the comparison with t-SNE. (By the way, this loss was introduced in a method called largeVis back in 2016 without any category theory, and I largely see UMAP as providing a motivation for largeVis). So I think it&#8217;s important to understand if there could be various reasonable ways to measure fuzzy set dissimilarity or whether cross-entropy is unique and/or somehow preferred.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: ulupo		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158824</link>
+
+		<dc:creator><![CDATA[ulupo]]></dc:creator>
+		<pubDate>Fri, 14 Feb 2020 09:15:59 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=27460#comment-158824</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158808&quot;&gt;amoeba&lt;/a&gt;.
+
+Sure, no problem!
+
+&lt;blockquote&gt;
+  It seems that most of this algebraic geometry is needed to motivate working with a weighted k-nearest-neighbours (kNN) graph of the dataset (where by “weighted” I mean that the edges have weights, with shorter edges having larger weights). Do you think it’s fair to say that?
+&lt;/blockquote&gt;
+
+I think it &lt;em&gt;is&lt;/em&gt; fair to say that.  Though I&#039;d refine the statement to say that the category theory and computational topology are used as a justification for the &lt;em&gt;specific&lt;/em&gt; form of the final weighted graph. Schematically:
+a) consider ways to compute a meaningful topological signature from a finite &quot;metric-like&quot; space;
+b) Spivak&#039;s framework (appropriately modified) says that the &quot;right thing&quot; to look at, categorically speaking, is a &quot;fuzzy singular homology&quot; functor which sends a &quot;metric-like&quot; space to a &quot;fuzzy simplicial set&quot;;
+c) due to combinatorial explosions, it is only reasonable to ask a computer to store a part of the resulting fuzzy simplicial set, namely the fuzzy set of its edges (1-simplices);
+d) a quick computation shows that the resulting structure is that of a weighted graph with exponential weights (due to logarithms appearing in Spivak&#039;s theory);
+e) the fuzzy set framework lends itself to local-to-global procedures via fuzzy unions -- this is an extra bonus;
+f) the fuzzy set cross-entropy is quite a natural way of measuring dissimilarity between fuzzy sets (you essentially regard a fuzzy set as a &quot;field&quot; of Bernoulli random variables). So this type of loss seems well-adapted to the algorithm&#039;s theoretical guiding principles.
+
+I hope this helps!]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158808">amoeba</a>.</p>
+<p>Sure, no problem!</p>
+<blockquote><p>
+  It seems that most of this algebraic geometry is needed to motivate working with a weighted k-nearest-neighbours (kNN) graph of the dataset (where by “weighted” I mean that the edges have weights, with shorter edges having larger weights). Do you think it’s fair to say that?
+</p></blockquote>
+<p>I think it <em>is</em> fair to say that.  Though I&#8217;d refine the statement to say that the category theory and computational topology are used as a justification for the <em>specific</em> form of the final weighted graph. Schematically:<br />
+a) consider ways to compute a meaningful topological signature from a finite &#8220;metric-like&#8221; space;<br />
+b) Spivak&#8217;s framework (appropriately modified) says that the &#8220;right thing&#8221; to look at, categorically speaking, is a &#8220;fuzzy singular homology&#8221; functor which sends a &#8220;metric-like&#8221; space to a &#8220;fuzzy simplicial set&#8221;;<br />
+c) due to combinatorial explosions, it is only reasonable to ask a computer to store a part of the resulting fuzzy simplicial set, namely the fuzzy set of its edges (1-simplices);<br />
+d) a quick computation shows that the resulting structure is that of a weighted graph with exponential weights (due to logarithms appearing in Spivak&#8217;s theory);<br />
+e) the fuzzy set framework lends itself to local-to-global procedures via fuzzy unions &#8212; this is an extra bonus;<br />
+f) the fuzzy set cross-entropy is quite a natural way of measuring dissimilarity between fuzzy sets (you essentially regard a fuzzy set as a &#8220;field&#8221; of Bernoulli random variables). So this type of loss seems well-adapted to the algorithm&#8217;s theoretical guiding principles.</p>
+<p>I hope this helps!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Junhyong Kim (@JunhyongKim)		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158815</link>
+
+		<dc:creator><![CDATA[Junhyong Kim (@JunhyongKim)]]></dc:creator>
+		<pubDate>Fri, 14 Feb 2020 00:06:07 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=27460#comment-158815</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158783&quot;&gt;amoeba&lt;/a&gt;.
+
+This paper by Ting, Huang, and Jordan, https://arxiv.org/abs/1101.5435, I think gives a good framework for graph kernels including kNN graphs and approximating embeddings. Also, the classic papers by Coifman on diffusion maps (e.g., https://www.pnas.org/content/102/21/7426). I think these are more straightforward standard manifold learning treatments.
+
+(I am still trying to understand enough to ask John a more intelligent question on the CT framework of the UMAP and how it motivates the algorithm part.)]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/02/10/the-category-theory-behind-umap/#comment-158783">amoeba</a>.</p>
+<p>This paper by Ting, Huang, and Jordan, <a href="https://arxiv.org/abs/1101.5435" rel="nofollow ugc">https://arxiv.org/abs/1101.5435</a>, I think gives a good framework for graph kernels including kNN graphs and approximating embeddings. Also, the classic papers by Coifman on diffusion maps (e.g., <a href="https://www.pnas.org/content/102/21/7426" rel="nofollow ugc">https://www.pnas.org/content/102/21/7426</a>). I think these are more straightforward standard manifold learning treatments.</p>
+<p>(I am still trying to understand enough to ask John a more intelligent question on the CT framework of the UMAP and how it motivates the algorithm part.)</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

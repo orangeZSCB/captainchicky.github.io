@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Operads and Phylogenetic Trees | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Operads and Phylogenetic&nbsp;Trees Comments Feed" href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F12%2F21%2Foperads-and-phylogenetic-trees%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2015\/12\/21\/operads-and-phylogenetic-trees\/?replytocom=74971","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F12%2F21%2Foperads-and-phylogenetic-trees%2F%3Freplytocom%3D74971","postID":"20209","shortlink":"https:\/\/wp.me\/pRBZ9-5fX","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/20209","statsLink":"https:\/\/wordpress.com\/stats\/post\/20209\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F12%2F21%2Foperads-and-phylogenetic-trees%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-5fX' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F12%2F21%2Foperads-and-phylogenetic-trees%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F12%2F21%2Foperads-and-phylogenetic-trees%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Operads and Phylogenetic Trees" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/" />
+<meta property="og:description" content="A few years ago, after hearing Susan Holmes speak about the mathematics of phylogenetic trees, I became interested in their connection to algebraic topology. I wrote an article about this here: • J…" />
+<meta property="article:published_time" content="2015-12-21T02:47:26+00:00" />
+<meta property="article:modified_time" content="2015-12-22T21:39:33+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/ecological/phylo/darwin_tree.jpg" />
+<meta property="og:image:width" content="450" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Operads and Phylogenetic&nbsp;Trees" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/ecological/phylo/darwin_tree.jpg?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="A few years ago, after hearing Susan Holmes speak about the mathematics of phylogenetic trees, I became interested in their connection to algebraic topology. I wrote an article about this here: • John Baez, Operads and the tree of life, 6 July 2011. In trying to the make the ideas precise I recruited the help&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-20209 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-20209 post type-post status-publish format-standard hentry category-biology category-mathematics category-probability" id="post-20209">
+			<h2>Operads and Phylogenetic&nbsp;Trees</h2>
+
+			<div class="entry">
+				<p>A few years ago, after hearing <a href="http://statweb.stanford.edu/~susan/">Susan Holmes</a> speak about the mathematics of phylogenetic trees, I became interested in their connection to algebraic topology. I wrote an article about this here:</p>
+<p>• John Baez, <a href="https://johncarlosbaez.wordpress.com/2011/07/06/operads-and-the-tree-of-life/">Operads and the tree of life</a>, 6 July 2011.</p>
+<p>In trying to the make the ideas precise I recruited the help of <a href="https://www.maths.ox.ac.uk/people/nina.otter">Nina Otter</a>, who was then a graduate student at ETH Zürich. She came to Riverside and we started to work together.</p>
+<p>Now Nina is a grad student at Oxford working on mathematical biology with <a href="http://people.maths.ox.ac.uk/harrington/">Heather Harrington</a>. I visited her last summer and we made more progress&#8230; but then she realized that our paper needed another big theorem, a result relating our topology on the space of phylogenetic trees to the topology described by Susan Holmes and her coauthors here:</p>
+<p>• Louis J. Billera, Susan P. Holmes and Karen Vogtmann, <a href="http://finmath.stanford.edu/~susan/papers/lap.pdf">Geometry of the space of phylogenetic trees</a>, <i>Advances in Applied Mathematics</i> <b>27</b> (2001), 733&#8211;767.</p>
+<p>It took another half year to finish things up. I could never have done this myself.</p>
+<p>But now we&#8217;re done! Here&#8217;s our paper:</p>
+<p>• John Baez and Nina Otter, <a href="http://arxiv.org/abs/1512.03337">Operads and phylogenetic trees</a>.</p>
+<h3>The basic idea</h3>
+<p>Trees are important, not only in mathematics, but also biology. The most important is the &#8216;tree of life&#8217; relating all organisms that have ever lived on Earth. Darwin drew this sketch of it in 1837:</p>
+<div align="center"><img src="https://i2.wp.com/math.ucr.edu/home/baez/ecological/phylo/darwin_tree.jpg" alt="" width="450" /></div>
+<p>He wrote about it in <i>On the Origin of Species</i></p>
+<blockquote><p>The affinities of all the beings of the same class have sometimes been represented by a great tree. I believe this simile largely speaks the truth. The green and budding twigs may represent existing species; and those produced during former years may represent the long succession of extinct species. At each period of growth all the growing twigs have tried to branch out on all sides, and to overtop and kill the surrounding twigs and branches, in the same manner as species and groups of species have at all times overmastered other species in the great battle for life.</p></blockquote>
+<p>Now we know that the tree of life is not really a tree in the mathematical sense. One reason is &#8216;endosymbiosis&#8217;: the incorporation of one organism together with its genetic material into another, as probably happened with the mitochondria in our cells and also the plastids that hold chlorophyll in plants. Another is &#8216;horizontal gene transfer&#8217;: the passing of genetic material from one organism to another, which happens frequently with bacteria. So, the tree of life is really a thicket:</p>
+<div align="center"><img src="https://i0.wp.com/math.ucr.edu/home/baez/ecological/phylo/horizontal_gene_transfer.jpg" alt="" width="450" /></div>
+<p>But a tree is often a good approximation, especially for animals and plants in the last few hundred million years. Biologists who try to infer phylogenetic trees from present-day genetic data often use simple models where:</p>
+<p>• the genotype of each species follows a random walk, but</p>
+<p>• species branch in two at various times.</p>
+<p>These are called <a href="https://en.wikipedia.org/wiki/Models_of_DNA_evolution">&#8216;Markov models&#8217;</a>. The simplest Markov model for DNA evolution is the <a href="https://en.wikipedia.org/wiki/Models_of_DNA_evolution#JC69_model_.28Jukes_and_Cantor.2C_1969.29.5B1.5D">Jukes–Cantor model</a>. Consider one or more pieces of DNA having a total of <i>n</i> base pairs. We can think of this as a string of letters chosen from the set {A,T,C,G}:</p>
+<div align="center">&#8230;ATCGATTGAGCTCTAGCG&#8230;</div>
+<p>As time passes, the Jukes–Cantor model says the DNA changes randomly, with each base pair having the same constant rate of randomly flipping to any other. So, we get a Markov process on the set</p>
+<p><img src="https://s0.wp.com/latex.php?latex=X+%3D+%5C%7B%5Ctextrm%7BA%2CT%2CC%2CG%7D%5C%7D%7B%7D%5EN+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X = &#92;{&#92;textrm{A,T,C,G}&#92;}{}^N " class="latex" /></p>
+<p>However, a species can also split in two. So, given current-day genetic data from various species, biologists try to infer the most probable tree where, starting from a common ancestor, the DNA in question undergoes a random walk most of the time but branches in two at certain times.</p>
+<p>To formalize this, we can define a concept of &#8216;phylogenetic tree&#8217;. Our work is based on the definition of <a href="http://finmath.stanford.edu/~susan/papers/lap.pdf">Billera, Holmes and Vogtmann</a>, though we use a slightly different definition, for reasons that will soon become clear. For us, a phylogenetic tree is a rooted tree with leaves labelled by numbers <img src="https://s0.wp.com/latex.php?latex=1%2C2%2C+%5Cdots%2C+n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1,2, &#92;dots, n" class="latex" /> and edges labelled by &#8216;times&#8217; or, geometrically speaking, &#8216;lengths&#8217; in <img src="https://s0.wp.com/latex.php?latex=%5B0%2C+%5Cinfty%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0, &#92;infty)." class="latex" /> We require that:</p>
+<p>• the length of every edge is positive, except perhaps for &#8216;external edges&#8217;: that is, edges incident to the leaves or root;</p>
+<p>• there are no 1-ary vertices.</p>
+<p>For example, here is a phylogenetic tree with 5 leaves:</p>
+<div align="center"><img src="https://i0.wp.com/math.ucr.edu/home/baez/ecological/phylo/phylogenetic_tree.jpg" alt="" /></div>
+<p>where <img src="https://s0.wp.com/latex.php?latex=%5Cell_1%2C+%5Cdots%2C+%5Cell_6+%5Cge+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ell_1, &#92;dots, &#92;ell_6 &#92;ge 0" class="latex" /> but we demand that <img src="https://s0.wp.com/latex.php?latex=%5Cell_7+%3E+0.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ell_7 &gt; 0." class="latex" /> We draw the vertices as dots. We do not count the leaves and the root as vertices, and we label the root with the number <img src="https://s0.wp.com/latex.php?latex=0.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="0." class="latex" /> We cannot collapse edges of length zero that end at leaves, since doing so would eliminate those leaves. Also note that the embedding of the tree in the plane is irrelevant, so this counts as the same phylogenetic tree:</p>
+<div align="center"><img src="https://i1.wp.com/math.ucr.edu/home/baez/ecological/phylo/phylogenetic_tree_2.jpg" alt="" /></div>
+<p>In applications to biology, we are often interested in trees where the total distance from the root to the leaf is the same for every leaf, since all species have evolved for the same time from their common ancestor. These are mathematically interesting as well, because then the distance between any two leaves defines an <a href="https://en.wikipedia.org/wiki/Ultrametric_space">ultrametric</a> on the set of leaves. However, more general phylogenetic trees are also interesting—and they become essential when we construct an operad whose operations are phylogenetic trees.</p>
+<p>Let <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}_n" class="latex" /> be the set of phylogenetic trees with <i>n</i> leaves. This has a natural topology, which we explain in Section 6 of our paper. For example, here is a continuous path in <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D_4&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}_4" class="latex" /> where we only change the length of one internal edge, reducing it until it becomes zero and we can collapse it:</p>
+<div align="center"><img src="https://i1.wp.com/math.ucr.edu/home/baez/ecological/phylo/path_of_phylogenetic_trees.jpg" alt="" width="450" /></div>
+<p>Phylogenetic trees reconstructed by biologists are typically binary. When a phylogenetic tree appears to have higher arity, sometimes we merely lack sufficient data to resolve a higher-arity branching into a number of binary ones. With the topology we are using on <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D_n%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}_n," class="latex" /> binary trees form an open dense set of <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D_n%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}_n," class="latex" /> except for <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D_1.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}_1." class="latex" /> However, trees of higher arity are still important, because paths, paths of paths, etc. in <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}_n" class="latex" /> are often forced to pass through trees of higher arity.</p>
+<p>Billera, Holmes and Vogtmann focused their attention on the set <img src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BT%7D_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathcal{T}_n" class="latex" /> of phylogenetic trees where lengths of the external edges&#8212;edges incident to the root and leaves&#8212;are fixed to a constant value. They endow <img src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BT%7D_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathcal{T}_n" class="latex" /> with a metric, which induces a topology on <img src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BT%7D_n%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathcal{T}_n," class="latex" /> and there is a homeomorphism</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D_n+%5Ccong+%5Cmathcal%7BT%7D_n+%5Ctimes+%5B0%2C%5Cinfty%29%5E%7Bn%2B1%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}_n &#92;cong &#92;mathcal{T}_n &#92;times [0,&#92;infty)^{n+1} " class="latex" /></p>
+<p>where the data in <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29%5E%7Bn%2B1%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)^{n+1}" class="latex" /> describe the lengths of the external edges in a general phylogenetic tree.</p>
+<p>In algebraic topology, trees are often used to describe the composition of <i>n</i>-ary operations. This is formalized in the theory of <a href="https://en.wikipedia.org/wiki/Operad_theory">operads</a>. An &#8216;operad&#8217; is an algebraic stucture where for each natural number <img src="https://s0.wp.com/latex.php?latex=n%3D0%2C1%2C2%2C%5Cdots&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n=0,1,2,&#92;dots" class="latex" /> we have a set <img src="https://s0.wp.com/latex.php?latex=O_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O_n" class="latex" /> whose elements are considered as abstract <i>n</i>-ary operations, not necessarily operating on anything yet. An element <img src="https://s0.wp.com/latex.php?latex=f+%5Cin+O_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;in O_n" class="latex" /> can be depicted as a planar tree with one vertex and <i>n</i> labelled leaves:</p>
+<div align="center"><img src="https://i1.wp.com/math.ucr.edu/home/baez/ecological/phylo/corolla.jpg" alt="" /></div>
+<p>We can compose these operations in a tree-like way to get new operations:</p>
+<div align="center"><img src="https://i0.wp.com/math.ucr.edu/home/baez/ecological/phylo/operad_composition.jpg" alt="" /></div>
+<p>and an associative law holds, making this sort of composite unambiguous:</p>
+<div align="center"><img src="https://i0.wp.com/math.ucr.edu/home/baez/ecological/phylo/operad_associativity.jpg" alt="" /></div>
+<p>There are various kinds of operads, but in this paper our operads will always be &#8216;unital&#8217;, having an operation <img src="https://s0.wp.com/latex.php?latex=1+%5Cin+O_1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1 &#92;in O_1" class="latex" /> that acts as an identity for composition. They will also be &#8216;symmetric&#8217;, meaning there is an action of the symmetric group <img src="https://s0.wp.com/latex.php?latex=S_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S_n" class="latex" /> on each set <img src="https://s0.wp.com/latex.php?latex=O_n%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O_n," class="latex" /> compatible with composition. Further, they will be &#8216;topological&#8217;, meaning that each set <img src="https://s0.wp.com/latex.php?latex=O_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O_n" class="latex" /> is a topological space, with composition and permutations acting as continuous maps.</p>
+<p>In Section 5 we prove that there is an operad <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}," class="latex" /> the &#8216;phylogenetic operad&#8217;, whose space of <i>n</i>-ary operations is <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D_n.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}_n." class="latex" /> This raises a number of questions:</p>
+<p>• What is the mathematical nature of this operad?</p>
+<p>• How is it related to &#8216;Markov processes with branching&#8217;?</p>
+<p>• How is it related to known operads in topology?</p>
+<p>Briefly, the answer is that <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}" class="latex" /> is the coproduct of <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com}," class="latex" /> the operad for commutative topological semigroups, and <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)," class="latex" /> the operad having only unary operations, one for each <img src="https://s0.wp.com/latex.php?latex=t+%5Cin+%5B0%2C%5Cinfty%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;in [0,&#92;infty)." class="latex" /> The first describes branching, the second describes Markov processes. Moreover, <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}" class="latex" /> is closely related to the Boardmann&#8211;Vogt <img src="https://s0.wp.com/latex.php?latex=W&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W" class="latex" /> construction applied to <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com}." class="latex" /> This is a construction that Boardmann and Vogt applied to another operad in order to obtain an operad whose algebras are loop spaces.</p>
+<p>To understand all this in more detail, first recall that the <i>raison d&#8217;être</i> of operads is to have &#8216;algebras&#8217;. The most traditional sort of algebra of an operad <img src="https://s0.wp.com/latex.php?latex=O&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O" class="latex" /> is a topological space <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> on which each operation <img src="https://s0.wp.com/latex.php?latex=f+%5Cin+O_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;in O_n" class="latex" /> acts as a<br />
+continuous map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Calpha%28f%29%5Ccolon+X%5En+%5Cto+X+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha(f)&#92;colon X^n &#92;to X " class="latex" /></p>
+<p>obeying some conditions: composition, the identity, and the permutation group actions are preserved, and <img src="https://s0.wp.com/latex.php?latex=%5Calpha%28f%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha(f)" class="latex" /> depends continuously on <img src="https://s0.wp.com/latex.php?latex=f.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f." class="latex" /> The idea is that the abstract operations in <img src="https://s0.wp.com/latex.php?latex=O&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O" class="latex" /> are realized as actual operations on the space <img src="https://s0.wp.com/latex.php?latex=X.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X." class="latex" /></p>
+<p>In this paper we instead need algebras of a linear sort. Such an algebra of <img src="https://s0.wp.com/latex.php?latex=O&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O" class="latex" /> is a finite-dimensional real vector space <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> on which each operation <img src="https://s0.wp.com/latex.php?latex=f+%5Cin+O_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;in O_n" class="latex" /> acts as a multilinear map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Calpha%28f%29%5Ccolon+V%5En+%5Cto+X+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha(f)&#92;colon V^n &#92;to X " class="latex" /></p>
+<p>obeying the same list of conditions. We can also think of <img src="https://s0.wp.com/latex.php?latex=%5Calpha%28f%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha(f)" class="latex" /> as a linear map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Calpha%28f%29%5Ccolon+V%5E%7B%5Cotimes+n%7D+%5Cto+V+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha(f)&#92;colon V^{&#92;otimes n} &#92;to V " class="latex" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=V%5E%7B%5Cotimes+n%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V^{&#92;otimes n}" class="latex" /> is the <i>n</i>th tensor power of <img src="https://s0.wp.com/latex.php?latex=V.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V." class="latex" /></p>
+<p>We also need &#8216;coalgebras&#8217; of operads. The point is that while ordinarily one thinks of an operation <img src="https://s0.wp.com/latex.php?latex=f+%5Cin+O_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;in O_n" class="latex" /> as having <i>n</i> inputs and one output, a phylogenetic tree is better thought of as having one input and <i>n</i> outputs. A coalgebra of <img src="https://s0.wp.com/latex.php?latex=O&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O" class="latex" /> is a finite-dimensional real vector space <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> on which operation <img src="https://s0.wp.com/latex.php?latex=f+%5Cin+O_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;in O_n" class="latex" /> gives a linear map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Calpha%28f%29+%5Ccolon+V+%5Cto+V%5E%7B%5Cotimes+n%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha(f) &#92;colon V &#92;to V^{&#92;otimes n} " class="latex" /></p>
+<p>obeying the same conditions as an algebra, but &#8216;turned around&#8217;.</p>
+<p>The main point of this paper is that the phylogenetic operad has interesting coalgebras, which correspond to how phylogenetic trees are actually used to describe branching Markov processes in biology. But to understand this, we need to start by looking at coalgebras of two operads from which the phylogenetic operad is built.</p>
+<p>By abuse of notation, we will use <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" /> as the name for the operad having only unary operations, one for each <img src="https://s0.wp.com/latex.php?latex=t+%5Cin+%5B0%2C%5Cinfty%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;in [0,&#92;infty)," class="latex" /> with composition of operations given by addition. A coalgebra of <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" /> is a finite-dimensional real vector space <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> together with for each <img src="https://s0.wp.com/latex.php?latex=t+%5Cin+%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;in [0,&#92;infty)" class="latex" /> a linear map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Calpha%28t%29+%5Ccolon+V+%5Cto+V+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha(t) &#92;colon V &#92;to V " class="latex" /></p>
+<p>such that:</p>
+<p>• <img src="https://s0.wp.com/latex.php?latex=%5Calpha%28s%2Bt%29+%3D+%5Calpha%28s%29+%5Calpha%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha(s+t) = &#92;alpha(s) &#92;alpha(t)" class="latex" /> for all <img src="https://s0.wp.com/latex.php?latex=s%2Ct+%5Cin+%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s,t &#92;in [0,&#92;infty)" class="latex" /></p>
+<p>• <img src="https://s0.wp.com/latex.php?latex=%5Calpha%280%29+%3D+1_V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha(0) = 1_V" class="latex" /></p>
+<p>• <img src="https://s0.wp.com/latex.php?latex=%5Calpha%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha(t)" class="latex" /> depends continuously on <img src="https://s0.wp.com/latex.php?latex=t.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t." class="latex" /></p>
+<p>Analysts usually call such a thing a &#8216;continuous one-parameter semigroup&#8217; of operators on <img src="https://s0.wp.com/latex.php?latex=V.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V." class="latex" /></p>
+<p>Given a finite set <img src="https://s0.wp.com/latex.php?latex=X%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X," class="latex" /> a &#8216;Markov process&#8217; or &#8216;continuous-time Markov chain&#8217; on <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> is a continuous one-parameter semigroup of operators on <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5EX&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^X" class="latex" /> such that if <img src="https://s0.wp.com/latex.php?latex=f+%5Cin+%5Cmathbb%7BR%7D%5EX&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;in &#92;mathbb{R}^X" class="latex" /> is a probability distribution on <img src="https://s0.wp.com/latex.php?latex=X%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X," class="latex" /> so is <img src="https://s0.wp.com/latex.php?latex=%5Calpha%28t%29+f&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha(t) f" class="latex" /> for all <img src="https://s0.wp.com/latex.php?latex=t+%5Cin+%5B0%2C%5Cinfty%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;in [0,&#92;infty)." class="latex" /> Equivalently, if we think of <img src="https://s0.wp.com/latex.php?latex=%5Calpha%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha(t)" class="latex" /> as a <img src="https://s0.wp.com/latex.php?latex=X+%5Ctimes+X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X &#92;times X" class="latex" /> matrix of real numbers, we demand that its entries be nonnegative and each column sum to 1. Such a matrix is called &#8216;stochastic&#8217;. If <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> is a set of possible sequences of base pairs, a Markov process on <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> describes the random changes of DNA with the passage of time. We shall see that any Markov process on <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> makes <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5EX&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^X" class="latex" /> into a coalgebra of <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)." class="latex" /></p>
+<p>This handles the Markov process aspect of DNA evolution; what about the branching? For this we use <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com}," class="latex" /> the unique operad with one <i>n</i>-ary operation for each <i>n</i> &gt; 0. Algebras of <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com}" class="latex" /> are not-necessarily-unital commutative algebras: there is only one way to multiply <i>n</i> elements for <i>n</i> &gt; 0.</p>
+<p>For us what matters most is that coalgebras of <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com}" class="latex" /> are finite-dimensional cocommutative coalgebras, not necessarily with counit. If <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> is a finite set, there is a cocommutative coalgebra whose underlying vector space is <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5EX.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^X." class="latex" /> The unique <i>n</i>-ary operation of <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com}" class="latex" /> acts as the linear map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5CDelta_n+%5Ccolon+%5Cmathbb%7BR%7D%5EX+%5Cto+%5Cmathbb%7BR%7D%5EX+%5Cotimes+%5Ccdots+%5Cotimes+%5Cmathbb%7BR%7D%5EX+%5C%3B+%5Ccong+%5C%3B%5Cmathbb%7BR%7D%5E%7BX%5En%7D+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;Delta_n &#92;colon &#92;mathbb{R}^X &#92;to &#92;mathbb{R}^X &#92;otimes &#92;cdots &#92;otimes &#92;mathbb{R}^X &#92;; &#92;cong &#92;;&#92;mathbb{R}^{X^n} }" class="latex" /></p>
+<p>where<br />
+<img src="https://s0.wp.com/latex.php?latex=%5CDelta_n+%28f%29%28x_1%2C+%5Cdots%2C+x_n%29+%3D+%5Cleft%5C%7B+%5Cbegin%7Barray%7D%7Bcl%7D+f%28x%29+%26+%5Ctextrm%7Bif+%7D+x_1+%3D+%5Ccdots+%3D+x_n+%3D+x+%5C%5C+%5C%5C+0+%26+%5Ctextrm%7Botherwise%7D+%5Cend%7Barray%7D+%5Cright.+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Delta_n (f)(x_1, &#92;dots, x_n) = &#92;left&#92;{ &#92;begin{array}{cl} f(x) &amp; &#92;textrm{if } x_1 = &#92;cdots = x_n = x &#92;&#92; &#92;&#92; 0 &amp; &#92;textrm{otherwise} &#92;end{array} &#92;right. " class="latex" /></p>
+<p>This map describes the &#8216;<i>n</i>-fold duplication&#8217; of a probability distribution <img src="https://s0.wp.com/latex.php?latex=f&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f" class="latex" /> on the set <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> of possible genes. We use this map to say what takes place when a species branches:</p>
+<div align="center"><img src="https://i0.wp.com/math.ucr.edu/home/baez/ecological/phylo/triplication.jpg" alt="" /></div>
+<p>Next, we wish to describe how to combine the operads <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com}" class="latex" /> to obtain the phylogenetic operad. Any pair of operads <img src="https://s0.wp.com/latex.php?latex=O&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=O%27&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O&#039;" class="latex" /> has a coproduct <img src="https://s0.wp.com/latex.php?latex=O+%2B+O%27.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O + O&#039;." class="latex" /> The definition of coproduct gives an easy way to understand the algebras of <img src="https://s0.wp.com/latex.php?latex=O+%2B+O%27.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O + O&#039;." class="latex" /> Such an algebra is simply an object that is both an algebra of <img src="https://s0.wp.com/latex.php?latex=O&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O" class="latex" /> and an algebra of <img src="https://s0.wp.com/latex.php?latex=O%27%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O&#039;," class="latex" /> with no compatibility conditions imposed.</p>
+<p>One can also give an explicit construction of <img src="https://s0.wp.com/latex.php?latex=O+%2B+O%27.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O + O&#039;." class="latex" /> Briefly, the <i>n</i>-ary operations of <img src="https://s0.wp.com/latex.php?latex=O+%2B+O%27&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O + O&#039;" class="latex" /> are certain equivalence classes of trees with leaves labelled <img src="https://s0.wp.com/latex.php?latex=%5C%7B1%2C%5Cdots%2C+n%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{1,&#92;dots, n&#92;}" class="latex" /> and all nodes, except for leaves, labelled by operations in <img src="https://s0.wp.com/latex.php?latex=O&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O" class="latex" /> or <img src="https://s0.wp.com/latex.php?latex=O%27.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O&#039;." class="latex" /> While this fact is surely known to experts on operads, it seems hard to find in the literature, so we prove this in Theorem 24.</p>
+<p>Given this, it should come as no surprise that the operad <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}" class="latex" /> is the coproduct <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D+%2B+%5B0%2C%5Cinfty%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com} + [0,&#92;infty)." class="latex" /> In fact, we shall take this as a definition. Starting from this definition, we work backwards to show that the operations of <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}" class="latex" /> correspond to phylogenetic trees. We prove this in Theorem 28. The definition of coproduct determines a topology on the spaces <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D_n%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}_n," class="latex" /> and it is a nontrivial fact that with this topology we have <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D_n+%5Ccong+%5Cmathcal%7BT%7D_n+%5Ctimes+%5B0%2C%5Cinfty%29%5E%7Bn%2B1%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}_n &#92;cong &#92;mathcal{T}_n &#92;times [0,&#92;infty)^{n+1}" class="latex" /> for <i>n</i> &gt; 1, where <img src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BT%7D_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathcal{T}_n" class="latex" /> has the topology defined by Billera, Holmes and Vogtmann. We prove this in Theorem 34.</p>
+<p>Using the definition of the phylogenetic operad as a coproduct, it is clear that given any Markov process on a finite set <img src="https://s0.wp.com/latex.php?latex=X%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X," class="latex" /> the vector space <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5EX&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^X" class="latex" /> naturally becomes a coalgebra of this operad. The reason is that, as we have seen, <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5EX&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^X" class="latex" /> is automatically a coalgebra of <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com}," class="latex" /> and the Markov process makes it into a coalgebra of <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)." class="latex" /> Thus, by the universal property of a coproduct, it becomes a coalgebra of <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D+%5Ccong+%5Ctextrm%7BCom%7D+%2B+%5B0%2C%5Cinfty%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl} &#92;cong &#92;textrm{Com} + [0,&#92;infty)." class="latex" /> We prove this in Theorem 36.</p>
+<p>Since operads arose in algebraic topology, it is interesting to consider how the phylogenetic operad connects to ideas from that subject. Boardmann and Vogt defined a construction on operads, the &#8216;<img src="https://s0.wp.com/latex.php?latex=W&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W" class="latex" /> construction&#8217;, which when applied to the operad for spaces with an associative multiplication gives an operad for loop spaces. The operad <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl}" class="latex" /> has an interesting relation to <img src="https://s0.wp.com/latex.php?latex=W%28%5Ctextrm%7BCom%7D%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W(&#92;textrm{Com})." class="latex" /> To see this, define addition on <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty]" class="latex" /> in the obvious way, where</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cinfty+%2B+t+%3D+t+%2B+%5Cinfty+%3D+%5Cinfty+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;infty + t = t + &#92;infty = &#92;infty " class="latex" /></p>
+<p>Then <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty]" class="latex" /> becomes a commutative topological monoid, so we obtain an operad with only unary operations, one for each <img src="https://s0.wp.com/latex.php?latex=t+%5Cin+%5B0%2C%5Cinfty%5D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;in [0,&#92;infty]," class="latex" /> where composition is addition. By abuse of notation, let us call this operad <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%5D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty]." class="latex" /></p>
+<p>Boardmann and Vogt&#8217;s <img src="https://s0.wp.com/latex.php?latex=W&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W" class="latex" /> construction involves trees with edges having lengths in <img src="https://s0.wp.com/latex.php?latex=%5B0%2C1%5D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,1]," class="latex" /> but we can equivalently use <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%5D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty]." class="latex" /> <a href="http://www.maths.ed.ac.uk/~tl/w.pdf">Leinster</a> has observed that for any <i>nonsymmetric</i> topological operad <img src="https://s0.wp.com/latex.php?latex=O%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O," class="latex" /> Boardmann and Vogt&#8217;s operad <img src="https://s0.wp.com/latex.php?latex=W%28O%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W(O)" class="latex" /> is closely related to <img src="https://s0.wp.com/latex.php?latex=O+%2B+%5B0%2C%5Cinfty%5D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O + [0,&#92;infty]." class="latex" /> Here we make this observation precise in the symmetric case. Operations in <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D+%2B+%5B0%2C%5Cinfty%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com} + [0,&#92;infty]" class="latex" /> are just like phylogenetic trees except that edges may have length <img src="https://s0.wp.com/latex.php?latex=%5Cinfty.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;infty." class="latex" /> Moreover, for any operad <img src="https://s0.wp.com/latex.php?latex=O%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O," class="latex" /> the operad <img src="https://s0.wp.com/latex.php?latex=W%28O%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W(O)" class="latex" /> is a non-unital suboperad of <img src="https://s0.wp.com/latex.php?latex=O+%2B+%5B0%2C%5Cinfty%5D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O + [0,&#92;infty]." class="latex" /> An operation of <img src="https://s0.wp.com/latex.php?latex=O+%2B+%5B0%2C%5Cinfty%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O + [0,&#92;infty]" class="latex" /> lies in <img src="https://s0.wp.com/latex.php?latex=W%28O%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W(O)" class="latex" /> if and only if all the external edges of the corresponding tree have length <img src="https://s0.wp.com/latex.php?latex=%5Cinfty.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;infty." class="latex" /> We prove this in Theorem 40.</p>
+<p><a href="http://arxiv.org/abs/math/0502155">Berger and Moerdijk</a> showed that if <img src="https://s0.wp.com/latex.php?latex=S_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S_n" class="latex" /> acts freely on <img src="https://s0.wp.com/latex.php?latex=O_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O_n" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=O_1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O_1" class="latex" /> is well-pointed, then <img src="https://s0.wp.com/latex.php?latex=W%28O%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W(O)" class="latex" /> is a cofibrant replacement for <img src="https://s0.wp.com/latex.php?latex=O.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O." class="latex" /> This is true for <img src="https://s0.wp.com/latex.php?latex=O+%3D+%5Ctextrm%7BAssoc%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O = &#92;textrm{Assoc}," class="latex" /> the operad whose algebras are topological semigroups. This cofibrancy is why Boardmann and Vogt could use <img src="https://s0.wp.com/latex.php?latex=W%28%5Ctextrm%7BAssoc%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W(&#92;textrm{Assoc})" class="latex" /> as an operad for loop spaces. But <img src="https://s0.wp.com/latex.php?latex=S_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S_n" class="latex" /> does not act freely on <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D_n%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com}_n," class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=W%28%5Ctextrm%7BCom%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="W(&#92;textrm{Com})" class="latex" /> is not a cofibrant replacement for <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com}." class="latex" /> So, it is <i>not</i> an operad for infinite loop spaces.</p>
+<p>Nonetheless, the larger operad <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D+%2B+%5B0%2C%5Cinfty%5D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com} + [0,&#92;infty]," class="latex" /> a compactification of <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BPhyl%7D+%3D+%5Ctextrm%7BCom%7D+%2B+%5B0%2C%5Cinfty%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Phyl} = &#92;textrm{Com} + [0,&#92;infty)," class="latex" /> is somewhat interesting. The reason is that any Markov process</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Calpha+%5Ccolon+%5B0%2C%5Cinfty%29+%5Cto+%5Cmathrm%7BEnd%7D%28%5Cmathbb%7BR%7D%5EX%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha &#92;colon [0,&#92;infty) &#92;to &#92;mathrm{End}(&#92;mathbb{R}^X)" class="latex" /></p>
+<p>approaches a limit as <img src="https://s0.wp.com/latex.php?latex=t+%5Cto+%5Cinfty.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;to &#92;infty." class="latex" /> Indeed, <img src="https://s0.wp.com/latex.php?latex=%5Calpha&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha" class="latex" /> extends uniquely to a homomorphism from the topological monoid <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%5D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty] " class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BEnd%7D%28%5Cmathbb%7BR%7D%5EX%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{End}(&#92;mathbb{R}^X)." class="latex" /> Thus, given a Markov process on a finite set <img src="https://s0.wp.com/latex.php?latex=X%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X," class="latex" /> the vector space <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5EX&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^X" class="latex" /> naturally becomes a coalgebra of <img src="https://s0.wp.com/latex.php?latex=%5Ctextrm%7BCom%7D+%2B+%5B0%2C%5Cinfty%5D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textrm{Com} + [0,&#92;infty]." class="latex" /> We prove this in Theorem 38.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Monday, December 21st, 2015 at 2:47 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/biology/" rel="category tag">biology</a>, <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/probability/" rel="category tag">probability</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2015/11/27/relative-entropy-in-biological-systems/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2015/12/23/the-paris-agreement/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">15 Responses to <em>Operads and Phylogenetic&nbsp;Trees</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment byuser comment-author-3danim8 even thread-even depth-1 highlander-comment" id="comment-74949">
+				<div id="div-comment-74949" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9d906040179ec20c0656d686308a8c01?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://3danim8.wordpress.com/' rel='external nofollow ugc' class='url'>3danim8 (aka Ken Black)</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-74949">21 December, 2015 at 4:29 am</a>		</div>
+
+		<p>John,</p>
+<p>This is very nice work. I can&#8217;t say that I understand all of it, but it reminds me of a story from about 30 years ago, when I had the privilege to meet a living legend.</p>
+<p>It was the mid-1980&#8217;s when I went to a lecture at my university that featured the late, great Stephen Jay Gould. His vocabulary was so extensive that every time I tried to read something he wrote, I needed a companion dictionary to get through each paragraph. This article reminds me of SJG, the theory of punctuated equilibrium, and his unbelievable book titled the &#8220;The Structure of Evolutionary Theory.&#8221;</p>
+<p>Fast forward about 30 years, and one day my three-year old asks me to read him a book. For a little lighter reading and to see the surprising choice of the book he selected, see this article: <a href="https://3danim8.wordpress.com/2015/10/08/what-should-you-do-when-your-3-yr-old-asks-you-to-read-this-book/" rel="nofollow ugc">https://3danim8.wordpress.com/2015/10/08/what-should-you-do-when-your-3-yr-old-asks-you-to-read-this-book/</a></p>
+<p><a href="https://3danim8.files.wordpress.com/2015/12/sjg_darwin.jpg"><img src="https://3danim8.files.wordpress.com/2015/12/sjg_darwin.jpg?w=450" style="max-width:100%;" /></a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=74949#respond' data-commentid="74949" data-postid="20209" data-belowelement="div-comment-74949" data-respondelement="respond" data-replyto="Reply to 3danim8 (aka Ken Black)" aria-label='Reply to 3danim8 (aka Ken Black)'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-74961">
+				<div id="div-comment-74961" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6c65b3d3fc035beec559f878228d7d43?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">arch1</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-74961">21 December, 2015 at 8:06 pm</a>		</div>
+
+		<p>Re: “Biologists who try to infer phylogenetic trees from present-day genetic data” &#8211; Has anyone tried to define/quantify something like a ‘decay rate’ for this kind of information (e.g. an upper bound on the fraction of information that could possibly be inferred concerning the biosphere’s phylogenetic state x years in the past, as a function of x)?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=74961#respond' data-commentid="74961" data-postid="20209" data-belowelement="div-comment-74961" data-respondelement="respond" data-replyto="Reply to arch1" aria-label='Reply to arch1'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-74985">
+				<div id="div-comment-74985" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-74985">22 December, 2015 at 8:35 pm</a>		</div>
+
+		<p>I don&#8217;t know.  Mathematicians have formulas for the rate at which information about the past decays as something changes randomly via a Markov process.  So, one could take any <a href="https://en.wikipedia.org/wiki/Models_of_DNA_evolution" rel="nofollow">Markov model of DNA evolution</a>, plug in biologists&#8217; favorite values of the constants involved, and compute the rate at which information decays.  But I don&#8217;t know if someone has done this.</p>
+<p>A good place to start would be here:</p>
+<p>&bull; E. Sober and M. Steel, Entropy increase and information loss in Markov models of evolution, <em>Biol. Philos.</em> <strong>26</strong> (2011), 223&#8211;250.</p>
+<p>I bumped into this when finishing my paper with Blake Pollard, <a href="https://johncarlosbaez.wordpress.com/2015/11/27/relative-entropy-in-biological-systems/" rel="nofollow">Relative entropy in biological systems</a>.  So, somehow all this work I&#8217;m doing is related, even if I don&#8217;t fully understand how.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=74985#respond' data-commentid="74985" data-postid="20209" data-belowelement="div-comment-74985" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-74988">
+				<div id="div-comment-74988" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6c65b3d3fc035beec559f878228d7d43?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">arch1</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-74988">23 December, 2015 at 12:02 am</a>		</div>
+
+		<p>Thank you John, I will look for that.</p>
+<p>(I just realized btw that my question as phrased is a hybrid one, since a presumably small-but-important subset of the genetic info which is in principle available at a given time exists in already-dead organisms.</p>
+<p>So to answer the Q, one must consider not only &#8216;evolutionary decay&#8217; &#8211; the generation-over-generation loss of information concerning the biosphere&#8217;s phylogenetic state at a given earlier time due to evolutionary change &#8211; but also &#8216;physical decay&#8217; &#8211; the degradation of genetic info in dead organisms.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=74988#respond' data-commentid="74988" data-postid="20209" data-belowelement="div-comment-74988" data-respondelement="respond" data-replyto="Reply to arch1" aria-label='Reply to arch1'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 highlander-comment" id="comment-74971">
+				<div id="div-comment-74971" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/eee1900328979212bebce09fd861c148?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Graham</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-74971">22 December, 2015 at 9:27 am</a>		</div>
+
+		<p>On the Azimuth Forum, I said:</p>
+<blockquote><p>
+  It seems relevant to my work [phylogenetic analysis], but I don&#8217;t understand category theory. So the paper seems oddly familiar while going over my head.
+</p></blockquote>
+<p>John replied:</p>
+<blockquote><p>
+  This probably means you don&#8217;t need to worry about it. The interest of the paper lies in the fact that operads are widely used in some branches of math to describe algebraic structures with lots of n-ary operations. These operations are often drawn as rooted trees with n leaves. So, it&#8217;s interesting but not ultimately surprising that phylogenetic trees are operations in an operad that certain mathematicians would find interesting for purely operad-theoretic reasons. Various things that people do with phylogenetic trees can be understood in these terms. That&#8217;s really all there is to it: identifying a mathematical structure that&#8217;s sitting there &#8220;in nature&#8221;, and letting mathematicians know its basic properties.
+</p></blockquote>
+<p>Even if I don&#8217;t need to worry about it, it might be interesting to think about it some more. I have spent most of 2015 inside tree-space, trying to find good ways of moving around it. Perhaps operad theory could inspire something at least. (By &#8216;tree-space&#8217; I mean something like Phyl<sub>n</sub>, but not anything precise. My tree-space is more complicated.)</p>
+<p>On Wikipedia, it says &#8220;Algebras are to operads as group representations are to groups.&#8221; I know about group and group representations (or at least I did once). So if I am working in tree-space, it is like working with some set of matrices without realising they correspond to an abstract group which is quite familiar to group theorists. Is this a good analogy?</p>
+<p>Knowing that phylogenetic trees are operations in an operad does not seem that interesting by itself. To me, it seem much more interesting when you start moving around, from one tree to another. Is that also the way you see it?</p>
+<p>From the post: &#8220;The point is that while ordinarily one thinks of an operation f in O_n as having n inputs and one output, a phylogenetic tree is better thought of as having one input and n outputs.&#8221;</p>
+<p>When working with phylogenetic trees, we look at things both ways. In particular, the main calculation of a likelihood starts at the tips and works towards the root using Felsenstein&#8217;s tree-pruning algorithm (<a href="https://en.wikipedia.org/wiki/Felsenstein&#039;s_tree-pruning_algorithm" rel="nofollow ugc">https://en.wikipedia.org/wiki/Felsenstein&#039;s_tree-pruning_algorithm</a>). For all I know, these calculations are in an algebra which is well-known to operad-theorists.</p>
+<p>Mostly, biologists move around tree-space in search of the &#8216;best&#8217; one (eg maximum likelihood estimate), or to sample the &#8216;good&#8217; ones (eg sample the Bayesian posterior distribution over tree-space). These moves (sometimes confusing called operations) are jumps, not continuous moves, so they have probability zero of landing on a tree which is not binary. They are usually little jumps, so it&#8217;s not that different from moving around continuously.</p>
+<p>Recently, I&#8217;ve been thinking about another way in which one phylogenetic tree turns into another. Consider n DNA sequences sampled from the same (diploid, sexually reproducing) species and align them. This sort of thing:</p>
+<p>1: AAGTCATAAG<br />
+2: AGGTCATAAA<br />
+3: AAGTTATAAG</p>
+<p>As you go along the alignment from left to right, each site (each column) has a phylogenetic tree representing its history. This is a &#8216;coalescent tree&#8217; (<a href="https://en.wikipedia.org/wiki/Coalescent_theory" rel="nofollow ugc">https://en.wikipedia.org/wiki/Coalescent_theory</a>). Due to recombination (<a href="https://en.wikipedia.org/wiki/Genetic_recombination" rel="nofollow ugc">https://en.wikipedia.org/wiki/Genetic_recombination</a>) these trees can be different. So going along the genome means exploring Phyl<sub>n</sub>. This is also a series of little jumps. This seems to bring operads even closer to reality.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=74971#respond' data-commentid="74971" data-postid="20209" data-belowelement="div-comment-74971" data-respondelement="respond" data-replyto="Reply to Graham" aria-label='Reply to Graham'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-74984">
+				<div id="div-comment-74984" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-74984">22 December, 2015 at 8:13 pm</a>		</div>
+
+		<p>Graham wrote:</p>
+<blockquote><p>
+  Even if I don’t need to worry about it, it might be interesting to think about it some more.
+</p></blockquote>
+<p>True.  Brian Eno recently defined &#8220;culture&#8221; to be &#8220;everything we don&#8217;t need to do&#8221;.</p>
+<blockquote><p>
+  On Wikipedia, it says “Algebras are to operads as group representations are to groups.” I know about group and group representations (or at least I did once). So if I am working in tree-space, it is like working with some set of matrices without realising they correspond to an abstract group which is quite familiar to group theorists. Is this a good analogy?
+</p></blockquote>
+<p>It&#8217;s a good analogy.  To make the analogy really precise, we could say</p>
+<blockquote><p>
+  a group is to a representation of that group as the phylogenetic operad is to a Markov model of DNA evolution.
+</p></blockquote>
+<p>A group is a set <img src="https://s0.wp.com/latex.php?latex=G&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="G" class="latex" /> with a multiplication, identity and inverses.  A representation of <img src="https://s0.wp.com/latex.php?latex=G&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="G" class="latex" /> maps each element of <img src="https://s0.wp.com/latex.php?latex=G&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="G" class="latex" /> to an <img src="https://s0.wp.com/latex.php?latex=n+%5Ctimes+n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n &#92;times n" class="latex" /> matrix in such a way that multiplication, identity and inverses in the group get sent to multiplication, identity and inverses in the world of matrices.</p>
+<p>The phylogenetic operad <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BPhyl%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Phyl}" class="latex" /> is a big set of all trees with edges labelled by lengths.  But it&#8217;s not just a set: it has operations that say how to glue one tree onto another.  This is why it&#8217;s an &#8216;operad&#8217;.  A Markov model maps each tree to a matrix that describes how a probability distribution on the genome data of the species at the root of the tree stochastically evolves to a probability distributions on the genome data of the descendant species at the leaves.  Ways of gluing trees together get sent to ways of combining these matrices.</p>
+<p>(I&#8217;m being quite rough here, just to get the point across with a minimum of distraction.)</p>
+<p>Of course this is not be how you usually think of a Markov model&#8212;like the <a href="https://en.wikipedia.org/wiki/Models_of_DNA_evolution#JC69_model_.28Jukes_and_Cantor.2C_1969.29.5B1.5D" rel="nofollow">Jukes&#8211;Cantor model</a>, for example.  But we show it&#8217;s equivalent.</p>
+<blockquote><p>
+  Knowing that phylogenetic trees are operations in an operad does not seem that interesting by itself. To me, it seem much more interesting when you start moving around, from one tree to another. Is that also the way you see it?
+</p></blockquote>
+<p>I see what you mean, but you&#8217;re more practical than me: I can get interested by things for very abstract reasons.</p>
+<p>In particular, I love operads, and I know a lot of stuff about operads, because they&#8217;re really important in pure math.  So, it was really interesting to meet an  operad that&#8217;s a lot like some of the most important operads in math, but coming from genomics, where nobody had even noticed it was an operad!</p>
+<p>It&#8217;s a bit like discovering a new group that so far was only implicitly used by ornithologists&#8212;who of course know nothing about group theory.  For example, imagine that the symmetry group of an ostrich egg turned out to be a new finite simple group, one that had been overlooked by the mathematicians!</p>
+<p>The operad <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BPhyl%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Phyl}" class="latex" /> is not just any old operad: it&#8217;s one that arises very naturally in the theory of operads!   It admits a quick one-sentence description, which any good operad theorist will understand (but nobody else).  It&#8217;s closely connected to some operads that play a fundamental role in algebraic topology, and yet it&#8217;s never been discussed there, as far as I know.  So that&#8217;s what our paper is mainly about.</p>
+<p>When it comes to &#8220;moving around&#8221;, part of the definition of an operad is that there&#8217;s a <em>topology</em> on each space of <i>n</i>-ary operations.  In the case of <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BPhyl%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Phyl}," class="latex" /> this space is called <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BPhyl%7D_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Phyl}_n" class="latex" />, and it&#8217;s a space of trees with <i>n</i> leaves, with edges labelled by &#8216;lengths&#8217;.  (Again this is rough.)   Thanks to this topology we can talk about a continuous path in this space of trees, which is what I (but not quite you) would mean by &#8220;moving around tree-space&#8221;.  For example:</p>
+<p><img src="https://i1.wp.com/math.ucr.edu/home/baez/ecological/phylo/path_of_phylogenetic_trees.jpg" /></p>
+<p>is a path in <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BPhyl%7D_4&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Phyl}_4" class="latex" />.  As we move along this path, most of the time the tree stays the same and only the lengths of edges change.  But at certain moments the tree changes.</p>
+<p>To bridge the gap between what I&#8217;m thinking about and what you think about, you might enjoy the introductory parts of this paper:</p>
+<p>&bull; Louis J. Billera, Susan P. Holmes and Karen Vogtmann, <a href="http://finmath.stanford.edu/~susan/papers/lap.pdf" rel="nofollow">Geometry of the space of phylogenetic trees</a>, <i>Advances in Applied Mathematics</i> <b>27</b> (2001), 733&#8211;767.</p>
+<p>Billera, Holmes and Vogtmann describe the topology of <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BPhyl%7D_n%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Phyl}_n," class="latex" /> or actually the smaller space <img src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BT%7D_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathcal{T}_n" class="latex" /> where the lengths of external edges are fixed to a constant value.  They describe a metric, or distance function, on <img src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BT%7D_n.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathcal{T}_n." class="latex" />  Moreover, they seem to have some idea about why biologists should care!   More of an idea than I do, at least.</p>
+<p>It&#8217;s interesting that their topology on <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BPhyl%7D_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Phyl}_n" class="latex" />, which while &#8216;obvious&#8217; takes some work to describe, also emerges naturally from the beautiful one-setence description of the operad <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BPhyl%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Phyl}." class="latex" /></p>
+<p>I would like to find ways that my work with Nina could be useful&#8230; while still doing beautiful math, preferably related to operads.  It would probably involve taking ideas from biology&#8212;maybe some of the ideas you&#8217;re talking about&#8212;and thinking about them with more of an emphasis on how big trees are made of smaller trees.  Building big trees from smaller ones is &#8216;composition&#8217; in the operad <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BPhyl%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Phyl}," class="latex" /> and composition is the main thing that makes an operad be an operad.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=74984#respond' data-commentid="74984" data-postid="20209" data-belowelement="div-comment-74984" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 parent highlander-comment" id="comment-75003">
+				<div id="div-comment-75003" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/eee1900328979212bebce09fd861c148?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Graham</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-75003">23 December, 2015 at 7:15 pm</a>		</div>
+
+		<p>Thanks, John. The main thing I learnt was that composability is the key thing about operads (whereas I was thinking vaguely of topology, metric, or measure).</p>
+<blockquote><p>
+  A Markov model maps each tree to a matrix that describes how a probability distribution on the genome data of the species at the root of the tree stochastically evolves to a probability distributions on the genome data of the descendant species at the leaves. Ways of gluing trees together get sent to ways of combining these matrices.</p>
+<p>  (I’m being quite rough here, just to get the point across with a minimum of distraction.)</p>
+<p>  Of course this is not be how you usually think of a Markov model—like the Jukes–Cantor model,
+</p></blockquote>
+<p>Actually, that is very much how I think about phylogenetic analysis as a whole. Except, upside down and inside out.</p>
+<p>We start with probability distributions on the genome data of the descendant species at the leaves. These are what we observe in the DNA of various present-day organisms.  (Usually these are regarded as known sequences, ie, as points rather than distributions, but that&#8217;s for computational efficiency not realism.) Then using Felsenstein’s tree-pruning algorithm, we work recursively back to the root, calculating vectors in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5EX.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^X." class="latex" /> (The vectors are called &#8216;conditional likelihoods of subtrees&#8217; or &#8216;partial likelihoods&#8217;.) An extra step at the root converts the vector there to a number, which is the probability of the observed data, given the tree. In other words, it is the likelihood of the tree, given the observations. The likelihood of the tree, given the observations, is The Central Object of study in phylogenetics analysis (though I don&#8217;t suppose many biologists would put it that way!).</p>
+<p>The formula for a single step in the calculation looks like this. Suppose a vertex <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> in the tree has <img src="https://s0.wp.com/latex.php?latex=r&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r" class="latex" /> children, which have vectors <img src="https://s0.wp.com/latex.php?latex=v_1%2C+%5Cdots%2C+v_r+%5Cin+%5Cmathbb%7BR%7D%5EX&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v_1, &#92;dots, v_r &#92;in &#92;mathbb{R}^X" class="latex" />, and the branches between <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> and its children have lengths <img src="https://s0.wp.com/latex.php?latex=t_1%2C+%5Cdots%2C+t_r&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t_1, &#92;dots, t_r" class="latex" />. Suppose <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> is a <img src="https://s0.wp.com/latex.php?latex=%7CX%7C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="|X|" class="latex" /> by <img src="https://s0.wp.com/latex.php?latex=%7CX%7C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="|X|" class="latex" /> infinitesimal stochastic matrix which gives the rates at which members of <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> turn into one another. Then we make <img src="https://s0.wp.com/latex.php?latex=r&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r" class="latex" /> vectors <img src="https://s0.wp.com/latex.php?latex=%5Cexp%28S+t_i%29+v_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;exp(S t_i) v_i" class="latex" />, and multiply these element-wise to make the vector at <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" />.</p>
+<p>This seems the best bet for finding something that interests me into something &#8216;operadic&#8217;.</p>
+<p>I already knew the Billera-Holmes-Vogtmann paper. And yes, that does seem about halfway between you and me. As I read it, their main reason why biologists should care is that it provides (in principle) ways of summarising The Central Object.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=75003#respond' data-commentid="75003" data-postid="20209" data-belowelement="div-comment-75003" data-respondelement="respond" data-replyto="Reply to Graham" aria-label='Reply to Graham'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-3 parent highlander-comment" id="comment-75009">
+				<div id="div-comment-75009" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-75009">23 December, 2015 at 10:05 pm</a>		</div>
+
+		<p>Thanks!</p>
+<blockquote><p>
+  The main thing I learnt was that composability is the key thing about operads (whereas I was thinking vaguely of topology, metric, or measure).
+</p></blockquote>
+<p>Right.  An operad is a bunch of operations that you can compose.  I attempted to say this in the blog article:</p>
+<blockquote><p>
+&#8230; trees are often used to describe the composition of <i>n</i>-ary operations. This is formalized in the theory of <a href="https://en.wikipedia.org/wiki/Operad_theory" rel="nofollow">operads</a>. An &#8216;operad&#8217; is an algebraic stucture where for each natural number <img src="https://s0.wp.com/latex.php?latex=n%3D0%2C1%2C2%2C%5Cdots&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n=0,1,2,&#92;dots" class="latex" /> we have a set <img src="https://s0.wp.com/latex.php?latex=O_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O_n" class="latex" /> whose elements are considered as abstract <i>n</i>-ary operations, not necessarily operating on anything yet. An element <img src="https://s0.wp.com/latex.php?latex=f+%5Cin+O_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;in O_n" class="latex" /> can be depicted as a planar tree with one vertex and <i>n</i> labelled leaves:</p>
+<div align="center"><img src="https://i1.wp.com/math.ucr.edu/home/baez/ecological/phylo/corolla.jpg" alt="" /></div>
+<p>We can compose these operations in a tree-like way to get new operations:</p>
+<div align="center"><img src="https://i0.wp.com/math.ucr.edu/home/baez/ecological/phylo/operad_composition.jpg" alt="" /></div>
+<p>and an associative law holds, making this sort of composite unambiguous:</p>
+<div align="center"><img src="https://i0.wp.com/math.ucr.edu/home/baez/ecological/phylo/operad_associativity.jpg" alt="" /></div>
+</blockquote>
+<p>The formula you mention here:</p>
+<blockquote><p>
+  The formula for a single step in the calculation looks like this. Suppose a vertex <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> in the tree has <img src="https://s0.wp.com/latex.php?latex=r&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r" class="latex" /> children, which have vectors <img src="https://s0.wp.com/latex.php?latex=v_1%2C+%5Cdots%2C+v_r+%5Cin+%5Cmathbb%7BR%7D%5EX&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v_1, &#92;dots, v_r &#92;in &#92;mathbb{R}^X" class="latex" />, and the branches between <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> and its children have lengths <img src="https://s0.wp.com/latex.php?latex=t_1%2C+%5Cdots%2C+t_r&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t_1, &#92;dots, t_r" class="latex" />. Suppose <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> is a <img src="https://s0.wp.com/latex.php?latex=%7CX%7C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="|X|" class="latex" /> by <img src="https://s0.wp.com/latex.php?latex=%7CX%7C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="|X|" class="latex" /> infinitesimal stochastic matrix which gives the rates at which members of <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> turn into one another. Then we make <img src="https://s0.wp.com/latex.php?latex=r&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r" class="latex" /> vectors <img src="https://s0.wp.com/latex.php?latex=%5Cexp%28S+t_i%29+v_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;exp(S t_i) v_i" class="latex" />, and multiply these element-wise to make the vector at <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" />.
+</p></blockquote>
+<p>is implicit in some stuff discussed in our paper, and even in the blog article here&#8212;though we were hiding it amid clouds of jargon, to make certains sorts of mathematician able to understand it better.  The idea, as we see it, is that the phylogenetic operad is built from two simpler ones:</p>
+<p>&bull; one called <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" /> that describes time evolution, where the genome randomly changes according to a Markov process,</p>
+<p>and</p>
+<p>&bull; one called <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BCom%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Com}" class="latex" /> that describes branching, where the genome gets duplicated, or &#8216;<i>n</i>-plicated&#8217;.</p>
+<p>Technically the phylogenetic operad is the <a href="https://en.wikipedia.org/wiki/Coproduct" rel="nofollow">&#8216;coproduct&#8217;</a> <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BCom%7D+%2B+%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Com} + [0,&#92;infty)" class="latex" /> of these two other operads.</p>
+<p>Of course I&#8217;m not claiming this viewpoint is better for normal humans.</p>
+<p>You said earlier that the phylogenetic trees <i>you</i> consider are more fancy than the ones we consider.  Maybe if you explained them to me I could see if they were operations in a mathematically interesting operad.  (I can&#8217;t promise to do anything more useful than that.)</p>
+<p>By the way, I fixed your LaTeX: when you post a comment there are instructions directly above that say how to use LaTeX here, but almost nobody ever reads them.  In the process I took the liberty of changing &#8220;stochastic&#8221; to &#8220;infinitesimal stochastic&#8221;.  A <b>stochastic</b> matrix is one that describes a finite amount of time evolution for a Markov process: namely, a square matrix of nonnegative numbers where the columns sum to 1.  We need some other name for a matrix <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> such that <img src="https://s0.wp.com/latex.php?latex=%5Cexp%28tS%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;exp(tS)" class="latex" /> is stochastic for all <img src="https://s0.wp.com/latex.php?latex=t+%5Cge+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;ge 0" class="latex" />.  Some people call this an <b>intensity matrix</b> or <b>stochastic Hamiltonian</b>.  But I really want an adjective: I can&#8217;t grammatically say &#8220;now let us prove that this matrix is intensity&#8221;.  Also, since in physics one speaks of the Hamiltonian of a particular physical system, one should not also use that word to denote a matrix with particular mathematical properties.</p>
+<p>So, I use the adjective <b>infinitesimal stochastic</b> to denote a matrix such that <img src="https://s0.wp.com/latex.php?latex=%5Cexp%28tS%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;exp(tS)" class="latex" /> is stochastic for all <img src="https://s0.wp.com/latex.php?latex=t+%5Cge+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;ge 0" class="latex" />.  This goes along with a tradition where we think of <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> as describing an &#8216;infinitesimal&#8217; amount of time evolution, and <img src="https://s0.wp.com/latex.php?latex=%5Cexp%28t+S%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;exp(t S)" class="latex" /> as describing a &#8216;finite&#8217; amount of time evolution.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=75009#respond' data-commentid="75009" data-postid="20209" data-belowelement="div-comment-75009" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-4 highlander-comment" id="comment-75026">
+				<div id="div-comment-75026" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/eee1900328979212bebce09fd861c148?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Graham</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-75026">24 December, 2015 at 10:41 am</a>		</div>
+
+		<blockquote><p>
+  You said earlier that the phylogenetic trees you consider are more fancy than the ones we consider. Maybe if you explained them to me I could see if they were operations in a mathematically interesting operad. (I can’t promise to do anything more useful than that.)
+</p></blockquote>
+<p>That&#8217;s fine, I don&#8217;t have much hope this is going to lead anywhere very useful. It might give me a different way of looking at something.</p>
+<p>I am working with the multispecies coalescent model. This model has a bunch of &#8216;gene trees&#8217; sitting inside a species tree. The individual trees are quite ordinary, but the gene trees are constrained by the species tree. There are some pictures (Figs 1 and 9) in this paper: <a href="http://mbe.oxfordjournals.org/content/27/3/570.full" rel="nofollow ugc">http://mbe.oxfordjournals.org/content/27/3/570.full</a>. The model incorporates a simple model from population genetics along each branch of the species tree.</p>
+<p>The trees are binary and ultrametric. The tips of the species tree are labelled with species. I&#8217;ll just talk about a single gene tree. They are all basically the same sort of thing, so if you understand one gene tree, you understand them all. The gene tree will have at least as many tips as the species tree, usually more. At the tips are DNA sequences which have been sampled from individuals belonging to one of the species.  The constraint is that going back in time, two DNA sequences cannot meet (coalesce) until the species they belong to have met.</p>
+<p>A more biological description. Suppose you have two human DNA sequences for a particular gene. (You can generally get two sequences from each individual organism so they could be from the same person.) Suppose the human population is 50,000. That might sound crazy given the current population, but over the last six million years it is a reasonable guess. That means 100,000 copies in the human gene pool, and so using a very simple model of population genetics, the probability that this pair meets is 1/100,000 per generation, say 25 years. So the probability they have not met by six million years into the past is about exp(-6/2.5) or 9%. If they don&#8217;t meet, it is an example of &#8216;incomplete lineage sorting&#8217;. Once they&#8217;re back that far, they can meet DNA sequences from chimps. It means that a gene tree can have a different topology to the species tree.</p>
+<p>I knew about the latex thing, and even put one &#8216;latex&#8217; into my post. Then I got distracted by something else, and clicked on post before adding the rest. &#8216;infinitesimal stochastic&#8217; is fine. Biologists just say &#8216;rate matrix&#8217;.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-75007">
+				<div id="div-comment-75007" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/603fe1dc64645fa997555277891bc022?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Jack Morava</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-75007">23 December, 2015 at 10:00 pm</a>		</div>
+
+		<p>Dear John,</p>
+<p>You might be interested in smooth blowup of the Billera-Holmes-Vogtmann model for tree space described in</p>
+<p>&bull; <a href="http://www.sciencedirect.com/science/article/pii/S0196885815000378" rel="nofollow">Navigation in tree spaces</a>, <i>Adv. Appl. Math.</i> <b>67</b> (2015), 75&#8211;95.</p>
+<p>It&#8217;s also connected to operads (more precisely, to the Deligne-Mumford-Knudsen operad defined by genus zero <b>real</b> algebraic curves); its spaces are aspherical, with an interesting (system of) fundamental group(s), analogous in some ways to the operad defined by the braid groups. It has an intrinsic pseudometric, with wall-crossing phenomena that look suspiciously biological&#8230;</p>
+<p>Best, sincerely</p>
+<pre><code>                   (:+{)}  Jack
+</code></pre>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=75007#respond' data-commentid="75007" data-postid="20209" data-belowelement="div-comment-75007" data-respondelement="respond" data-replyto="Reply to Jack Morava" aria-label='Reply to Jack Morava'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-75010">
+				<div id="div-comment-75010" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-75010">23 December, 2015 at 10:18 pm</a>		</div>
+
+		<p>Cool!  I&#8217;ll check it out.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=75010#respond' data-commentid="75010" data-postid="20209" data-belowelement="div-comment-75010" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-gisparents odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-75498">
+				<div id="div-comment-75498" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/596ac39c5bc5b2a12475a93d9c43b92b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://gisparents.wordpress.com' rel='external nofollow ugc' class='url'>gisparents</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-75498">30 December, 2015 at 9:40 pm</a>		</div>
+
+		<p>Hi John, This is a wonderful work. I met Nina when she visited SJSU, a few weeks ago. I talked to her and also briefly talked about my work. I am working on the relationship between C-sets and phylogenetics. Look forward to hearing more. Regards, Shabeena</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=75498#respond' data-commentid="75498" data-postid="20209" data-belowelement="div-comment-75498" data-respondelement="respond" data-replyto="Reply to gisparents" aria-label='Reply to gisparents'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-75540">
+				<div id="div-comment-75540" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d2f1e2a04453a6071251c5712ecd9df0?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.facebook.com/100000540035116' rel='external nofollow ugc' class='url'>Gisser Martin</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-75540">1 January, 2016 at 10:26 pm</a>		</div>
+
+		<p>Last year I became a bit obsessed with the shuffle multiplication resp. unshuffle coproduct. Do you have any use for it?</p>
+<p>It appears in many branches of maths incl. operads (Loday/Vallette: Algebraic Operads &#8211; of which I know nothing) and Markov chains (Persi Diaconis). But it has not been explicitly appreciated in tensor calculus (Veblen already used it implicitly) &#8211; which I plan to change&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=75540#respond' data-commentid="75540" data-postid="20209" data-belowelement="div-comment-75540" data-respondelement="respond" data-replyto="Reply to Gisser Martin" aria-label='Reply to Gisser Martin'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-75541">
+				<div id="div-comment-75541" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-75541">1 January, 2016 at 10:47 pm</a>		</div>
+
+		<p>I used unshuffles in my work on Lie 2-algebra, and one needs shuffles to <a href="https://en.wikipedia.org/wiki/Tensor_algebra#Coalgebra_structures" rel="nofollow">make the tensor algebra of vector space into a bialgebra</a>.  But I haven&#8217;t been shuffling much lately.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=75541#respond' data-commentid="75541" data-postid="20209" data-belowelement="div-comment-75541" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-odd thread-alt depth-1 highlander-comment" id="comment-75553">
+				<div id="div-comment-75553" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/#comment-75553">2 January, 2016 at 4:18 am</a>		</div>
+
+		<p>There are some nice comments about operads and phylogenetic trees <a href="https://golem.ph.utexas.edu/category/2015/12/operads_and_phylogenetic_trees.html#comments" rel="nofollow">over on the <em>n</em>-Category Caf&eacute;</a>, including a nice approach to trees by Joachim Kock.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=75553#respond' data-commentid="75553" data-postid="20209" data-belowelement="div-comment-75553" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-74971">Graham</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2015/12/21/operads-and-phylogenetic-trees/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2015/12/21/operads-and-phylogenetic-trees/?replytocom=74971" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='20209' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='74971' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="c587ebfdf0" /></p>
+<input type="hidden" name="genseq" value="1632616959" />
+<input type="hidden" id="ak_js" name="ak_js" value="154"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2015/12/21/operads-and-phylogenetic-trees/?replytocom=74971"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,176,979 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-9d906040179ec20c0656d686308a8c01">
+	</div>
+	<div class="grofile-hash-map-6c65b3d3fc035beec559f878228d7d43">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-eee1900328979212bebce09fd861c148">
+	</div>
+	<div class="grofile-hash-map-603fe1dc64645fa997555277891bc022">
+	</div>
+	<div class="grofile-hash-map-596ac39c5bc5b2a12475a93d9c43b92b">
+	</div>
+	<div class="grofile-hash-map-d2f1e2a04453a6071251c5712ecd9df0">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"20209","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'20209','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTZVSFhsfD1mPVc9aUZBQnYxNixnUWZ+WW50RXVQNWtjXVZ0bEolWWhIcTVYL0FPJXw4RHRaTGYsViVvV1gmWlgseHFqdiVMaEYmakJINGk/QW9dVkg9Sy1UMGZSUlFJbFVkLUl5SVhpUnBPMl9Pbl1ialBTPy8lLFk/SVVTYmhyMmVMei5BTn5SNS9ScEwlK0tCTFdBLnhDYTBYbTE3YnomWiVOPVpTWjBiZTkuOSxUbyZFVHMyZVloPSZTa0JyZk1ONDBMcEg3bFtpMG5PREJnOFMrT29WZVFy'}]);
+_stq.push([ 'clickTrackerInit', '12777403', '20209' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Information Geometry (Part 4) | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Information Geometry (Part&nbsp;4) Comments Feed" href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2010%2F10%2F29%2Finformation-geometry-part-4%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2010\/10\/29\/information-geometry-part-4\/?replytocom=2259","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2010%2F10%2F29%2Finformation-geometry-part-4%2F%3Freplytocom%3D2259","postID":"1504","shortlink":"https:\/\/wp.me\/pRBZ9-og","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/1504","statsLink":"https:\/\/wordpress.com\/stats\/post\/1504\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2010%2F10%2F29%2Finformation-geometry-part-4%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-og' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2010%2F10%2F29%2Finformation-geometry-part-4%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2010%2F10%2F29%2Finformation-geometry-part-4%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Information Geometry (Part 4)" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/" />
+<meta property="og:description" content="Why in quantum mechanics we need to take the real part of the covariance matrix to get a metric." />
+<meta property="article:published_time" content="2010-10-29T08:44:56+00:00" />
+<meta property="article:modified_time" content="2010-11-02T04:49:54+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Information Geometry (Part&nbsp;4)" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="Why in quantum mechanics we need to take the real part of the covariance matrix to get a metric." />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-1504 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-1504 post type-post status-publish format-standard hentry category-information-and-entropy category-physics" id="post-1504">
+			<h2>Information Geometry (Part&nbsp;4)</h2>
+
+			<div class="entry">
+				<p>Before moving on, I&#8217;d like to clear up a mistake I&#8217;d been making in all my previous posts on this subject.</p>
+<p>(By now I&#8217;ve tried to fix those posts, because people often get information from the web in a hasty way, and I don&#8217;t want my mistake to spread.  But you&#8217;ll still see traces of my mistake infecting the <i>comments</i> on those posts.)</p>
+<p>So what&#8217;s the mistake?  It&#8217;s embarrassingly simple, but also simple to fix.  A <a href="http://en.wikipedia.org/wiki/Metric_tensor">Riemannian metric</a> must be symmetric:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D+%3D+g_%7Bji%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij} = g_{ji} " class="latex" />  </p>
+<p>Now, I had defined the Fisher information metric to be the so-called <a href="http://en.wikipedia.org/wiki/Covariance_matrix">&#8216;covariance matrix&#8217;</a>:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D+%3D+%5Clangle+%28X_i+-+%5Clangle+X_i+%5Crangle%29+%5C%3B%28X_j-+%5Clangle+X_j+%5Crangle%29%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij} = &#92;langle (X_i - &#92;langle X_i &#92;rangle) &#92;;(X_j- &#92;langle X_j &#92;rangle)&#92;rangle" class="latex" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=X_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X_i" class="latex" /> are some observable-valued functions on a manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" />, and the angle brackets mean &#8220;expectation value&#8221;, computed using a mixed state <img src="https://s0.wp.com/latex.php?latex=%5Crho&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho" class="latex" /> that also depends on the point in <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" />.</p>
+<p>The covariance matrix is symmetric in classical mechanics, since then observables commute, so:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+AB+%5Crangle+%3D+%5Clangle+BA+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle AB &#92;rangle = &#92;langle BA &#92;rangle " class="latex" /></p>
+<p>But it&#8217;s not symmetric is quantum mechanics!  After all, suppose <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> is the position operator for a particle, and <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> is the momentum operator.  Then according to Heisenberg</p>
+<p><img src="https://s0.wp.com/latex.php?latex=qp+%3D+pq+%2B+i+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="qp = pq + i " class="latex" /></p>
+<p>in units where Planck&#8217;s constant is 1.  Taking expectation values, we get:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+qp+%5Crangle+%3D+%5Clangle+pq+%5Crangle+%2B+i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle qp &#92;rangle = &#92;langle pq &#92;rangle + i" class="latex" /></p>
+<p>and in particular:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+qp+%5Crangle+%5Cne+%5Clangle+pq+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle qp &#92;rangle &#92;ne &#92;langle pq &#92;rangle " class="latex" /></p>
+<p>We can use this to get examples where <img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij}" class="latex" /> is not symmetric.    </p>
+<p>However, it turns out that the <i>real part</i> of the covariance matrix is symmetric, even in quantum mechanics &mdash; and that&#8217;s what we should use as our Fisher information metric.</p>
+<p>Why is the real part of the covariance matrix symmetric, even in quantum mechanics?  Well, suppose <img src="https://s0.wp.com/latex.php?latex=%5Crho&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho" class="latex" /> is any density matrix, and <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" /> are any observables.  Then by definition</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+AB+%5Crangle+%3D+%5Cmathrm%7Btr%7D+%28%5Crho+AB%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle AB &#92;rangle = &#92;mathrm{tr} (&#92;rho AB)" class="latex" /></p>
+<p>so taking the complex conjugate of both sides</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+AB%5Crangle%5E%2A++%3D+%5Cmathrm%7Btr%7D%28%5Crho+AB%29%5E%2A+%3D+%5Cmathrm%7Btr%7D%28%28%5Crho+A+B%29%5E%2A%29+%3D+%5Cmathrm%7Btr%7D%28B%5E%2A+A%5E%2A+%5Crho%5E%2A%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle AB&#92;rangle^*  = &#92;mathrm{tr}(&#92;rho AB)^* = &#92;mathrm{tr}((&#92;rho A B)^*) = &#92;mathrm{tr}(B^* A^* &#92;rho^*)" class="latex" /></p>
+<p>where I&#8217;m using an asterisk both for the complex conjugate of a number and the adjoint of an operator.  But our observables are self-adjoint, and so is our density matrix, so we get</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7Btr%7D%28B%5E%2A+A%5E%2A+%5Crho%5E%2A%29+%3D+%5Cmathrm%7Btr%7D%28B+A+%5Crho%29+%3D+%5Cmathrm%7Btr%7D%28%5Crho+B+A%29+%3D+%5Clangle+B+A+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{tr}(B^* A^* &#92;rho^*) = &#92;mathrm{tr}(B A &#92;rho) = &#92;mathrm{tr}(&#92;rho B A) = &#92;langle B A &#92;rangle " class="latex" /></p>
+<p>where in the second step we used the cyclic property of the trace.  In short:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+AB%5Crangle%5E%2A+%3D+%5Clangle+BA+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle AB&#92;rangle^* = &#92;langle BA &#92;rangle " class="latex" /></p>
+<p>If we take real parts, we get something symmetric:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BRe%7D+%5Clangle+AB%5Crangle+%3D++%5Cmathrm%7BRe%7D+%5Clangle+BA+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Re} &#92;langle AB&#92;rangle =  &#92;mathrm{Re} &#92;langle BA &#92;rangle " class="latex" /></p>
+<p>So, if we redefine the Fisher information metric to be the <i>real part</i> of the covariance matrix:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D+%3D+%5Cmathrm%7BRe%7D+%5Clangle+%28X_i+-+%5Clangle+X_i+%5Crangle%29+%5C%3B+%28X_j-+%5Clangle+X_j+%5Crangle%29%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij} = &#92;mathrm{Re} &#92;langle (X_i - &#92;langle X_i &#92;rangle) &#92;; (X_j- &#92;langle X_j &#92;rangle)&#92;rangle " class="latex" /></p>
+<p>then it&#8217;s symmetric, as it should be. </p>
+<p>Last time I mentioned a general setup using von Neumann algebras, that handles the classical and quantum situations simultaneously.  That applies here!   Taking the real part has no effect in classical mechanics, so we don&#8217;t need it there &mdash; but it doesn&#8217;t hurt, either.</p>
+<p>Taking the real part never has any effect when <img src="https://s0.wp.com/latex.php?latex=i+%3D+j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i = j" class="latex" />, either, since the expected value of the <i>square</i> of an observable is a nonnegative number:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+%28X_i+-+%5Clangle+X_i+%5Crangle%29%5E2+%5Crangle+%5Cge+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle (X_i - &#92;langle X_i &#92;rangle)^2 &#92;rangle &#92;ge 0" class="latex" /></p>
+<p>This has two nice consequences.  </p>
+<p>First, we get</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bii%7D+%3D+%5Clangle+%28X_i+-+%5Clangle+X_i+%5Crangle%29%5E2+%5Crangle++%5Cge+0+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ii} = &#92;langle (X_i - &#92;langle X_i &#92;rangle)^2 &#92;rangle  &#92;ge 0 " class="latex" /></p>
+<p>and since this is true in <i>any</i> coordinate system, our would-be metric <img src="https://s0.wp.com/latex.php?latex=g&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g" class="latex" /> is indeed nonnegative.  It&#8217;ll be an honest Riemannian metric whenever it&#8217;s positive definite.   </p>
+<p>Second, suppose we&#8217;re working in the special case discussed in <a href="https://johncarlosbaez.wordpress.com/2010/10/23/information-geometry-part-2/">Part 2</a>, where our manifold is an open subset of <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n" class="latex" />, and <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7B%5Crho%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{&#92;rho}" class="latex" /> at the point <img src="https://s0.wp.com/latex.php?latex=x+%5Cin+%5Cmathbb%7BR%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x &#92;in &#92;mathbb{R}^n" class="latex" /> is the Gibbs state with <img src="https://s0.wp.com/latex.php?latex=%5Clangle+X_i+%5Crangle+%3D+x_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle X_i &#92;rangle = x_i" class="latex" />.  Then all the usual rules of statistical mechanics apply.  So, we can compute the variance of the observable <img src="https://s0.wp.com/latex.php?latex=X_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X_i" class="latex" /> using the partition function <img src="https://s0.wp.com/latex.php?latex=Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Z" class="latex" />:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+%28X_i+-+%5Clangle+X_i+%5Crangle%29%5E2+%5Crangle+%3D+%5Cfrac%7B%5Cpartial%5E2%7D%7B%5Cpartial+%5Clambda_i%5E2%7D+%5Cln+Z++&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle (X_i - &#92;langle X_i &#92;rangle)^2 &#92;rangle = &#92;frac{&#92;partial^2}{&#92;partial &#92;lambda_i^2} &#92;ln Z  " class="latex" /></p>
+<p>In other words, </p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bii%7D+%3D++%5Cfrac%7B%5Cpartial%5E2%7D%7B%5Cpartial+%5Clambda_i%5E2%7D+%5Cln+Z+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ii} =  &#92;frac{&#92;partial^2}{&#92;partial &#92;lambda_i^2} &#92;ln Z " class="latex" /></p>
+<p>But since this is true in <i>any</i> coordinate system, we must have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D+%3D++%5Cfrac%7B%5Cpartial%5E2%7D%7B%5Cpartial+%5Clambda_i+%5Cpartial+%5Clambda_j%7D+%5Cln+Z+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij} =  &#92;frac{&#92;partial^2}{&#92;partial &#92;lambda_i &#92;partial &#92;lambda_j} &#92;ln Z " class="latex" /></p>
+<p>(Here I&#8217;m using a little math trick: two symmetric bilinear forms whose diagonal entries agree in <i>any</i> basis must be equal.  We&#8217;ve already seen that the left side is symmetric, and the right side is symmetric by a famous fact about mixed partial derivatives.)</p>
+<p>However, I&#8217;m pretty sure this cute formula</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D+%3D++%5Cfrac%7B%5Cpartial%5E2%7D%7B%5Cpartial+%5Clambda_i+%5Cpartial+%5Clambda_j%7D+%5Cln+Z+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij} =  &#92;frac{&#92;partial^2}{&#92;partial &#92;lambda_i &#92;partial &#92;lambda_j} &#92;ln Z " class="latex" /></p>
+<p>only holds in the special case I&#8217;m talking about now, where points in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n" class="latex" /> are parametrizing Gibbs states in the obvious way.   In general we must use</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D+%3D+%5Cmathrm%7BRe%7D+%5Clangle+%28X_i+-+%5Clangle+X_i+%5Crangle%29%28X_j-+%5Clangle+X_j+%5Crangle%29%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij} = &#92;mathrm{Re} &#92;langle (X_i - &#92;langle X_i &#92;rangle)(X_j- &#92;langle X_j &#92;rangle)&#92;rangle " class="latex" /></p>
+<p>or equivalently, </p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D+%3D+%5Cmathrm%7BRe%7D+%5C%2C+%5Cmathrm%7Btr%7D+%28%5Crho+%5C%3B+%5Cfrac%7B%5Cpartial+%5Cln+%5Crho%7D%7B%5Cpartial+%5Clambda_i%7D+%5Cfrac%7B%5Cpartial+%5Cln+%5Crho%7D%7B%5Cpartial+%5Clambda_j%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij} = &#92;mathrm{Re} &#92;, &#92;mathrm{tr} (&#92;rho &#92;; &#92;frac{&#92;partial &#92;ln &#92;rho}{&#92;partial &#92;lambda_i} &#92;frac{&#92;partial &#92;ln &#92;rho}{&#92;partial &#92;lambda_j})" class="latex" /></p>
+<p>Okay.  So much for cleaning up Last Week&#8217;s Mess.   Here&#8217;s something new.  We&#8217;ve seen that whenever <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" /> are observables (that is, self-adjoint),</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+AB%5Crangle%5E%2A+%3D+%5Clangle+BA+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle AB&#92;rangle^* = &#92;langle BA &#92;rangle " class="latex" /></p>
+<p>We got something symmetric by taking the real part:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BRe%7D+%5Clangle+AB%5Crangle+%3D++%5Cmathrm%7BRe%7D+%5Clangle+BA+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Re} &#92;langle AB&#92;rangle =  &#92;mathrm{Re} &#92;langle BA &#92;rangle " class="latex" /></p>
+<p>Indeed,</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BRe%7D+%5Clangle+AB+%5Crangle+%3D+%5Cfrac%7B1%7D%7B2%7D+%5Clangle+AB+%2B+BA+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Re} &#92;langle AB &#92;rangle = &#92;frac{1}{2} &#92;langle AB + BA &#92;rangle " class="latex" /></p>
+<p>But by the same reasoning, we get something <i>antisymmetric</i> by taking the <i>imaginary</i> part:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BIm%7D+%5Clangle+AB%5Crangle+%3D++-+%5Cmathrm%7BIm%7D+%5Clangle+BA+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Im} &#92;langle AB&#92;rangle =  - &#92;mathrm{Im} &#92;langle BA &#92;rangle " class="latex" /></p>
+<p>and indeed,</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BIm%7D+%5Clangle+AB+%5Crangle+%3D+%5Cfrac%7B1%7D%7B2i%7D+%5Clangle+AB+-+BA+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Im} &#92;langle AB &#92;rangle = &#92;frac{1}{2i} &#92;langle AB - BA &#92;rangle " class="latex" /></p>
+<p><a href="http://en.wikipedia.org/wiki/Commutator">Commutators</a> like <img src="https://s0.wp.com/latex.php?latex=AB-BA&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="AB-BA" class="latex" /> are important in quantum mechanics, so maybe we shouldn&#8217;t just throw out the imaginary part of the covariance matrix in our desperate search for a Riemannian metric!  Besides the symmetric tensor on our manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" />:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D+%3D+%5Cmathrm%7BRe%7D+%5C%2C+%5Cmathrm%7Btr%7D+%28%5Crho+%5C%3B+%5Cfrac%7B%5Cpartial+%5Cln+%5Crho%7D%7B%5Cpartial+%5Clambda_i%7D+%5Cfrac%7B%5Cpartial+%5Cln+%5Crho%7D%7B%5Cpartial+%5Clambda_j%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij} = &#92;mathrm{Re} &#92;, &#92;mathrm{tr} (&#92;rho &#92;; &#92;frac{&#92;partial &#92;ln &#92;rho}{&#92;partial &#92;lambda_i} &#92;frac{&#92;partial &#92;ln &#92;rho}{&#92;partial &#92;lambda_j})" class="latex" /></p>
+<p>we can also define a skew-symmetric tensor:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Comega_%7Bij%7D+%3D+%5Cmathrm%7BIm%7D+%5C%2C++%5Cmathrm%7Btr%7D+%28%5Crho+%5C%3B+%5Cfrac%7B%5Cpartial+%5Cln+%5Crho%7D%7B%5Cpartial+%5Clambda_i%7D+%5Cfrac%7B%5Cpartial+%5Cln+%5Crho%7D%7B%5Cpartial+%5Clambda_j%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega_{ij} = &#92;mathrm{Im} &#92;,  &#92;mathrm{tr} (&#92;rho &#92;; &#92;frac{&#92;partial &#92;ln &#92;rho}{&#92;partial &#92;lambda_i} &#92;frac{&#92;partial &#92;ln &#92;rho}{&#92;partial &#92;lambda_j})" class="latex" /></p>
+<p>This will vanish in the classical case, but not in the quantum case!</p>
+<p>If you&#8217;ve studied enough geometry, you should now be reminded of things like &#8216;K&auml;hler manifolds&#8217; and &#8216;almost  K&auml;hler manifolds&#8217;.  A <a href="http://en.wikipedia.org/wiki/K%C3%A4hler_manifold">K&auml;hler manifold</a> is a manifold that&#8217;s equipped with a symmetric tensor <img src="https://s0.wp.com/latex.php?latex=g&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g" class="latex" /> and a skew-symmetric tensor <img src="https://s0.wp.com/latex.php?latex=%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega" class="latex" /> which fit together in the best possible way.  An <a href="http://en.wikipedia.org/wiki/Almost_K%C3%A4hler_manifold#K.C3.A4hler_manifolds">almost K&auml;hler manifold</a> is something similar, but not quite as nice.   We should probably see examples of these arising in information geometry!  And that could be pretty interesting.</p>
+<p>But in general, if we start with any old manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> together with a function <img src="https://s0.wp.com/latex.php?latex=%5Crho&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho" class="latex" /> taking values in mixed states, we seem to be making <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> into something even less nice.  It gets a symmetric bilinear form <img src="https://s0.wp.com/latex.php?latex=g&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g" class="latex" /> on each tangent space, and a skew-symmetric bilinear form <img src="https://s0.wp.com/latex.php?latex=%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega" class="latex" />, and they vary smoothly from point to point&#8230; but they might be degenerate, and I don&#8217;t see any reason for them to &#8216;fit together&#8217; in the nice way we need for a K&auml;hler or almost K&auml;hler manifold.</p>
+<p>However, I still think something interesting might be going on here.  For one thing, there are <i>other</i> situations in physics where a space of states is equipped with a symmetric <img src="https://s0.wp.com/latex.php?latex=g&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g" class="latex" /> and a skew-symmetric <img src="https://s0.wp.com/latex.php?latex=%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega" class="latex" />. They show up in &#8216;dissipative mechanics&#8217; &mdash; the study of systems whose entropy increases.</p>
+<p><a name="Ottinger">To conclude,</a> let me remind you of some things I said in <a href="http://math.ucr.edu/home/baez/week295.html">week295</a> of This Week&#8217;s Finds.  This is a huge digression from information geometry, but I&#8217;d like to lay out the the puzzle pieces in public view, in case it helps anyone get some good ideas.</p>
+<p>I wrote:</p>
+<blockquote><p>
+&bull;  Hans Christian &Ouml;ttinger, <i>Beyond Equilibrium Thermodynamics</i>, Wiley, 2005.</p>
+<p>I thank Arnold Neumaier for pointing out this book!  It considers a fascinating generalization of Hamiltonian mechanics that applies to  systems with dissipation: for example, electrical circuits with resistors, or mechanical systems with friction. </p>
+<p>In ordinary Hamiltonian mechanics the space of states is a manifold and time evolution is a flow on this manifold determined by a smooth function called the Hamiltonian, which describes the <i>energy</i> of any state.  In this generalization the space of states is still a manifold, but now time evolution is determined by two smooth functions: the energy and the <i>entropy!</i> In ordinary Hamiltonian mechanics, energy is automatically conserved.  In this generalization that&#8217;s also true, but energy can go into the form of heat&#8230; and entropy automatically <i>increases!</i></p>
+<p>Mathematically, the idea goes like this.  We start with a Poisson manifold, but in addition to the skew-symmetric Poisson bracket {F,G} of smooth functions on some manifold, we also have a symmetric bilinear bracket [F,G] obeying the Leibniz law</p>
+<p>[F,GH] = [F,G]H + G[F,H]</p>
+<p>and this positivity condition:</p>
+<p>[F,F] &ge; 0</p>
+<p>The time evolution of any function is given by a generalization of Hamilton&#8217;s equations:</p>
+<p>dF/dt = {H,F} + [S,F]</p>
+<p>where H is a function called the &quot;energy&quot; or &quot;Hamiltonian&quot;, and S is a function called the &quot;entropy&quot;.   The first term on the right is the usual one. The new second term describes dissipation: as we shall see, it pushes the state towards increasing entropy.</p>
+<p>If we require that</p>
+<p>[H,F] = {S,F} = 0</p>
+<p>for every function F, then we get conservation of energy, as usual in Hamiltonian mechanics:</p>
+<p>dH/dt = {H,H} + [S,H] = 0</p>
+<p>But we also get the second law of thermodynamics:</p>
+<p>dS/dt = {H,S} + [S,S] &ge; 0</p>
+<p>Entropy always increases!</p>
+<p>&Ouml;ttinger calls this framework &#8220;GENERIC&#8221; &#8211; an annoying acronym for &#8220;General Equation for the NonEquilibrium Reversible-Irreversible Coupling&#8221;.  There are lots of papers about it.  But I&#8217;m wondering if any geometers have looked into it!  </p>
+<p>If we didn&#8217;t need the equations [H,F] = {S,F} = 0, we could easily get the necessary brackets starting with a K&auml;hler manifold.  The  imaginary part of the K&auml;hler structure is a symplectic structure, say &omega;, so we can define</p>
+<p>{F,G} = &omega;(dF,dG)</p>
+<p>as usual to get Poisson brackets.  The real part of the K&auml;hler structure is a Riemannian structure, say g, so we can define</p>
+<p>[F,G] = g(dF,dG)</p>
+<p>This satisfies</p>
+<p>[F,GH] = [F,G]H + G[F,H]</p>
+<p>and </p>
+<p>[F,F] &ge; 0</p>
+<p>Don&#8217;t be fooled: this stuff is not rocket science.  In particular, the inequality above has a simple meaning: when we move in the direction of the gradient of F, the function F increases.  So adding the second term to Hamilton&#8217;s equations has the effect of pushing the system towards increasing entropy.</p>
+<p>Note that I&#8217;m being a tad unorthodox by letting &omega; and g eat cotangent vectors instead of tangent vectors &#8211; but that&#8217;s no big deal. The big deal is this: if we start with a K&auml;hler manifold and define brackets this way, we don&#8217;t get [H,F] = 0 or {S,F} = 0 for all functions F unless H and S are constant!  That&#8217;s no good for applications to physics.  To get around this problem, we would need to consider some sort of <i>degenerate</i> K&auml;hler structure &#8211; one where &omega; and g are degenerate bilinear forms on the cotangent space.</p>
+<p>Has anyone thought about such things?  They remind me a little of &quot;Dirac structures&quot; and &quot;generalized complex geometry&quot; &#8211; but I don&#8217;t know enough about those subjects to know if they&#8217;re relevant here.</p>
+<p>This GENERIC framework suggests that energy and entropy should be viewed as two parts of a single entity &#8211; maybe even its real and imaginary parts!  And that in turn reminds me of other strange  things, like the idea of using complex-valued Hamiltonians to describe dissipative systems, or the idea of &#8220;inverse temperature  as imaginary time&#8221;.  I can&#8217;t tell yet if there&#8217;s a big idea lurking here, or just a mess&#8230;.</p>
+</blockquote>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Friday, October 29th, 2010 at 8:44 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/" rel="category tag">information and entropy</a>, <a href="https://johncarlosbaez.wordpress.com/category/physics/" rel="category tag">physics</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2010/10/27/energy-return-on-energy-invested/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2010/11/02/information-geometry-part-5/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">36 Responses to <em>Information Geometry (Part&nbsp;4)</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-2248">
+				<div id="div-comment-2248" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d51bcf0914e820f6011ae451c78bf379?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Lee Brown Jr.</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2248">29 October, 2010 at 6:58 pm</a>		</div>
+
+		<p>If the expectation of X is a value obtained by integrating over the manifold, then it is merely a number.  similarly,  if the metric is obtained by integrating over the manifold, then it is  only a number.   This differs from a traditional metric in the sense that a traditional metric varies from point to point.</p>
+<p>So, in one case, you a have a matrix of numbers,  in another, you have a matrix of functions. Right?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2248#respond' data-commentid="2248" data-postid="1504" data-belowelement="div-comment-2248" data-respondelement="respond" data-replyto="Reply to Lee Brown Jr." aria-label='Reply to Lee Brown Jr.'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-2264">
+				<div id="div-comment-2264" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2264">30 October, 2010 at 6:38 am</a>		</div>
+
+		<p>It sounds like you&#8217;re getting a bit mixed up between two spaces that show up in classical information geometry.  It&#8217;s easy to do.  </p>
+<p>1) First we have a <b>classical phase space</b> <img src="https://s0.wp.com/latex.php?latex=%5COmega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Omega" class="latex" />.  A point in here is a <b>pure state</b> of some physical system: for example, the position and momentum of a particle.  In practice <img src="https://s0.wp.com/latex.php?latex=%5COmega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Omega" class="latex" /> is often a manifold, but I&#8217;m not assuming this: I&#8217;m just assuming it&#8217;s a measure space with some measure that I call <img src="https://s0.wp.com/latex.php?latex=d+%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="d &#92;omega" class="latex" />.  A probability distribution </p>
+<p><img src="https://s0.wp.com/latex.php?latex=p%3A+%5COmega+%5Cto+%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p: &#92;Omega &#92;to [0,&#92;infty)" class="latex" /> </p>
+<p>is called a <b>mixed state</b> of the physical system, and a real-valued measurable function </p>
+<p><img src="https://s0.wp.com/latex.php?latex=A+%3A+%5COmega+%5Cto+%5Cmathbb%7BR%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A : &#92;Omega &#92;to &#92;mathbb{R}" class="latex" /> </p>
+<p>is called an <b>observable</b>.  The <b>expectation value</b> of an observable in a mixed state is defined by</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+A+%5Crangle+%3D+%5Cint_%5COmega+A%28%5Comega%29+p%28%5Comega%29+d%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle A &#92;rangle = &#92;int_&#92;Omega A(&#92;omega) p(&#92;omega) d&#92;omega" class="latex" /></p>
+<p>2) Next we have some space parametrizing mixed states of our physical system.  Mathematically speaking, this is a <b>statistical manifold</b>, meaning a smooth manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> equipped with a smooth function </p>
+<p><img src="https://s0.wp.com/latex.php?latex=p%3A+M+%5Cto+%5C%7B%5Cmathrm%7Bmixed+%5C%3B+states%7D%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p: M &#92;to &#92;{&#92;mathrm{mixed &#92;; states}&#92;}" class="latex" /></p>
+<p>In other words: each point <img src="https://s0.wp.com/latex.php?latex=x+%5Cin+M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x &#92;in M" class="latex" /> is assigned a probability distribution <img src="https://s0.wp.com/latex.php?latex=p_x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_x" class="latex" /> on <img src="https://s0.wp.com/latex.php?latex=%5COmega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Omega" class="latex" />.  But in my posts I never write the subscript <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" />&#8230; and usually I write <img src="https://s0.wp.com/latex.php?latex=%5Crho&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho" class="latex" /> instead of <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" />, since I&#8217;m trying to discuss the classical and quantum cases together, and <img src="https://s0.wp.com/latex.php?latex=%5Crho&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho" class="latex" /> is the usual notation for a mixed state in quantum mechanics.  </p>
+<p>But everything in <i>this</i> comment is purely classical.</p>
+<blockquote>
+<p>&#8230; if the metric is obtained by integrating over the manifold, then it is only a number. This differs from a traditional metric in the sense that a traditional metric varies from point to point.</p>
+</blockquote>
+<p>The Fisher information metric is a metric on <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" />, and it&#8217;s a &#8216;traditional metric&#8217;: it varies from point to point.  It&#8217;s defined by doing an integral over <img src="https://s0.wp.com/latex.php?latex=%5COmega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Omega" class="latex" />.</p>
+<p>I&#8217;ve given lots of formulas for it, but here are a few more, all equivalent.  I&#8217;m using local coordinates <img src="https://s0.wp.com/latex.php?latex=%5Clambda%5Ei&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;lambda^i" class="latex" /> on the manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" />.</p>
+<p>For starters,</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D+%3D+%5Clangle+%5Cfrac%7B%5Cpartial+%5Cln+p%7D%7B%5Cpartial+%5Clambda%5Ei%7D+%5Cfrac%7B%5Cpartial+%5Cln+p%7D%7B%5Cpartial+%5Clambda%5Ej%7D+%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij} = &#92;langle &#92;frac{&#92;partial &#92;ln p}{&#92;partial &#92;lambda^i} &#92;frac{&#92;partial &#92;ln p}{&#92;partial &#92;lambda^j} &#92;rangle" class="latex" /> </p>
+<p>but since the expectation value is defined as an integral over <img src="https://s0.wp.com/latex.php?latex=%5COmega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Omega" class="latex" />, we have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D+%3D+%5Cint_%5COmega+%5Cfrac%7B%5Cpartial+%5Cln+p%28%5Comega%29%7D%7B%5Cpartial+%5Clambda%5Ei%7D+%5C%3B+%5Cfrac%7B%5Cpartial+%5Cln+p%28%5Comega%29%7D%7B%5Cpartial+%5Clambda%5Ej%7D+%5C%3B+p%28%5Comega%29+%5C%2C+d+%5Comega+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij} = &#92;int_&#92;Omega &#92;frac{&#92;partial &#92;ln p(&#92;omega)}{&#92;partial &#92;lambda^i} &#92;; &#92;frac{&#92;partial &#92;ln p(&#92;omega)}{&#92;partial &#92;lambda^j} &#92;; p(&#92;omega) &#92;, d &#92;omega " class="latex" /></p>
+<p>or if you prefer a more heavy notation that clarifies what depends on a point <img src="https://s0.wp.com/latex.php?latex=x+%5Cin+M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x &#92;in M" class="latex" />:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D%28x%29+%3D+%5Cint_%5COmega+%5Cfrac%7B%5Cpartial+%5Cln+p_x%28%5Comega%29%7D%7B%5Cpartial+%5Clambda%5Ei%7D+%5C%3B+%5Cfrac%7B%5Cpartial+%5Cln+p_x%28%5Comega%29%7D%7B%5Cpartial+%5Clambda%5Ej%7D+%5C%3B+p_x%28%5Comega%29+%5C%2C+d+%5Comega+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij}(x) = &#92;int_&#92;Omega &#92;frac{&#92;partial &#92;ln p_x(&#92;omega)}{&#92;partial &#92;lambda^i} &#92;; &#92;frac{&#92;partial &#92;ln p_x(&#92;omega)}{&#92;partial &#92;lambda^j} &#92;; p_x(&#92;omega) &#92;, d &#92;omega " class="latex" /></p>
+<p>We also saw that <img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij}" class="latex" /> is a covariance matrix:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D+%3D+%5Clangle+%28X_i+-+%5Clangle+X_i+%5Crangle%29+%5C%2C+%28X_j+-+%5Clangle+X_j+%5Crangle%29+%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij} = &#92;langle (X_i - &#92;langle X_i &#92;rangle) &#92;, (X_j - &#92;langle X_j &#92;rangle) &#92;rangle" class="latex" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=X_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X_i" class="latex" /> are some observable-valued functions on <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" />.<br />
+It&#8217;s also the matrix of second partial derivatives of the logarithm of the partition function:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_%7Bij%7D+%3D+%5Cfrac%7B%5Cpartial%5E2%7D%7B%5Cpartial+%5Clambda%5Ei+%5Cpartial+%5Clambda%5Ej%7D+%5C%2C%5Cln+Z+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_{ij} = &#92;frac{&#92;partial^2}{&#92;partial &#92;lambda^i &#92;partial &#92;lambda^j} &#92;,&#92;ln Z " class="latex" /></p>
+<p>All this stuff has a quantum version, too, and that&#8217;s what I&#8217;ve been emphasizing in this series of posts.  In the quantum version the measure space <img src="https://s0.wp.com/latex.php?latex=%5COmega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Omega" class="latex" /> is replaced by a Hilbert space, but the manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> remains.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2264#respond' data-commentid="2264" data-postid="1504" data-belowelement="div-comment-2264" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-2274">
+				<div id="div-comment-2274" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d51bcf0914e820f6011ae451c78bf379?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Lee Brown Jr.</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2274">30 October, 2010 at 4:48 pm</a>		</div>
+
+		<p>I have one more observation.  Typically, there are two distinctly different symmetric tensors.  The metric, and the stress-energy/curvature tensor.  </p>
+<p>Could it be that the quantity you calculate would be better described as the equivalent to the stress-energy tensor? Or perhaps the stress-deviator tensor.</p>
+<p>Just tossing that out there.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2274#respond' data-commentid="2274" data-postid="1504" data-belowelement="div-comment-2274" data-respondelement="respond" data-replyto="Reply to Lee Brown Jr." aria-label='Reply to Lee Brown Jr.'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-2251">
+				<div id="div-comment-2251" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/5850d628c599d7ac60d7f7889844995a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">John F</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2251">29 October, 2010 at 8:05 pm</a>		</div>
+
+		<p>Why not conjugate one of the lambdas to begin with? I think it&#8217;s true that the expectation values of A* B and B* A are the same so gij is then already symmetric.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2251#respond' data-commentid="2251" data-postid="1504" data-belowelement="div-comment-2251" data-respondelement="respond" data-replyto="Reply to John F" aria-label='Reply to John F'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-2258">
+				<div id="div-comment-2258" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2258">30 October, 2010 at 5:52 am</a>		</div>
+
+		<p>Alas, it&#8217;s not true that the expectation values of <img src="https://s0.wp.com/latex.php?latex=A%5E%2A+B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A^* B" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=B%5E%2A+A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B^* A" class="latex" /> are the same.  If this were true, the expectation values of <img src="https://s0.wp.com/latex.php?latex=AB&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="AB" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=BA&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="BA" class="latex" /> would be the same when <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" /> are self-adjoint.  But I gave a counterexample above: take <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> to be the position operator and <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" /> to be momentum operator.  Then:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+q+p+%5Crangle+%3D+%5Clangle+p+q+%5Crangle+%2B+i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle q p &#92;rangle = &#92;langle p q &#92;rangle + i" class="latex" /></p>
+<p>By the way: in what I wrote above, and indeed in all my posts on this topic, I&#8217;m using &#8220;observable&#8221; to mean &#8220;self-adjoint operator&#8221; (in quantum mechanics) or &#8220;real-valued measurable function on phase space&#8221; (in classical mechanics).  So, when I was talking about observables <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" />, I was assuming that  <img src="https://s0.wp.com/latex.php?latex=A%5E%2A+%3D+A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A^* = A" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=B%5E%2A+%3D+A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B^* = A" class="latex" />&#8230; and I used these equations in my proof that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+A+B+%5Crangle%5E%2A+%3D+%5Clangle+B+A+%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle A B &#92;rangle^* = &#92;langle B A &#92;rangle" class="latex" /></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2258#respond' data-commentid="2258" data-postid="1504" data-belowelement="div-comment-2258" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 parent highlander-comment" id="comment-2275">
+				<div id="div-comment-2275" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d51bcf0914e820f6011ae451c78bf379?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Lee Brown Jr.</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2275">30 October, 2010 at 5:09 pm</a>		</div>
+
+		<p>Isn&#8217;t what we consider to be   actually<br />
+P(A|B) ?  That is,  a conditional probability.  This is not symmetric even in classical probability theory.   Moreover it corresponds to the measurment process more accurately than just  .  </p>
+<p>Ordering is important,  even in traditional probability theory.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2275#respond' data-commentid="2275" data-postid="1504" data-belowelement="div-comment-2275" data-respondelement="respond" data-replyto="Reply to Lee Brown Jr." aria-label='Reply to Lee Brown Jr.'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-4 highlander-comment" id="comment-2276">
+				<div id="div-comment-2276" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d51bcf0914e820f6011ae451c78bf379?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Lee Brown Jr.</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2276">30 October, 2010 at 5:11 pm</a>		</div>
+
+		<p>sorry the formulas got left out in the text above.  I was just saying that a correlation is not the same as a conditional probability, although both involve two variables in conjunction.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-2279">
+				<div id="div-comment-2279" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2279">31 October, 2010 at 4:42 am</a>		</div>
+
+		<p>I&#8217;m not completely sure what you&#8217;re trying to say, but yeah: I&#8217;m not talking about conditional probabilities here, I&#8217;m talking about a kind of &#8220;correlation&#8221;: the expectation value of a product of two observables,</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+A+B+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle A B &#92;rangle " class="latex" /></p>
+<p>This is symmetric in the classical case but not the quantum case.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-phorgyphynance even thread-even depth-1 parent highlander-comment" id="comment-2253">
+				<div id="div-comment-2253" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9024f63182a44e3f8bd7beab4a8f2a16?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">phorgyphynance</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2253">30 October, 2010 at 12:23 am</a>		</div>
+
+		<blockquote><p>(By now I’ve tried to fix those posts, because people often get information from the web in a hasty way, and I don’t want my mistake to spread. But you’ll still see traces of my mistake infecting the <i>comments</i> on those posts.)</p></blockquote>
+<p>Could you add a similar statement on the previous posts? My comments referred to a different version then what appears now and I&#8217;m not sure I agree with the changes, so I might not have made those comments with the material as it stands now.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2253#respond' data-commentid="2253" data-postid="1504" data-belowelement="div-comment-2253" data-respondelement="respond" data-replyto="Reply to phorgyphynance" aria-label='Reply to phorgyphynance'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-2259">
+				<div id="div-comment-2259" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2259">30 October, 2010 at 5:58 am</a>		</div>
+
+		<p>Will do.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2259#respond' data-commentid="2259" data-postid="1504" data-belowelement="div-comment-2259" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-phorgyphynance even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-2255">
+				<div id="div-comment-2255" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9024f63182a44e3f8bd7beab4a8f2a16?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">phorgyphynance</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2255">30 October, 2010 at 3:41 am</a>		</div>
+
+		<p>Is it possible that the Leibniz condition up there contains a typo? I&#8217;d expect something more like:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5BF%2CGH%5D+%3D+%5BF%2CG%5DH+%2B+G%5BF%2CH%5D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[F,GH] = [F,G]H + G[F,H]." class="latex" /></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2255#respond' data-commentid="2255" data-postid="1504" data-belowelement="div-comment-2255" data-respondelement="respond" data-replyto="Reply to phorgyphynance" aria-label='Reply to phorgyphynance'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-2257">
+				<div id="div-comment-2257" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2257">30 October, 2010 at 5:32 am</a>		</div>
+
+		<p>You&#8217;re right.  I&#8217;ll fix the Leibniz condition here and back in &#8220;week295&#8221;, which apparently nobody read.  <img src="https://i2.wp.com/math.ucr.edu/home/baez/emoticons/biggrin.gif" alt="" /></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2257#respond' data-commentid="2257" data-postid="1504" data-belowelement="div-comment-2257" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-even depth-1 highlander-comment" id="comment-2272">
+				<div id="div-comment-2272" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2272">30 October, 2010 at 3:21 pm</a>		</div>
+
+		<p>When I mentioned the resemblance of Öttinger&#8217;s formalism for non-equilibrium thermodynamics (with its skew-symmetric Poisson bracket and symmetric &#8216;dissipative bracket&#8217;) to the quantum generalization of the Fisher information metric (with its skew-symmetric imaginary part <img src="https://s0.wp.com/latex.php?latex=%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega" class="latex" /> and symmetric real part <img src="https://s0.wp.com/latex.php?latex=g&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g" class="latex" />), I was far from sure they were really related.   But the more I think about it, the more the clues keep piling up!   Here are two:</p>
+<p>1) The phase space in Öttinger&#8217;s formalism is a space of macrostates, or in other words, <i>mixed states</i> of some underlying system.   This is why his phase space has an entropy function defined on it, as well as a Hamiltonian.</p>
+<p>So in fact, Öttinger&#8217;s phase space is precisely the sort of space that comes with a Fisher information metric: namely, a manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> together with a smooth function </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Crho%3A+M+%5Cto+%5C%7B%5Cmathrm%7Bmixed+%5C%3B+states%7D+%5C%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho: M &#92;to &#92;{&#92;mathrm{mixed &#92;; states} &#92;} " class="latex" /></p>
+<p>2) The skew-symmetric imaginary part <img src="https://s0.wp.com/latex.php?latex=%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega" class="latex" /> of the quantum Fisher information metric arises from the commutators of observables, so it&#8217;s indeed closely related to the Poisson bracket in classical mechanics.  To see this, recall that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Comega_%7Bij%7D+%3D+%5Cmathrm%7BIm%7D+%5C%2C++%5Cmathrm%7Btr%7D+%28%5Crho+%5C%3B+%5Cfrac%7B%5Cpartial+%5Cln+%5Crho%7D%7B%5Cpartial+%5Clambda_i%7D+%5Cfrac%7B%5Cpartial+%5Cln+%5Crho%7D%7B%5Cpartial+%5Clambda_j%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega_{ij} = &#92;mathrm{Im} &#92;,  &#92;mathrm{tr} (&#92;rho &#92;; &#92;frac{&#92;partial &#92;ln &#92;rho}{&#92;partial &#92;lambda_i} &#92;frac{&#92;partial &#92;ln &#92;rho}{&#92;partial &#92;lambda_j})" class="latex" /></p>
+<p>but since the observables <img src="https://s0.wp.com/latex.php?latex=X_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X_i" class="latex" /> are defined by</p>
+<p><img src="https://s0.wp.com/latex.php?latex=X_i+%3D+%5Cfrac%7B%5Cpartial+%5Cln+%5Crho%7D%7B%5Cpartial+%5Clambda_i%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X_i = &#92;frac{&#92;partial &#92;ln &#92;rho}{&#92;partial &#92;lambda_i}" class="latex" /> </p>
+<p>we can write this as</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Comega_%7Bij%7D+%3D+%5Cmathrm%7BIm%7D+%5C%2C++%5Cmathrm%7Btr%7D+%28%5Crho+X_i+X_j%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega_{ij} = &#92;mathrm{Im} &#92;,  &#92;mathrm{tr} (&#92;rho X_i X_j)" class="latex" /></p>
+<p>or in other words</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Comega_%7Bij%7D+%3D+%5Cmathrm%7BIm%7D%5Clangle+X_i++X_j%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega_{ij} = &#92;mathrm{Im}&#92;langle X_i  X_j&#92;rangle" class="latex" /></p>
+<p>However, I noted in this blog entry that for self-adjoint <img src="https://s0.wp.com/latex.php?latex=A%2C+B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A, B" class="latex" /> we have </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BIm%7D+%5Clangle+A+B+%5Crangle+%3D++%5Cfrac%7B1%7D%7B2%7D+%5Clangle+%5BA%2CB%5D+%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Im} &#92;langle A B &#92;rangle =  &#92;frac{1}{2} &#92;langle [A,B] &#92;rangle" class="latex" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=%5BA%2CB%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[A,B]" class="latex" /> is the commutator <img src="https://s0.wp.com/latex.php?latex=AB+-BA&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="AB -BA" class="latex" />.   So, we have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Comega_%7Bij%7D+%3D+%5Cfrac%7B1%7D%7B2%7D+%5Clangle+%5BX_i+%2C+X_j+%5D%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega_{ij} = &#92;frac{1}{2} &#92;langle [X_i , X_j ]&#92;rangle" class="latex" /></p>
+<p>In short: <img src="https://s0.wp.com/latex.php?latex=%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega" class="latex" /> comes from taking an expectation value of a commutator!  Since Poisson brackets are the classical analogue of commutators, we shouldn&#8217;t be surprised that <img src="https://s0.wp.com/latex.php?latex=%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega" class="latex" /> might be what gives Öttinger&#8217;s phase space the structure of a Poisson manifold.</p>
+<p>The story is getting even clearer now that I&#8217;m working out an example.  I&#8217;ll try to report on that soon.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2272#respond' data-commentid="2272" data-postid="1504" data-belowelement="div-comment-2272" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-phorgyphynance odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-2273">
+				<div id="div-comment-2273" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9024f63182a44e3f8bd7beab4a8f2a16?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">phorgyphynance</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2273">30 October, 2010 at 4:16 pm</a>		</div>
+
+		<p>I still need to convince myself that, in general,</p>
+<p><img src="https://s0.wp.com/latex.php?latex=-%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ej%7D%5Cln+Z+%3D+%5Ctext%7BRe%7D%28%5Clangle+%28X_i+-%5Clangle+X_i%5Crangle%29%28X_j+-%5Clangle+X_j%5Crangle%29%5Crangle.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="-&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^j}&#92;ln Z = &#92;text{Re}(&#92;langle (X_i -&#92;langle X_i&#92;rangle)(X_j -&#92;langle X_j&#92;rangle)&#92;rangle." class="latex" /></p>
+<p>If true, then I&#8217;m back on board with you :)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2273#respond' data-commentid="2273" data-postid="1504" data-belowelement="div-comment-2273" data-respondelement="respond" data-replyto="Reply to phorgyphynance" aria-label='Reply to phorgyphynance'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-2278">
+				<div id="div-comment-2278" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2278">31 October, 2010 at 4:33 am</a>		</div>
+
+		<p>You don&#8217;t want a minus sign there.  You want</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ej%7D%5Cln+Z+%3D+%5Cmathrm%7BRe%7D%28%5Clangle+%28X_i+-%5Clangle+X_i%5Crangle%29%28X_j+-%5Clangle+X_j%5Crangle%29%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^j}&#92;ln Z = &#92;mathrm{Re}(&#92;langle (X_i -&#92;langle X_i&#92;rangle)(X_j -&#92;langle X_j&#92;rangle)&#92;rangle" class="latex" /></p>
+<p>Note, I&#8217;m only claiming this equation holds in <a href="https://johncarlosbaez.wordpress.com/2010/10/23/information-geometry-part-2/" rel="nofollow">Crooks&#8217; formalism or its quantum analogue</a>, where <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> is an open subset of <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n" class="latex" />, and</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Crho+%3A+M+%5Cto+%5C%7B+%5Ctextrm%7Bmixed+%5C%3B+states%7D+%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho : M &#92;to &#92;{ &#92;textrm{mixed &#92;; states} &#92;}" class="latex" /></p>
+<p>has the the property that <img src="https://s0.wp.com/latex.php?latex=%5Crho_x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho_x" class="latex" /> is the Gibbs state with </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+X_i+%5Crangle+%3D+x_i+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle X_i &#92;rangle = x_i " class="latex" /></p>
+<p>for some prespecified choice of observables <img src="https://s0.wp.com/latex.php?latex=X_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X_i" class="latex" />.  I&#8217;m not claiming it holds in <a href="https://johncarlosbaez.wordpress.com/2010/10/25/information-geometry-part-3/" rel="nofollow">my more general formalism</a>, where <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> is an arbitrary manifold and </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Crho+%3A+M+%5Cto+%5C%7B+%5Ctextrm%7Bmixed+%5C%3B+states%7D+%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho : M &#92;to &#92;{ &#92;textrm{mixed &#92;; states} &#92;}" class="latex" /></p>
+<p>is <i>any</i> smooth function taking values in the interior of the set of mixed states.   </p>
+<p>You see, in my general formalism there&#8217;s no reason to expect that the second derivatives of the partition function <img src="https://s0.wp.com/latex.php?latex=Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Z" class="latex" /> can be expressed in terms of the <img src="https://s0.wp.com/latex.php?latex=X_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X_i" class="latex" />, which are defined using <i>first</i> derivatives of <img src="https://s0.wp.com/latex.php?latex=%5Cln+%5Crho&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ln &#92;rho" class="latex" />.   The function </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Crho+%3A+M+%5Cto+%5C%7B+%5Ctextrm%7Bmixed+%5C%3B+states%7D+%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho : M &#92;to &#92;{ &#92;textrm{mixed &#92;; states} &#92;}" class="latex" /></p>
+<p>is so flexible that I see no reason for an equation expressing second derivatives in terms of first derivatives!  But in Crooks&#8217; formalism they&#8217;re tightly linked.  </p>
+<p>Second, note that in Crooks&#8217; original formalism, which is all about <i>classical</i> statistical mechanics, there&#8217;s no need to take the real part: the covariance matrix is already real so we have </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ej%7D%5Cln+Z+%3D+%28%5Clangle+%28X_i+-%5Clangle+X_i%5Crangle%29%28X_j+-%5Clangle+X_j%5Crangle%29%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^j}&#92;ln Z = (&#92;langle (X_i -&#92;langle X_i&#92;rangle)(X_j -&#92;langle X_j&#92;rangle)&#92;rangle" class="latex" /></p>
+<p>It&#8217;s only in the <i>quantum</i> version that we need to take a real part on the right-hand side.  And I sketched why this works.  First, consider the case <img src="https://s0.wp.com/latex.php?latex=i+%3D+j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i = j" class="latex" /> and do the usual thermodynamics calculation to show that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cln+Z+%3D+%28%5Clangle+%28X_i+-%5Clangle+X_i%5Crangle%29%28X_i+-%5Clangle+X_i%5Crangle%29%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;ln Z = (&#92;langle (X_i -&#92;langle X_i&#92;rangle)(X_i -&#92;langle X_i&#92;rangle)&#92;rangle" class="latex" /></p>
+<p>Both sides are real here so we also have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cln+Z+%3D+%5Cmathrm%7BRe%7D%28%5Clangle+%28X_i+-%5Clangle+X_i%5Crangle%29%28X_i+-%5Clangle+X_i%5Crangle%29%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;ln Z = &#92;mathrm{Re}(&#92;langle (X_i -&#92;langle X_i&#92;rangle)(X_i -&#92;langle X_i&#92;rangle)&#92;rangle" class="latex" /></p>
+<p>Then, since this is true <i>in any coordinate system</i>, we conclude</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ej%7D%5Cln+Z+%3D+%5Cmathrm%7BRe%7D%28%5Clangle+%28X_i+-%5Clangle+X_i%5Crangle%29%28X_j+-%5Clangle+X_j%5Crangle%29%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^j}&#92;ln Z = &#92;mathrm{Re}(&#92;langle (X_i -&#92;langle X_i&#92;rangle)(X_j -&#92;langle X_j&#92;rangle)&#92;rangle" class="latex" /></p>
+<p>Here I&#8217;m using the fact that both sides are symmetric in <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" />, and two symmetric bilinear forms that have the same diagonal entries <i>in any basis</i> must be equal, thanks to the <a href="http://en.wikipedia.org/wiki/Polarization_identity#Symmetric_bilinear_forms" rel="nofollow">polarization identity</a>.</p>
+<p>But don&#8217;t trust me me, check it out.  Of course you could also just calculate both sides.  </p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2278#respond' data-commentid="2278" data-postid="1504" data-belowelement="div-comment-2278" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-phorgyphynance odd alt depth-2 parent highlander-comment" id="comment-2280">
+				<div id="div-comment-2280" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9024f63182a44e3f8bd7beab4a8f2a16?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">phorgyphynance</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2280">31 October, 2010 at 6:12 am</a>		</div>
+
+		<blockquote><p>You don’t want a minus sign there.</p></blockquote>
+<p>You&#8217;re right. I was carrying over an errant minus sign from an earlier calculation of mine.</p>
+<blockquote><p>Of course you could also just calculate both sides.</p></blockquote>
+<p>I know I&#8217;m old school, but I&#8217;d like to see this calculation. I&#8217;m trying (believe me, I&#8217;m even losing sleep), but haven&#8217;t been able yet to calculate both sides.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2280#respond' data-commentid="2280" data-postid="1504" data-belowelement="div-comment-2280" data-respondelement="respond" data-replyto="Reply to phorgyphynance" aria-label='Reply to phorgyphynance'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-phorgyphynance even depth-3 highlander-comment" id="comment-2281">
+				<div id="div-comment-2281" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9024f63182a44e3f8bd7beab4a8f2a16?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">phorgyphynance</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2281">31 October, 2010 at 6:13 am</a>		</div>
+
+		<p>Just to clarify&#8230;</p>
+<p>It is fairly easy to calculate both sides in the classical case. I&#8217;m talking about the quantum version.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2281#respond' data-commentid="2281" data-postid="1504" data-belowelement="div-comment-2281" data-respondelement="respond" data-replyto="Reply to phorgyphynance" aria-label='Reply to phorgyphynance'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-3 highlander-comment" id="comment-2282">
+				<div id="div-comment-2282" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2282">31 October, 2010 at 7:39 am</a>		</div>
+
+		<p>Okay, the quantum version.  I&#8217;m trying to avoid calculating </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BRe%7D%5C%2C%5Clangle+%5C%2C+%28X_i+-%5Clangle+X_i%5Crangle%29%5C%2C%28X_j+-%5Clangle+X_j%5Crangle%29+%5C%2C%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Re}&#92;,&#92;langle &#92;, (X_i -&#92;langle X_i&#92;rangle)&#92;,(X_j -&#92;langle X_j&#92;rangle) &#92;,&#92;rangle" class="latex" />  </p>
+<p>directly, because there are too many noncommuting operators running around: after all,</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+X_i+X_j+%5Crangle+%3D+%5Cmathrm%7Btr%7D%28+%5Crho+X_i+X_j+%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle X_i X_j &#92;rangle = &#92;mathrm{tr}( &#92;rho X_i X_j )" class="latex" /></p>
+<p>and while expressions built from <i>two</i> noncommuting operators act commutative inside a trace, that ain&#8217;t true for <i>three</i>.</p>
+<p>That&#8217;s why I want to use the polarization identity to focus on the case <img src="https://s0.wp.com/latex.php?latex=i+%3D+j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i = j" class="latex" />, and bootstrap my way from there.</p>
+<p>So, just to get started, one question is whether you believe</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%5E2%7D%7B%5Cpartial+%7B%5Clambda%5Ei%7D%5E2%7D+%5Cln+Z+%3D+%5Clangle+%28X_i+-%5Clangle+X_i%5Crangle%29+%5C%2C%28X_i+-%5Clangle+X_i%5Crangle%29+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial^2}{&#92;partial {&#92;lambda^i}^2} &#92;ln Z = &#92;langle (X_i -&#92;langle X_i&#92;rangle) &#92;,(X_i -&#92;langle X_i&#92;rangle) &#92;rangle " class="latex" />  </p>
+<p>where </p>
+<p><img src="https://s0.wp.com/latex.php?latex=Z+%3D+%5Cmathrm%7Btr%7D+%28e%5E%7B-%5Clambda%5Ei+X_i%7D%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Z = &#92;mathrm{tr} (e^{-&#92;lambda^i X_i}) " class="latex" /></p>
+<p>and we&#8217;re computing expectation values like this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+A+%5Crangle+%3D+%5Cmathrm%7Btr%7D%28%5Crho+A%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle A &#92;rangle = &#92;mathrm{tr}(&#92;rho A)" class="latex" /></p>
+<p>with </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Crho+%3D+%5Cfrac%7B1%7D%7BZ%7D+e%5E%7B-%5Clambda%5Ei+X_i%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho = &#92;frac{1}{Z} e^{-&#92;lambda^i X_i} " class="latex" /></p>
+<p>And I guess an even more basic question is whether you believe</p>
+<p><img src="https://s0.wp.com/latex.php?latex=-%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial+%5Clambda%5Ei%7D+%5Cln+Z+%3D+%5Clangle+X_i+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="-&#92;frac{&#92;partial}{&#92;partial &#92;lambda^i} &#92;ln Z = &#92;langle X_i &#92;rangle " class="latex" /></p>
+<p>Even this was mildly nerve-racking at first, because on the  left side we need to understand</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial+%5Clambda_i%7D+Z+%3D+%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial+%5Clambda%5Ei%7D+%5Cmathrm%7Btr%7D%28e%5E%7B-%5Clambda%5Ei+X_i%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial &#92;lambda_i} Z = &#92;frac{&#92;partial}{&#92;partial &#92;lambda^i} &#92;mathrm{tr}(e^{-&#92;lambda^i X_i})" class="latex" /></p>
+<p>and now we see all those noncommuting <img src="https://s0.wp.com/latex.php?latex=X_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X_i" class="latex" />.  But I think the cyclic property of the trace saves us, letting us show</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial+%5Clambda%5Ei%7D+%5Cmathrm%7Btr%7D%28e%5E%7B-%5Clambda%5Ei+X_i%7D%29+%3D++%5Cmathrm%7Btr%7D+%28-+X_i+e%5E%7B-%5Clambda%5Ei+X_i%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial &#92;lambda^i} &#92;mathrm{tr}(e^{-&#92;lambda^i X_i}) =  &#92;mathrm{tr} (- X_i e^{-&#92;lambda^i X_i})" class="latex" /></p>
+<p>with the help of the power series expansion of the exponential.  </p>
+<p>Even if you agree with me this far, you may worry about second derivative:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%5E2%7D%7B%5Cpartial+%7B%5Clambda%5Ei%7D%5E2%7D+Z+%3D+%5Cfrac%7B%5Cpartial%5E2%7D%7B%5Cpartial+%7B%5Clambda%5Ei%7D%5E2%7D+%5Cmathrm%7Btr%7D%28e%5E%7B-%5Clambda%5Ei+X_i%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial^2}{&#92;partial {&#92;lambda^i}^2} Z = &#92;frac{&#92;partial^2}{&#92;partial {&#92;lambda^i}^2} &#92;mathrm{tr}(e^{-&#92;lambda^i X_i})" class="latex" /></p>
+<p>In fact, now you&#8217;ve got me scared about whether this really equals</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+%5C%2C+%28X_i+-%5Clangle+X_i%5Crangle%29+%5C%2C+%28X_i+-%5Clangle+X_i%5Crangle%29%5C%2C%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle &#92;, (X_i -&#92;langle X_i&#92;rangle) &#92;, (X_i -&#92;langle X_i&#92;rangle)&#92;,&#92;rangle" class="latex" />  </p>
+<p>I sure <i>thought</i> it did!  Maybe not. But in a way I won&#8217;t feel too bad if <i>this</i> blows up in my face, since this is foundational stuff about computing expectation values in quantum statistical mechanics, <i>not</i> the new stuff I&#8217;m trying to make up.  I mean, if you can&#8217;t compute variances by taking the second derivative of the log of the partition function in quantum mechanics, that&#8217;s not my problem: that&#8217;s <i>everyone&#8217;s</i> problem!  </p>
+<p>What I consider &#8220;my problem&#8221; is the non-symmetry of </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+%5C%2C+%28X_i+-%5Clangle+X_i%5Crangle%29%5C%2C%28X_j+-%5Clangle+X_j%5Crangle%29%5C%2C+%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle &#92;, (X_i -&#92;langle X_i&#92;rangle)&#92;,(X_j -&#92;langle X_j&#92;rangle)&#92;, &#92;rangle" class="latex" />  </p>
+<p>and what this means.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2282#respond' data-commentid="2282" data-postid="1504" data-belowelement="div-comment-2282" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-phorgyphynance even depth-3 parent highlander-comment" id="comment-2283">
+				<div id="div-comment-2283" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9024f63182a44e3f8bd7beab4a8f2a16?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">phorgyphynance</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2283">31 October, 2010 at 11:39 am</a>		</div>
+
+		<blockquote><p>But I think the cyclic property of the trace saves us, letting us show</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial+%5Clambda%5Ei%7D+%5Cmathrm%7Btr%7D%28e%5E%7B-%5Clambda%5Ei+X_i%7D%29+%3D+%5Cmathrm%7Btr%7D+%28-+X_i+e%5E%7B-%5Clambda%5Ei+X_i%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial &#92;lambda^i} &#92;mathrm{tr}(e^{-&#92;lambda^i X_i}) = &#92;mathrm{tr} (- X_i e^{-&#92;lambda^i X_i})" class="latex" /></p>
+<p>with the help of the power series expansion of the exponential.</p></blockquote>
+<p>Yeah. I convinced myself of this (assuming no problems with infinity regarding the cyclicality of trace). It is kind of neat. However, that doesn&#8217;t help us when computing <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%5Crho%7D%7B%5Cpartial+%5Clambda%5Ei%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial&#92;rho}{&#92;partial &#92;lambda^i}." class="latex" /></p>
+<blockquote><p>Even if you agree with me this far, you may worry about second derivative</p></blockquote>
+<p>Yeah, it&#8217;s not that I&#8217;m worried, but this is where I was having trouble. I get</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ej%7D+%5Cln+Z+%3D+-%5Ctext%7Btr%7D%28X_j+%5Cfrac%7B%5Cpartial%5Crho%7D%7B%5Cpartial%5Clambda%5Ei%7D%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^j} &#92;ln Z = -&#92;text{tr}(X_j &#92;frac{&#92;partial&#92;rho}{&#92;partial&#92;lambda^i})." class="latex" /></p>
+<p>In the classical case, we could use a trick</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%5Crho%7D%7B%5Cpartial%5Clambda%5Ei%7D+%3D+%5Cfrac%7B%5Cpartial%5Cln%5Crho+%7D%7B%5Cpartial%5Clambda%5Ei%7D+%5Crho+%3D+-%28X_i+-+%5Clangle+X_i+%5Crangle%29+%5Crho%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial&#92;rho}{&#92;partial&#92;lambda^i} = &#92;frac{&#92;partial&#92;ln&#92;rho }{&#92;partial&#92;lambda^i} &#92;rho = -(X_i - &#92;langle X_i &#92;rangle) &#92;rho," class="latex" /></p>
+<p>but I&#8217;m not sure if we can use the same trick, i.e. the chain rule, in the quantum case.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2283#respond' data-commentid="2283" data-postid="1504" data-belowelement="div-comment-2283" data-respondelement="respond" data-replyto="Reply to phorgyphynance" aria-label='Reply to phorgyphynance'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-phorgyphynance odd alt depth-4 highlander-comment" id="comment-2284">
+				<div id="div-comment-2284" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9024f63182a44e3f8bd7beab4a8f2a16?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">phorgyphynance</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2284">31 October, 2010 at 11:40 am</a>		</div>
+
+		<blockquote><p>but I’m not sure if we can use the same trick, i.e. the chain rule, in the quantum case.</p></blockquote>
+<p>And the cyclicality of trace doesn&#8217;t save us here.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-phorgyphynance even depth-4 highlander-comment" id="comment-2286">
+				<div id="div-comment-2286" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9024f63182a44e3f8bd7beab4a8f2a16?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">phorgyphynance</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2286">31 October, 2010 at 12:10 pm</a>		</div>
+
+		<p>I got a little further showing</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%5Crho%7D%7B%5Cpartial%5Clambda%5Ei%7D+%3D+%5Clangle+X_i+%5Crangle+%5Crho+%2B+%5Cfrac%7B1%7D%7BZ%7D+%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D+%5Cexp%28-%5Clambda%5Ek+X_k%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial&#92;rho}{&#92;partial&#92;lambda^i} = &#92;langle X_i &#92;rangle &#92;rho + &#92;frac{1}{Z} &#92;frac{&#92;partial}{&#92;partial&#92;lambda^i} &#92;exp(-&#92;lambda^k X_k)" class="latex" /></p>
+<p>so that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ej%7D+%5Cln+Z+%3D+-%5Clangle+X_i%5Crangle%5Clangle+X_j%5Crangle+-+%5Ctext%7Btr%7D%28%5Cfrac%7BX_j%7D%7BZ%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D+%5Cexp%28-%5Clambda%5Ek+X_k%29%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^j} &#92;ln Z = -&#92;langle X_i&#92;rangle&#92;langle X_j&#92;rangle - &#92;text{tr}(&#92;frac{X_j}{Z}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i} &#92;exp(-&#92;lambda^k X_k))." class="latex" /></p>
+<p>Unfortunately, we can&#8217;t apply the chain so the second term is not <img src="https://s0.wp.com/latex.php?latex=%5Clangle+X_j+X_i%5Crangle.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle X_j X_i&#92;rangle." class="latex" /></p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-phorgyphynance odd alt depth-4 highlander-comment" id="comment-2287">
+				<div id="div-comment-2287" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9024f63182a44e3f8bd7beab4a8f2a16?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">phorgyphynance</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2287">31 October, 2010 at 12:35 pm</a>		</div>
+
+		<p>Ah. But this proves the diagonal element is what you wanted it to be, since cyclicality saves the chain rule again, i.e.</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D+%5Cln+Z+%3D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i} &#92;ln Z =" class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=-%5Clangle+X_i%5Crangle%5E2+-+%5Ctext%7Btr%7D%28%5Cfrac%7BX_i%7D%7BZ%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D+%5Cexp%28-%5Clambda%5Ek+X_k%29%29+%3D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="-&#92;langle X_i&#92;rangle^2 - &#92;text{tr}(&#92;frac{X_i}{Z}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i} &#92;exp(-&#92;lambda^k X_k)) = " class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+X_i%5E2%5Crangle+-%5Clangle+X_i%5Crangle%5E2+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle X_i^2&#92;rangle -&#92;langle X_i&#92;rangle^2 ." class="latex" /></p>
+<p>I was hoping to do things the hard way without the polarization identity.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-2290">
+				<div id="div-comment-2290" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2290">31 October, 2010 at 2:43 pm</a>		</div>
+
+		<p>I&#8217;ll have to check all your formulas &mdash; some of them look unfamiliar and pretty cool.  But now it&#8217;s my bed-time.  </p>
+<blockquote><p>
+assuming no problems with infinity regarding the cyclicality of trace&#8230;
+</p></blockquote>
+<p>One does need to be a bit careful here in an infinite-dimensional Hilbert space.  If the operator <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> is <a href="http://en.wikipedia.org/wiki/Trace_class" rel="nofollow">trace class</a> and <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" /> is <a href="http://en.wikipedia.org/wiki/Bounded_operator" rel="nofollow">bounded</a>, then <img src="https://s0.wp.com/latex.php?latex=A+B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A B" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=B+A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B A" class="latex" /> are trace class and </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7Btr%7D%28AB%29+%3D+%5Cmathrm%7Btr%7D%28BA%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{tr}(AB) = &#92;mathrm{tr}(BA)" class="latex" /></p>
+<p>However, in applications to quantum mechanics many of our observables are <i>unbounded</i> self-adjoint operators, so one needs more specialized theorems.  And this is not just pedantry, because at phase transitions the derivatives of <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7Bln%7D+Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{ln} Z" class="latex" /> can become infinite, which means that some of the expressions we&#8217;re talking about <i>do indeed</i> become undefined, thanks to divergent infinite sums!</p>
+<p>But before worrying about these issues, it&#8217;s good to start by assuming all the sums converge, as they do in the finite-dimensional case, and see if the basic ideas are sound.  And it sounds like that&#8217;s what you just did!</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-2292">
+				<div id="div-comment-2292" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2292">1 November, 2010 at 8:17 am</a>		</div>
+
+		<p>Okay, I checked all your formulas and I agree with them all!  Nice proof.</p>
+<p>So, in quantum statistical mechanics we have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%5E2%7D%7B%5Cpartial%7B%5Clambda%5Ei%7D%5E2%7D%5Cln+Z+%3D++%5Clangle+X_i%5E2%5Crangle+-%5Clangle+X_i%5Crangle%5E2+%3D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial^2}{&#92;partial{&#92;lambda^i}^2}&#92;ln Z =  &#92;langle X_i^2&#92;rangle -&#92;langle X_i&#92;rangle^2 = " class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BRe%7D%5C%2C%5Clangle+%5C%2C+%28X_i+-%5Clangle+X_i%5Crangle%29%5C%2C%28X_i+-%5Clangle+X_i%5Crangle%29+%5C%2C%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Re}&#92;,&#92;langle &#92;, (X_i -&#92;langle X_i&#92;rangle)&#92;,(X_i -&#92;langle X_i&#92;rangle) &#92;,&#92;rangle" class="latex" />  </p>
+<p>in every coordinate system, so by polarization we may conclude:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%5E2%7D%7B%5Cpartial+%5Clambda%5Ei+%5Cpartial+%5Clambda%5Ej%7D+%5Cln+Z+%3D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial^2}{&#92;partial &#92;lambda^i &#92;partial &#92;lambda^j} &#92;ln Z = " class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BRe%7D%5C%2C%5Clangle+%5C%2C+%28X_i+-%5Clangle+X_i%5Crangle%29%5C%2C%28X_j+-%5Clangle+X_j%5Crangle%29+%5C%2C%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Re}&#92;,&#92;langle &#92;, (X_i -&#92;langle X_i&#92;rangle)&#92;,(X_j -&#92;langle X_j&#92;rangle) &#92;,&#92;rangle" class="latex" />  </p>
+<p>This should be in a textbook somewhere!  Does anyone out there know where it can be found?</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 parent highlander-comment" id="comment-2828">
+				<div id="div-comment-2828" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/bead9ff6ddc7c095d18968ec950edb4d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.mat.univie.ac.at/~neum' rel='external nofollow ugc' class='url'>Arnold Neumaier</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2828">29 November, 2010 at 4:47 pm</a>		</div>
+
+		<p>John Baez says: </p>
+<blockquote><p>
+So, in quantum statistical mechanics we have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%5E2%7D%7B%5Cpartial+%5Clambda%5Ei+%5Cpartial+%5Clambda%5Ej%7D+%5Cln+Z+%3D++%5Cmathrm%7BRe%7D%5C%2C%5Clangle+%5C%2C+%28X_i+-%5Clangle+X_i%5Crangle%29%5C%2C%28X_j+-%5Clangle+X_j%5Crangle%29+%5C%2C%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial^2}{&#92;partial &#92;lambda^i &#92;partial &#92;lambda^j} &#92;ln Z =  &#92;mathrm{Re}&#92;,&#92;langle &#92;, (X_i -&#92;langle X_i&#92;rangle)&#92;,(X_j -&#92;langle X_j&#92;rangle) &#92;,&#92;rangle" class="latex" /> </p>
+<p>This should be in a textbook somewhere! Does anyone out there know where it can be found?
+</p></blockquote>
+<p>Formulas for quantum covariances can be found in many textbooks on nonequilibrium statistical physics.<br />
+See e.g., Section 5.3 and 6.3 of<br />
+<a href="http://de.arxiv.org/pdf/0810.1019v1" rel="nofollow ugc">http://de.arxiv.org/pdf/0810.1019v1</a>, where things are phrased as conventionally in terms of the Kubo inner product.</p>
+<p>I haven&#8217;t seen though the formula with the real part, so maybe your application of polarization is not justified? </p>
+<p>By the way, I am using a large font to display the text in my konqueror browser, and am dismayed that the formulas don&#8217;t scale with the remaining text. The indices are almost unreadablefor me. Perhaps this can be improved!?</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-2863">
+				<div id="div-comment-2863" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/151c18cc6cc3bd1bb7a0528c6ef88c77?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://reperiendi.wordpress.com' rel='external nofollow ugc' class='url'>Mike Stay</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2863">2 December, 2010 at 9:19 pm</a>		</div>
+
+		<p>Re: enlarging the images</p>
+<p>Install Userscripts for Konqueror<br />
+<a href="http://kde-apps.org/content/show.php?content=51482" rel="nofollow ugc">http://kde-apps.org/content/show.php?content=51482</a><br />
+then write a script that iterates over the images in the page served from l.wordpress.com and add or change the &#8216;s&#8217; parameter.  That will cause them to reload larger.</p>
+<p>(If you don&#8217;t know JavaScript, let me know and I&#8217;ll write it for you.)</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-2832">
+				<div id="div-comment-2832" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2832">30 November, 2010 at 1:24 am</a>		</div>
+
+		<p>Arnold wrote:</p>
+<blockquote><p>
+I haven’t seen though the formula with the real part, so maybe your application of polarization is not justified?
+</p></blockquote>
+<p>Polarization says that two symmetric bilinear forms <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" />, <img src="https://s0.wp.com/latex.php?latex=B%27&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B&#039;" class="latex" /> with</p>
+<p><img src="https://s0.wp.com/latex.php?latex=B%28v%2Cv%29+%3D+B%27%28v%2Cv%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B(v,v) = B&#039;(v,v)" class="latex" /></p>
+<p>for all <img src="https://s0.wp.com/latex.php?latex=v&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v" class="latex" /> also have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=B%28v%2Cw%29+%3D+B%27%28v%2Cw%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B(v,w) = B&#039;(v,w)" class="latex" /></p>
+<p>for all <img src="https://s0.wp.com/latex.php?latex=v%2C+w&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v, w" class="latex" />.  The proof is easy: there&#8217;s an explicit formula for <img src="https://s0.wp.com/latex.php?latex=B%28v%2Cw%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B(v,w)" class="latex" /> in terms of its &#8216;diagonal&#8217; entries:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=2B%28v%2Cw%29+%3D+B%28v%2Bw%2Cv%2Bw%29-B%28v%2Cv%29-B%28w%2Cw%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="2B(v,w) = B(v+w,v+w)-B(v,v)-B(w,w)" class="latex" /></p>
+<p>as long as we&#8217;re working over a field that allows division by 2.  </p>
+<p>The 2nd partial derivatives </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cpartial_i+%5Cpartial_j+f+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;partial_i &#92;partial_j f " class="latex" /></p>
+<p>of any smooth function define a symmetric bilinear form, and so does the quantity</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BRe%7D+%5Clangle+%28X_i+-+%5Clangle+X_i+%5Crangle%29%5C%2C%28X_j+-+%5Clangle+X_j+%5Crangle%29+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Re} &#92;langle (X_i - &#92;langle X_i &#92;rangle)&#92;,(X_j - &#92;langle X_j &#92;rangle) &#92;rangle " class="latex" /></p>
+<p>So I think everything is fine &#8212; Eric and I went over it pretty carefully, here on the blog.</p>
+<blockquote><p>
+Perhaps this can be improved!?
+</p></blockquote>
+<p>I&#8217;m sorry, I don&#8217;t know how.  This problem would presumably arise on any WordPress math blog, e.g. Terry Tao&#8217;s blog or the Secret Blogging Seminar, which are both quite popular.  So, maybe they know a solution.  <a href="http://en.support.wordpress.com/latex/" rel="nofollow">WordPress blogs produce LaTeX images as png files</a>.  png files are rescalable, so presumably a sufficiently smart browser could do it, e.g. with a plugin.  I can create pngs in different sizes from this end:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cint+x+dx+&#038;bg=ffffff&#038;fg=333333&#038;s=4&#038;c=20201002" alt="&#92;int x dx " class="latex" /></p>
+<p>should be a lot bigger than</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cint+x+dx+&#038;bg=ffffff&#038;fg=333333&#038;s=-4&#038;c=20201002" alt="&#92;int x dx " class="latex" /></p>
+<p>But I don&#8217;t see anything at my end that helps you rescale the math symbols at your end.</p>
+<p>By the way, to write math equations on a WordPress blog, you just put the word &#8216;latex&#8217; right after the first dollar sign:</p>
+<p>&#036;latex \sqrt{3} &#036;</p>
+<p>produes</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csqrt%7B3%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sqrt{3} " class="latex" /></p>
+<p>Double dollars don&#8217;t work here.  So, it&#8217;s easy for you to write math on this blog, but maybe not so easy for you read it.  </p>
+<p>I chose to move to this blog instead of a blog with technology more like that of the n-Category Cafe because many mathematicians with old browsers were reluctant to obtain the math fonts necessary to view the posts there, and that limited the readership.  I thought this problem would be even worse at Azimuth, since many of the readers aren&#8217;t mathematicians. </p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-phorgyphynance odd alt depth-2 parent highlander-comment" id="comment-2289">
+				<div id="div-comment-2289" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9024f63182a44e3f8bd7beab4a8f2a16?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">phorgyphynance</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2289">31 October, 2010 at 2:40 pm</a>		</div>
+
+		<p>*light bulb*</p>
+<p>Now that we know </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D+%5Cln+Z+%3D+%5Clangle+X_i%5E2%5Crangle+-%5Clangle+X_i%5Crangle%5E2+%3D+%5Cparallel+X_i+%5Cparallel%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i} &#92;ln Z = &#92;langle X_i^2&#92;rangle -&#92;langle X_i&#92;rangle^2 = &#92;parallel X_i &#92;parallel^2" class="latex" /></p>
+<p>it follows directly that </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Baligned%7D%5Cleft%28%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%2B%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ej%7D%5Cright%29%5Cleft%28%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%2B%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ej%7D%5Cright%29+%5Cln+Z+%26%3D+%5Clangle+%28X_i%2BX_j%29%5E2%5Crangle+-+%5Clangle+X_i+%2B+X_j+%5Crangle%5E2+%5C%5C+%26%3D+%5Cparallel+X_i%5Cparallel%5E2+%2B+%5Cparallel+X_j%5Cparallel%5E2+%2B+2%5Ctext%7BRe%7D%5Cleft%28%5Clangle+X_i+X_j%5Crangle+-+%5Clangle+X_i%5Crangle%5Clangle+X_j%5Crangle%5Cright%29%2C+%5Cend%7Baligned%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{aligned}&#92;left(&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}+&#92;frac{&#92;partial}{&#92;partial&#92;lambda^j}&#92;right)&#92;left(&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}+&#92;frac{&#92;partial}{&#92;partial&#92;lambda^j}&#92;right) &#92;ln Z &amp;= &#92;langle (X_i+X_j)^2&#92;rangle - &#92;langle X_i + X_j &#92;rangle^2 &#92;&#92; &amp;= &#92;parallel X_i&#92;parallel^2 + &#92;parallel X_j&#92;parallel^2 + 2&#92;text{Re}&#92;left(&#92;langle X_i X_j&#92;rangle - &#92;langle X_i&#92;rangle&#92;langle X_j&#92;rangle&#92;right), &#92;end{aligned}" class="latex" /></p>
+<p>which means that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ei%7D%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%5Clambda%5Ej%7D+%5Cln+Z+%3D+%5Ctext%7BRe%7D%5Cleft%28%5Clangle+X_i+X_j%5Crangle+-+%5Clangle+X_i%5Crangle%5Clangle+X_j%5Crangle%5Cright%29+%3D+g_%7Bij%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial&#92;lambda^i}&#92;frac{&#92;partial}{&#92;partial&#92;lambda^j} &#92;ln Z = &#92;text{Re}&#92;left(&#92;langle X_i X_j&#92;rangle - &#92;langle X_i&#92;rangle&#92;langle X_j&#92;rangle&#92;right) = g_{ij}." class="latex" /></p>
+<p>I&#8217;m back on board :)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2289#respond' data-commentid="2289" data-postid="1504" data-belowelement="div-comment-2289" data-respondelement="respond" data-replyto="Reply to phorgyphynance" aria-label='Reply to phorgyphynance'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-3 highlander-comment" id="comment-2293">
+				<div id="div-comment-2293" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2293">1 November, 2010 at 8:31 am</a>		</div>
+
+		<p>Phorgyphynance wrote:</p>
+<blockquote><p>
+I’m back on board :)
+</p></blockquote>
+<p>Great!  <img src="https://i2.wp.com/math.ucr.edu/home/baez/emoticons/thumbsup.gif" alt="" /></p>
+<p>Thanks for not believing my claim about the second derivative of <img src="https://s0.wp.com/latex.php?latex=%5Cln+Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ln Z" class="latex" /> until you checked it.  I&#8217;d never checked it before in the quantum case, though physicists seem to use it all the time.  Now that you&#8217;re on board, I am ready to do some interesting stuff.</p>
+<p>Your argument above, going from the formula for <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial+%5Clambda%5Ei%7D+%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial+%5Clambda%5Ei%7D+%5Cln+Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial &#92;lambda^i} &#92;frac{&#92;partial}{&#92;partial &#92;lambda^i} &#92;ln Z" class="latex" /> to the formula for <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial+%5Clambda%5Ei%7D+%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial+%5Clambda%5Ej%7D+%5Cln+Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial}{&#92;partial &#92;lambda^i} &#92;frac{&#92;partial}{&#92;partial &#92;lambda^j} &#92;ln Z" class="latex" />, uses the same trick as a well-known proof of the polarization identity.  Namely: if <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" /> is a symmetric bilinear form and </p>
+<p><img src="https://s0.wp.com/latex.php?latex=Q%28x%29+%3D+B%28x%2Cx%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Q(x) = B(x,x)" class="latex" /></p>
+<p>is the corresponding quadratic form, then</p>
+<p><img src="https://s0.wp.com/latex.php?latex=B%28x%2By%2Cx%2By%29+%3D+B%28x%2Cx%29+%2B+B%28y%2Cy%29+%2B+2+B%28x%2Cy%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B(x+y,x+y) = B(x,x) + B(y,y) + 2 B(x,y)" class="latex" /></p>
+<p>so we can recover the bilinear form from the quadratic form:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=Q%28x%2By%29+-+Q%28x%29+-+Q%28y%29+%3D+2+B%28x%2Cy%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Q(x+y) - Q(x) - Q(y) = 2 B(x,y)" class="latex" /></p>
+<p>So, if two symmetric bilinear forms give the same quadratic form, they must be equal.</p>
+<p>(Well, at least when we&#8217;re allowed to divide by 2!  This is one reason why math over the integers mod 2 is very different than math over the real numbers or even the integers mod 3.  Over the integers mod 2, there&#8217;s more information in the symmetric bilinear form than the corresponding quadratic form, so all heck breaks loose.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2293#respond' data-commentid="2293" data-postid="1504" data-belowelement="div-comment-2293" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3 parent highlander-comment" id="comment-2298">
+				<div id="div-comment-2298" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/2d29383a45071e6fd2765d3c6b7f4bca?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Eric</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2298">1 November, 2010 at 3:21 pm</a>		</div>
+
+		<blockquote><p>Great!</p></blockquote>
+<p>Cool :)</p>
+<blockquote><p>Thanks for not believing my claim about the second derivative of <img src="https://s0.wp.com/latex.php?latex=%5Cln+Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ln Z" class="latex" /> until you checked it.</p></blockquote>
+<p>Well, everything seemed very clean and pretty, i.e. it &#8220;felt right&#8221;, until you threw in the <img src="https://s0.wp.com/latex.php?latex=%5Ctext%7BRe%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;text{Re}" class="latex" />. For a second it seemed like you were saying, &#8220;Well, what I wanted was symmetric, but I got something unsymmetric, so let&#8217;s just symmetrize it.&#8221; Symmetrizing things willy nilly doesn&#8217;t &#8220;feel right&#8221; so I was happy to see it come out once you recognize the diagonal elements can be associated with a norm.</p>
+<p>I have some real practical applications of this in mind if things work out the way I hope, so I&#8217;m glad to be back on board and looking forward to the rest of the ride :)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2298#respond' data-commentid="2298" data-postid="1504" data-belowelement="div-comment-2298" data-respondelement="respond" data-replyto="Reply to Eric" aria-label='Reply to Eric'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-2299">
+				<div id="div-comment-2299" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2299">2 November, 2010 at 12:38 am</a>		</div>
+
+		<p>Some <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BRe%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Re}" class="latex" />al practical applications, eh?  Great!</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-2297">
+				<div id="div-comment-2297" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/83c16232570c763f8e0821a98c18e087?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">streamfortyseven</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-2297">1 November, 2010 at 1:49 pm</a>		</div>
+
+		<p>This is off-topic, but this guy is into math and perhaps you could use some visualisations&#8230; So here&#8217;s a game he wrote. He must have worked on 2001:A Space Odyssey in a previous life.  <a href="http://dmytry.pandromeda.com/games/index.html" rel="nofollow ugc">http://dmytry.pandromeda.com/games/index.html</a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2297#respond' data-commentid="2297" data-postid="1504" data-belowelement="div-comment-2297" data-respondelement="respond" data-replyto="Reply to streamfortyseven" aria-label='Reply to streamfortyseven'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback even thread-odd thread-alt depth-1 highlander-comment" id="comment-3772">
+				<div id="div-comment-3772" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2011/01/21/information-geometry-part-6/' rel='external nofollow ugc' class='url'>Information Geometry (Part 6) &laquo; Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-3772">21 January, 2011 at 8:02 am</a>		</div>
+
+		<p>[&#8230;] Part 1 &nbsp; &nbsp; • Part 2 &nbsp; &nbsp; • Part 3 &nbsp; &nbsp; • Part 4 &nbsp; &nbsp; • Part [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=3772#respond' data-commentid="3772" data-postid="1504" data-belowelement="div-comment-3772" data-respondelement="respond" data-replyto="Reply to Information Geometry (Part 6) &laquo; Azimuth" aria-label='Reply to Information Geometry (Part 6) &laquo; Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-16559">
+				<div id="div-comment-16559" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/8573c9e53d98893fa7df8b52a0767667?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Squark</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-16559">5 July, 2012 at 9:08 am</a>		</div>
+
+		<p>Can you give a quasi realistic example of a GENERIC system?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=16559#respond' data-commentid="16559" data-postid="1504" data-belowelement="div-comment-16559" data-respondelement="respond" data-replyto="Reply to Squark" aria-label='Reply to Squark'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-16560">
+				<div id="div-comment-16560" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-16560">5 July, 2012 at 10:03 am</a>		</div>
+
+		<p>I would like to give a very simple example, but the examples I&#8217;ve seen are too complicated for me to summarize here.  If you&#8217;re a clever guy you can use sneaky tricks to find an online copy of this book:</p>
+<p>&bull; Hans Christian &Ouml;ttinger, <i>Beyond Equilibrium Thermodynamics</i>, Wiley, 2005.</p>
+<p>and that&#8217;s one way to see a bunch of examples.  This book is also good:</p>
+<p>&bull;  Georgy Lebon, David Jou and J. Casas-Vázquez, <i>Understanding Nonequlibrium Thermodynamics</i>, Springer, 2008.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=16560#respond' data-commentid="16560" data-postid="1504" data-belowelement="div-comment-16560" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-16579">
+				<div id="div-comment-16579" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/#comment-16579">6 July, 2012 at 8:33 am</a>		</div>
+
+		<p>By the way, someone pointed out that we don&#8217;t need</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5BH%2CF%5D+%3D+%5C%7BS%2CF%5C%7D+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[H,F] = &#92;{S,F&#92;} = 0" class="latex" /></p>
+<p>for all functions <img src="https://s0.wp.com/latex.php?latex=F&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F" class="latex" />. To derive the few results I describe, it&#8217;s enough to have </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5BH%2CS%5D+%3D+%5C%7BS%2CH%5C%7D+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[H,S] = &#92;{S,H&#92;} = 0" class="latex" /></p>
+<p>It seems the &Ouml;ttinger assumes the stronger formulation but only uses the weaker one&#8212;see the text before equation (1.22) in his book <i>Beyond Equilibrium Thermodynamics</i>.</p>
+<p>I&#8217;m afraid I don&#8217;t remember who pointed out this fact, and I can&#8217;t find the place on this blog where they did it!  But I think it&#8217;s important.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=16579#respond' data-commentid="16579" data-postid="1504" data-belowelement="div-comment-16579" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-2259">John Baez</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2010/10/29/information-geometry-part-4/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2010/10/29/information-geometry-part-4/?replytocom=2259" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='1504' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='2259' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="f21d400f5b" /></p>
+<input type="hidden" name="genseq" value="1632617949" />
+<input type="hidden" id="ak_js" name="ak_js" value="110"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2010/10/29/information-geometry-part-4/?replytocom=2259"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,176,979 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-d51bcf0914e820f6011ae451c78bf379">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-5850d628c599d7ac60d7f7889844995a">
+	</div>
+	<div class="grofile-hash-map-9024f63182a44e3f8bd7beab4a8f2a16">
+	</div>
+	<div class="grofile-hash-map-bead9ff6ddc7c095d18968ec950edb4d">
+	</div>
+	<div class="grofile-hash-map-151c18cc6cc3bd1bb7a0528c6ef88c77">
+	</div>
+	<div class="grofile-hash-map-2d29383a45071e6fd2765d3c6b7f4bca">
+	</div>
+	<div class="grofile-hash-map-83c16232570c763f8e0821a98c18e087">
+	</div>
+	<div class="grofile-hash-map-8573c9e53d98893fa7df8b52a0767667">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"1504","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'1504','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTY5YjUlL09GczNGJkhCfGxfSzIsTTFVZWlnc0ZuY2gxOWx5cjdVaF0/TFA5c0pUeHpGYS9pL1BFeTE1al1hXXorOFY0MF10eDVpTzcuRDlbSyx5c2xEZF9OTTksckImMXRpUUtWQkJbQXFyb1FobTAwQTRVZEpwUXdJdlRbPVNlQ34/Jkd8UCtMdUpbM0RVZ0QtYzhyaSZ3aTkrcHhjMXA1REppS1N5UnVxdk1qUSZjT0FiUCZsNHcvNVNhfExXZG4xaWhELnBFMX5YZyZaWEJqc1B8S2hJPz0rVw=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '1504' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

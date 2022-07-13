@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:media="http://search.yahoo.com/mrss/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Network Theory (Part 33)	</title>
+	<atom:link href="https://johncarlosbaez.wordpress.com/2014/11/04/network-theory-part-33/feed/" rel="self" type="application/rss+xml" />
+	<link>https://johncarlosbaez.wordpress.com/2014/11/04/network-theory-part-33/</link>
+	<description></description>
+	<lastBuildDate>Mon, 10 Nov 2014 20:58:08 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>http://wordpress.com/</generator>
+	<item>
+		<title>
+		By: John Baez		</title>
+		<link>https://johncarlosbaez.wordpress.com/2014/11/04/network-theory-part-33/#comment-59683</link>
+
+		<dc:creator><![CDATA[John Baez]]></dc:creator>
+		<pubDate>Mon, 10 Nov 2014 20:58:08 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=18967#comment-59683</guid>
+
+					<description><![CDATA[Whoops!  I screwed up the second step of how to get a linear relation from a circuit made of resistors.  I wrote:
+
+&lt;blockquote&gt;
+To do this, we compose three linear relations:
+
+1) We start with
+
+$latex S(i) : \mathbb{R}^X \times \mathbb{R}^X \leadsto \mathbb{R}^T \times \mathbb{R}^T $
+
+2) We compose this with 
+
+$latex 1&#124;_{dQ} : \mathbb{R}^T \times \mathbb{R}^T \leadsto \mathbb{R}^T \times \mathbb{R}^T $
+
+3) Then we compose this with
+
+$latex S(o)^\dagger : \mathbb{R}^T \times \mathbb{R}^T \leadsto \mathbb{R}^Y \times \mathbb{R}^Y $
+&lt;/blockquote&gt;
+
+In the second step I used the power function 
+
+$latex Q : \mathbb{R}^T \to \mathbb{R}$ 
+
+to get a linear relation
+
+$latex 1&#124;_{d Q} : \mathbb{R}^T \times \mathbb{R}^T \leadsto  \mathbb{R}^T \times \mathbb{R}^T $
+
+But Brendan pointed out that this relation is not the right one.  Quite concretely, we have
+
+$latex  1&#124;_{dQ} = \{ (\psi, J, \psi, J) : J_x = \frac{\partial Q}{\partial \psi_x} \}  \subseteq \mathbb{R}^T \times \mathbb{R}^T \times \mathbb{R}^T \times \mathbb{R}^T $
+
+What we really want is another relation which I&#039;ll call $latex R_Q.$  This is
+
+$latex R_Q = \{ (\psi, I, \psi, I+J) : J_x = \frac{\partial Q}{\partial \psi_x} \} \subseteq \mathbb{R}^T \times \mathbb{R}^T \times \mathbb{R}^T \times \mathbb{R}^T $
+
+In his writeup, Brendan arrives at this in a nice conceptual way.  I was trying to take a shortcut, and I went the wrong way!
+
+Let&#039;s see how this stuff works in an example.
+
+First let&#039;s do a very simple circuit: a circuit with one input and one output, where the graph has one node and no edges.  This is a degenerate case, so it may be sort of confusing, but it&#039;s fundamental.  This circuit is an identity morphism in the category $latex \mathrm{ResCirc}.$   Remember, a morphism in here is a cospan
+
+&lt;div align=&quot;center&quot;&gt;
+&lt;img width=&quot;205&quot; src=&quot;http://math.ucr.edu/home/baez/networks/cospan_2.jpg&quot; /&gt;
+&lt;/div&gt;
+
+In our example now, $latex i$ and $latex o$ are identity morphisms, and $latex X = \Gamma = Y$ is a graph with one node and no edges---which is another way to think about a set with one point.  This one-point set is also the set of terminals, $latex T.$  It takes one number $latex \psi$ to describe the potential at this point and one number $latex J$ to describe the current flowing into this point from the input.
+ 
+Since $latex i$ and $latex o$ are identity morphisms, it&#039;s easy to check that steps 1) and 3) of my three-step procedure give identity morphisms.  The only problem is step 2), so let&#039;s look at that.
+
+Since $latex \Gamma$ has no edges, no power is consumed by this circuit:
+
+$latex Q = 0$
+
+So, my recipe gives
+
+$latex  1&#124;_{dQ} = \{ (\psi, 0, \psi, 0) : \subseteq \mathbb{R} \times \mathbb{R} \times \mathbb{R} \times \mathbb{R} $
+
+This is not what we want!  It correctly says that the potential at the input equals the potential at the output (since they&#039;re the same point).    But it incorrectly says the current at input and output are zero.   
+
+If we work out $latex R_Q,$ we get
+
+$latex R_Q = \{ (\psi, I, \psi, I) \} \subseteq \mathbb{R} \times \mathbb{R} \times \mathbb{R} \times \mathbb{R} $
+
+and this is indeed the identity linear relation on $latex \mathbb{R} \times \mathbb{R}.$
+
+
+
+]]></description>
+			<content:encoded><![CDATA[<p>Whoops!  I screwed up the second step of how to get a linear relation from a circuit made of resistors.  I wrote:</p>
+<blockquote><p>
+To do this, we compose three linear relations:</p>
+<p>1) We start with</p>
+<p><img src="https://s0.wp.com/latex.php?latex=S%28i%29+%3A+%5Cmathbb%7BR%7D%5EX+%5Ctimes+%5Cmathbb%7BR%7D%5EX+%5Cleadsto+%5Cmathbb%7BR%7D%5ET+%5Ctimes+%5Cmathbb%7BR%7D%5ET+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S(i) : &#92;mathbb{R}^X &#92;times &#92;mathbb{R}^X &#92;leadsto &#92;mathbb{R}^T &#92;times &#92;mathbb{R}^T " class="latex" /></p>
+<p>2) We compose this with </p>
+<p><img src="https://s0.wp.com/latex.php?latex=1%7C_%7BdQ%7D+%3A+%5Cmathbb%7BR%7D%5ET+%5Ctimes+%5Cmathbb%7BR%7D%5ET+%5Cleadsto+%5Cmathbb%7BR%7D%5ET+%5Ctimes+%5Cmathbb%7BR%7D%5ET+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1|_{dQ} : &#92;mathbb{R}^T &#92;times &#92;mathbb{R}^T &#92;leadsto &#92;mathbb{R}^T &#92;times &#92;mathbb{R}^T " class="latex" /></p>
+<p>3) Then we compose this with</p>
+<p><img src="https://s0.wp.com/latex.php?latex=S%28o%29%5E%5Cdagger+%3A+%5Cmathbb%7BR%7D%5ET+%5Ctimes+%5Cmathbb%7BR%7D%5ET+%5Cleadsto+%5Cmathbb%7BR%7D%5EY+%5Ctimes+%5Cmathbb%7BR%7D%5EY+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S(o)^&#92;dagger : &#92;mathbb{R}^T &#92;times &#92;mathbb{R}^T &#92;leadsto &#92;mathbb{R}^Y &#92;times &#92;mathbb{R}^Y " class="latex" />
+</p></blockquote>
+<p>In the second step I used the power function </p>
+<p><img src="https://s0.wp.com/latex.php?latex=Q+%3A+%5Cmathbb%7BR%7D%5ET+%5Cto+%5Cmathbb%7BR%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Q : &#92;mathbb{R}^T &#92;to &#92;mathbb{R}" class="latex" /> </p>
+<p>to get a linear relation</p>
+<p><img src="https://s0.wp.com/latex.php?latex=1%7C_%7Bd+Q%7D+%3A+%5Cmathbb%7BR%7D%5ET+%5Ctimes+%5Cmathbb%7BR%7D%5ET+%5Cleadsto++%5Cmathbb%7BR%7D%5ET+%5Ctimes+%5Cmathbb%7BR%7D%5ET+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1|_{d Q} : &#92;mathbb{R}^T &#92;times &#92;mathbb{R}^T &#92;leadsto  &#92;mathbb{R}^T &#92;times &#92;mathbb{R}^T " class="latex" /></p>
+<p>But Brendan pointed out that this relation is not the right one.  Quite concretely, we have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=1%7C_%7BdQ%7D+%3D+%5C%7B+%28%5Cpsi%2C+J%2C+%5Cpsi%2C+J%29+%3A+J_x+%3D+%5Cfrac%7B%5Cpartial+Q%7D%7B%5Cpartial+%5Cpsi_x%7D+%5C%7D++%5Csubseteq+%5Cmathbb%7BR%7D%5ET+%5Ctimes+%5Cmathbb%7BR%7D%5ET+%5Ctimes+%5Cmathbb%7BR%7D%5ET+%5Ctimes+%5Cmathbb%7BR%7D%5ET+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1|_{dQ} = &#92;{ (&#92;psi, J, &#92;psi, J) : J_x = &#92;frac{&#92;partial Q}{&#92;partial &#92;psi_x} &#92;}  &#92;subseteq &#92;mathbb{R}^T &#92;times &#92;mathbb{R}^T &#92;times &#92;mathbb{R}^T &#92;times &#92;mathbb{R}^T " class="latex" /></p>
+<p>What we really want is another relation which I&#8217;ll call <img src="https://s0.wp.com/latex.php?latex=R_Q.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R_Q." class="latex" />  This is</p>
+<p><img src="https://s0.wp.com/latex.php?latex=R_Q+%3D+%5C%7B+%28%5Cpsi%2C+I%2C+%5Cpsi%2C+I%2BJ%29+%3A+J_x+%3D+%5Cfrac%7B%5Cpartial+Q%7D%7B%5Cpartial+%5Cpsi_x%7D+%5C%7D+%5Csubseteq+%5Cmathbb%7BR%7D%5ET+%5Ctimes+%5Cmathbb%7BR%7D%5ET+%5Ctimes+%5Cmathbb%7BR%7D%5ET+%5Ctimes+%5Cmathbb%7BR%7D%5ET+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R_Q = &#92;{ (&#92;psi, I, &#92;psi, I+J) : J_x = &#92;frac{&#92;partial Q}{&#92;partial &#92;psi_x} &#92;} &#92;subseteq &#92;mathbb{R}^T &#92;times &#92;mathbb{R}^T &#92;times &#92;mathbb{R}^T &#92;times &#92;mathbb{R}^T " class="latex" /></p>
+<p>In his writeup, Brendan arrives at this in a nice conceptual way.  I was trying to take a shortcut, and I went the wrong way!</p>
+<p>Let&#8217;s see how this stuff works in an example.</p>
+<p>First let&#8217;s do a very simple circuit: a circuit with one input and one output, where the graph has one node and no edges.  This is a degenerate case, so it may be sort of confusing, but it&#8217;s fundamental.  This circuit is an identity morphism in the category <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BResCirc%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{ResCirc}." class="latex" />   Remember, a morphism in here is a cospan</p>
+<div align="center">
+<img width="205" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/cospan_2.jpg" />
+</div>
+<p>In our example now, <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=o&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="o" class="latex" /> are identity morphisms, and <img src="https://s0.wp.com/latex.php?latex=X+%3D+%5CGamma+%3D+Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X = &#92;Gamma = Y" class="latex" /> is a graph with one node and no edges&#8212;which is another way to think about a set with one point.  This one-point set is also the set of terminals, <img src="https://s0.wp.com/latex.php?latex=T.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T." class="latex" />  It takes one number <img src="https://s0.wp.com/latex.php?latex=%5Cpsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi" class="latex" /> to describe the potential at this point and one number <img src="https://s0.wp.com/latex.php?latex=J&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="J" class="latex" /> to describe the current flowing into this point from the input.</p>
+<p>Since <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=o&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="o" class="latex" /> are identity morphisms, it&#8217;s easy to check that steps 1) and 3) of my three-step procedure give identity morphisms.  The only problem is step 2), so let&#8217;s look at that.</p>
+<p>Since <img src="https://s0.wp.com/latex.php?latex=%5CGamma&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Gamma" class="latex" /> has no edges, no power is consumed by this circuit:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=Q+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Q = 0" class="latex" /></p>
+<p>So, my recipe gives</p>
+<p><img src="https://s0.wp.com/latex.php?latex=1%7C_%7BdQ%7D+%3D+%5C%7B+%28%5Cpsi%2C+0%2C+%5Cpsi%2C+0%29+%3A+%5Csubseteq+%5Cmathbb%7BR%7D+%5Ctimes+%5Cmathbb%7BR%7D+%5Ctimes+%5Cmathbb%7BR%7D+%5Ctimes+%5Cmathbb%7BR%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1|_{dQ} = &#92;{ (&#92;psi, 0, &#92;psi, 0) : &#92;subseteq &#92;mathbb{R} &#92;times &#92;mathbb{R} &#92;times &#92;mathbb{R} &#92;times &#92;mathbb{R} " class="latex" /></p>
+<p>This is not what we want!  It correctly says that the potential at the input equals the potential at the output (since they&#8217;re the same point).    But it incorrectly says the current at input and output are zero.   </p>
+<p>If we work out <img src="https://s0.wp.com/latex.php?latex=R_Q%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R_Q," class="latex" /> we get</p>
+<p><img src="https://s0.wp.com/latex.php?latex=R_Q+%3D+%5C%7B+%28%5Cpsi%2C+I%2C+%5Cpsi%2C+I%29+%5C%7D+%5Csubseteq+%5Cmathbb%7BR%7D+%5Ctimes+%5Cmathbb%7BR%7D+%5Ctimes+%5Cmathbb%7BR%7D+%5Ctimes+%5Cmathbb%7BR%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R_Q = &#92;{ (&#92;psi, I, &#92;psi, I) &#92;} &#92;subseteq &#92;mathbb{R} &#92;times &#92;mathbb{R} &#92;times &#92;mathbb{R} &#92;times &#92;mathbb{R} " class="latex" /></p>
+<p>and this is indeed the identity linear relation on <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D+%5Ctimes+%5Cmathbb%7BR%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R} &#92;times &#92;mathbb{R}." class="latex" /></p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

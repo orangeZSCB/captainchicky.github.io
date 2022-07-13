@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en">
+<![endif]-->
+<!--[if (!IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+<meta charset="UTF-8" />
+<title>Astronomy | Of Particular Significance</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://profmattstrassler.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large' />
+<meta name="google-site-verification" content="atBcEfQYCIwhTkcOnVU26d7Pp3Jj8sJQ8u-frrJyoi8" />
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.parentNode.removeChild( dom_node ); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[ i ].parentNode.removeChild( dom_nodes[ i ] );
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+					+ '//' + window.location.hostname
+					+ '&postid=10382'
+					+ '&is_singular=';
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly9wcm9mbWF0dHN0cmFzc2xlci5jb20%3D"
+		+ "&wpcomid=24633746"
+		+ "&time=1633052655";
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel='dns-prefetch' href='//s1.wp.com' />
+<link rel='dns-prefetch' href='//profmattstrassler.wordpress.com' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Feed" href="https://profmattstrassler.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Comments Feed" href="https://profmattstrassler.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Astronomy Category Feed" href="https://profmattstrassler.com/category/astronomy/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkttSAyEMhl9IoKwzrb1wfBYOEVOBZQh05e2lO3ZnbWvrDZM/yRd+DmJKzIyxQCwiVJZ8dRhJTMmMgVFAD+1CcUP0JG5jGN8xYmlLcNV87nS1Sw3Z9UoGcZSSb/lG6IreCu1H88k86qxyE1Sah2UQRuOrBRIHEgEsKvAQZhsrkbxqkJkHp0zjAeNjvNfW+hf0t/nZaR8GJamTZdXGWpjLaC9s/3tEVgWjowe4GX+wgcsNl8IilSXJbrOrdzrdec+HpK4Pfgeb0DooHadzzAp83Ufmr6N1ykDE+hqwBlY++l7zT3oLr3L7POyH3X73cvgG1PH1zg==?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s1.wp.com/_static/??-eJyFi0EKAjEMAD9kDAsV9SC+pRtiraRJaVMWf++KF0XQ2wzM4FKBTJ3V0a9cuGMdM5K1KFkZu9+Ft9T7Bv+UWelVw1LJytdTBlQZKWvHxAZiFD2bfghcJOb2a208i6UVE67Vmz6nczlNYXcM4bCfwu0Bks1RNg==?cssminify=yes' type='text/css' media='all' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-4-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"24633746","siteName":"Of Particular Significance","siteURL":"https:\/\/profmattstrassler.com","siteHost":"profmattstrassler.com","icon":"<img alt='' src='https:\/\/secure.gravatar.com\/blavatar\/9192dd01619d8fdbea0a34ba4b097323?s=50&d=https%3A%2F%2Fs2.wp.com%2Fi%2Flogo%2Fwpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/coraline","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2019%252F06%252F14%252Fa-ring-of-controversy-around-a-black-hole-photo%252F","themeURL":"","xhrURL":"https:\/\/profmattstrassler.com\/wp-admin\/admin-ajax.php","nonce":"f715b72a96","isSingular":"","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"a2d8da805d\" \/>","referer":"https:\/\/profmattstrassler.com\/category\/astronomy\/","canFollow":"1","feedID":"241531","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/profmattstrassler.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fprofmattstrassler.wordpress.com%2Fcategory%2Fastronomy%2F","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Coraline","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 15,952 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2019%252F06%252F14%252Fa-ring-of-controversy-around-a-black-hole-photo%252F\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=profmattstrassler.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFykEKwkAMQNELmQ4qtboQz1LbWDJMknGSQXt7K9SFILj6i//CI8Og4igeooWs5oxm/YRNtE34vqxXSgjVsCxAHEhu+sOV5JCLPufPIxlSHdHeM94rlnlNwyR/ETBNpXdc8YXP28OuOx3brt3HF3swRvU='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://profmattstrassler.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Astronomy &#8211; Of Particular Significance" />
+<meta property="og:url" content="https://profmattstrassler.com/category/astronomy/" />
+<meta property="og:site_name" content="Of Particular Significance" />
+<meta property="og:image" content="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=200&#038;ts=1633052655" />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:creator" content="@MattStrassler" />
+<meta name="twitter:site" content="@MattStrassler" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="apple-touch-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=114" />
+<link rel='openid.server' href='https://profmattstrassler.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://profmattstrassler.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://profmattstrassler.com/osd.xml" title="Of Particular Significance" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<meta name="theme-color" content="#fefae3" />
+<style type="text/css">
+.widget_twitter li {
+	word-wrap: break-word;
+}
+</style>
+<meta name="application-name" content="Of Particular Significance" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="Conversations About Science with Theoretical Physicist Matt Strassler" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://profmattstrassler.com/feed/;icon-uri=https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=16" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="Posts about Astronomy written by Matt Strassler" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #fefae3; }
+</style>
+	<!-- There is no amphtml version available for this URL. --></head>
+
+<body class="archive category category-astronomy category-4003 custom-background customizer-styles-applied two-column sidebar-content highlander-enabled highlander-light">
+<div id="container" class="hfeed contain">
+	<div id="header">
+		<div id="masthead" role="banner">
+						<div id="site-title">
+				<span>
+					<a href="https://profmattstrassler.com/" title="Of Particular Significance" rel="home">Of Particular Significance</a>
+				</span>
+			</div>
+			<div id="site-description">Conversations About Science with Theoretical Physicist Matt Strassler</div>
+		</div><!-- #masthead -->
+
+		<div id="access" role="navigation">
+		  			<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+						<div class="menu"><ul>
+<li ><a href="https://profmattstrassler.com/">Home</a></li><li class="page_item page-item-1026 page_item_has_children"><a href="https://profmattstrassler.com/about/">About</a>
+<ul class='children'>
+	<li class="page_item page-item-2 page_item_has_children"><a href="https://profmattstrassler.com/about/about-me/">About Me</a>
+	<ul class='children'>
+		<li class="page_item page-item-5295"><a href="https://profmattstrassler.com/about/about-me/a-new-career-phase/">A New Career&nbsp;Phase</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-1029"><a href="https://profmattstrassler.com/about/about-this-site-and-how-to-use-it/">About This Site and How to Use&nbsp;It</a></li>
+</ul>
+</li>
+<li class="page_item page-item-26 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/">Articles</a>
+<ul class='children'>
+	<li class="page_item page-item-64 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/">Large Hadron Collider&nbsp;FAQ</a>
+	<ul class='children'>
+		<li class="page_item page-item-196"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/how-to-figure-out-what-happened-in-a-microcollision/">How We Learn What Happened in a Proton-Proton&nbsp;Collision</a></li>
+		<li class="page_item page-item-67"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/introduction-to-the-large-hadron-collider/">Introduction to the&nbsp;LHC</a></li>
+		<li class="page_item page-item-70"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/photosofthelhc/">Photos Of The&nbsp;LHC</a></li>
+		<li class="page_item page-item-498 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/">Some Technical Concepts</a>
+		<ul class='children'>
+			<li class="page_item page-item-661"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/fermions-and-bosons/">Fermions and Bosons</a></li>
+			<li class="page_item page-item-497"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-gev-and-tev/">GeV and TeV</a></li>
+			<li class="page_item page-item-461"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-invariant-mass/">Invariant Mass</a></li>
+			<li class="page_item page-item-568"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/what-are-anti-particles/">What are anti-particles?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1560 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/">The Trigger: Discarding All But the&nbsp;Gold</a>
+		<ul class='children'>
+			<li class="page_item page-item-7821"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/trigger-failure-and-repair/">Trigger Failure, and Repair, at the&nbsp;LHC</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-602"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-hadron-as-in-large-hadron-collider/">What&#8217;s a Hadron?</a></li>
+		<li class="page_item page-item-152 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/">What&#8217;s a Proton,&nbsp;Anyway?</a>
+		<ul class='children'>
+			<li class="page_item page-item-2668"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/checking-whats-inside-a-proton/">Checking What&#8217;s Inside a&nbsp;Proton</a></li>
+			<li class="page_item page-item-2613"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/proton-collisions-vs-quarkgluonantiquark-mini-collisions/">Proton Collisions Vs. Quark/Gluon/Antiquark Mini-Collisions</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-15 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/">Large Hadron Collider&nbsp;News</a>
+	<ul class='children'>
+		<li class="page_item page-item-340"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/a-historic-day-or-just-an-important-one/">A Historic Day? Or Just an Important&nbsp;One?</a></li>
+		<li class="page_item page-item-49"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/gangbusters/">Gangbusters!</a></li>
+		<li class="page_item page-item-10"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/hey-where-did-my-higgs-go/">Hey Where&#8217;d My Higgs&nbsp;Go?</a></li>
+		<li class="page_item page-item-1703"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/higgs-search-atlas-and-cms-summer-data-combined/">Higgs Search: ATLAS and CMS Summer Data&nbsp;Combined</a></li>
+		<li class="page_item page-item-1395"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/multi-lepton-events-a-good-place-to-look-for-new-physics/">Multi-Lepton Events: A Good Place to Look for New&nbsp;Physics</a></li>
+		<li class="page_item page-item-2241 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/">Old Pages (Of Historical&nbsp;Interest)</a>
+		<ul class='children'>
+			<li class="page_item page-item-2240"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-december-higgs-update/">The December 2011 Higgs&nbsp;Update</a></li>
+			<li class="page_item page-item-2251"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-july-2011-higgs-hints/">The July 2011 Higgs&nbsp;Hints</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1049 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/">Searches for New Phenomena (as of&nbsp;9/2011)</a>
+		<ul class='children'>
+			<li class="page_item page-item-1050 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/">Searches Aimed at&nbsp;Supersymmetry</a>
+			<ul class='children'>
+				<li class="page_item page-item-1091"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-new-particles-with-long-lifetimes/">Seeking New Particles with Long&nbsp;Lifetimes</a></li>
+				<li class="page_item page-item-1051"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-photonszs-and-something-undetectable/">Seeking Photons/Zs and Something&nbsp;Undetectable</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-4216 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/">Triggering: Advances in&nbsp;2012</a>
+		<ul class='children'>
+			<li class="page_item page-item-4205"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/data-parking-at-cms/">Data Parking at&nbsp;CMS</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1539"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/two-photons-data-and-theory-disagree/">Two-Photons: Data and Theory&nbsp;Disagree</a></li>
+		<li class="page_item page-item-753"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/what-do-current-mid-august-2011-lhc-results-imply-about-supersymmetry/">What do current LHC results (mid-August 2011) imply about&nbsp;supersymmetry?</a></li>
+		<li class="page_item page-item-114"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/why-so-quiet-at-lhc/">Why so quiet at&nbsp;LHC?</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-413 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/">Particle Physics Basics</a>
+	<ul class='children'>
+		<li class="page_item page-item-5927"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/c-p-t-and-their-combinations/">C, P, T (And Their&nbsp;Combinations)</a></li>
+		<li class="page_item page-item-1249"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/cerenkov-radiation/">Cerenkov Radiation</a></li>
+		<li class="page_item page-item-4267 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/">Fields and Their Particles: With&nbsp;Math</a>
+		<ul class='children'>
+			<li class="page_item page-item-4269 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/">1. Ball on a Spring&nbsp;(Classical)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4611"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/1a-resonance/">1a. Resonance</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4272"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-quantum/">2. Ball on a Spring&nbsp;(Quantum)</a></li>
+			<li class="page_item page-item-4376"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-form/">3. Waves (Classical&nbsp;Form)</a></li>
+			<li class="page_item page-item-4402 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/">4. Waves (Classical Equation of&nbsp;Motion)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4442"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/waves-the-quick-calculation/">4a. Waves (The Quick&nbsp;Calculation)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4450"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/5-waves-quantum/">5. Waves (Quantum)</a></li>
+			<li class="page_item page-item-4468 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/">6. Fields</a>
+			<ul class='children'>
+				<li class="page_item page-item-4501"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/chicken-and-egg-matter-and-field/">6a. Chicken and Egg; Matter and&nbsp;Field</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4526 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/">7. Particles Are&nbsp;Quanta</a>
+			<ul class='children'>
+				<li class="page_item page-item-4536"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/7a-how-bosons-and-fermions-differ/">7a. How Bosons and Fermions&nbsp;Differ</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4627"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/8-how-particles-and-fields-interact/">8. How Particles and Fields Interact (an&nbsp;introduction)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4585 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/">How the Higgs Field Works (with&nbsp;math)</a>
+		<ul class='children'>
+			<li class="page_item page-item-4663 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/">1. The Basic&nbsp;Idea</a>
+			<ul class='children'>
+				<li class="page_item page-item-4587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/1-the-basic-idea/">1. The Basic Idea (1st&nbsp;version)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4710"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/2-why-the-higgs-field-is-non-zero-on-average/">2. Why the Higgs Field is Non-Zero on&nbsp;Average</a></li>
+			<li class="page_item page-item-4789"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/3-how-the-higgs-particle-arises/">3. How the Higgs Particle&nbsp;Arises</a></li>
+			<li class="page_item page-item-5032"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/4-why-the-higgs-field-is-necessary/">4. Why the Higgs Field is&nbsp;Necessary</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3077 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/">Mass, Energy, Matter,&nbsp;Etc.</a>
+		<ul class='children'>
+			<li class="page_item page-item-3118 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/">Mass and Energy</a>
+			<ul class='children'>
+				<li class="page_item page-item-3321"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/how-did-einstein-do-it/">How Did Einstein Do&nbsp;It?</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3079"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/matter-and-energy-a-false-dichotomy/">Matter and Energy: A False&nbsp;Dichotomy</a></li>
+			<li class="page_item page-item-6247 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/">More on Mass</a>
+			<ul class='children'>
+				<li class="page_item page-item-6245"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/the-two-definitions-of-mass-and-why-i-use-only-one/">The Two Definitions of &#8220;Mass&#8221;, And Why I Use Only&nbsp;One</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3452 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/">The Energy That Holds Things&nbsp;Together</a>
+			<ul class='children'>
+				<li class="page_item page-item-3534"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/neutron-stability-in-atomic-nuclei/">Neutron Stability in Atomic&nbsp;Nuclei</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-1213 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/">Neutrinos</a>
+		<ul class='children'>
+			<li class="page_item page-item-1791 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/">How One Detects&nbsp;Neutrinos</a>
+			<ul class='children'>
+				<li class="page_item page-item-6044"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/icecube-a-giant-frozen-neutrino-catcher/">IceCube: A Giant Frozen Neutrino&nbsp;Catcher</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1793"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/making-neutrino-beams/">Making Neutrino Beams</a></li>
+			<li class="page_item page-item-1212 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/">Neutrino Types and Neutrino&nbsp;Oscillations</a>
+			<ul class='children'>
+				<li class="page_item page-item-1229"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/velocity-differences-of-neutrinos/">Velocity Differences of&nbsp;Neutrinos</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1737 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/">Neutrinos Faster Than&nbsp;Light?</a>
+			<ul class='children'>
+				<li class="page_item page-item-1811"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-additional-supporting-info/">OPERA: Additional Supporting&nbsp;Info</a></li>
+				<li class="page_item page-item-1736"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-comparing-the-two-versions/">OPERA: Comparing the Two&nbsp;Versions</a></li>
+				<li class="page_item page-item-1799 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/">OPERA: Some Arguments&nbsp;Against</a>
+				<ul class='children'>
+					<li class="page_item page-item-1801"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/cohen-glashow-opera-is-self-contradictory/">Cohen-Glashow: OPERA is Self-Contradictory</a></li>
+					<li class="page_item page-item-1805"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-vs-icarus/">OPERA vs ICARUS</a></li>
+					<li class="page_item page-item-1802"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-another-speed-bump/">OPERA: Another Speed&nbsp;Bump</a></li>
+					<li class="page_item page-item-1782"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/supernovas-and-neutrino-speeds/">Supernovas and Neutrino&nbsp;Speeds</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-1795 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/">OPERA: The First Few&nbsp;Days</a>
+				<ul class='children'>
+					<li class="page_item page-item-1784"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-paper-my-initial-reaction/">OPERA&#8217;s Paper: My Initial&nbsp;Reaction</a></li>
+					<li class="page_item page-item-1788"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-presentation-my-initial-comments/">OPERA&#8217;s Presentation: My Initial&nbsp;Comments</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-3160 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/">OPERA: What Went&nbsp;Wrong</a>
+				<ul class='children'>
+					<li class="page_item page-item-3185"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/how-opera-and-lvd-confirmed-operas-problem/">How LVD Helped Solve OPERA&#8217;s&nbsp;Mystery</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-412"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particle-physics-why-do-it-and-why-do-it-that-way/">Particle Physics: Why do it? And why do it *that*&nbsp;way?</a></li>
+		<li class="page_item page-item-3090"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particleanti-particle-annihilation/">Particle/Anti-Particle Annihilation</a></li>
+		<li class="page_item page-item-6499"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/quantum-fluctuations-and-their-energy/">Quantum Fluctuations and Their&nbsp;Energy</a></li>
+		<li class="page_item page-item-721 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/">The Hierarchy Problem</a>
+		<ul class='children'>
+			<li class="page_item page-item-6461 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/">Naturalness and the Standard&nbsp;Model</a>
+			<ul class='children'>
+				<li class="page_item page-item-6594"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/adding-curves/">How to Add 2&nbsp;Curves</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-566 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/">The Known (Apparently-) Elementary&nbsp;Particles</a>
+		<ul class='children'>
+			<li class="page_item page-item-1396 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/">Jets: The Manifestation of Quarks and&nbsp;Gluons</a>
+			<ul class='children'>
+				<li class="page_item page-item-2919"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/b-tagging-identifying-jets-from-bottom-quarks/">B-tagging: Identifying Jets from Bottom&nbsp;Quarks</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1401"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/tau-leptons/">Tau Leptons</a></li>
+			<li class="page_item page-item-616"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/the-known-particles-if-the-higgs-field-were-zero/">The Known Particles &#8212; If The Higgs Field Were&nbsp;Zero</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-6088 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/">The Known Forces of&nbsp;Nature</a>
+		<ul class='children'>
+			<li class="page_item page-item-6072"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/the-strength-of-the-known-forces/">The Strengths of the Known&nbsp;Forces</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3621 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/">The Structure of&nbsp;Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5096 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/">Atoms: Building Blocks of&nbsp;Molecules</a>
+			<ul class='children'>
+				<li class="page_item page-item-5184"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-of-an-isotope-are-identical-literally/">Atoms of an Isotope Are Identical,&nbsp;Literally</a></li>
+				<li class="page_item page-item-5363"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-their-inner-workings/">Atoms: Their Inner&nbsp;Workings</a></li>
+				<li class="page_item page-item-5177"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/isotopes-variations-on-an-atom/">Isotopes: Variations on an&nbsp;Atom</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-5416"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/electrons-on-the-outskirts-of-atoms/">Electrons: On the Outskirts of&nbsp;Atoms</a></li>
+			<li class="page_item page-item-5815"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/protons-and-neutrons/">Protons and Neutrons: The Massive Pandemonium in&nbsp;Matter</a></li>
+			<li class="page_item page-item-3618"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-molecular-structure-of-matter/">The Molecular Structure of&nbsp;Matter</a></li>
+			<li class="page_item page-item-5564 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/">The Nuclei of Atoms: At the Heart of&nbsp;Matter</a>
+			<ul class='children'>
+				<li class="page_item page-item-5592"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/what-holds-nuclei-together/">What Holds Nuclei&nbsp;Together?</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-7624"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/theories-and-vacua/">Theories and Vacua</a></li>
+		<li class="page_item page-item-7587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/tunneling-a-quantum-process/">Tunneling: A Quantum&nbsp;Process</a></li>
+		<li class="page_item page-item-1285"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/virtual-particles-what-are-they/">Virtual Particles: What are&nbsp;they?</a></li>
+		<li class="page_item page-item-3080 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/">Why Do Particles&nbsp;Decay?</a>
+		<ul class='children'>
+			<li class="page_item page-item-531"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-why/">Most Particles Decay &#8212; But&nbsp;Why?</a></li>
+			<li class="page_item page-item-1333"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-yet-some-dont/">Most Particles Decay &#8212; Yet Some&nbsp;Don&#8217;t!</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-1819 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/">Relativity, Space, Astronomy and&nbsp;Cosmology</a>
+	<ul class='children'>
+		<li class="page_item page-item-1672"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/big-bang-classic-confusions/">Big Bang, Classic&nbsp;Confusions</a></li>
+		<li class="page_item page-item-7183 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/">Black Holes</a>
+		<ul class='children'>
+			<li class="page_item page-item-7185"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/black-hole-information-paradox-an-introduction/">Black Hole Information Paradox: An&nbsp;Introduction</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3366 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/">Dark Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5907"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/current-hints-of-dark-matter-413/">Current Hints of Dark Matter&nbsp;(4/13)</a></li>
+			<li class="page_item page-item-7903"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/searching-for-dark-matter-at-the-lhc/">Searching for Dark Matter at the&nbsp;LHC</a></li>
+			<li class="page_item page-item-3365"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/dark-matter-annihilation/">Seeing Signs of Dark Matter&nbsp;Annihilation</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-7383 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/">History of the&nbsp;Universe</a>
+		<ul class='children'>
+			<li class="page_item page-item-7390"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/before-inflation/">Before Inflation</a></li>
+			<li class="page_item page-item-7426"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/big-bang-expansion-not-explosion/">Big Bang: Expansion, NOT&nbsp;Explosion</a></li>
+			<li class="page_item page-item-7407"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/hot-big-bang/">Hot Big Bang</a></li>
+			<li class="page_item page-item-7393 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/">Inflation</a>
+			<ul class='children'>
+				<li class="page_item page-item-7840"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/dust-thou-art-bicep2/">Dust Thou Art,&nbsp;BICEP2</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-7505"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/some-definitions-for-cosmology/">Some Definitions for&nbsp;Cosmology</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3681"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/parallax-seeing-in-depth/">Parallax: Seeing in&nbsp;Depth</a></li>
+		<li class="page_item page-item-2698"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/reflections-on-beauty-in-motion/">Reflections on Beauty in&nbsp;Motion</a></li>
+		<li class="page_item page-item-1821"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/the-first-principle-of-relativity/">The First Principle of&nbsp;Relativity</a></li>
+		<li class="page_item page-item-3706"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/transit-of-venus-and-the-distance-to-the-sun/">Transit of Venus and the Distance to the&nbsp;Sun</a></li>
+		<li class="page_item page-item-6167 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/">Why Do Astronauts&nbsp;Float?</a>
+		<ul class='children'>
+			<li class="page_item page-item-6231"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/how-strong-is-gravity-at-the-space-station/">How Strong Is Gravity at the Space&nbsp;Station?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-755 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/">Some Speculative Theoretical Ideas for the&nbsp;LHC</a>
+	<ul class='children'>
+		<li class="page_item page-item-1574 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/">Extra Dimensions</a>
+		<ul class='children'>
+			<li class="page_item page-item-1575 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/">Extra Dimensions &#8211; How to Think About&nbsp;Them</a>
+			<ul class='children'>
+				<li class="page_item page-item-1642"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/dimensions-of-physical-space/">Dimensions of Physical&nbsp;Space</a></li>
+				<li class="page_item page-item-2290"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/what-is-an-extra-dimension-an-example/">What is an &#8220;Extra&#8221; Dimension? Some&nbsp;Examples</a></li>
+				<li class="page_item page-item-1584"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-1-spatial-dimension/">Worlds of 1 Spatial&nbsp;Dimension</a></li>
+				<li class="page_item page-item-1668"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-2-spatial-dimensions/">Worlds of 2 Spatial&nbsp;Dimensions</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2331 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/">How to Look for Signs of Extra&nbsp;Dimensions</a>
+			<ul class='children'>
+				<li class="page_item page-item-3815"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/extra-dimensions-newtons-gravity/">Extra Dimensions &amp; Newton&#8217;s&nbsp;Gravity</a></li>
+				<li class="page_item page-item-3764"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/how-big-could-an-extra-dimension-be/">How Big Could an Extra Dimension&nbsp;Be?</a></li>
+				<li class="page_item page-item-2350"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-1/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;1</a></li>
+				<li class="page_item page-item-2364"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-2/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;2</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-758 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/">Supersymmetry</a>
+		<ul class='children'>
+			<li class="page_item page-item-697 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/">How to Look for Supersymmetry at the&nbsp;LHC</a>
+			<ul class='children'>
+				<li class="page_item page-item-808 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/">When The Standard Assumptions About Supersymmetry are&nbsp;Relaxed</a>
+				<ul class='children'>
+					<li class="page_item page-item-4172"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/test-page/">Test Page</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+			<li class="page_item page-item-660"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-what-is-it/">Supersymmetry &#8212; What Is&nbsp;It?</a></li>
+			<li class="page_item page-item-1399"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-and-multi-lepton-events/">Supersymmetry and Multi-Lepton&nbsp;Events</a></li>
+			<li class="page_item page-item-7017"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-122013/">Where Stands Supersymmetry (as of&nbsp;12/2013)</a></li>
+			<li class="page_item page-item-3411"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-as-of-42012/">Where Stands Supersymmetry (as of&nbsp;4/2012)?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-210 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/">Tevatron News</a>
+	<ul class='children'>
+		<li class="page_item page-item-222"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/a-rare-and-interesting-decay-of-a-b-meson/">A Rare and Interesting Decay of a &#8220;B meson&#8221; &#8211; update&nbsp;2</a></li>
+		<li class="page_item page-item-894"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/apparent-unexpected-asymmetries-in-the-production-of-quarks/">Apparent Unexpected Asymmetries in the Production of&nbsp;Quarks</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-362 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/">The Higgs Particle</a>
+	<ul class='children'>
+		<li class="page_item page-item-3956 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/">Discovery of the&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-4009"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-higgs/">Higgs Discovery: Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4015"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-simplest-higgs/">Higgs Discovery: Is it a Simplest&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4100"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-personal-reflections/">Higgs Discovery: Personal&nbsp;Reflections</a></li>
+			<li class="page_item page-item-3980"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-skill-and-a-little-luck/">Higgs Discovery: Skill and A Little&nbsp;Luck</a></li>
+			<li class="page_item page-item-3958"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-the-data/">Higgs Discovery: The&nbsp;Data</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2198"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/holiday-higgs-hints-confidence-inspiring-or-not/">Holiday Higgs Hints: Confidence-Inspiring or&nbsp;Not?</a></li>
+		<li class="page_item page-item-4265"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/how-the-higgs-field-works/">How The Higgs Field&nbsp;Works</a></li>
+		<li class="page_item page-item-960"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/implications-of-higgs-searches-as-of-92011/">Implications of Higgs Searches (as of&nbsp;9/2011)</a></li>
+		<li class="page_item page-item-7236 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/">Non-Standard Decays of the Observed Higgs&nbsp;Particle</a>
+		<ul class='children'>
+			<li class="page_item page-item-7282"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decay-to-unknown-spin-one-particles/">Higgs Decay to Unknown Spin-One&nbsp;Particles</a></li>
+			<li class="page_item page-item-7218"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decays-to-unknown-spin-zero-particles/">Higgs Decays to Unknown Spin-Zero&nbsp;Particles</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-5394 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/">Taking Stock of the &#8220;Higgs&#8221; (Jan.&nbsp;2013)</a>
+		<ul class='children'>
+			<li class="page_item page-item-5446"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/1-is-it-a-higgs/">1. Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5447"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/2-perhaps-composite/">2. Perhaps Composite?</a></li>
+			<li class="page_item page-item-5448"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/3-a-higgs-of-simplest-type/">3. A Higgs of Simplest&nbsp;Type?</a></li>
+			<li class="page_item page-item-5454"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/4-more-than-one-higgs/">4. More Than One&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5460"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/5-supersymmetry/">5. Supersymmetry?</a></li>
+			<li class="page_item page-item-5494"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/6-surprises/">6. Surprises?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4690"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">The Higgs FAQ&nbsp;2.0</a></li>
+		<li class="page_item page-item-4693 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/">The Old Higgs&nbsp;FAQ</a>
+		<ul class='children'>
+			<li class="page_item page-item-360"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/higgs-faq-1-0/">The Higgs FAQ&nbsp;1.0</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2000 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/">The Standard Model&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-2004"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/decays-of-the-standard-model-higgs/">Decays of the Standard Model&nbsp;Higgs</a></li>
+			<li class="page_item page-item-2509 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/">Lightweight Higgs: A `Sensitive&nbsp;Creature&#8217;</a>
+			<ul class='children'>
+				<li class="page_item page-item-2587 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/">A Quantitative Addendum to the Sensitive&nbsp;Creature</a>
+				<ul class='children'>
+					<li class="page_item page-item-5855 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/">Non-SM h Decays</a>
+					<ul class='children'>
+						<li class="page_item page-item-6041"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/table-of-decays/">Table of Decays</a></li>
+					</ul>
+</li>
+				</ul>
+</li>
+				<li class="page_item page-item-3649"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/decay-to-unusual-jets/">Decay to Unusual&nbsp;Jets</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2002"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/production-of-the-standard-model-higgs-particle/">Production of the Standard Model Higgs&nbsp;Particle</a></li>
+			<li class="page_item page-item-2007"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/seeking-and-studying-the-standard-model-higgs-particle/">Seeking and Studying the Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1932 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/">Why is it Hard to Find the Higgs&nbsp;Particle?</a>
+		<ul class='children'>
+			<li class="page_item page-item-1935"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/a-lightweight-standard-model-higgs-particle/">A Lightweight Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3892 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/">Why the Higgs Particle&nbsp;Matters</a>
+		<ul class='children'>
+			<li class="page_item page-item-3908"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/why-the-higgs-particle-matters-2/">Why the Higgs Particle Matters (Old&nbsp;Version)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-443"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-hints-of-higgs-currently-rest-on-uncertain-ground/">Why The Hints of Higgs Currently Rest on Uncertain&nbsp;Ground</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-291 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/">Thoughts on the Scientific&nbsp;Process</a>
+	<ul class='children'>
+		<li class="page_item page-item-1808"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/scientific-scepticism-isnt-just-politics/">Scientific Scepticism Isn&#8217;t Just&nbsp;Politics</a></li>
+		<li class="page_item page-item-286"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/why-is-the-tevatron-so-busy-with-hints-of-new-physics/">Why is the Tevatron So Busy with Hints of New&nbsp;Physics?</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="page_item page-item-90"><a href="https://profmattstrassler.com/videoclips/">Movie Clips</a></li>
+<li class="page_item page-item-1032"><a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a></li>
+<li class="page_item page-item-1018 page_item_has_children"><a href="https://profmattstrassler.com/technical-zone/">Technical Zone</a>
+<ul class='children'>
+	<li class="page_item page-item-10344"><a href="https://profmattstrassler.com/technical-zone/test-page/">Test Page</a></li>
+</ul>
+</li>
+<li class="page_item page-item-159 page_item_has_children"><a href="https://profmattstrassler.com/xotica/">Xotica</a>
+<ul class='children'>
+	<li class="page_item page-item-2302"><a href="https://profmattstrassler.com/xotica/hurriquake-2011-what-are-the-chances/">Hurriquake 2011: What are the&nbsp;Chances?</a></li>
+	<li class="page_item page-item-5354 page_item_has_children"><a href="https://profmattstrassler.com/xotica/sunrise/">Sunrise</a>
+	<ul class='children'>
+		<li class="page_item page-item-215"><a href="https://profmattstrassler.com/xotica/sunrise/sunrise_old/">Sunrise (older version)</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-2300"><a href="https://profmattstrassler.com/xotica/the-grand-si11iness-of-111111-111111/">The Grand Si11iness of 11/11/11&nbsp;11:11:11</a></li>
+</ul>
+</li>
+</ul></div>
+		</div><!-- #access -->
+
+		<div id="branding">
+						<a href="https://profmattstrassler.com/">
+									<img src="https://profmattstrassler.files.wordpress.com/2011/06/cropped-cerntunnel1.jpg" width="990" height="180" alt="" />
+							</a>
+					</div><!-- #branding -->
+	</div><!-- #header -->
+
+	<div id="content-box">
+
+<div id="content-container">
+	<div id="content" role="main">
+
+		<h1 class="page-title">Category Archives: <span>Astronomy</span></h1>
+		
+	<div id="nav-above" class="navigation">
+		<div class="nav-previous"><a href="https://profmattstrassler.com/category/astronomy/page/2/" ><span class="meta-nav">&larr;</span> Older posts</a></div>
+		<div class="nav-next"></div>
+	</div><!-- #nav-above -->
+
+
+
+
+			<div id="post-10382" class="post-10382 post type-post status-publish format-standard hentry category-astronomy category-black-holes tag-black-holes">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo/" rel="bookmark">A Ring of Controversy Around a Black Hole&nbsp;Photo</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo/" title="8:15 AM" rel="bookmark"><span class="entry-date">June 14, 2019</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo/#comments">49 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p><em><strong>[Note Added: Thanks to some great comments I&#8217;ve received, I&#8217;m continuing to add clarifying remarks to this post.  You&#8217;ll find them in <span style="color:#008000;">green</span>.]</strong></em></p>
+<p>It&#8217;s been a couple of months since the `photo&#8217; <em>(<a href="https://profmattstrassler.com/2019/04/09/a-non-experts-guide-to-a-black-holes-silhouette/">a false-color image created to show the intensity of radio waves, not visible light</a>) </em>of the black hole at the center of <a href="https://en.wikipedia.org/wiki/Messier_87">the galaxy M87</a>, taken by the <a href="https://eventhorizontelescope.org/">Event Horizon Telescope (EHT) collaboration</a>, was made public. Before it was shown, I wrote <a href="https://profmattstrassler.com/2019/04/09/a-non-experts-guide-to-a-black-holes-silhouette/">an introductory post</a> explaining what the &#8216;photo&#8217; is and isn&#8217;t. There I cautioned readers that I thought it might be difficult to interpret the image, and controversies about it might erupt.<img loading="lazy" data-attachment-id="10375" data-permalink="https://profmattstrassler.com/technical-zone/test-page/ehtdiscoverym87-3/" data-orig-file="https://profmattstrassler.files.wordpress.com/2019/06/ehtdiscoverym87-1.png" data-orig-size="800,466" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="EHTDiscoveryM87" data-image-description="" data-image-caption="" data-medium-file="https://profmattstrassler.files.wordpress.com/2019/06/ehtdiscoverym87-1.png?w=300" data-large-file="https://profmattstrassler.files.wordpress.com/2019/06/ehtdiscoverym87-1.png?w=500" class="alignright size-medium wp-image-10375" src="https://profmattstrassler.files.wordpress.com/2019/06/ehtdiscoverym87-1.png?w=300&#038;h=175" alt="EHTDiscoveryM87" width="300" height="175" srcset="https://profmattstrassler.files.wordpress.com/2019/06/ehtdiscoverym87-1.png?w=300&amp;h=175 300w, https://profmattstrassler.files.wordpress.com/2019/06/ehtdiscoverym87-1.png?w=600&amp;h=350 600w, https://profmattstrassler.files.wordpress.com/2019/06/ehtdiscoverym87-1.png?w=150&amp;h=87 150w" sizes="(max-width: 300px) 100vw, 300px" /></p>
+<p>So far, the claim that the image shows the vicinity of M87&#8217;s black hole (which I&#8217;ll call `M87bh&#8217; for short) has not been challenged, and I&#8217;m not expecting it to be. But what and where exactly is the material that is emitting the radio waves and thus creating the glow in the image? And what exactly determines the size of the dark region at the center of the image? These have been problematic issues from the beginning, but discussion is starting to heat up. <strong>And it&#8217;s important: it has implications for the measurement of the black hole&#8217;s mass</strong> (which <a href="https://iopscience.iop.org/article/10.3847/2041-8213/ab1141">EHT claims is that of 6.5 billion Suns, with an uncertainty of about 15%</a>),<strong> and for any attempt to estimate its rotation rate.</strong> <a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo/#more-10382" class="more-link">Continue reading <span class="meta-nav">&rarr;</span></a></p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo/#comments">49 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/astronomy/" rel="category tag">Astronomy</a>, <a href="https://profmattstrassler.com/tag/black-holes/" rel="category tag">black holes</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/black-holes/" rel="tag">black holes</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-10241" class="post-10241 post type-post status-publish format-standard hentry category-astronomy category-black-holes tag-astronomy-2 tag-black-holes">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2019/04/09/a-non-experts-guide-to-a-black-holes-silhouette/" rel="bookmark">A Non-Expert&#8217;s Guide to a Black Hole&#8217;s&nbsp;Silhouette</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2019/04/09/a-non-experts-guide-to-a-black-holes-silhouette/" title="9:54 AM" rel="bookmark"><span class="entry-date">April 9, 2019</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2019/04/09/a-non-experts-guide-to-a-black-holes-silhouette/#comments">60 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p><em>[Note added April 16: some minor improvements have been made to this article as my understanding has increased, specifically concerning the photon-sphere, which is the main region from which the radio waves are seen in the recently released image. See later blog posts for the image and its interpretation.]</em></p>
+<p><em>[Note added June 14: significant misconceptions concerning the photon-sphere and shadow, as relevant to the black hole &#8216;photo&#8217;, dominated reporting in April, and I myself was also subject to them.  <a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo">I have explained the origin of and correction to these misconceptions, which affect the interpretation of the image, in my post &#8220;A Ring of Controversy&#8221;.</a>]</em></p>
+<p>About fifteen years ago, when I was a professor at the University of Washington, the particle physics theorists and the astronomer theorists occasionally would arrange to have lunch together, to facilitate an informal exchange of information about our adjacent fields. Among the many enjoyable discussions, one I was particularly excited about &#8212; as much as an amateur as a professional &#8212; was that in which I learned of the plan to make some sort of image of a black hole. I was told that this incredible feat would likely be achieved by 2020. <a href="https://eventhorizontelescope.org/blog/media-advisory-first-results-event-horizon-telescope-be-presented-april-10th">The time, it seems, has arrived.</a></p>
+<p>The goal of this post is to provide readers with what I hope will be a helpful guide through the foggy swamp that is likely to partly obscure this major scientific result. Over the last days I&#8217;ve been reading what both scientists and science journalists are writing in advance of the press conference Wednesday morning, and I&#8217;m finding many examples of jargon masquerading as English, terms poorly defined, and phrasing that seems likely to mislead. As I&#8217;m increasingly concerned that many non-experts will be unable to understand what is presented tomorrow, and what the pictures do and do not mean, I&#8217;m using this post to answer a few questions that many readers (and many of these writers) have perhaps not thought to ask. <a href="https://profmattstrassler.com/2019/04/09/a-non-experts-guide-to-a-black-holes-silhouette/#more-10241" class="more-link">Continue reading <span class="meta-nav">&rarr;</span></a></p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2019/04/09/a-non-experts-guide-to-a-black-holes-silhouette/#comments">60 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/astronomy/" rel="category tag">Astronomy</a>, <a href="https://profmattstrassler.com/tag/black-holes/" rel="category tag">black holes</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/astronomy-2/" rel="tag">astronomy</a>, <a href="https://profmattstrassler.com/tag/black-holes/" rel="tag">black holes</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-10213" class="post-10213 post type-post status-publish format-standard hentry category-astronomy category-particle-physics tag-astronomy-2 tag-black-holes tag-icecube tag-neutrinos">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2018/07/12/seeing-double-neutrinos-and-photons-observed-from-the-same-cosmic-source/" rel="bookmark">&#8220;Seeing&#8221; Double: Neutrinos and Photons Observed from the Same Cosmic&nbsp;Source</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2018/07/12/seeing-double-neutrinos-and-photons-observed-from-the-same-cosmic-source/" title="12:59 PM" rel="bookmark"><span class="entry-date">July 12, 2018</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2018/07/12/seeing-double-neutrinos-and-photons-observed-from-the-same-cosmic-source/#comments">16 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p>There has long been a question as to what types of events and processes are responsible for the highest-energy neutrinos coming from space and observed by scientists.  Another question, probably related, is what creates the majority of high-energy <a href="https://profmattstrassler.com/2013/04/03/ams-presents-some-first-results/">cosmic rays</a> &#8212; the particles, mostly <a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/">protons</a>, that are constantly raining down upon the Earth.</p>
+<p>As scientists&#8217; ability to detect high-energy neutrinos <em>(particles that are hugely abundant, electrically neutral, very light-weight, and <a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/">very difficult to observe</a>)</em> and high-energy photons <em>(particles of light, though not necessarily of visible light) </em>have become more powerful and precise, there&#8217;s been considerable hope of getting an answer to these question.  One of the things we&#8217;ve been awaiting (<a href="https://profmattstrassler.com/2013/05/09/neutrinos-from-that-recent-gamma-ray-burst/">and been disappointed</a> a couple of times) is a violent explosion out in the universe that produces both high-energy photons and neutrinos at the same time, at a high enough rate that both types of particles can be observed at the same time coming from the same direction.</p>
+<p>In recent years, there has been some indirect evidence that blazars &#8212; narrow jets of particles, pointed in our general direction like the barrel of a gun, and created as material swirls near and almost into giant black holes in the centers of very distant galaxies &#8212; may be responsible for the high-energy neutrinos.  Strong direct evidence in favor of this hypothesis has just been presented today.   Last year, one of these blazars flared brightly, and the flare created both high-energy neutrinos and high-energy photons that were observed within the same period, coming from the same place in the sky.</p>
+<p><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/icecube-a-giant-frozen-neutrino-catcher/">I have written about the IceCube neutrino observatory before</a>; it&#8217;s a cubic kilometer of ice under the South Pole, instrumented with light detectors, and it&#8217;s ideal for observing neutrinos whose motion-energy far exceeds that of the protons in the <a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/introduction-to-the-large-hadron-collider/">Large Hadron Collider</a>, where the <a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/">Higgs particle</a> was discovered.  These neutrinos mostly pass through Ice Cube undetected, but one in 100,000 hits something, and debris from the collision produces visible light that Ice Cube&#8217;s detectors can record.   IceCube has already made important discoveries, <a href="https://profmattstrassler.com/2013/05/16/possible-important-discovery-at-icecube/">detecting a new class of high-energy neutrinos</a>.</p>
+<p>On Sept 22 of last year, one of these very high-energy neutrinos was observed at IceCube. More precisely, a muon created underground by the collision of this neutrino with an atomic nucleus <a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/icecube-a-giant-frozen-neutrino-catcher/">was observed in</a> IceCube.  To create the observed muon, the neutrino must have had a motion-energy tens of thousand times larger than than the motion-energy of each proton at the Large Hadron Collider (LHC).  And the direction of the neutrino&#8217;s motion is known too; it&#8217;s essentially the same as that of the observed muon.  So IceCube&#8217;s scientists knew where, on the sky, this neutrino had come from.</p>
+<p><em>(This doesn&#8217;t work for typical cosmic rays; protons, for instance, travel in curved paths because they are deflected by cosmic magnetic fields, so even if you measure their travel direction at their arrival to Earth, you don&#8217;t then know where they came from. Neutrinos, beng electrically neutral, aren&#8217;t affected by magnetic fields and travel in a straight line, just as photons do.)</em></p>
+<p>Very close to that direction is a well-known blazar (TXS-0506), four billion light years away (a good fraction of the distance across the visible universe).</p>
+<p>The IceCube scientists immediately reported their neutrino observation to scientists with high-energy photon detectors.  (I&#8217;ve also written about some of the detectors used to study the very high-energy photons that we find in the sky: in particular, the <a href="http://www-glast.stanford.edu/">Fermi/LAT satellite</a> played a role in this latest discovery.) Fermi/LAT, which continuously monitors the sky, was already detecting high-energy photons coming from the same direction.   Within a few days the Fermi scientists had confirmed that TXS-0506 was indeed flaring at the time &#8212; already starting in April 2017 in fact, six times as bright as normal.  With this news from IceCube and Fermi/LAT, many other telescopes (including the <a href="https://wwwmagic.mpp.mpg.de/">MAGIC cosmic ray detector telescopes</a> among others) then followed suit and studied the blazar, learning more about the properties of its flare.</p>
+<p>Now, just a single neutrino on its own isn&#8217;t entirely convincing; is it possible that this was all just a coincidence?  So the IceCube folks went back to their older data to snoop around.  There they discovered, in their 2014-2015 data, a dramatic flare <strong><em>in neutrinos</em></strong> &#8212; more than a dozen neutrinos, seen over 150 days, had come from the same direction in the sky where TXS-0506 is sitting.  (More precisely, nearly 20 from this direction were seen, in a time period where normally there&#8217;d just be 6 or 7 by random chance.)  This confirms that this blazar is indeed a source of neutrinos.  And from the energies of the neutrinos in this flare, yet more can be learned about this blazar, and how it makes  high-energy photons and neutrinos at the same time.  Interestingly, so far at least, there&#8217;s no strong evidence for this 2014 flare in photons, except perhaps an increase in the number of the highest-energy photons&#8230; but not in the total brightness of the source.</p>
+<p>The full picture, still emerging, tends to support the idea that the blazar arises from a supermassive black hole, acting as a natural particle accelerator, making a narrow spray of particles, <em><strong>including protons</strong></em>, at extremely high energy.  These protons, millions of times more energetic than those at the Large Hadron Collider, then collide with more ordinary particles that are just wandering around, such as visible-light photons from starlight or infrared photons from the ambient heat of the universe.  The collisions <a href="https://profmattstrassler.com/2011/09/23/how-to-make-a-neutrino-beam/">produce particles called pions, made from quarks and anti-quarks and gluons (just as protons are), which in turn decay either to photons or to (among other things) neutrinos</a>.  And its those resulting photons and neutrinos which have now been jointly observed.</p>
+<p>Since cosmic rays, the mysterious high energy particles from outer space that are constantly raining down on our planet, are mostly protons, <em><strong>this is evidence that many, perhaps most, of the highest energy cosmic rays are created in the natural particle accelerators associated with blazars.</strong></em> Many scientists have suspected that the most extreme cosmic rays are associated with the most active black holes at the centers of galaxies, and now we have evidence and more details in favor of this idea.  It now appears likely that that this question will be answerable over time, as more blazar flares are observed and studied.</p>
+<p>The announcement of this important discovery was made at the National Science Foundation by Francis Halzen, the IceCube principal investigator, Olga Botner, former IceCube spokesperson, Regina Caputo, the Fermi-LAT analysis coordinator, and Razmik Mirzoyan, MAGIC spokesperson.</p>
+<p>The fact that both photons and neutrinos have been observed from the same source is an example of what people are now calling &#8220;multi-messenger astronomy&#8221;; a previous example was<a href="https://profmattstrassler.com/2017/10/17/the-significance-of-yesterdays-gravitational-wave-announcement-an-faq/"> the observation in gravitational waves, and in photons of many different energies, of two merging neutron stars</a>.  Of course, something like this already happened in <a href="https://profmattstrassler.com/2011/09/20/supernovas-and-neutrinos/">1987, when a supernova was seen by eye, and also observed in neutrinos</a>.  But in this case, the neutrinos and photons have energies millions and billions of times larger!</p>
+<p>&nbsp;</p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2018/07/12/seeing-double-neutrinos-and-photons-observed-from-the-same-cosmic-source/#comments">16 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/astronomy/" rel="category tag">Astronomy</a>, <a href="https://profmattstrassler.com/category/particle-physics/" rel="category tag">Particle Physics</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/astronomy-2/" rel="tag">astronomy</a>, <a href="https://profmattstrassler.com/tag/black-holes/" rel="tag">black holes</a>, <a href="https://profmattstrassler.com/tag/icecube/" rel="tag">IceCube</a>, <a href="https://profmattstrassler.com/tag/neutrinos/" rel="tag">neutrinos</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-10011" class="post-10011 post type-post status-publish format-standard hentry category-astronomy category-gravitational-waves tag-black-holes tag-gravitational-waves tag-ligo tag-neutron-stars">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2017/10/17/the-significance-of-yesterdays-gravitational-wave-announcement-an-faq/" rel="bookmark">The Significance of Yesterday&#8217;s Gravitational Wave Announcement: an&nbsp;FAQ</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2017/10/17/the-significance-of-yesterdays-gravitational-wave-announcement-an-faq/" title="12:03 PM" rel="bookmark"><span class="entry-date">October 17, 2017</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2017/10/17/the-significance-of-yesterdays-gravitational-wave-announcement-an-faq/#comments">72 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p><a href="https://profmattstrassler.com/2017/10/16/a-scientific-breakthrough-combining-gravitational-and-electromagnetic-waves/">Yesterday&#8217;s post</a> on the results from the LIGO/VIRGO network of gravitational wave detectors was aimed at getting information out, rather than providing the pedagogical backdrop.  Today I&#8217;m following up with a post that attempts to answer some of the questions that my readers and my personal friends asked me.  Some wanted to understand better how to visualize what had happened, while others wanted more clarity on why the discovery was so important.  So I&#8217;ve put together a post which  (1) explains what neutron stars and black holes are and what their mergers are like, (2) clarifies why yesterday&#8217;s announcement was important &#8212; and there were many reasons, which is why it&#8217;s hard to reduce it all to a single soundbite.  And (3) there are some miscellaneous questions at the end.</p>
+<p>First, a disclaimer: I am *not* an expert in the very complex subject of neutron star mergers and the resulting explosions, called kilonovas.  These are much more complicated than black hole mergers.  I am still learning some of the details.  Hopefully I&#8217;ve avoided errors, but you&#8217;ll notice a few places where I don&#8217;t know the answers &#8230; yet.  Perhaps my more expert colleagues will help me fill in the gaps over time.</p>
+<p>Please, if you spot any errors, don&#8217;t hesitate to comment!!  And feel free to ask additional questions whose answers I can add to the list.</p>
+<p><strong>BASIC QUESTIONS ABOUT NEUTRON STARS, BLACK HOLES, AND MERGERS</strong></p>
+<p><strong>What are neutron stars and black holes, and how are they related?</strong></p>
+<p><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/">Every atom is made from a tiny atomic nucleus, made of neutrons and protons (which are very similar), and loosely surrounded by electrons.</a> Most of an atom is empty space, so it can, under extreme circumstances, be crushed &#8212; but only if every electron and proton convert to a neutron (which remains behind) and a neutrino (which heads off into outer space.) When a giant star runs out of fuel, the pressure from its furnace turns off, and it collapses inward under its own weight, creating just those extraordinary conditions in which the matter can be crushed. Thus: a star&#8217;s interior, with a mass one to several times the Sun&#8217;s mass, is all turned into a several-mile(kilometer)-wide ball of neutrons &#8212; the number of neutrons approaching a 1 with 57 zeroes after it.</p>
+<p>If the star is big but not too big, the neutron ball stiffens and holds its shape, and the star explodes outward, blowing itself to pieces in a what is called a core-collapse supernova. The ball of neutrons remains behind; this is what we call a neutron star. It&#8217;s a ball of the densest material that we know can exist in the universe &#8212; a pure atomic nucleus many miles(kilometers) across. It has a very hard surface; if you tried to go inside a neutron star, your experience would be a lot worse than running into a closed door at a hundred miles per hour.</p>
+<p>If the star is very big indeed, the neutron ball that forms may immediately (or soon) collapse under its own weight, forming a black hole. A supernova may or may not result in this case; the star might just disappear. A black hole is very, very different from a neutron star. Black holes are what&#8217;s left when matter collapses irretrievably upon itself under the pull of gravity, shrinking down endlessly. While a neutron star has a surface that you could smash your head on, a black hole has no surface &#8212; it has an edge that is simply a point of no return, called a horizon. In Einstein&#8217;s theory, you can just go right through, as if passing through an open door. You won&#8217;t even notice the moment you go in. <em>[Note: this is true in Einstein&#8217;s theory. But there is a big controversy as to whether the combination of Einstein&#8217;s theory with quantum physics changes the horizon into something novel and dangerous to those who enter; this is known as the <a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/black-hole-information-paradox-an-introduction/">firewall controversy</a>, and would take us too far afield into speculation.] </em> But once you pass through that door, you can never return.</p>
+<p>Black holes can form in other ways too, but not those that we&#8217;re observing with the LIGO/VIRGO detectors.</p>
+<p><strong>Why are their mergers the best sources for gravitational waves?</strong></p>
+<p>One of the easiest and most obvious ways to make gravitational waves is to have two objects orbiting each other.  If you put your two fists in a pool of water and move them around each other, you&#8217;ll get a pattern of water waves spiraling outward; this is in rough (<em>very</em> rough!) analogy to what happens with two orbiting objects, although, since the objects are moving in space, the waves aren&#8217;t in a material like water.  They are waves in space itself.</p>
+<p>To get powerful gravitational waves, you want objects each with a very big mass that are orbiting around each other at very high speed. To get the fast motion, you need the force of gravity between the two objects to be strong; and to get gravity to be as strong as possible, you need the two objects to be as close as possible (since, as Isaac Newton already knew, gravity between two objects grows stronger when the distance between them shrinks.) But if the objects are large, they can&#8217;t get too close; they will bump into each other and merge long before their orbit can become fast enough. So to get a really fast orbit, you need <strong>two relatively small objects, each with a relatively big mass</strong> &#8212; what scientists refer to as <strong>compact objects</strong>. Neutron stars and black holes are the most compact objects we know about. Fortunately, they do indeed often travel in orbiting pairs, and do sometimes, for a very brief period before they merge, orbit rapidly enough to produce gravitational waves that LIGO and VIRGO can observe.</p>
+<p><strong>Why do we find these objects in pairs in the first place?</strong></p>
+<p>Stars very often travel in pairs&#8230; they are called binary stars. They can start their lives in pairs, forming together in large gas clouds, or even if they begin solitary, they can end up pairing up if they live in large densely packed communities of stars where it is common for multiple stars to pass nearby. Perhaps surprisingly, their pairing can survive the collapse and explosion of either star, leaving two black holes, two neutron stars, or one of each in orbit around one another.</p>
+<p><strong>What happens when these objects merge?</strong></p>
+<p>Not surprisingly, there are three classes of mergers which can be detected: two black holes merging, two neutron stars merging, and a neutron star merging with a black hole. The first class was observed in 2015 (and <a href="https://profmattstrassler.com/2016/02/11/advance-thoughts-on-ligo/">announced in 2016</a>), the second was announced <a href="https://profmattstrassler.com/2017/10/16/a-scientific-breakthrough-combining-gravitational-and-electromagnetic-waves/">yesterday</a>, and it&#8217;s a matter of time before the third class is observed. The two objects may orbit each other for billions of years, very slowly radiating gravitational waves (an effect <a href="https://profmattstrassler.com/2014/04/30/did-bicep2-detect-gravitational-waves-directly-or-indirectly/">observed in the 70&#8217;s, leading to a Nobel Prize</a>) and gradually coming closer and closer together. Only in the last day of their lives do their orbits really start to speed up. And just before these objects merge, they begin to orbit each other once per second, then ten times per second, then a hundred times per second. Visualize that if you can: objects a few dozen miles (kilometers) across, a few miles (kilometers) apart, each with the mass of the Sun or greater, orbiting each other <em><span style="color:#ff0000;">100 times each second</span></em>. It&#8217;s truly mind-boggling &#8212; a spinning dumbbell beyond the imagination of even the greatest minds of the 19th century. I don&#8217;t know any scientist who isn&#8217;t awed by this vision. It all sounds like science fiction. But it&#8217;s not.</p>
+<p><strong>How do we know this isn&#8217;t science fiction?</strong></p>
+<p>We know, if we believe Einstein&#8217;s theory of gravity (and I&#8217;ll give you a very good reason to believe in it in just a moment.) Einstein&#8217;s theory predicts that such a rapidly spinning, large-mass dumbbell formed by two orbiting compact objects will produce a telltale pattern of ripples in space itself &#8212; gravitational waves. That pattern is both complicated and precisely predicted. In the case of black holes, the predictions go right up to and past the moment of merger, to the ringing of the larger black hole that forms in the merger. In the case of neutron stars, the instants just before, during and after the merger are more complex and we can&#8217;t yet be confident we understand them, but during tens of seconds before the merger Einstein&#8217;s theory is very precise about what to expect. The theory further predicts how those ripples will cross the vast distances from where they were created to the location of the Earth, and how they will appear in the LIGO/VIRGO network of three gravitational wave detectors. The prediction of what to expect at LIGO/VIRGO thus involves not just one prediction but many: the theory is used to predict the existence and properties of black holes and of neutron stars, the detailed features of their mergers, the precise patterns of the resulting gravitational waves, and how those gravitational waves cross space. That LIGO/VIRGO have detected the telltale patterns of these gravitational waves. That these wave patterns agree with Einstein&#8217;s theory in every detail is the strongest evidence ever obtained that there is nothing wrong with Einstein&#8217;s theory when used in these combined contexts.  That then in turn gives us confidence that our interpretation of the LIGO/VIRGO results is correct, confirming that black holes and neutron stars really exist and really merge. <em>(Notice the reasoning is slightly circular&#8230; but that&#8217;s how scientific knowledge proceeds, as a set of detailed consistency checks that gradually and eventually become so tightly interconnected as to be almost impossible to unwind.  Scientific reasoning is not deductive; it is inductive.  We do it not because it is logically ironclad but because it works so incredibly well &#8212; as witnessed by the computer, and its screen, that I&#8217;m using to write this, and the wired and wireless internet and computer disk that will be used to transmit and store it.)</em></p>
+<p><strong>THE SIGNIFICANCE(S) OF YESTERDAY&#8217;S ANNOUNCEMENT OF A NEUTRON STAR MERGER</strong></p>
+<p>What makes it difficult to explain the significance of yesterday&#8217;s announcement is that it consists of many important results piled up together, rather than a simple takeaway that can be reduced to a single soundbite. (That was also true of the black hole mergers announcement back in 2016, which is why I wrote <a href="https://profmattstrassler.com/2016/02/11/advance-thoughts-on-ligo/">a long post about it.</a>)</p>
+<p>So here is a list of important things we learned.  No one of them, by itself, is earth-shattering, but each one is profound, and taken together they form a major event in scientific history.</p>
+<p><strong>First confirmed observation of a merger of two neutron stars</strong>: We&#8217;ve known these mergers must occur, but there&#8217;s nothing like being sure. And since these things are too far away and too small to see in a telescope, <em>the only way to be sure these mergers occur, and to learn more details about them, is with gravitational waves</em>.  We expect to see many more of these mergers in coming years as gravitational wave astronomy increases in its sensitivity, and we will learn more and more about them.</p>
+<p><strong>New information about the properties of neutron stars:</strong> Neutron stars were proposed almost a hundred years ago and were confirmed to exist in the 60&#8217;s and 70&#8217;s.  But their precise details aren&#8217;t known; we believe they are like a giant atomic nucleus, but they&#8217;re so vastly larger than ordinary atomic nuclei that can&#8217;t be sure we understand all of their internal properties, and there are debates in the scientific community that can&#8217;t be easily answered&#8230; until, perhaps, now.</p>
+<p>From the detailed pattern of the gravitational waves of this one neutron star merger, scientists already learn two things. First, we confirm that Einstein&#8217;s theory correctly predicts the basic pattern of gravitational waves from orbiting neutron stars, as it does for orbiting and merging black holes. Unlike black holes, however, there are more questions about what happens to neutron stars when they merge. The question of what happened to this pair after they merged is still out &#8212; did the form a neutron star, an unstable neutron star that, slowing its spin, eventually collapsed into a black hole, or a black hole straightaway?</p>
+<p>But something important was already learned about the internal properties of neutron stars. The stresses of being whipped around at such incredible speeds would tear you and I apart, and would even tear the Earth apart. We know neutron stars are much tougher than ordinary rock, but how much more? If they were too flimsy, they&#8217;d have broken apart at some point during LIGO/VIRGO&#8217;s observations, and the simple pattern of gravitational waves that was expected would have suddenly become much more complicated. That didn&#8217;t happen until perhaps just before the merger.   So scientists can use the simplicity of the pattern of gravitational waves to infer some new things about how stiff and strong neutron stars are.  More mergers will improve our understanding.  Again, <em>there is no other simple way to obtain this information.</em></p>
+<p><strong>First visual observation of an event that produces both immense gravitational waves and bright electromagnetic waves:</strong> Black hole mergers aren&#8217;t expected to create a brilliant light display, because, as I mentioned above, they&#8217;re more like open doors to an invisible playground than they are like rocks, so they merge rather quietly, without a big bright and hot smash-up.  But neutron stars are big balls of stuff, and so the smash-up can indeed create lots of heat and light of all sorts, just as you might naively expect.  By &#8220;light&#8221; I mean not just visible light but all forms of electromagnetic waves, at all wavelengths (and therefore at all frequencies.)  Scientists divide up the range of electromagnetic waves into categories. These categories are radio waves, microwaves, infrared light, visible light, ultraviolet light, X-rays, and gamma rays, listed from lowest frequency and largest wavelength to highest frequency and smallest wavelength.  (Note that these categories and the dividing lines between them are completely arbitrary, but the divisions are useful for various scientific purposes.  The <strong>only</strong> fundamental difference between yellow light, a radio wave, and a gamma ray is the wavelength and frequency; otherwise they&#8217;re exactly the same type of thing, a wave in the electric and magnetic fields.)</p>
+<p>So if and when two neutron stars merge, we expect both gravitational waves and electromagnetic waves, the latter of many different frequencies created by many different effects that can arise when two huge balls of neutrons collide.  But just because we expect them doesn&#8217;t mean they&#8217;re easy to see.  These mergers are pretty rare &#8212; perhaps one every hundred thousand years in each big galaxy like our own &#8212; so the ones we find using LIGO/VIRGO will generally be very far away.  If the light show is too dim, none of our telescopes will be able to see it.</p>
+<p>But this light show was plenty bright.  Gamma ray detectors out in space detected it instantly, confirming that the gravitational waves from the two neutron stars led to a collision and merger that produced very high frequency light.  Already, that&#8217;s a first.  It&#8217;s as though one had seen lightning for years but never heard thunder; or as though one had observed the waves from hurricanes for years but never observed one in the sky.  Seeing both allows us a whole new set of perspectives; one plus one is often much more than two.</p>
+<p>Over time &#8212; hours and days &#8212; effects were seen in visible light, ultraviolet light, infrared light, X-rays and radio waves.  Some were seen earlier than others, which itself is a story, but each one contributes to our understanding of what these mergers are actually like.</p>
+<p><strong>Confirmation of the best guess concerning the origin of &#8220;short&#8221; gamma ray bursts</strong>:  For many years, bursts of gamma rays have been observed in the sky.  Among them, there seems to be a class of bursts that are shorter than most, typically lasting just a couple of seconds.  They come from all across the sky, indicating that they come from distant intergalactic space, presumably from distant galaxies.  Among other explanations, the most popular hypothesis concerning these short gamma-ray bursts has been that they come from merging neutron stars.  <em>The only way to confirm this hypothesis is with the observation of the gravitational waves from such a merger. </em> That test has now been passed; it appears that the hypothesis is correct.  That in turn means that we have, for the first time, both a good explanation of these short gamma ray bursts and, because we know how often we observe these bursts, a good estimate as to how often neutron stars merge in the universe.</p>
+<p><strong>First distance measurement to a source using both a gravitational wave measure and a redshift in electromagnetic waves, allowing a new calibration of the distance scale of the universe and of its expansion rate:  </strong>The pattern over time of the gravitational waves from a merger of two black holes or neutron stars is complex enough to reveal many things about the merging objects, including a rough estimate of their masses and the orientation of the spinning pair relative to the Earth.  The overall strength of the waves, combined with the knowledge of the masses, reveals how far the pair is from the Earth.  That by itself is nice, but the real win comes when the discovery of the object using visible light, or in fact any light with frequency below gamma-rays, can be made.  In this case, the galaxy that contains the neutron stars can be determined.</p>
+<p>Once we know the host galaxy, we can do something really important.  We can, by looking at the starlight, determine how rapidly the galaxy is moving away from us.  For distant galaxies, the speed at which the galaxy recedes should be related to its distance because the universe is expanding.</p>
+<p>How rapidly the universe is expanding has been recently measured with remarkable precision, but the problem is that there are two different methods for making the measurement, <strong>and they disagree</strong>.   This disagreement is one of the most important problems for our understanding of the universe.  Maybe one of the measurement methods is flawed, or maybe &#8212; and this would be much more interesting &#8212; the universe simply doesn&#8217;t behave the way we think it does.</p>
+<p>What gravitational waves do is give us a third method: the gravitational waves directly provide the distance to the galaxy, and the electromagnetic waves directly provide the speed of recession.  <em>There is no other way to make this type of joint measurement directly for distant galaxies.  </em>The method is not accurate enough to be useful in just one merger, but once dozens of mergers have been observed, the average result will provide important new information about the universe&#8217;s expansion.  When combined with the other methods, it may help resolve this all-important puzzle.</p>
+<p><strong>Best test so far of Einstein&#8217;s prediction that the speed of light and the speed of gravitational waves are identical</strong>: Since gamma rays from the merger and the peak of the gravitational waves arrived within two seconds of one another after traveling 130 million years &#8212; that is, about 5 thousand million million seconds &#8212; we can say that the speed of light and the speed of gravitational waves are both equal to the cosmic speed limit to within one part in 2 thousand million million.  <em>Such a precise test requires the combination of gravitational wave and gamma ray observations.</em></p>
+<p><strong>Efficient production of heavy elements confirmed</strong>:  It&#8217;s long been said that we are star-stuff, or stardust, and it&#8217;s been clear for a long time that it&#8217;s true.  But there&#8217;s been a puzzle when one looks into the details.  While it&#8217;s known that all the chemical elements from hydrogen up to iron are formed inside of stars, and can be blasted into space in supernova explosions to drift around and eventually form planets, moons, and humans, it hasn&#8217;t been quite as clear how the other elements with heavier atoms &#8212; atoms such as iodine, cesium, gold, lead, bismuth, uranium and so on &#8212; predominantly formed.  Yes they can be formed in supernovas, but not so easily; and there seem to be more atoms of heavy elements around the universe than supernovas can explain.  There are many supernovas in the history of the universe, but the efficiency for producing heavy chemical elements is just too low.</p>
+<p>It was proposed some time ago that the mergers of neutron stars might be a suitable place to produce these heavy elements.  Even those these mergers are rare, they might be much more efficient, because the nuclei of heavy elements contain lots of neutrons and, not surprisingly, a collision of two neutron stars would produce lots of neutrons in its debris, suitable perhaps for making these nuclei.   A key indication that this is going on would be the following: if a neutron star merger could be identified using gravitational waves, and if its location could be determined using telescopes, then one would observe a pattern of light that would be characteristic of what is now called a &#8220;kilonova&#8221; explosion.   <em>Warning: I don&#8217;t yet know much about kilonovas and I may be leaving out important details.</em> A kilonova is powered by the process of forming heavy elements; most of the nuclei produced are initially radioactive &#8212; i.e., unstable &#8212; and they break down by emitting high energy particles, including the particles of light (called photons) which are in the gamma ray and X-ray categories.  The resulting characteristic glow would be expected to have a pattern of a certain type: it would be initially bright but would dim rapidly in visible light, with a long afterglow in infrared light.  The reasons for this are complex, so let me set them aside for now.  The important point is that this pattern was observed, confirming that a kilonova of this type occurred, and thus that, in this neutron star merger, enormous amounts of heavy elements were indeed produced.  So we now have a lot of evidence, for the first time, that almost all the heavy chemical elements on and around our planet were formed in neutron star mergers.  Again, <em>we could not know this if we did not know that this was a neutron star merger, and that information comes only from the gravitational wave observation.</em></p>
+<p><strong>MISCELLANEOUS QUESTIONS</strong></p>
+<p><strong>Did the merger of these two neutron stars result in a new black hole, a larger neutron star, or an unstable rapidly spinning neutron star that later collapsed into a black hole?</strong></p>
+<p>We don&#8217;t yet know, and maybe we won&#8217;t know.  Some scientists involved appear to be leaning toward the possibility that a black hole was formed, but others seem to say the jury is out.  I&#8217;m not sure what additional information can be obtained over time about this.</p>
+<p><strong>If the two neutron stars formed a black hole, why was there a kilonova?  Why wasn&#8217;t everything sucked into the black hole?</strong></p>
+<p>Black holes aren&#8217;t vacuum cleaners; they pull things in via gravity just the same way that the Earth and Sun do, and don&#8217;t suck things in some unusual way.  The only crucial thing about a black hole is that once you go in you can&#8217;t come out.  But just as when trying to avoid hitting the Earth or Sun, you can avoid falling in if you orbit fast enough or if you&#8217;re flung outward before you reach the edge.</p>
+<p>The point in a neutron star merger is that the forces at the moment of merger are so intense that one or both neutron stars are partially ripped apart.  The material that is thrown outward in all directions, at an immense speed, somehow creates the bright, hot flash of gamma rays and eventually the kilonova glow from the newly formed atomic nuclei.  Those details I don&#8217;t yet understand, but I know they have been carefully studied both with approximate equations and in computer simulations such as <a href="https://www.youtube.com/watch?v=GKEnayUC_ns">this one</a> and <a href="https://www.youtube.com/watch?v=dfNdr9sjlU8">this one</a>.  However, <em>the accuracy of the simulations can only be confirmed through the detailed studies of a merger, such as the one just announced.</em>  It seems, from the data we&#8217;ve seen, that the simulations did a fairly good job.  I&#8217;m sure they will be improved once they are compared with the recent data.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2017/10/17/the-significance-of-yesterdays-gravitational-wave-announcement-an-faq/#comments">72 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/astronomy/" rel="category tag">Astronomy</a>, <a href="https://profmattstrassler.com/category/gravitational-waves/" rel="category tag">Gravitational Waves</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/black-holes/" rel="tag">black holes</a>, <a href="https://profmattstrassler.com/tag/gravitational-waves/" rel="tag">Gravitational Waves</a>, <a href="https://profmattstrassler.com/tag/ligo/" rel="tag">LIGO</a>, <a href="https://profmattstrassler.com/tag/neutron-stars/" rel="tag">neutron stars</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-9841" class="post-9841 post type-post status-publish format-standard hentry category-astronomy category-gravitational-waves">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2017/10/16/a-scientific-breakthrough-combining-gravitational-and-electromagnetic-waves/" rel="bookmark">A Scientific Breakthrough! Combining Gravitational and Electromagnetic&nbsp;Waves</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2017/10/16/a-scientific-breakthrough-combining-gravitational-and-electromagnetic-waves/" title="11:10 AM" rel="bookmark"><span class="entry-date">October 16, 2017</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2017/10/16/a-scientific-breakthrough-combining-gravitational-and-electromagnetic-waves/#comments">44 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p>Gravitational waves are now the most important new tool in the astronomer&#8217;s toolbox.  Already they&#8217;ve been used to confirm that large black holes &#8212; with masses ten or more times that of the Sun &#8212; and mergers of these large black holes to form even larger ones, are not uncommon in the universe.   Today it goes a big step further.</p>
+<p>It&#8217;s long been known that neutron stars, remnants of collapsed stars that have exploded as supernovas, are common in the universe.  And it&#8217;s been known almost as long that sometimes neutron stars travel in pairs.  (<a href="https://profmattstrassler.com/2016/02/11/advance-thoughts-on-ligo/">In fact that&#8217;s how gravitational waves were first discovered, indirectly, back in the 1970s.</a>)  Stars often form in pairs, and sometimes both stars explode as supernovas, leaving their neutron star relics in orbit around one another.  Neutron stars are small &#8212; just ten or so kilometers (miles) across.  According to Einstein&#8217;s theory of gravity, a pair of stars should gradually lose energy by emitting gravitational waves into space, and slowly but surely the two objects should spiral in on one another.   Eventually, after many millions or even billions of years, they collide and merge into a larger neutron star, or into a black hole.  This collision does two things.</p>
+<ol>
+<li>It makes some kind of brilliant flash of light &#8212; electromagnetic waves &#8212; whose details are only guessed at.  Some of those electromagnetic waves will be in the form of visible light, while much of it will be in invisible forms, such as gamma rays.</li>
+<li>It makes gravitational waves, whose details are easier to calculate and which are therefore distinctive, but couldn&#8217;t have been detected until LIGO and VIRGO started taking data, LIGO over the last couple of years, VIRGO over the last couple of months.</li>
+</ol>
+<p>It&#8217;s possible that we&#8217;ve seen the light from neutron star mergers before, but no one could be sure.  Wouldn&#8217;t it be great, then, if we could see gravitational waves AND electromagnetic waves from a neutron star merger?  It would be a little like seeing the flash and hearing the sound from fireworks &#8212; seeing and hearing is better than either one separately, with each one clarifying the other.  <em>(Caution: scientists are often speaking as if detecting gravitational waves is like &#8220;hearing&#8221;.  This is only an analogy, and a vague one!  It&#8217;s not at all the same as acoustic waves that we can hear with our ears, for many reasons&#8230; so please don&#8217;t take it too literally.) </em> If we could do both, we could learn about neutron stars and their properties in an entirely new way.</p>
+<p>Today, we learned that this has happened.  LIGO , with the world&#8217;s first two gravitational observatories, detected the waves from two merging neutron stars, 130 million light years from Earth, on August 17th.  (Neutron star mergers last much longer than black hole mergers, so the two are easy to distinguish; and this one was so close, relatively speaking, that it was seen for a long while.)  VIRGO, with the third detector, <a href="https://profmattstrassler.com/2017/09/27/ligo-and-virgo-announce-a-joint-observation-of-a-black-hole-merger/">allows scientists to triangulate and determine roughly where mergers have occurred</a>.  They saw only a very weak signal, <a href="https://profmattstrassler.com/2017/09/27/ligo-and-virgo-announce-a-joint-observation-of-a-black-hole-merger/">but that was extremely important, because it told the scientists<em> that the merger must have occurred in a small region of the sky where VIRGO has a relative blind spot</em>.</a>  That told scientists where to look.</p>
+<p>The merger was detected for more than a full minute&#8230; to be compared with black holes whose mergers can be detected for less than a second.  It&#8217;s not exactly clear yet what happened at the end, however!  Did the merged neutron stars form a black hole or a neutron star?  The jury is out.</p>
+<p>At almost exactly the moment at which the gravitational waves reached their peak, a blast of gamma rays &#8212; electromagnetic waves of very high frequencies &#8212; were detected by a different scientific team, the one from FERMI. FERMI detects gamma rays from the distant universe every day, and a two-second gamma-ray-burst is not unusual.  And INTEGRAL, another gamma ray experiment, also detected it.   The teams communicated within minutes.   The FERMI and INTEGRAL gamma ray detectors can only indicate the rough region of the sky from which their gamma rays originate, and LIGO/VIRGO together also only give a rough region.  But the scientists saw those regions overlapped.  The evidence was clear.  And with that, astronomy entered a new, highly anticipated phase.</p>
+<p>Already this was a huge discovery.  Brief gamma-ray bursts have been a mystery for years.  One of the best guesses as to their origin has been neutron star mergers.  Now the mystery is solved; that guess is apparently correct. <em>(Or is it?  Probably, but the gamma ray discovery is surprisingly dim, given how close it is.  So there are still questions to ask.)</em></p>
+<p>Also confirmed by the fact that these signals arrived within a couple of seconds of one another, after traveling for over 100 million years from the same source, is that, indeed, the speed of light and the speed of gravitational waves are exactly the same &#8212; both of them equal to the cosmic speed limit, just as Einstein&#8217;s theory of gravity predicts.</p>
+<p>Next, these teams quickly told their astronomer friends to train their telescopes in the general area of the source. Dozens of telescopes, from every continent and from space, and looking for electromagnetic waves at a huge range of frequencies, pointed in that rough direction and scanned for anything unusual.  <em>(A big challenge: the object was near the Sun in the sky, so it could be viewed in darkness only for an hour each night!)</em> Light was detected!  At all frequencies!  The object was very bright, making it easy to find the galaxy in which the merger took place.  The brilliant glow was seen in gamma rays, ultraviolet light, infrared light, X-rays, and radio.  (Neutrinos, particles that can serve as another way to observe distant explosions, were not detected this time.)</p>
+<p>And with so much information, so much can be learned!</p>
+<p>Most important, perhaps, is this: from the pattern of the spectrum of light, the conjecture seems to be confirmed that the mergers of neutron stars are important sources, perhaps the dominant one, for many of the heavy chemical elements &#8212; iodine, iridium, cesium, gold, platinum, and so on &#8212; that are forged in the intense heat of these collisions.  It used to be thought that the same supernovas that form neutron stars in the first place were the most likely source.  But now it seems that this second stage of neutron star life &#8212; merger, rather than birth &#8212; is just as important.  That&#8217;s fascinating, because neutron star mergers are much more rare than the supernovas that form them.  There&#8217;s a supernova in our Milky Way galaxy every century or so, but it&#8217;s tens of millenia or more between these &#8220;kilonovas&#8221;, created in neutron star mergers.</p>
+<p>If there&#8217;s anything disappointing about this news, it&#8217;s this: almost everything that was observed by all these different experiments was predicted in advance.  Sometimes it&#8217;s more important and useful when some of your predictions fail completely, because then you realize how much you have to learn.  Apparently our understanding of gravity, of neutron stars, and of their mergers, and of all sorts of sources of electromagnetic radiation that are produced in those merges, is even better than we might have thought. But fortunately there are a few new puzzles.  The X-rays were late; the gamma rays were dim&#8230; we&#8217;ll hear more about this shortly, as NASA is holding a second news conference.</p>
+<p>Some highlights from the second news conference:</p>
+<ul>
+<li>New information about neutron star interiors, which affects how large they are and therefore how exactly they merge, has been obtained</li>
+<li>The first ever visual-light image of a gravitational wave source, from the Swope telescope, at the outskirts of a distant galaxy; the galaxy&#8217;s center is the blob of light, and the arrow points to the explosion.</li>
+</ul>
+<p><img class="" src="https://3c1703fe8d.site.internapcdn.net/newman/csz/news/800/2017/2-discoveredne.jpg" width="396" height="238" /></p>
+<ul>
+<li>The theoretical calculations for a kilonova explosion suggest that debris from the blast should rather quickly block the visual light, so the explosion dims quickly in visible light &#8212; but infrared light lasts much longer.  The observations by the visible and infrared light telescopes confirm this aspect of the theory; and you can see evidence for that in the picture above, where four days later the bright spot is both much dimmer and much redder than when it was discovered.</li>
+<li>Estimate: the total mass of the gold and platinum produced in this explosion is vastly larger than the mass of the Earth.</li>
+<li>Estimate: these neutron stars were formed about 10 or so billion years ago.  They&#8217;ve been orbiting each other for most of the universe&#8217;s history, and ended their lives just 130 million years ago, creating the blast we&#8217;ve so recently detected.</li>
+<li>Big Puzzle: all of the previous gamma-ray bursts seen up to now have always had shone in ultraviolet light and X-rays as well as gamma rays.   But X-rays didn&#8217;t show up this time, at least not initially.  This was a big surprise.  It took 9 days for the Chandra telescope to observe X-rays, too faint for any other X-ray telescope.  Does this mean that the two neutron stars created a black hole, which then created a jet of matter that points not quite directly at us but off-axis, and shines by illuminating the matter in interstellar space?  This had been suggested as a possibility twenty years ago, but this is the first time there&#8217;s been any evidence for it.</li>
+<li>One more surprise: it took 16 days for radio waves from the source to be discovered, with the Very Large Array, the most powerful existing radio telescope.  The radio emission has been growing brighter since then!  As with the X-rays, this seems also to support the idea of an off-axis jet.</li>
+<li>Nothing quite like this gamma-ray burst has been seen &#8212; or rather, recognized &#8212; before.  When a gamma ray burst doesn&#8217;t have an X-ray component showing up right away, it simply looks odd and a bit mysterious.  Its harder to observe than most bursts, because without a jet pointing right at us, its afterglow fades quickly.  Moreover, a jet pointing at us is bright, so it blinds us to the more detailed and subtle features of the kilonova.  But this time, LIGO/VIRGO told scientists that &#8220;Yes, this is a neutron star merger&#8221;, leading to detailed study from all electromagnetic frequencies, including patient study over many days of the X-rays and radio.  In other cases those observations would have stopped after just a short time, and the whole story couldn&#8217;t have been properly interpreted.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2017/10/16/a-scientific-breakthrough-combining-gravitational-and-electromagnetic-waves/#comments">44 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/astronomy/" rel="category tag">Astronomy</a>, <a href="https://profmattstrassler.com/category/gravitational-waves/" rel="category tag">Gravitational Waves</a>					</p>
+															</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-9757" class="post-9757 post type-post status-publish format-standard hentry category-astronomy category-gravitational-waves tag-black-holes tag-gravitational-waves tag-ligo">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2017/09/27/ligo-and-virgo-announce-a-joint-observation-of-a-black-hole-merger/" rel="bookmark">LIGO and VIRGO Announce a Joint Observation of a Black Hole&nbsp;Merger</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2017/09/27/ligo-and-virgo-announce-a-joint-observation-of-a-black-hole-merger/" title="1:50 PM" rel="bookmark"><span class="entry-date">September 27, 2017</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2017/09/27/ligo-and-virgo-announce-a-joint-observation-of-a-black-hole-merger/#comments">30 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p>Welcome, VIRGO!  Another <a href="https://profmattstrassler.com/2016/02/11/advance-thoughts-on-ligo/">merger</a> of two big black holes has been detected, <a href="https://www.ligo.caltech.edu/news/ligo20170927">this time by both LIGO&#8217;s two detectors and by VIRGO as well.</a></p>
+<p>Aside from the fact that this means that <a href="https://www.ego-gw.it/public/about/welcome.aspx">the VIRGO instrument</a> actually works, which is great news, why is this a big deal?  By adding a third gravitational wave detector, built by the VIRGO collaboration, to LIGO&#8217;s Washington and Louisiana detectors, the scientists involved in the search for gravitational waves now can determine fairly accurately the direction from which a detected gravitational wave signal is coming.  And this allows them to do something new: to tell their astronomer colleagues roughly where to look in the sky, using ordinary telescopes, for some form of electromagnetic waves (perhaps visible light, gamma rays, or radio waves) that might have been produced by whatever created the gravitational waves. <a href="https://profmattstrassler.com/2017/09/27/ligo-and-virgo-announce-a-joint-observation-of-a-black-hole-merger/#more-9757" class="more-link">Continue reading <span class="meta-nav">&rarr;</span></a></p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2017/09/27/ligo-and-virgo-announce-a-joint-observation-of-a-black-hole-merger/#comments">30 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/astronomy/" rel="category tag">Astronomy</a>, <a href="https://profmattstrassler.com/category/gravitational-waves/" rel="category tag">Gravitational Waves</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/black-holes/" rel="tag">black holes</a>, <a href="https://profmattstrassler.com/tag/gravitational-waves/" rel="tag">Gravitational Waves</a>, <a href="https://profmattstrassler.com/tag/ligo/" rel="tag">LIGO</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-9727" class="post-9727 post type-post status-publish format-standard hentry category-astronomy tag-astronomy-2 tag-auroras">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2017/09/07/watch-for-auroras/" rel="bookmark">Watch for Auroras</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2017/09/07/watch-for-auroras/" title="12:51 PM" rel="bookmark"><span class="entry-date">September 7, 2017</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2017/09/07/watch-for-auroras/#comments">3 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p>Those of you who remember <a href="https://profmattstrassler.com/2017/07/16/ongoing-chance-of-northern-or-southern-lights/">my post on how to keep track of opportunities to see northern (and southern) lights</a> will be impressed by this image from <a href="http://www.swpc.noaa.gov/communities/space-weather-enthusiasts">http://www.swpc.noaa.gov/communities/space-weather-enthusiasts</a> .</p>
+<p><img class="" src="http://services.swpc.noaa.gov/images/swx-overview-small.gif" alt="The latest space weather overview plot" width="425" height="432" /></p>
+<p>The top plot shows the number of X-rays (high-energy photons [particles of light]) coming from the sun, and that huge spike in the middle of the plot indicates a very powerful solar flare occurred about 24 hours ago.  It should take about 2 days from the time of the flare for its other effects &#8212; the cloud of electrically-charged particles expelled from the Sun&#8217;s atmosphere &#8212; to arrive at Earth.  The electrically-charged particles are what generate the auroras, when they are directed by Earth&#8217;s magnetic field to enter the Earth&#8217;s atmosphere near the Earth&#8217;s magnetic poles, where they crash into atoms in the upper atmosphere, exciting them and causing them to radiate visible light.</p>
+<p>The flare was very powerful, but its cloud of particles didn&#8217;t head straight for Earth.  We might get only a glancing blow.  So we don&#8217;t know how big an effect to expect here on our planet.  All we can do for now is be hopeful, and wait.</p>
+<p>In any case, auroras borealis and australis are possible in the next day or so.  Watch for the middle plot to go haywire, and for the bars in the lower plot to jump higher; then you know the time has arrived.</p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2017/09/07/watch-for-auroras/#comments">3 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/astronomy/" rel="category tag">Astronomy</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/astronomy-2/" rel="tag">astronomy</a>, <a href="https://profmattstrassler.com/tag/auroras/" rel="tag">auroras</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+
+			<div id="post-9609" class="post-9609 post type-post status-publish format-standard hentry category-astronomy category-history-of-science tag-astronomy-2 tag-earth tag-eclipse tag-moon tag-space tag-sun">
+			<h2 class="entry-title"><a href="https://profmattstrassler.com/2017/08/18/an-experience-of-a-lifetime-my-1999-eclipse-adventure/" rel="bookmark">An Experience of a Lifetime: My 1999 Eclipse&nbsp;Adventure</a></h2>
+
+			<div class="entry-meta">
+				<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2017/08/18/an-experience-of-a-lifetime-my-1999-eclipse-adventure/" title="8:30 AM" rel="bookmark"><span class="entry-date">August 18, 2017</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2017/08/18/an-experience-of-a-lifetime-my-1999-eclipse-adventure/#comments">19 comments</a></span>
+			</div><!-- .entry-meta -->
+
+				<div class="entry-content">
+				<p>Back in 1999 I saw a total solar eclipse in Europe, and it was a life-altering experience.  I wrote about it back then, but was never entirely happy with the article.  This week I&#8217;ve revised it.  It could still benefit from some editing and revision (comments welcome), but I think it&#8217;s now a good read.  It&#8217;s full of intellectual observations, but there are powerful emotions too.</p>
+<p>If you&#8217;re interested, you can <a title="eclipse" href="https://profmattstrassler.files.wordpress.com/2017/08/eclipse1.pdf">read it as a pdf</a>, or just scroll down.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong> A Luminescent Darkness: My 1999 Eclipse Adventure</strong></p>
+<p>© Matt Strassler 1999</p>
+<p>After two years of dreaming, two months of planning, and two hours of packing, I drove to John F. Kennedy airport, took the shuttle to the Air France terminal, and checked in.  I was brimming with excitement. In three days time, with a bit of luck, I would witness one the great spectacles that a human being can experience: a complete, utter and total eclipse of the Sun. <a href="https://profmattstrassler.com/2017/08/18/an-experience-of-a-lifetime-my-1999-eclipse-adventure/#more-9609" class="more-link">Continue reading <span class="meta-nav">&rarr;</span></a></p>
+							</div><!-- .entry-content -->
+	
+			<div class="entry-info">
+				<p class="comments-link"><a href="https://profmattstrassler.com/2017/08/18/an-experience-of-a-lifetime-my-1999-eclipse-adventure/#comments">19 Comments</a></p>
+									<p class="cat-links">
+						<span class="entry-info-prep entry-info-prep-cat-links">Posted in</span> <a href="https://profmattstrassler.com/category/astronomy/" rel="category tag">Astronomy</a>, <a href="https://profmattstrassler.com/category/history-of-science/" rel="category tag">History of Science</a>					</p>
+								<p class="tag-links"><span class="entry-info-prep entry-info-prep-tag-links">Tagged</span> <a href="https://profmattstrassler.com/tag/astronomy-2/" rel="tag">astronomy</a>, <a href="https://profmattstrassler.com/tag/earth/" rel="tag">earth</a>, <a href="https://profmattstrassler.com/tag/eclipse/" rel="tag">eclipse</a>, <a href="https://profmattstrassler.com/tag/moon/" rel="tag">moon</a>, <a href="https://profmattstrassler.com/tag/space/" rel="tag">space</a>, <a href="https://profmattstrassler.com/tag/sun/" rel="tag">sun</a></p>							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		
+	
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="https://profmattstrassler.com/category/astronomy/page/2/" ><span class="meta-nav">&larr;</span> Older posts</a></div>
+					<div class="nav-next"></div>
+				</div><!-- #nav-below -->
+
+	</div><!-- #content -->
+</div><!-- #content-container -->
+
+
+		
+		<div id="primary" class="widget-area" role="complementary">
+					<ul class="xoxo">
+
+			<li id="text-2" class="widget-container widget_text"><h3 class="widget-title">First Time Visitor?</h3>			<div class="textwidget">This site addresses various aspects of science, with a current focus on particle physics.  I aim to serve the public, including those with no background knowledge of physics.  If you're not yourself an expert, you might want to click on "<a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a>" or "<a href="https://profmattstrassler.com/about/">About</a>" to get started. If you'd like to watch my hour-long public lecture about the <a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">Higgs particle</a>, try ``<a href="https://profmattstrassler.com/videoclips/">Movie Clips</a>''.</div>
+		</li><li id="media_image-4" class="widget-container widget_media_image"><style>.widget.widget_media_image { overflow: hidden; }.widget.widget_media_image img { height: auto; max-width: 100%; }</style><div style="width: 310px" class="wp-caption alignnone"><a href="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png"><img width="300" height="172" src="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" class="image wp-image-10515 alignnone attachment-300x172 size-300x172" alt="" loading="lazy" style="max-width: 100%; height: auto;" srcset="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300 300w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=600 600w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=150 150w" sizes="(max-width: 300px) 100vw, 300px" data-attachment-id="10515" data-permalink="https://profmattstrassler.com/htogammagamma_v1/" data-orig-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png" data-orig-size="640,366" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="HtoGammaGamma_v1" data-image-description="" data-image-caption="" data-medium-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" data-large-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=500" /></a><p class="wp-caption-text">From the CMS experiment at the Large Hadron collider, a proton-proton collision that created a Higgs boson, which subsequently decayed to two particles of light (shown as green rods.)</p></div></li><li id="search-3" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="https://profmattstrassler.com/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search" />
+				</div>
+			</form></li>
+		<li id="recent-posts-3" class="widget-container widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="https://profmattstrassler.com/2021/04/12/physics-is-broken/">Physics is Broken!!!</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/11/25/has-a-new-force-of-nature-been-discovered/">Has a New Force of Nature Been&nbsp;Discovered?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/28/the-new-york-times-remembers-a-great-physicist/">The New York Times Remembers A Great&nbsp;Physicist</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/06/a-catastrophic-weekend-for-theoretical-high-energy-physics/">A Catastrophic Weekend for Theoretical High Energy&nbsp;Physics</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo/">A Ring of Controversy Around a Black Hole&nbsp;Photo</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/16/the-black-hole-photo-seeing-more-clearly/">The Black Hole `Photo&#8217;: Seeing More&nbsp;Clearly</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/15/the-black-hole-photo-what-are-we-looking-at/">The Black Hole `Photo&#8217;: What Are We Looking&nbsp;At?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/10/a-black-day-and-a-happy-one-in-scientific-history/">A Black Day (and a Happy One) In Scientific&nbsp;History</a>
+									</li>
+					</ul>
+
+		</li><li id="categories-4" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3><form action="https://profmattstrassler.com" method="get"><label class="screen-reader-text" for="cat">Categories</label><select  name='cat' id='cat' class='postform' >
+	<option value='-1'>Select Category</option>
+	<option class="level-0" value="4003" selected="selected">Astronomy</option>
+	<option class="level-0" value="175813">black holes</option>
+	<option class="level-0" value="51517">Dark Matter</option>
+	<option class="level-0" value="545298">Evolution and Biology</option>
+	<option class="level-0" value="39338">Geology</option>
+	<option class="level-0" value="133890">Gravitational Waves</option>
+	<option class="level-0" value="738724">Higgs</option>
+	<option class="level-0" value="27530">History of Science</option>
+	<option class="level-0" value="19640">Housekeeping</option>
+	<option class="level-0" value="59940768">LHC Background Info</option>
+	<option class="level-0" value="11550283">LHC News</option>
+	<option class="level-0" value="59940787">Other Collider News</option>
+	<option class="level-0" value="12547">Particle Physics</option>
+	<option class="level-0" value="1211">Physics</option>
+	<option class="level-0" value="560543">Public Outreach</option>
+	<option class="level-0" value="36114049">Quantum Field Theory</option>
+	<option class="level-0" value="119528">Quantum Gravity</option>
+	<option class="level-0" value="59940867">Science and Modern Society</option>
+	<option class="level-0" value="7682">Science News</option>
+	<option class="level-0" value="26444">String Theory</option>
+	<option class="level-0" value="41175177">The Scientific Process</option>
+	<option class="level-0" value="1">Uncategorized</option>
+</select>
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+			</li><li id="pd_top_rated-3" class="widget-container top_rated"><h3 class="widget-title">Popular Pages</h3><div id="pd_top_rated_holder" class="pd_top_rated_holder_pages"></div><script language="javascript" src="https://polldaddy.com/js/rating/top-rated.js"></script><script language="javascript" type="text/javascript">PDRTJS_TOP = new PDRTJS_RATING_TOP( 4811599, 0, 0, '010', 5 );PDRTJS_TOP.get_top( 'pages', '0' );</script></li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+		
+			</div><!-- #content-box -->
+
+	<div id="footer" role="contentinfo">
+		
+<div id="footer-widget-area" role="complementary">
+
+	<div id="first" class="widget-area">
+		<ul class="xoxo">
+			<li id="text-3" class="widget-container widget_text">			<div class="textwidget"><font color="FF0000"><b>I went to college at <a href="http://www.simons-rock.edu"> Simon's Rock.  </a></b></font></div>
+		</li>		</ul>
+	</div><!-- #first .widget-area -->
+
+
+	<div id="third" class="widget-area">
+		<ul class="xoxo">
+			<li id="rss_links-3" class="widget-container widget_rss_links"><h3 class="widget-title">Add this site to your RSS feed</h3><p class="size-small"><a class="feed-image-link" href="https://profmattstrassler.com/feed/" title="Subscribe to Posts"><img src="https://profmattstrassler.com/i/rss/red-small.png" alt="RSS Feed" /></a>&nbsp;<a href="https://profmattstrassler.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p>
+</li><li id="linkcat-8548552" class="widget-container widget_links"><h3 class="widget-title">My Facebook Page</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.facebook.com/ProfMattStrassler" rel="me" target="_blank">http://www.facebook.com/ProfMattStrassler</a></li>
+
+	</ul>
+</li>
+		</ul>
+	</div><!-- #third .widget-area -->
+
+	<div id="fourth" class="widget-area">
+		<ul class="xoxo">
+			<li id="twitter-2" class="widget-container widget_twitter"><h3 class="widget-title"><a href='http://twitter.com/MattStrassler'>Follow me on Twitter</a></h3><ul class='tweets'>
+			<li>
+				@<a href='http://twitter.com/StevenLowette'>StevenLowette</a> @<a href='http://twitter.com/CatDogLUofM'>CatDogLUofM</a> @<a href='http://twitter.com/suchi_kulkarni'>suchi_kulkarni</a> @<a href='http://twitter.com/jsheltino'>jsheltino</a> Good to be a part of it.  We need to open these communicatio… <a href="https://twitter.com/i/web/status/1443656122460741633"> twitter.com/i/web/status/1…</a> 				<a href="http://twitter.com/MattStrassler/statuses/1443656122460741633" class="timesince">6&nbsp;hours&nbsp;ago</a>
+			</li>
+
+			</ul><a href="http://twitter.com/MattStrassler"  class='twitter-follow-button' data-show-count='false' data-link-color='#0060ff' data-text-color='#333333'>Follow @MattStrassler</a></li>		</ul>
+	</div><!-- #fourth .widget-area -->
+
+</div><!-- #footer-widget-area -->
+		<div id="colophon">
+			<span class="generator-link"><a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a></span>
+					</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #container -->
+
+		<script type="text/javascript">
+		//<![CDATA[
+		var infiniteScroll = JSON.parse( decodeURIComponent( '%7B%22settings%22%3A%7B%22id%22%3A%22content%22%2C%22ajaxurl%22%3A%22https%3A%5C%2F%5C%2Fprofmattstrassler.com%5C%2F%3Finfinity%3Dscrolling%22%2C%22type%22%3A%22click%22%2C%22wrapper%22%3Atrue%2C%22wrapper_class%22%3A%22infinite-wrap%22%2C%22footer%22%3A%22container%22%2C%22click_handle%22%3A%221%22%2C%22text%22%3A%22Older%20posts%22%2C%22totop%22%3A%22Scroll%20back%20to%20top%22%2C%22currentday%22%3A%2218.08.17%22%2C%22order%22%3A%22DESC%22%2C%22scripts%22%3A%5B%5D%2C%22styles%22%3A%5B%5D%2C%22google_analytics%22%3Afalse%2C%22offset%22%3A1%2C%22history%22%3A%7B%22host%22%3A%22profmattstrassler.com%22%2C%22path%22%3A%22%5C%2Fcategory%5C%2Fastronomy%5C%2Fpage%5C%2F%25d%5C%2F%22%2C%22use_trailing_slashes%22%3Atrue%2C%22parameters%22%3A%22%22%7D%2C%22query_args%22%3A%7B%22category_name%22%3A%22astronomy%22%2C%22error%22%3A%22%22%2C%22m%22%3A%22%22%2C%22p%22%3A0%2C%22post_parent%22%3A%22%22%2C%22subpost%22%3A%22%22%2C%22subpost_id%22%3A%22%22%2C%22attachment%22%3A%22%22%2C%22attachment_id%22%3A0%2C%22name%22%3A%22%22%2C%22pagename%22%3A%22%22%2C%22page_id%22%3A0%2C%22second%22%3A%22%22%2C%22minute%22%3A%22%22%2C%22hour%22%3A%22%22%2C%22day%22%3A0%2C%22monthnum%22%3A0%2C%22year%22%3A0%2C%22w%22%3A0%2C%22tag%22%3A%22%22%2C%22cat%22%3A4003%2C%22tag_id%22%3A%22%22%2C%22author%22%3A%22%22%2C%22author_name%22%3A%22%22%2C%22feed%22%3A%22%22%2C%22tb%22%3A%22%22%2C%22paged%22%3A0%2C%22meta_key%22%3A%22%22%2C%22meta_value%22%3A%22%22%2C%22preview%22%3A%22%22%2C%22s%22%3A%22%22%2C%22sentence%22%3A%22%22%2C%22title%22%3A%22%22%2C%22fields%22%3A%22%22%2C%22menu_order%22%3A%22%22%2C%22embed%22%3A%22%22%2C%22category__in%22%3A%5B%5D%2C%22category__not_in%22%3A%5B%5D%2C%22category__and%22%3A%5B%5D%2C%22post__in%22%3A%5B%5D%2C%22post__not_in%22%3A%5B%5D%2C%22post_name__in%22%3A%5B%5D%2C%22tag__in%22%3A%5B%5D%2C%22tag__not_in%22%3A%5B%5D%2C%22tag__and%22%3A%5B%5D%2C%22tag_slug__in%22%3A%5B%5D%2C%22tag_slug__and%22%3A%5B%5D%2C%22post_parent__in%22%3A%5B%5D%2C%22post_parent__not_in%22%3A%5B%5D%2C%22author__in%22%3A%5B%5D%2C%22author__not_in%22%3A%5B%5D%2C%22lazy_load_term_meta%22%3Afalse%2C%22posts_per_page%22%3A8%2C%22ignore_sticky_posts%22%3Afalse%2C%22suppress_filters%22%3Afalse%2C%22cache_results%22%3Afalse%2C%22update_post_term_cache%22%3Atrue%2C%22update_post_meta_cache%22%3Atrue%2C%22post_type%22%3A%22%22%2C%22nopaging%22%3Afalse%2C%22comments_per_page%22%3A%2250%22%2C%22no_found_rows%22%3Afalse%2C%22order%22%3A%22DESC%22%7D%2C%22query_before%22%3A%222021-09-30%2021%3A44%3A15%22%2C%22last_post_date%22%3A%222017-08-18%2008%3A30%3A54%22%2C%22body_class%22%3A%22infinite-scroll%22%2C%22loading_text%22%3A%22Loading%20new%20page%22%2C%22stats%22%3A%22blog%3D24633746%26v%3Dwpcom%26tz%3D-4%26user_id%3D0%26subd%3Dprofmattstrassler%26x_pagetype%3Dinfinite-click%22%7D%7D' ) );
+		//]]>
+		</script>
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202139y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	</div>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+			<div id="jp-carousel-loading-overlay">
+			<div id="jp-carousel-loading-wrapper">
+				<span id="jp-carousel-library-loading">&nbsp;</span>
+			</div>
+		</div>
+		<div class="jp-carousel-overlay" style="display: none;">
+
+		<div class="jp-carousel-container">
+			<!-- The Carousel Swiper -->
+			<div
+				class="jp-carousel-wrap swiper-container jp-carousel-swiper-container jp-carousel-transitions"
+				itemscope
+				itemtype="https://schema.org/ImageGallery">
+				<div class="jp-carousel swiper-wrapper"></div>
+				<div class="jp-swiper-button-prev swiper-button-prev">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskPrev" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="9" height="12">
+							<path d="M16.2072 16.59L11.6496 12L16.2072 7.41L14.8041 6L8.8335 12L14.8041 18L16.2072 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskPrev)">
+							<rect x="0.579102" width="23.8823" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+				<div class="jp-swiper-button-next swiper-button-next">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskNext" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="8" height="12">
+							<path d="M8.59814 16.59L13.1557 12L8.59814 7.41L10.0012 6L15.9718 12L10.0012 18L8.59814 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskNext)">
+							<rect x="0.34375" width="23.8822" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+			</div>
+			<!-- The main close buton -->
+			<div class="jp-carousel-close-hint">
+				<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<mask id="maskClose" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="15" height="14">
+						<path d="M19.3166 6.41L17.9135 5L12.3509 10.59L6.78834 5L5.38525 6.41L10.9478 12L5.38525 17.59L6.78834 19L12.3509 13.41L17.9135 19L19.3166 17.59L13.754 12L19.3166 6.41Z" fill="white"/>
+					</mask>
+					<g mask="url(#maskClose)">
+						<rect x="0.409668" width="23.8823" height="24" fill="#FFFFFF"/>
+					</g>
+				</svg>
+			</div>
+			<!-- Image info, comments and meta -->
+			<div class="jp-carousel-info">
+				<div class="jp-carousel-info-footer">
+					<div class="jp-carousel-pagination-container">
+						<div class="jp-swiper-pagination swiper-pagination"></div>
+						<div class="jp-carousel-pagination"></div>
+					</div>
+					<div class="jp-carousel-photo-title-container">
+						<h2 class="jp-carousel-photo-caption"></h2>
+					</div>
+					<div class="jp-carousel-photo-icons-container">
+						<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-info" aria-label="Toggle photo metadata visibility">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskInfo" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M12.7537 2C7.26076 2 2.80273 6.48 2.80273 12C2.80273 17.52 7.26076 22 12.7537 22C18.2466 22 22.7046 17.52 22.7046 12C22.7046 6.48 18.2466 2 12.7537 2ZM11.7586 7V9H13.7488V7H11.7586ZM11.7586 11V17H13.7488V11H11.7586ZM4.79292 12C4.79292 16.41 8.36531 20 12.7537 20C17.142 20 20.7144 16.41 20.7144 12C20.7144 7.59 17.142 4 12.7537 4C8.36531 4 4.79292 7.59 4.79292 12Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskInfo)">
+										<rect x="0.8125" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+							</span>
+						</a>
+												<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-comments" aria-label="Toggle photo comments visibility">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskComments" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M4.3271 2H20.2486C21.3432 2 22.2388 2.9 22.2388 4V16C22.2388 17.1 21.3432 18 20.2486 18H6.31729L2.33691 22V4C2.33691 2.9 3.2325 2 4.3271 2ZM6.31729 16H20.2486V4H4.3271V18L6.31729 16Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskComments)">
+										<rect x="0.34668" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+
+								<span class="jp-carousel-has-comments-indicator" aria-label="This image has comments."></span>
+							</span>
+						</a>
+											</div>
+				</div>
+				<div class="jp-carousel-info-extra">
+					<div class="jp-carousel-info-content-wrapper">
+						<div class="jp-carousel-photo-title-container">
+							<h2 class="jp-carousel-photo-title"></h2>
+						</div>
+						<div class="jp-carousel-comments-wrapper">
+															<div id="jp-carousel-comments-loading">
+									<span>Loading Comments...</span>
+								</div>
+								<div class="jp-carousel-comments"></div>
+								<div id="jp-carousel-comment-form-container">
+									<span id="jp-carousel-comment-form-spinner">&nbsp;</span>
+									<div id="jp-carousel-comment-post-results"></div>
+																														<form id="jp-carousel-comment-form">
+												<label for="jp-carousel-comment-form-comment-field" class="screen-reader-text">Write a Comment...</label>
+												<textarea
+													name="comment"
+													class="jp-carousel-comment-form-field jp-carousel-comment-form-textarea"
+													id="jp-carousel-comment-form-comment-field"
+													placeholder="Write a Comment..."
+												></textarea>
+												<div id="jp-carousel-comment-form-submit-and-info-wrapper">
+													<div id="jp-carousel-comment-form-commenting-as">
+																													<fieldset>
+																<label for="jp-carousel-comment-form-email-field">Email (Required)</label>
+																<input type="text" name="email" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-email-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-author-field">Name (Required)</label>
+																<input type="text" name="author" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-author-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-url-field">Website</label>
+																<input type="text" name="url" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-url-field" />
+															</fieldset>
+																											</div>
+													<input
+														type="submit"
+														name="submit"
+														class="jp-carousel-comment-form-button"
+														id="jp-carousel-comment-form-button-submit"
+														value="Post Comment" />
+												</div>
+											</form>
+																											</div>
+													</div>
+						<div class="jp-carousel-image-meta">
+							<div class="jp-carousel-title-and-caption">
+								<div class="jp-carousel-photo-info">
+									<h3 class="jp-carousel-caption" itemprop="caption description"></h3>
+								</div>
+
+								<div class="jp-carousel-photo-description"></div>
+							</div>
+							<ul class="jp-carousel-image-exif" style="display: none;"></ul>
+							<a class="jp-carousel-image-download" target="_blank" style="display: none;">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="3" width="19" height="18">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M5.84615 5V19H19.7775V12H21.7677V19C21.7677 20.1 20.8721 21 19.7775 21H5.84615C4.74159 21 3.85596 20.1 3.85596 19V5C3.85596 3.9 4.74159 3 5.84615 3H12.8118V5H5.84615ZM14.802 5V3H21.7677V10H19.7775V6.41L9.99569 16.24L8.59261 14.83L18.3744 5H14.802Z" fill="white"/>
+									</mask>
+									<g mask="url(#mask0)">
+										<rect x="0.870605" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+								<span class="jp-carousel-download-text"></span>
+							</a>
+							<div class="jp-carousel-image-map" style="display: none;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+		<script src='https://platform.twitter.com/widgets.js?ver=20111117' id='twitter-widgets-js'></script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s1.wp.com/_static/??-eJyFy00OQDAQQOELGUP8xUKcpWoiZVTTadO4vVhY2LB8L/kwOdCHDWQD7hEcx8VYQa38EYUYJRlHHqZoZ6Zci2T4I1YKTukNnvGFgmGaYVHM5M933Wzch7Ktir5p+rpbL+lvP34=?cssminify=yes' type='text/css' media='all' />
+<script id='jetpack-carousel-js-extra'>
+var jetpackSwiperLibraryPath = {"url":"\/wp-content\/mu-plugins\/carousel\/swiper-bundle.js"};
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/profmattstrassler.com\/wp-admin\/admin-ajax.php","nonce":"3c82387706","display_exif":"1","display_comments":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/profmattstrassler.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fprofmattstrassler.com%2F2019%2F06%2F14%2Fa-ring-of-controversy-around-a-black-hole-photo%2F","blog_id":"24633746","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"stats_query_args":"blog=24633746&v=wpcom&tz=-4&user_id=0&subd=profmattstrassler","is_public":"1"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyNUNtuwjAM/SHcaCDKXia+JU0McpYbsUPp3y9UK2LdhPYUHzvnYqsxg0lRMIpyrCxeyWC+dY436mkUKmRfzxRZUTxRJJkexYu/2gaKMOiigmbB0iqQos0nr0nN210qlun76cZsUoBc0m2Cgq3HsnAoGl8t8p3UIIYBbdeMXgQxuqTK6JVDyc0flsZfmjye0uDQyFpwUbuSxaQ0M8pMmHEuyL/Weoog5NHCWXt/3/IH+kdwmO+xgo13DB9v/W57eN/2/d59ATl6rYQ='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script type="text/javascript">
+			(function() {
+				var extend = function(out) {
+					out = out || {};
+
+					for (var i = 1; i < arguments.length; i++) {
+						if (!arguments[i])
+						continue;
+
+						for (var key in arguments[i]) {
+						if (arguments[i].hasOwnProperty(key))
+							out[key] = arguments[i][key];
+						}
+					}
+
+					return out;
+				};
+				extend( window.infiniteScroll.settings.scripts, ["postmessage","mobile-useragent-info","rlt-proxy","jquery-core","jquery-migrate","jquery","wpcom-actionbar-placeholder","grofiles-cards","wpgroho","twitter-widgets","devicepx","the-neverending-homepage","wpcom-masterbar-tracks-js","jquery.wpcom-proxy-request","wp-embed","jetpack-carousel","swfobject","videopress","tiled-gallery","carousel-wpcom"] );
+				extend( window.infiniteScroll.settings.styles, ["wpcom-smileys","the-neverending-homepage","wp-block-library","mediaelement","wp-mediaelement","jetpack-layout-grid","jetpack-ratings","coblocks-frontend","wpcom-core-compat-playlist-styles","wpcom-text-widget-styles","wpcom-bbpress2-staff-css","coraline","coraline-wpcom","geo-location-flair","reblogging","h4-global","global-styles","jetpack-global-styles-frontend-style","jetpack-carousel-swiper-css","jetpack-carousel","tiled-gallery"] );
+			})();
+		</script>
+				<span id="infinite-aria" aria-live="assertive"></span>
+		<script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'24633746','blog_tz':'-4','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'24633746','v':'wpcom','tz':'-4','user_id':'0','subd':'profmattstrassler'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eXFaMjhuQz1aPzNNMy12XUZlK1VEaF9ZMkRhXS9kfnpXU3U3LUtbLSZsakpoUnExOGVDJWhWOExpT3VCdmFjdjg1VU9zMXpVcXg4b1hYYW01dmVwWTBkQnpHOC98M1EmQW5pdlkrJUNnZVY5LXRwbFhjUFRqV000fi93LG1GJS5WSk1jVm9BP0F6XWJteXFBeUJTLW56ZVkmbzhtTT9ZLGNmfmIwfitjVjkwJXdGYTNNRDBnN3RtZXNIYlFYZWdNLXFId0ZsRzVkRWVrMSwtSnZPSnBJ'}]);
+_stq.push([ 'clickTrackerInit', '24633746', '0' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script></body>
+</html>

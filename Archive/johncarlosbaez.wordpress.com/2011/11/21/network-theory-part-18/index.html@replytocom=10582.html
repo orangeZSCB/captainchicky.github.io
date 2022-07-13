@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Network Theory (Part 18) | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Network Theory (Part&nbsp;18) Comments Feed" href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F11%2F21%2Fnetwork-theory-part-18%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2011\/11\/21\/network-theory-part-18\/?replytocom=10582","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F11%2F21%2Fnetwork-theory-part-18%2F%3Freplytocom%3D10582","postID":"6340","shortlink":"https:\/\/wp.me\/pRBZ9-1Eg","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/6340","statsLink":"https:\/\/wordpress.com\/stats\/post\/6340\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F11%2F21%2Fnetwork-theory-part-18%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-1Eg' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F11%2F21%2Fnetwork-theory-part-18%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F11%2F21%2Fnetwork-theory-part-18%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Network Theory (Part 18)" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/" />
+<meta property="og:description" content="A simple example of a chemical reaction network, involving a diatomic gas dissociating into single atoms, which illustrates Feinberg&#8217;s deficiency zero theorem." />
+<meta property="article:published_time" content="2011-11-21T07:07:37+00:00" />
+<meta property="article:modified_time" content="2014-01-08T17:33:26+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/networks/nitrogen.png" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Network Theory (Part&nbsp;18)" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/networks/nitrogen.png?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="A simple example of a chemical reaction network, involving a diatomic gas dissociating into single atoms, which illustrates Feinberg&#039;s deficiency zero theorem." />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-6340 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-6340 post type-post status-publish format-standard hentry category-chemistry category-mathematics category-networks category-physics" id="post-6340">
+			<h2>Network Theory (Part&nbsp;18)</h2>
+
+			<div class="entry">
+				<p><i>joint with <b><a href="http://www.azimuthproject.org/azimuth/show/Jacob+Biamonte">Jacob Biamonte</a></b></i></p>
+<p><a href="https://johncarlosbaez.wordpress.com/2011/11/12/network-theory-part-17/">Last time</a> we explained how &#8216;reaction networks&#8217;, as used in chemistry, are just another way of talking about Petri nets.  We stated an amazing result, the deficiency zero theorem, which settles quite a number of questions about chemical reactions.  Now let&#8217;s illustrate it with an example.</p>
+<p>Our example won&#8217;t show how <i>powerful</i> this theorem is: it&#8217;s too simple.  But it&#8217;ll help explain the ideas involved.</p>
+<h4> Diatomic molecules </h4>
+<p>A diatomic molecule consists of two atoms of the same kind, stuck together:</p>
+<div align="center"><img src="https://i1.wp.com/math.ucr.edu/home/baez/networks/nitrogen.png" alt="" /></div>
+<p>At room temperature there are 5 elements that are diatomic gases: hydrogen, nitrogen, oxygen, fluorine, chlorine.  Bromine is a diatomic liquid, but easily evaporates into a diatomic gas:</p>
+<div align="center"><img border="2" width="230" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/bromine.jpg" alt="" /></div>
+<p>Iodine is a crystal at room temperatures:</p>
+<div align="center"><img src="https://i2.wp.com/math.ucr.edu/home/baez/networks/iodine_crystal.png" alt="" /></div>
+<p>but if you heat it a bit, it becomes a diatomic liquid and then a gas:</p>
+<div align="center"><img border="2" src="https://i1.wp.com/math.ucr.edu/home/baez/networks/iodine.jpg" alt="" /></div>
+<p>so people often list it as a seventh member of the diatomic club.  </p>
+<p>When you heat any diatomic gas enough, it starts becoming a &#8216;monatomic&#8217; gas as molecules break down into individual atoms.  However, just as a diatomic molecule can break apart into two  atoms:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=A_2+%5Cto+A+%2B+A+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A_2 &#92;to A + A " class="latex" /></p>
+<p>two atoms can recombine to form a diatomic molecule:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=A+%2B+A+%5Cto+A_2+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A + A &#92;to A_2 " class="latex" /></p>
+<p>So in equilibrium, the gas will be a mixture of diatomic and monatomic forms.   The exact amount of each will depend on the temperature and pressure, since these affect the likelihood that two colliding atoms stick together, or a diatomic molecule splits apart.   The detailed nature of our gas also matters, of course.</p>
+<p>But we don&#8217;t need to get into these details here!  Instead, we can just write down the &#8216;rate equation&#8217; for the reactions we&#8217;re talking about. All the details we&#8217;re ignoring will be hiding in some constants called &#8216;rate constants&#8217;.  We won&#8217;t try to compute these; we&#8217;ll leave that to our chemist friends.</p>
+<h4> A reaction network </h4>
+<p>To write down our rate equation, we start by drawing a &#8216;reaction network&#8217;.    For this, we can be a bit abstract and call the diatomic molecule <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" /> instead of <img src="https://s0.wp.com/latex.php?latex=A_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A_2" class="latex" />.  Then it looks like this:</p>
+<div align="center">
+<img width="200" src="https://i1.wp.com/math.ucr.edu/home/baez/networks/chemical_reaction_network_part_18.png" alt="" />
+</div>
+<p>We could write down the same information using a Petri net:</p>
+<div align="center">
+<img width="400" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/petri_net_part_18.png" alt="" />
+</div>
+<p>But today let&#8217;s focus on the reaction network!  Staring at this picture, we can read off various things: </p>
+<p>&bull; <b>Species.</b>  The species are the different kinds of atoms, molecules, etc.  In our example the set of species is <img src="https://s0.wp.com/latex.php?latex=S+%3D+%5C%7BA%2C+B%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S = &#92;{A, B&#92;}" class="latex" />.  </p>
+<p>&bull; <b>Complexes.</b> A complex is a finite sum of species, like <img src="https://s0.wp.com/latex.php?latex=A%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A," class="latex" /> or <img src="https://s0.wp.com/latex.php?latex=A+%2B+A%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A + A," class="latex" /> or for a fancier example using more efficient notation, <img src="https://s0.wp.com/latex.php?latex=2+A+%2B+3+B.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="2 A + 3 B." class="latex" />    So, we can think of a complex as a vector <img src="https://s0.wp.com/latex.php?latex=v+%5Cin+%5Cmathbb%7BR%7D%5ES.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v &#92;in &#92;mathbb{R}^S." class="latex" />  The complexes that actually show up in our reaction network form a set <img src="https://s0.wp.com/latex.php?latex=C+%5Csubseteq+%5Cmathbb%7BR%7D%5ES.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C &#92;subseteq &#92;mathbb{R}^S." class="latex" />  In our example, <img src="https://s0.wp.com/latex.php?latex=C+%3D+%5C%7BA%2BA%2C+B%5C%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C = &#92;{A+A, B&#92;}." class="latex" /> </p>
+<p>&bull; <b>Reactions.</b> A reaction is an arrow going from one complex to another.  In our example we have two reactions: <img src="https://s0.wp.com/latex.php?latex=A+%2B+A+%5Cto+B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A + A &#92;to B" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=B+%5Cto+A+%2B+A.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B &#92;to A + A." class="latex" />   </p>
+<p>Chemists define a <b>reaction network</b> to be a triple <img src="https://s0.wp.com/latex.php?latex=%28S%2C+C%2C+T%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(S, C, T)" class="latex" /> where <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> is a set of species, <img src="https://s0.wp.com/latex.php?latex=C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C" class="latex" /> is the set of complexes that appear in the reactions, and <img src="https://s0.wp.com/latex.php?latex=T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T" class="latex" /> is the set of reactions <img src="https://s0.wp.com/latex.php?latex=v+%5Cto+w&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v &#92;to w" class="latex" /> where <img src="https://s0.wp.com/latex.php?latex=v%2C+w+%5Cin+C.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v, w &#92;in C." class="latex" />  (Stochastic Petri net people call reactions <b>transitions</b>, hence the letter <img src="https://s0.wp.com/latex.php?latex=T.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T." class="latex" />)</p>
+<p>So, in our example we have:</p>
+<p>&bull; Species <img src="https://s0.wp.com/latex.php?latex=S+%3D+%5C%7BA%2CB%5C%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S = &#92;{A,B&#92;}." class="latex" />  </p>
+<p>&bull; Complexes: <img src="https://s0.wp.com/latex.php?latex=C%3D+%5C%7BA%2BA%2C+B%5C%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C= &#92;{A+A, B&#92;}." class="latex" />  </p>
+<p>&bull; Reactions: <img src="https://s0.wp.com/latex.php?latex=T+%3D++%5C%7BA%2BA%5Cto+B%2C+B%5Cto+A%2BA%5C%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T =  &#92;{A+A&#92;to B, B&#92;to A+A&#92;}." class="latex" /></p>
+<p>To get the rate equation, we also need one more piece of information: a <b>rate constant</b> <img src="https://s0.wp.com/latex.php?latex=r%28%5Ctau%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r(&#92;tau)" class="latex" /> for each reaction <img src="https://s0.wp.com/latex.php?latex=%5Ctau+%5Cin+T.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;tau &#92;in T." class="latex" />  This is a nonnegative real number that affects how fast the reaction goes.  All the details of how our particular diatomic gas behaves at a given temperature and pressure are packed into these constants!  </p>
+<h4> The rate equation </h4>
+<p>The rate equation says how the expected numbers of the various species&mdash;atoms, molecules and the like&mdash;changes with time.  This equation is deterministic.   It&#8217;s a good approximation when the numbers are large and any fluctuations in these numbers are negligible by comparison.</p>
+<p>Here&#8217;s the general form of the <b><a href="https://johncarlosbaez.wordpress.com/2011/09/09/network-theory-part-8/">rate equation</a></b>:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd%7D%7Bd+t%7D+x_i+%3D++%5Csum_%7B%5Ctau%5Cin+T%7D+r%28%5Ctau%29+%5C%2C+%28n_i%28%5Ctau%29-m_i%28%5Ctau%29%29+%5C%2C+x%5E%7Bm%28%5Ctau%29%7D++%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d}{d t} x_i =  &#92;sum_{&#92;tau&#92;in T} r(&#92;tau) &#92;, (n_i(&#92;tau)-m_i(&#92;tau)) &#92;, x^{m(&#92;tau)}  } " class="latex" /> </p>
+<p>Let&#8217;s take a closer look.  The quantity <img src="https://s0.wp.com/latex.php?latex=x_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_i" class="latex" /> is the expected population of the <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" />th species.  So, this equation tells us how that changes.   But what about the right hand side?  As you might expect, it&#8217;s a sum over reactions.  And:</p>
+<p>&bull; The term for the reaction <img src="https://s0.wp.com/latex.php?latex=%5Ctau&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;tau" class="latex" /> is proportional to the rate constant <img src="https://s0.wp.com/latex.php?latex=r%28%5Ctau%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r(&#92;tau)." class="latex" /> </p>
+<p>&bull; Each reaction <img src="https://s0.wp.com/latex.php?latex=%5Ctau&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;tau" class="latex" /> goes between two complexes, so we can write it as <img src="https://s0.wp.com/latex.php?latex=m%28%5Ctau%29+%5Cto+n%28%5Ctau%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m(&#92;tau) &#92;to n(&#92;tau)." class="latex" />  Among chemists the input <img src="https://s0.wp.com/latex.php?latex=m%28%5Ctau%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m(&#92;tau)" class="latex" /> is called the <b>reactant complex</b>, and the output is called the <b>product complex</b>.  The difference <img src="https://s0.wp.com/latex.php?latex=n_i%28%5Ctau%29-m_i%28%5Ctau%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n_i(&#92;tau)-m_i(&#92;tau)" class="latex" /> tells us how many items of species <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> get created, minus how many get destroyed.  So, it&#8217;s the net amount of this species that gets produced by the reaction <img src="https://s0.wp.com/latex.php?latex=%5Ctau.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;tau." class="latex" />  The term for the reaction <img src="https://s0.wp.com/latex.php?latex=%5Ctau&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;tau" class="latex" /> is proportional to this, too.</p>
+<p>&bull; Finally, the <b><a href="http://en.wikipedia.org/wiki/Law_of_mass_action">law of mass action</a></b> says that the rate of a reaction is proportional to the product of the concentrations of the species that enter as inputs.  More precisely, if we have a reaction <img src="https://s0.wp.com/latex.php?latex=%5Ctau&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;tau" class="latex" /> with input is the complex <img src="https://s0.wp.com/latex.php?latex=m%28%5Ctau%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m(&#92;tau)" class="latex" />, we define <img src="https://s0.wp.com/latex.php?latex=x%5E%7Bm%28%5Ctau%29%7D+%3D+x_1%5E%7Bm_1%28%5Ctau%29%7D+%5Ccdots+x_k%5E%7Bm_k%28%5Ctau%29%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^{m(&#92;tau)} = x_1^{m_1(&#92;tau)} &#92;cdots x_k^{m_k(&#92;tau)}." class="latex" />  The law of mass action says the term for the reaction <img src="https://s0.wp.com/latex.php?latex=%5Ctau&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;tau" class="latex" /> is proportional to this, too!</p>
+<p>Let&#8217;s see what this says for the reaction network we&#8217;re studying:</p>
+<div align="center">
+<img width="200" src="https://i1.wp.com/math.ucr.edu/home/baez/networks/chemical_reaction_network_part_18.png" alt="" />
+</div>
+<p>Let&#8217;s write <img src="https://s0.wp.com/latex.php?latex=x_1%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1(t)" class="latex" /> for the number of <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> atoms and <img src="https://s0.wp.com/latex.php?latex=x_2%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_2(t)" class="latex" /> for the number of <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" /> molecules.   Let the rate constant for the reaction <img src="https://s0.wp.com/latex.php?latex=B+%5Cto+A+%2B+A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B &#92;to A + A" class="latex" /> be <img src="https://s0.wp.com/latex.php?latex=%5Calpha%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha," class="latex" /> and let the rate constant for <img src="https://s0.wp.com/latex.php?latex=A+%2B+A+%5Cto+B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A + A &#92;to B" class="latex" /> be <img src="https://s0.wp.com/latex.php?latex=%5Cbeta%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;beta," class="latex" />   Then the rate equation is this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B%5Cfrac%7Bd%7D%7Bd+t%7D+x_1+%3D++2+%5Calpha+x_2+-+2+%5Cbeta+x_1%5E2+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{&#92;frac{d}{d t} x_1 =  2 &#92;alpha x_2 - 2 &#92;beta x_1^2 }" class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B%5Cfrac%7Bd%7D%7Bd+t%7D+x_2+%3D+-%5Calpha+x_2+%2B+%5Cbeta+x_1%5E2+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{&#92;frac{d}{d t} x_2 = -&#92;alpha x_2 + &#92;beta x_1^2 }" class="latex" /></p>
+<p>This is a bit intimidating.  However, we can solve it in closed form thanks to something very precious: a <i>conserved quantity</i>.  </p>
+<p>We&#8217;ve got two species, <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" />.  But remember, <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" /> is just an abbreviation for a molecule made of two <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> atoms.   So, the total number of <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> atoms is conserved by the reactions in our network.  This is the number of <i>A</i>&#8216;s plus twice the number of <i>B</i>&#8216;s: <img src="https://s0.wp.com/latex.php?latex=x_1+%2B+2x_2.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1 + 2x_2." class="latex" />  So, this should be a <b>conserved quantity</b>: it should not change with time.  Indeed, by adding the first equation above to twice the second, we see:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B%5Cfrac%7Bd%7D%7Bd+t%7D+%5Cleft%28+x_1+%2B+2x_2+%5Cright%29+%3D+0+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{&#92;frac{d}{d t} &#92;left( x_1 + 2x_2 &#92;right) = 0 }" class="latex" /></p>
+<p>As a consequence, any solution will stay on a line </p>
+<p><img src="https://s0.wp.com/latex.php?latex=x_1+%2B+2+x_2+%3D+c+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1 + 2 x_2 = c " class="latex" /></p>
+<p>for some constant <img src="https://s0.wp.com/latex.php?latex=c&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="c" class="latex" />.  We can use this fact to rewrite the rate equation just in terms of <img src="https://s0.wp.com/latex.php?latex=x_1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1" class="latex" />:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd%7D%7Bd+t%7D+x_1+%3D+%5Calpha+%282c+-+x_1%29+-+2+%5Cbeta+x_1%5E2+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d}{d t} x_1 = &#92;alpha (2c - x_1) - 2 &#92;beta x_1^2 } " class="latex" /></p>
+<p>This is a separable differential equation, so we can solve it if we can figure out how to do this integral </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+t+%3D+%5Cint+%5Cfrac%7Bd+x_1%7D%7B%5Calpha+%282c+-+x_1%29+-+2+%5Cbeta+x_1%5E2+%7D++%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ t = &#92;int &#92;frac{d x_1}{&#92;alpha (2c - x_1) - 2 &#92;beta x_1^2 }  } " class="latex" /></p>
+<p>and then solve for <img src="https://s0.wp.com/latex.php?latex=x_1.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1." class="latex" /></p>
+<p>This sort of trick won&#8217;t work for more complicated examples.<br />
+But the idea remains important: the numbers of atoms of various kinds&mdash;hydrogen, helium, lithium, and so on&mdash;are conserved by chemical reactions, so a solution of the rate equation can&#8217;t roam freely in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5ES.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^S." class="latex" />  It will be trapped on some hypersurface, which is called a &#8216;stoichiometric compatibility class&#8217;.  And this is very important.</p>
+<p>We don&#8217;t feel like doing the integral required to solve our rate equation in closed form, because this idea doesn&#8217;t generalize too much.  On the other hand, we can always solve the rate equation numerically.  So let&#8217;s try that!</p>
+<p>For example, suppose we set <img src="https://s0.wp.com/latex.php?latex=%5Calpha+%3D+%5Cbeta+%3D+1.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha = &#92;beta = 1." class="latex" />  We can plot the solutions for three different choices of initial conditions, say <img src="https://s0.wp.com/latex.php?latex=%28x_1%2Cx_2%29+%3D+%280%2C3%29%2C+%284%2C0%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(x_1,x_2) = (0,3), (4,0)," class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%283%2C3%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(3,3)" class="latex" />.  We get these graphs:</p>
+<div align="center">
+<img src="https://i0.wp.com/math.ucr.edu/home/baez/networks/part-18-concentration-plots.png" alt="" /></div>
+<p>It looks like the solution always approaches an equilibrium.   We seem to be getting different equilibria for different initial conditions, and the pattern is a bit mysterious.   However, something nice happens when we plot the ratio <img src="https://s0.wp.com/latex.php?latex=x_1%5E2+%2F+x_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1^2 / x_2" class="latex" />: </p>
+<div align="center">
+<img src="https://i2.wp.com/math.ucr.edu/home/baez/networks/part-18-ratio-plots.png" alt="" />
+</div>
+<p>Apparently it always converges to 1.   Why should that be?  It&#8217;s not terribly surprising.  With both rate constants equal to 1, the reaction <img src="https://s0.wp.com/latex.php?latex=A+%2B+A+%5Cto+B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A + A &#92;to B" class="latex" /> proceeds at a rate equal to the square of the number of <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" />&#8216;s, namely <img src="https://s0.wp.com/latex.php?latex=x_1%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1^2" class="latex" />.  The reverse reaction proceeds at a rate equal to the number of <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" />&#8216;s, namely <img src="https://s0.wp.com/latex.php?latex=x_2.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_2." class="latex" />  So in equilibrium, we should have <img src="https://s0.wp.com/latex.php?latex=x_1%5E2+%3D+x_2.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1^2 = x_2." class="latex" /></p>
+<p>But why is the equilibrium <i>stable</i>?  In this example we could see that using the closed-form solution, or maybe just common sense.   But it also follows from a powerful theorem that handles a <i>lot</i> of reaction networks.</p>
+<h4> The deficiency zero theorem </h4>
+<p>It&#8217;s called Feinberg&#8217;s deficiency zero theorem, and we saw it <a href="https://johncarlosbaez.wordpress.com/2011/11/12/network-theory-part-17/">last time</a>.  Very roughly, it says that if our reaction network is &#8216;weakly reversible&#8217; and has &#8216;deficiency zero&#8217;, the rate equation will have equilibrium solutions that behave about as nicely as you could want.  </p>
+<p>Let&#8217;s see how this works.   We need to remember some jargon:</p>
+<p>&bull; <b>Weakly reversible.</b> A reaction network is <b>weakly reversible</b> if for every reaction <img src="https://s0.wp.com/latex.php?latex=v+%5Cto+w&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v &#92;to w" class="latex" /> in the network, there exists a path of reactions in the network starting at <img src="https://s0.wp.com/latex.php?latex=w&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="w" class="latex" /> and leading back to <img src="https://s0.wp.com/latex.php?latex=v.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v." class="latex" /></p>
+<p>&bull; <b>Reversible.</b>   A reaction network is <b>reversible</b> if for every reaction <img src="https://s0.wp.com/latex.php?latex=v+%5Cto+w&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v &#92;to w" class="latex" /> in the network, <img src="https://s0.wp.com/latex.php?latex=w+%5Cto+v&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="w &#92;to v" class="latex" /> is also a reaction in the network.    Any reversible reaction network is weakly reversible.   Our example is reversible, since it consists of reactions <img src="https://s0.wp.com/latex.php?latex=A+%2B+A+%5Cto+B%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A + A &#92;to B," class="latex" /> <img src="https://s0.wp.com/latex.php?latex=B+%5Cto+A+%2B+A.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B &#92;to A + A." class="latex" /> </p>
+<p>But what about &#8216;deficiency zero&#8217;?  We defined that concept <a href="https://johncarlosbaez.wordpress.com/2011/11/12/network-theory-part-17/">last time</a>, but let&#8217;s review:</p>
+<p>&bull; <b>Connected component.</b>  A reaction network gives a kind of graph with complexes as vertices and reactions as edges.  Two complexes lie in the same  <b>connected component</b> if we can get from one to the other by a path of reactions, where at each step we&#8217;re allowed to go either forward <i>or backward</i> along a reaction.  Chemists call a connected component a <b>linkage class</b>.  In our example there&#8217;s just one:</p>
+<div align="center"><img width="200" src="https://i1.wp.com/math.ucr.edu/home/baez/networks/chemical_reaction_network_part_18.png" alt="" /></div>
+<p>&bull; <b>Stoichiometric subspace.</b>  The <b>stoichiometric subspace</b> is the subspace <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BStoch%7D+%5Csubseteq+%5Cmathbb%7BR%7D%5ES&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Stoch} &#92;subseteq &#92;mathbb{R}^S" class="latex" /> spanned by the vectors of the form <img src="https://s0.wp.com/latex.php?latex=w+-+v&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="w - v" class="latex" /> for all reactions <img src="https://s0.wp.com/latex.php?latex=v+%5Cto+w&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v &#92;to w" class="latex" /> in our reaction network.    This subspace describes the directions in which a solution of the rate equation can move.  In our example, it&#8217;s spanned by <img src="https://s0.wp.com/latex.php?latex=B+-+2+A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B - 2 A" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=2+A+-+B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="2 A - B" class="latex" />, or if you prefer, <img src="https://s0.wp.com/latex.php?latex=%28-2%2C1%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(-2,1)" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%282%2C-1%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(2,-1)." class="latex" />  These vectors are linearly dependent, so the stoichiometric subspace has dimension 1.  </p>
+<p>&bull; <b>Deficiency.</b>  The <b>deficiency</b> of a reaction network is the number of complexes, minus the number of connected components, minus the dimension of the stoichiometric subspace.  In our example there are 2 complexes, 1 connected component, and the dimension of the stoichiometric subspace is 1.  So, our reaction network has deficiency 2 &#8211; 1 &#8211; 1 = 0.  </p>
+<p>So, the deficiency zero theorem applies!  What does it say?  To understand it, we need a bit more jargon.  First of all, a vector <img src="https://s0.wp.com/latex.php?latex=x+%5Cin+%5Cmathbb%7BR%7D%5ES&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x &#92;in &#92;mathbb{R}^S" class="latex" /> tells us how much we&#8217;ve got of each species: the amount of species <img src="https://s0.wp.com/latex.php?latex=i+%5Cin+S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i &#92;in S" class="latex" /> is the number <img src="https://s0.wp.com/latex.php?latex=x_i.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_i." class="latex" />  And then:</p>
+<p>&bull; <b>Stoichiometric compatibility class.</b>  Given a vector <img src="https://s0.wp.com/latex.php?latex=v%5Cin+%5Cmathbb%7BR%7D%5ES&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v&#92;in &#92;mathbb{R}^S" class="latex" />, its <b>stoichiometric compatibility class</b> is the subset of all vectors that we could reach using the reactions in our reaction network:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5C%7B+v+%2B+w+%5C%3B+%3A+%5C%3B+w+%5Cin+%5Cmathrm%7BStoch%7D+%5C%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{ v + w &#92;; : &#92;; w &#92;in &#92;mathrm{Stoch} &#92;} " class="latex" /></p>
+<p>In our example, where the stoichiometric subspace is spanned by <img src="https://s0.wp.com/latex.php?latex=%282%2C-1%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(2,-1)," class="latex" /> the stoichiometric compatibility class of the vector <img src="https://s0.wp.com/latex.php?latex=%28v_1%2Cv_2%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(v_1,v_2)" class="latex" /> is the line consisting of points</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%28x_1%2C+x_2%29+%3D+%28v_1%2Cv_2%29+%2B+s%282%2C-1%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(x_1, x_2) = (v_1,v_2) + s(2,-1) " class="latex" /></p>
+<p>where the parameter <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> ranges over all real numbers.  Notice that this line can also be written as</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x_1+%2B+2x_2+%3D+c+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1 + 2x_2 = c " class="latex" /></p>
+<p>We&#8217;ve already seen that if we start with initial conditions on such a line, the solution will stay on this line.  And that&#8217;s how it always works: as time passes, any solution of the rate equation stays in the same stoichiometric compatibility class!  </p>
+<p>In other words: <i>the stoichiometric subspace is defined by a bunch of linear equations, one for each linear conservation law that all the reactions in our network obey.</i>   </p>
+<p>Here a <b>linear conservation law</b> is a law saying that some linear combination of the numbers of species does not change.</p>
+<p>Next: </p>
+<p>&bull; <b>Positivity.</b>  A vector in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5ES&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^S" class="latex" /> is <b>positive</b> if all its components are positive; this describes a a container of chemicals where all the species are actually present.  The <b>positive stoichiometric compatibility class</b> of <img src="https://s0.wp.com/latex.php?latex=x%5Cin+%5Cmathbb%7BR%7D%5ES&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x&#92;in &#92;mathbb{R}^S" class="latex" /> consists of all positive vectors in its stoichiometric compatibility class.</p>
+<p>We finally have enough jargon in our arsenal to state the zero deficiency theorem.  We&#8217;ll only state the part we need today:</p>
+<p><b>Zero Deficiency Theorem (Feinberg).</b>  If a reaction network has deficiency zero and is weakly reversible, and the rate constants are positive, the rate equation has exactly one equilibrium solution in each positive stoichiometric compatibility class.  Any sufficiently nearby solution that starts in the same class will approach this equilibrium as <img src="https://s0.wp.com/latex.php?latex=t+%5Cto+%2B%5Cinfty.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;to +&#92;infty." class="latex" /></p>
+<p>In our example, this theorem says there&#8217;s just one positive<br />
+equilibrium <img src="https://s0.wp.com/latex.php?latex=%28x_1%2Cx_2%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(x_1,x_2)" class="latex" /> in each line</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x_1+%2B+2x_2+%3D+c+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1 + 2x_2 = c " class="latex" /></p>
+<p>We can find it by setting the time derivatives to zero:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd%7D%7Bd+t%7Dx_1+%3D++2+%5Calpha+x_2+-+2+%5Cbeta+x_1%5E2+%3D+0+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d}{d t}x_1 =  2 &#92;alpha x_2 - 2 &#92;beta x_1^2 = 0 } " class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd%7D%7Bd+t%7D+x_2+%3D+-%5Calpha+x_2+%2B+%5Cbeta+x_1%5E2+%3D+0+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d}{d t} x_2 = -&#92;alpha x_2 + &#92;beta x_1^2 = 0 }" class="latex" /></p>
+<p>Solving these, we get</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bx_1%5E2%7D%7Bx_2%7D+%3D+%5Cfrac%7B%5Calpha%7D%7B%5Cbeta%7D+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{x_1^2}{x_2} = &#92;frac{&#92;alpha}{&#92;beta} }" class="latex" /> </p>
+<p>So, these are our equilibrium solutions.  It&#8217;s easy to verify that indeed, there&#8217;s one of these in each stoichiometric compatibility class <img src="https://s0.wp.com/latex.php?latex=x_1+%2B+2x_2+%3D+c.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1 + 2x_2 = c." class="latex" />  And the zero deficiency theorem also tells us that any sufficiently nearby solution that starts in the same class will approach this equilibrium as <img src="https://s0.wp.com/latex.php?latex=t+%5Cto+%5Cinfty&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;to &#92;infty" class="latex" />.</p>
+<p>This partially explains what we saw before in our graphs.  It shows that in the case <img src="https://s0.wp.com/latex.php?latex=%5Calpha+%3D+%5Cbeta+%3D+1%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha = &#92;beta = 1," class="latex" /> any solution that starts by <i>nearly</i> having</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B%5Cfrac%7Bx_1%5E2%7D%7Bx_2%7D+%3D+1%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{&#92;frac{x_1^2}{x_2} = 1} " class="latex" /></p>
+<p>will actually have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B%5Clim_%7Bt+%5Cto+%2B%5Cinfty%7D+%5Cfrac%7Bx_1%5E2%7D%7Bx_2%7D+%3D+1+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{&#92;lim_{t &#92;to +&#92;infty} &#92;frac{x_1^2}{x_2} = 1 }" class="latex" /></p>
+<p>But in fact, in this example we don&#8217;t even need to start <i>near</i> the equilibrium for our solution to approach the equilibrium!  What about in general?  We don&#8217;t know, but just to get the ball rolling, we&#8217;ll risk the following wild guess:</p>
+<p><b>Conjecture.</b>  If a reaction network has deficiency zero and is weakly reversible, and the rate constants are positive, the rate equation has exactly one equilibrium solution in each positive stoichiometric compatibility class, and <i>any</i> positive solution that starts in the same class will approach this equilibrium as <img src="https://s0.wp.com/latex.php?latex=t+%5Cto+%2B%5Cinfty&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;to +&#92;infty" class="latex" />. </p>
+<p>If anyone knows a proof or counterexample, we&#8217;d be interested.  If this result were true, it would really clarify the dynamics of reaction networks in the zero deficiency case.</p>
+<p>Next time we&#8217;ll talk about this same reaction network from a stochastic point of view, where we think of the atoms and molecules as reacting in a <i>probabilistic</i> way.  And we&#8217;ll see how the conservation laws we&#8217;ve been talking about today are related to <a href="http://math.ucr.edu/home/baez/networks/networks_11.html">Noether&#8217;s theorem for Markov processes</a>! </p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Monday, November 21st, 2011 at 7:07 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/chemistry/" rel="category tag">chemistry</a>, <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/networks/" rel="category tag">networks</a>, <a href="https://johncarlosbaez.wordpress.com/category/physics/" rel="category tag">physics</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2011/11/17/wild-cats-of-sumatra/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2011/11/24/lynn-margulis-1938-2011/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">27 Responses to <em>Network Theory (Part&nbsp;18)</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-10575">
+				<div id="div-comment-10575" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.kent.ac.uk/secl/philosophy/staff/corfield.html' rel='external nofollow ugc' class='url'>David Corfield</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10575">21 November, 2011 at 12:20 pm</a>		</div>
+
+		<p>In your conjecture, presumably you&#8217;re still taking deficiency to be zero. It would be nice to see the simplest deficiency one network where there fails to be a single fixed point per coset. Feinberg wrote about deficiency one networks, as mentioned by <a href="http://vcp.med.harvard.edu/papers/crnt.pdf" rel="nofollow">Gunawardena</a>. That seems a very good paper, if one had time. That idea that his <img src="https://s0.wp.com/latex.php?latex=%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi" class="latex" /> is &#8220;trying to be linear&#8221; looks important.</p>
+<p>I guess what your conjecture needs is prevention of states heading off to the boundary of the non-negative cone, where one or more of the concentrations tends to zero.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10575#respond' data-commentid="10575" data-postid="6340" data-belowelement="div-comment-10575" data-respondelement="respond" data-replyto="Reply to David Corfield" aria-label='Reply to David Corfield'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-10578">
+				<div id="div-comment-10578" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10578">21 November, 2011 at 12:49 pm</a>		</div>
+
+		<p>Yikes, we left the &#8216;deficiency zero&#8217; hypothesis out of our statement of the deficiency zero theorem, and also our conjecture!  Thanks for catching that&#8212;I&#8217;ll put it in.</p>
+<p>I&#8217;ve been sadly slow understanding the <i>proof</i> of the deficiency zero theorem or Feinberg&#8217;s work on deficiency one networks.  Gunawardena&#8217;s paper is very good, but Feinberg&#8217;s original papers also look very good (and free):</p>
+<p>&bull; Martin Feinberg, <a href="http://www.seas.upenn.edu/~jadbabai/ESE680/Fei87a.pdf" rel="nofollow">Chemical reaction network structure and the stability of complex isothermal reactors: I. The deficiency zero and deficiency one theorems</a>, <i>Chemical Engineering Science</i> <b>42</b> (1987), 2229–2268. </p>
+<p>&bull; Martin Feinberg, <a href="http://www.che.eng.ohio-state.edu/~FEINBERG/LecturesOnReactionNetworks/" rel="nofollow">Lectures on reaction networks</a>, 1979.</p>
+<p>I&#8217;ve just been slow about reading them! </p>
+<blockquote><p>
+I guess what your conjecture needs is prevention of states heading off to the boundary of the non-negative cone, where one or more of the concentrations tends to zero.
+</p></blockquote>
+<p>That&#8217;s part of it: that&#8217;s what can easily go wrong if we drop the &#8216;weakly reversible&#8217; condition.  Periodic orbits are already ruled out.  But there&#8217;s also the possibility, <i>in principle</i>, of more complicated chaotic motions!  </p>
+<p>A standard trick in situations like this would be to cook up a <a href="http://en.wikipedia.org/wiki/Lyapunov_function#Globally_asymptotically_stable_equilibrium" rel="nofollow">&#8216;Lyapunov function&#8217;</a> on each stoichiometric compatibility class, in order to show each class contains a globally asymptotically stable equilibrium&#8212;which just means an equilibrium that all other solutions (in that class) approach as <img src="https://s0.wp.com/latex.php?latex=t+%5Cto+%2B%5Cinfty&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;to +&#92;infty" class="latex" />.  I should look and see what Feinberg did, and whether or why he didn&#8217;t or couldn&#8217;t do that.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10578#respond' data-commentid="10578" data-postid="6340" data-belowelement="div-comment-10578" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-2 highlander-comment" id="comment-10580">
+				<div id="div-comment-10580" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10580">21 November, 2011 at 1:17 pm</a>		</div>
+
+		<p>David wrote: </p>
+<blockquote><p>
+It would be nice to see the simplest deficiency one network where there fails to be a single fixed point per coset.
+</p></blockquote>
+<p>Let&#8217;s see.  Feinberg mentions a nice example on page 5 <a href="http://www.che.eng.ohio-state.edu/~FEINBERG/LecturesOnReactionNetworks/images/FeinbergLecture3.pdf" rel="nofollow">here</a>: it&#8217;s called the <b>Edelstein network</b>:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=A+%5Cleftrightarrow+A+%2B+A+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A &#92;leftrightarrow A + A " class="latex" /><br />
+<img src="https://s0.wp.com/latex.php?latex=A+%2B+B+%5Cleftrightarrow+C+%5Cleftrightarrow+B+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A + B &#92;leftrightarrow C &#92;leftrightarrow B " class="latex" /></p>
+<p>This has 5 complexes and 2 components, and the stoichiometric subspace has dimension 2, since it&#8217;s the span of the vectors <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=B+-+C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B - C" class="latex" />.   So, the deficiency of this reaction network is 5 &#8211; 2 &#8211; 2 = 1.  </p>
+<p>He says that for certain choices of the rate constants, the set of equilibrium is a roughly S-shaped curve that hits one of the stoichiometric compatibility classes&#8212;which are planes&#8212;in three points!   For example, he says these rate constants work:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=8.5%3A+A+%5Cto+A+%2B+A+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="8.5: A &#92;to A + A " class="latex" /><br />
+<img src="https://s0.wp.com/latex.php?latex=1%3A+A+%2B+A+%5Cto+A+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1: A + A &#92;to A " class="latex" /><br />
+<img src="https://s0.wp.com/latex.php?latex=1%3A+A+%2B+B+%5Cto+C+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1: A + B &#92;to C " class="latex" /><br />
+<img src="https://s0.wp.com/latex.php?latex=1%3A+C+%5Cto+A+%2B+B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1: C &#92;to A + B" class="latex" /><br />
+<img src="https://s0.wp.com/latex.php?latex=1+%3A+C+%5Cto+B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1 : C &#92;to B" class="latex" /><br />
+<img src="https://s0.wp.com/latex.php?latex=0.2%3A+B+%5Cto+C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="0.2: B &#92;to C" class="latex" />  </p>
+<p>I&#8217;d like to play with this and other examples myself, soon.  He lists some more.  These &#8216;play&#8217; networks, as he calls them, all seem unrealistic in one way or another&#8212;at least in chemistry.   In particular, <img src="https://s0.wp.com/latex.php?latex=A+%5Cto+A+%2B+A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A &#92;to A + A" class="latex" /> may be fine for amoebas, I don&#8217;t think it happens in chemistry&#8212;unless, just as our amoebas are supplied with food, our chemical is a self-replicating molecule floating in a &#8216;bath&#8217; of raw materials that we don&#8217;t take explicit account of here.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10580#respond' data-commentid="10580" data-postid="6340" data-belowelement="div-comment-10580" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-10582">
+				<div id="div-comment-10582" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10582">21 November, 2011 at 1:28 pm</a>		</div>
+
+		<blockquote><p>Periodic orbits are already ruled out.</p></blockquote>
+<p>I clearly don&#8217;t yet understand this stuff well enough, because the ruling-out of periodic orbits wasn&#8217;t transparently obvious.  (The first kind of counterexample I&#8217;d try to find to the conjecture would be a reaction network whose dynamics go to a <a href="http://www.scholarpedia.org/article/Periodic_orbit" rel="nofollow">limit cycle</a> of some sort.)</p>
+<blockquote><p>But there&#8217;s also the possibility, <i>in principle,</i> of more complicated chaotic motions!</p></blockquote>
+<p>Time to dust off that part of my brain which learned about the <a href="http://www.scholarpedia.org/article/Belousov-Zhabotinsky_reaction" rel="nofollow">Belousov&#8211;Zhabotinsky</a> reaction&#8230;.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10582#respond' data-commentid="10582" data-postid="6340" data-belowelement="div-comment-10582" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-10583">
+				<div id="div-comment-10583" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10583">21 November, 2011 at 1:35 pm</a>		</div>
+
+		<p>Blake wrote:</p>
+<blockquote><p>
+I clearly don’t yet understand this stuff well enough, because the ruling-out of periodic orbits wasn’t transparently obvious.
+</p></blockquote>
+<p>Just so nobody gets confused: periodic orbits are ruled out for <i>deficiency zero, weakly reversible</i> reaction networks&#8212;this is part of the deficiency zero theorem as stated <a href="https://johncarlosbaez.wordpress.com/2011/11/12/network-theory-part-17/" rel="nofollow">last time</a>.  </p>
+<p>This theorem is not obvious to me, so we&#8217;re in the same boat: I need to understand what&#8217;s so great about &#8216;deficiency zero&#8217;.</p>
+<p>Reaction networks violating these hypotheses can have periodic orbits:</p>
+<p>&bull; Daniel B. Forger, <a href="http://www.pnas.org/content/108/11/4281.abstract" rel="nofollow">Signal processing in cellular clocks</a>, <i><a href="http://www.pnas.org/content/108/11/4281.abstract" rel="nofollow">PNAS</a></i> <b>108</b> (2011), 4281-4285.</p>
+<blockquote><p>
+Time to dust off that part of my brain which learned about the Belousov–Zhabotinsky reaction&#8230;
+</p></blockquote>
+<p>Me too!  It&#8217;s not chaotic, but you might like the reaction on <a href="http://www.che.eng.ohio-state.edu/~FEINBERG/LecturesOnReactionNetworks/images/FeinbergLecture3.pdf" rel="nofollow">page 10 here</a>, which is based on the &#8216;Brusselator&#8217;.  It has an unstable equilibrium inside a stable limit cycle.</p>
+<p>(I used to see &#8216;Brusselator&#8217; and &#8216;Belousov–Zhabotinsky&#8217; in the same books and papers, maybe just because they&#8217;re both examples of interestingly complex chemical reactions.  But somehow &#8216;Brusselator&#8217; sounds like a science-fiction weapon made up by a kid who hates Brussels sprouts.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10583#respond' data-commentid="10583" data-postid="6340" data-belowelement="div-comment-10583" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-10588">
+				<div id="div-comment-10588" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.kent.ac.uk/secl/philosophy/staff/corfield.html' rel='external nofollow ugc' class='url'>David Corfield</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10588">21 November, 2011 at 2:50 pm</a>		</div>
+
+		<p>I take it those chemical oscillators aren&#8217;t weakly reversible. It doesn&#8217;t look like it from <a href="http://en.wikipedia.org/wiki/Chemical_clock" rel="nofollow">here</a>.</p>
+<p>Actually, that&#8217;s really a very strong condition, if you think about it, that every reaction between complexes may be reversed along some path. I see Gunawardena points out that </p>
+<blockquote>
+<p>&#8230;there are more intricate forms of reversibility in which both complexes and species play a part. (p. 16)</p>
+</blockquote>
+<p>He refers to P. M. Schlosser&#8217;s <a href="http://books.google.co.uk/books/about/A_graphical_determination_of_the_possibi.html?id=BGSRKQEACAAJ&amp;redir_esc=y" rel="nofollow">thesis</a>, A graphical determination of the possibility of multiple steady states in complex isothermal CFSTRs. PhD thesis, University of Rochester, 1988.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10588#respond' data-commentid="10588" data-postid="6340" data-belowelement="div-comment-10588" data-respondelement="respond" data-replyto="Reply to David Corfield" aria-label='Reply to David Corfield'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-3 highlander-comment" id="comment-10608">
+				<div id="div-comment-10608" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10608">21 November, 2011 at 10:50 pm</a>		</div>
+
+		<p>To quote the song, I don&#8217;t know much about the BZ reaction, but I&#8217;ve heard it can display chaotic behavior when it&#8217;s pushed into the right regime in a machine called a &#8220;continuous-flow, stirred-tank reactor&#8221;.  Some historical references pulled from Strogatz&#8217;s <i>Nonlinear Dynamics and Chaos</i> (1994) are:</p>
+<p>R. A. Schmitz, K. R. Graziani, and J. L. Hudson (1977), &#8220;Experimental evidence of chaotic states in the Belousov&#8211;Zhabotinskii reaction&#8221; <i>J. Chem. Phys.</i> <b>67,</b> 3040, <a href="http://link.aip.org/link/doi/10.1063/1.435267" rel="nofollow">doi:10.1063/1.435267</a>.</p>
+<p>R. H. Simoyi, A. Wolf and H. L. Swinney (1982), &#8220;One-dimensional dynamics in a multicomponent chemical reaction&#8221; <i>Physical Review Letters</i> <b>49,</b> 245, <a href="http://link.aps.org/doi/10.1103/PhysRevLett.49.245" rel="nofollow">doi:10.1103/PhysRevLett.49.245</a>.</p>
+<p>J. C. Roux, R. H. Simoyi and H. L. Swinney (1983), &#8220;Observation of a strange attractor&#8221; <i>Physica D</i> <b>8,</b> 257, <a href="http://dx.doi.org/10.1016/0167-2789(83)90323-8" rel="nofollow">doi:10.1016/0167-2789(83)90323-8</a>.</p>
+<p>The &#8220;Brusselator&#8221; is a simplified model which tries to capture the BZ dynamics.  The <a href="http://www.scholarpedia.org/article/Oregonator" rel="nofollow">Oregonator</a>, invented more recently, appears to be a more chemically realistic version.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10608#respond' data-commentid="10608" data-postid="6340" data-belowelement="div-comment-10608" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-10609">
+				<div id="div-comment-10609" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10609">21 November, 2011 at 11:00 pm</a>		</div>
+
+		<p>The rate equations for the Oregonator are as follows:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=dX%2Fdt+%3D+k_1+A+Y+-+k_2+X+Y+%2B+k_3+A+X+-+2+k_4+X%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="dX/dt = k_1 A Y - k_2 X Y + k_3 A X - 2 k_4 X^2" class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=dY%2Fdt+%3D+-k_1+A+Y+-+k_2+X+Y+%2B+1%2F2+k_5+f+B+Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="dY/dt = -k_1 A Y - k_2 X Y + 1/2 k_5 f B Z" class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=dZ%2Fdt+%3D+2k_3+A+X+-+k_5+B+Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="dZ/dt = 2k_3 A X - k_5 B Z" class="latex" /></p>
+<p>Here, <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> denotes the concentration of HBrO2, <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" /> that of the negative bromide ion and <img src="https://s0.wp.com/latex.php?latex=Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Z" class="latex" /> that of the positive cerium ion.  The other letters stand for concentrations which change more slowly and are often taken to be constant.</p>
+<p>(Not a chemist &#8212; I&#8217;m just reading all this out of <a href="http://www.scholarpedia.org/article/Oregonator" rel="nofollow">Scholarpedia</a>.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10609#respond' data-commentid="10609" data-postid="6340" data-belowelement="div-comment-10609" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-3 highlander-comment" id="comment-10612">
+				<div id="div-comment-10612" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10612">22 November, 2011 at 12:04 am</a>		</div>
+
+		<p>Here is the stable limit cycle of the chemical reaction network Blake pointed out, the &#8216;Oregonator&#8217;:</p>
+<div align="center"><a href="http://www.scholarpedia.org/article/Oregonator" rel="nofollow"><img src="https://i1.wp.com/www.scholarpedia.org/w/images/f/f5/Oregonator_Movie.gif" /></a></div>
+<p>This is taken from</p>
+<p>&bull; Richard J. Field, <a href="http://www.scholarpedia.org/article/Oregonator" rel="nofollow">Oregonator</a>, <i>Scholarpedia</i>.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10612#respond' data-commentid="10612" data-postid="6340" data-belowelement="div-comment-10612" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3 parent highlander-comment" id="comment-10616">
+				<div id="div-comment-10616" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10616">22 November, 2011 at 12:35 am</a>		</div>
+
+		<p>David wrote: </p>
+<blockquote><p>
+I take it those chemical oscillators aren’t weakly reversible. It doesn’t look like it from <a href="http://en.wikipedia.org/wiki/Chemical_clock" rel="nofollow">here</a>.
+</p></blockquote>
+<p>Thanks for that link!  Yes, the way they describe the Bray–Liebhafsky reaction, there are reactions that turn hydrogen peroxide to water but not vice versa:</p>
+<p>5 H<sub>2</sub>O2 + I<sub>2</sub> → 2 IO<sup>3-</sup> + 2 H<sup>+</sup> + 4 H<sub>2</sub>O</p>
+<p>5 H<sub>2</sub>O<sub>2</sub> + 2 IO<sup>3-</sup> + 2 H<sup>+</sup> → I<sub>2</sub> + 5 O<sub>2</sub> + 6 H<sub>2</sub>O </p>
+<p>Here the decay of hydrogen peroxide to water is powering a cycle where iodine gets oxidized to iodate and then iodate gets reduced back to iodine.  </p>
+<p>So, it&#8217;s a bit similar to how the wheels on a cart turn around as the cart rolls downhill.  They only turn as it&#8217;s rolling; when the system reaches equilibrium at the bottom of the hill, they stop.  </p>
+<p>So, I think the Bray–Liebhafsky reaction will only oscillate as long as we have plenty of hydrogen peroxide around; in the <img src="https://s0.wp.com/latex.php?latex=t+%5Cto+%2B%5Cinfty&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;to +&#92;infty" class="latex" /> limit it all becomes water, and things become boring.  </p>
+<p>But as John Maynard Keynes noted, &#8220;in the long run we&#8217;re all dead&#8221;.  So, we shouldn&#8217;t get too focused on <img src="https://s0.wp.com/latex.php?latex=t+%5Cto+%2B%5Cinfty&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t &#92;to +&#92;infty" class="latex" /> behavior if we&#8217;re studying biology.  </p>
+<blockquote><p>
+Actually, that’s really a very strong condition, if you think about it, that every reaction between complexes may be reversed along some path.
+</p></blockquote>
+<p>You&#8217;re right: so-called &#8216;weak reversibility&#8217; is pretty strong.  </p>
+<p>For example, this reaction network is not weakly reversible:</p>
+<p>A → B</p>
+<p>A + B  →  A + A</p>
+<p>However, as long as we have at least one A around to serve as a &#8216;catalyst&#8217;, we can use these reactions to turn any number of A&#8217;s into the same number of B&#8217;s, or vice versa.</p>
+<p>On the other hand: in real life all chemical reaction networks are not just weakly reversible but actually reversible.  If a chemical reaction is possible, so is its reverse!  But if the rate constant for the reverse reaction is sufficiently low, we often neglect it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10616#respond' data-commentid="10616" data-postid="6340" data-belowelement="div-comment-10616" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-4 parent highlander-comment" id="comment-11188">
+				<div id="div-comment-11188" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b58ec85da38b867a46e06530a29b077c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Anonymous</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-11188">2 December, 2011 at 7:26 am</a>		</div>
+
+		<p>John,</p>
+<p>Given your interest in leaves over hypercubes (e.g., 1st network th post), perhaps the Belousov–Zhabotinsky reaction would stimulate some ideas? It is an example of a class of reactions that under certain circumstances, exhibit fundamental self organizing properties (like leaves!).</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-11191">
+				<div id="div-comment-11191" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-11191">2 December, 2011 at 8:07 am</a>		</div>
+
+		<p>Yes, I would like to think about this!  I&#8217;ve started with a lot of general formalism concerning chemical reaction networks, and some examples that are fairly dull in the sense that the solutions converge to an equilibrium, but I want to start studying self-organizing systems&#8230; as well as expand the &#8216;network theory&#8217; ideas to cover other subjects.  I&#8217;ve done more on the latter, so far.  There&#8217;s a lot of stuff already done that I need to explain.  But thanks for pushing me towards the former!</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-uwestroinski even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-10600">
+				<div id="div-comment-10600" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d649f3dbf2ad7cec40e534ed1b1e85dc?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://uwestroinski.wordpress.com/' rel='external nofollow ugc' class='url'>Uwe Stroinski</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10600">21 November, 2011 at 6:51 pm</a>		</div>
+
+		<p>Concerning your conjecture the following might be helpful:</p>
+<p>&bull; David F. Anderson, <a href="http://arxiv.org/abs/0708.0319" rel="nofollow">Global asymptotic stability for a class of nonlinear chemical equations</a>, <i>SIAM J. Appl. Math.</i> <b>68</b>(5) (May 2008), 1464 &#8211; 1476.</p>
+<p>He generalizes a result of E. Sontag (from 2001) that ensures global asymptotic stability if there are no equilibria on the boundary of the positive compatibility classes.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10600#respond' data-commentid="10600" data-postid="6340" data-belowelement="div-comment-10600" data-respondelement="respond" data-replyto="Reply to Uwe Stroinski" aria-label='Reply to Uwe Stroinski'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-10644">
+				<div id="div-comment-10644" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10644">22 November, 2011 at 12:47 pm</a>		</div>
+
+		<p>Thanks a million, Uwe!  I added a link to the arXiv version.  </p>
+<p>In response to a question by David, I <a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10578" rel="nofollow">guessed</a> that the key to proving stability would be coming up with a suitable Lyapunov function.  That&#8217;s a pretty obvious guess, of course: no stroke of genius required there.  But I&#8217;m happy to see that in the paper you cite, a specific candidate Lyapunov function is <a href="http://arxiv.org/PS_cache/arxiv/pdf/0708/0708.0319v2.pdf#page=3" rel="nofollow">written down in equation (3)</a>&#8212;and David will be just as pleased as me to see that the formula is reminiscent of <i>entropy!</i>   </p>
+<p>Maybe it&#8217;s more like &#8216;free energy&#8217;, but no matter: we&#8217;ve <a href="https://johncarlosbaez.wordpress.com/2011/05/26/information-geometry-part-8/" rel="nofollow">already seen</a> that certain simple reaction networks show up in evolutionary game theory, and there the Lyapunov function is indeed a close relative of entropy: namely, <i>the information the species has left to learn about its environment!</i>  This keeps dropping with the passage of time, and the species is in equilibrium when it has nothing left to learn.</p>
+<p>As we saw back then, Marc Harper has a nice paper on this subject.  The most relevant section is the one called &#8220;“Kullback-Leibler Divergence is a Lyapunov function for the Replicator Dynamic”.</p>
+<p>I wrote about this in a post on information geometry.  And I&#8217;m happy now because my interest in information geometry and my interest in reaction networks are starting to overlap!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10644#respond' data-commentid="10644" data-postid="6340" data-belowelement="div-comment-10644" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-10631">
+				<div id="div-comment-10631" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/88bc2bc9734e770e47add6c1a2fe7d4b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.tcs.tifr.res.in/~manoj' rel='external nofollow ugc' class='url'>Manoj Gopalkrishnan</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10631">22 November, 2011 at 4:01 am</a>		</div>
+
+		<p>Dear John,</p>
+<p>I was going to point you to the global attractor conjecture, but I see Uwe Stroinski has already done this. Your conjecture, and some generalizations of it, are well-known open questions in the community. In fact, in their 1972 paper, Horn and Jackson claimed a proof for a similar conjecture, but Horn found a problem with their proof, and withdrew it in 1974, and the problem has remained open since then. A generalization of the conjecture was posed in 1989 by Marty Feinberg. This has come to be called the &#8220;persistence conjecture.&#8221;</p>
+<p>The problem is, in essence, the following: starting from a strictly positive vector of concentrations, can species become extinct? If they can not, one says the network is persistent. Feinberg&#8217;s conjecture is that if the network is weakly-reversible, then it must be persistent: species can not go extinct. It is not hard to show that this implies the global attractor conjecture, not just for deficiency zero, but for all complex-balanced systems (roughly, systems that admit a &#8220;free energy&#8221; function). </p>
+<p>Here&#8217;s a far-from-comprehensive summary of the state of the art: even the three-dimensional version (the stoichiometric compatibility class is 3-dimensional) of the persistence conjecture is open. The two-dimensional version has been settled due to recent work by Craciun, Nazarov, and Pantea <a href="http://arxiv.org/abs/1010.3050" rel="nofollow ugc">http://arxiv.org/abs/1010.3050</a> . David Anderson also has a very nice recent paper <a href="http://arxiv.org/abs/1101.0761" rel="nofollow ugc">http://arxiv.org/abs/1101.0761</a> that settles a special case (the graph is strongly-connected) of this result. I can prove (<a href="http://arxiv.org/abs/1006.3627" rel="nofollow ugc">http://arxiv.org/abs/1006.3627</a> ) the persistence conjecture in the absence of catalysis in the network.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10631#respond' data-commentid="10631" data-postid="6340" data-belowelement="div-comment-10631" data-respondelement="respond" data-replyto="Reply to Manoj Gopalkrishnan" aria-label='Reply to Manoj Gopalkrishnan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-10647">
+				<div id="div-comment-10647" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10647">22 November, 2011 at 1:24 pm</a>		</div>
+
+		<p>Thanks for all the info, Manoj!  This is really great.  I hadn&#8217;t expected my conjecture was new, so I&#8217;m happy to see it might be true, and intrigued that it&#8217;s a well-known open puzzle.  </p>
+<p>This is very interesting:</p>
+<blockquote><p>
+Feinberg’s conjecture is that if the network is weakly-reversible, then it must be persistent: species can not go extinct. It is not hard to show that this implies the global attractor conjecture, not just for deficiency zero, but for all complex-balanced systems (roughly, systems that admit a “free energy” function).
+</p></blockquote>
+<p>This is basically what <a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10575" rel="nofollow">David guessed</a>:</p>
+<blockquote><p>
+I guess what your conjecture needs is prevention of states heading off to the boundary of the non-negative cone, where one or more of the concentrations tends to zero.
+</p></blockquote>
+<p>So, 10 points for David!  But I&#8217;ll need to read why it&#8217;s actually true, because <i>a priori</i> I could imagine problems other than one or more concentrations going to zero (= species going extinct).  </p>
+<p>Anyway, I&#8217;ve got my reading cut out for me!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10647#respond' data-commentid="10647" data-postid="6340" data-belowelement="div-comment-10647" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 parent highlander-comment" id="comment-10652">
+				<div id="div-comment-10652" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/88bc2bc9734e770e47add6c1a2fe7d4b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.tcs.tifr.res.in/~manoj' rel='external nofollow ugc' class='url'>Manoj Gopalkrishnan</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10652">22 November, 2011 at 3:11 pm</a>		</div>
+
+		<p>It&#8217;s not that hard to see. Here&#8217;s the basic idea. Consider the omega-limit set of a trajectory. Note the following two facts about this set:</p>
+<p>1. Every point on this omega-limit set has the same value of the Lyapunov function.</p>
+<p>2. The omega-limit set is invariant for the dynamics.</p>
+<p>Therefore, the time derivative of the Lyapunov function is zero for points in the omega-limit set. Since we have a strict Lyapunov function in the relative interior of the invariant polyhedron, this omega-limit set can not contain any positive point, except the isolated positive equilibrium points. So if there are no omega-limit points on the boundary, we&#8217;re done.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10652#respond' data-commentid="10652" data-postid="6340" data-belowelement="div-comment-10652" data-respondelement="respond" data-replyto="Reply to Manoj Gopalkrishnan" aria-label='Reply to Manoj Gopalkrishnan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-10653">
+				<div id="div-comment-10653" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/88bc2bc9734e770e47add6c1a2fe7d4b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.tcs.tifr.res.in/~manoj' rel='external nofollow ugc' class='url'>Manoj Gopalkrishnan</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10653">22 November, 2011 at 3:13 pm</a>		</div>
+
+		<p>I should add that trajectories can not escape to infinity because the level sets of our Lyapunov function are bounded.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-10637">
+				<div id="div-comment-10637" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/88bc2bc9734e770e47add6c1a2fe7d4b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.tcs.tifr.res.in/~manoj' rel='external nofollow ugc' class='url'>Manoj Gopalkrishnan</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10637">22 November, 2011 at 8:45 am</a>		</div>
+
+		<p>By the way, I really hate saying &#8220;positive stoichiometric compatibility class.&#8221; I prefer the terms &#8220;conservation class&#8221; instead of stoichiometric compatibility class (the affine space), and &#8220;invariant polyhedron&#8221; for the intersection of the conservation class with the positive orthant (possibly very close to what you call the positive stoichiometric compatibility class, I&#8217;ll have to check your definition).</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10637#respond' data-commentid="10637" data-postid="6340" data-belowelement="div-comment-10637" data-respondelement="respond" data-replyto="Reply to Manoj Gopalkrishnan" aria-label='Reply to Manoj Gopalkrishnan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-10645">
+				<div id="div-comment-10645" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-10645">22 November, 2011 at 1:11 pm</a>		</div>
+
+		<p>Yes, I have been using &#8216;positive stoichiometric compatibility class&#8217; to mean the intersection of a stochiometric compatibility class (an affine space <img src="https://s0.wp.com/latex.php?latex=x+%2B+%5Cmathrm%7BStoch%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x + &#92;mathrm{Stoch}" class="latex" />, in my notation) with the open positive orthant (the set <img src="https://s0.wp.com/latex.php?latex=%280%2C%5Cinfty%29%5ES&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(0,&#92;infty)^S" class="latex" />, in my notation).  I agree that this is long and clunky, but I&#8217;ve seen various experts do it and I haven&#8217;t dared deviate yet.  </p>
+<p>I agree that mathematicians would find &#8216;invariant polyhedron&#8217; vastly more appealing. For one thing, few of them know what &#8216;stoichiometric&#8217; means, and it&#8217;s a bit of a jawbreaker.  For another, &#8216;invariant polyhedron&#8217; will instantly make some sense to them.</p>
+<p>To go along with &#8216;invariant polyhedron&#8217;, one might say &#8216;invariant coset&#8217; for a stochiometric compatibility class, since it&#8217;s a coset of the subspace <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BStoch%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Stoch}" class="latex" /> in the vector space <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5ES&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^S" class="latex" />.  Then it all sounds very much like math.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10645#respond' data-commentid="10645" data-postid="6340" data-belowelement="div-comment-10645" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1 highlander-comment" id="comment-11118">
+				<div id="div-comment-11118" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='http://mathblogging.wordpress.com/2011/12/01/weekly-picks-39/' rel='external nofollow ugc' class='url'>Weekly Picks « Mathblogging.org — the Blog</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-11118">1 December, 2011 at 4:10 am</a>		</div>
+
+		<p>[&#8230;] in the ongoing series about reaction networks, Azimuth had a rather self-contained post about the practical applications of the deficiency zero theorem [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=11118#respond' data-commentid="11118" data-postid="6340" data-belowelement="div-comment-11118" data-respondelement="respond" data-replyto="Reply to Weekly Picks « Mathblogging.org — the Blog" aria-label='Reply to Weekly Picks « Mathblogging.org — the Blog'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-16864">
+				<div id="div-comment-16864" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2012/07/18/network-theory-part-19/' rel='external nofollow ugc' class='url'>Network Theory (Part 19) « Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-16864">18 July, 2012 at 9:56 am</a>		</div>
+
+		<p>[&#8230;]  Last time we started looking at a simple example: a diatomic gas [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=16864#respond' data-commentid="16864" data-postid="6340" data-belowelement="div-comment-16864" data-respondelement="respond" data-replyto="Reply to Network Theory (Part 19) « Azimuth" aria-label='Reply to Network Theory (Part 19) « Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-arjunjain16 even thread-even depth-1 parent highlander-comment" id="comment-29936">
+				<div id="div-comment-29936" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b301e135f66001af402e86be87e56d51?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://arjunjainblog.wordpress.com' rel='external nofollow ugc' class='url'>Arjun Jain</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-29936">4 June, 2013 at 9:18 am</a>		</div>
+
+		<p>If s is the number of species, and r the dimensionality of <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BStoch%7D%3B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Stoch};" class="latex" /> in the language of linear algebra, <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BStoch%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Stoch}" class="latex" /> can be identified with the row space. Then as the null space is the orthogonal complement of the row space in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5Es%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^s," class="latex" /> we have s-r independent null space vectors, and therefore s-r linear conservation laws. So, in deficiency 0 networks the number of connected components is equal to the number of conservation laws. Is this correct?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=29936#respond' data-commentid="29936" data-postid="6340" data-belowelement="div-comment-29936" data-respondelement="respond" data-replyto="Reply to Arjun Jain" aria-label='Reply to Arjun Jain'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-29960">
+				<div id="div-comment-29960" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-29960">4 June, 2013 at 4:06 pm</a>		</div>
+
+		<p>The number of linear conservation laws is the number of species minus the dimension of the stoichiometric subspace.  Even better, the procedure given here for determining the stoichiometric subspace can be used to find all the linear conservation laws.  So, this answers your earlier question about how to find conservation laws.</p>
+<blockquote><p>
+So, in deficiency 0 networks the number of connected components is equal to the number of conservation laws. Is this correct?
+</p></blockquote>
+<p>Let&#8217;s see.  The deficiency is the number of complexes minus the number of connected components minus the dimension of the stochiometric subspace.  So, if it&#8217;s zero,</p>
+<p>&bull; The number of complexes equals the number of connected components plus the dimension of the stochiometric subspace.</p>
+<p>On the other hand, </p>
+<p>&bull; The number of linear conservation laws is the number of species minus the dimension of the stoichiometric subspace.  </p>
+<p>Putting these equations together,  I can get an equation involving the number of connected components and the number of conservation laws.  But it doesn&#8217;t seem to be the equation you suggest!  What equation do we actually get?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=29960#respond' data-commentid="29960" data-postid="6340" data-belowelement="div-comment-29960" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-arjunjain16 even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-29967">
+				<div id="div-comment-29967" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b301e135f66001af402e86be87e56d51?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://arjunjainblog.wordpress.com' rel='external nofollow ugc' class='url'>Arjun Jain</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-29967">4 June, 2013 at 4:59 pm</a>		</div>
+
+		<p>Yes, I got a little mixed up.<br />
+We get : no. of complexes &#8211; no. of species = no. of connected components &#8211; no. of conservation laws.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=29967#respond' data-commentid="29967" data-postid="6340" data-belowelement="div-comment-29967" data-respondelement="respond" data-replyto="Reply to Arjun Jain" aria-label='Reply to Arjun Jain'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-29976">
+				<div id="div-comment-29976" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-29976">4 June, 2013 at 7:42 pm</a>		</div>
+
+		<p>Okay, that looks great!  Think about some examples.  And think about some counterexamples when the reaction network doesn&#8217;t have deficiency zero.  I think it should make intuitive sense after a while.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=29976#respond' data-commentid="29976" data-postid="6340" data-belowelement="div-comment-29976" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1 highlander-comment" id="comment-79551">
+				<div id="div-comment-79551" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='http://quamplexity.org/quantum-complex-network-science/' rel='external nofollow ugc' class='url'>Quantum Theory and Complex Networks &#8211; QuamPlexity.org</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/#comment-79551">24 April, 2016 at 6:03 pm</a>		</div>
+
+		<p>[&#8230;] An example of the deficiency zero theorem: a diatomic gas, Network Theory Part 18  [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=79551#respond' data-commentid="79551" data-postid="6340" data-belowelement="div-comment-79551" data-respondelement="respond" data-replyto="Reply to Quantum Theory and Complex Networks &#8211; QuamPlexity.org" aria-label='Reply to Quantum Theory and Complex Networks &#8211; QuamPlexity.org'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-10582">Blake Stacey</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2011/11/21/network-theory-part-18/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2011/11/21/network-theory-part-18/?replytocom=10582" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='6340' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='10582' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="a10843fcb8" /></p>
+<input type="hidden" name="genseq" value="1632620992" />
+<input type="hidden" id="ak_js" name="ak_js" value="147"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2011/11/21/network-theory-part-18/?replytocom=10582"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,177,001 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-e12fed9193da121c6337ce250d548759">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-dd50e8b0462cc7fb7fa5bb0785e4f2a4">
+	</div>
+	<div class="grofile-hash-map-b58ec85da38b867a46e06530a29b077c">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-d649f3dbf2ad7cec40e534ed1b1e85dc">
+	</div>
+	<div class="grofile-hash-map-88bc2bc9734e770e47add6c1a2fe7d4b">
+	</div>
+	<div class="grofile-hash-map-b301e135f66001af402e86be87e56d51">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"6340","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'6340','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTYzflhsfD1mPVc9aUZBQnYxNixnUWZ+WW50RXVQNWtjXVZ0bEolWWhIcTVYL0FPJXw4RHRaTGYsViVvV1gmWlgseHFqdiVMaEYmakJINGk/QW9dVkg9Sy1UMGZSUlFJbFVkLUl5SVhpUnBPMl9Pbl1ialBTPy8lLFk/SVVTYmhyMmVMei5BTn5SNS9ScEwlK0tCTFdBLnhDYTBYbTE3YnomWiVOPVpTWjBiZTkuOSxUbyZFVHMyZVloPSZTa0JyZk1ONDBMcEg3bFtpMG5PREJnOFJuYjB8Ui1n'}]);
+_stq.push([ 'clickTrackerInit', '12777403', '6340' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

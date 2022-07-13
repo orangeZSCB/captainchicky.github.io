@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Nash Equilibria | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Nash Equilibria Comments Feed" href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F02%2F12%2Fnash-equilibria%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2013\/02\/12\/nash-equilibria\/?replytocom=25647","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F02%2F12%2Fnash-equilibria%2F%3Freplytocom%3D25647","postID":"14806","shortlink":"https:\/\/wp.me\/pRBZ9-3QO","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/14806","statsLink":"https:\/\/wordpress.com\/stats\/post\/14806\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F02%2F12%2Fnash-equilibria%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-3QO' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F02%2F12%2Fnash-equilibria%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F02%2F12%2Fnash-equilibria%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Nash Equilibria" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/" />
+<meta property="og:description" content="As you know if you&#8217;ve been reading this blog lately, I&#8217;m teaching game theory. I could use some help. Is there a nice elementary proof of the existence of Nash equilibria for 2-person g…" />
+<meta property="article:published_time" content="2013-02-12T00:37:50+00:00" />
+<meta property="article:modified_time" content="2013-02-12T01:19:10+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Nash Equilibria" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="As you know if you&#039;ve been reading this blog lately, I&#039;m teaching game theory. I could use some help. Is there a nice elementary proof of the existence of Nash equilibria for 2-person games? Here&#039;s the theorem I have in mind. Suppose $latex A$ and $latex B$ are $latex m \times n$ matrices of real&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-14806 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-14806 post type-post status-publish format-standard hentry category-game-theory category-mathematics" id="post-14806">
+			<h2>Nash Equilibria</h2>
+
+			<div class="entry">
+				<p>As you know if you&#8217;ve been reading this blog lately, I&#8217;m teaching game theory.  I could use some help.</p>
+<p>Is there a nice elementary proof of the existence of Nash equilibria for 2-person games?  </p>
+<p>Here&#8217;s the theorem I have in mind.  Suppose <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" /> are <img src="https://s0.wp.com/latex.php?latex=m+%5Ctimes+n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m &#92;times n" class="latex" /> matrices of real numbers.  Say a <b>mixed strategy for player A</b> is a vector <img src="https://s0.wp.com/latex.php?latex=p+%5Cin+%5Cmathbb%7BR%7D%5Em&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p &#92;in &#92;mathbb{R}^m" class="latex" /> with </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+p_i+%5Cge+0+%2C+%5Cquad+%5Csum_i+p_i+%3D+1+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ p_i &#92;ge 0 , &#92;quad &#92;sum_i p_i = 1 }" class="latex" /></p>
+<p>and a <b>mixed strategy for player B</b> is a vector <img src="https://s0.wp.com/latex.php?latex=q+%5Cin+%5Cmathbb%7BR%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q &#92;in &#92;mathbb{R}^n" class="latex" /> with </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+q_i+%5Cge+0+%2C+%5Cquad+%5Csum_j+q_j+%3D+1+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ q_i &#92;ge 0 , &#92;quad &#92;sum_j q_j = 1 }" class="latex" /></p>
+<p>A <b><a href="http://en.wikipedia.org/wiki/Nash_equilibrium">Nash equilibrium</a></b> is a pair consisting of a mixed strategy <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> for A and a mixed strategy <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> for B such that:</p>
+<p>1) For every mixed strategy <img src="https://s0.wp.com/latex.php?latex=p%27&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p&#039;" class="latex" /> for A, <img src="https://s0.wp.com/latex.php?latex=p%27+%5Ccdot+A+q+%5Cle+p+%5Ccdot+A+q.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p&#039; &#92;cdot A q &#92;le p &#92;cdot A q." class="latex" /></p>
+<p>2) For every mixed strategy <img src="https://s0.wp.com/latex.php?latex=q%27&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q&#039;" class="latex" /> for B, <img src="https://s0.wp.com/latex.php?latex=p+%5Ccdot+B+q%27+%5Cle+p+%5Ccdot+B+q.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p &#92;cdot B q&#039; &#92;le p &#92;cdot B q." class="latex" /></p>
+<p>(The idea is that <img src="https://s0.wp.com/latex.php?latex=p+%5Ccdot+A+q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p &#92;cdot A q" class="latex" /> is the expected payoff to player A when A chooses mixed strategy <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> and B chooses <img src="https://s0.wp.com/latex.php?latex=q.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q." class="latex" />  Condition 1 says A can&#8217;t improve their payoff by unilaterally switching to some mixed strategy <img src="https://s0.wp.com/latex.php?latex=p%27.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p&#039;." class="latex" /> Similarly, condition 2 says B can&#8217;t improve <i>their</i> expected payoff by unilaterally switching to some mixed strategy <img src="https://s0.wp.com/latex.php?latex=q%27.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q&#039;." class="latex" />)</p>
+<h3> Some history </h3>
+<p>The history behind my question is sort of amusing, so let me tell you about that&mdash;though I probably don&#8217;t know it all.</p>
+<p>Nash won the Nobel Prize for a <a href="http://www.pnas.org/content/36/1/48.full">one-page proof</a> of a more general theorem for <i>n</i>-person games, but his proof uses <a href="http://en.wikipedia.org/wiki/Kakutani_fixed-point_theorem">Kakutani&#8217;s fixed-point theorem</a>, which seems like overkill, at least for the 2-person case.  There is also a proof using <a href="http://en.wikipedia.org/wiki/Brouwer_fixed-point_theorem">Brouwer&#8217;s fixed-point theorem</a>; see <a href="http://www.damas.ift.ulaval.ca/_seminar/filesH08/NashExistence.pdf">here</a> for the <i>n</i>-person case and <a href="http://math.uchicago.edu/~shmuel/AAT-readings/Econ%2520segment/nash.pdf">here</a> for the 2-person case.  But again, this seems like overkill.  </p>
+<p>Earlier, von Neumann had proved a result which implies the one I&#8217;m interested in, but only in the special case where <img src="https://s0.wp.com/latex.php?latex=B+%3D+-A%3A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B = -A:" class="latex" /> the so-called <b><a href="http://en.wikipedia.org/wiki/Minimax#Minimax_theorem">minimax theorem</a></b>.  Von Neumann wrote:</p>
+<blockquote><p> As far as I can see, there could be no theory of games … without that theorem … I thought there was nothing worth publishing until the Minimax Theorem was proved.
+</p></blockquote>
+<p>I believe von Neumann used Brouwer&#8217;s fixed point theorem, and I get the impression Kakutani proved <i>his</i> fixed point theorem in order to give a different proof of this result!  Apparently when Nash explained his generalization to von Neumann, the latter said:</p>
+<blockquote><p> That&#8217;s trivial, you know. That&#8217;s just a fixed point theorem.
+</p></blockquote>
+<p>But you don&#8217;t need a fixed point theorem to prove von Neumann&#8217;s minimax theorem!  There&#8217;s a more elementary proof in an appendix to Andrew Colman&#8217;s 1982 book <i>Game Theory and its Applications in the Social and Biological Sciences</i>.  He writes:</p>
+<blockquote><p> In common with many people, I first encountered game theory in non-mathematical books, and I soon became intrigued by the minimax theorem but frustrated by the way the books tiptoed around it without proving it.  It seems reasonable to suppose that I am not the only person who has encountered this problem, but I have not found any source to which mathematically unsophisticated readers can turn for a proper understanding of the theorem, so I have attempted in the pages that follow to provide a simple, self-contained proof with each step spelt out as clearly as possible both in symbols and words.
+</p></blockquote>
+<p>This proof is indeed very elementary.  The deepest fact used is merely that a continuous function assumes a maximum on a compact set&mdash;and actually just a very special case of this.  So, this is very nice.</p>
+<p>Unfortunately, the proof is spelt out in such enormous elementary detail that I keep falling asleep halfway through!  And worse, it only covers the case <img src="https://s0.wp.com/latex.php?latex=B+%3D+-A.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B = -A." class="latex" /> </p>
+<p>Is there a good references to an elementary but terse proof of the existence of Nash equilibria for 2-person games?   If I don&#8217;t find one, I&#8217;ll have to work through Colman&#8217;s proof and then generalize it.  But I feel sure someone must have done this already.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Tuesday, February 12th, 2013 at 12:37 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/" rel="category tag">game theory</a>, <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2013/02/11/game-theory-part-13/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2013/02/15/prospects-for-a-green-mathematics/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">31 Responses to <em>Nash Equilibria</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-25557">
+				<div id="div-comment-25557" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/f1b3d1dee9a48588c690f1ac6a12367b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Richard Brown</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25557">12 February, 2013 at 12:45 am</a>		</div>
+
+		<p>Equation 2) has a typo (should be B on both left and right)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25557#respond' data-commentid="25557" data-postid="14806" data-belowelement="div-comment-25557" data-respondelement="respond" data-replyto="Reply to Richard Brown" aria-label='Reply to Richard Brown'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-25560">
+				<div id="div-comment-25560" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25560">12 February, 2013 at 1:18 am</a>		</div>
+
+		<p>Thanks &#8211; fixed!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25560#respond' data-commentid="25560" data-postid="14806" data-belowelement="div-comment-25560" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="comment-25562">
+				<div id="div-comment-25562" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9fcf725325a3d2a6be693374dc23769b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.facebook.com/gregory.benford.7' rel='external nofollow ugc' class='url'>Gregory Benford</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25562">12 February, 2013 at 2:09 am</a>		</div>
+
+		<p>Nash equil. are best conveyed by clear descriptions of interests vs tradeoffs, ie, stories from the point of view of actual players in a game.</p>
+<p>I asked Nash this once and he nodded and laughed at the &#8220;overproof&#8221; of the basic point.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25562#respond' data-commentid="25562" data-postid="14806" data-belowelement="div-comment-25562" data-respondelement="respond" data-replyto="Reply to Gregory Benford" aria-label='Reply to Gregory Benford'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-25575">
+				<div id="div-comment-25575" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7281f4d1c7d513b04d03ed34aa85e6bc?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://drvinceknight.wordpress.com' rel='external nofollow ugc' class='url'>drvinceknight</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25575">12 February, 2013 at 8:20 am</a>		</div>
+
+		<p>Hi John,</p>
+<p>In <a href="http://www.amazon.co.uk/gp/aw/d/1846284236" rel="nofollow">Webb&#8217;s book</a> (which is a nice book for a mathematics course on game theory BTW) there is an elementary algebraic proof of the existence of NE in a 2 player 2 strategy game. I know this isn&#8217;t what you asked and also I&#8217;m sure you wouldn&#8217;t actually need the proof in the book but its an accessible starting point perhaps for students.</p>
+<p>I look forward to reading future posts!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25575#respond' data-commentid="25575" data-postid="14806" data-belowelement="div-comment-25575" data-respondelement="respond" data-replyto="Reply to drvinceknight" aria-label='Reply to drvinceknight'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-25653">
+				<div id="div-comment-25653" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25653">13 February, 2013 at 7:36 pm</a>		</div>
+
+		<p>Thanks!  I have a big stack of game theory books on my desk, including a bunch you recommended, but it seems not that one.  I&#8217;ll check out that proof.  Maybe I should present it in class.</p>
+<p>The existence of this elementary proof, together with Colman&#8217;s fairly elementary proof that Nash equilibria exist for 2-person <i>zero-sum</i> games with an <i>arbitrary number</i> of strategies, seems to hint that there&#8217;s an elementary proof of the result I actually want.  </p>
+<p>But this may not be true!</p>
+<p><a href="http://mathoverflow.net/questions/121542/simple-proof-of-the-existence-of-nash-equilibria-for-2-person-games" rel="nofollow">Over on MathOverflow</a>, Rabee Tourky wrote:</p>
+<blockquote><p>
+Any proof of the existence of a Nash equilibrium for two person finite games games is a proof of kakutani&#8217;s fixed point theorem. This is the simplest proof that I know of. Though I can conceive of simpler proofs.</p>
+<p>&bull; Andrew McLennan† and Rabee Tourky, ‡<a href="http://cupid.economics.uq.edu.au/mclennan/Papers/kakutani60.pdf" rel="nofollow">From imitation games to Kakutani</a>.
+</p></blockquote>
+<p>and  Michael Greinecker wrote:</p>
+<blockquote><p>
+Here is what seems to amount to a simplified version of the argument that shows how one can prove the Brouwer fixed point theorem from the existence of Nash equilibria in two player games (modulo a limiting compactness argument): </p>
+<p>&bull; <a href="http://theoryclass.wordpress.com/2012/01/05/brouwer-implies-nash-implies-brouwer/" rel="nofollow">Brouwer implies Nash implies Brouwer</a>, <i>The Leisure of the The Theory Class</i>.
+</p></blockquote>
+<p>However, the blog article &#8216;Brouwer implies Nash implies Brouwer&#8217;, which is very nice, derives Brouwer&#8217;s fixed-point theorem from the existence of Nash equilibria where the set of pure strategies is not finite, but an arbitrary compact convex subset of $\mathbb{R}^n.$  This is seemingly a much more heavy-duty fact than what I&#8217;m after!   But, the post has something to say about that&#8230;.</p>
+<p>Anyway, I seem to be closing in on the truth here.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25653#respond' data-commentid="25653" data-postid="14806" data-belowelement="div-comment-25653" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-25578">
+				<div id="div-comment-25578" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/00b4a843cf527acc37919f0d1bd60597?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Arrow</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25578">12 February, 2013 at 9:02 am</a>		</div>
+
+		<p>It is interesting that for mixed strategies there are always NE. But aren&#8217;t all those cases of NEs in games where they only exist for mixed strategies stalemate situations? </p>
+<p>Let&#8217;s take rock, paper scissors as an example. For pure strategies there is no NE, for mixed strategies there is picking at random, but that isn&#8217;t terribly interesting. Are there games where allowing mixed strategies leads to NEs (that were not there  before) where one player gains an advantage?</p>
+<p>Another thing about rock, paper scissors is that it seems rather easy to modify the game to break even the mixed strategies NEs. For example let&#8217;s say the payoff is also dependent on the consistency of choices in previous games, +1 for regular win and +0.5 for picking the same choice as last time, that should motivate players to prefer a particular choice.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25578#respond' data-commentid="25578" data-postid="14806" data-belowelement="div-comment-25578" data-respondelement="respond" data-replyto="Reply to Arrow" aria-label='Reply to Arrow'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-25647">
+				<div id="div-comment-25647" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25647">13 February, 2013 at 7:00 pm</a>		</div>
+
+		<p>Arrow wrote:</p>
+<blockquote><p>
+Are there games where allowing mixed strategies leads to NEs (that were not there before) where one player gains an advantage?
+</p></blockquote>
+<p>Yes; wait &#8217;til the next post&#8230; or maybe someone here can make up an example.  <i>Most</i> games are of this form, so examples aren&#8217;t hard to find.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25647#respond' data-commentid="25647" data-postid="14806" data-belowelement="div-comment-25647" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-25587">
+				<div id="div-comment-25587" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d3e98828c7285c8034426800f4f9cd62?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.ma.utexas.edu/users/afenyes/' rel='external nofollow ugc' class='url'>Aaron F.</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25587">12 February, 2013 at 3:46 pm</a>		</div>
+
+		<p><i>Nash equil. are best conveyed by clear descriptions of interests vs tradeoffs, ie, stories from the point of view of actual players in a game.</i></p>
+<p>If this is actually true, it should be possible to write a proof along these lines. ;) Can you give examples of the &#8220;clear descriptions of interests vs. tradeoffs&#8221; you&#8217;re talking about?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25587#respond' data-commentid="25587" data-postid="14806" data-belowelement="div-comment-25587" data-respondelement="respond" data-replyto="Reply to Aaron F." aria-label='Reply to Aaron F.'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 parent highlander-comment" id="comment-25592">
+				<div id="div-comment-25592" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9fcf725325a3d2a6be693374dc23769b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.facebook.com/gregory.benford.7' rel='external nofollow ugc' class='url'>Gregory Benford</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25592">12 February, 2013 at 4:56 pm</a>		</div>
+
+		<p>My point is, instead of fielding proofs, try to tell a story. That&#8217;s how people learn.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25592#respond' data-commentid="25592" data-postid="14806" data-belowelement="div-comment-25592" data-respondelement="respond" data-replyto="Reply to Gregory Benford" aria-label='Reply to Gregory Benford'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-3 parent highlander-comment" id="comment-25650">
+				<div id="div-comment-25650" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25650">13 February, 2013 at 7:18 pm</a>		</div>
+
+		<p>I tell plenty of stories in the course I&#8217;m teaching, and in class we play lots of games.   But it&#8217;s a course for math majors.  I&#8217;ll make sure they get the <i>idea</i> of a Nash equilibrium, but they need to learn to understand proofs, too!</p>
+<p>What I&#8217;m looking for here is a proof of the existence of Nash equilibria for 2-person games that doesn&#8217;t require the Kakutani or Brouwer fixed-point theorems.  It&#8217;s the use of these rather heavy-duty tools&#8212;which most kids learn only in grad school&#8212;that makes undergraduate courses on game theory present the existence of Nash equilibria as an article of faith, skipping the proof.  But I suspect that for 2-person games these fixed-point theorems are overkill.  It&#8217;s only linear algebra, for god&#8217;s sake!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25650#respond' data-commentid="25650" data-postid="14806" data-belowelement="div-comment-25650" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-4 parent highlander-comment" id="comment-25665">
+				<div id="div-comment-25665" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/f14fd3617af3445f45b35036771a2685?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Robert</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25665">14 February, 2013 at 9:53 am</a>		</div>
+
+		<p>What about just proving a special case of the fixed point theorems, just strong enough to apply to 2-person games? Since you don&#8217;t need the full strength of the theorem, you may be able to do this at undergraduate level.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-25691">
+				<div id="div-comment-25691" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25691">15 February, 2013 at 1:53 am</a>		</div>
+
+		<p>I could try that.  I&#8217;ll get to work soon and examine various options!</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="comment-25615">
+				<div id="div-comment-25615" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='http://graph.facebook.com/100003705356353/picture?type=large&#038;_md5=25bfb9ccc2cb62f5ada1d2e78a151479' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.facebook.com/juliusvladimir.francisco' rel='external nofollow ugc' class='url'>Julius Vladimir Francisco</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25615">13 February, 2013 at 5:39 am</a>		</div>
+
+		<p>I agree with Prof. Benford. The easiest way I learned of Game Theory was on a bike ride from Tustin High School to Ed Thomas&#8217; Book Carnival in Orange back in 2001. My girlfriend at the time asked about The Fermi Paradox or the Great Silence. (Why haven’t we heard them yet?)</p>
+<p>As you all know the points Mike Hart and Enrico Fermi brought up were:</p>
+<p>-The Sun is a young star.<br />
+-There are billions of stars in the galaxy that are billions of years older;<br />
+-Some of these stars likely have Earth-like planets[2] which, if the Earth is typical, may develop intelligent life;<br />
+-Presumably some of these civilizations will develop interstellar travel, as Earth seems likely to do;<br />
+ -At any practical pace of interstellar travel, the galaxy can be completely colonized in just a few tens of millions of years.)</p>
+<p>Where is everybody?! (No evidence of Von Neumann probes either?!!)</p>
+<p>The movie &#8216;A Beautiful Mind&#8217; just came out (2000) and I read up on Game Theory and used the simple Two prisoner Dilemma to answer her query. (Her parents where peaceniks, as are mine even though both our parents have had military/para-military experience)</p>
+<p>Suggesting we reach a Kardashev level 1 society (a true global society, as it would be the only logical like option) one world governing body, one world telephone system &#8211; internet, one world language &#8211; English; Terran hegemony you name it. Just because we can get along with each other relatively well in that world would not immediately mean we have inhibition to kill other species that exercise a high degree on intelligence.</p>
+<p>We kill elephants and dolphins all the time and they are not a threat to us.</p>
+<p>Extra-terrestrial species may not necessarily play nice.</p>
+<p>Why?</p>
+<p>Because, &#8220;they&#8221; are not part of our species or civilization.</p>
+<p>This brings us to where the prisoner dilemma kicks in.</p>
+<p> We cannot afford to be proven wrong to think they would be peaceful.</p>
+<p>A Kardashev level 1 would harness 10&#215;16 to 18 power in W (watts)</p>
+<p>Using relativistic weapons would push that number even higher.</p>
+<p>When you get to that level then we can make starships that travel at relativistic speeds. (Thank you Prof. Benford!)</p>
+<p>What that is essentially is a kardashev level 1 or 2 doomsday weapon. (A weapon that can take out level 1 and 2 civilizations)</p>
+<p>To make it simple suggest we only had 2 intelligent level 1 or 2 societies in this galaxy.</p>
+<p>You then have two civilizations either both level 1 or 2 sharing 1 galaxy having this whacko scenario</p>
+<p>*(Me and my girl at the time had the thought matrix below. I am sure someone else online has replicated it, the internet is a big place)</p>
+<p>You can substitute any Type 1 or 2 civilization killer</p>
+<p>Be it nanites, relativistic kill vehicles, sun destroyers (weapons that make a home star go nova) etc. etc&#8230;&#8230;&#8230;..</p>
+<p>                            Race 2 Ignores              Race 2 Attacks<br />
+Race 1 Ignores   Both live constant fear   Race 1 exterminated<br />
+                                                                  Race 2 lives free of fear</p>
+<p>Race 1 Attacks   Race 1 lives free of fear  Both are devastated<br />
+                           Race 2 exterminated       but not destroyed</p>
+<p>After the date we both wanted to write a paper titled</p>
+<p>&#8220;Game theory / Nash Equilibria multiple player scenarios as a possible response to Fermi Paradox&#8221;</p>
+<p>We were both silly&#8230;..but whatcha gonna do? We were 17 year olds. </p>
+<p>We did eventually write it down up to about 5 players (as in 5 intelligent level 1 or 2 societies in our Galaxy.</p>
+<p>It was pretty funny.</p>
+<p>but just for a 2 player response below is a less clean cut outcomes/more detailed matrix:</p>
+<p>-Key(outcomes)</p>
+<p>2= alive, free of fear of retaliatory strike<br />
+4= alive, but fear or retaliatory/first strike from opponent civ or federation.<br />
+1= civilization intact, but devastated, probably downgraded from level 1 or 2<br />
+3= total annihilation</p>
+<p>                         Cooperate      Defect</p>
+<p>Cooperate        4,4                  3,2</p>
+<p>Defect              2,3                   1,1</p>
+<p>*(again I am sure someone else has this matrix somewhere online as I have been talking about this for some 13 years now)</p>
+<p>In jest it can be applied to kids with high capacity guns on a playgrounds, kardashev level 1 or 2 civilizations, and hegemonic empires pre-empting first strikes.</p>
+<p>Or whatever else you can think of.</p>
+<p>Hehehe.</p>
+<p>P.S. Prof. Baez did you catch Jeff Buckley&#8217;s &#8220;Grace&#8221; yet?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25615#respond' data-commentid="25615" data-postid="14806" data-belowelement="div-comment-25615" data-respondelement="respond" data-replyto="Reply to Julius Vladimir Francisco" aria-label='Reply to Julius Vladimir Francisco'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-25617">
+				<div id="div-comment-25617" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='http://graph.facebook.com/100003705356353/picture?type=large' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.facebook.com/juliusvladimir.francisco' rel='external nofollow ugc' class='url'>Julius Vladimir Francisco</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25617">13 February, 2013 at 5:41 am</a>		</div>
+
+		<p>Darn my coding skills suck&#8230;.It looked like matrix form when I typed it and it did not when I pressed the &#8220;Post Comment&#8221; button.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25617#respond' data-commentid="25617" data-postid="14806" data-belowelement="div-comment-25617" data-respondelement="respond" data-replyto="Reply to Julius Vladimir Francisco" aria-label='Reply to Julius Vladimir Francisco'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-25625">
+				<div id="div-comment-25625" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6983fa3a44bd3dd66027863073e1e0b1?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.astro.multivax.de:8000/helbig/helbig.html' rel='external nofollow ugc' class='url'>Phillip Helbig</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25625">13 February, 2013 at 10:40 am</a>		</div>
+
+		<p><i>&#8220;That’s trivial, you know.&#8221;</i></p>
+<p>Trivial is in the eye of the beholder.  Be especially careful if it is von Neumann&#8217;s eye.  (I&#8217;m reminded of the fly between the trains.)  There is a story about a famous mathematician, maybe Hardy, saying &#8220;this follows trivially from&#8230;&#8221; while writing on the blackboard.  Then he paused.  Then he stepped back from the blackboard and thought a bit.  Then he sat down and thought some more.  Then he went into another room.  After half an hour, he came back, continuing his lecture where he left off, saying &#8220;Yes, it really is trivial&#8221;.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25625#respond' data-commentid="25625" data-postid="14806" data-belowelement="div-comment-25625" data-respondelement="respond" data-replyto="Reply to Phillip Helbig" aria-label='Reply to Phillip Helbig'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-25688">
+				<div id="div-comment-25688" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25688">14 February, 2013 at 8:46 pm</a>		</div>
+
+		<p>I think von Neumann claimed Nash&#8217;s theorem was trivial because he was jealous!</p>
+<p>Nash used the same technique von Neumann had&#8212;a fixed-point theorem&#8212;to prove the existence of equilibria for a much wider and more interesting class of games!  Von Neumann had considered 2-player zero-sum games.  Nash considered <i>n</i>-player games that could be zero-sum or nonzero-sum games.  Von Neumann (being a genius) <i>should</i> have tried to generalize his result.  Nash showed the generalization could be done in <a href="http://www.pnas.org/content/36/1/48.full" rel="nofollow">five easy paragraphs</a>.  </p>
+<p>So, I think von Neumann was jealous and trying to cut Nash down to size.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25688#respond' data-commentid="25688" data-postid="14806" data-belowelement="div-comment-25688" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 highlander-comment" id="comment-25655">
+				<div id="div-comment-25655" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/656e05d084448337fb49459225dc525e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">davetweed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25655">13 February, 2013 at 9:00 pm</a>		</div>
+
+		<p>There&#8217;s a 15 minute UK BBC radio programme that touches on game theory and poker <a href="http://www.bbc.co.uk/programmes/b01qjj4j" rel="nofollow">here</a>. It&#8217;s a bit&#8230; energetically breathless and seems, to me, more enthusiastic about big ideas than seeing if they&#8217;re actually what happens in the real world. But it might be interesting to some following these posts.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25655#respond' data-commentid="25655" data-postid="14806" data-belowelement="div-comment-25655" data-respondelement="respond" data-replyto="Reply to davetweed" aria-label='Reply to davetweed'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-25738">
+				<div id="div-comment-25738" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/0a5185f1e7bc92cb28727f4abd2e3864?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Luís</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25738">15 February, 2013 at 7:12 pm</a>		</div>
+
+		<p>Maybe this is a solution. </p>
+<p><img src="https://s0.wp.com/latex.php?latex=e&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="e" class="latex" />, abusing notation, a little, is the vector of ones. Set </p>
+<p><img src="https://s0.wp.com/latex.php?latex=p_2%3D+%5Cmathrm%7Bmax%7D_%7Bp%2Cq%7D++p%5Ccdot+Bq&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_2= &#92;mathrm{max}_{p,q}  p&#92;cdot Bq" class="latex" />  </p>
+<p>s.t. <img src="https://s0.wp.com/latex.php?latex=p%5Ccdot+e%3D1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p&#92;cdot e=1" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=q+%5Ccdot+e%3D1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q &#92;cdot e=1" class="latex" /> with <img src="https://s0.wp.com/latex.php?latex=p+%5Cgeq+0%2C+q+%5Cgeq+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p &#92;geq 0, q &#92;geq 0" class="latex" />. A continuous function <img src="https://s0.wp.com/latex.php?latex=p+%5Ccdot+Bq&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p &#92;cdot Bq" class="latex" /> on a compact space, </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5C%7B%28p%2Cq%29+%5Cin+%5Cmathbb%7BR%7D%5E%7Bn%2Bm%7D%3A+p%5Ccdot+e%3D1%2C+q%5Ccdot+e%3D1%2C+p+%5Cgeq+%5Cbar%7B0%7D%2C+q+%5Cgeq+%5Cbar%7B0%7D+%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{(p,q) &#92;in &#92;mathbb{R}^{n+m}: p&#92;cdot e=1, q&#92;cdot e=1, p &#92;geq &#92;bar{0}, q &#92;geq &#92;bar{0} &#92;}" class="latex" /> </p>
+<p>has a maximum, no prob there.  Now find the maximums of player 1 payoff, on the set of points that maximized player 2, and choose one of them, <img src="https://s0.wp.com/latex.php?latex=%28p%5E%2A%2Cq%5E%2A%29+%5Cin+%5Cmathrm%7Barg+max%7D_%7Bp%2Cq%7D++p%5Ccdot+Aq&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(p^*,q^*) &#92;in &#92;mathrm{arg max}_{p,q}  p&#92;cdot Aq" class="latex" />  s.t  <img src="https://s0.wp.com/latex.php?latex=p%5Ccdot++Bq+%5Cgeq+p_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p&#92;cdot  Bq &#92;geq p_2" class="latex" />.  The function <img src="https://s0.wp.com/latex.php?latex=p%5Ccdot+Aq&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p&#92;cdot Aq" class="latex" /> is again continuous, the set <img src="https://s0.wp.com/latex.php?latex=p%5Ccdot+Bq+%5Cgeq+p_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p&#92;cdot Bq &#92;geq p_2" class="latex" /> is compact and non-empty. And if I did not miss anything <img src="https://s0.wp.com/latex.php?latex=%28p%5E%2A%2Cq%5E%2A%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(p^*,q^*)" class="latex" /> is your Nash equilibrium.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25738#respond' data-commentid="25738" data-postid="14806" data-belowelement="div-comment-25738" data-respondelement="respond" data-replyto="Reply to Luís" aria-label='Reply to Luís'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 highlander-comment" id="comment-25739">
+				<div id="div-comment-25739" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/0a5185f1e7bc92cb28727f4abd2e3864?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Luís</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25739">15 February, 2013 at 7:25 pm</a>		</div>
+
+		<p>I did miss something. Player 1 is not necessarily maximizing is payoff. Bah. So dumb!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25739#respond' data-commentid="25739" data-postid="14806" data-belowelement="div-comment-25739" data-respondelement="respond" data-replyto="Reply to Luís" aria-label='Reply to Luís'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-25761">
+				<div id="div-comment-25761" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/0a5185f1e7bc92cb28727f4abd2e3864?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Luís</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25761">16 February, 2013 at 7:41 am</a>		</div>
+
+		<p>Along the same lines. For each <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> maximize player 2&#8217;s payoff:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=g_2%28p%29%3D+%5Cmathrm%7Bmax%7D_%7B%5C%7Bq%3A+q%5Ccdot+e%3D1%5C%7D%7D+p%5Ccdot+Bq&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_2(p)= &#92;mathrm{max}_{&#92;{q: q&#92;cdot e=1&#92;}} p&#92;cdot Bq" class="latex" /> </p>
+<p>(continuous function on compact set). </p>
+<p>A sequential argument easily prove <img src="https://s0.wp.com/latex.php?latex=g_2%28p%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_2(p)" class="latex" /> is continuous. The set </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5CDelta%3D%5C%7B%28p%2Cq%29%3A+p%5Ccdot+Bq+%5Cgeq+g_2%28p%29%2C+p%5Ccdot+e%3Dp%5Ccdot+q%3D1%2C+p+%5Cgeq+%5Cbar%7B0%7D%2C+q+%5Cgeq+%5Cbar%7B0%7D%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Delta=&#92;{(p,q): p&#92;cdot Bq &#92;geq g_2(p), p&#92;cdot e=p&#92;cdot q=1, p &#92;geq &#92;bar{0}, q &#92;geq &#92;bar{0}&#92;}" class="latex" />  </p>
+<p>is closed by <img src="https://s0.wp.com/latex.php?latex=g_2%28p%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_2(p)" class="latex" />&#8216;s continuity, and bounded, so compact. </p>
+<p>Then any <img src="https://s0.wp.com/latex.php?latex=%28p%5E%2A%2C+q%5E%2A%29+%5Cin+%5Cmathrm%7Bargmax%7D_%7B+%5C%7B%28p%2Cq%29+%5Cin+%5CDelta%5C%7D%7D+p+%5Ccdot+Aq&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(p^*, q^*) &#92;in &#92;mathrm{argmax}_{ &#92;{(p,q) &#92;in &#92;Delta&#92;}} p &#92;cdot Aq" class="latex" /> </p>
+<p>is a Nash equilibrium.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25761#respond' data-commentid="25761" data-postid="14806" data-belowelement="div-comment-25761" data-respondelement="respond" data-replyto="Reply to Luís" aria-label='Reply to Luís'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-3 parent highlander-comment" id="comment-25779">
+				<div id="div-comment-25779" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25779">16 February, 2013 at 11:21 pm</a>		</div>
+
+		<p>Thanks for the comments.  I fixed your TeX a bit.  I&#8217;ve never seen this  <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7Bargmax%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{argmax}" class="latex" /> notation before!  I&#8217;m guessing that <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7Bargmax%7D_%7Bx+%5Cin+X%7D+f%28x%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{argmax}_{x &#92;in X} f(x) " class="latex" /> stands for the set of <img src="https://s0.wp.com/latex.php?latex=x+%5Cin+X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x &#92;in X" class="latex" /> that maximize <img src="https://s0.wp.com/latex.php?latex=f%28x%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f(x)." class="latex" />   Is that right?</p>
+<p>Once I&#8217;m clear on this, I&#8217;ll think about your argument.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25779#respond' data-commentid="25779" data-postid="14806" data-belowelement="div-comment-25779" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-25878">
+				<div id="div-comment-25878" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/eee1900328979212bebce09fd861c148?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Graham</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25878">18 February, 2013 at 8:33 pm</a>		</div>
+
+		<p>I am sure that&#8217;s what Luis means. I was initially surprised that you didn&#8217;t know the notation, but I think it is more commonly used by programmers than mathematicians.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-25898">
+				<div id="div-comment-25898" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25898">19 February, 2013 at 1:36 am</a>		</div>
+
+		<p>That&#8217;s for sure.  I&#8217;ve been doing math for decades and have never seen that notation.  It looks useful, but I&#8217;ll need to explain it whenever I use it in front of mathematicians.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-25918">
+				<div id="div-comment-25918" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/eee1900328979212bebce09fd861c148?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Graham Jones</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25918">19 February, 2013 at 10:13 am</a>		</div>
+
+		<p>I noticed it is used in this paper you pointed to:</p>
+<p>Andrew McLennan and Rabee Tourky, From imitation games to Kakutani</p>
+<p>&#8230; but they&#8217;re economists.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even depth-3 parent highlander-comment" id="comment-25876">
+				<div id="div-comment-25876" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/eee1900328979212bebce09fd861c148?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Graham</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25876">18 February, 2013 at 8:30 pm</a>		</div>
+
+		<p>I don&#8217;t understand Luis&#8217; proof. Let</p>
+<p><img src="https://s0.wp.com/latex.php?latex=G_2%3D%5C%7B%28p%2Cq%29%3A+p%5Ccdot+Bq+%3D+g_2%28p%29%2C+p%5Ccdot+e%3Dp%5Ccdot+q%3D1%2C+p+%5Cgeq+%5Cbar%7B0%7D%2C+q+%5Cgeq+%5Cbar%7B0%7D%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="G_2=&#92;{(p,q): p&#92;cdot Bq = g_2(p), p&#92;cdot e=p&#92;cdot q=1, p &#92;geq &#92;bar{0}, q &#92;geq &#92;bar{0}&#92;}" class="latex" /></p>
+<p>The set <img src="https://s0.wp.com/latex.php?latex=G_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="G_2" class="latex" /> is like <img src="https://s0.wp.com/latex.php?latex=%5CDelta&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Delta" class="latex" /> with an inequality replaced by an equality. It is the set of points <img src="https://s0.wp.com/latex.php?latex=%28p%2Cq%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(p,q)" class="latex" /> in which <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> is an optimal choice for player 2 for some choice <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> by player 1. Similarly we can define a function <img src="https://s0.wp.com/latex.php?latex=g_1%28q%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g_1(q)" class="latex" /> and a set <img src="https://s0.wp.com/latex.php?latex=G_1.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="G_1." class="latex" /> What we want to show is that the intersection of <img src="https://s0.wp.com/latex.php?latex=G_1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="G_1" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=G_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="G_2" class="latex" /> is non-empty.<br />
+I don&#8217;t see how it helps to extend <img src="https://s0.wp.com/latex.php?latex=G_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="G_2" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=%5CDelta&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Delta" class="latex" /> and look for points in that.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25876#respond' data-commentid="25876" data-postid="14806" data-belowelement="div-comment-25876" data-respondelement="respond" data-replyto="Reply to Graham" aria-label='Reply to Graham'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-25899">
+				<div id="div-comment-25899" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25899">19 February, 2013 at 1:37 am</a>		</div>
+
+		<p>Okay, I didn&#8217;t understand the proof either.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-25972">
+				<div id="div-comment-25972" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/eee1900328979212bebce09fd861c148?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Graham Jones</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-25972">20 February, 2013 at 11:20 am</a>		</div>
+
+		<p>I think have an elementary proof for the <img src="https://s0.wp.com/latex.php?latex=A%3D-B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A=-B" class="latex" /> case. (It&#8217;s certainly elementary: I&#8217;m not capable of other kinds.) It uses induction on <img src="https://s0.wp.com/latex.php?latex=n%2Bm&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n+m" class="latex" />, assuming (for example) the case <img src="https://s0.wp.com/latex.php?latex=n%3Dm%3D2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n=m=2" class="latex" /> is true, and uses the following lemma.  </p>
+<p>Lemma. Let <img src="https://s0.wp.com/latex.php?latex=v_1%2C+%5Cdots%2C+v_r&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v_1, &#92;dots, v_r" class="latex" /> be vectors in a finite dimensional real vector space. Then either (1) there is a vector <img src="https://s0.wp.com/latex.php?latex=u&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="u" class="latex" /> such that <img src="https://s0.wp.com/latex.php?latex=v_i+%5Ccdot+u+%3E+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v_i &#92;cdot u &gt; 0" class="latex" /> for all <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> or (2) there are nonnegative reals <img src="https://s0.wp.com/latex.php?latex=x_1%2C+%5Cdots%2C+x_r&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1, &#92;dots, x_r" class="latex" />, not all zero, such that <img src="https://s0.wp.com/latex.php?latex=%5Csum_1%5Er+x_i+v_i+%3D+0.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_1^r x_i v_i = 0." class="latex" /></p>
+<p>Proof idea for lemma: consider the convex hull of the <img src="https://s0.wp.com/latex.php?latex=v_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v_i" class="latex" />. If the origin is outside we can find a <img src="https://s0.wp.com/latex.php?latex=u&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="u" class="latex" /> for (1), otherwise we can show (2).</p>
+<p>Sketch proof of existence of Nash equilibrium. 	Denote the i&#8217;th row of <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> by <img src="https://s0.wp.com/latex.php?latex=A_i%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A_i," class="latex" /> regarded as a vector in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n." class="latex" /> Player A&#8217;s payoff can be written as</p>
+<p><img src="https://s0.wp.com/latex.php?latex=V+%3D+%28%5Csum_1%5Em+p_i+A_i%29+%5Ccdot+q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V = (&#92;sum_1^m p_i A_i) &#92;cdot q" class="latex" /> </p>
+<p>Now <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> belongs to a hyperplane in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n," class="latex" /> so we can project <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> and the <img src="https://s0.wp.com/latex.php?latex=A_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A_i" class="latex" /> onto it, with <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> becoming <img src="https://s0.wp.com/latex.php?latex=y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=A_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A_i" class="latex" /> becoming <img src="https://s0.wp.com/latex.php?latex=a_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_i" class="latex" /> in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5E%7Bn-1%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^{n-1}." class="latex" /> Note <img src="https://s0.wp.com/latex.php?latex=y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y" class="latex" /> is constrained to a hypertetrahedron <img src="https://s0.wp.com/latex.php?latex=T.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T." class="latex" /> Then</p>
+<p><img src="https://s0.wp.com/latex.php?latex=V+%3D+%28%5Csum_1%5Em+p_i+a_i%29+%5Ccdot+y++%2B++f%28p%2CA%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V = (&#92;sum_1^m p_i a_i) &#92;cdot y  +  f(p,A)" class="latex" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=f%28p%2Ca%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f(p,a)" class="latex" /> does not depend on <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" />. </p>
+<p>Now apply the lemma. If there is a <img src="https://s0.wp.com/latex.php?latex=u&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="u" class="latex" /> such that <img src="https://s0.wp.com/latex.php?latex=a_i+%5Ccdot+u+%3E+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_i &#92;cdot u &gt; 0" class="latex" /> for all i, then player B&#8217;s payoff can be improved by moving in direction <img src="https://s0.wp.com/latex.php?latex=-u&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="-u" class="latex" /> from any point in <img src="https://s0.wp.com/latex.php?latex=T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T" class="latex" />, so player B will choose a point on the boundary of <img src="https://s0.wp.com/latex.php?latex=T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T" class="latex" />, which means at least one strategy is never chosen. So the game is equivalent to a smaller game and induction provides a Nash equilibrium. Otherwise there is some (not necessarily optimal) choice <img src="https://s0.wp.com/latex.php?latex=%5Chat%7Bp%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;hat{p}" class="latex" /> for player A such that <img src="https://s0.wp.com/latex.php?latex=%5Csum_1%5Em+%5Chat%7Bp%7D_i+a_i+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_1^m &#92;hat{p}_i a_i = 0" class="latex" /> so player B cannot change the payoff.</p>
+<p>The same argument with A and B reversed either gives an equilibrium by induction, or a choice <img src="https://s0.wp.com/latex.php?latex=%5Chat%7Bq%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;hat{q}" class="latex" /> for player B such that player A cannot change the payoff. So if induction fails in both cases, we have <img src="https://s0.wp.com/latex.php?latex=%28%5Chat%7Bp%7D%2C+%5Chat%7Bq%7D%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(&#92;hat{p}, &#92;hat{q})." class="latex" /></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25972#respond' data-commentid="25972" data-postid="14806" data-belowelement="div-comment-25972" data-respondelement="respond" data-replyto="Reply to Graham Jones" aria-label='Reply to Graham Jones'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-26188">
+				<div id="div-comment-26188" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-26188">25 February, 2013 at 9:52 pm</a>		</div>
+
+		<p>This looks interesting&#8212;sorry to take so long to reply!</p>
+<blockquote><p>
+Now <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> belongs to a hyperplane in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n" class="latex" /> [&#8230;]
+</p></blockquote>
+<p>Which hyperplane?  Any old random hyperplane?  Yes, <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> belongs to infinitely many different hyperplanes, but this makes me nervous, mainly because I&#8217;m trying to understand your proof and it&#8217;s not making sense yet.</p>
+<blockquote><p>
+Now <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> belongs to a hyperplane in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n," class="latex" /> so we can project <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> and the <img src="https://s0.wp.com/latex.php?latex=A_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A_i" class="latex" /> onto it, with <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> becoming <img src="https://s0.wp.com/latex.php?latex=y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y" class="latex" /> [&#8230;]
+</p></blockquote>
+<p>If <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> belongs to a hyperplane, projecting <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> onto this hyperplane won&#8217;t change <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> at all, so we get <img src="https://s0.wp.com/latex.php?latex=y+%3D+q.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y = q." class="latex" />  Or am I not understanding you?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=26188#respond' data-commentid="26188" data-postid="14806" data-belowelement="div-comment-26188" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-26205">
+				<div id="div-comment-26205" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/eee1900328979212bebce09fd861c148?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Graham Jones</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-26205">26 February, 2013 at 9:10 am</a>		</div>
+
+		<p>I mean the hyperplane <img src="https://s0.wp.com/latex.php?latex=%5Csum_1%5En+q_i+%3D+1.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_1^n q_i = 1." class="latex" /> I want regard the unit simplex in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n" class="latex" /> as a hypertetrahedron <img src="https://s0.wp.com/latex.php?latex=T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T" class="latex" /> in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5E%7Bn-1%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^{n-1}." class="latex" /></p>
+<p>A bit later, where I say &#8220;&#8230;B’s payoff can be improved by moving in direction <img src="https://s0.wp.com/latex.php?latex=-u&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="-u" class="latex" /> from any point in <img src="https://s0.wp.com/latex.php?latex=T%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T," class="latex" /> &#8230;&#8221; I think it would be clearer if I added that this works for any choice by player A.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=26205#respond' data-commentid="26205" data-postid="14806" data-belowelement="div-comment-26205" data-respondelement="respond" data-replyto="Reply to Graham Jones" aria-label='Reply to Graham Jones'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-26217">
+				<div id="div-comment-26217" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/eee1900328979212bebce09fd861c148?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Graham Jones</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-26217">26 February, 2013 at 4:50 pm</a>		</div>
+
+		<p>Here is that part of the argument more explicitly:</p>
+<p>Let <img src="https://s0.wp.com/latex.php?latex=%5Ceta+%3D+1%2F%5Csqrt+n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;eta = 1/&#92;sqrt n" class="latex" /> and let <img src="https://s0.wp.com/latex.php?latex=s+%3D+%5Ceta%281%2C1%2C%5Cdots%2C1%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s = &#92;eta(1,1,&#92;dots,1)" class="latex" />, that is, <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> is a unit vector normal to the hyperplane <img src="https://s0.wp.com/latex.php?latex=%5Csum_1%5En+q_i%3D1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_1^n q_i=1" class="latex" />. Let </p>
+<p><img src="https://s0.wp.com/latex.php?latex=y+%3D+q+-+%28q%5Ccdot+s%29s+%3D+q+-+%5Ceta+s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y = q - (q&#92;cdot s)s = q - &#92;eta s" class="latex" /> </p>
+<p>and </p>
+<p><img src="https://s0.wp.com/latex.php?latex=a_i+%3D+A_i+-+%28A_i+%5Ccdot+s%29s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_i = A_i - (A_i &#92;cdot s)s" class="latex" /> </p>
+<p>Then </p>
+<p><img src="https://s0.wp.com/latex.php?latex=p_i+A_i+%5Ccdot+q+%3D+p_i%28%28A_i+%5Ccdot+s%29s+%2B+a_i%29+%5Ccdot+%28%5Ceta+s+%2B+y%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_i A_i &#92;cdot q = p_i((A_i &#92;cdot s)s + a_i) &#92;cdot (&#92;eta s + y)" class="latex" /></p>
+<p>and expanding that out and using <img src="https://s0.wp.com/latex.php?latex=s+%5Ccdot+y+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s &#92;cdot y = 0" class="latex" /> leads to </p>
+<p><img src="https://s0.wp.com/latex.php?latex=V+%3D+%28%5Csum_1%5Em+p_i+a_i%29+%5Ccdot+y++%2B++f%28p%2CA%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V = (&#92;sum_1^m p_i a_i) &#92;cdot y  +  f(p,A)" class="latex" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=f%28p%2CA%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f(p,A)" class="latex" /> does not depend on <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" />.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=26217#respond' data-commentid="26217" data-postid="14806" data-belowelement="div-comment-26217" data-respondelement="respond" data-replyto="Reply to Graham Jones" aria-label='Reply to Graham Jones'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-3 highlander-comment" id="comment-26218">
+				<div id="div-comment-26218" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/#comment-26218">26 February, 2013 at 4:59 pm</a>		</div>
+
+		<p>Graham wrote:</p>
+<blockquote><p>
+I mean the hyperplane <img src="https://s0.wp.com/latex.php?latex=%5Csum_1%5En+q_i+%3D+1.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_1^n q_i = 1." class="latex" />
+</p></blockquote>
+<p>Oh!   I hadn&#8217;t considered that option.  In math, half the time words like &#8216;line&#8217;, &#8216;plane&#8217; and &#8216;hyperplane&#8217; mean things that contain the origin, so that they&#8217;re vector spaces.  And half the time they don&#8217;t.  It&#8217;s about linear versus affine geometry. </p>
+<p>Let me think about this some more now.  Thanks.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=26218#respond' data-commentid="26218" data-postid="14806" data-belowelement="div-comment-26218" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-25647">John Baez</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2013/02/12/nash-equilibria/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2013/02/12/nash-equilibria/?replytocom=25647" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='14806' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='25647' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="52b623ac0e" /></p>
+<input type="hidden" name="genseq" value="1632621551" />
+<input type="hidden" id="ak_js" name="ak_js" value="124"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2013/02/12/nash-equilibria/?replytocom=25647"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,177,001 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-f1b3d1dee9a48588c690f1ac6a12367b">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-9fcf725325a3d2a6be693374dc23769b">
+	</div>
+	<div class="grofile-hash-map-7281f4d1c7d513b04d03ed34aa85e6bc">
+	</div>
+	<div class="grofile-hash-map-00b4a843cf527acc37919f0d1bd60597">
+	</div>
+	<div class="grofile-hash-map-d3e98828c7285c8034426800f4f9cd62">
+	</div>
+	<div class="grofile-hash-map-f14fd3617af3445f45b35036771a2685">
+	</div>
+	<div class="grofile-hash-map-04e2e7cc062df491c6f575b140d299f6">
+	</div>
+	<div class="grofile-hash-map-6983fa3a44bd3dd66027863073e1e0b1">
+	</div>
+	<div class="grofile-hash-map-656e05d084448337fb49459225dc525e">
+	</div>
+	<div class="grofile-hash-map-0a5185f1e7bc92cb28727f4abd2e3864">
+	</div>
+	<div class="grofile-hash-map-eee1900328979212bebce09fd861c148">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"14806","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'14806','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTZVSH43aUU1L0xnSXBRYkdYP2syVFJfblNQL0pKUHJxVEdLflpYZlR8d0ZWL2dTd0lPZ0JNcy5QX1JhdW1ZdkNRQVRMPTdFOHBRZVFFTXZ3TnImLXpafFJ5bysya1NOelBaRF9vWnZyaF8lLzl+LXhreEF6P2cuVjJSc1FBa21XSzN8cWxVdTl4Z0VyJSt8ai1abjRbN0s4VFFRYTBGTmpGUUZRWG9SbFdkaStZVlhGVzRfT2J8M3I5alpZeltlelBxLyxzSGNQfDNkYUtUYlZZLVRhRFR+eUJ1dw=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '14806' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

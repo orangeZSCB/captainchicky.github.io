@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Complex Adaptive System Design (Part 2) | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Complex Adaptive System Design (Part&nbsp;2) Comments Feed" href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F10%2F18%2Fcomplex-adaptive-system-design-part-2%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"677eca7dd0","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"0272f16312\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2016\/10\/18\/complex-adaptive-system-design-part-2\/?replytocom=97733","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F10%2F18%2Fcomplex-adaptive-system-design-part-2%2F%3Freplytocom%3D97733","postID":"22673","shortlink":"https:\/\/wp.me\/pRBZ9-5TH","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/22673","statsLink":"https:\/\/wordpress.com\/stats\/post\/22673\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F10%2F18%2Fcomplex-adaptive-system-design-part-2%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-5TH' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F10%2F18%2Fcomplex-adaptive-system-design-part-2%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F10%2F18%2Fcomplex-adaptive-system-design-part-2%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Complex Adaptive System Design (Part 2)" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/" />
+<meta property="og:description" content="Yesterday Blake Pollard and I drove to Metron&#8217;s branch in San Diego. For the first time, I met four of the main project participants: John Foley (math), Thy Tran (programming), Tom Mifflin an…" />
+<meta property="article:published_time" content="2016-10-18T17:19:49+00:00" />
+<meta property="article:modified_time" content="2021-06-25T00:46:50+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://www.uml-diagrams.org/examples/activity-example-document-management.png" />
+<meta property="og:image:width" content="650" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Complex Adaptive System Design (Part&nbsp;2)" />
+<meta name="twitter:image" content="http://www.uml-diagrams.org/examples/activity-example-document-management.png?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="Yesterday Blake Pollard and I drove to Metron&#039;s branch in San Diego. For the first time, I met four of the main project participants: John Foley (math), Thy Tran (programming), Tom Mifflin and Chris Boner (two higher-ups involved in the project). Jeff Monroe and Tiffany Change give us a briefing on Metron&#039;s ExAMS software. This&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-22673 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-22673 post type-post status-publish format-standard hentry category-azimuth category-computer-science category-networks" id="post-22673">
+			<h2>Complex Adaptive System Design (Part&nbsp;2)</h2>
+
+			<div class="entry">
+				<p><a href="http://www.uml-diagrams.org/activity-diagrams-examples.html"><img width="650" src="https://i0.wp.com/www.uml-diagrams.org/examples/activity-example-document-management.png" /><br />
+</a></p>
+<p>Yesterday Blake Pollard and I drove to Metron&#8217;s branch in San Diego.  For the first time, I met four of the main project participants: John Foley (math), Thy Tran (programming), Tom Mifflin and Chris Boner (two higher-ups involved in the project).  Jeff Monroe and Tiffany Change give us a briefing on Metron&#8217;s <a href="http://www.metsci.com/Division/ORCA/ExAMS">ExAMS</a> software.  This lets you design complex systems and view them in various ways.</p>
+<p>The most fundamental view is the &#8216;activity trace&#8217;, which consists of a bunch of parallel rows, one for each &#8216;performer&#8217;.   Each row has a bunch of boxes which represent &#8216;activities&#8217; that the performer can do.  Two boxes are connected by a wire when one box&#8217;s activity causes another to occur.  In general, time goes from left to right.  Thus, if B can only occur after A, the box for B is drawn to the right of the box for A.</p>
+<p>The wires can also merge via logic gates.  For example, suppose activity D occurs whenever A and B but not C have occurred.  Then wires coming out of the A, B, and C boxes merge in a logic gate and go into the A box.  However, these gates are a bit more general than your ordinary Boolean logic gates.  They may also involve &#8216;delays&#8217;, e.g. we can say that A occurs 10 minutes after B occurs.</p>
+<p>I would like to understand the mathematics of just these logic gates, for starters.  Ignoring delays for a minute (get the pun?), they seem to be giving a generalization of Petri nets.  In a <a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/">Petri net</a> we only get to use the logical connective &#8216;and&#8217;.  In other words, an activity can occur when <em>all</em> of some other activities have occurred.  People have considered various generalizations of Petri nets, and I think some of them allow more general logical connectives, but I&#8217;m forgetting where I saw this done.  Do you know?</p>
+<p>In the full-fledged activity traces, the &#8216;activity&#8217; boxes also compute functions, whose values flow along the wires and serve as inputs to other box.  That is, when an activity occurs, it produces an output, which depends on the inputs entering the box along input wires.   The output then appears on the wires coming out of that box.</p>
+<p>I forget if each activity box can have multiple inputs and multiple outputs, but that&#8217;s certainly a natural thing.</p>
+<p>The fun part is that one one can zoom in on any activity trace, seeing more fine-grained descriptions of the activities.  In this more fine-grained description each box turns into a number of boxes connected by wires.   And perhaps each wire becomes a number of parallel wires?  That would be mathematically natural.</p>
+<p>Activity traces give the so-called &#8216;logical&#8217; description of the complex system being described.  There is also a much more complicated &#8216;physical&#8217; description, saying the exact mechanical functioning of all the parts.  These parts are described using &#8216;plugins&#8217; which need to be carefully described ahead of time&#8212;but can then simply be <em>used</em> when assembling a complex system.</p>
+<p>Our little team is supposed to be designing our own complex systems using operads, but we want to take advantage of the fact that Metron already has this working system, ExAMS.  Thus, one thing I&#8217;d like to do is understand ExAMS in terms of operads and figure out how to do something exciting and new using this understanding.  I was very happy when Tom Mifflin embraced this goal.</p>
+<p>Unfortunately there&#8217;s no manual for ExAMS: the US government was willing to pay for the creation of this system, but not willing to pay for documentation.  Luckily it seems fairly simple, at least the part that I care about.   (There are a lot of other views derived from the activity trace, but I don&#8217;t need to worry about these.)   Also, ExAMS uses some <a href="http://dodcio.defense.gov/Library/DoD-Architecture-Framework/">DoDAF standards</a> which I can read about.   Furthermore, in some ways it resembles <a href="https://en.wikipedia.org/wiki/Unified_Modeling_Language">UML</a> and <a href="http://sysml.org/">SySML</a>, or more precisely, certain <em>parts</em> of these languages.</p>
+<p>In particular, the <a href="https://en.wikipedia.org/wiki/Activity_diagram">&#8216;activity diagrams&#8217;</a> in UML are a lot like the activity traces in ExAMS.  There&#8217;s an activity diagram at the top of this page, and another below, in which time proceeds down the page.</p>
+<p>So, I plan to put some time into understanding the underlying math of these diagrams!  If you know people who have studied them using ideas from category theory, please tell me.</p>
+<p><a href="http://www.uml-diagrams.org/google-sign-on-uml-activity-diagram-example.html"><br />
+<img width="440" src="https://i0.wp.com/www.uml-diagrams.org/examples/activity-example-google-sso.png" /></a></p>
+<hr />
+<p>The whole series of posts:</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/">Part 1</a>.  CASCADE: the Complex Adaptive System Composition and Design Environment.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/">Part 2</a>.   Metron’s software for system design.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2017/08/17/complex-adaptive-system-design-part-3/">Part 3</a>.  Operads: the basic idea.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2017/08/22/complex-adaptive-system-design-part-4/">Part 4</a>.  Network operads: an easy example.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2017/09/04/complex-adaptive-systems-part-5/">Part 5</a>.  Algebras of network operads: some easy examples.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2017/10/31/complex-adaptive-systems-part-6/">Part 6</a>.   Network models.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2018/02/19/complex-adaptive-systems-part-7/">Part 7</a>.    Step-by-step compositional design and tasking using commitment networks.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2018/08/22/complex-adaptive-systems-part-8/">Part 8</a>.  Compositional tasking using category-valued network models.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2019/03/24/complex-adaptive-system-design-part-9/">Part 9</a> &#8211; Network models from Petri nets with catalysts.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2021/06/25/complex-adaptive-system-design-part-10/">Part 10</a> &#8211; Two papers reviewing the whole project.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Tuesday, October 18th, 2016 at 5:19 pm and is filed under <a href="https://johncarlosbaez.wordpress.com/category/azimuth/" rel="category tag">azimuth</a>, <a href="https://johncarlosbaez.wordpress.com/category/computer-science/" rel="category tag">computer science</a>, <a href="https://johncarlosbaez.wordpress.com/category/networks/" rel="category tag">networks</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2016/10/07/kosterlitz-thouless-transition/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2016/10/23/open-and-interconnected-systems/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">14 Responses to <em>Complex Adaptive System Design (Part&nbsp;2)</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-84324">
+				<div id="div-comment-84324" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1ba6c3c8fb1d49b02429595851495529?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://jdc.math.uwo.ca' rel='external nofollow ugc' class='url'>Dan Christensen</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-84324">19 October, 2016 at 12:44 am</a>		</div>
+
+		<p>This sounds similar to things Spencer Breiner at NIST is working on.  See, for example, <a href="https://www.nist.gov/people/spencer-breiner" rel="nofollow">his NIST webpage</a> and <a href="http://www.appliedcategorytheory.org/author/spencer/" rel="nofollow">this Applied Category Theory page</a> which links to slides from a talk he gave.  In particular, I recall that he embeds logical relationships in the diagrams, which can encode statements such as &#8220;event a takes place at least 10 minutes after event b&#8221;.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=84324#respond' data-commentid="84324" data-postid="22673" data-belowelement="div-comment-84324" data-respondelement="respond" data-replyto="Reply to Dan Christensen" aria-label='Reply to Dan Christensen'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-84335">
+				<div id="div-comment-84335" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-84335">19 October, 2016 at 1:12 pm</a>		</div>
+
+		<p>Thanks!  I think three different people have mentioned Spencer Breiner to me in the last couple weeks.  I don&#8217;t know his work; it sounds like it&#8217;s past time to learn about it.</p>
+<p>I&#8217;m curious about the idea of blending logic and time in statements of the sort you mentioned.  At first I thought we were dealing with a topos of sheaves over the real line&#8212;this would be a way to study &#8216;time-dependent sets&#8217; and &#8216;time-dependent truth&#8217;.  Of course one might not want the full apparatus of set theory in ones logic, so a topos could be overkill.  But more importantly it&#8217;s possible that one wants to restrict to statements involving <em>relative</em> rather than <em>absolute</em> times: e.g., &#8220;event a takes places at least 10 minutes after event b&#8221; but not &#8220;event a takes place at least 2 days after January 3, 2014&#8221;.  The latter could be important for some applications, but there might be a large class of systems where only the former show up.  I&#8217;ll have to look at various people&#8217;s software, or theories of software, to see the common attitudes about this.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=84335#respond' data-commentid="84335" data-postid="22673" data-belowelement="div-comment-84335" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-webhubtelescope even depth-3 parent highlander-comment" id="comment-84340">
+				<div id="div-comment-84340" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dc21eed3ebc499422d6c4a927c71ac4f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">@whut</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-84340">19 October, 2016 at 5:01 pm</a>		</div>
+
+		<p>These are of course not new ideas, and computer scientists have long been experimenting with how to represent temporal logic in terms of something that is executable. All of robotics and digital logic design has this goal.</p>
+<p>The one language that has time integrated into its syntax is Ada for software (and VHDL amongst others for hardware design). Ada in particular has two built-in expressions for delaying execution, one for absolute timing and one for relative timing.</p>
+<p>A delay_statement is used to block further execution until a specified expiration time is reached. The expiration time can be specified either as a particular point in time (in a delay_until_statement), or in seconds from the current time (in a delay_relative_statement). The language-defined package Calendar provides definitions for a type Time and associated operations, including a function Clock that returns the current time.</p>
+<p>B-N Syntax</p>
+<blockquote><p>
+delay_statement ::= delay_until_statement | delay_relative_statement</p>
+<p>delay_until_statement ::= <b>delay until</b> delay_expression;</p>
+<p>delay_relative_statement ::= <b>delay</b> delay_expression;
+</p></blockquote>
+<p>This is not really interesting until the concepts of threads are introduced, whereby Petri Net control flow can then be modeled. The foundational reference for the theory is by Hoare</p>
+<blockquote><p>
+Hoare, Charles Antony Richard. Communicating sequential processes. Vol. 178. Englewood Cliffs: Prentice-hall, 1985.
+</p></blockquote>
+<p>Any Petri Net diagram can be transcribed into an Ada program using the built-in syntax.</p>
+<p>The one caveat in this is that Ada is meant for writing real-time software. For the timer, it uses what is known as the &#8220;wall clock&#8221; which ticks away in actual time.   But there is also a way to replace the wall clock with a simulated clock and thus use it in a way that is a pure executable architecture.</p>
+<p>This is a low-level nuts-and-bolts simulation concept that has been around for awhile.  And it&#8217;s more building-block than the ExAMS software from what I can tell.  Look into VHDL and your head will spin in terms of what can be constructed.  A VHDL model of a logic design is by definition an &#8220;executable architecture&#8221;, and only when it is synthesized onto a chip is when you get to see it operate in the real world.  All of the fortune in Silicon Valley is built on top of languages such as VHDL, Verilog, and others classified as proprietary intellectual property.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=84340#respond' data-commentid="84340" data-postid="22673" data-belowelement="div-comment-84340" data-respondelement="respond" data-replyto="Reply to @whut" aria-label='Reply to @whut'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-84360">
+				<div id="div-comment-84360" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-84360">20 October, 2016 at 5:18 pm</a>		</div>
+
+		<p>Thanks for the quick intro!  I&#8217;ll look into this stuff.  I&#8217;m getting ready to teach now, but I&#8217;ll have a lot more to say later.</p>
+<p>What does this mean, exactly?</p>
+<blockquote><p>
+  And it’s more building-block than the ExAMS software from what I can tell.
+</p></blockquote>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-webhubtelescope even depth-4 highlander-comment" id="comment-84362">
+				<div id="div-comment-84362" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dc21eed3ebc499422d6c4a927c71ac4f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">@whut</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-84362">20 October, 2016 at 7:16 pm</a>		</div>
+
+		<p><i>&#8220;What does this mean, exactly?&#8221;</i></p>
+<p>Language designers provide the necessary primitives to be able to create all of the known synchronization constructs.  I consider those the building blocks. Examples include guards, time-outs, semaphores, entries, mutexes, threads, The hardware design languages introduce signals, which are even more primitive.</p>
+<p>I haven&#8217;t seen the EXaMS tool but I doubt that they have the fine control that I would want.  I could be wrong though.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-84325">
+				<div id="div-comment-84325" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6c65b3d3fc035beec559f878228d7d43?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">arch1</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-84325">19 October, 2016 at 1:29 am</a>		</div>
+
+		<p>John, re: the hierarchical aspects, there may be quite a lot on structured/formal approaches to this in VLSI design / VLSI CAD / chip design / whatever-it&#8217;s-called-these-days literature.</p>
+<p>I base this on distant memories of personal computer based VLSI &amp; electronic CAD tools which already 30+ years ago had rich functionality along the lines of your &#8220;zooming in&#8221; paragraph (e.g. n-level hierarchical design support, global and selective multilevel push/edit/pop, and yes buses exploding into wires).</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=84325#respond' data-commentid="84325" data-postid="22673" data-belowelement="div-comment-84325" data-respondelement="respond" data-replyto="Reply to arch1" aria-label='Reply to arch1'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-simonwillerton even thread-even depth-1 highlander-comment" id="comment-84330">
+				<div id="div-comment-84330" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/94692fa5304a0c2e03686f7d37651544?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://simonwillerton.staff.shef.ac.uk' rel='external nofollow ugc' class='url'>Simon Willerton</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-84330">19 October, 2016 at 9:30 am</a>		</div>
+
+		<p>I&#8217;m reminded of my interpretation of PERT project scheduling in terms of enriched categories and functors, where the homs between items are the minimum elapsed time.<br />
+<a href="https://golem.ph.utexas.edu/category/2013/03/project_planning_parallel_proc.html" rel="nofollow ugc">https://golem.ph.utexas.edu/category/2013/03/project_planning_parallel_proc.html</a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=84330#respond' data-commentid="84330" data-postid="22673" data-belowelement="div-comment-84330" data-respondelement="respond" data-replyto="Reply to Simon Willerton" aria-label='Reply to Simon Willerton'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-84345">
+				<div id="div-comment-84345" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/80a67a2eebf30854652ad4432eee30c2?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Eugene</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-84345">19 October, 2016 at 7:56 pm</a>		</div>
+
+		<p>There are papers linking temporal logic and category theory.  For example &#8220;Towards a Common Categorical Semantics<br />
+for Linear-Time Temporal Logic<br />
+and Functional Reactive Programming&#8221; by<br />
+Wolfgang Jeltsch (a copy is  <a href="http://www.ioc.ee/~wolfgang/research/mfps-2012-paper.pdf" rel="nofollow"> here </a>).  Jeltsch has more papers along these lines.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=84345#respond' data-commentid="84345" data-postid="22673" data-belowelement="div-comment-84345" data-respondelement="respond" data-replyto="Reply to Eugene" aria-label='Reply to Eugene'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 highlander-comment" id="comment-84351">
+				<div id="div-comment-84351" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/96a95dc766cb41438c9ce3bb6fa5ee49?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">scout</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-84351">20 October, 2016 at 6:27 am</a>		</div>
+
+		<p>Jeltsch cites a couple papers by Jeffery on LTL and functional reactive programming (FRP); an older paper along these lines is <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.17.2554" rel="nofollow"><em>Interaction Categories and the Foundations of Typed Concurrent Programming</em></a> (Abramsky,Gay,Nagarajan 96), there&#8217;s also ongoing research into session types and related type systems for concurrent systems with provable &#8220;deadlock freedom&#8221;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=84351#respond' data-commentid="84351" data-postid="22673" data-belowelement="div-comment-84351" data-respondelement="respond" data-replyto="Reply to scout" aria-label='Reply to scout'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-84386">
+				<div id="div-comment-84386" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">domenico</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-84386">21 October, 2016 at 7:55 pm</a>		</div>
+
+		<p>Is there an analogy between Complex Adaptive System design and music scores?<br />
+Each musician perform an orderly musical sequence in time, that is a established procedure (boxes for press, pinches, musical chord, etc), so that it could be possible to create new music in a more precise method (wire for tie) like a numerical function.<br />
+Controlling an orchestra does not seem different from controlling a complex system using complex commands.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=84386#respond' data-commentid="84386" data-postid="22673" data-belowelement="div-comment-84386" data-respondelement="respond" data-replyto="Reply to domenico" aria-label='Reply to domenico'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-odd thread-alt depth-1 highlander-comment" id="comment-84425">
+				<div id="div-comment-84425" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-84425">22 October, 2016 at 6:05 pm</a>		</div>
+
+		<p>There are also interesting comments <a href="https://plus.google.com/117663015413546257905/posts/1DACvL954WK" rel="nofollow">on G+</a>.  A number express skepticism regarding the use of <a href="https://en.wikipedia.org/wiki/Unified_Modeling_Language" rel="nofollow">UML</a> (Unified Modeling Language) for programming.  This makes me wonder 1) how does Metron&#8217;s ExAMS software differ from UML, and 2) how does  simulating networks of boats, planes and satellites differ from other sorts of programming?</p>
+<p>I have some ideas on these questions, but anyway, here is part of the conversation on G+:</p>
+<p>Carsten F&uuml;hrmann wrote:</p>
+<blockquote><p>
+I must join the ranks of the UML sceptics here. Actually, my scepticism covers a whole range of diagrammatic techniques in software development. As you know, John, I&#8217;ve once dabbled in theories of diagrams (for logics), and had I stayed in academia, I&#8217;d probably have pursued this diagrammatic approach to logics and programming languages, premonoidal categories and such. But then I changed careers, and became a software developer. And I found to my own consternation that diagrammatic approaches to software, UML and others, are not beneficial to software engineer&#8217;s productivity. I thought a lot about the reasons. And I think I figured them out:</p>
+<p>Firstly, software systems quicky get so large that visualisations just look like the wires on a super-complex mainboard, or processor dye. By contrast, a programmer&#8217;s mind seems to work is work locally, in that they put their attention inside one diagram node (= function/class/module) and must forget about the rest. Then they take it from there and shift there focus to neighboring nodes. Navigation often takes place via something like project-wide full text search, but never by eye-balling an overview graph. One almost never &#8220;zooms out&#8221;, except, in the role of a software architect, to such a birds-eye perspective that the presentation (graphical vs. text) isn&#8217;t all that important. The understanding of the whole often works via verbalizing pervasive concepts rather than visualization.</p>
+<p>Secondly, I have yet to find a graphical language where the tool support for local change, called &#8220;refactoring&#8221; by programmers, is anywhere near as good as that for textual representation of code. I use semi-automatic refactoring tools daily that seem near unportable to diagrams.</p>
+<p>Then again, graphs do seem to be crucial in software engineering, but typically in algorithms executed by machines: intermediate output of a compiler represented as a graph, a graph of the heap used by a garbage collector, and so on.</p>
+<p>I am super-careful though to not overextend my conclusions. Just because software visualization doesn&#8217;t help me and my colleagues doesn&#8217;t mean it doesn&#8217;t help others. And there are of course areas outside of software engineering, like electronics, control theory, and biology, and physics, where the situation may be very different. And I know of course that you have tons of great materal to show that.﻿
+</p></blockquote>
+<p>Matt McIrvin wrote:</p>
+<blockquote><p>
+I remember obsessively graphing the modular structure of the software I was working on when I was first starting out&#8211;but, in hindsight, to a large extent it was just because I didn&#8217;t have anything like a modern IDE, and the screens on which I did my text editing were tiny. My way of getting a slightly bigger-picture view of the code was to refer to massive paper printouts, and the pictures were a way of getting my mental model of those printouts under control.﻿
+</p></blockquote>
+<p>Carsten wrote:</p>
+<blockquote><p>
+ I&#8217;ve had a vaguely similar experience: I was trying to visualize the architecture of my company&#8217;s software. I have a very modern tool for this, which produces a UML-like presentation, and even lays it out automatically. The resulting graph, when printed at human-readable magnification, has maybe the size of a football field and is a mess of edges crossing each other. I then applied simplifications and different levels of granularity and zooming. But the handling of the mess is so difficult, it&#8217;s much faster to just look at the code.﻿
+</p></blockquote>
+<p>John Baez wrote:</p>
+<blockquote><p>
+Carsten Führmann wrote: </p>
+<blockquote><p>
+Firstly, software systems quickly get so large that visualisations just look like the wires on a super-complex mainboard, or processor dye.
+</p></blockquote>
+<p>Could the reason be that the code is not organized in a hierarchical way that lets you see and work with useful &#8220;coarse-grained views&#8221; &#8211; views in which the millions of boxes and wires are grouped into fewer, larger units? </p>
+<p>Metron&#8217;s ExAMS software lets you simulate complex search-and-rescue operations involving many platforms&#8212;ships, aircraft, and satellites&#8212;communicating to each other and moving around.   If you want, you can see down into fine-grained details of each electronic device on each platform.   But you usually don&#8217;t want to.  You certainly never want to see all that detail for every device on every platform all at once.  What would be the point?</p>
+<p>It would be very interesting if ExAMS were better than SysML or UML.  Unfortunately I don&#8217;t have technical documentation for ExAMS, so I&#8217;m starting by reading about those other systems.</p>
+<p>It would also be interesting if graphical methods are inherently better for the applications that Metron is concerned with&#8212;simulating operations involving ships, planes and satellites&#8212;than what you what you were doing&#8212;programming.﻿
+</p></blockquote>
+<p>Carsten wrote:</p>
+<blockquote><p>
+Okay, let me reveal my daily work in its full mundaneness :) My company makes software for business, a rather big and versatile software that&#8217;s seen thousands of &#8220;man-years&#8221;. It&#8217;s written on the basis of Microsoft&#8217;s .Net framework, but it might as well be Java or something like that. At a technical level, the coarsest granularity is the &#8220;unit of deployment&#8221;, that is, an &#8220;assembly&#8221; file that may or may not be deployed to the customer. Each assembly contains some &#8220;namespaces&#8221;. Each namespace contains lots of &#8220;classes&#8221;. Each class lots of &#8220;methods&#8221;.</p>
+<p>We have maybe a thousand assemblies. They have a dependency hierarchy, in that stuff <i>inside</i> assembly A may need stuff <i>inside</i> assembly B. There are actually different types of dependency edges. The most important ones form a directed, acyclic graph. Other kinds of edges form a graphs that are also directed, but need not be acyclic. Then we can zoom inside a typical assembly. There will only be a small number of namespaces per assembly, let&#8217;s ignore those.</p>
+<p>Each assembly has a few hundred classes and interfaces on average. These classes and interfaces again have <i>lots</i> of dependencies among each other, and they have fewer, but still many, dependencies to classes and interfaces in other assemblies.</p>
+<p>Sometimes, but rarely, one looks at the entirety of the software, at assembly level. Then the UML-style visualization looks a bit like the map of a major city, with bundles of edges flowing between assemblies. If one then represents each bundle of edges by a single edge, one obtains a graph that&#8217;s presentable&#8212;if you have a monitor the size of a wall and very sharp eyes. But funnily enough, at that level, the visualization is hardly more informative or useful then the structure of named, and sometimes nested, file-system folders containing the assemblies.</p>
+<p>In daily programming, one typically focusses on changing the contents of a single assembly or a bunch of assemblies. So you look inside it, at the classes and interfaces. Now you can visualize those. Again, you get something like the map of a major city, except the road planners were on Speed and LSD combined. It&#8217;s actually much easier to just look at the (possibly nested) collection of named files, one per class, and the read them in the text editor. When one needs to follow a dependency, the IDE (integrated development environment) provides ways to click a piece of text and teleport you to the dependency.</p>
+<p>So, in practice, our software engineers rarely look at (architectural UML) visualizations.</p>
+<p>It&#8217;s not hard to imagine, though, that in areas other than software engineering, the relative sizes of the entities one deals with, and the abstraction layers, are better suited to visualization.</p>
+<p>I think the following paragraph in your previous comment is crucial: &#8220;It would also be interesting if graphical methods are inherently better for the applications that Metron is concerned with&#8221;. Indeed, it would be interesting! I have no idea, it might well be great! So we have this interesting question: What exactly is it that makes visualizations so useful in some domains, and so unproductive in others?﻿
+</p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=84425#respond' data-commentid="84425" data-postid="22673" data-belowelement="div-comment-84425" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-84498">
+				<div id="div-comment-84498" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/92650627f45514f5f86ba8b54dd2a34e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Wes Hansen</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-84498">24 October, 2016 at 6:47 pm</a>		</div>
+
+		<p>Okay, now I’m sorta finding this interesting! I’m not a software developer but I do have a bit of experience with PLCs and Saur Danfoss has a special type of function block diagram editor called GUIDE (Graphical User Interface Design Environment?) which is considered a high-level language by IEEE, ISO, and IEC:</p>
+<p><a href="http://powersolutions.danfoss.com/products/plus-1-software/#/" rel="nofollow ugc">http://powersolutions.danfoss.com/products/plus-1-software/#/</a></p>
+<p>Of course it’s part of their PLUS 1 program so geared towards specific control situations but it could provide insight.</p>
+<p>Also, you might be interested in the hypergraphs that Ben Goertzel and Company use with their Novamente and OpenCog projects:</p>
+<p>Textbook: <a href="http://www.springer.com/us/book/9789462390263" rel="nofollow ugc">http://www.springer.com/us/book/9789462390263</a></p>
+<p>Pre-print (free): <a href="http://lesswrong.com/lw/kq4/link_engineering_general_intelligence_the/" rel="nofollow ugc">http://lesswrong.com/lw/kq4/link_engineering_general_intelligence_the/</a></p>
+<p>Of course their hypergraphs are not being used to study complex systems of systems, rather, they are what evolves in their directed evolution approach to AGI. They also have a probabilistic inference engine called PLN which they utilize to make inferences from hypergraphs; something you might find helpful.</p>
+<p>From an analysis perspective, a couple of years ago I was reading a book of Humanity + interviews that Goertzel had put together, “Between Ape and Artilect:”</p>
+<p><object data="http://goertzel.org/BetweenApeAndArtilect.pdf" type="application/pdf" width="100%" height="800" style="height: 800px;"><p><a href="http://goertzel.org/BetweenApeAndArtilect.pdf">Click to access BetweenApeAndArtilect.pdf</a></p></object></p>
+<p>and in one of the interviews Goertzel was discussing the problems he and his team were having mathematically modelling what they call cognitive synergy. From “The Hidden Pattern:”</p>
+<p><object data="http://www.goertzel.org/HiddenPattern_march_4_06.pdf" type="application/pdf" width="100%" height="800" style="height: 800px;"><p><a href="http://www.goertzel.org/HiddenPattern_march_4_06.pdf">Click to access HiddenPattern_march_4_06.pdf</a></p></object></p>
+<p>“[…] Clustering/reasoning synergy is one among many dozens of examples of such synergies that we have discussed in the previous chapters. And the high-level mind patterns discussed in Chapter one – the dual network and the self, for example – are envisioned as emergent system patterns arising through cooperativity of all the system’s AI modules. The collection of AI modules in the system is intended to be a close-to-minimal set capable of leading to cooperative emergence of these high-level emergent structures. […]”</p>
+<p>According to Goertzel, they were trying to use GeoMetrodynamics to model the synergy where the synergy is represented by curvature. This put the idea of synergy as curvature in my head and I came up with what I believe to be a novel idea, which I emailed to Goertzel and Duane Kouba (Dr. Kouba is an award-winning professor at UC Davis who specializes in Diffy Qs).</p>
+<p>Basically, you start with a set of initial processes and synergies between those processes. So my thought was to encode the initial synergies in a Riemannian metric and then use Ricci Flow analogs to model each process with its relevant synergies leading to a system of Ricci Flow analogs which acts to transform the manifold on which it lives. This should tell one how the initial system evolves with time, from the perspective of synergy. To me, in designing a system of systems, the top level goal should be efficiency and it seems to me that high efficiency could be achieved via the maximization of synergy, the idea being to find a “close-to-minimal set capable of leading to cooperative emergence of” whatever one’s goal may be. If you find this idea compelling, you might want to email Goertzel and/or Kouba an inquiry as to whether or not they have done anything with it.</p>
+<p>Now, with regards to your ethical considerations, in a sense, you can think of synergy as a type of mutually beneficial symbiosis, correct? Just recently, I posted a short comment on Wolfram’s blog suggesting the maximization of mutually beneficial symbiosis as the overall guiding principle for his AI Constitution. Constitutions are generally developed to guide relations between distinct entities and are most often deployed during conflict resolution. So imagine if your study of systems of systems, funded by DARPA or whoever – the military – led to a better and fuller understanding of general synergistic dynamics, conflict emergence, and conflict resolution which could be utilized on a global scale, eventually leading to a drastic reduction in the necessity for militaristic deployment? Now that would be the Karmic Kitty’s meow! Of course I always take the long view . . .</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=84498#respond' data-commentid="84498" data-postid="22673" data-belowelement="div-comment-84498" data-respondelement="respond" data-replyto="Reply to Wes Hansen" aria-label='Reply to Wes Hansen'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-jimstuttard even thread-odd thread-alt depth-1 highlander-comment" id="comment-89334">
+				<div id="div-comment-89334" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/219ad36c6d934aab86631e6f828c6cf8?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://jimstuttard.wordpress.com' rel='external nofollow ugc' class='url'>jimstuttard</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-89334">30 March, 2017 at 3:38 pm</a>		</div>
+
+		<p>You might find it useful to look at IBM&#8217;s Rational XDE <a href="https://www-01.ibm.com/software/awdtools/suite/technical/features/" rel="nofollow ugc">https://www-01.ibm.com/software/awdtools/suite/technical/features/</a> which connects UML and code for round-trip engineering (see wikipedia), they UML generates code skeletons and filled in code can be reversed engineered into diagrams. I found its Java precursor in 2001 to be the only IDE apart from emacs and intellij that I could stand to use; I believe it now supports multiple languages. I can&#8217;t imagine that this ExAMS s/w is more powerful. Why did Metron not use it? Possibly because Rational products did and probably do cost an awful lot per seat.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=89334#respond' data-commentid="89334" data-postid="22673" data-belowelement="div-comment-89334" data-respondelement="respond" data-replyto="Reply to jimstuttard" aria-label='Reply to jimstuttard'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-even depth-1 highlander-comment" id="comment-97733">
+				<div id="div-comment-97733" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2017/08/17/complex-adaptive-system-design-part-3/' rel='external nofollow ugc' class='url'>Complex Adaptive System Design (Part 3) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/#comment-97733">17 August, 2017 at 8:42 am</a>		</div>
+
+		<p>It&#8217;s been a long time since I&#8217;ve blogged about the <a href="http://www.darpa.mil/program/complex-adaptive-system-composition-and-design-environment" rel="nofollow">Complex Adaptive System Composition and Design Environment</a> or <strong>CASCADE</strong> project run by <a href="https://www.darpa.mil/staff/dr-john-s-paschkewitz" rel="nofollow">John Paschkewitz</a>.  For a reminder, read these:</p>
+<p>• <a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/">Complex adaptive system design (part 1)</a>, <em>Azimuth</em>, 2 October 2016.</p>
+<p>• <a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/">Complex adaptive system design (part 2)</a>, <em>Azimuth</em>, 18 October 2016.</p>
+<p>A lot has happened since then, and I want to explain it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=97733#respond' data-commentid="97733" data-postid="22673" data-belowelement="div-comment-97733" data-respondelement="respond" data-replyto="Reply to Complex Adaptive System Design (Part 3) | Azimuth" aria-label='Reply to Complex Adaptive System Design (Part 3) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-97733">Complex Adaptive System Design (Part 3) | Azimuth</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2016/10/18/complex-adaptive-system-design-part-2/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="6dd877e3cf" /><input type="hidden" name="_wp_http_referer" value="/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=97733" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='22673' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='97733' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="b7b598c3c9" /></p>
+<input type="hidden" name="genseq" value="1632609657" />
+<input type="hidden" id="ak_js" name="ak_js" value="159"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/?replytocom=97733"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="0272f16312" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,176,919 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-1ba6c3c8fb1d49b02429595851495529">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-dc21eed3ebc499422d6c4a927c71ac4f">
+	</div>
+	<div class="grofile-hash-map-6c65b3d3fc035beec559f878228d7d43">
+	</div>
+	<div class="grofile-hash-map-94692fa5304a0c2e03686f7d37651544">
+	</div>
+	<div class="grofile-hash-map-80a67a2eebf30854652ad4432eee30c2">
+	</div>
+	<div class="grofile-hash-map-96a95dc766cb41438c9ce3bb6fa5ee49">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-92650627f45514f5f86ba8b54dd2a34e">
+	</div>
+	<div class="grofile-hash-map-219ad36c6d934aab86631e6f828c6cf8">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=f7f58f7d33","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"22673","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'22673','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTZVeHRpLXB0U3J1elBvZCZiTkEzXXlsLi1PU25PbltLcyZONi1Lay1ia3RtU0ZEcmxjdDdab2FqP3lnNTdjREcvfi93LG1GJS5WSk1jVm9BP0F6XWJteXFYWlEzeHZDTmdNLWRpOVM9eGI0TV04KzN+aDB8UkZnL3JsK3N3Mi90UkFiXz8mT01yWWU9ZkJ6ZXZ2UEwyL2xbdisvRmsuek9XXWdWQ0JHRzVSXS9FL2QuYzZJdVIxfjJUbmljRzNhbFdLN3gvTzVqX0F8SGxpeWlFXS89OFlWRUliQw=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '22673' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script defer id="bilmur"  data-provider="wordpress.com" data-service="simple" src="/wp-content/js/bilmur.min.js?i=2&m=202138"></script><script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

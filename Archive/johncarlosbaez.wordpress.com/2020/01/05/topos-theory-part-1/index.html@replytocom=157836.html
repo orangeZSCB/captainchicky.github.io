@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Topos Theory (Part 1) | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Topos Theory (Part&nbsp;1) Comments Feed" href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2020%2F01%2F05%2Ftopos-theory-part-1%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2020\/01\/05\/topos-theory-part-1\/?replytocom=157836","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2020%2F01%2F05%2Ftopos-theory-part-1%2F%3Freplytocom%3D157836","postID":"27207","shortlink":"https:\/\/wp.me\/pRBZ9-74P","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/27207","statsLink":"https:\/\/wordpress.com\/stats\/post\/27207\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2020%2F01%2F05%2Ftopos-theory-part-1%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-74P' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2020%2F01%2F05%2Ftopos-theory-part-1%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2020%2F01%2F05%2Ftopos-theory-part-1%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Topos Theory (Part 1)" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/" />
+<meta property="og:description" content="I&#8217;m teaching an introduction to topos theory this quarter, loosely based on Mac Lane and Moerdijk&#8217;s Sheaves in Geometry and Logic. I&#8217;m teaching one and a half hours each week for …" />
+<meta property="article:published_time" content="2020-01-05T21:25:06+00:00" />
+<meta property="article:modified_time" content="2020-03-29T20:58:43+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="https://johncarlosbaez.files.wordpress.com/2020/01/61r6ozrzscl._ac_ul436_.jpg" />
+<meta property="og:image:width" content="291" />
+<meta property="og:image:height" content="436" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Topos Theory (Part&nbsp;1)" />
+<meta name="twitter:image" content="https://johncarlosbaez.files.wordpress.com/2020/01/61r6ozrzscl._ac_ul436_.jpg?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="I&#039;m teaching an introduction to topos theory this quarter, loosely based on Mac Lane and Moerdijk&#039;s Sheaves in Geometry and Logic. I&#039;m teaching one and a half hours each week for 10 weeks, so we probably won&#039;t make it far very through this 629-page book. I may continue for the next quarter, but still, to&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-27207 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-27207 post type-post status-publish format-standard hentry category-mathematics" id="post-27207">
+			<h2>Topos Theory (Part&nbsp;1)</h2>
+
+			<div class="entry">
+				<p>I&#8217;m teaching an introduction to topos theory this quarter, loosely based on Mac Lane and Moerdijk&#8217;s <i>Sheaves in Geometry and Logic</i>.</p>
+<p>I&#8217;m teaching one and a half hours each week for 10 weeks, so we probably won&#8217;t make it far very through this 629-page book.  I may continue for the next quarter, but still, to make good progress I&#8217;ll have to do various things.</p>
+<p>First, I&#8217;ll assume basic knowledge of category theory, a lot of which is explained in the Categorical Preliminaries and Chapter 1 of this book.  I&#8217;ll start in with Chapter 2.  Feel free to ask questions!</p>
+<p>Second, I&#8217;ll skip a lot of proofs and focus on stating definitions and theorems, and explaining what they mean and why they&#8217;re interesting.</p>
+<p>These notes to myself will be compressed versions of what I will later write on the whiteboard.</p>
+<h3> Sheaves </h3>
+<p>Topos theory emerged from Grothendieck&#8217;s work on algebraic geometry; he developed it as part of his plan to prove the Weil Conjectures.  It was really just one of many linked innovations in algebraic geometry that emerged from the French school, and it makes the most sense if you examine the whole package.   Unfortunately algebraic geometry takes a long time to explain!  But later Lawvere and Tierney realized that topos theory could serve as a grand generalization of logic and set theory.   This <i>logical</i> approach is more self-contained, and easier to explain, but also a bit more dry—at least to me.  I will try to steer a middle course, and the title <i>Sheaves in Geometry and Logic</i> shows that Mac Lane and Moerdijk were trying to do this too.</p>
+<p>The basic idea of algebraic geometry is to associate to a space the commutative ring of functions on that space, and study the geometry and topology of this space using that ring.  For example, if <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> is a compact Hausdorff space there&#8217;s a ring <img src="https://s0.wp.com/latex.php?latex=C%28X%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C(X)" class="latex" /> consisting of all continuous real-valued functions on <img src="https://s0.wp.com/latex.php?latex=X%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X," class="latex" /> and you can recover <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> from this ring.  But algebraic geometers often deal with situations where there aren&#8217;t enough everywhere-defined functions (of the sort they want to consider) on a space.  For example, the only analytic functions on the Riemann sphere are <i>constant</i> functions.  That&#8217;s not good enough!   Most analytic functions on the Riemann sphere have poles, and are only defined away from these poles.   (I&#8217;m giving an example from complex analysis, in hopes that more people will get what I&#8217;m talking about, but there are plenty of purely algebraic examples.)</p>
+<p>This forced algebraic geometers to invent &#8216;sheaves&#8217;, around 1945 or so.  The idea of a sheaf is that instead of only considering functions defined <i>everywhere</i>, we look at functions defined on open sets.</p>
+<p>So, let <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> be a topological space and let <img src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BO%7D%28X%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathcal{O}(X)" class="latex" /> be the collection of open subsets of <img src="https://s0.wp.com/latex.php?latex=X.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X." class="latex" />  This is a poset with inclusion as the partial ordering, and thus it is a category.  A <b>presheaf</b> is a functor</p>
+<p><img src="https://s0.wp.com/latex.php?latex=F+%5Ccolon+%5Cmathcal%7BO%7D%28X%29%5E%7B%5Cmathrm%7Bop%7D%7D+%5Cto+%5Cmathsf%7BSet%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F &#92;colon &#92;mathcal{O}(X)^{&#92;mathrm{op}} &#92;to &#92;mathsf{Set} " class="latex" /></p>
+<p>So, a sheaf assigns to each open set <img src="https://s0.wp.com/latex.php?latex=U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U" class="latex" /> a set <img src="https://s0.wp.com/latex.php?latex=F+U.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F U." class="latex" />  It allows us to <b>restrict</b> an element of <img src="https://s0.wp.com/latex.php?latex=F+U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F U" class="latex" />  to any smaller open set <img src="https://s0.wp.com/latex.php?latex=U%27+%5Csubseteq+U%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U&#039; &#92;subseteq U," class="latex" /> and a couple of axioms hold, which are encoded in the word &#8216;functor&#8217;.   Note the &#8216;op&#8217;: that&#8217;s what lets us restrict elements of <img src="https://s0.wp.com/latex.php?latex=F+U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F U" class="latex" /> to <i>smaller</i> open sets.</p>
+<p>The example to keep in mind is where <img src="https://s0.wp.com/latex.php?latex=F+U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F U" class="latex" /> consists of functions on <img src="https://s0.wp.com/latex.php?latex=U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U" class="latex" /> (that is, functions of the sort we want to consider, such as continuous or smooth or analytic functions).   However, other examples are important too.</p>
+<p>In many of these examples something nice happens.  First, suppose we have <img src="https://s0.wp.com/latex.php?latex=s+%5Cin+F+U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s &#92;in F U" class="latex" /> and an open cover of <img src="https://s0.wp.com/latex.php?latex=U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U" class="latex" /> by open sets <img src="https://s0.wp.com/latex.php?latex=U_i.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U_i." class="latex" />  Then we can restrict <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=U_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U_i" class="latex" /> getting something we can call <img src="https://s0.wp.com/latex.php?latex=s%7C_%7BU_i%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s|_{U_i}." class="latex" />  We can then further restrict this to <img src="https://s0.wp.com/latex.php?latex=U_i+%5Ccap+U_j.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U_i &#92;cap U_j." class="latex" />  And by the definition of presheaf, we have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%28s%7C_%7BU_i%7D%29%7C_%7BU_i+%5Ccap+U_j%7D+%3D+%28s%7C_%7BU_j%7D%29%7C_%7BU_i+%5Ccap+U_j%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(s|_{U_i})|_{U_i &#92;cap U_j} = (s|_{U_j})|_{U_i &#92;cap U_j} " class="latex" /></p>
+<p>In other words, if we take a guy in <img src="https://s0.wp.com/latex.php?latex=F+U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F U" class="latex" /> and restrict it to a bunch of open sets covering <img src="https://s0.wp.com/latex.php?latex=U%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U," class="latex" /> the resulting guys agree on the overlaps <img src="https://s0.wp.com/latex.php?latex=U_i+%5Ccap+U_j.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U_i &#92;cap U_j." class="latex" />  Check that this follows from the definition of <i>functor</i> and some other facts!</p>
+<p>This is true for any presheaf.   A presheaf is a <b>sheaf</b> if we can start the other way around, with a bunch of guys <img src="https://s0.wp.com/latex.php?latex=s_i+%5Cin+F+U_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s_i &#92;in F U_i" class="latex" /> that agree on overlaps:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=s_i%7C_%7BU_i+%5Ccap+U_j%7D+%3D+s_j%7C_%7BU_i+%5Ccap+U_j%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s_i|_{U_i &#92;cap U_j} = s_j|_{U_i &#92;cap U_j} " class="latex" /></p>
+<p>and get a unique <img src="https://s0.wp.com/latex.php?latex=s+%5Cin+F+U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s &#92;in F U" class="latex" /> that restricts to all these guys:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=s%7C_%7BU_i%7D+%3D+s_i+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s|_{U_i} = s_i " class="latex" /></p>
+<p>Note this definition secretly has two clauses: I&#8217;m saying that in this situation <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> <i>exists</i> and is <i>unique</i>.   If we have uniqueness but not necessarily existence, we say our presheaf is a <b>separated presheaf</b>.</p>
+<p>The point of a sheaf is that you can tell if something is in <img src="https://s0.wp.com/latex.php?latex=F+U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F U" class="latex" /> by examining it <i>locally</i>.  These examples explain what I mean:</p>
+<p><b>Puzzle.</b>  Let <img src="https://s0.wp.com/latex.php?latex=X+%3D+%5Cmathbb%7BR%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X = &#92;mathbb{R}" class="latex" /> and for each open set <img src="https://s0.wp.com/latex.php?latex=U+%5Csubseteq+%5Cmathbb%7BR%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U &#92;subseteq &#92;mathbb{R}" class="latex" /> take <img src="https://s0.wp.com/latex.php?latex=F+U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F U" class="latex" /> to be the set of continuous real-valued functions on <img src="https://s0.wp.com/latex.php?latex=U.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U." class="latex" />  Show that with the usual concept of restriction of functions, <img src="https://s0.wp.com/latex.php?latex=F&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F" class="latex" /> is a presheaf and in fact a sheaf.</p>
+<p><b>Puzzle.</b>  Let <img src="https://s0.wp.com/latex.php?latex=X+%3D+%5Cmathbb%7BR%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X = &#92;mathbb{R}" class="latex" /> and for each open set <img src="https://s0.wp.com/latex.php?latex=U+%5Csubseteq+%5Cmathbb%7BR%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U &#92;subseteq &#92;mathbb{R}" class="latex" /> take <img src="https://s0.wp.com/latex.php?latex=F+U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F U" class="latex" /> to be the set of <i>bounded</i> continuous real-valued functions on <img src="https://s0.wp.com/latex.php?latex=U.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U." class="latex" />  Show that with the usual concept of restriction of functions, <img src="https://s0.wp.com/latex.php?latex=F&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F" class="latex" /> is a separated presheaf but not a sheaf.</p>
+<p>The problem is that a function can be bounded on each open set in an open cover of <img src="https://s0.wp.com/latex.php?latex=U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U" class="latex" /> yet not bounded on <img src="https://s0.wp.com/latex.php?latex=U.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U." class="latex" />   You can tell if a function is continuous by examining it locally, but you can&#8217;t tell if its bounded!</p>
+<p>So, in a sense that should gradually become clear, sheaves are about &#8216;local truth&#8217;.</p>
+<h3> The category of sheaves on a space </h3>
+<p>There&#8217;s a category of presheaves on any topological space <img src="https://s0.wp.com/latex.php?latex=X.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X." class="latex" />  Since a presheaf on <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> is a functor</p>
+<p><img src="https://s0.wp.com/latex.php?latex=F+%5Ccolon+%5Cmathcal%7BO%7D%28X%29%5E%7B%5Cmathrm%7Bop%7D%7D+%5Cto+%5Cmathsf%7BSet%7D%2C+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F &#92;colon &#92;mathcal{O}(X)^{&#92;mathrm{op}} &#92;to &#92;mathsf{Set}, " class="latex" /></p>
+<p>a morphism between presheaves is a natural transformation between such functors.</p>
+<p>Remember, if <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BC%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{C}" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BD%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{D}" class="latex" /> are categories, we use <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BC%7D%5E%7B%5Cmathsf%7BD%7D%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{C}^{&#92;mathsf{D}}" class="latex" /> to stand for the category where the objects are functors from <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BD%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{D}" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BC%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{C}," class="latex" /> and the morphisms are natural transformations.   This is called a <b>functor category</b>.</p>
+<p>So, a category of presheaves is just an example of a functor category, and the category of presheaves on <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> is called</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BSet%7D%5E%7B%5Cmathcal%7BO%7D%28X%29%5E%7B%5Cmathrm%7Bop%7D%7D%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{Set}^{&#92;mathcal{O}(X)^{&#92;mathrm{op}}}" class="latex" /></p>
+<p>But this name is rather ungainly, so we make an abbreviation</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cwidehat%7B%5Cmathsf%7BC%7D%7D+%3D+%5Cmathsf%7BSet%7D%5E%7B%5Cmathsf%7BC%7D%5E%7B%5Cmathrm%7Bop%7D%7D%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;widehat{&#92;mathsf{C}} = &#92;mathsf{Set}^{&#92;mathsf{C}^{&#92;mathrm{op}}}" class="latex" /></p>
+<p>Then the category of presheaves on <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> is called</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cwidehat%7B%5Cmathcal%7BO%7D%28X%29%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;widehat{&#92;mathcal{O}(X)} " class="latex" /></p>
+<p>Sheaves are subtler, but we define morphisms of sheaves the exact same way.  Every sheaf has an underlying presheaf, so we define a morphism between sheaves to be a morphism between their underlying presheaves.  This gives the <b>category of sheaves</b> on <img src="https://s0.wp.com/latex.php?latex=X%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X," class="latex" /> which we call <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BSh%7D%28X%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{Sh}(X)." class="latex" /></p>
+<p>By how we&#8217;ve set things up, <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BSh%7D%28X%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{Sh}(X)" class="latex" /> is a full subcategory of<br />
+<img src="https://s0.wp.com/latex.php?latex=%5Cwidehat%7B%5Cmathcal%7BO%7D%28X%29%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;widehat{&#92;mathcal{O}(X)}." class="latex" /></p>
+<p>Now, what Grothendieck realized is that <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BSh%7D%28X%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{Sh}(X)" class="latex" /> acts a whole lot like the category of sets.   For example, in the category of sets we can define &#8216;commutative rings&#8217;, but we can copy the definition in <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BSh%7D%28X%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{Sh}(X)" class="latex" /> and get &#8216;sheaves of commutative rings&#8217;, and so on.  The point is that we&#8217;re copying ordinary math, but doing it <i>locally, in a topological space</i>.</p>
+<h3> Elementary topoi </h3>
+<p>Lawvere and Tierney clarified what was going on here by inventing the concept of &#8216;elementary topos&#8217;.   I&#8217;ll throw the definition at you now and explain all the pieces in future classes:</p>
+<p><b>Definition.</b>  An <b>elementary topos</b>, or <b>topos</b> for short, is a category with finite limits and colimits, exponentials and a subobject classifier.</p>
+<p>I hope you know <a href="https://en.wikipedia.org/wiki/Limit_(category_theory)">limits and colimits</a>, since that&#8217;s the kind of basic category theory definition I&#8217;m assuming.  Given two objects <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y" class="latex" /> in a category, their <a href="https://en.wikipedia.org/wiki/Exponential_object">exponential</a> is an object <img src="https://s0.wp.com/latex.php?latex=x%5Ey&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^y" class="latex" /> that acts like the thing of all maps from <img src="https://s0.wp.com/latex.php?latex=y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=x.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x." class="latex" />  I&#8217;ll give the actual definition later.  A <a href="https://en.wikipedia.org/wiki/Subobject_classifier">subobject classifier</a> is, roughly, an object <img src="https://s0.wp.com/latex.php?latex=%5COmega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Omega" class="latex" /> that generalizes the usual set of truth values</p>
+<p><img src="https://s0.wp.com/latex.php?latex=2+%3D+%5C%7B0%2C1%5C%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="2 = &#92;{0,1&#92;} " class="latex" /></p>
+<p>Namely, subobjects of any object <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> are in one-to-one correspondence with  morphisms from <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=%5COmega%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Omega," class="latex" /> which serve as &#8216;characteristic functions&#8217;.   Again, this is just a sketch: I&#8217;ll give the actual definition later, or you can click on the link and read it now.</p>
+<p>The point is that an elementary topos has enough bells and whistles that we can &#8216;do mathematics inside it&#8217;.  It&#8217;s like an alternative universe, a variant of our usual category of sets and functions, where mathematicians can live.  But beware: in general, the kind of mathematics we do in an elementary topos is <i>finitistic</i> mathematics using <i>intuitionistic logic</i>.</p>
+<p>You see, the category of finite sets is an elementary topos, so you can&#8217;t expect to have &#8216;infinite objects&#8217; like the set of natural numbers in an elementary topos&#8212;unless you decree that you want them (which people often do).</p>
+<p>Also, we will see that while <img src="https://s0.wp.com/latex.php?latex=2+%3D+%5C%7B0%2C1%5C%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="2 = &#92;{0,1&#92;} " class="latex" /> is a Boolean algebra, the subobject classifier of an elementary topos need only be a <a href="https://en.wikipedia.org/wiki/Heyting_algebra">&#8216;Heyting algebra&#8217;</a>: a generalization of a Boolean algebra in which the law of excluded middle fails.  This is actually not weird: it&#8217;s connected to the fact that a category of sheaves lets us reason &#8216;locally&#8217;.  For example, we don&#8217;t just care if two functions are equal or not, we care if they&#8217;re equal or not <i>in each open set</i>.  So we need a subtler form of logic than classical Boolean logic.</p>
+<p>There&#8217;s a lot more to say, and I&#8217;m just sketching out the territory now, but one of the first big theorems we&#8217;re aiming for is this:</p>
+<p><b>Theorem.</b>  For any topological space <img src="https://s0.wp.com/latex.php?latex=X%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X," class="latex" /> <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BSh%7D%28X%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{Sh}(X)" class="latex" /> is an elementary topos.</p>
+<p>The topos of sheaves <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BSh%7D%28X%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{Sh}(X)" class="latex" /> remembers a lot about the topological space <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> that it came from&#8230; so a topos can also be seen as a way of talking about a space!  This is even true for elementary topoi that aren&#8217;t topoi of sheaves on an actual space.  So, topos theory is more than a generalization of set theory.  It&#8217;s also, in a different way, a generalization of topology.</p>
+<h3> Grothendieck topoi </h3>
+<p>You&#8217;ll notice that sheaves on <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> were defined starting with the poset <img src="https://s0.wp.com/latex.php?latex=%5Cmathcal%7BO%7D%28X%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathcal{O}(X)" class="latex" /> of open sets of <img src="https://s0.wp.com/latex.php?latex=X.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X." class="latex" />   In fact, to define them we never used anything about <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> except this poset!  This suggests that we could define sheaves more generally starting from <i>any</i> poset.</p>
+<p>And that&#8217;s true&#8212;but Grothendieck went further: he defined sheaves starting from any <i>category</i>, as long as that category was equipped with some extra structure saying when a bunch of morphisms <img src="https://s0.wp.com/latex.php?latex=f_i+%5Ccolon+x_i+%5Cto+x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_i &#92;colon x_i &#92;to x" class="latex" /> serve to &#8216;cover&#8217; the object <img src="https://s0.wp.com/latex.php?latex=x.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x." class="latex" />   This extra data is called a &#8216;coverage&#8217; or more often (rather confusingly) a <a href="https://en.wikipedia.org/wiki/Grothendieck_topology">&#8216;Grothendieck topology&#8217;</a>.   A category equipped with a Grothendieck topology is called a &#8216;site&#8217;.</p>
+<p>So, Grothendieck figured out how to talk about the category of sheaves <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BSh%7D%28%5Cmathsf%7BC%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{Sh}(&#92;mathsf{C})" class="latex" /> on any site <img src="https://s0.wp.com/latex.php?latex=%5Cmathsf%7BC%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathsf{C}." class="latex" />  He did this before Lawvere and Tierney came along, and this was his definition of a topos.  So, nowadays we say a category of sheaves on a site is a <b>Grothendieck topos</b>. However:</p>
+<p><b>Theorem.</b> Any Grothendieck topos is an elementary topos.</p>
+<p>So, Lawvere and Tierney&#8217;s approach subsumes Grothendieck&#8217;s, in a sense.  Not every elementary topos is a Grothendieck topos, though!   For example, the category of finite sets is an elementary topos but not a Grothendieck topos.  (It&#8217;s not big enough: any Grothendieck topos has, not just finite limits and colimits, but all small limits and colimits.)   So both concepts of topos are important and still used.  But when I say just &#8216;topos&#8217;, I&#8217;ll mean &#8216;elementary topos&#8217;.</p>
+<p>Why did Grothendieck bother to generalize the concept of sheaves from sheaves on a topological space to sheaves on a site?  He wasn&#8217;t just doing it for fun: it was a crucial step in his attempt to prove the Weil Conjectures!</p>
+<p>Basically, when you&#8217;re dealing with spaces that algebraic geometers like&#8212;say, algebraic varieties&#8212;there aren&#8217;t enough open sets to do everything we want, so we need to use <i>covering spaces</i> as a generalization of open covers.  So, instead of defining sheaves using the poset of open subsets of our space <img src="https://s0.wp.com/latex.php?latex=X%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X," class="latex" /> Grothendieck needed to use the category of covering spaces of <img src="https://s0.wp.com/latex.php?latex=X.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X." class="latex" /></p>
+<p>That&#8217;s the rough idea, anyway.</p>
+<h3> Geometric morphisms </h3>
+<p>As you probably know if you&#8217;re reading this, category theory is all about the morphisms.  This is true not just within a category, but between them.  The point of topos theory is not just to study one topos, but <i>many</i>.  We don&#8217;t want merely to do mathematics in alternative universes: we want to be able to <i>translate</i> mathematics from one alternative universe to another!</p>
+<p>So, what are the morphisms between topoi?</p>
+<p>First, if you have a continuous map <img src="https://s0.wp.com/latex.php?latex=f+%5Ccolon+X+%5Cto+Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;colon X &#92;to Y" class="latex" /> between topological spaces, you can take the &#8216;direct image&#8217; of a presheaf on <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> to get a presheaf on <img src="https://s0.wp.com/latex.php?latex=Y.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y." class="latex" />    Here&#8217;s how this works.</p>
+<p>The inverse image of any open set is open, so we get an <b>inverse image</b> map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f%5E%7B-1%7D+%5Ccolon+%5Cmathcal%7BO%7D%28Y%29+%5Cto+%5Cmathcal%7BO%7D%28X%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f^{-1} &#92;colon &#92;mathcal{O}(Y) &#92;to &#92;mathcal{O}(X)" class="latex" /></p>
+<p>sending each open set <img src="https://s0.wp.com/latex.php?latex=V+%5Csubseteq+Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V &#92;subseteq Y" class="latex" /> to the open set</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f%5E%7B-1%7D+V+%3D+%5C%7Bx+%5Cin+X+%3A%5C%3B+f%28x%29+%5Cin+V+%5C%7D+%5Csubseteq+X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f^{-1} V = &#92;{x &#92;in X :&#92;; f(x) &#92;in V &#92;} &#92;subseteq X" class="latex" /></p>
+<p>Given a presheaf <img src="https://s0.wp.com/latex.php?latex=F&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F" class="latex" /> on <img src="https://s0.wp.com/latex.php?latex=X%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X," class="latex" /> we define its <b>direct image</b> to be the presheaf on <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" /> given by</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%28f_%5Cast+F%29%28V%29+%3D+F%28f%5E%7B-1%7D+V%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(f_&#92;ast F)(V) = F(f^{-1} V) " class="latex" /></p>
+<p>Note the double reversal here: <img src="https://s0.wp.com/latex.php?latex=f&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f" class="latex" /> maps points in <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> to points in <img src="https://s0.wp.com/latex.php?latex=Y%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y," class="latex" /> but open sets in <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" /> give open sets in <img src="https://s0.wp.com/latex.php?latex=X%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X," class="latex" /> and then presheaves on <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> give presheaves on <img src="https://s0.wp.com/latex.php?latex=Y.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y." class="latex" /></p>
+<p>Of course we need to check that it works:</p>
+<p><b>Puzzle.</b> Show that <img src="https://s0.wp.com/latex.php?latex=f_%5Cast+F&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_&#92;ast F" class="latex" /> is a presheaf.  That is, explain how we can restrict an element of <img src="https://s0.wp.com/latex.php?latex=%28f_%5Cast+F%29%28V%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(f_&#92;ast F)(V)" class="latex" /> to any open set contained in <img src="https://s0.wp.com/latex.php?latex=V%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V," class="latex" /> and check that we get a presheaf this way.</p>
+<p>In fact it works very nicely:</p>
+<p><b>Puzzle.</b> Show that taking direct images gives a functor from the category of presheaves on <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> to the category of presheaves on <img src="https://s0.wp.com/latex.php?latex=Y.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y." class="latex" /></p>
+<p><b>Puzzle.</b>  Show that if <img src="https://s0.wp.com/latex.php?latex=F&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="F" class="latex" /> is a sheaf on <img src="https://s0.wp.com/latex.php?latex=X%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X," class="latex" /> its direct image <img src="https://s0.wp.com/latex.php?latex=f_%5Cast+F&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_&#92;ast F" class="latex" /> is a sheaf on <img src="https://s0.wp.com/latex.php?latex=Y.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y." class="latex" /></p>
+<p>The upshot of all this is that a continuous map between topological spaces</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f+%5Ccolon+X+%5Cto+Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;colon X &#92;to Y" class="latex" /></p>
+<p>gives a functor between sheaf categories</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f_%5Cast+%5Ccolon+%5Cmathsf%7BSh%7D%28X%29+%5Cto+%5Cmathsf%7BSh%7D%28Y%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_&#92;ast &#92;colon &#92;mathsf{Sh}(X) &#92;to &#92;mathsf{Sh}(Y) " class="latex" /></p>
+<p>And this functor turns out to be very nice!  This is another big theorem we aim to prove later:</p>
+<p><b>Theorem.</b>  If <img src="https://s0.wp.com/latex.php?latex=f+%5Ccolon+X+%5Cto+Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;colon X &#92;to Y" class="latex" /> is a continuous map between topological spaces, the functor</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f_%5Cast+%5Ccolon+%5Cmathsf%7BSh%7D%28X%29+%5Cto+%5Cmathsf%7BSh%7D%28Y%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_&#92;ast &#92;colon &#92;mathsf{Sh}(X) &#92;to &#92;mathsf{Sh}(Y) " class="latex" /></p>
+<p>has a left adjoint</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f%5E%5Cast+%5Ccolon+%5Cmathsf%7BSh%7D%28Y%29+%5Cto+%5Cmathsf%7BSh%7D%28X%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f^&#92;ast &#92;colon &#92;mathsf{Sh}(Y) &#92;to &#92;mathsf{Sh}(X) " class="latex" /></p>
+<p>that preserves finite limits.</p>
+<p>This left adjoint is called the <b>inverse image</b> map.  Note that because <img src="https://s0.wp.com/latex.php?latex=f_%5Cast&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_&#92;ast" class="latex" /> has a left adjoint, it <i>is</i> a right adjoint, so it preserves limits.   Because <img src="https://s0.wp.com/latex.php?latex=f%5E%5Cast&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f^&#92;ast" class="latex" /> is a left adjoint, it preserves colimits.  The fact that <img src="https://s0.wp.com/latex.php?latex=f%5E%5Cast&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f^&#92;ast" class="latex" />  preserves finite limits is extra gravy on top of an already nice situation!</p>
+<p>We bundle all this niceness into a definition:</p>
+<p><b>Definition.</b>  A functor <img src="https://s0.wp.com/latex.php?latex=f_%5Cast+%5Ccolon+%5Cmathsf%7BT%7D+%5Cto+%5Cmathsf%7BT%27%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_&#92;ast &#92;colon &#92;mathsf{T} &#92;to &#92;mathsf{T&#039;}" class="latex" /> between topoi is a <b>geometric morphism</b> if it has a left adjoint that preserves finite limits.</p>
+<p>And this is the most important kind of morphism between topoi.  It&#8217;s not a very obvious definition, but it&#8217;s extracted straight from what happens in examples.</p>
+<p>To wrap up, I should add that people usually call the <i>pair</i> consisting of <img src="https://s0.wp.com/latex.php?latex=f_%5Cast+%5Ccolon+%5Cmathsf%7BT%7D+%5Cto+%5Cmathsf%7BT%27%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_&#92;ast &#92;colon &#92;mathsf{T} &#92;to &#92;mathsf{T&#039;}" class="latex" /> and its left adjoint <img src="https://s0.wp.com/latex.php?latex=f%5E%5Cast+%5Ccolon+%5Cmathsf%7BT%27%7D+%5Cto+%5Cmathsf%7BT%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f^&#92;ast &#92;colon &#92;mathsf{T&#039;} &#92;to &#92;mathsf{T}" class="latex" /> a geometric morphism.  A functor has at most one adjoint, up to natural isomorphism, so my definition is at least tolerable.  But I&#8217;ll probably switch to the standard one when we get serious about geometric morphisms.</p>
+<p>And we will eventually see that geometric morphisms let us translate mathematics from one alternative universe to another!</p>
+<h3> Conclusion </h3>
+<p>If this seemed like too much too soon, fear not, I&#8217;ll go over it again and actually <i>define</i> a lot of the concepts I merely sketched, like &#8216;exponentials&#8217;, &#8216;subobject classifier&#8217;, &#8216;Heyting algebra&#8217;, &#8216;Grothendieck topology&#8217;, and &#8216;Grothendieck topos&#8217;.  I just wanted to get a lot of the main concepts on the table quickly.   You should do the puzzles to see if you understand what I wanted you to understand.  Unless I made a mistake, all of these are straightforward definition-pushing if you&#8217;re comfortable with some basic category theory.</p>
+<p>For more background on topos theory I highly recommend this:</p>
+<p>• Colin McLarty, <a href="https://pdfs.semanticscholar.org/a4fb/637410e874b97d323d145c4ebed1c0b03074.pdf">The uses and abuses of the history of topos theory</a>.</p>
+<blockquote><p>
+<b>Abstract.</b> The view that toposes originated as generalized set theory is a figment of set theoretically educated common sense. This false history obstructs understanding of category theory and especially of categorical foundations for mathematics. Problems in geometry, topology, and related algebra led to categories and toposes. Elementary toposes arose when Lawvere&#8217;s interest in the foundations of physics and Tierney&#8217;s in the foundations of topology led both to study Grothendieck&#8217;s foundations for algebraic geometry. I end with remarks on a categorical view of the history of set theory, including a false history plausible from that point of view that would make it helpful to introduce toposes as a generalization from set theory.
+</p></blockquote>
+<p>There&#8217;s also a lot of background material in the book for this course:</p>
+<p><a href="https://johncarlosbaez.files.wordpress.com/2020/01/61r6ozrzscl._ac_ul436_.jpg"><img data-attachment-id="27256" data-permalink="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/61r6ozrzscl-_ac_ul436_/" data-orig-file="https://johncarlosbaez.files.wordpress.com/2020/01/61r6ozrzscl._ac_ul436_.jpg" data-orig-size="291,436" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="61R6OZRzscL._AC_UL436_" data-image-description="" data-image-caption="" data-medium-file="https://johncarlosbaez.files.wordpress.com/2020/01/61r6ozrzscl._ac_ul436_.jpg?w=200" data-large-file="https://johncarlosbaez.files.wordpress.com/2020/01/61r6ozrzscl._ac_ul436_.jpg?w=291" src="https://johncarlosbaez.files.wordpress.com/2020/01/61r6ozrzscl._ac_ul436_.jpg?w=450" alt=""   class="aligncenter size-full wp-image-27256" srcset="https://johncarlosbaez.files.wordpress.com/2020/01/61r6ozrzscl._ac_ul436_.jpg 291w, https://johncarlosbaez.files.wordpress.com/2020/01/61r6ozrzscl._ac_ul436_.jpg?w=100 100w" sizes="(max-width: 291px) 100vw, 291px" /></a></p>
+<hr />
+<p>The series so far:</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/">Part 1</a>: sheaves, elementary topoi, Grothendieck topoi and geometric morphisms.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2020/01/07/topos-theory-part-2/">Part 2</a>: turning presheaves into bundles and vice versa; turning sheaves into etale spaces and vice versa.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2020/01/13/topos-theory-part-3/">Part 3</a>: sheafification; the adjunction between presheaves and bundles.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2020/01/21/topos-theory-part-4/">Part 4</a>: direct and inverse images of sheaves.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2020/01/28/topos-theory-part-5/">Part 5</a>: why presheaf categories are elementary topoi: colimits and limits in presheaf categories.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2020/02/11/topos-theory-part-6/">Part 6</a>: why presheaf categories are elementary topoi: cartesian closed categories and why presheaf categories are cartesian closed.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2020/02/18/topos-theory-part-7/">Part 7</a>: why presheaf categories are elementary topoi: subobjects and subobject classifiers, and why presheaf categories have a subobject classifier.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2020/02/27/topos-theory-part-8/">Part 8</a>: an example: the topos of time-dependent sets, and its subobject classifier.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Sunday, January 5th, 2020 at 9:25 pm and is filed under <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2020/01/05/schrodinger-and-einstein/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2020/01/07/topos-theory-part-2/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">22 Responses to <em>Topos Theory (Part&nbsp;1)</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-157675">
+				<div id="div-comment-157675" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157675">6 January, 2020 at 8:43 am</a>		</div>
+
+		<p>Is there a way to relax the distributiveness of Heyting algebras to something like <a href="https://golem.ph.utexas.edu/category/2010/12/solers_theorem.html" rel="nofollow ugc">modularity or orthomodularity</a>?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157675#respond' data-commentid="157675" data-postid="27207" data-belowelement="div-comment-157675" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-topologicalmusings311017 odd alt depth-2 highlander-comment" id="comment-157678">
+				<div id="div-comment-157678" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/563bc4b0fe01b601813163f0485f4d78?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Todd Trimble</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157678">6 January, 2020 at 12:42 pm</a>		</div>
+
+		<p>So a Heyting algebra is a lattice that as a poset (hence as a category) is cartesian closed. Cartesian closure is the real hallmark of being a Heyting algebra; if you drop that condition, then generally speaking you are talking about a very different species of lattice. And cartesian closure implies that products (which in a poset are meets) distribute over coproducts (which in a poset are joins).</p>
+<p>If a finitely complete category has a subobject classifier <img src="https://s0.wp.com/latex.php?latex=%5COmega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Omega" class="latex" />, then <img src="https://s0.wp.com/latex.php?latex=%5COmega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Omega" class="latex" /> carries an internal structure of cartesian closed meet semi-lattice. (This is true even if we drop the topos condition that the ambient category is cartesian closed!) Externally, this means that all subobject posets <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BSub%7D%28X%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Sub}(X)" class="latex" /> are cartesian closed meet-semilattices.</p>
+<p>Off-hand I know of no <em>interesting</em> way to relax the cartesian closure condition on a Heyting algebra that would allow modularity but not distributivity. As you know, modular lattices typically crop up as lattices of congruences for specific types of categories of algebraic structures, like groups and rings; more generally, they arise this way if the algebraic theory in question is a so-called Mal&#8217;cev theory. But these types of categories are quite a far cry from elementary toposes. The &#8220;closest&#8221; they can get, as far as I know, is via Freyd&#8217;s notion of AT category, which axiomatizes the exactness properties that are common to abelian categories and elementary toposes.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157678#respond' data-commentid="157678" data-postid="27207" data-belowelement="div-comment-157678" data-respondelement="respond" data-replyto="Reply to Todd Trimble" aria-label='Reply to Todd Trimble'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-157683">
+				<div id="div-comment-157683" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157683">6 January, 2020 at 6:12 pm</a>		</div>
+
+		<p>Distributivity is the hallmark of &#8216;classical&#8217; logic -where &#8216;classical&#8217; means non-quantum, as opposed to non-intuitionistic.  Topos theory is thoroughly classical in this sense.  There have been attempts to develop &#8216;quantum topos theory&#8217;, but the first two I looked at were amateurish and unconvincing.  If quantum topos theory deserves to exist at all, it may be connected to noncommutative algebraic geometry &#8211; another risky subject.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157683#respond' data-commentid="157683" data-postid="27207" data-belowelement="div-comment-157683" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-157711">
+				<div id="div-comment-157711" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157711">7 January, 2020 at 4:23 pm</a>		</div>
+
+		<p>That is all very interesting and helpful; thank you!</p>
+<p>(For reasons that are probably personal and idiosyncratic, I&#8217;m not all that enthusiastic about most of what goes under the name &#8220;quantum logic&#8221; as a route to understanding the truly deep fundamentals of the physics; it kind of seems like the subject which really deserves the name has yet to be invented. The &#8220;a &#8216;logic&#8217; is a lattice of closed subspaces of a Hilbert space&#8221; way of thinking did <a href="https://arxiv.org/abs/1911.05809" rel="nofollow ugc">suggest one conceptual connection about a straight-up math problem</a>, but I still haven&#8217;t been able to carry it very far!)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157711#respond' data-commentid="157711" data-postid="27207" data-belowelement="div-comment-157711" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-157719">
+				<div id="div-comment-157719" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157719">7 January, 2020 at 6:39 pm</a>		</div>
+
+		<p>Many share your belief that traditional lattice-based quantum logic is not getting to the bottom of things, and there&#8217;s a lot of modern work on other approaches.  A good introduction is here:</p>
+<p>&bull; Chris Heunen and Jamie Vicary, <a href="https://global.oup.com/academic/product/categories-for-quantum-theory-9780198739616?cc=us&amp;lang=en" rel="nofollow ugc"><i>Categories for Quantum Theory</i></a>, Oxford U. Press, Oxford, 2020.</p>
+<p>I wrote a much shorter introduction to these ideas for philosophers:</p>
+<p>&bull; John Baez, <a href="http://math.ucr.edu/home/baez/quantum/" rel="nofollow ugc">Quantum quandaries: a category-theoretic approach</a>, in <i>Structural Foundations of Quantum Gravity</i>, eds. Steven French, Dean Rickles and Juha Saatsi, Oxford U. Press, 2006, pp. 240&ndash;265.</p>
+<p>The basic idea here is that classical logic is about cartesian closed categories while quantum logic is about compact dagger-categories.</p>
+<p>I should also mention <a href="https://arxiv.org/abs/1205.3833" rel="nofollow ugc">generalized probabilistic theories</a> using convex sets, and <a href="https://compositionality-journal.org/papers/compositionality-1-1/" rel="nofollow ugc">effect theories</a>.  There&#8217;s a lot of work going on in all these approaches.  It needs to be synthesized and beautified.</p>
+<p>I wish people would ask questions about topos theory, but maybe everything in this lecture was too easy for anyone in the world to have any questions!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157719#respond' data-commentid="157719" data-postid="27207" data-belowelement="div-comment-157719" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-topologicalmusings311017 odd alt depth-2 highlander-comment" id="comment-157739">
+				<div id="div-comment-157739" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/563bc4b0fe01b601813163f0485f4d78?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Todd Trimble</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157739">8 January, 2020 at 4:29 pm</a>		</div>
+
+		<p>Regarding categories and quantum mechanics: there&#8217;s also something called the <a href="https://ncatlab.org/nlab/show/Bohr+topos" rel="nofollow ugc">Bohr topos</a> (of a <img src="https://s0.wp.com/latex.php?latex=C%5E%5Cast&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C^&#92;ast" class="latex" />-algebra), which seems to have some attractive features if you happen to like toposes and internal logic. It&#8217;s pretty straightforward to define (it&#8217;s a presheaf topos, over the category dual to the poset of commutative <img src="https://s0.wp.com/latex.php?latex=%5Cast&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ast" class="latex" />-subalgebras, equipped with an internal &#8220;tautological&#8221; commutative ring). I&#8217;m guessing you know something about this, John, and might have something to say about it, but the nLab has a pretty extensive sales pitch going for it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157739#respond' data-commentid="157739" data-postid="27207" data-belowelement="div-comment-157739" data-respondelement="respond" data-replyto="Reply to Todd Trimble" aria-label='Reply to Todd Trimble'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-2 parent highlander-comment" id="comment-157744">
+				<div id="div-comment-157744" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157744">8 January, 2020 at 7:41 pm</a>		</div>
+
+		<p>The &#8220;Bohr topos&#8221; material has the appeal that the developers appear to have thought more carefully than is typical about what Bohr himself wrote. He could be quite a foggy writer, a <a href="https://doi.org/10.1007/978-94-017-1454-9_4" rel="nofollow ugc">problem compounded</a> by later generations simply not reading the pieces where he was the clearest and by the fact that very often he wasn&#8217;t thinking about the same questions that those later generations had in mind.</p>
+<p>I&#8217;m not yet seeing what I might crassly call the &#8220;cash value&#8221; of Bohr toposes &mdash; yes, we can define all these things, but what do they make more clear than before? Maybe this series will shake something loose for me. My own work has fallen closer to the &#8220;generalized probabilistic theories&#8221; side, so I&#8217;d like to see the pieces fit together.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157744#respond' data-commentid="157744" data-postid="27207" data-belowelement="div-comment-157744" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-3 highlander-comment" id="comment-157749">
+				<div id="div-comment-157749" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157749">9 January, 2020 at 3:17 am</a>		</div>
+
+		<p>I don&#8217;t there&#8217;s any &#8220;cash value&#8221; for Bohr toposes yet.  I wrote about some similar stuff long ago in This Week&#8217;s Finds: it&#8217;s nice how there&#8217;s a poset of commutative subalgebras of a general C*-algebra, which give a preheaf of different &#8220;classical views&#8221; of a quantum system&#8230; but if you&#8217;re mainly interested in physics rather than topos theory, it&#8217;s safe to wait until a bunch of people shout &#8220;Eureka!&#8221;</p>
+<p>Topos theory is interesting for <em>other</em> reasons.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157749#respond' data-commentid="157749" data-postid="27207" data-belowelement="div-comment-157749" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-topologicalmusings311017 even depth-2 highlander-comment" id="comment-157746">
+				<div id="div-comment-157746" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/563bc4b0fe01b601813163f0485f4d78?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Todd Trimble</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157746">8 January, 2020 at 8:03 pm</a>		</div>
+
+		<p>Yeah, it may not be completely clear, even for <a href="https://golem.ph.utexas.edu/category/2011/07/bohr_toposes.html" rel="nofollow ugc">Urs Schreiber</a> who is the principal author of the relevant nLab articles, what that cash value is. Far be it from me to say much about it, except that there is this potential of bringing a huge wealth of experience with toposes to bear (googling &#8220;Bohr topos&#8221; will reveal some of this).</p>
+<p>Urs makes a concerted effort to explain the relevant issues where the Bohr topos provides a convenient conceptual framework, <a href="https://ncatlab.org/nlab/show/order-theoretic+structure+in+quantum+mechanics" rel="nofollow ugc">here</a>. He emphasizes the close connection between the poset of commutative <img src="https://s0.wp.com/latex.php?latex=%5Cast&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ast" class="latex" />-subalgebras and the underlying Jordan algebra, and that this together with the actual commutative algebra structures are what is key to the physics. But I&#8217;d better quit here.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157746#respond' data-commentid="157746" data-postid="27207" data-belowelement="div-comment-157746" data-respondelement="respond" data-replyto="Reply to Todd Trimble" aria-label='Reply to Todd Trimble'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-157691">
+				<div id="div-comment-157691" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2020/01/07/topos-theory-part-2/' rel='external nofollow ugc' class='url'>Topos Theory (Part 2) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157691">7 January, 2020 at 2:01 am</a>		</div>
+
+		<p>[&#8230;] Last time I defined sheaves on a topological space. This time I&#8217;ll say how to get sheaves from &#8216;bundles&#8217;.  You may or may not have heard of &#8216;bundles&#8217; of various kinds, like vector bundles or fiber bundles. If you have, be glad: the bundles I&#8217;m talking about now include these as special cases. If not, don&#8217;t worry: the bundles I&#8217;m talking about now are much simpler! [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157691#respond' data-commentid="157691" data-postid="27207" data-belowelement="div-comment-157691" data-respondelement="respond" data-replyto="Reply to Topos Theory (Part 2) | Azimuth" aria-label='Reply to Topos Theory (Part 2) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-157712">
+				<div id="div-comment-157712" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/ba997df9ca5576b68061a364d2f9b9c9?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://kwhmath.blogspot.com/2013/03/2-as-boolean-subobject-classifier.html' rel='external nofollow ugc' class='url'>Keith Harbaugh</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157712">7 January, 2020 at 4:46 pm</a>		</div>
+
+		<p>Thanks very much for all your great work at both publicizing and discussing key topics in math, in particular, SGL.<br />
+There are some key results for general cat theory in it,<br />
+e.g., how to cut an adjunctiont down to equivalences.</p>
+<p>Any thoughts on how it compares to Colin McLarty&#8217;s text?</p>
+<div class="embed-amazon"><iframe title="Elementary Categories, Elementary Toposes (Oxford Logic Guides Book 21)" type="text/html" width="450" height="550" frameborder="0" allowfullscreen style="max-width:100%" src="https://read.amazon.com/kp/card?preview=inline&#038;linkCode=kpd&#038;ref_=k4w_oembed_qaCp4vF5Voctk7&#038;asin=B000V89WUU&#038;tag=kpembed-20"></iframe></div>
+<p>Since you&#8217;re currently into SGL, this might be a good time to make such a comparison.</p>
+<p>I agree with your remarks that there are more important things to worry about than diacritical marks in French.<br />
+And thanks for your remarks on terminology.</p>
+<p>BTW, clicking on my name will yield (links to) several web pages showing some aspects of subobject classification, etc. in Set.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157712#respond' data-commentid="157712" data-postid="27207" data-belowelement="div-comment-157712" data-respondelement="respond" data-replyto="Reply to Keith Harbaugh" aria-label='Reply to Keith Harbaugh'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-topologicalmusings311017 odd alt depth-2 parent highlander-comment" id="comment-157740">
+				<div id="div-comment-157740" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/563bc4b0fe01b601813163f0485f4d78?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Todd Trimble</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157740">8 January, 2020 at 4:51 pm</a>		</div>
+
+		<p>At first I was going, &#8220;what is this key topic called SGL that I&#8217;ve never heard of?&#8221; Until it dawned on me that it&#8217;s not a topic but a famous book about a topic, Sheaves in Geometry and Logic, the one John says he&#8217;s using for the course. Usually I refer to it as &#8220;Mac Lane and Moerdijk&#8221;.</p>
+<p>(Good luck with the course, John!)</p>
+<p>I don&#8217;t know McLarty&#8217;s book intimately, but recently had to take a look at it. It&#8217;s nice I think. For example, he outlines the hands-on construction of finite colimits in a topos, whereas Mac Lane and Moerdijk take the more abstract approach given via Par&eacute;&#8217;s theorem. He also goes into some loving detail about topics not well-covered by Mac Lane and Moerdijk, such as toposes for SDG (Synthetic Differential Geometry) and the effective topos. So in some sense the books are nicely complementary.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157740#respond' data-commentid="157740" data-postid="27207" data-belowelement="div-comment-157740" data-respondelement="respond" data-replyto="Reply to Todd Trimble" aria-label='Reply to Todd Trimble'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-3 highlander-comment" id="comment-157753">
+				<div id="div-comment-157753" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157753">9 January, 2020 at 3:41 am</a>		</div>
+
+		<p>I have McLarty&#8217;s book and I&#8217;d say it focuses more than MacLane and Moerdijk do on applications of elementary topoi to logic, much less on sheaves, Grothendieck topoi and the roots of topos theory in algebraic geometry.  It&#8217;s also a <em>shorter</em> book.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157753#respond' data-commentid="157753" data-postid="27207" data-belowelement="div-comment-157753" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-157723">
+				<div id="div-comment-157723" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157723">7 January, 2020 at 10:19 pm</a>		</div>
+
+		<p>Is a category equipped with a Grothendieck topology known as a <i>site</i> just because things are put on it?</p>
+<p>When an ordinary word becomes a math word, I always end up at least a little confused. Sometimes I wonder if there&#8217;s an important insight to how the concept is used in practice that I&#8217;m not getting because most books just take the word as given. Sometimes I get the feeling that there was a strange history of translation (like with <i>ray class field</i> and perhaps <i><a href="https://english.stackexchange.com/questions/63210/etymology-of-magma-in-abstract-algebra" rel="nofollow ugc">magma</a></i>).</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157723#respond' data-commentid="157723" data-postid="27207" data-belowelement="div-comment-157723" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-157725">
+				<div id="div-comment-157725" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157725">8 January, 2020 at 5:58 am</a>		</div>
+
+		<p>In this lecture I defined sheaves on a topological space.  Grothendieck realized that we could define sheaves on a category as long as we say, for every object <img src="https://s0.wp.com/latex.php?latex=x%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x," class="latex" /> when bunch of morphisms <img src="https://s0.wp.com/latex.php?latex=f_i+%5Ccolon+x_i+%5Cto+x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_i &#92;colon x_i &#92;to x" class="latex" /> &#8216;cover&#8217; <img src="https://s0.wp.com/latex.php?latex=x.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x." class="latex" />  With this extra information the category becomes a kind of generalization of a topological space, with its objects serving as generalized open sets&#8212;so Grothendieck, a master of choosing the most evocative term for any concept he defined, called it a &#8216;site&#8217;. Intuitively, a site is a place on which sheaves can be built, and thus a place in which we can do mathematics.  (To really get this, you have to get in the mood of French algebraic geometry, where you need sheaves to do anything interesting.)</p>
+<blockquote><p>
+  <strong>site</strong>: an area of ground on which a town, building, or monument is constructed.
+</p></blockquote>
+<p>There are even things called &#8216;skyscaper sheaves&#8217;&#8212;though only on spaces, as far as I know: a skyscraper sheaf is a sheaf that&#8217;s supported on a single point, thus very &#8216;tall and thin&#8217;.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157725#respond' data-commentid="157725" data-postid="27207" data-belowelement="div-comment-157725" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-topologicalmusings311017 odd alt depth-3 parent highlander-comment" id="comment-157741">
+				<div id="div-comment-157741" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/563bc4b0fe01b601813163f0485f4d78?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Todd Trimble</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157741">8 January, 2020 at 5:11 pm</a>		</div>
+
+		<p>Of course there&#8217;s a general notion of a point of a (Grothendieck) topos <img src="https://s0.wp.com/latex.php?latex=E&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="E" class="latex" />, namely a so-called geometric morphism <img src="https://s0.wp.com/latex.php?latex=%5Ctext%7BSet%7D+%5Cto+E&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;text{Set} &#92;to E" class="latex" />. In the special case where <img src="https://s0.wp.com/latex.php?latex=E&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="E" class="latex" /> is sheaves on a topological space, this is exactly the skyscaper sheaf construction which associates such a geometric morphism to a point of the space (it&#8217;s no coincidence that the topos points in this case are in natural bijection with spatial points, at least if the space is a sober space). In other words, topos points are the same as generalized skyscapers. In the special case of sheaves over a space, the left exact left adjoint <img src="https://s0.wp.com/latex.php?latex=E+%5Cto+%5Ctext%7BSet%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="E &#92;to &#92;text{Set}" class="latex" /> of the skyscaper morphism is &#8220;take the stalk at that point&#8221;.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157741#respond' data-commentid="157741" data-postid="27207" data-belowelement="div-comment-157741" data-respondelement="respond" data-replyto="Reply to Todd Trimble" aria-label='Reply to Todd Trimble'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-157752">
+				<div id="div-comment-157752" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157752">9 January, 2020 at 3:37 am</a>		</div>
+
+		<p>Okay, sure!  Thanks.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-157728">
+				<div id="div-comment-157728" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d52fbe20c8ac05886a296e9ee2159b1?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Corfield</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157728">8 January, 2020 at 9:00 am</a>		</div>
+
+		<p>You&#8217;re really happier linking to Wikipedia than to the nLab? <a href="https://en.wikipedia.org/wiki/Subobject_classifier" rel="nofollow ugc">https://en.wikipedia.org/wiki/Subobject_classifier</a> is a better page for your students and readers than <a href="https://ncatlab.org/nlab/show/subobject+classifier" rel="nofollow ugc">https://ncatlab.org/nlab/show/subobject+classifier</a> ?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157728#respond' data-commentid="157728" data-postid="27207" data-belowelement="div-comment-157728" data-respondelement="respond" data-replyto="Reply to David Corfield" aria-label='Reply to David Corfield'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-157821">
+				<div id="div-comment-157821" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157821">12 January, 2020 at 11:41 pm</a>		</div>
+
+		<p>I always link to whatever I think offers the best explanation for the audience I have in mind.  For people who have never heard of a subobject classifier, I feel the hand-holding &#8220;introductory explanation&#8221; of subobject classifiers in Wikipedia does what I want.   Of course everyone serious about category theory should consult the nLab too.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157821#respond' data-commentid="157821" data-postid="27207" data-belowelement="div-comment-157821" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-philliphelbig odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-157734">
+				<div id="div-comment-157734" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6983fa3a44bd3dd66027863073e1e0b1?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.astro.multivax.de:8000/helbig/helbig.html' rel='external nofollow ugc' class='url'>Phillip Helbig</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157734">8 January, 2020 at 11:48 am</a>		</div>
+
+		<p><i>&#8220;Topos theory emerged from Grothendieck’s work&#8221;</i></p>
+<p>An interesting guy, who in later life, though he didn&#8217;t abandon mathematics, lived as a recluse in a small village in the foothills of the Pyrenees, for a time trying to live exclusively on dandelion soup.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157734#respond' data-commentid="157734" data-postid="27207" data-belowelement="div-comment-157734" data-respondelement="respond" data-replyto="Reply to Phillip Helbig" aria-label='Reply to Phillip Helbig'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1 highlander-comment" id="comment-157836">
+				<div id="div-comment-157836" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2020/01/13/topos-theory-part-3/' rel='external nofollow ugc' class='url'>Topos Theory (Part 3) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157836">13 January, 2020 at 11:46 pm</a>		</div>
+
+		<p>I explained the sheaf condition in Part 1, but here&#8217;s a slicker way to say it. Suppose  is an open set covered by a collection of open sets [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157836#respond' data-commentid="157836" data-postid="27207" data-belowelement="div-comment-157836" data-respondelement="respond" data-replyto="Reply to Topos Theory (Part 3) | Azimuth" aria-label='Reply to Topos Theory (Part 3) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-157931">
+				<div id="div-comment-157931" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2020/01/21/topos-theory-part-4/' rel='external nofollow ugc' class='url'>Topos Theory (Part 4) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/#comment-157931">21 January, 2020 at 1:53 am</a>		</div>
+
+		<p>In <a href="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/">Part 1</a>, I said how to push sheaves forward along a continuous map.  Now let&#8217;s see how to pull them back!  This will set up a pair of adjoint functors with nice properties, called a &#8216;geometric morphism&#8217; [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157931#respond' data-commentid="157931" data-postid="27207" data-belowelement="div-comment-157931" data-respondelement="respond" data-replyto="Reply to Topos Theory (Part 4) | Azimuth" aria-label='Reply to Topos Theory (Part 4) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-157836">Topos Theory (Part 3) | Azimuth</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2020/01/05/topos-theory-part-1/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2020/01/05/topos-theory-part-1/?replytocom=157836" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='27207' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='157836' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="85b887b39d" /></p>
+<input type="hidden" name="genseq" value="1632628498" />
+<input type="hidden" id="ak_js" name="ak_js" value="178"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2020/01/05/topos-theory-part-1/?replytocom=157836"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,177,056 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-dd50e8b0462cc7fb7fa5bb0785e4f2a4">
+	</div>
+	<div class="grofile-hash-map-563bc4b0fe01b601813163f0485f4d78">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-ba997df9ca5576b68061a364d2f9b9c9">
+	</div>
+	<div class="grofile-hash-map-7d52fbe20c8ac05886a296e9ee2159b1">
+	</div>
+	<div class="grofile-hash-map-6983fa3a44bd3dd66027863073e1e0b1">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"27207","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+			<div id="jp-carousel-loading-overlay">
+			<div id="jp-carousel-loading-wrapper">
+				<span id="jp-carousel-library-loading">&nbsp;</span>
+			</div>
+		</div>
+		<div class="jp-carousel-overlay" style="display: none;">
+
+		<div class="jp-carousel-container">
+			<!-- The Carousel Swiper -->
+			<div
+				class="jp-carousel-wrap swiper-container jp-carousel-swiper-container jp-carousel-transitions"
+				itemscope
+				itemtype="https://schema.org/ImageGallery">
+				<div class="jp-carousel swiper-wrapper"></div>
+				<div class="jp-swiper-button-prev swiper-button-prev">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskPrev" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="9" height="12">
+							<path d="M16.2072 16.59L11.6496 12L16.2072 7.41L14.8041 6L8.8335 12L14.8041 18L16.2072 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskPrev)">
+							<rect x="0.579102" width="23.8823" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+				<div class="jp-swiper-button-next swiper-button-next">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskNext" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="8" height="12">
+							<path d="M8.59814 16.59L13.1557 12L8.59814 7.41L10.0012 6L15.9718 12L10.0012 18L8.59814 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskNext)">
+							<rect x="0.34375" width="23.8822" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+			</div>
+			<!-- The main close buton -->
+			<div class="jp-carousel-close-hint">
+				<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<mask id="maskClose" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="15" height="14">
+						<path d="M19.3166 6.41L17.9135 5L12.3509 10.59L6.78834 5L5.38525 6.41L10.9478 12L5.38525 17.59L6.78834 19L12.3509 13.41L17.9135 19L19.3166 17.59L13.754 12L19.3166 6.41Z" fill="white"/>
+					</mask>
+					<g mask="url(#maskClose)">
+						<rect x="0.409668" width="23.8823" height="24" fill="#FFFFFF"/>
+					</g>
+				</svg>
+			</div>
+			<!-- Image info, comments and meta -->
+			<div class="jp-carousel-info">
+				<div class="jp-carousel-info-footer">
+					<div class="jp-carousel-pagination-container">
+						<div class="jp-swiper-pagination swiper-pagination"></div>
+						<div class="jp-carousel-pagination"></div>
+					</div>
+					<div class="jp-carousel-photo-title-container">
+						<h2 class="jp-carousel-photo-caption"></h2>
+					</div>
+					<div class="jp-carousel-photo-icons-container">
+						<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-info" aria-label="Toggle photo metadata visibility">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskInfo" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M12.7537 2C7.26076 2 2.80273 6.48 2.80273 12C2.80273 17.52 7.26076 22 12.7537 22C18.2466 22 22.7046 17.52 22.7046 12C22.7046 6.48 18.2466 2 12.7537 2ZM11.7586 7V9H13.7488V7H11.7586ZM11.7586 11V17H13.7488V11H11.7586ZM4.79292 12C4.79292 16.41 8.36531 20 12.7537 20C17.142 20 20.7144 16.41 20.7144 12C20.7144 7.59 17.142 4 12.7537 4C8.36531 4 4.79292 7.59 4.79292 12Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskInfo)">
+										<rect x="0.8125" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+							</span>
+						</a>
+												<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-comments" aria-label="Toggle photo comments visibility">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskComments" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M4.3271 2H20.2486C21.3432 2 22.2388 2.9 22.2388 4V16C22.2388 17.1 21.3432 18 20.2486 18H6.31729L2.33691 22V4C2.33691 2.9 3.2325 2 4.3271 2ZM6.31729 16H20.2486V4H4.3271V18L6.31729 16Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskComments)">
+										<rect x="0.34668" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+
+								<span class="jp-carousel-has-comments-indicator" aria-label="This image has comments."></span>
+							</span>
+						</a>
+											</div>
+				</div>
+				<div class="jp-carousel-info-extra">
+					<div class="jp-carousel-info-content-wrapper">
+						<div class="jp-carousel-photo-title-container">
+							<h2 class="jp-carousel-photo-title"></h2>
+						</div>
+						<div class="jp-carousel-comments-wrapper">
+															<div id="jp-carousel-comments-loading">
+									<span>Loading Comments...</span>
+								</div>
+								<div class="jp-carousel-comments"></div>
+								<div id="jp-carousel-comment-form-container">
+									<span id="jp-carousel-comment-form-spinner">&nbsp;</span>
+									<div id="jp-carousel-comment-post-results"></div>
+																														<form id="jp-carousel-comment-form">
+												<label for="jp-carousel-comment-form-comment-field" class="screen-reader-text">Write a Comment...</label>
+												<textarea
+													name="comment"
+													class="jp-carousel-comment-form-field jp-carousel-comment-form-textarea"
+													id="jp-carousel-comment-form-comment-field"
+													placeholder="Write a Comment..."
+												></textarea>
+												<div id="jp-carousel-comment-form-submit-and-info-wrapper">
+													<div id="jp-carousel-comment-form-commenting-as">
+																													<fieldset>
+																<label for="jp-carousel-comment-form-email-field">Email (Required)</label>
+																<input type="text" name="email" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-email-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-author-field">Name (Required)</label>
+																<input type="text" name="author" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-author-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-url-field">Website</label>
+																<input type="text" name="url" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-url-field" />
+															</fieldset>
+																											</div>
+													<input
+														type="submit"
+														name="submit"
+														class="jp-carousel-comment-form-button"
+														id="jp-carousel-comment-form-button-submit"
+														value="Post Comment" />
+												</div>
+											</form>
+																											</div>
+													</div>
+						<div class="jp-carousel-image-meta">
+							<div class="jp-carousel-title-and-caption">
+								<div class="jp-carousel-photo-info">
+									<h3 class="jp-carousel-caption" itemprop="caption description"></h3>
+								</div>
+
+								<div class="jp-carousel-photo-description"></div>
+							</div>
+							<ul class="jp-carousel-image-exif" style="display: none;"></ul>
+							<a class="jp-carousel-image-download" target="_blank" style="display: none;">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="3" width="19" height="18">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M5.84615 5V19H19.7775V12H21.7677V19C21.7677 20.1 20.8721 21 19.7775 21H5.84615C4.74159 21 3.85596 20.1 3.85596 19V5C3.85596 3.9 4.74159 3 5.84615 3H12.8118V5H5.84615ZM14.802 5V3H21.7677V10H19.7775V6.41L9.99569 16.24L8.59261 14.83L18.3744 5H14.802Z" fill="white"/>
+									</mask>
+									<g mask="url(#mask0)">
+										<rect x="0.870605" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+								<span class="jp-carousel-download-text"></span>
+							</a>
+							<div class="jp-carousel-image-map" style="display: none;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+		<link rel='stylesheet' id='all-css-0-3' href='https://s0.wp.com/_static/??/wp-content/mu-plugins/carousel/swiper-bundle.css,/wp-content/mu-plugins/carousel/jetpack-carousel.css?m=1630955947j&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack-carousel-js-extra'>
+var jetpackSwiperLibraryPath = {"url":"\/wp-content\/mu-plugins\/carousel\/swiper-bundle.js"};
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"31af8ab3d4","display_exif":"1","display_comments":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2020%2F01%2F05%2Ftopos-theory-part-1%2F","blog_id":"12777403","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"stats_query_args":"blog=12777403&v=wpcom&tz=0&user_id=0&subd=johncarlosbaez","is_public":"1"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTtsOgjAM/SHHAg8mPBi/ZWwN2WRbXTuBv7caeUGiT23PpefoGZXNiSGxDqQdPLwFXJpAJy2UT3aqDujF2RyjyFQBnNYm+rSJNn+sCqc6+kTaOOHVYIqOhhiKbIqLsTfam+RxuFco62c0M0qQwpKXVaIEIz5qIyfEAdyfItaUXAkmHYBR8tUG/PDM3o3ApKkOZItH9jl99T7IUO/qu1N813hpz13ft113bsMTF+6KkQ=='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'27207','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTY5JXg0TW5wbUFZbFdUSXwxSXI0LUdSWVYubU9lVz1iK3xfaHZDeG9LW0VCbXVvaFVFUG0rWldIVUdIZUJlLUt2MzklaDlXa2E3RW1Pdl1mUmtkVD9RVWRiN2k0MDdVVU9vNzErRCswMklrKytub25LMSxhMWQ0Ji03bXRkL1hxODE3bWJqLDBERFkmbmpQTHRnRXRiVnhJJmxbeHEtLXR6PXBidkV8QU1rOVVFc1J3WyYyQ1FrekN0Jkk4VmRSPWZNNzctfC51L2hHbTgyZlJqUyVLVldbVDJnLzY='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '27207' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

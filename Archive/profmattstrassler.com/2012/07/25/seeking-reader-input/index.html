@@ -1,0 +1,2234 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en">
+<![endif]-->
+<!--[if (!IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+<meta charset="UTF-8" />
+<title>Seeking Reader Input | Of Particular Significance</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://profmattstrassler.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large' />
+<meta name="google-site-verification" content="atBcEfQYCIwhTkcOnVU26d7Pp3Jj8sJQ8u-frrJyoi8" />
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.parentNode.removeChild( dom_node ); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[ i ].parentNode.removeChild( dom_nodes[ i ] );
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+					+ '//' + window.location.hostname
+					+ '&postid=4074'
+					+ '&is_singular=1';
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly9wcm9mbWF0dHN0cmFzc2xlci5jb20%3D"
+		+ "&wpcomid=24633746"
+		+ "&time=1633136151";
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//profmattstrassler.wordpress.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Feed" href="https://profmattstrassler.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Comments Feed" href="https://profmattstrassler.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Seeking Reader Input Comments Feed" href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkt1SAyEMhV9IFrfOtPbC8Vn4yWDawDIEuvL2UkaddWtXbxgOyZccAnKOwkwhQ8jSFxGpOAws52gmL9gjQV2pwTA/yN+xBKQyWBEnziu1hRGegeUJclTmLLq6Sf/KdaVJDcm1SAJ5GcdhPzxKXZCs1DT1AjqpVCXnSvBdCIOhYq99WHqwqIDAdyMLEUlVSILAKVMHj+FvvMWW+gd033x3urizqlPJwiW0K9v/LpFUxuD4Dr6Y9nVu7dxHdWt+A5vROmiv2lI+9yLD+zbS/43WMQGzaKvH4kV+a736A7/6l3H/tDvuDsfD8+kDj5z1pg==?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s1.wp.com/_static/??-eJyFi0EKAjEMAD9kDAsV9SC+pRtiraRJaVMWf++KF0XQ2wzM4FKBTJ3V0a9cuGMdM5K1KFkZu9+Ft9T7Bv+UWelVw1LJytdTBlQZKWvHxAZiFD2bfghcJOb2a208i6UVE67Vmz6nczlNYXcM4bCfwu0Bks1RNg==?cssminify=yes' type='text/css' media='all' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-4-1' href='https://s1.wp.com/_static/??-eJxti8sKgCAQAH8o297RIfoWE1NjdaVV+v3o0CHqNAzMwBmFopB0SOCziJiNCwyROIkNpTuArTxcMA9LxVzA/8WknESBZOgtnylZ7TWD7cAgrRLvYPFzPbT12PRTX+0XZRA3zg==?cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"24633746","siteName":"Of Particular Significance","siteURL":"https:\/\/profmattstrassler.com","siteHost":"profmattstrassler.com","icon":"<img alt='' src='https:\/\/secure.gravatar.com\/blavatar\/9192dd01619d8fdbea0a34ba4b097323?s=50&d=https%3A%2F%2Fs2.wp.com%2Fi%2Flogo%2Fwpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/coraline","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2012%252F07%252F25%252Fseeking-reader-input%252F","themeURL":"","xhrURL":"https:\/\/profmattstrassler.com\/wp-admin\/admin-ajax.php","nonce":"ca49f5a612","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"a161e76bee\" \/>","referer":"https:\/\/profmattstrassler.com\/2012\/07\/25\/seeking-reader-input\/","canFollow":"1","feedID":"241531","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/profmattstrassler.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fprofmattstrassler.wordpress.com%2F2012%2F07%2F25%2Fseeking-reader-input%2F","postID":"4074","shortlink":"https:\/\/wp.me\/p1Fmmu-13I","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/profmattstrassler.com\/4074","statsLink":"https:\/\/wordpress.com\/stats\/post\/4074\/profmattstrassler.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Coraline","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 15,952 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2012%252F07%252F25%252Fseeking-reader-input%252F\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=profmattstrassler.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??-eJyFjtEKwjAMRX/IrBaZPonfMrdYWpq0Ji1zf28HCnMvPl3CPTlcM2cYExfkYoKanLQQqg4Ou6AH89tSuvuIUBWlAVzA8yPtOaqQY3We1QjGoeAEq3V3fb88j7FOqKs+PCvK8omOPP+FgLyTJt3Cm70SC2RJr6V1N7ra88lejr21fXgDNTpbfw=='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://profmattstrassler.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/" />
+<link rel='shortlink' href='https://wp.me/p1Fmmu-13I' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fprofmattstrassler.com%2F2012%2F07%2F25%2Fseeking-reader-input%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fprofmattstrassler.com%2F2012%2F07%2F25%2Fseeking-reader-input%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Seeking Reader Input" />
+<meta property="og:url" content="https://profmattstrassler.com/2012/07/25/seeking-reader-input/" />
+<meta property="og:description" content="So I think the time is approaching for a serious overhaul of this website.  First, there&#8217;s that new particle, which very much resembles a Higgs particle, though we&#8217;re not sure if it is …" />
+<meta property="article:published_time" content="2012-07-25T15:50:34+00:00" />
+<meta property="article:modified_time" content="2012-07-25T15:50:34+00:00" />
+<meta property="og:site_name" content="Of Particular Significance" />
+<meta property="og:image" content="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=200&#038;ts=1633136151" />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Seeking Reader Input" />
+<meta name="twitter:image" content="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=240" />
+<meta name="twitter:card" content="summary" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="apple-touch-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=114" />
+<link rel='openid.server' href='https://profmattstrassler.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://profmattstrassler.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://profmattstrassler.com/osd.xml" title="Of Particular Significance" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<meta name="theme-color" content="#fefae3" />
+<style type="text/css">
+.widget_twitter li {
+	word-wrap: break-word;
+}
+</style>
+<meta name="application-name" content="Of Particular Significance" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="Conversations About Science with Theoretical Physicist Matt Strassler" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://profmattstrassler.com/feed/;icon-uri=https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=16" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="So I think the time is approaching for a serious overhaul of this website.  First, there&#039;s that new particle, which very much resembles a Higgs particle, though we&#039;re not sure if it is of the simplest type; clearly many of the older pages on the website have to change to reflect this new information.  Second,&hellip;" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #fefae3; }
+</style>
+	<link rel="amphtml" href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/amp/"></head>
+
+<body class="post-template-default single single-post postid-4074 single-format-standard custom-background customizer-styles-applied two-column sidebar-content highlander-enabled highlander-light">
+<div id="container" class="hfeed contain">
+	<div id="header">
+		<div id="masthead" role="banner">
+						<div id="site-title">
+				<span>
+					<a href="https://profmattstrassler.com/" title="Of Particular Significance" rel="home">Of Particular Significance</a>
+				</span>
+			</div>
+			<div id="site-description">Conversations About Science with Theoretical Physicist Matt Strassler</div>
+		</div><!-- #masthead -->
+
+		<div id="access" role="navigation">
+		  			<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+						<div class="menu"><ul>
+<li ><a href="https://profmattstrassler.com/">Home</a></li><li class="page_item page-item-1026 page_item_has_children"><a href="https://profmattstrassler.com/about/">About</a>
+<ul class='children'>
+	<li class="page_item page-item-2 page_item_has_children"><a href="https://profmattstrassler.com/about/about-me/">About Me</a>
+	<ul class='children'>
+		<li class="page_item page-item-5295"><a href="https://profmattstrassler.com/about/about-me/a-new-career-phase/">A New Career&nbsp;Phase</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-1029"><a href="https://profmattstrassler.com/about/about-this-site-and-how-to-use-it/">About This Site and How to Use&nbsp;It</a></li>
+</ul>
+</li>
+<li class="page_item page-item-26 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/">Articles</a>
+<ul class='children'>
+	<li class="page_item page-item-64 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/">Large Hadron Collider&nbsp;FAQ</a>
+	<ul class='children'>
+		<li class="page_item page-item-196"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/how-to-figure-out-what-happened-in-a-microcollision/">How We Learn What Happened in a Proton-Proton&nbsp;Collision</a></li>
+		<li class="page_item page-item-67"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/introduction-to-the-large-hadron-collider/">Introduction to the&nbsp;LHC</a></li>
+		<li class="page_item page-item-70"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/photosofthelhc/">Photos Of The&nbsp;LHC</a></li>
+		<li class="page_item page-item-498 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/">Some Technical Concepts</a>
+		<ul class='children'>
+			<li class="page_item page-item-661"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/fermions-and-bosons/">Fermions and Bosons</a></li>
+			<li class="page_item page-item-497"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-gev-and-tev/">GeV and TeV</a></li>
+			<li class="page_item page-item-461"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-invariant-mass/">Invariant Mass</a></li>
+			<li class="page_item page-item-568"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/what-are-anti-particles/">What are anti-particles?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1560 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/">The Trigger: Discarding All But the&nbsp;Gold</a>
+		<ul class='children'>
+			<li class="page_item page-item-7821"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/trigger-failure-and-repair/">Trigger Failure, and Repair, at the&nbsp;LHC</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-602"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-hadron-as-in-large-hadron-collider/">What&#8217;s a Hadron?</a></li>
+		<li class="page_item page-item-152 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/">What&#8217;s a Proton,&nbsp;Anyway?</a>
+		<ul class='children'>
+			<li class="page_item page-item-2668"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/checking-whats-inside-a-proton/">Checking What&#8217;s Inside a&nbsp;Proton</a></li>
+			<li class="page_item page-item-2613"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/proton-collisions-vs-quarkgluonantiquark-mini-collisions/">Proton Collisions Vs. Quark/Gluon/Antiquark Mini-Collisions</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-15 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/">Large Hadron Collider&nbsp;News</a>
+	<ul class='children'>
+		<li class="page_item page-item-340"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/a-historic-day-or-just-an-important-one/">A Historic Day? Or Just an Important&nbsp;One?</a></li>
+		<li class="page_item page-item-49"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/gangbusters/">Gangbusters!</a></li>
+		<li class="page_item page-item-10"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/hey-where-did-my-higgs-go/">Hey Where&#8217;d My Higgs&nbsp;Go?</a></li>
+		<li class="page_item page-item-1703"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/higgs-search-atlas-and-cms-summer-data-combined/">Higgs Search: ATLAS and CMS Summer Data&nbsp;Combined</a></li>
+		<li class="page_item page-item-1395"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/multi-lepton-events-a-good-place-to-look-for-new-physics/">Multi-Lepton Events: A Good Place to Look for New&nbsp;Physics</a></li>
+		<li class="page_item page-item-2241 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/">Old Pages (Of Historical&nbsp;Interest)</a>
+		<ul class='children'>
+			<li class="page_item page-item-2240"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-december-higgs-update/">The December 2011 Higgs&nbsp;Update</a></li>
+			<li class="page_item page-item-2251"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-july-2011-higgs-hints/">The July 2011 Higgs&nbsp;Hints</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1049 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/">Searches for New Phenomena (as of&nbsp;9/2011)</a>
+		<ul class='children'>
+			<li class="page_item page-item-1050 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/">Searches Aimed at&nbsp;Supersymmetry</a>
+			<ul class='children'>
+				<li class="page_item page-item-1091"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-new-particles-with-long-lifetimes/">Seeking New Particles with Long&nbsp;Lifetimes</a></li>
+				<li class="page_item page-item-1051"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-photonszs-and-something-undetectable/">Seeking Photons/Zs and Something&nbsp;Undetectable</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-4216 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/">Triggering: Advances in&nbsp;2012</a>
+		<ul class='children'>
+			<li class="page_item page-item-4205"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/data-parking-at-cms/">Data Parking at&nbsp;CMS</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1539"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/two-photons-data-and-theory-disagree/">Two-Photons: Data and Theory&nbsp;Disagree</a></li>
+		<li class="page_item page-item-753"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/what-do-current-mid-august-2011-lhc-results-imply-about-supersymmetry/">What do current LHC results (mid-August 2011) imply about&nbsp;supersymmetry?</a></li>
+		<li class="page_item page-item-114"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/why-so-quiet-at-lhc/">Why so quiet at&nbsp;LHC?</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-413 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/">Particle Physics Basics</a>
+	<ul class='children'>
+		<li class="page_item page-item-5927"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/c-p-t-and-their-combinations/">C, P, T (And Their&nbsp;Combinations)</a></li>
+		<li class="page_item page-item-1249"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/cerenkov-radiation/">Cerenkov Radiation</a></li>
+		<li class="page_item page-item-4267 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/">Fields and Their Particles: With&nbsp;Math</a>
+		<ul class='children'>
+			<li class="page_item page-item-4269 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/">1. Ball on a Spring&nbsp;(Classical)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4611"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/1a-resonance/">1a. Resonance</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4272"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-quantum/">2. Ball on a Spring&nbsp;(Quantum)</a></li>
+			<li class="page_item page-item-4376"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-form/">3. Waves (Classical&nbsp;Form)</a></li>
+			<li class="page_item page-item-4402 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/">4. Waves (Classical Equation of&nbsp;Motion)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4442"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/waves-the-quick-calculation/">4a. Waves (The Quick&nbsp;Calculation)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4450"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/5-waves-quantum/">5. Waves (Quantum)</a></li>
+			<li class="page_item page-item-4468 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/">6. Fields</a>
+			<ul class='children'>
+				<li class="page_item page-item-4501"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/chicken-and-egg-matter-and-field/">6a. Chicken and Egg; Matter and&nbsp;Field</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4526 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/">7. Particles Are&nbsp;Quanta</a>
+			<ul class='children'>
+				<li class="page_item page-item-4536"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/7a-how-bosons-and-fermions-differ/">7a. How Bosons and Fermions&nbsp;Differ</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4627"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/8-how-particles-and-fields-interact/">8. How Particles and Fields Interact (an&nbsp;introduction)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4585 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/">How the Higgs Field Works (with&nbsp;math)</a>
+		<ul class='children'>
+			<li class="page_item page-item-4663 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/">1. The Basic&nbsp;Idea</a>
+			<ul class='children'>
+				<li class="page_item page-item-4587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/1-the-basic-idea/">1. The Basic Idea (1st&nbsp;version)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4710"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/2-why-the-higgs-field-is-non-zero-on-average/">2. Why the Higgs Field is Non-Zero on&nbsp;Average</a></li>
+			<li class="page_item page-item-4789"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/3-how-the-higgs-particle-arises/">3. How the Higgs Particle&nbsp;Arises</a></li>
+			<li class="page_item page-item-5032"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/4-why-the-higgs-field-is-necessary/">4. Why the Higgs Field is&nbsp;Necessary</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3077 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/">Mass, Energy, Matter,&nbsp;Etc.</a>
+		<ul class='children'>
+			<li class="page_item page-item-3118 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/">Mass and Energy</a>
+			<ul class='children'>
+				<li class="page_item page-item-3321"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/how-did-einstein-do-it/">How Did Einstein Do&nbsp;It?</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3079"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/matter-and-energy-a-false-dichotomy/">Matter and Energy: A False&nbsp;Dichotomy</a></li>
+			<li class="page_item page-item-6247 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/">More on Mass</a>
+			<ul class='children'>
+				<li class="page_item page-item-6245"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/the-two-definitions-of-mass-and-why-i-use-only-one/">The Two Definitions of &#8220;Mass&#8221;, And Why I Use Only&nbsp;One</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3452 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/">The Energy That Holds Things&nbsp;Together</a>
+			<ul class='children'>
+				<li class="page_item page-item-3534"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/neutron-stability-in-atomic-nuclei/">Neutron Stability in Atomic&nbsp;Nuclei</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-1213 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/">Neutrinos</a>
+		<ul class='children'>
+			<li class="page_item page-item-1791 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/">How One Detects&nbsp;Neutrinos</a>
+			<ul class='children'>
+				<li class="page_item page-item-6044"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/icecube-a-giant-frozen-neutrino-catcher/">IceCube: A Giant Frozen Neutrino&nbsp;Catcher</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1793"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/making-neutrino-beams/">Making Neutrino Beams</a></li>
+			<li class="page_item page-item-1212 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/">Neutrino Types and Neutrino&nbsp;Oscillations</a>
+			<ul class='children'>
+				<li class="page_item page-item-1229"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/velocity-differences-of-neutrinos/">Velocity Differences of&nbsp;Neutrinos</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1737 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/">Neutrinos Faster Than&nbsp;Light?</a>
+			<ul class='children'>
+				<li class="page_item page-item-1811"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-additional-supporting-info/">OPERA: Additional Supporting&nbsp;Info</a></li>
+				<li class="page_item page-item-1736"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-comparing-the-two-versions/">OPERA: Comparing the Two&nbsp;Versions</a></li>
+				<li class="page_item page-item-1799 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/">OPERA: Some Arguments&nbsp;Against</a>
+				<ul class='children'>
+					<li class="page_item page-item-1801"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/cohen-glashow-opera-is-self-contradictory/">Cohen-Glashow: OPERA is Self-Contradictory</a></li>
+					<li class="page_item page-item-1805"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-vs-icarus/">OPERA vs ICARUS</a></li>
+					<li class="page_item page-item-1802"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-another-speed-bump/">OPERA: Another Speed&nbsp;Bump</a></li>
+					<li class="page_item page-item-1782"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/supernovas-and-neutrino-speeds/">Supernovas and Neutrino&nbsp;Speeds</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-1795 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/">OPERA: The First Few&nbsp;Days</a>
+				<ul class='children'>
+					<li class="page_item page-item-1784"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-paper-my-initial-reaction/">OPERA&#8217;s Paper: My Initial&nbsp;Reaction</a></li>
+					<li class="page_item page-item-1788"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-presentation-my-initial-comments/">OPERA&#8217;s Presentation: My Initial&nbsp;Comments</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-3160 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/">OPERA: What Went&nbsp;Wrong</a>
+				<ul class='children'>
+					<li class="page_item page-item-3185"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/how-opera-and-lvd-confirmed-operas-problem/">How LVD Helped Solve OPERA&#8217;s&nbsp;Mystery</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-412"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particle-physics-why-do-it-and-why-do-it-that-way/">Particle Physics: Why do it? And why do it *that*&nbsp;way?</a></li>
+		<li class="page_item page-item-3090"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particleanti-particle-annihilation/">Particle/Anti-Particle Annihilation</a></li>
+		<li class="page_item page-item-6499"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/quantum-fluctuations-and-their-energy/">Quantum Fluctuations and Their&nbsp;Energy</a></li>
+		<li class="page_item page-item-721 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/">The Hierarchy Problem</a>
+		<ul class='children'>
+			<li class="page_item page-item-6461 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/">Naturalness and the Standard&nbsp;Model</a>
+			<ul class='children'>
+				<li class="page_item page-item-6594"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/adding-curves/">How to Add 2&nbsp;Curves</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-566 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/">The Known (Apparently-) Elementary&nbsp;Particles</a>
+		<ul class='children'>
+			<li class="page_item page-item-1396 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/">Jets: The Manifestation of Quarks and&nbsp;Gluons</a>
+			<ul class='children'>
+				<li class="page_item page-item-2919"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/b-tagging-identifying-jets-from-bottom-quarks/">B-tagging: Identifying Jets from Bottom&nbsp;Quarks</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1401"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/tau-leptons/">Tau Leptons</a></li>
+			<li class="page_item page-item-616"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/the-known-particles-if-the-higgs-field-were-zero/">The Known Particles &#8212; If The Higgs Field Were&nbsp;Zero</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-6088 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/">The Known Forces of&nbsp;Nature</a>
+		<ul class='children'>
+			<li class="page_item page-item-6072"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/the-strength-of-the-known-forces/">The Strengths of the Known&nbsp;Forces</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3621 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/">The Structure of&nbsp;Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5096 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/">Atoms: Building Blocks of&nbsp;Molecules</a>
+			<ul class='children'>
+				<li class="page_item page-item-5184"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-of-an-isotope-are-identical-literally/">Atoms of an Isotope Are Identical,&nbsp;Literally</a></li>
+				<li class="page_item page-item-5363"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-their-inner-workings/">Atoms: Their Inner&nbsp;Workings</a></li>
+				<li class="page_item page-item-5177"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/isotopes-variations-on-an-atom/">Isotopes: Variations on an&nbsp;Atom</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-5416"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/electrons-on-the-outskirts-of-atoms/">Electrons: On the Outskirts of&nbsp;Atoms</a></li>
+			<li class="page_item page-item-5815"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/protons-and-neutrons/">Protons and Neutrons: The Massive Pandemonium in&nbsp;Matter</a></li>
+			<li class="page_item page-item-3618"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-molecular-structure-of-matter/">The Molecular Structure of&nbsp;Matter</a></li>
+			<li class="page_item page-item-5564 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/">The Nuclei of Atoms: At the Heart of&nbsp;Matter</a>
+			<ul class='children'>
+				<li class="page_item page-item-5592"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/what-holds-nuclei-together/">What Holds Nuclei&nbsp;Together?</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-7624"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/theories-and-vacua/">Theories and Vacua</a></li>
+		<li class="page_item page-item-7587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/tunneling-a-quantum-process/">Tunneling: A Quantum&nbsp;Process</a></li>
+		<li class="page_item page-item-1285"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/virtual-particles-what-are-they/">Virtual Particles: What are&nbsp;they?</a></li>
+		<li class="page_item page-item-3080 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/">Why Do Particles&nbsp;Decay?</a>
+		<ul class='children'>
+			<li class="page_item page-item-531"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-why/">Most Particles Decay &#8212; But&nbsp;Why?</a></li>
+			<li class="page_item page-item-1333"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-yet-some-dont/">Most Particles Decay &#8212; Yet Some&nbsp;Don&#8217;t!</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-1819 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/">Relativity, Space, Astronomy and&nbsp;Cosmology</a>
+	<ul class='children'>
+		<li class="page_item page-item-1672"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/big-bang-classic-confusions/">Big Bang, Classic&nbsp;Confusions</a></li>
+		<li class="page_item page-item-7183 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/">Black Holes</a>
+		<ul class='children'>
+			<li class="page_item page-item-7185"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/black-hole-information-paradox-an-introduction/">Black Hole Information Paradox: An&nbsp;Introduction</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3366 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/">Dark Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5907"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/current-hints-of-dark-matter-413/">Current Hints of Dark Matter&nbsp;(4/13)</a></li>
+			<li class="page_item page-item-7903"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/searching-for-dark-matter-at-the-lhc/">Searching for Dark Matter at the&nbsp;LHC</a></li>
+			<li class="page_item page-item-3365"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/dark-matter-annihilation/">Seeing Signs of Dark Matter&nbsp;Annihilation</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-7383 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/">History of the&nbsp;Universe</a>
+		<ul class='children'>
+			<li class="page_item page-item-7390"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/before-inflation/">Before Inflation</a></li>
+			<li class="page_item page-item-7426"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/big-bang-expansion-not-explosion/">Big Bang: Expansion, NOT&nbsp;Explosion</a></li>
+			<li class="page_item page-item-7407"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/hot-big-bang/">Hot Big Bang</a></li>
+			<li class="page_item page-item-7393 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/">Inflation</a>
+			<ul class='children'>
+				<li class="page_item page-item-7840"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/dust-thou-art-bicep2/">Dust Thou Art,&nbsp;BICEP2</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-7505"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/some-definitions-for-cosmology/">Some Definitions for&nbsp;Cosmology</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3681"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/parallax-seeing-in-depth/">Parallax: Seeing in&nbsp;Depth</a></li>
+		<li class="page_item page-item-2698"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/reflections-on-beauty-in-motion/">Reflections on Beauty in&nbsp;Motion</a></li>
+		<li class="page_item page-item-1821"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/the-first-principle-of-relativity/">The First Principle of&nbsp;Relativity</a></li>
+		<li class="page_item page-item-3706"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/transit-of-venus-and-the-distance-to-the-sun/">Transit of Venus and the Distance to the&nbsp;Sun</a></li>
+		<li class="page_item page-item-6167 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/">Why Do Astronauts&nbsp;Float?</a>
+		<ul class='children'>
+			<li class="page_item page-item-6231"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/how-strong-is-gravity-at-the-space-station/">How Strong Is Gravity at the Space&nbsp;Station?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-755 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/">Some Speculative Theoretical Ideas for the&nbsp;LHC</a>
+	<ul class='children'>
+		<li class="page_item page-item-1574 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/">Extra Dimensions</a>
+		<ul class='children'>
+			<li class="page_item page-item-1575 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/">Extra Dimensions &#8211; How to Think About&nbsp;Them</a>
+			<ul class='children'>
+				<li class="page_item page-item-1642"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/dimensions-of-physical-space/">Dimensions of Physical&nbsp;Space</a></li>
+				<li class="page_item page-item-2290"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/what-is-an-extra-dimension-an-example/">What is an &#8220;Extra&#8221; Dimension? Some&nbsp;Examples</a></li>
+				<li class="page_item page-item-1584"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-1-spatial-dimension/">Worlds of 1 Spatial&nbsp;Dimension</a></li>
+				<li class="page_item page-item-1668"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-2-spatial-dimensions/">Worlds of 2 Spatial&nbsp;Dimensions</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2331 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/">How to Look for Signs of Extra&nbsp;Dimensions</a>
+			<ul class='children'>
+				<li class="page_item page-item-3815"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/extra-dimensions-newtons-gravity/">Extra Dimensions &amp; Newton&#8217;s&nbsp;Gravity</a></li>
+				<li class="page_item page-item-3764"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/how-big-could-an-extra-dimension-be/">How Big Could an Extra Dimension&nbsp;Be?</a></li>
+				<li class="page_item page-item-2350"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-1/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;1</a></li>
+				<li class="page_item page-item-2364"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-2/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;2</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-758 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/">Supersymmetry</a>
+		<ul class='children'>
+			<li class="page_item page-item-697 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/">How to Look for Supersymmetry at the&nbsp;LHC</a>
+			<ul class='children'>
+				<li class="page_item page-item-808 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/">When The Standard Assumptions About Supersymmetry are&nbsp;Relaxed</a>
+				<ul class='children'>
+					<li class="page_item page-item-4172"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/test-page/">Test Page</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+			<li class="page_item page-item-660"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-what-is-it/">Supersymmetry &#8212; What Is&nbsp;It?</a></li>
+			<li class="page_item page-item-1399"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-and-multi-lepton-events/">Supersymmetry and Multi-Lepton&nbsp;Events</a></li>
+			<li class="page_item page-item-7017"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-122013/">Where Stands Supersymmetry (as of&nbsp;12/2013)</a></li>
+			<li class="page_item page-item-3411"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-as-of-42012/">Where Stands Supersymmetry (as of&nbsp;4/2012)?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-210 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/">Tevatron News</a>
+	<ul class='children'>
+		<li class="page_item page-item-222"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/a-rare-and-interesting-decay-of-a-b-meson/">A Rare and Interesting Decay of a &#8220;B meson&#8221; &#8211; update&nbsp;2</a></li>
+		<li class="page_item page-item-894"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/apparent-unexpected-asymmetries-in-the-production-of-quarks/">Apparent Unexpected Asymmetries in the Production of&nbsp;Quarks</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-362 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/">The Higgs Particle</a>
+	<ul class='children'>
+		<li class="page_item page-item-3956 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/">Discovery of the&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-4009"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-higgs/">Higgs Discovery: Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4015"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-simplest-higgs/">Higgs Discovery: Is it a Simplest&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4100"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-personal-reflections/">Higgs Discovery: Personal&nbsp;Reflections</a></li>
+			<li class="page_item page-item-3980"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-skill-and-a-little-luck/">Higgs Discovery: Skill and A Little&nbsp;Luck</a></li>
+			<li class="page_item page-item-3958"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-the-data/">Higgs Discovery: The&nbsp;Data</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2198"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/holiday-higgs-hints-confidence-inspiring-or-not/">Holiday Higgs Hints: Confidence-Inspiring or&nbsp;Not?</a></li>
+		<li class="page_item page-item-4265"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/how-the-higgs-field-works/">How The Higgs Field&nbsp;Works</a></li>
+		<li class="page_item page-item-960"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/implications-of-higgs-searches-as-of-92011/">Implications of Higgs Searches (as of&nbsp;9/2011)</a></li>
+		<li class="page_item page-item-7236 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/">Non-Standard Decays of the Observed Higgs&nbsp;Particle</a>
+		<ul class='children'>
+			<li class="page_item page-item-7282"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decay-to-unknown-spin-one-particles/">Higgs Decay to Unknown Spin-One&nbsp;Particles</a></li>
+			<li class="page_item page-item-7218"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decays-to-unknown-spin-zero-particles/">Higgs Decays to Unknown Spin-Zero&nbsp;Particles</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-5394 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/">Taking Stock of the &#8220;Higgs&#8221; (Jan.&nbsp;2013)</a>
+		<ul class='children'>
+			<li class="page_item page-item-5446"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/1-is-it-a-higgs/">1. Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5447"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/2-perhaps-composite/">2. Perhaps Composite?</a></li>
+			<li class="page_item page-item-5448"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/3-a-higgs-of-simplest-type/">3. A Higgs of Simplest&nbsp;Type?</a></li>
+			<li class="page_item page-item-5454"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/4-more-than-one-higgs/">4. More Than One&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5460"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/5-supersymmetry/">5. Supersymmetry?</a></li>
+			<li class="page_item page-item-5494"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/6-surprises/">6. Surprises?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4690"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">The Higgs FAQ&nbsp;2.0</a></li>
+		<li class="page_item page-item-4693 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/">The Old Higgs&nbsp;FAQ</a>
+		<ul class='children'>
+			<li class="page_item page-item-360"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/higgs-faq-1-0/">The Higgs FAQ&nbsp;1.0</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2000 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/">The Standard Model&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-2004"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/decays-of-the-standard-model-higgs/">Decays of the Standard Model&nbsp;Higgs</a></li>
+			<li class="page_item page-item-2509 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/">Lightweight Higgs: A `Sensitive&nbsp;Creature&#8217;</a>
+			<ul class='children'>
+				<li class="page_item page-item-2587 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/">A Quantitative Addendum to the Sensitive&nbsp;Creature</a>
+				<ul class='children'>
+					<li class="page_item page-item-5855 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/">Non-SM h Decays</a>
+					<ul class='children'>
+						<li class="page_item page-item-6041"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/table-of-decays/">Table of Decays</a></li>
+					</ul>
+</li>
+				</ul>
+</li>
+				<li class="page_item page-item-3649"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/decay-to-unusual-jets/">Decay to Unusual&nbsp;Jets</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2002"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/production-of-the-standard-model-higgs-particle/">Production of the Standard Model Higgs&nbsp;Particle</a></li>
+			<li class="page_item page-item-2007"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/seeking-and-studying-the-standard-model-higgs-particle/">Seeking and Studying the Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1932 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/">Why is it Hard to Find the Higgs&nbsp;Particle?</a>
+		<ul class='children'>
+			<li class="page_item page-item-1935"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/a-lightweight-standard-model-higgs-particle/">A Lightweight Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3892 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/">Why the Higgs Particle&nbsp;Matters</a>
+		<ul class='children'>
+			<li class="page_item page-item-3908"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/why-the-higgs-particle-matters-2/">Why the Higgs Particle Matters (Old&nbsp;Version)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-443"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-hints-of-higgs-currently-rest-on-uncertain-ground/">Why The Hints of Higgs Currently Rest on Uncertain&nbsp;Ground</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-291 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/">Thoughts on the Scientific&nbsp;Process</a>
+	<ul class='children'>
+		<li class="page_item page-item-1808"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/scientific-scepticism-isnt-just-politics/">Scientific Scepticism Isn&#8217;t Just&nbsp;Politics</a></li>
+		<li class="page_item page-item-286"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/why-is-the-tevatron-so-busy-with-hints-of-new-physics/">Why is the Tevatron So Busy with Hints of New&nbsp;Physics?</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="page_item page-item-90"><a href="https://profmattstrassler.com/videoclips/">Movie Clips</a></li>
+<li class="page_item page-item-1032"><a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a></li>
+<li class="page_item page-item-1018 page_item_has_children"><a href="https://profmattstrassler.com/technical-zone/">Technical Zone</a>
+<ul class='children'>
+	<li class="page_item page-item-10344"><a href="https://profmattstrassler.com/technical-zone/test-page/">Test Page</a></li>
+</ul>
+</li>
+<li class="page_item page-item-159 page_item_has_children"><a href="https://profmattstrassler.com/xotica/">Xotica</a>
+<ul class='children'>
+	<li class="page_item page-item-2302"><a href="https://profmattstrassler.com/xotica/hurriquake-2011-what-are-the-chances/">Hurriquake 2011: What are the&nbsp;Chances?</a></li>
+	<li class="page_item page-item-5354 page_item_has_children"><a href="https://profmattstrassler.com/xotica/sunrise/">Sunrise</a>
+	<ul class='children'>
+		<li class="page_item page-item-215"><a href="https://profmattstrassler.com/xotica/sunrise/sunrise_old/">Sunrise (older version)</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-2300"><a href="https://profmattstrassler.com/xotica/the-grand-si11iness-of-111111-111111/">The Grand Si11iness of 11/11/11&nbsp;11:11:11</a></li>
+</ul>
+</li>
+</ul></div>
+		</div><!-- #access -->
+
+		<div id="branding">
+						<a href="https://profmattstrassler.com/">
+									<img src="https://profmattstrassler.files.wordpress.com/2011/06/cropped-cerntunnel1.jpg" width="990" height="180" alt="" />
+							</a>
+					</div><!-- #branding -->
+	</div><!-- #header -->
+
+	<div id="content-box">
+
+<div id="content-container">
+	<div id="content" role="main">
+
+	
+		<div id="nav-above" class="navigation">
+			<div class="nav-previous"><a href="https://profmattstrassler.com/2012/07/23/heading-home/" rel="prev"><span class="meta-nav">&larr;</span> Heading Home</a></div>
+			<div class="nav-next"><a href="https://profmattstrassler.com/2012/07/26/quick-higgs-quiz-the-first-one/" rel="next">Quick Higgs Quiz: The First&nbsp;One <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-above -->
+
+		<div id="post-4074" class="post-4074 post type-post status-publish format-standard hentry category-housekeeping category-uncategorized tag-website">
+
+			
+			<h1 class="entry-title">Seeking Reader Input</h1>
+							<div class="entry-meta">
+					<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/" title="11:50 AM" rel="bookmark"><span class="entry-date">July 25, 2012</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comments">48 Comments</a></span>
+									</div><!-- .entry-meta -->
+			
+			<div class="entry-content">
+				<p>So I think the time is approaching for a serious overhaul of this website.  First, there&#8217;s that new particle, which very much resembles a Higgs particle, though we&#8217;re not sure if it is of the simplest type; clearly many of the older pages on the website have to change to reflect this new information.  Second, the website has grown organically and now resembles an out-of-control thicket; it is difficult to navigate and to manage.  Moving pages around on a website, with all of their cross-links, is a major challenge and not necessarily advisable; one option is to provide a map or guide of some sort, with advice about which pages are devoid of technicalities, which are a bit more advanced and suitable for anyone with freshman physics background, and which ones are rather technical.  And after July&#8217;s big success at the Large Hadron Collider, August seems like the best month to get some of this work done.</p>
+<p>But well before I start, it&#8217;s time for me to get advice from you.  The current purpose of the website is to help you answer your questions about particle physics and related subjects, including wider questions about how science is done. I am curious to know: what are the things about the website that make it difficult for you to find what you are looking for, and what are the things that you feel might help the most?  Please, in answering, consider letting me know what your level of background knowledge is, and perhaps some insight into your goals.  This information will help me understand your suggestions in proper context.</p>
+<p>During the overhaul period I suspect blog posts will be somewhat reduced in quantity, but I&#8217;ll keep you posted on especially important issues.   And I&#8217;ll be producing my &#8220;How the Higgs Field Works&#8221; series, as well as tying off some loose ends on a couple of other incomplete series.</p>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-4074" class="share-twitter sd-button share-icon" href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/?share=twitter" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-4074" class="share-facebook sd-button share-icon" href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/?share=facebook" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-end"></li></ul></div></div></div><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-24633746-4074-6157ae17ba19a' data-src='//widgets.wp.com/likes/index.html?ver=20210818#blog_id=24633746&amp;post_id=4074&amp;origin=profmattstrassler.wordpress.com&amp;obj_id=24633746-4074-6157ae17ba19a&amp;domain=profmattstrassler.com' data-name='like-post-frame-24633746-4074-6157ae17ba19a' data-title='Like or Reblog'><h3 class='sd-title'>Like this:</h3><div class='likes-widget-placeholder post-likes-widget-placeholder' style='height: 55px;'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>							</div><!-- .entry-content -->
+
+			<div class="entry-info">
+							This entry was posted in <a href="https://profmattstrassler.com/category/housekeeping/" rel="category tag">Housekeeping</a>, <a href="https://profmattstrassler.com/category/uncategorized/" rel="category tag">Uncategorized</a> and tagged <a href="https://profmattstrassler.com/tag/website/" rel="tag">website</a>. Bookmark the <a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/" title="Permalink to Seeking Reader Input" rel="bookmark">permalink</a>.							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		<div id="nav-below" class="navigation">
+			<div class="nav-previous"><a href="https://profmattstrassler.com/2012/07/23/heading-home/" rel="prev"><span class="meta-nav">&larr;</span> Heading Home</a></div>
+			<div class="nav-next"><a href="https://profmattstrassler.com/2012/07/26/quick-higgs-quiz-the-first-one/" rel="next">Quick Higgs Quiz: The First&nbsp;One <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-below -->
+
+		
+<div id="comments">
+
+	
+			<h3 id="comments-title">
+			48 responses to &ldquo;<span>Seeking Reader Input</span>&rdquo;		</h3>
+
+		
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-14940">
+		<div id="comment-14940">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/91fcc31a3cce37dd4e61e9daa322e41e?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Andrew.</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14940">
+				July 25, 2012 at 12:31 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>If readers are interested in the subject the onus remains on them to navigate around for answers, the comments on most subjects clarify issues. Many thanks Professor Matt Strassler for your patience with commentators to date and resolve in keeping the site updated.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-14942">
+		<div id="comment-14942">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/fee21bbc488e9b5bad9b055e936c4d29?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.facebook.com/lynx655' rel='external nofollow ugc' class='url'>Szilvási Ádám</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14942">
+				July 25, 2012 at 12:38 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I am finishing my masters in physics, I have learnt advanced particle physics, non-Abelian gauge theories, path integral methods and renormalization.</p>
+<p>What I am looking for is ways of understanding the overall physical picture of particle physics, learning ways to look behind the maths, finding analogies I can use to describe the phenomena to laypeople.</p>
+<p>What makes the site less manageable is not having a sitemap which overlays the topics already covered, it would use a lot from a comprehensive thematic rearrangement.</p>
+<p>Maybe you should have a wiki engine in the background so it would be easy to cross-reference other articles as well.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-14944">
+		<div id="comment-14944">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/4c2527e80396eefb2959dc38d23cedcc?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Dave</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14944">
+				July 25, 2012 at 12:46 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>A mobile or tablet-friendly version of the website without the pull-down menus would be ideal.  The content is already amazing!</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-14950">
+		<div id="comment-14950">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e591235c29fac658e0bf6f1aba3d1489?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://gravatar.com/thetasteofscience' rel='external nofollow ugc' class='url'>thetasteofscience</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14950">
+				July 25, 2012 at 1:15 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>My background is one year grad school in physics, plus three years free lancing, working with professors in the Physics Dept of the Technion on Quantum Measurement Theory and Astrophysics. I have published several articles in Physics journals. My background in particle physics is rudimentary but I very much enjoy the opportunity to follow this field via your blog, and welcome the chance to leave comments and get replies from someone with your credentials.<br />
+I found the site difficult to navigate at first. Your suggestion that I could find articles on your site by using Google makes me think that improving the search engine would be a big help. Having a wiki engine in the background as Szilvasi Adam suggested might be useful, as would a site map. Under Categories, which works well, you have Astronomy but not Astrophysics. I personally would be interested in having an Astrophysics  category.</p>
+<p>Hope this helps!</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-14954">
+		<div id="comment-14954">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d1da2d4a33a6c341663ce7e6df39d498?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://paradime.net' rel='external nofollow ugc' class='url'>Samuel Hurley</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14954">
+				July 25, 2012 at 1:45 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Blog-style websites like this one are great for chronological events, news, and simplicity. But it seems that this site is becoming more of an information resource. I would suggest switching over from blog posts to a Wiki with individual, cross-referenced, pages.</p>
+<p>You can do this gradually; keep the old site and convert each blog post/topic to its own wiki page over time.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-siliconopolitan odd alt depth-2 highlander-comment" id="li-comment-14978">
+		<div id="comment-14978">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/8b4c7a0d59c4e86295e81418209ae97d?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">the Siliconopolitan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14978">
+				July 25, 2012 at 4:14 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I was thinking wiki as well, given how much crossreferencing is needed. That way I presume it will be easier to not only create links back to old articles, but also forward to updates on topics.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-14955">
+		<div id="comment-14955">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/833786fdbb531be94aa385f57d565fc7?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.facebook.com/laralds' rel='external nofollow ugc' class='url'>Pamela Lara</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14955">
+				July 25, 2012 at 1:46 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I&#8217;m on my 3rd year as a Physics undergraduates in a local school in Orem, UT. My goal is to become and Astrophysicist . I work as a researcher for a couple of professors. We mostly are interested in exoplanets and variable stars. We use the Kepler&#8217;s and our own data.<br />
+What I seek when I read your blog is to have accurate information in particle physics researches coming out of CERN as well as to understand what is happening in that amazing field -not as amazing as the stars mind you- . The fact that you include links to previous articles and/or easier to read ones is what I like the most.<br />
+Personally I have never had any problems moving around the site. I big hope will be to have a place like this but in Astrophysics nonetheless I know  -and trust- that you won&#8217;t write about something you are not completely familiar with.<br />
+Other than that I am happy with your blog professor!!!<br />
+Pam</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-14962">
+		<div id="comment-14962">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/ab6a6891fb575b2faddc5825626435c6?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://gravatar.com/randywweeks' rel='external nofollow ugc' class='url'>Randy</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14962">
+				July 25, 2012 at 2:38 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>The last physics class I had was as a senior in high school. In 1972. My goal? Try to understand as much as I can about this stuff. You make it, if not exactly easy, at least easier.</p>
+<p>I don&#8217;t find the site particularly hard to navigate. A &#8220;common questions, uncommon answers&#8221; section might be nice. Maybe turn the &#8216;search&#8217; function into &#8220;ask a question&#8221; which could really just be a search and/or something quora-like.</p>
+<p>Whatever you do&#8230;please don&#8217;t give up on the place. I&#8217;ve learned a ton.</p>
+<p>Randy</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-14963">
+		<div id="comment-14963">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/626ffa744a555c58b347aac9a96961ae?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Mike Anthis</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14963">
+				July 25, 2012 at 2:54 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Thanks, Professor.  Reviewing yours and Sammy&#8217;s answers to my previous inquiry about my personal curriculum, I think the only thing I&#8217;d add to the website might be a reference section.</p>
+<p>Before elaborating on that, I greatly value the vividness of Professor&#8217;s explanations.  They&#8217;re right at the edge of my understanding, after having read lots of Greene, Singh and Calder.  I&#8217;m so hungry for the real meat we get here, after seeing so much cotton candy on the so-called Science channel.  Wormholes, indeed!  I rant.</p>
+<p>Back to my personal curriculum.  I have a B.S. in Computer Science, 1979 (back before computer science became engineering).  I have college physics and calculus, up to diff-eq and elementary multivariable topics.  I&#8217;m still trying to grok what a tensor is, but I&#8217;ll get there soon enough.</p>
+<p>What I&#8217;m discovering is that Professor has been giving us the fifty-thousand-mile-up view, not fifty-thousand feet.  There are a lot more layers of atmosphere between my Newtonian education and the leading edge particle physics here.</p>
+<p>In answer to the topical question, I envision an outline of what education it takes to accomplish different levels of understanding.  For example, Electronics can be taught using basic algebra, or advanced algebra, or calculus, or differential equations.  Diff-eq is the cleanest, but you need college calculus.  Or you can use a slide rule that has trig on it.  You can understand electronics on different levels, and each level has standard materials for learning.</p>
+<p>Today there&#8217;s a daredevil who&#8217;s preparing a free fall from space.  He&#8217;s done it before, and he&#8217;s got gear, but he&#8217;s not an astronaut.  He just has a really focused understanding on how to accomplish his adventure.  I wonder if I can do the same thing, in my head, with math and physics?  At least, I can have fun trying, without real danger.</p>
+<p>Again, Professor, thank you for your vocation in guiding our witness to scientific history.  I relish the experience and I&#8217;ll never forget it.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-14964">
+		<div id="comment-14964">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/626ffa744a555c58b347aac9a96961ae?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Mike Anthis</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14964">
+				July 25, 2012 at 2:58 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>By the way, I should add: book?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-3 highlander-comment" id="li-comment-15240">
+		<div id="comment-15240">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/813a930ef4c2fcd745b75343d2932f9a?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Sammy</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15240">
+				July 27, 2012 at 5:02 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Mike Anthis: David Griffiths&#8217; Introduction to Elementary Particles 2nd Ed. is a great read, a handy modern reference book and may by itself scratch your itch.  Bj-Dr&#8217;s RQM (hardbound) is the right next step, though, then Ryder&#8217;s QFT.  </p>
+<p>Geronimo!</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-14967">
+		<div id="comment-14967">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d2c6a9a7a9ca34976d26a171957c449c?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Michel Beekveld</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14967">
+				July 25, 2012 at 3:13 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>It would be too difficult to translate the Dutch grading system to Anglo-American, so i can&#8217;t say too much about my background.<br />
+I have for some reason or another, a voracious appetite for all things quantum. It&#8217;s just that the math, scares the heebiejeebies out of me.</p>
+<p>This site has been a treasure trove from day one, so no complaints there.<br />
+But as constructive advice:</p>
+<p>The articles have so many links in them that i tend to get lost. I can see the value of links inside text, but it would be handy to have some sort of &#8220;flipped tree&#8221; as a seperate reference. It can be graded in multiple ways; for instance &#8220;old to new&#8221;, or based on the standard model itself, ie particle families.</p>
+<p>For me easy to difficult would be the best. I am actually trying to learn this, although i have no idea why. But the learning curve is as steep as a brick wall.</p>
+<p>Oh, by the way, i drive trains for a living, sometimes wondering what an observer would measure as i speed along. It does have a familiar ring to it.</p>
+<p>Thanks for everything Matt, I&#8217;m eating this stuff with a spoon. Well as much as i can gobble up anyway.</p>
+<p>M Beekveld<br />
+Rotterdam<br />
+The Netherlands</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-2 highlander-comment" id="li-comment-14988">
+		<div id="comment-14988">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/626ffa744a555c58b347aac9a96961ae?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Mike Anthis</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14988">
+				July 25, 2012 at 7:17 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Michel&gt;  &#8230;I am actually trying to learn this, although i have no idea why&#8230;</p>
+<p>Mr. Beekveld summed up my motivations nicely.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-14980">
+		<div id="comment-14980">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/442a3384a1fe7019526669293d924a27?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Alasdair Duncan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14980">
+				July 25, 2012 at 5:06 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Dear Prof Strassler<br />
+I&#8217;ve learnt quite a bit here. I&#8217;m not educated in science at all really, and my maths is dreadful. What I do or have grasped of physics has been gleaned from the television, popular reading, dummies guides and various websites. Richard Feynman said the most important thing is having ideas, understanding what maths is for, and that the scientific method essentially consists of comparing ideas with reality. As a layman, I had to have some kind of idea about the universe, just so I could have it proved wrong, and move along a bit.<br />
+So I decided I liked the superlight speed neutrino, and based my idea of an Otto cyle universe upon it. Big suck, big squeeze, big bang, big blow, and it all worked perfectly symetrically for four months till I discovered you disproved the notion in 2011. Doh. Tons and plutons exit, stage left.<br />
+So, at least I learnt what a load of old toot I&#8217;m capable of dreaming up, for your stranger than fiction website informs me of it. More pictures would be nice. Thanks for the enlightenment, even if in my case it is three centuries too late, lol.</p>
+<p>I get a bit lost in here, but I&#8217;m far from certain it&#8217;s down to you. Thanks a lot, I shall keep coming back.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-14983">
+		<div id="comment-14983">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/fed59c06caa38a346df3850e446f0d3d?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Bob S</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14983">
+				July 25, 2012 at 6:03 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>PhD in experimental high energy physics UC Berkeley ~50 years ago. Worked with kaon, pion, and muon beams. Measured pion mass to 100 ppm by measuring pionic x-rays in various elements. Calculated pionic energy levels including large vacuum polarization term. Since then helped build Fermilab  and Tevatron, cool antiproton beams, and did high energy (over 100 GeV)  muon experiments.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-14989">
+		<div id="comment-14989">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/626ffa744a555c58b347aac9a96961ae?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Mike Anthis</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14989">
+				July 25, 2012 at 7:20 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Honestly, I bow to you.  Thanks for the pioneering.  I wish I could shake your hand.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-14984">
+		<div id="comment-14984">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/ce04fe78955c756ff49eda3cd861e40c?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">William Morong</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14984">
+				July 25, 2012 at 6:39 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I&#8217;m entering grad school in physics, and tend to find both the basic and more technical descriptions helpful. I&#8217;m equally looking to gain intuition and an additional perspective on what I&#8217;ve learned elsewhere, and also to better understand the parts of the Standard Model that are currently outside my research interests.</p>
+<p>The site is definitely hard to navigate right now, and I&#8217;m sure your reorganization will help a great deal in making it useful. To reiterate what someone above said: there&#8217;s a lot of really useful information right now in the comments, and it would be great if the best of it was somehow more accessible- or, maybe, if there were fewer places for discussion about each topic so that it was easy to check every now and again for new questions and responses.</p>
+<p>Thanks again for the site.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-14997">
+		<div id="comment-14997">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/53474f5710dacd497e98dd16df0562bb?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.travel-notes.org/' rel='external nofollow ugc' class='url'>Manoj Radhakrishnan</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14997">
+				July 25, 2012 at 9:14 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>First of all, thanks a lot for the website – I have learnt a lot about particle Physics from this site. Although I did bump into this site looking for information on particle Physics, my favourite section ended up being the ones on astronomy &#8211; transition of Venus, phases of moon/Venus, parallax, earthshine etc. It will be good if you can have similar pages on all fields of Physics. Do you mind having a users-question page where we can submit questions on any topic in Physics? And if you find some questions worthy enough for a blog-post, you can choose only to answer those. You have an uncanny ability to explain things lucidly. We should try to exploit that and see how much of Physics you can explain to the rest of the world. What I am looking for is a “physicsforums.com”, but one in which the answers are more than 2 sentences long and a layman can actually understand them. My background: I am a Mechanical Engineer and last time I attended a Physics lecture was in my first year Engineering and I slept through most of it.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-14999">
+		<div id="comment-14999">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/3de456c74add84bab7455247fbad3c7b?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Bill Brown</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-14999">
+				July 25, 2012 at 11:36 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I follow the site regularly out of a curious lay interest in physics.  I have a PhD in Electrical Engineering, with a handful of graduate physics and math courses.  So I can readily follow your articles and could probably take a modest uptick in mathematical and technical sophistication.</p>
+<p>I tend to follow the blog as it unfolds rather than searching for information.  In reading, I often do follow the wonderfully frequent back references to articles that appeared before I discovered the site (or articles whose detail I&#8217;ve forgotten.)  That&#8217;s sufficient &#8220;organization&#8221; for me.</p>
+<p>I recognize the need for a restructuring of the site so it can serve better as a reference source for others.  But, from my personal perspective, I&#8217;d rather see the time you would spend in the reorganization spent instead on a few more of the excellent articles!</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-15002">
+		<div id="comment-15002">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/278b3c7dd514c9dad19b9b781bcbe48e?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Wlm</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15002">
+				July 26, 2012 at 12:02 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Background: Undergraduate physics major (4 yrs); degrees in Computer Science and Psych. Upper-level graduate classes in Quantum Mechanics and General Relativity (incl. its basis in differential geometry, not just calculating the Schwarzschild radius:-), and Philosophy of Physics.  40 years designing computer systems (architecture of hardware and OS/system software) and networks.  Also once wrote astro-mechanics software for NASA.</p>
+<p>I rarely use this web site to search for information, so I have few problems with &#8220;navigation&#8221;.  Rather, I find it most useful in tracking developments at CERN and elsewhere, with a high degree of technical and scientific accuracy &#8212; more than any other single web resource I&#8217;ve found.  I find the links to your detailed articles extremely useful for getting to details of theory and experiments and experimental results &#8212; without getting into the jargon and formalisms of scientific papers and other full-time professionals in this field.  </p>
+<p>The one area where I sometimes have an issue is when you have occasionally attempted to over-simplify something that is inherently not simple.  As Prof. Jeff Barrett (UCI) said not long ago, QM isn&#8217;t really that hard to understand: all you need is some high-school (linear) algebra and basic probability math, and you can get the basics.  But when you try to think of it in terms of matter being tiny little billiard balls or in terms of waves on a pond, you&#8217;ll get it wrong every time.  Because QM is it&#8217;s own thing &#8212; it&#8217;s not &#8220;like&#8221; anything that we are used to in our macroscopic/Newtonian view of the world around us. Once we understand it on its own terms &#8211; and realize just how weird/unexpected the underpinnings of the universe really are &#8211; we can make progress in resolving the very real conflicts and contradictions we still have in our still inadequate understanding.  So what I often find most valuable about this site is that you don&#8217;t often shy away from pointing out just where those boundaries of understanding and knowledge really are.  You try to be meticulous in identifying assumptions, and you don&#8217;t resort to metaphysics or extrapolations to &#8220;explain&#8221; things that we just simply don&#8217;t (yet) know.  At the same time, you are very diligent in explaining exactly how what we _do_ know justifies our current theories, falsifies others, and makes still others irrelevant except as speculations.  I.e., this is Science (capital &#8220;S&#8221;) at its best.  All of that in the process of reporting on progress in particle physics, allowing us to stay current with what you folks are talking about and what&#8217;s bothering you!  </p>
+<p>I would hate to see all that stop in the name of &#8220;better organization&#8221;.  Other than possibly adding a more precise and time-ordered keyword index, I&#8217;m not sure how to organize/modify your blog without losing these incredibly valuable attributes. Just thank you, and please don&#8217;t stop doing what you&#8217;re doing. 🙂</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-rspowell7 even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-15004">
+		<div id="comment-15004">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/ad53b96d4184369201e48483eaf44b66?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">rspowell7</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15004">
+				July 26, 2012 at 12:35 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I&#8217;m a classical physicist (NASA) retired for more than thirty years to pursue evolutionary theory and the neurosciences in the hope of understanding how individual (and conceivably, cosmic) consciousness evolved. I try to stay on the edge of what&#8217;s going on in physics because the &#8220;hard problem of consciousness&#8221; involves the possibility that the fundamental &#8220;monad&#8221; of consciousness from a panpsychic viewpoint may be a quantum field phenomena (an elementary Quantum field that gives the seed of conscious awareness to being like the Higgs field gives mass to some elementary particle/resonances.)  Your blog has been an enormous help in structuring my thought to fit your cosmic, but nicely grounded worldview.</p>
+<p>I cannot offer any advice to make it easier for you to keep up with the avalanche of interest in your site (If anyone asks me a question about physics in my consciousness group on Facebook, I refer them to your blog;). Let it evolve! I say. </p>
+<p>As for the future directtion of your blog, how about teaching us all String Theory 😀<br />
+    .</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-15006">
+		<div id="comment-15006">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/13a1d28bd5b704815dc416600e0f30ed?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Manoj Krishnan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15006">
+				July 26, 2012 at 1:17 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Hi Professor,</p>
+<p>Thank you for the blog. I am not finding it difficult to navigate around- but feels that the links to older articles sometimes makes it look visually not much appealing.</p>
+<p>I am an Industrial and Production engineer trying to keep up with the research happening in the field of science so that I can make my kids aware of these activities as our curriculum here in India is very behind and for my own understanding.</p>
+<p>My suggestion is that you may have a section, ie , if you have time,  briefly mentioning the developments happening in science (the events you are coming across with)</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-15007">
+		<div id="comment-15007">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/5ae1018204a7af01d332b92e494e249e?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://gravatar.com/billev2k' rel='external nofollow ugc' class='url'>Bill Evans</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15007">
+				July 26, 2012 at 1:32 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I graduated with a BSEE many years ago, but work as a software developer.  I read this site and &#8220;popular&#8221; books on physics (eg, &#8220;A Lightness of Being&#8221;) to try to understand how things work.  My math is very rusty, but I remember enough of the, hmm, shape of it to sometimes see the outlines.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-15009">
+		<div id="comment-15009">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7944a3880c406b3e38f7422f2186375d?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Michael Hoffmann</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15009">
+				July 26, 2012 at 2:42 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Background: Majored in math and physics in high school and probably would have gone into astrophysics. Then my dad bought me one of those new-fangled &#8220;microcomputers&#8221;. This was in 1980. My grades promptly tanked, but I found out what I wanted to do even more than science. Have a Masters in Information Technology. In recent years have been slowly awakening and refreshing dormant and forgotten math and science knowledge.</p>
+<p>What I would like to see: Maintain the frequently updated blog on updates in the realm of particle physics together with the excellent &#8220;what it all means&#8221; explanations.</p>
+<p>Add (whether by Wiki or some other means of interactive web technology) the ability to navigate through the realm of particle physics: starting at beginner&#8217;s levels, then the ability to drill in and down all the way to the &#8220;hard core&#8221; mathematical models for those so inclined. Readers could always comfortably educate themselves to their desired level.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-15010">
+		<div id="comment-15010">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cb64fd80a946fe62803baaeeac1b4371?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Mike Hall</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15010">
+				July 26, 2012 at 2:51 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Having come to your website fairly early on, and then returning on a frequent basis, I personally don&#8217;t try to search for articles or subjects, but I can understand that others may find it difficult to navigate.  </p>
+<p>I have greatly enjoyed the explanations of very difficult concepts and I too hope that you will continue to add to it a regular and frequent basis.  I hope you are not beginning to regret the level of committment in time and effort that this requires.</p>
+<p>I am retired now, but I have a BSc and MSc in Engineering and have followed developments in Physics, Astronomy and Astrophysics most of my adult life.  Like several others my maths is almost non-existant beyond 1st year undergrad (almost 50 years ago).  I invested in Roger Penrose&#8217;s &#8216;Road to Reality&#8217;,  but got lost on about page 10!</p>
+<p>I think that there is a real gap in the market for blogs like this.  I greatly value a source like yours which does not waste too much time on the very simple concepts, stretches my understanding of latest developments and stops just short of really complex maths.  A little more maths is fine as long as you have the patience to explain (or provide links to appropriate resources elsewhere).</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-15014">
+		<div id="comment-15014">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/4e72baaafdec3b9d53cad02d74706175?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Louis</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15014">
+				July 26, 2012 at 5:08 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I have virtually no university level education, but I like to randomly research topics relating to mathematics, physics, electronics, and so forth. Consequently I have no real goals, and no real way to assess my level of understanding. I follow your blog as an RSS feed and so I delve into the site  for refreshers when you release a new article. So for me, the way it is currently structured is perfect. I don&#8217;t mind a bit of chaos.</p>
+<p>If anything I would like existing articles to link to more technical and mathematical material. But I&#8217;m more interested in inspiration than structure, and that is what I currently get from your content.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-15015">
+		<div id="comment-15015">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1638de49ddd315fcad1fff82ecf391a4?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://tonyambles.blogspot.co.uk/' rel='external nofollow ugc' class='url'>Tony</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15015">
+				July 26, 2012 at 5:37 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Background: I work creating visual effects for movies, so in some way I use physics everyday, for example I&#8217;m programming now an SPH (Smoothed particle HydroDynamics) solver to simulate water but I&#8217;m not an expert in maths at all.<br />
+I really love this blog and one thing I&#8217;d like to see is some kind of small (I know that&#8217;s difficult) math introduction to every category (Special Relativity, electromagnetism, etc) and maybe some reliable links to extend the math you need to better understand the category. One thing I learned here is that you can&#8217;t fully trust every popular science book as they&#8217;re usually full of misconceptions, so a list of good books or links we can trust to go on learning would be really appreciated.</p>
+<p>Many thanks!</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-15038">
+		<div id="comment-15038">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/ebe65ef3271ef8ecdc0e3930d738d5b9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Jim</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15038">
+				July 26, 2012 at 7:28 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Background: Engineering degree, including two years of physics. I&#8217;ve kept up reading physics blogs and have started watching some Stanford lectures on General Relativity on youtube.</p>
+<p>Your explanations on subjects like extra dimensions are fantastic and I think all the site really needs is an index page listing all the articles in some logical order.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-15054">
+		<div id="comment-15054">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/df918f46b681c004419d053ed4ea9464?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Michael Sharman</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15054">
+				July 26, 2012 at 9:56 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>In terms of the web site, I think the most immediate issue to make it more obvious that the drop menus can be expanded, it took me a long time to realise that I could explore by careful placement of the mouse to reveal sub menus.  The problem is that the eye isn&#8217;t immediately compelled to expect a sub menu hierarchy. Perhaps something as simple as an arrow graphic that indicates there is a sub menu would help.</p>
+<p>The next thing is perhaps to make the categories drop down more obvious by replacing it with a list of links to each category and making it visually more prominent?</p>
+<p>And a final suggestion; perhaps an index page or a contents page that clear maps out where the various topics are on a single page at a glance?</p>
+<p>The content itself is spectacularly good, it has significantly demystified a number of physics concepts for me that I misunderstood before reading this site. </p>
+<p>My background: a degree in computer science,  but I studied some calculus and some physics on the way. The last 10 years I&#8217;ve been working as a analyst programmer, mostly with advanced web applications and more recently delving into spatial database backends and GIS.</p>
+<p>I read this site to try and get a better intuitive understanding of modern particle physics, I also read books like Penrose&#8217;s &#8220;Road to Reality&#8221; to improve my understanding of the mathematics involved (slowly! when I feel I have the headspace I work through the exercises). </p>
+<p>Why? Well partly to keep my mind stimulated in a non-work related field and also because I have fascination with the nature bizarre tricks nature is capable of; whether it be the space-time of relativity or the wave-function of quantum mechanics. I&#8217;m also interested in your comments on how the scientific process works in the real world.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-15066">
+		<div id="comment-15066">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/ed31318702d529ddc1e8f45e2847f6c3?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Tom</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15066">
+				July 26, 2012 at 10:45 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Hi, let me start by saying how much I love your site.  It&#8217;s the best place I&#8217;ve found for the really advanced layperson.  In that way, I think you provide a unique resource for those of us looking for something beyond the usual analogies, yet still targeted at non-physicists.</p>
+<p>My background: I just always loved physics, but went into computers instead.  Over many years I&#8217;ve devoured all the layperson books I could find until I really ran out, but still really wanted a deeper understanding of the concepts (although I have never &#8220;done the math&#8221;).  I even started reading field theory textbooks in the hope of finding the occasional paragraph that I could understand.  🙂  So your site is exactly what I&#8217;ve been looking for.</p>
+<p>As for organization, here&#8217;s how I see your site: it&#8217;s a blog plus a reference book.  So maybe, organize all the reference material more like a typical book.  Have a main button that goes to what&#8217;s essentially a table of contents, or outline, with the sub-articles listed there.  That way folks could at-a-glance peruse the main topic areas to find the sections that interest them.  The menu system is nice, but hides all the information until you move your mouse around.  A simple outline would show more and make it easier to see what&#8217;s there.</p>
+<p>One problem is that it&#8217;s not obvious that the reference-book material is there.  I think others have mentioned this too.  Only after following the blog for a while did I realize you had a section with everything organized by topic.  So making that more obvious somehow would be a good thing.  Here&#8217;s an idea that just popped into my head: you often have pointers to the reference material in the blog post itself.  Your readers click on these.  So, if, when they do, the page they get to had some sort of different design or perhaps a mini-outline of the reference material, that might make it more obvious and encourage exploration.</p>
+<p>One last comment: know your audience.  Your site surely isn&#8217;t read much by the average science layperson.  Your readers have already proven that they are highly motivated and willing to wade through quite technical material, otherwise they&#8217;d have left.  So I think you can organize it in a way that appeals more to the &#8220;power user&#8221; type of person, and not try to cater to the mass public.</p>
+<p>Anyway, keep it up, and a big Congratulations to you and the whole community on finding the Higgs!  I&#8217;ll wait as patiently as I can for your new higgs-field articles.  🙂</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-2 highlander-comment" id="li-comment-15084">
+		<div id="comment-15084">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/5657a3c9f296304a9ae01744bcc2ef4d?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Harry</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15084">
+				July 26, 2012 at 12:52 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I agree with almost everything Tom says. An outline format would be a terrific way to organize things. There are a ton of articles I only know about because I read the blog each day &#8211; they are not even referenced in the drop-down menus to my knowledge. An outline that captures everything by subject would be perfect.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-15077">
+		<div id="comment-15077">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/3c990ba25b2be05177fefb96273a20f6?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Jon Lennox</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15077">
+				July 26, 2012 at 11:18 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>In addition to the articles themselves, there&#8217;s a lot of interesting question-and-answer that goes on in the articles&#8217; and posts&#8217; comments sections, but unless you click &#8220;notify me of follow-up comments by e-mail&#8221; on every article, there&#8217;s no way to see where something interesting&#8217;s going on.  Maybe add a &#8220;recent comments&#8221; sidebar, or reorganize as a forum?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-15106">
+		<div id="comment-15106">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/aeae93f95ee7405f9d50890b370ff0b9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Christian</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15106">
+				July 26, 2012 at 3:48 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Hi Matt !</p>
+<p> My interest in particle physics stems from an interest in the apparent bio-friendliness of the universe. As such, I am more interested in why the standard model has the values it has than the fact that it does. I first came across this controversial topic after reading books by Professor Paul Davies, currently the director of the Beyond Centre at Arizona State University. As for my education, I trained as a computer programmer so am familiar with the mathematical knowledge to write algorithms and sub-routines in C, C++ and assembly language, but not of any pertaining specifically to freshman physics.<br />
+ My own suggestions for any layout change would be to have a primary section devoted to detailing the Standard Model ( as it now stands ! ), a secondary section examining any current experimental data which is knocking on the door of the Standard Model, which hasn&#8217;t quite made it into it yet ( the holographic principle would probably fall into this category ) and finally a tertiary section devoted to more speculative and philosophical questions ( the bio-friendly principle being a case in point ).</p>
+<p>Finally, I would like to extend a big thank you for answering all the questions I have asked on this site. It&#8217;s much appreciated !</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-15130">
+		<div id="comment-15130">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/626ffa744a555c58b347aac9a96961ae?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Mike Anthis</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15130">
+				July 26, 2012 at 8:22 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Addendum to my earlier comment: Here is an example of a tree-shaped network of electronics topics.  Perhaps something like this would map out the landscape for those of us with four year degrees.<br />
+<a href="http://230nsc1.phy-astr.gsu.edu/hbase/electronic/etroncon.html#c1" rel="nofollow ugc">http://230nsc1.phy-astr.gsu.edu/hbase/electronic/etroncon.html#c1</a><br />
+(Only for what it&#8217;s worth, if anything.)<br />
+Addendum 2: Perhaps Professor would like to found a community blog and let volunteers do the housework?  Maybe like Ars or Slashdot?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-15158">
+		<div id="comment-15158">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/833786fdbb531be94aa385f57d565fc7?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://facebook' rel='external nofollow ugc' class='url'>Pam</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15158">
+				July 27, 2012 at 3:29 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>As Mike said, I would like to make an &#8220;addendum” to my previous reply. I will suggest the existence of a type of “disclaimer&#8221; when comments are expected to be made on the topics you bring up professor. That &#8220;disclaimer&#8221; should specify maybe from which audience comments will be welcomed or which audience is not encouraged to participate on that post.<br />
+I consider myself one of the  “layperson” followers of  this site, condition that three semesters of physics as an undergraduate have not been able to change (more than 30 years of misconceptions are not easily erased), hence sometimes my comments will be considered  “wishy washy”  because of a lack of understanding of the big picture on my part.<br />
+Nonetheless I will hope to be welcomed as a participant. Then the presence of the disclaimer could  help this layperson to avoid the sad after taste produced by a “no worth further discussion” reply from you professor.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor odd alt depth-2 highlander-comment" id="li-comment-15205">
+		<div id="comment-15205">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15205">
+				July 27, 2012 at 11:22 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Point taken; sorry about that.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even depth-2 highlander-comment" id="li-comment-15206">
+		<div id="comment-15206">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/626ffa744a555c58b347aac9a96961ae?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Mike Anthis</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15206">
+				July 27, 2012 at 11:26 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I used to maintain a help site for computing, and take email &#8220;help calls.&#8221;  I found it helpful to point novices and rebels to a prepared outline of &#8220;the basics.&#8221;  Hidden in the outline were dogmatic guide rails.  Tactfully written, it helped define where the paved trails are and how on-their-own people were when they left the trails.</p>
+<p>Ever been to Yellowstone Park?  They do that there, too.  (Still, here, we don&#8217;t risk physical safety to wander.)</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-3 highlander-comment" id="li-comment-15207">
+		<div id="comment-15207">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/626ffa744a555c58b347aac9a96961ae?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Mike Anthis</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15207">
+				July 27, 2012 at 11:28 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>(Sorry about the mixed tenses, I should know better and proofread.)</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor even depth-3 highlander-comment" id="li-comment-15211">
+		<div id="comment-15211">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15211">
+				July 27, 2012 at 11:30 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Wise words&#8230;</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-15162">
+		<div id="comment-15162">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c397b7992319214a37dae13cc7e283f2?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Charles Stewart</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15162">
+				July 27, 2012 at 4:52 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Physics level: novice.</p>
+<p>Love the site, your explanations I find to be clear and enlightening, and sometimes thrilling ( like virtual particles).</p>
+<p>Even as a novice, I&#8217;d like to see a little more maths included.</p>
+<p>Also, it&#8217;s difficult to get perspective on how your articles fit together, as I believe others have said.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-wyrdsmythe even thread-even depth-1 highlander-comment" id="li-comment-15232">
+		<div id="comment-15232">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/fe0da1ca8ba569811f1805fd4bab9f1e?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://logosconcarne.wordpress.com' rel='external nofollow ugc' class='url'>Wyrd Smythe</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15232">
+				July 27, 2012 at 2:22 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Hello professor Strassler!</p>
+<p>I&#8217;m a highly interested layperson (a computer programmer by trade) who has been reading about quantum physics for many decades. My copies of (now terribly outdated) &#8220;The Tao of Physics&#8221; and &#8220;The Dancing Wu Li Masters&#8221; were purchased back when those books were first released!  More recently (and relevantly) I&#8217;ve enjoyed books by Lee Smolin, Brian Greene, and I&#8217;m currently working my way through Lisa Randall&#8217;s &#8220;Warped Dimensions&#8221; and Murray Gell-Mann&#8217;s &#8220;Jaguar&#8221; book.</p>
+<p>Your blog holds a very high place in my esteem, and I try to read every page you write.  I agree it&#8217;s getting a bit difficult to navigate.  I agree with previous comments about index pages.  A one-page listing of all pages (a table of contents) would be nice.  And perhaps other index pages focusing on related topics.</p>
+<p>I also agree with the idea of converting the information/educational content to a Wiki.</p>
+<p>I can&#8217;t think of any difficulties your site has presented.  With regard to my own goals&#8230; I find that I can follow very well 99% of what you write.  I find that I can only follow maybe 9% of what, for example, Sabine Hossenfelder (Backreaction blog) or Jester (Résonaances blog) writes (maybe a bit more with Jester).  My vote would be for material that helps a layperson bridge the gap between &#8220;casual&#8221; (non-mathematical) understanding and &#8220;professional&#8221; understanding.</p>
+<p>To me that means explaining some of the basic concepts particle physicists use to communicate with each other.  For example, Wikipedia helped me figure out what an &#8220;inverse femtobarn&#8221; was, but there are many such concepts (e.g. what exactly is a &#8220;boson sector&#8221; or a &#8220;4-lepton channel&#8221; and why are then called that (why &#8220;sector&#8221;, why &#8220;channel&#8221;?).  It&#8217;s the language of advanced physics that sometimes befuddles this reader.  A good glossary, not of individual words, but of building block concepts would be a godsend.  (Advanced sciences so often re-purpose &#8220;daily&#8221; language, and that can confuse outsiders&#8230; philosophers, for example, have a very specific definition of what &#8220;knowing&#8221; means&#8230; one that transcends the usual casual sense of the word.)</p>
+<p>This has gotten longer than intended, so I&#8217;ll stop here.  Once again, professor, thank you for all your effort on this blog!  Until I came here, I thought protons and neutrons had only three quarks, and I really liked your &#8220;ships in the canal&#8221; metaphor for dimensional movement!  Much superior to the &#8220;ant on a hose&#8221; metaphor, IMO.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-15299">
+		<div id="comment-15299">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dbcf40a6f65530de637e7ab76ae79a32?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Garcol Equphrates</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15299">
+				July 28, 2012 at 2:30 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I wholeheartedly support Bill Brown and Wlm &#8216;s comments: excellent site, wonderfully interesting, often challenging and thoroughly grounded in accuracy and not metaphor. I think Feynmann said that if you couldn&#8217;t teach it, then you didn&#8217;t really understand it &#8211;&gt; You clearly understand.<br />
+&#8220;Search&#8221; is not optimal, but your navigation menu (top of page) IS!.<br />
+Thanks!</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-15389">
+		<div id="comment-15389">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/76538b9c79edcd7377b9a30419f9033d?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Tim Preece</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15389">
+				July 30, 2012 at 2:30 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>This is the only blog post I follow. There are a couple of reasons I follow this blog beyond just a love of physics.</p>
+<p>You provide the very latest information in a clear, honest and trustful way. All the new physics being discovered at the LHC is fascinating. I&#8217;m hoping that when it is determined if the H-boson has spin 0 this blog will be where I hear it first.</p>
+<p>So for me a wiki like site would not work. But I agree it&#8217;s easy to get lost following the hyperlinks, so maybe having a simple glossary ( leading to other reference posts where necessary ) would be a better structure., </p>
+<p>Second, it is the time you take to respond to all our dumb questions. But maybe that level of response is not scalable as the site grows. Perhaps this suggestion is just fantasy, but I wonder if wordpress has a plugin that would alllow readers to vote for questions they would like most answered. That would mean readers would have to ask their questions with great care to ensure getting to the top, and maybe it would avoid repetive questions being asked. </p>
+<p>You also asked about readers background knowledge. Well I&#8217;m embarssed to say I did study physics at University ( 30 years ago ) but seem to have forgotten most of what I learnt. I never did understand precisely how QFT gives rise to the world we see around us. I would like to think one day if stranded on a desert island with only a pen and paper ( and no textbooks ), that I could sit down and from first principles calculate the lamb shift or electron magnetic moment or something else like that. ( but I am a long way off that goal ).</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-15406">
+		<div id="comment-15406">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b683da6e488c759bfd2f15a7429891b0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Robert Rehbock</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15406">
+				July 30, 2012 at 11:35 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>undergraduate degree in chemistry with minor in playing with computers in the 70s. Went on to law school and practice &#8230; Followed physical sciences ever more. Was on Internet before gore invented it. Started following blogs after recent surgery. I used the off time to get comfy with this iPad and get better caught up.<br />
+Find your site very good. Refrain from e-comments until something to say. If one wants to learn or re-learn or really learn this site is one place to start.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-15443">
+		<div id="comment-15443">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cc52686a9d9bfe333a19dd1d4b55dbfe?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Mathematician</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-15443">
+				July 31, 2012 at 11:16 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Hi Matt, hope that you got some down time after all the excitement. I&#8217;ve recommended your blog widely among mathematicians&#8230;am so happy to be able to come here to read and understand (thanks for being so clear!). It would be really good to have a site map or index that gives an option of more/less technical, even if these are both on the same page and the article gets more technical further down.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-41365">
+		<div id="comment-41365">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/45c4127ec0ea0a60a34d9c83a5b9d91c?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Ford Stone</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-41365">
+				January 28, 2013 at 4:45 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Matt,</p>
+<p>I am a a LONG WAY from reading all your voluminous articles (which I find very interesting). Nevertheless, I think a fundamental aspect of reality is being missed in our focus on &#8220;particles&#8221;. And that is &#8220;forces&#8221;. Why Einstein would feel entanglement was any more &#8220;spooky&#8221;  in its action at a distance&#8221;  than the force exerted by a magnet on a piece of iron is beyond my ken. The very ubiquity of this phenomenon has led us to become oblivious to its bizarreness.<br />
+The fact that one can hold a piece of material in one&#8217;s hand and feel POUNDS of forceful attraction across a gap in space is astonishing! Just because we can call it a &#8220;field&#8221; in no way explains anything other than its behavior.  If gravity is the bending of space-time, is magnetism the bending of the Higgs Field? Particles are only half the problem.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor even depth-2 highlander-comment" id="li-comment-41419">
+		<div id="comment-41419">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-41419">
+				January 29, 2013 at 12:05 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>So &#8212; you&#8217;re mixing up two things.  </p>
+<p>Forces act slower than or at the speed of light; all the known forces are of this type.  There&#8217;s nothing spooky about it; they don&#8217;t act instantly.  If you move the magnet, there is a tiny delay before the piece of iron reacts to the motion &#8212; and that delay is due to the effect on magnetic fields, which fill the space between the magnet and the iron and carry the information about where the magnet is to where the iron is.  Those fields are well understood and have been since the 1860s.  You can measure this effect.  Einstein did not view this as spooky, nor do other physicists.  Fields can&#8217;t be seen with the eye, but they are real and can be measured.  Waves in fields can carry energy from one place to another.  A wave in a field can burn a hole in your skin or push a spacecraft.  A change in a field can cause a change in the masses of certain types of particles.  Etc.</p>
+<p>Entanglement between objects has nothing to do with forces.  Entanglement is part of reality.  It naively acts faster than light &#8212; as though instantaneous  &#8212; which is why Einstein called it &#8220;spooky&#8221;.  This is very different from forces.  In fact, even in a world with no forces and fields at all, a quantum world has entanglement and spooky action-at-a-distance.  The way I would say it is that reality is not encoded entirely in local objects themselves, but is also encoded in the <em>relationships</em> between objects that may not be near each other.</p>
+<p>So please don&#8217;t confuse these two very different things.  The first has been well-understood for over a century, and the fields involved can be (and have been) studied and measured.  The second is much more subtle, and apparently involves a counter-intuitive property of reality itself.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-69830">
+		<div id="comment-69830">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1fe5b61a4c97aea090433b556dc58ad1?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://baidu.com/' rel='external nofollow ugc' class='url'>拓哉</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/07/25/seeking-reader-input/#comment-69830">
+				July 21, 2013 at 8:50 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>ドラマ 本当に楽しみに見ています。龍馬伝の吉田東洋も素晴らしかったですが、原作読むとこの松浦静山役も田中さんに依頼されたNHKは本当にすごいと思います。ダンスはよくわかりませんが、役者としての田中さんの大ファンです。</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+		</ol>
+
+		
+	
+	
+</div><!-- #comments -->
+	
+	</div><!-- #content -->
+</div><!-- #content-container -->
+
+
+		
+		<div id="primary" class="widget-area" role="complementary">
+					<ul class="xoxo">
+
+			<li id="text-2" class="widget-container widget_text"><h3 class="widget-title">First Time Visitor?</h3>			<div class="textwidget">This site addresses various aspects of science, with a current focus on particle physics.  I aim to serve the public, including those with no background knowledge of physics.  If you're not yourself an expert, you might want to click on "<a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a>" or "<a href="https://profmattstrassler.com/about/">About</a>" to get started. If you'd like to watch my hour-long public lecture about the <a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">Higgs particle</a>, try ``<a href="https://profmattstrassler.com/videoclips/">Movie Clips</a>''.</div>
+		</li><li id="media_image-4" class="widget-container widget_media_image"><style>.widget.widget_media_image { overflow: hidden; }.widget.widget_media_image img { height: auto; max-width: 100%; }</style><div style="width: 310px" class="wp-caption alignnone"><a href="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png"><img width="300" height="172" src="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" class="image wp-image-10515 alignnone attachment-300x172 size-300x172" alt="" loading="lazy" style="max-width: 100%; height: auto;" srcset="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300 300w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=600 600w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=150 150w" sizes="(max-width: 300px) 100vw, 300px" data-attachment-id="10515" data-permalink="https://profmattstrassler.com/htogammagamma_v1/" data-orig-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png" data-orig-size="640,366" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="HtoGammaGamma_v1" data-image-description="" data-image-caption="" data-medium-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" data-large-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=500" /></a><p class="wp-caption-text">From the CMS experiment at the Large Hadron collider, a proton-proton collision that created a Higgs boson, which subsequently decayed to two particles of light (shown as green rods.)</p></div></li><li id="search-3" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="https://profmattstrassler.com/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search" />
+				</div>
+			</form></li>
+		<li id="recent-posts-3" class="widget-container widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="https://profmattstrassler.com/2021/04/12/physics-is-broken/">Physics is Broken!!!</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/11/25/has-a-new-force-of-nature-been-discovered/">Has a New Force of Nature Been&nbsp;Discovered?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/28/the-new-york-times-remembers-a-great-physicist/">The New York Times Remembers A Great&nbsp;Physicist</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/06/a-catastrophic-weekend-for-theoretical-high-energy-physics/">A Catastrophic Weekend for Theoretical High Energy&nbsp;Physics</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo/">A Ring of Controversy Around a Black Hole&nbsp;Photo</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/16/the-black-hole-photo-seeing-more-clearly/">The Black Hole `Photo&#8217;: Seeing More&nbsp;Clearly</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/15/the-black-hole-photo-what-are-we-looking-at/">The Black Hole `Photo&#8217;: What Are We Looking&nbsp;At?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/10/a-black-day-and-a-happy-one-in-scientific-history/">A Black Day (and a Happy One) In Scientific&nbsp;History</a>
+									</li>
+					</ul>
+
+		</li><li id="categories-4" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3><form action="https://profmattstrassler.com" method="get"><label class="screen-reader-text" for="cat">Categories</label><select  name='cat' id='cat' class='postform' >
+	<option value='-1'>Select Category</option>
+	<option class="level-0" value="4003">Astronomy</option>
+	<option class="level-0" value="175813">black holes</option>
+	<option class="level-0" value="51517">Dark Matter</option>
+	<option class="level-0" value="545298">Evolution and Biology</option>
+	<option class="level-0" value="39338">Geology</option>
+	<option class="level-0" value="133890">Gravitational Waves</option>
+	<option class="level-0" value="738724">Higgs</option>
+	<option class="level-0" value="27530">History of Science</option>
+	<option class="level-0" value="19640">Housekeeping</option>
+	<option class="level-0" value="59940768">LHC Background Info</option>
+	<option class="level-0" value="11550283">LHC News</option>
+	<option class="level-0" value="59940787">Other Collider News</option>
+	<option class="level-0" value="12547">Particle Physics</option>
+	<option class="level-0" value="1211">Physics</option>
+	<option class="level-0" value="560543">Public Outreach</option>
+	<option class="level-0" value="36114049">Quantum Field Theory</option>
+	<option class="level-0" value="119528">Quantum Gravity</option>
+	<option class="level-0" value="59940867">Science and Modern Society</option>
+	<option class="level-0" value="7682">Science News</option>
+	<option class="level-0" value="26444">String Theory</option>
+	<option class="level-0" value="41175177">The Scientific Process</option>
+	<option class="level-0" value="1">Uncategorized</option>
+</select>
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+			</li><li id="pd_top_rated-3" class="widget-container top_rated"><h3 class="widget-title">Popular Pages</h3><div id="pd_top_rated_holder" class="pd_top_rated_holder_pages"></div><script language="javascript" src="https://polldaddy.com/js/rating/top-rated.js"></script><script language="javascript" type="text/javascript">PDRTJS_TOP = new PDRTJS_RATING_TOP( 4811599, 0, 0, '010', 5 );PDRTJS_TOP.get_top( 'pages', '0' );</script></li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+		
+			</div><!-- #content-box -->
+
+	<div id="footer" role="contentinfo">
+		
+<div id="footer-widget-area" role="complementary">
+
+	<div id="first" class="widget-area">
+		<ul class="xoxo">
+			<li id="text-3" class="widget-container widget_text">			<div class="textwidget"><font color="FF0000"><b>I went to college at <a href="http://www.simons-rock.edu"> Simon's Rock.  </a></b></font></div>
+		</li>		</ul>
+	</div><!-- #first .widget-area -->
+
+
+	<div id="third" class="widget-area">
+		<ul class="xoxo">
+			<li id="rss_links-3" class="widget-container widget_rss_links"><h3 class="widget-title">Add this site to your RSS feed</h3><p class="size-small"><a class="feed-image-link" href="https://profmattstrassler.com/feed/" title="Subscribe to Posts"><img src="https://profmattstrassler.com/i/rss/red-small.png" alt="RSS Feed" /></a>&nbsp;<a href="https://profmattstrassler.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p>
+</li><li id="linkcat-8548552" class="widget-container widget_links"><h3 class="widget-title">My Facebook Page</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.facebook.com/ProfMattStrassler" rel="me" target="_blank">http://www.facebook.com/ProfMattStrassler</a></li>
+
+	</ul>
+</li>
+		</ul>
+	</div><!-- #third .widget-area -->
+
+	<div id="fourth" class="widget-area">
+		<ul class="xoxo">
+			<li id="twitter-2" class="widget-container widget_twitter"><h3 class="widget-title"><a href='http://twitter.com/MattStrassler'>Follow me on Twitter</a></h3><ul class='tweets'>
+			<li>
+				@<a href='http://twitter.com/StevenLowette'>StevenLowette</a> @<a href='http://twitter.com/CatDogLUofM'>CatDogLUofM</a> @<a href='http://twitter.com/suchi_kulkarni'>suchi_kulkarni</a> @<a href='http://twitter.com/jsheltino'>jsheltino</a> Good to be a part of it.  We need to open these communicatio… <a href="https://twitter.com/i/web/status/1443656122460741633"> twitter.com/i/web/status/1…</a> 				<a href="http://twitter.com/MattStrassler/statuses/1443656122460741633" class="timesince">1&nbsp;day&nbsp;ago</a>
+			</li>
+
+			</ul><a href="http://twitter.com/MattStrassler"  class='twitter-follow-button' data-show-count='false' data-link-color='#0060ff' data-text-color='#333333'>Follow @MattStrassler</a></li>		</ul>
+	</div><!-- #fourth .widget-area -->
+
+</div><!-- #footer-widget-area -->
+		<div id="colophon">
+			<span class="generator-link"><a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a></span>
+					</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #container -->
+
+<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202139y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-91fcc31a3cce37dd4e61e9daa322e41e">
+	</div>
+	<div class="grofile-hash-map-fee21bbc488e9b5bad9b055e936c4d29">
+	</div>
+	<div class="grofile-hash-map-4c2527e80396eefb2959dc38d23cedcc">
+	</div>
+	<div class="grofile-hash-map-e591235c29fac658e0bf6f1aba3d1489">
+	</div>
+	<div class="grofile-hash-map-d1da2d4a33a6c341663ce7e6df39d498">
+	</div>
+	<div class="grofile-hash-map-8b4c7a0d59c4e86295e81418209ae97d">
+	</div>
+	<div class="grofile-hash-map-833786fdbb531be94aa385f57d565fc7">
+	</div>
+	<div class="grofile-hash-map-ab6a6891fb575b2faddc5825626435c6">
+	</div>
+	<div class="grofile-hash-map-626ffa744a555c58b347aac9a96961ae">
+	</div>
+	<div class="grofile-hash-map-813a930ef4c2fcd745b75343d2932f9a">
+	</div>
+	<div class="grofile-hash-map-d2c6a9a7a9ca34976d26a171957c449c">
+	</div>
+	<div class="grofile-hash-map-442a3384a1fe7019526669293d924a27">
+	</div>
+	<div class="grofile-hash-map-fed59c06caa38a346df3850e446f0d3d">
+	</div>
+	<div class="grofile-hash-map-ce04fe78955c756ff49eda3cd861e40c">
+	</div>
+	<div class="grofile-hash-map-53474f5710dacd497e98dd16df0562bb">
+	</div>
+	<div class="grofile-hash-map-3de456c74add84bab7455247fbad3c7b">
+	</div>
+	<div class="grofile-hash-map-278b3c7dd514c9dad19b9b781bcbe48e">
+	</div>
+	<div class="grofile-hash-map-ad53b96d4184369201e48483eaf44b66">
+	</div>
+	<div class="grofile-hash-map-13a1d28bd5b704815dc416600e0f30ed">
+	</div>
+	<div class="grofile-hash-map-5ae1018204a7af01d332b92e494e249e">
+	</div>
+	<div class="grofile-hash-map-7944a3880c406b3e38f7422f2186375d">
+	</div>
+	<div class="grofile-hash-map-cb64fd80a946fe62803baaeeac1b4371">
+	</div>
+	<div class="grofile-hash-map-4e72baaafdec3b9d53cad02d74706175">
+	</div>
+	<div class="grofile-hash-map-1638de49ddd315fcad1fff82ecf391a4">
+	</div>
+	<div class="grofile-hash-map-ebe65ef3271ef8ecdc0e3930d738d5b9">
+	</div>
+	<div class="grofile-hash-map-df918f46b681c004419d053ed4ea9464">
+	</div>
+	<div class="grofile-hash-map-ed31318702d529ddc1e8f45e2847f6c3">
+	</div>
+	<div class="grofile-hash-map-5657a3c9f296304a9ae01744bcc2ef4d">
+	</div>
+	<div class="grofile-hash-map-3c990ba25b2be05177fefb96273a20f6">
+	</div>
+	<div class="grofile-hash-map-aeae93f95ee7405f9d50890b370ff0b9">
+	</div>
+	<div class="grofile-hash-map-adeb244d3a56730027286aae9204ecc5">
+	</div>
+	<div class="grofile-hash-map-c397b7992319214a37dae13cc7e283f2">
+	</div>
+	<div class="grofile-hash-map-fe0da1ca8ba569811f1805fd4bab9f1e">
+	</div>
+	<div class="grofile-hash-map-dbcf40a6f65530de637e7ab76ae79a32">
+	</div>
+	<div class="grofile-hash-map-76538b9c79edcd7377b9a30419f9033d">
+	</div>
+	<div class="grofile-hash-map-b683da6e488c759bfd2f15a7429891b0">
+	</div>
+	<div class="grofile-hash-map-cc52686a9d9bfe333a19dd1d4b55dbfe">
+	</div>
+	<div class="grofile-hash-map-45c4127ec0ea0a60a34d9c83a5b9d91c">
+	</div>
+	<div class="grofile-hash-map-1fe5b61a4c97aea090433b556dc58ad1">
+	</div>
+	</div>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/profmattstrassler.com\/2012\/07\/25\/seeking-reader-input\/":4074};
+	</script>
+				<script src='https://platform.twitter.com/widgets.js?ver=20111117' id='twitter-widgets-js'></script>
+<script id='sharing-js-js-extra'>
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjskSwiAQRH9IQrkkVR4svwVhNINAcAay+PXOQQ96MKeepV916ykrO6QCqWjP2sGIFvLceN7o75d/VKDlLQ2mEWFatXko2di7ImB8wq89VpVDvWFiHfAOrAWq0JvkAtAfs3ERk7oY0tFwAZJJFZIcXi00ZTtElWmYFyklNy4fBpMN1UkLgWSFeAHXSNCfInngoq7BIGnuDWG6fVSgczxtu1132O3bY+tft6aG7A=='></script>
+<script type='text/javascript'>
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-twitter' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-twitter' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+</script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>	<iframe src='https://widgets.wp.com/likes/master.html?ver=20210818#ver=20210818&amp;origin=https://profmattstrassler.com' scrolling='no' id='likes-master' name='likes-master' style='display:none;'></iframe>
+	<div id='likes-other-gravatars'>
+		<div class="likes-text">
+			<span>%d</span> bloggers like this:		</div>
+		<ul class="wpl-avatars sd-like-gravatars"></ul>
+	</div>
+	
+		<script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'24633746','blog_tz':'-4','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'24633746','v':'wpcom','tz':'-4','user_id':'0','post':'4074','subd':'profmattstrassler'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eXFaMjhuQz1aPzNNMy12XUZlK1VEaF9ZMkRhXS9kfnpXU3U3LUtbLSZsakpoUnExOGVDJWhWOEw1OVMmLHB0U3J1elBvZCZiTkEzXXlsLi1PU25PbltLcyZONi1Lay1ia3RtU0ZEcmxjdDdab2FqP3lnNTdjWUJBJW9+MythaEZ2SG9naWl+fHhYbzFTJlVDVm13LF16UnU3VHlTVnNmPU44bVMzVDZ3fndDSS5KdlJ8VSY1SVAmc0hRWlF0UzRUVjQ1XTJaX1ZKQTM2MX5YSEtNV2FbdEV6T0M/Qkt4NTBNUVlSfFFfRA=='}]);
+_stq.push([ 'clickTrackerInit', '24633746', '4074' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script defer id="bilmur"  data-provider="wordpress.com" data-service="simple" src="/wp-content/js/bilmur.min.js?i=2&m=202139"></script><script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script></body>
+</html>

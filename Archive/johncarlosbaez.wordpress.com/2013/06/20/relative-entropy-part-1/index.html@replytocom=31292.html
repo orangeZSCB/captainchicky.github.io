@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Relative Entropy (Part 1) | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Relative Entropy (Part&nbsp;1) Comments Feed" href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F06%2F20%2Frelative-entropy-part-1%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2013\/06\/20\/relative-entropy-part-1\/?replytocom=31292","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F06%2F20%2Frelative-entropy-part-1%2F%3Freplytocom%3D31292","postID":"16174","shortlink":"https:\/\/wp.me\/pRBZ9-4cS","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/16174","statsLink":"https:\/\/wordpress.com\/stats\/post\/16174\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F06%2F20%2Frelative-entropy-part-1%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-4cS' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F06%2F20%2Frelative-entropy-part-1%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F06%2F20%2Frelative-entropy-part-1%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Relative Entropy (Part 1)" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/" />
+<meta property="og:description" content="I&#8217;m trying to finish off a paper that Tobias Fritz and I have been working on, which gives a category-theoretic (and Bayesian!) characterization of relative entropy. It&#8217;s a kind of sequ…" />
+<meta property="article:published_time" content="2013-06-20T03:36:35+00:00" />
+<meta property="article:modified_time" content="2016-05-26T18:25:56+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/commutative_frobenius_algebra.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Relative Entropy (Part&nbsp;1)" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/commutative_frobenius_algebra.jpg?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="I&#039;m trying to finish off a paper that Tobias Fritz and I have been working on, which gives a category-theoretic (and Bayesian!) characterization of relative entropy. It&#039;s a kind of sequel to our paper with Tom Leinster, in which we characterized entropy. That earlier paper was developed in conversations on the n-Category Caf&eacute;. It was&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-16174 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-16174 post type-post status-publish format-standard hentry category-information-and-entropy category-probability" id="post-16174">
+			<h2>Relative Entropy (Part&nbsp;1)</h2>
+
+			<div class="entry">
+				<p>I&#8217;m trying to finish off a paper that Tobias Fritz and I have been working on, which gives a category-theoretic (and Bayesian!) characterization of <a href="http://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">relative entropy</a>.  It&#8217;s a kind of sequel to <a href="https://johncarlosbaez.wordpress.com/2011/06/02/a-characterization-of-entropy/">our paper with Tom Leinster</a>, in which we characterized entropy.</p>
+<p>That earlier paper was developed in conversations <a href="http://ncatlab.org/johnbaez/show/A+characterization+of+entropy+in+terms+of+information+loss">on the <i>n</i>-Category Caf&eacute;</a>.  It was a lot of fun; I sort of miss that style of working.    Also, to get warmed up, I need to think through some things I&#8217;ve thought about before.   So, I might as well write them down here.</p>
+<h3> The idea </h3>
+<p>There are many categories related to probability theory, and they&#8217;re related in many ways.  Last summer&#8212;on the 24th of August 2012, according to my notes here&#8212;Jamie Vicary, Brendan Fong and I worked through a bunch of these relationships.  I need to write them down now, even if they&#8217;re not all vitally important to my paper with Tobias.  They&#8217;re sort of buzzing around my brain like flies.</p>
+<p>(Tobias knows this stuff too, and this is how we think about probability theory, but we weren&#8217;t planning to stick it in our paper.  Maybe we should.)</p>
+<p>Let&#8217;s restrict attention to probability measures on <i>finite sets</i>, and related structures.  We could study these questions more generally, and we should, but not today.  What we&#8217;ll do is give a unified purely algebraic description of:</p>
+<p>&bull; finite sets</p>
+<p>&bull; measures on finite sets</p>
+<p>&bull; probability measures on finite sets</p>
+<p>and various kinds of maps between these:</p>
+<p>&bull; functions</p>
+<p>&bull; bijections</p>
+<p>&bull; measure-preserving functions</p>
+<p>&bull; stochastic maps</p>
+<h3>  Finitely generated free [0,&infin;)-modules </h3>
+<p>People often do linear algebra over a <a href="http://en.wikipedia.org/wiki/Field_%28mathematics%29">field</a>, which is&#8212;roughly speaking&#8212;a number system where you can add, subtract, multiply and divide.  But algebraists have long realized that a lot of linear algebra still works with a <a href="http://en.wikipedia.org/wiki/Commutative_ring">commutative ring</a>, where you can&#8217;t necessarily divide.  It gets more complicated, but also a lot more interesting.</p>
+<p>But in fact, a lot still works with a commutative <a href="http://ncatlab.org/nlab/show/rig">rig</a>, where we can&#8217;t necessarily subtract either!  Something I keep telling everyone is that linear algebra over rigs is a good idea for studying things like probability theory, thermodynamics, and the principle of least action.</p>
+<p>Today we&#8217;ll start with the rig of nonnegative real numbers with their usual addition and multiplication; let&#8217;s call this <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty) ." class="latex" />   The idea is that measure theory, and probability theory, are closely related to linear algebra over this rig.</p>
+<p>Let <img src="https://s0.wp.com/latex.php?latex=C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C" class="latex" /> be the category with of <a href="http://en.wikipedia.org/wiki/Finitely-generated_module">finitely generated</a> <a href="http://en.wikipedia.org/wiki/Free_module">free</a> <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty) " class="latex" />-modules as objects, and <a href="http://en.wikipedia.org/wiki/Module_homomorphism#Submodules_and_homomorphisms">module homomorphisms</a> as morphisms.   I&#8217;ll call these morphisms <b>maps</b>.</p>
+<p><b>Puzzle.</b> Do we need to say &#8216;free&#8217; here?  Are there finitely generated modules over <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty) " class="latex" /> that aren&#8217;t free?</p>
+<p>Every finitely generated free <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-module is isomorphic to <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29%5ES+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)^S " class="latex" /> for some finite set <img src="https://s0.wp.com/latex.php?latex=S+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S ." class="latex" /> In other words, it&#8217;s isomorphic to <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29%5En+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)^n " class="latex" /> for some <img src="https://s0.wp.com/latex.php?latex=n+%3D+0%2C+1%2C+2%2C+%5Cdots+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n = 0, 1, 2, &#92;dots ." class="latex" />   So, <img src="https://s0.wp.com/latex.php?latex=C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C" class="latex" /> is equivalent to the category where objects are natural numbers, a morphism from <img src="https://s0.wp.com/latex.php?latex=m+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m " class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=n+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n " class="latex" /> is an <img src="https://s0.wp.com/latex.php?latex=m+%5Ctimes+n+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m &#92;times n " class="latex" /> matrix of numbers in <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29+%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty) ," class="latex" /> and composition is done by matrix multiplication.  I&#8217;ll also call this equivalent category <img src="https://s0.wp.com/latex.php?latex=C.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C." class="latex" /></p>
+<p>We can take tensor products of finitely generated free modules, and this makes  <img src="https://s0.wp.com/latex.php?latex=C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C" class="latex" /> into a <a href="http://ncatlab.org/nlab/show/symmetric+monoidal+dagger-category">symmetric monoidal &dagger;-category</a>.  This means we can draw maps using <a href="http://arxiv.org/abs/0903.0340">string diagrams</a> in the usual way.  However, I&#8217;m feeling lazy so I&#8217;ll often write equations when I could be drawing diagrams.</p>
+<p>One of the rules of the game is that all these equations will make sense in <i>any</i> symmetric monoidal &dagger;-category.  So we could, if we wanted, generalize ideas from probability theory this way.  If you want to do this, you&#8217;ll need to know that <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" /> is the unit for the tensor product in <img src="https://s0.wp.com/latex.php?latex=C.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C." class="latex" />   We&#8217;ll be seeing this guy <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" /> a lot.  So if you want to generalize, replace <img src="https://s0.wp.com/latex.php?latex=C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C" class="latex" /> by any symmetric monoidal &dagger;-category, and replace <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" /> by the unit for the tensor product.</p>
+<h3> Finite sets </h3>
+<p>There&#8217;s a way to see the category of finite sets lurking in <img src="https://s0.wp.com/latex.php?latex=C%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C," class="latex" /> which we can borrow from this paper:</p>
+<p>&bull; Bob Coecke, Dusko Pavlovic and Jamie Vicary, <a href="http://arxiv.org/abs/0810.0812">A new description of orthogonal bases</a>.</p>
+<p>For any finite set <img src="https://s0.wp.com/latex.php?latex=S+%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S ," class="latex" /> we get a free finitely generated <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty) " class="latex" />-module, namely <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29%5ES+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)^S ." class="latex" />  This comes with some structure:</p>
+<p>&bull; a multiplication <img src="https://s0.wp.com/latex.php?latex=m%3A+%5B0%2C%5Cinfty%29%5ES+%5Cotimes+%5B0%2C%5Cinfty%29%5ES+%5Cto+%5B0%2C%5Cinfty%29%5ES+%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m: [0,&#92;infty)^S &#92;otimes [0,&#92;infty)^S &#92;to [0,&#92;infty)^S ," class="latex" /> coming from pointwise multiplication of <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty) " class="latex" />-valued functions on <img src="https://s0.wp.com/latex.php?latex=S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S " class="latex" /></p>
+<p>&bull; the unit for this multiplication, an element of <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29%5ES%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)^S," class="latex" /> which we can write as a morphism <img src="https://s0.wp.com/latex.php?latex=i%3A+%5B0%2C%5Cinfty%29+%5Cto+%5B0%2C%5Cinfty%29%5ES+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i: [0,&#92;infty) &#92;to [0,&#92;infty)^S " class="latex" /></p>
+<p>&bull; a comultiplication, obtained by taking the diagonal map <img src="https://s0.wp.com/latex.php?latex=%5CDelta+%3A+S+%5Cto+S+%5Ctimes+S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Delta : S &#92;to S &#92;times S " class="latex" /> and promoting it to a linear map <img src="https://s0.wp.com/latex.php?latex=%5CDelta+%3A+%5B0%2C%5Cinfty%29%5ES+%5Cto+%5B0%2C+%5Cinfty%29%5ES+%5Cotimes+%5B0%2C%5Cinfty%29%5ES+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Delta : [0,&#92;infty)^S &#92;to [0, &#92;infty)^S &#92;otimes [0,&#92;infty)^S " class="latex" /></p>
+<p>&bull; a counit for this comultiplication, obtained by taking the unique map to the terminal set <img src="https://s0.wp.com/latex.php?latex=%21+%3A+S+%5Cto+1+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="! : S &#92;to 1 " class="latex" /> and promoting it to a linear map <img src="https://s0.wp.com/latex.php?latex=e%3A+%5B0%2C%5Cinfty%29%5ES+%5Cto+%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="e: [0,&#92;infty)^S &#92;to [0,&#92;infty)" class="latex" /></p>
+<p>These morphisms <img src="https://s0.wp.com/latex.php?latex=m%2C+i%2C+%5CDelta%2C+e+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m, i, &#92;Delta, e " class="latex" /> make</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x+%3D+%5B0%2C%5Cinfty%29%5ES+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x = [0,&#92;infty)^S " class="latex" /></p>
+<p>into a commutative Frobenius algebra in <img src="https://s0.wp.com/latex.php?latex=C+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C ." class="latex" />  That&#8217;s a thing where the unit, counit, multiplication and comultiplication obey these laws:</p>
+<div align="center">
+<img src="https://i0.wp.com/math.ucr.edu/home/baez/commutative_frobenius_algebra.jpg" alt="" />
+</div>
+<p>(I drew these back when I was feeling less lazy.)   This Frobenius algebra is also &#8216;special&#8217;, meaning it obeys this:</p>
+<div align="center">
+<img width="300" src="https://i2.wp.com/math.ucr.edu/home/baez/separability.jpg" alt="" />
+</div>
+<p>And it&#8217;s also a &dagger;-Frobenius algebra, meaning that the counit and comultiplication are obtained from the unit and multiplication by &#8216;flipping&#8217; them using the <a href="http://ncatlab.org/nlab/show/dagger-category">&dagger;category</a> structure.  (If we think of a morphism in <img src="https://s0.wp.com/latex.php?latex=C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C" class="latex" /> as a matrix, its dagger is its transpose.)</p>
+<p>Conversely, suppose we have <i>any</i> special commutative &dagger;-Frobenius algebra <img src="https://s0.wp.com/latex.php?latex=x+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x ." class="latex" />  Then using the ideas in the paper by Coecke, Pavlovich and Vicary we can recover a basis for <img src="https://s0.wp.com/latex.php?latex=x+%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x ," class="latex" /> consisting of the vectors <img src="https://s0.wp.com/latex.php?latex=e_i+%5Cin+x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="e_i &#92;in x " class="latex" /> with</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5CDelta%28e_i%29+%3D+e_i+%5Cotimes+e_i+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Delta(e_i) = e_i &#92;otimes e_i " class="latex" /></p>
+<p>This basis forms a set <img src="https://s0.wp.com/latex.php?latex=S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S " class="latex" /> such that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x+%5Ccong+%5B0%2C%5Cinfty%29%5ES+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x &#92;cong [0,&#92;infty)^S " class="latex" /></p>
+<p>for some <i>specified</i> isomorphism in <img src="https://s0.wp.com/latex.php?latex=C.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C." class="latex" />  Furthermore, this is an isomorphism of special commutative &dagger;-Frobenius algebras!</p>
+<p>In case you&#8217;re wondering, these vectors <img src="https://s0.wp.com/latex.php?latex=e_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="e_i" class="latex" /> correspond to the functions on <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> that are zero everywhere except at one point <img src="https://s0.wp.com/latex.php?latex=i+%5Cin+S%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i &#92;in S," class="latex" /> where they equal 1.</p>
+<p>In short, a special commutative &dagger;-Frobenius algebra in <img src="https://s0.wp.com/latex.php?latex=C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C" class="latex" /> is just a fancy way of talking about a finite set.  This may seem silly, but it&#8217;s a way to start describing probability theory using linear algebra very much as we do with quantum theory.  This analogy between quantum theory and probability theory is so interesting that it deserves a <a href="http://math.ucr.edu/home/baez/stoch_stable.pdf">book</a>.</p>
+<h3> Functions and bijections </h3>
+<p>Now suppose we have two special commutative &dagger;-Frobenius algebra in <img src="https://s0.wp.com/latex.php?latex=C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C" class="latex" />, say <img src="https://s0.wp.com/latex.php?latex=x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x " class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=y+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y ." class="latex" /></p>
+<p>Suppose <img src="https://s0.wp.com/latex.php?latex=f+%3A+x+%5Cto+y+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f : x &#92;to y " class="latex" /> is a Frobenius algebra homomorphism: that is, a map preserving <i>all</i> the structure&#8212;the unit, counit, multiplication and comultiplication.  Then it comes from an isomorphism of finite sets.   This lets us find <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BFinSet%7D_0+%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{FinSet}_0 ," class="latex" /> the groupoid of finite sets and bijections, inside <img src="https://s0.wp.com/latex.php?latex=C.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C." class="latex" /></p>
+<p>Alternatively, suppose <img src="https://s0.wp.com/latex.php?latex=f+%3A+x+%5Cto+y+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f : x &#92;to y " class="latex" /> is just a coalgebra homomorphism: that is a map preserving just the counit and comultiplication.  Then it comes from an arbitrary function between finite sets.  This lets us find <img src="https://s0.wp.com/latex.php?latex=FinSet+%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="FinSet ," class="latex" /> the category of finite sets and functions, inside <img src="https://s0.wp.com/latex.php?latex=C+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C ." class="latex" /></p>
+<p>But what if <img src="https://s0.wp.com/latex.php?latex=f+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f " class="latex" /> preserves just the counit?  This sounds like a dry, formal question.  But it&#8217;s not: the answer is something useful, a &#8216;stochastic map&#8217;.</p>
+<h3>  Stochastic maps </h3>
+<p>A <b>stochastic map</b> from a finite set <img src="https://s0.wp.com/latex.php?latex=S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S " class="latex" /> to a finite set <img src="https://s0.wp.com/latex.php?latex=T+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T " class="latex" /> is a map sending each point of <img src="https://s0.wp.com/latex.php?latex=S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S " class="latex" /> to a probability measure on <img src="https://s0.wp.com/latex.php?latex=T+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T ." class="latex" /></p>
+<p>We can think of this as a <img src="https://s0.wp.com/latex.php?latex=T+%5Ctimes+S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T &#92;times S " class="latex" />-shaped matrix of numbers in <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29+%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty) ," class="latex" /> where a given column gives the probability that a given point in <img src="https://s0.wp.com/latex.php?latex=S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S " class="latex" /> goes to any point in <img src="https://s0.wp.com/latex.php?latex=T+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T ." class="latex" />  The sum of the numbers in each column will be 1.  And conversely, any  <img src="https://s0.wp.com/latex.php?latex=T+%5Ctimes+S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T &#92;times S " class="latex" />-shaped matrix of numbers in <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29+%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty) ," class="latex" /> where each column sums to 1, gives a stochastic map from <img src="https://s0.wp.com/latex.php?latex=S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S " class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=T+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T ." class="latex" /></p>
+<p>But now let&#8217;s describe this idea using the category <img src="https://s0.wp.com/latex.php?latex=C.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C." class="latex" />  We&#8217;ve seen a finite set is the same as a special commutative &dagger;-Frobenius algebra.  So, say we have two of these, <img src="https://s0.wp.com/latex.php?latex=x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x " class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=y+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y ." class="latex" />  Our matrix of numbers in <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty) " class="latex" /> is just a map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f%3A+x+%5Cto+y+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f: x &#92;to y " class="latex" /></p>
+<p>So, we just need a way to state the condition that each column in the matrix sums to 1.  And this condition simply says that <img src="https://s0.wp.com/latex.php?latex=f+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f " class="latex" /> preserves the counit:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cepsilon_y+%5Ccirc+f+%3D+%5Cepsilon_x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;epsilon_y &#92;circ f = &#92;epsilon_x " class="latex" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=%5Cepsilon_x+%3A+x+%5Cto+%5B0%2C%5Cinfty%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;epsilon_x : x &#92;to [0,&#92;infty) " class="latex" /> is the counit for <img src="https://s0.wp.com/latex.php?latex=x+%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x ," class="latex" /> and similarly for <img src="https://s0.wp.com/latex.php?latex=%5Cepsilon_y+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;epsilon_y ." class="latex" /></p>
+<p>To understand this, note that if we use the canonical isomorphism</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x+%5Ccong+%5B0%2C%5Cinfty%29%5ES+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x &#92;cong [0,&#92;infty)^S " class="latex" /></p>
+<p>the counit <img src="https://s0.wp.com/latex.php?latex=%5Cepsilon_x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;epsilon_x " class="latex" /> can be seen as the map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29%5ES+%5Cto+%5B0%2C%5Cinfty%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)^S &#92;to [0,&#92;infty) " class="latex" /></p>
+<p>that takes any <img src="https://s0.wp.com/latex.php?latex=S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S " class="latex" />-tuple of numbers and sums them up.   In other words, it&#8217;s integration with respect to counting measure.  So, the equation</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cepsilon_y+%5Ccirc+f+%3D+%5Cepsilon_x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;epsilon_y &#92;circ f = &#92;epsilon_x " class="latex" /></p>
+<p>says that if we take any <img src="https://s0.wp.com/latex.php?latex=S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S " class="latex" />-tuple of numbers, multiply it by the matrix <img src="https://s0.wp.com/latex.php?latex=f+%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f ," class="latex" /> and then sum up the entries of the resulting <img src="https://s0.wp.com/latex.php?latex=T+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T " class="latex" />-tuple, it&#8217;s the same as if we summed up the original <img src="https://s0.wp.com/latex.php?latex=S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S " class="latex" />-tuple.  But this says precisely that each column of the matrix <img src="https://s0.wp.com/latex.php?latex=f+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f " class="latex" /> sums to 1.</p>
+<p>So, we can use our formalism to describe <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BFinStoch%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{FinStoch}," class="latex" /> the category with finite sets as objects and stochastic maps as morphisms.  We&#8217;ve seen this category is equivalent to the category with special commutative &dagger;-Frobenius algebras in <img src="https://s0.wp.com/latex.php?latex=C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C" class="latex" /> as objects and counit-preserving maps as morphisms.</p>
+<h3> Finite measure spaces </h3>
+<p>Now let&#8217;s use our formalism to describe finite measure spaces&#8212;by which, beware, I mean a finite sets equipped with measures!  To do this, we&#8217;ll use a special commutative &dagger;-Frobenius algebra <img src="https://s0.wp.com/latex.php?latex=x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x " class="latex" /> in <img src="https://s0.wp.com/latex.php?latex=C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C" class="latex" /> together with any map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmu%3A+%5B0%2C%5Cinfty%29+%5Cto+x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu: [0,&#92;infty) &#92;to x " class="latex" /></p>
+<p>Starting from these, we get a specified isomorphism</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x+%5Ccong+%5B0%2C%5Cinfty%29%5ES+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x &#92;cong [0,&#92;infty)^S " class="latex" /></p>
+<p>and <img src="https://s0.wp.com/latex.php?latex=%5Cmu+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu " class="latex" /> sends the number 1 to a vector in <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29%5ES+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)^S " class="latex" />: that is, a function on <img src="https://s0.wp.com/latex.php?latex=S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S " class="latex" /> taking values in <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty) ." class="latex" />   Multiplying this function by counting measure, we get a <i>measure</i> on <img src="https://s0.wp.com/latex.php?latex=S+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S ." class="latex" /></p>
+<p><b>Puzzle.</b>  How can we describe this measure without the annoying use of counting measure?</p>
+<p>Conversely, any measure on a finite set gives a special commutative &dagger;-Frobenius algebra <img src="https://s0.wp.com/latex.php?latex=x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x " class="latex" /> in <img src="https://s0.wp.com/latex.php?latex=C+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C " class="latex" /> equipped with a map from <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty) ." class="latex" /></p>
+<p>So, we can say a finite measure space is a special commutative &dagger;-Frobenius algebra in <img src="https://s0.wp.com/latex.php?latex=C+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C " class="latex" /> equipped with a map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmu%3A+%5B0%2C%5Cinfty%29+%5Cto+x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu: [0,&#92;infty) &#92;to x " class="latex" /></p>
+<p>And given two of these,</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmu%3A+%5B0%2C%5Cinfty%29+%5Cto+x+%2C+%5Cqquad++%5Cnu%3A+%5B0%2C%5Cinfty%29+%5Cto+y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu: [0,&#92;infty) &#92;to x , &#92;qquad  &#92;nu: [0,&#92;infty) &#92;to y" class="latex" /></p>
+<p>and a coalgebra morphism</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f+%3A+x+%5Cto+y+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f : x &#92;to y " class="latex" /></p>
+<p>obeying this equation</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f+%5Ccirc+%5Cmu++%3D+%5Cnu+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;circ &#92;mu  = &#92;nu " class="latex" /></p>
+<p>then we get a measure-preserving function between finite measure spaces!    If you&#8217;re a category theorist, you&#8217;ll draw this equation as a commutative triangle:</p>
+<div align="center">
+<img src="https://i1.wp.com/math.ucr.edu/home/baez/mathematical/relative_entropy_commutative_triangle.jpg" />
+</div>
+<p>Conversely, any measure-preserving function between finite measure spaces obeys this equation.  So, we get an algebraic way of describing the category <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BFinMeas%7D+%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{FinMeas} ," class="latex" /> with finite measure spaces as objects and measure-preserving maps as morphisms.</p>
+<h3> Finite probability measure spaces </h3>
+<p>I&#8217;m mainly interested in probability measures.  So suppose <img src="https://s0.wp.com/latex.php?latex=x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x " class="latex" /> is a special commutative &dagger;-Frobenius algebra in <img src="https://s0.wp.com/latex.php?latex=C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C" class="latex" /> equipped with a map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmu%3A+%5B0%2C%5Cinfty%29+%5Cto+x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu: [0,&#92;infty) &#92;to x " class="latex" /></p>
+<p>We&#8217;ve seen this gives a finite measure space.  But this is a probability measure space if and only if</p>
+<p><img src="https://s0.wp.com/latex.php?latex=e+%5Ccirc+%5Cmu+%3D+1+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="e &#92;circ &#92;mu = 1 " class="latex" /></p>
+<p>where</p>
+<p><img src="https://s0.wp.com/latex.php?latex=e+%3A+x+%5Cto+%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="e : x &#92;to [0,&#92;infty)" class="latex" /></p>
+<p>is the counit for <img src="https://s0.wp.com/latex.php?latex=x+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x ." class="latex" />  The equation simply says the total integral of our measure <img src="https://s0.wp.com/latex.php?latex=%5Cmu+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu " class="latex" /> is 1.</p>
+<p>So, we get a way of describing the category <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BFinProb%7D+%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{FinProb} ," class="latex" /> which has finite probability measure spaces as objects and measure-preserving maps as objects.  Given finite probability measure spaces described this way:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmu%3A+%5B0%2C%5Cinfty%29+%5Cto+x+%2C+%5Cqquad++%5Cnu%3A+%5B0%2C%5Cinfty%29+%5Cto+y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu: [0,&#92;infty) &#92;to x , &#92;qquad  &#92;nu: [0,&#92;infty) &#92;to y" class="latex" /></p>
+<p>a measure-preserving function is a coalgebra morphism</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f+%3A+x+%5Cto+y+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f : x &#92;to y " class="latex" /></p>
+<p>such that the obvious triangle commutes:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f+%5Ccirc+%5Cmu++%3D+%5Cnu+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;circ &#92;mu  = &#92;nu " class="latex" /></p>
+<h3> Measure-preserving stochastic maps </h3>
+<p>Say we have two finite measure spaces.  Then we can ask whether a stochastic map from one to the other is measure-preserving.  And we can answer this question in the language of <img src="https://s0.wp.com/latex.php?latex=C+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C ." class="latex" /></p>
+<p>Remember, a finite measure space is a special commutative &dagger;-Frobenius algebra <img src="https://s0.wp.com/latex.php?latex=x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x " class="latex" /> in <img src="https://s0.wp.com/latex.php?latex=C+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C " class="latex" /> together with a map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmu%3A+%5B0%2C%5Cinfty%29+%5Cto+x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu: [0,&#92;infty) &#92;to x " class="latex" /></p>
+<p>Say we have another one:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cnu%3A+%5B0%2C%5Cinfty%29+%5Cto+y+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;nu: [0,&#92;infty) &#92;to y " class="latex" /></p>
+<p>A stochastic map is just a map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f%3A+x+%5Cto+y+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f: x &#92;to y " class="latex" /></p>
+<p>that preserves the counit:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cepsilon_y+%5Ccirc+f+%3D+%5Cepsilon_x+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;epsilon_y &#92;circ f = &#92;epsilon_x " class="latex" /></p>
+<p>But it&#8217;s a <b>measure-preserving stochastic map</b> if also</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f+%5Ccirc+%5Cmu++%3D+%5Cnu+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;circ &#92;mu  = &#92;nu " class="latex" /></p>
+<h3> Addendum </h3>
+<p>In this article I didn&#8217;t get anywhere near to talking about what Tobias and I were actually doing!  But it was good to get this basic stuff written down.</p>
+<p>Here&#8217;s the paper we eventually wrote:</p>
+<p>• John Baez and Tobias Fritz, <a href="http://arxiv.org/abs/1402.3067">A Bayesian characterization of relative entropy</a>, <i><a href="http://www.tac.mta.ca/tac/volumes/29/16/29-16abs.html">Theory and Applications of Categories</a></i> <b>29</b> (2014), 421&ndash;456.</p>
+<p>And here&#8217;s my whole series of blog articles about it:</p>
+<p>• <a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/">Relative Entropy (Part 1)</a>: how various structures important in probability theory arise naturally when you do linear algebra using only the nonnegative real numbers.</p>
+<p>• <a href="https://johncarlosbaez.wordpress.com/2013/07/02/relative-entropy-part-2/">Relative Entropy (Part 2)</a>: a category related to statistical inference, <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BFinStat%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{FinStat}," class="latex" /> and how relative entropy defines a functor on this category.</p>
+<p>• <a href="https://johncarlosbaez.wordpress.com/2013/12/25/relative-entropy-part-3/">Relative Entropy (Part 3)</a>: how to characterize relative entropy as a functor from <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BFinStat%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{FinStat}" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%5D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty]." class="latex" /></p>
+<p>• <a href="https://johncarlosbaez.wordpress.com/2014/02/16/relative-entropy-part-4/">Relative Entropy (Part 4)</a>: wrap-up, and an invitation to read more about the underlying math at the <a href="https://golem.ph.utexas.edu/category/2014/02/relative_entropy.html"><i>n</i>-Category Caf&eacute;</a>.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Thursday, June 20th, 2013 at 3:36 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/" rel="category tag">information and entropy</a>, <a href="https://johncarlosbaez.wordpress.com/category/probability/" rel="category tag">probability</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2013/06/14/the-selected-papers-network-part-2/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2013/06/21/symmetry-and-the-fourth-dimension-part-11/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">19 Responses to <em>Relative Entropy (Part&nbsp;1)</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-30862">
+				<div id="div-comment-30862" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/68c7b083965f5073c50bf7c8d2aac358?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://TobyBartels.name/' rel='external nofollow ugc' class='url'>Toby Bartels</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30862">20 June, 2013 at 7:55 am</a>		</div>
+
+		<p>I usually use the rig <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty]" class="latex" /> for measure theory (with <img src="https://s0.wp.com/latex.php?latex=0+%5Ccdot+%5Cinfty+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="0 &#92;cdot &#92;infty = 0" class="latex" />, so that it is a rig; see also <a href="http://ncatlab.org/nlab/show/one-sided+real+number#arithmetic" rel="nofollow">nLab: lower real number#arithmetic</a> for a constructive treatment that makes this happen automatically) rather than <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />.  This doesn&#8217;t really matter for probability measures, but normally one allows positive measures (even on finite measure spaces) to be infinite.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=30862#respond' data-commentid="30862" data-postid="16174" data-belowelement="div-comment-30862" data-respondelement="respond" data-replyto="Reply to Toby Bartels" aria-label='Reply to Toby Bartels'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-30883">
+				<div id="div-comment-30883" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30883">20 June, 2013 at 4:13 pm</a>		</div>
+
+		<p>Good point!  I don&#8217;t feel a pressing need for <img src="https://s0.wp.com/latex.php?latex=%5Cinfty&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;infty" class="latex" /> here, but I think everything would work just as well with it&#8230; and when we get to relative entropy, we&#8217;ll see it really needs to take the value <img src="https://s0.wp.com/latex.php?latex=%5Cinfty&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;infty" class="latex" /> whenever you have a prior that assigns zero probability to an event that turns out to happen, leaving you &#8216;infinitely surprised&#8217;.  I hadn&#8217;t thought that <i>that</i> use of <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty]" class="latex" /> could be extended to supplant the use of <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" /> <i>here</i>, since I (implicitly) thought of entropy and probability as being different &#8216;types of thing&#8217;. But maybe using <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty]" class="latex" /> everywhere will make things nicer somehow.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=30883#respond' data-commentid="30883" data-postid="16174" data-belowelement="div-comment-30883" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-saibod even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-30868">
+				<div id="div-comment-30868" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d4718631f7bef0853977032b25124085?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">saibod</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30868">20 June, 2013 at 1:19 pm</a>		</div>
+
+		<p>It&#8217;s great to see this written down! Typo: $\dagger $-category is missing the &#8220;latex&#8221;.</p>
+<p>Concerning the first puzzle on finitely generated <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-modules: most of them are not free, and these are among my favorite mathematical objects: polyhedral convex cones! The simplest non-free example is a 3-dimensional convex cone spanned by four rays such as <img src="https://s0.wp.com/latex.php?latex=%281%2C%5Cpm+1%2C%5Cpm+1%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(1,&#92;pm 1,&#92;pm 1)" class="latex" />. Including these in the category will take us into the realm of <a href="http://arxiv.org/abs/quant-ph/0508211" rel="nofollow">general probabilistic theories</a>, where the cones are non-classical state spaces. I don&#8217;t see how to retain the  &dagger;-structure, though&#8230;</p>
+<p>There are other <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-modules which are not even embeddable into a vector space. The most notorious ones are semilattices with a bottom element, i.e. commutative idempotent monoids <img src="https://s0.wp.com/latex.php?latex=%28M%2C%5Clor%2C0%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(M,&#92;lor,0)" class="latex" />. Such a gadget becomes a <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-module if one takes multiplication by positive scalars to act trivially.</p>
+<p>Concerning the second puzzle, what about using <img src="https://s0.wp.com/latex.php?latex=%5Cmu%3Ax%5Cto%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu:x&#92;to[0,&#92;infty)" class="latex" /> rather than <img src="https://s0.wp.com/latex.php?latex=%5Cmu%3A%5B0%2C%5Cinfty%29%5Cto+x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu:[0,&#92;infty)&#92;to x" class="latex" />? I&#8217;m probably missing something, it&#8217;s early morning ;)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=30868#respond' data-commentid="30868" data-postid="16174" data-belowelement="div-comment-30868" data-respondelement="respond" data-replyto="Reply to saibod" aria-label='Reply to saibod'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-30884">
+				<div id="div-comment-30884" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30884">20 June, 2013 at 4:25 pm</a>		</div>
+
+		<p>Thanks!  Are you trying to keep your identity secret?  I&#8217;d like to let people know who you are.</p>
+<p>More later&#8230; thanks a lot for help on that first puzzle.  The second puzzle I think I understand.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=30884#respond' data-commentid="30884" data-postid="16174" data-belowelement="div-comment-30884" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-30887">
+				<div id="div-comment-30887" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1144c2b545e5f27f69e8d91e2807b3bb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://perimeterinstitute.ca/personal/tfritz/' rel='external nofollow ugc' class='url'>Tobias Fritz</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30887">20 June, 2013 at 6:33 pm</a>		</div>
+
+		<p>I&#8217;m not trying to keep my identity secret, I just need to get to grips with WordPress ;) So this comment is just an experiment for trying to see whether it puts my name down now&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=30887#respond' data-commentid="30887" data-postid="16174" data-belowelement="div-comment-30887" data-respondelement="respond" data-replyto="Reply to Tobias Fritz" aria-label='Reply to Tobias Fritz'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-30885">
+				<div id="div-comment-30885" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30885">20 June, 2013 at 5:39 pm</a>		</div>
+
+		<p>I actually think it&#8217;s better to describe a measure on a finite set using a map  <img src="https://s0.wp.com/latex.php?latex=%5Cmu+%3A+%5B0%2C%5Cinfty%29+%5Cto+x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu : [0,&#92;infty) &#92;to x" class="latex" /> rather than a map <img src="https://s0.wp.com/latex.php?latex=%5Cmu+%3A+x+%5Cto+%5B0%2C%5Cinfty%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu : x &#92;to [0,&#92;infty)." class="latex" />  Of course using the &dagger;-category structure we can freely turn one into the other, but still&#8230;</p>
+<p>The reason is that measures are covariant; we want to be able to take a measure <img src="https://s0.wp.com/latex.php?latex=%5Cmu+%3A+%5B0%2C%5Cinfty%29+%5Cto+x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu : [0,&#92;infty) &#92;to x" class="latex" /> and push it forward along <img src="https://s0.wp.com/latex.php?latex=f+%3A+x+%5Cto+y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f : x &#92;to y" class="latex" /> and get a new measure on <img src="https://s0.wp.com/latex.php?latex=y.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y." class="latex" />  And in this approach. it&#8217;s easy: just compose them and get <img src="https://s0.wp.com/latex.php?latex=f+%5Ccirc+%5Cmu+%3A+%5B0%2C%5Cinfty%29+%5Cto+y.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;circ &#92;mu : [0,&#92;infty) &#92;to y." class="latex" />   Note this works when <img src="https://s0.wp.com/latex.php?latex=f&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f" class="latex" /> is actually a function between finite sets, but also more generally when <img src="https://s0.wp.com/latex.php?latex=f&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f" class="latex" /> is a stochastic map or even more generally when it&#8217;s what I was calling a `map&#8217;, meaning any homomorphism of <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-modules.  </p>
+<p>Anyway, here&#8217;s a slick way to see how a map <img src="https://s0.wp.com/latex.php?latex=%5Cmu+%3A+%5B0%2C%5Cinfty%29+%5Cto+x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu : [0,&#92;infty) &#92;to x" class="latex" /> gives a measure on <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> when <img src="https://s0.wp.com/latex.php?latex=x+%3D+%5B0%2C%5Cinfty%29%5ES%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x = [0,&#92;infty)^S," class="latex" /> without mentioning counting measure.   First you note that a map <img src="https://s0.wp.com/latex.php?latex=f+%3A+x+%5Cto+%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f : x &#92;to [0,&#92;infty)" class="latex" /> is the same as a <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-valued function on <img src="https://s0.wp.com/latex.php?latex=S.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S." class="latex" />  Then you note that the composite map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f+%5Ccirc+%5Cmu+%3A+%5B0%2C%5Cinfty%29+%5Cto+%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f &#92;circ &#92;mu : [0,&#92;infty) &#92;to [0,&#92;infty)" class="latex" /></p>
+<p>amounts to multiplying by some number in <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)." class="latex" />  We can think of this number as the integral of the function <img src="https://s0.wp.com/latex.php?latex=f&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f" class="latex" /> with respect to the measure corresponding to <img src="https://s0.wp.com/latex.php?latex=%5Cmu.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu." class="latex" /></p>
+<p>In short,  measures are maps <img src="https://s0.wp.com/latex.php?latex=%5Cmu+%3A+%5B0%2C%5Cinfty%29+%5Cto+x.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mu : [0,&#92;infty) &#92;to x." class="latex" />  Functions are maps <img src="https://s0.wp.com/latex.php?latex=f+%3A+x+%5Cto+%5B0%2C%5Cinfty%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f : x &#92;to [0,&#92;infty)." class="latex" />   Measures and functions are dual, both in the sense that we can compose them and get numbers, and in the sense that we can &#8216;turn one around&#8217; using the &dagger;-structure and get the other!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=30885#respond' data-commentid="30885" data-postid="16174" data-belowelement="div-comment-30885" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-30889">
+				<div id="div-comment-30889" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1144c2b545e5f27f69e8d91e2807b3bb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://perimeterinstitute.ca/personal/tfritz/' rel='external nofollow ugc' class='url'>Tobias Fritz</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30889">20 June, 2013 at 6:36 pm</a>		</div>
+
+		<p>That&#8217;s very neat!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=30889#respond' data-commentid="30889" data-postid="16174" data-belowelement="div-comment-30889" data-respondelement="respond" data-replyto="Reply to Tobias Fritz" aria-label='Reply to Tobias Fritz'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-30928">
+				<div id="div-comment-30928" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c9587a79b1bada6f3aa077a1796b5639?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/~huerta' rel='external nofollow ugc' class='url'>John Huerta</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30928">21 June, 2013 at 5:37 pm</a>		</div>
+
+		<p>I think the simplest nonfree example is 1d, isn&#8217;t it? I&#8217;m thinking about:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=X+%3D+%5Cfrac%7B%5B0%2C%5Cinfty%29%5E2%7D%7B%28x%2Cx%29+%5Csim+%280%2C0%29%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X = &#92;frac{[0,&#92;infty)^2}{(x,x) &#92;sim (0,0)}" class="latex" /></p>
+<p>As a space, this has to be 1-dimensional, as one can easily check, and the unique 1d free <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" /> module is spanned by one element. Yet no one element of <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> spans it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=30928#respond' data-commentid="30928" data-postid="16174" data-belowelement="div-comment-30928" data-respondelement="respond" data-replyto="Reply to John Huerta" aria-label='Reply to John Huerta'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 parent highlander-comment" id="comment-30930">
+				<div id="div-comment-30930" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1144c2b545e5f27f69e8d91e2807b3bb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://perimeterinstitute.ca/personal/tfritz/' rel='external nofollow ugc' class='url'>Tobias Fritz</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30930">21 June, 2013 at 6:15 pm</a>		</div>
+
+		<p>Isn&#8217;t this just the real line, considered as an <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-module? Your quotient sounds a lot like the construction of formally turning an abelian monoid into an abelian group by throwing in inverses. This can also be applied to <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-modules, in which case it turns every module into a vector space.</p>
+<p>So yes, the simplest non-free module is 1-dimensional, namely just the real line. D&#8217;oh!</p>
+<p>In fact, the &#8220;simplest&#8221; example is probably just <img src="https://s0.wp.com/latex.php?latex=%5C%7B0%2C1%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{0,1&#92;}" class="latex" />, considered as a join semilattice&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=30930#respond' data-commentid="30930" data-postid="16174" data-belowelement="div-comment-30930" data-respondelement="respond" data-replyto="Reply to Tobias Fritz" aria-label='Reply to Tobias Fritz'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 parent highlander-comment" id="comment-30933">
+				<div id="div-comment-30933" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c9587a79b1bada6f3aa077a1796b5639?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/~huerta' rel='external nofollow ugc' class='url'>John Huerta</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30933">21 June, 2013 at 6:53 pm</a>		</div>
+
+		<p>Hey, you&#8217;re right! I didn&#8217;t think of that because I wasn&#8217;t sure if the real line would be finitely generated, but of course it is! It&#8217;s generated by 1 and -1. And that&#8217;s how I thought of my example: two generators such that the sum is zero.</p>
+<p>Your second example is more interesting, though, because who ever thinks of <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BZ%7D_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{Z}_2" class="latex" /> as a <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-module?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=30933#respond' data-commentid="30933" data-postid="16174" data-belowelement="div-comment-30933" data-respondelement="respond" data-replyto="Reply to John Huerta" aria-label='Reply to John Huerta'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-4 highlander-comment" id="comment-30938">
+				<div id="div-comment-30938" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1144c2b545e5f27f69e8d91e2807b3bb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://perimeterinstitute.ca/personal/tfritz/' rel='external nofollow ugc' class='url'>Tobias Fritz</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30938">21 June, 2013 at 10:37 pm</a>		</div>
+
+		<p>Actually what&#8217;s really going on here is that <img src="https://s0.wp.com/latex.php?latex=%5C%7B0%2C1%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{0,1&#92;}" class="latex" /> is the <a href="http://www.liafa.jussieu.fr/~jep/PDF/Tropical.pdf" rel="nofollow">Boolean semiring (rig)</a> with <img src="https://s0.wp.com/latex.php?latex=1%2B1%3D1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1+1=1" class="latex" />, which comes with a rig homomorphism <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29%5Crightarrow%5C%7B0%2C1%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)&#92;rightarrow&#92;{0,1&#92;}" class="latex" />. This is how the Boolean rig <img src="https://s0.wp.com/latex.php?latex=%5C%7B0%2C1%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{0,1&#92;}" class="latex" /> becomes a <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-module.</p>
+<p>More generally, the <img src="https://s0.wp.com/latex.php?latex=%5C%7B0%2C1%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{0,1&#92;}" class="latex" />-modules are precisely the join-semilattices, hence all these become <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-modules via the above homomorphism.</p>
+<p>(Writing <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BZ%7D_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{Z}_2" class="latex" /> for the Boolean rig may be a bit misleading, since the addition is not the usual one!)</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 parent highlander-comment" id="comment-30939">
+				<div id="div-comment-30939" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1144c2b545e5f27f69e8d91e2807b3bb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://perimeterinstitute.ca/personal/tfritz/' rel='external nofollow ugc' class='url'>Tobias Fritz</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30939">21 June, 2013 at 10:39 pm</a>		</div>
+
+		<p>Sorry, I should have explained that the homomorphism <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29%5Cto%5C%7B0%2C1%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)&#92;to&#92;{0,1&#92;}" class="latex" /> is the map which sends <img src="https://s0.wp.com/latex.php?latex=0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="0" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="0" class="latex" /> and every positive number to <img src="https://s0.wp.com/latex.php?latex=1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1" class="latex" />.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-30940">
+				<div id="div-comment-30940" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30940">21 June, 2013 at 10:54 pm</a>		</div>
+
+		<p>You probably know this, but I should point out: if you think of <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" /> as the rig that governs probability theory, then its quotient <img src="https://s0.wp.com/latex.php?latex=%5C%7B0%2C1%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{0,1&#92;}" class="latex" /> is the rig that governs <a href="http://en.wikipedia.org/wiki/Possibility_theory" rel="nofollow">possibility theory</a>.   </p>
+<p>Numbers in <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" /> are relative probabilities.  In <img src="https://s0.wp.com/latex.php?latex=%5C%7B0%2C1%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{0,1&#92;}" class="latex" />, 0 means &#8216;impossible&#8217; and 1 means &#8216;possible&#8217;.  So, the quotient map sends nonzero probabilities to &#8216;possible&#8217;, and zero probability to &#8216;impossible&#8217;.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-30958">
+				<div id="div-comment-30958" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/68c7b083965f5073c50bf7c8d2aac358?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://tobybartels.name/' rel='external nofollow ugc' class='url'>Toby Bartels</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30958">22 June, 2013 at 3:55 pm</a>		</div>
+
+		<p>So what&#8217;s really really going on is that <img src="https://s0.wp.com/latex.php?latex=%5C%7B0%2C1%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{0,1&#92;}" class="latex" /> is the rig of truth values under the operations OR and AND.  This makes sense, since probability theory is generalized logic.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-30932">
+				<div id="div-comment-30932" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-30932">21 June, 2013 at 6:49 pm</a>		</div>
+
+		<p>Hey&#8212;great to see you here, John!   This example </p>
+<p><img src="https://s0.wp.com/latex.php?latex=X+%3D+%5Cfrac%7B%5B0%2C%5Cinfty%29%5E2%7D%7B%28x%2Cx%29+%5Csim+%280%2C0%29%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X = &#92;frac{[0,&#92;infty)^2}{(x,x) &#92;sim (0,0)}" class="latex" /></p>
+<p>is confusing to me.  Is that quotient a quotient of sets, or of <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-modules?  Since you&#8217;re trying to create a <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-module I&#8217;ll assume the latter.  </p>
+<p>If so, you&#8217;re taking <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29%5E2%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)^2," class="latex" /> viewed as a free  <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-module with two generators, and you&#8217;re creating a quotient  <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-module in which all elements of the form <img src="https://s0.wp.com/latex.php?latex=%28x%2Cx%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(x,x)" class="latex" /> are set equal to zero.  </p>
+<p>But doing that forces</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%28x%2Cx%29+%2B+%28y%2Cz%29+%5Csim+%28y%2Cz%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(x,x) + (y,z) &#92;sim (y,z)" class="latex" /></p>
+<p>That is, all elements along diagonal lines get identified.  So, every element becomes equivalent to one of the form <img src="https://s0.wp.com/latex.php?latex=%28x%2C0%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(x,0)" class="latex" /> or one of the form <img src="https://s0.wp.com/latex.php?latex=%280%2Cx%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(0,x)" class="latex" />.  And </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%28x%2C0%29+%2B+%280%2Cx%29+%3D+%28x%2Cx%29+%5Csim+%280%2C0%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(x,0) + (0,x) = (x,x) &#92;sim (0,0) " class="latex" /></p>
+<p>so every element has a negative.  Now I&#8217;m thinking Tobias was right and your gadget is isomorphic to <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}" class="latex" /> as a <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)" class="latex" />-module.  Let me just check that addition works correctly: I want <img src="https://s0.wp.com/latex.php?latex=%28x%2C0%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(x,0)" class="latex" /> plus <img src="https://s0.wp.com/latex.php?latex=%280%2Cy%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(0,y)" class="latex" /> to equal <img src="https://s0.wp.com/latex.php?latex=%28x-y%2C0%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(x-y,0)" class="latex" /> if <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> is bigger, and <img src="https://s0.wp.com/latex.php?latex=%280%2Cy-x%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(0,y-x)" class="latex" /> if <img src="https://s0.wp.com/latex.php?latex=y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y" class="latex" /> is bigger.  I&#8217;ll just do the first case:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%28x%2C0%29+%2B+%280%2Cy%29+%3D+%28x%2Cy%29+%3D+%28x-y%2C0%29+%2B+%28y%2Cy%29+%5Csim+%28x-y%2C0%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(x,0) + (0,y) = (x,y) = (x-y,0) + (y,y) &#92;sim (x-y,0) " class="latex" /></p>
+<p>Yup!  So, you&#8217;ve got a topological 1-dimensional <img src="https://s0.wp.com/latex.php?latex=%5B0%2C%5Cinfty%29%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[0,&#92;infty)^2" class="latex" /> module that requires two generators, and it&#8217;s isomorphic to <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}." class="latex" /></p>
+<p>Nice.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=30932#respond' data-commentid="30932" data-postid="16174" data-belowelement="div-comment-30932" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-31292">
+				<div id="div-comment-31292" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2013/07/02/relative-entropy-part-2/' rel='external nofollow ugc' class='url'>Relative Entropy (Part 2) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-31292">2 July, 2013 at 8:07 am</a>		</div>
+
+		<p>In the first part of this mini-series, I described how various ideas important in probability theory arise naturally when you start doing linear algebra using only the nonnegative real numbers.  But Tobias Fritz and I have proved a theorem characterizing the concept of relative entropy, which is also known as ‘relative information’, ‘information gain’ or—most terrifying and least helpful of all—’Kullback-Leibler divergence’. And in this second part, I’ll introduce two key players in this theorem. </p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=31292#respond' data-commentid="31292" data-postid="16174" data-belowelement="div-comment-31292" data-respondelement="respond" data-replyto="Reply to Relative Entropy (Part 2) | Azimuth" aria-label='Reply to Relative Entropy (Part 2) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1 highlander-comment" id="comment-34787">
+				<div id="div-comment-34787" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2013/12/25/relative-entropy-part-3/' rel='external nofollow ugc' class='url'>Relative Entropy (Part 3) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-34787">25 December, 2013 at 3:22 am</a>		</div>
+
+		<p>In the last couple days I&#8217;ve returned to working on a paper with Tobias Fritz where we give a Bayesian characterization of the concept of &#8216;relative entropy&#8217;.  This summer I wrote two blog articles about this paper:</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/" rel="nofollow">Relative Entropy (Part 1)</a>: how various structures important in probability theory arise naturally when you do linear algebra using only the nonnegative real numbers. </p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2013/07/02/relative-entropy-part-2/" rel="nofollow">Relative Entropy (Part 2)</a>: a category related to statistical inference, <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BFinStat%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{FinStat}," class="latex" /> and how relative entropy defines a functor on this category.</p>
+<p>But then Tobias Fritz noticed a big problem.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=34787#respond' data-commentid="34787" data-postid="16174" data-belowelement="div-comment-34787" data-respondelement="respond" data-replyto="Reply to Relative Entropy (Part 3) | Azimuth" aria-label='Reply to Relative Entropy (Part 3) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-36002">
+				<div id="div-comment-36002" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2014/02/06/categories-in-control/' rel='external nofollow ugc' class='url'>Categories in Control | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-36002">6 February, 2014 at 7:38 am</a>		</div>
+
+		<p>Tobias Fritz, a postdoc at the Perimeter Institute, is working with me on category-theoretic aspects of information theory. We published a paper on entropy with Tom Leinster, and we&#8217;ve got a followup on relative entropy that&#8217;s almost done. I should be working on it right this instant!  But for now, read the series of posts here on Azimuth: Relative Entropy Part 1, Part 2 and Part 3. [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=36002#respond' data-commentid="36002" data-postid="16174" data-belowelement="div-comment-36002" data-respondelement="respond" data-replyto="Reply to Categories in Control | Azimuth" aria-label='Reply to Categories in Control | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1 highlander-comment" id="comment-36573">
+				<div id="div-comment-36573" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2014/02/16/relative-entropy-part-4/' rel='external nofollow ugc' class='url'>Relative Entropy (Part 4) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/#comment-36573">16 February, 2014 at 11:19 am</a>		</div>
+
+		<p>Now Tobias Fritz and I have finally finished our paper on this subject:</p>
+<p>&bull; <a href="http://arxiv.org/abs/1402.3067" rel="nofollow">A Bayesian characterization of relative entropy</a>.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=36573#respond' data-commentid="36573" data-postid="16174" data-belowelement="div-comment-36573" data-respondelement="respond" data-replyto="Reply to Relative Entropy (Part 4) | Azimuth" aria-label='Reply to Relative Entropy (Part 4) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-31292">Relative Entropy (Part 2) | Azimuth</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2013/06/20/relative-entropy-part-1/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2013/06/20/relative-entropy-part-1/?replytocom=31292" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='16174' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='31292' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="198921f1de" /></p>
+<input type="hidden" name="genseq" value="1632624905" />
+<input type="hidden" id="ak_js" name="ak_js" value="230"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2013/06/20/relative-entropy-part-1/?replytocom=31292"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,177,022 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-68c7b083965f5073c50bf7c8d2aac358">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-d4718631f7bef0853977032b25124085">
+	</div>
+	<div class="grofile-hash-map-1144c2b545e5f27f69e8d91e2807b3bb">
+	</div>
+	<div class="grofile-hash-map-c9587a79b1bada6f3aa077a1796b5639">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-68c7b083965f5073c50bf7c8d2aac358">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"16174","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'16174','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTZVaXZGM2Fjdjg1VU9zMXpVcXg4b1hYYW01dmVwWTBkQnpHOC98M1EmQW5pdlkrJUNnZVY5LXRwbFhjUFRqWlhCeHNmMi1qQWVNLlpwb0Q9YmhOL1hUej8mRG84fml5fC5zb3wtbVY0TEcyUVo9Qmg2ODJfeVlFRH5xL11ycmlQcXcmenFYWURmYWc0NDlsSCtWZTBBK2RoN3ZCdDQ1X2VnVmFNP216Q0UxKy1PRFI1Sj16Smw/JWZtSm9qZCVIP0Zkb3JaRmpwYndxdWRERy9PL3NpZS9CVy96aw=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '16174' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

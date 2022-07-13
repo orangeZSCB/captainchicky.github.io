@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Petri Nets | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Petri Nets Comments Feed" href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F01%2F18%2Fpetri-nets%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2011\/01\/18\/petri-nets\/?replytocom=4970","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F01%2F18%2Fpetri-nets%2F%3Freplytocom%3D4970","postID":"2275","shortlink":"https:\/\/wp.me\/pRBZ9-AH","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/2275","statsLink":"https:\/\/wordpress.com\/stats\/post\/2275\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F01%2F18%2Fpetri-nets%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-AH' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F01%2F18%2Fpetri-nets%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F01%2F18%2Fpetri-nets%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Petri Nets" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/" />
+<meta property="og:description" content="What&#8217;s a Petri net, and how do Petri nets describe symmetric monoidal categories?" />
+<meta property="article:published_time" content="2011-01-18T08:43:26+00:00" />
+<meta property="article:modified_time" content="2011-04-01T11:57:39+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/electronics_circuit_diagram_10W_amplifier_with_bass_boost.gif" />
+<meta property="og:image:width" content="450" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Petri Nets" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/electronics_circuit_diagram_10W_amplifier_with_bass_boost.gif?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="What&#039;s a Petri net, and how do Petri nets describe symmetric monoidal categories?" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-2275 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-2275 post type-post status-publish format-standard hentry category-biology category-chemistry category-mathematics category-networks" id="post-2275">
+			<h2>Petri Nets</h2>
+
+			<div class="entry">
+				<p>I&#8217;m trying to build bridges between mathematics and practical subjects like ecology and engineering &mdash; subjects that might help us save the planet.  </p>
+<p>As part of this, I have a project to explain how some ideas from electrical engineering, control theory, systems ecology, systems biology and the like can be formalized &mdash; and to some extent unified &mdash; using &#8220;symmetric monoidal categories&#8221;.  Whenever you have a setup with:</p>
+<p>&bull; abstract gadgets that have &#8216;input wires&#8217; and &#8216;output wires&#8217;, </p>
+<p>and you can </p>
+<p>&bull; hook up these gadgets by connecting outputs to inputs,</p>
+<p>and</p>
+<p>&bull; the wires can cross over each other, and</p>
+<p>&bull; it doesn&#8217;t matter whether one wire crosses over or under another</p>
+<p>then you&#8217;ve probably got a symmetric monoidal category!  For a precise definition, and lots of examples, try:</p>
+<p>&bull; John Baez and Mike Stay, <a href="http://arxiv.org/abs/0903.0340">Physics, topology, logic and computation: a Rosetta Stone</a>, in <i>New Structures for Physics</i>, ed. Bob Coecke, Lecture Notes in Physics vol. 813, Springer, Berlin, 2011, pp. 95-174.</p>
+<p>Back then I was excited about examples from &#8216;topological quantum field theory&#8217;, and &#8216;linear logic&#8217;, and &#8216;programming semantics&#8217;, and &#8216;quantum circuit theory&#8217;.  But now I&#8217;m trying to come down to earth and think about examples of a more everyday nature.  And they turn out to be everywhere!</p>
+<p>For example, when you see these diagrams:</p>
+<div align="center">
+<img width="450" src="https://i2.wp.com/math.ucr.edu/home/baez/electronics_circuit_diagram_10W_amplifier_with_bass_boost.gif" />
+</div>
+<p>you may see a 10-watt amplifier with bass boost, and 16-volt power supply with power-on indicator light.  But I see morphisms in symmetric monoidal categories!  </p>
+<p>Back in <a href="http://math.ucr.edu/home/baez/week296.html">week296</a> I explained a symmetric monoidal category where the morphisms are electrical circuits made only from linear resistors.  It&#8217;s easy to generalize this to &#8216;passive linear circuits&#8217; where we include linear inductors and capacitors&#8230; and we can keep going further in this direction.  I&#8217;m writing a paper on this stuff now.  </p>
+<p>But today I want to head in another direction, and tell you about something I&#8217;m beginning to work on with Jacob Biamonte: something called &#8216;Petri nets&#8217;.  </p>
+<p>Before I do, I have to answer a question that I can see forming in your forehead: <i>what&#8217;s the use of this stuff?</i></p>
+<p>I don&#8217;t actually think electrical engineers are going to embrace category theory &mdash; at least not until it&#8217;s routinely taught as part of college math.  And I don&#8217;t even think they should!  I don&#8217;t claim that category theory is going to help them do anything they want to do.  </p>
+<p>What it will do is help organize our understanding of systems made of parts.  </p>
+<p>In mathematics, whenever you see a pattern that keeps showing up in different places, you should try to precisely define it and study it &mdash; and whenever you see it showing up somewhere, you should note that fact.  Eventually, over time, your store of patterns grows, and you start seeing connections that weren&#8217;t obvious before.  And eventually, really cool things will happen!</p>
+<p>It&#8217;s hard to say what these things will be before they happen.  It&#8217;s almost not worth trying. For example, the first people who started trying to compute the perimeter of an ellipse could never have guessed that the resulting math would, a century or so later, be great for <a href="http://en.wikipedia.org/wiki/Elliptic_curve_cryptography">cryptography</a>.  The necessary chain of ideas was too long and twisty to possibly envision ahead of time.   </p>
+<p>But in the long run, having mathematicians develop and investigate a deep repertoire of patterns tends to pay off.</p>
+<h4>Petri nets &#8211; the definition</h4>
+<p>So: what&#8217;s a Petri net?  Here&#8217;s my quick explanation, using graphics that David Tweed kindly provided for this article:</p>
+<p>&bull; <a href="http://www.azimuthproject.org/azimuth/show/Petri+net">Petri net</a>, Azimuth Project.</p>
+<p>A <b>Petri net</b> is a kind of diagram for the describing processes that arise in systems with many components.  They were invented in 1939 by Carl Adam Petri &mdash; when he was 13 years old &mdash; in order to describe chemical reactions.  They are a widely used model of concurrent processes in theoretical computer science.  They are also used to describe interactions between organisms (e.g. predation, death, and birth), manufacturing processes, supply chains, and so on.</p>
+<p>Here is an example from chemistry:</p>
+<div align="center">
+<img width="450" src="https://i1.wp.com/www.azimuthproject.org/azimuth/files/chemistryNetBasicA.png" alt="" />
+</div>
+<p>The circles in a Petri net denote so-called <b>states</b>, which in this example are chemical compounds.  The rectangular boxes denote <b>transitions</b>, which in this example are chemical reactions.  Every transition has a finite set of <b>input states</b>, with wires coming in from those, and a finite set of  <b>output states</b>, with wires going out.   All this information can equally well be captured by the usual notation for chemical reactions, as follows:</p>
+<div align="center"><b></p>
+<p>C + O<sub>2</sub> &rarr; CO<sub>2</sub></p>
+<p>CO<sub>2</sub> + NaOH &rarr; NaHCO<sub>3</sub></p>
+<p>NaHCO<sub>3</sub> + HCl &rarr; H<sub>2</sub>O + NaCl + CO<sub>2</sub></b></p>
+</div>
+<p>One advantage of Petri nets is that we can also label each state by some number (0,1,2,3,&#8230;) of black dots, called <b>tokens</b>.  In our example, each black dot represents a molecule of a given kind.  Thus</p>
+<div align="center">
+<img width="450" src="https://i1.wp.com/www.azimuthproject.org/azimuth/files/chemistryNetDot1A.png" alt="" />
+</div>
+<p>describes a situation where one atom of carbon, one molecule of oxygen, one molecule of sodium hydroxide, and one molecule of hydrochloric acid are present.  No molecules of any other kind are present at this time.   </p>
+<p>We can then describe processes that occur with the passage of time by moving the tokens around.  If the carbon reacts with oxygen we obtain:</p>
+<div align="center">
+<img width="450" src="https://i1.wp.com/www.azimuthproject.org/azimuth/files/chemistryNetDot2A.png" alt="" />
+</div>
+<p>If the carbon dioxide combines with the sodium hydroxide to form sodium bicarbonate, we then obtain:</p>
+<div align="center">
+<img width="450" src="https://i1.wp.com/www.azimuthproject.org/azimuth/files/chemistryNetDot3.png" alt="" />
+</div>
+<p>Finally, if the sodium bicarbonate and hydrochloric acid react, we get:</p>
+<div align="center">
+<img width="450" src="https://i1.wp.com/www.azimuthproject.org/azimuth/files/chemistryNetDot4.png" alt="" />
+</div>
+<p>Note that in each case the following rule holds: for any given transition, we can delete one token for each of its input states and simultaneously add one token for each of its output states. </p>
+<p>Here is a simpler example, taken from this article:</p>
+<p>&bull;  <a href="http://en.wikipedia.org/wiki/Petri_net">Petri net</a>, Wikipedia.</p>
+<div align="center">
+<a href="http://en.wikipedia.org/wiki/Petri_net"><br />
+<img border="none" src="http://upload.wikimedia.org/wikipedia/commons/d/d7/Animated_Petri_net_commons.gif" alt="" /><br />
+</a>
+</div>
+<p>Here the transitions are denoted by black rectangles.  This example is somewhat degenerate, because there no transitions with more than one input or more than one output.  However, it illustrates the possibility of having more than one token in a given state.  It also illustrates the possibility of a transition with <i>no</i> inputs, or <i>no</i> outputs.  In chemistry this is useful for modelling a process where molecules of a given sort are added to or removed from the environment.</p>
+<h4>Symmetric monoidal categories</h4>
+<p>Now, what about symmetric monoidal categories?  If you really want the definition, either read the<a href="http://arxiv.org/abs/0903.0340">Rosetta Stone paper</a> or <a href="http://ncatlab.org/nlab/show/symmetric+monoidal+category">the nLab article</a>.  For now, you can probably fake it.</p>
+<p>A symmetric monoidal category is, very roughly, a category with a tensor product.  If we ignore the tokens, a Petri net is a way of specifying a symmetric monoidal category by giving a set of objects <img src="https://s0.wp.com/latex.php?latex=x_1%2C+%5Cdots%2C+x_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1, &#92;dots, x_n" class="latex" /> and a set of morphisms between tensor products of these objects, for example</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f_1+%3A+x_1+%5Cotimes+x_2+%5Cto+x_2+%5Cotimes+x_2+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_1 : x_1 &#92;otimes x_2 &#92;to x_2 &#92;otimes x_2 " class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=f_2+%3A+x_2+%5Cto+1+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_2 : x_2 &#92;to 1 " class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=f_3+%3A+1+%5Cto+x_1+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_3 : 1 &#92;to x_1 " class="latex" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1" class="latex" /> denotes the tensor product of <i>no</i> objects.  For example, the objects might be molecules and the morphisms might be chemical reactions; in this case the tensor product symbol is written &#8216;<img src="https://s0.wp.com/latex.php?latex=%2B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="+" class="latex" />&#8216; rather than &#8216;<img src="https://s0.wp.com/latex.php?latex=%5Cotimes&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;otimes" class="latex" />&#8216;.  </p>
+<p>The kind of symmetric monoidal category we get this way is a &#8216;free strict symmetric monoidal category&#8217;.  It&#8217;s &#8216;free&#8217; in the sense that it&#8217;s &#8216;freely generated&#8217; from some objects and morphisms, without any relations.  It&#8217;s &#8216;strict&#8217; because we&#8217;re assuming the tensor product is precisely associative, not just associative &#8216;up to isomorphism&#8217;.</p>
+<p>For more on how Petri nets describe free symmetric monoidal categories, see:</p>
+<p>&bull; <a href="http://www.ecs.soton.ac.uk/people/vs">Vladimiro Sassone</a>, <a href="http://eprints.ecs.soton.ac.uk/11951/1/strong-conf.pdf">On the category of Petri net computations</a>, <i>6th International Conference on Theory and Practice of Software Development</i>, Proceedings of TAPSOFT &#8217;95, Lecture Notes in Computer Science <b>915</b>, Springer, Berlin, pp. 334-348.</p>
+<p>Here Sassone describes a category of Petri nets and sketches the description of a functor from that category to the category of strict symmetric monoidal categories.  Sassone also has some other papers on Petri nets and category theory. </p>
+<p>As I mentioned, Petri nets have been put to work in many ways.  I won&#8217;t even <i>start</i> trying to explain <i>that</i> today &mdash; for that, try the references on the <a href="http://www.azimuthproject.org/azimuth/show/HomePage">Azimuth Project page</a>.  My only goal today was to convince you that Petri nets are a pathetically simple idea, nothing to be scared of.  And if you happen to be a category theorist, it should also be pathetically simple to see how they describe free strict symmetric monoidal categories.  If you&#8217;re not&#8230; well, never mind!  </p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Tuesday, January 18th, 2011 at 8:43 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/biology/" rel="category tag">biology</a>, <a href="https://johncarlosbaez.wordpress.com/category/chemistry/" rel="category tag">chemistry</a>, <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/networks/" rel="category tag">networks</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2011/01/16/stabilization-wedges-part-4/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2011/01/21/information-geometry-part-6/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">61 Responses to <em>Petri Nets</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 highlander-comment" id="comment-3699">
+				<div id="div-comment-3699" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/656e05d084448337fb49459225dc525e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">DavidTweed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3699">18 January, 2011 at 8:50 am</a>		</div>
+
+		<p>Trifling point: I believe <img src="https://s0.wp.com/latex.php?latex=NaHCO_3&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="NaHCO_3" class="latex" /> is bicarbonate of soda, sodium carbonate is apparently <img src="https://s0.wp.com/latex.php?latex=Na_2CO_3&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Na_2CO_3" class="latex" />. (Feel free to delete this comment.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3699#respond' data-commentid="3699" data-postid="2275" data-belowelement="div-comment-3699" data-respondelement="respond" data-replyto="Reply to DavidTweed" aria-label='Reply to DavidTweed'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-3700">
+				<div id="div-comment-3700" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3700">18 January, 2011 at 9:07 am</a>		</div>
+
+		<p>I&#8217;ll fix that, thanks.  It&#8217;s worth keeping your comment visible as a reminder: sodium <i>bi</i>carbonate is the one that <i>doesn&#8217;t have two of anything</i>.  <img src="https://i1.wp.com/math.ucr.edu/home/baez/emoticons/tongue2.gif" alt="" /></p>
+<p>In fact the term <a href="http://en.wikipedia.org/wiki/Bicarbonate" rel="nofollow">bicarbonate</a> is officially deprecated by the official society in charge of chemical names, because it doesn&#8217;t make sense.  But people keep using it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3700#respond' data-commentid="3700" data-postid="2275" data-belowelement="div-comment-3700" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-3703">
+				<div id="div-comment-3703" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dc21eed3ebc499422d6c4a927c71ac4f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://mobjectivist.blogspot.com' rel='external nofollow ugc' class='url'>Web Hub Tel</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3703">18 January, 2011 at 1:33 pm</a>		</div>
+
+		<p>Once again this is the greatest blog. </p>
+<p>I had no idea that Petri Nets started as descriptions of chemical reactions. It seems to me that this path leads more directly into Stochastic Petri Nets where you can actually apply probabilities to determine likelihoods of place occupancy. All the chemical reactions would also need to show the &#8220;reverse&#8221; Petri Net representations to indicate the full equilibrium (this may require photons to generate transitions).</p>
+<p>I always wondered why Petri Nets didn&#8217;t catch on bigger. Software people use these things called Activity Diagrams, which are a hybrid mishmash of the PN concept. Those things are badly abused though.</p>
+<p>And I like the mention of category theory, which goes nicely with your mention of bond graphs of awhile back. </p>
+<p>Incidently, whenever I see category theory mentioned, I think of Robert Rosen and his work on biological systems. This is an obscure article of his <a href="http://www.lce.esalq.usp.br/aulas/lce164/modelos_modelagem.pdf" rel="nofollow">&#8220;On Models and Modeling&#8221;</a>. That is Azimuth-level material because it gets you thinking.</p>
+<p>Thanks!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3703#respond' data-commentid="3703" data-postid="2275" data-belowelement="div-comment-3703" data-respondelement="respond" data-replyto="Reply to Web Hub Tel" aria-label='Reply to Web Hub Tel'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-3709">
+				<div id="div-comment-3709" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6b3fa8cd421b5fd2028e3c1e9c32aa7f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Tim van Beek</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3709">18 January, 2011 at 3:43 pm</a>		</div>
+
+		<blockquote>
+<p>Software people use these things called Activity Diagrams, which are a hybrid mishmash of the PN concept.</p>
+</blockquote>
+<p>Activity diagrams are part of the <a href="http://en.wikipedia.org/wiki/Unified_Modelling_Language" rel="nofollow">unified modelling language</a> (UML). UML is much richer than petri nets, and there are parts that are supposed to model software, and parts that are supposed to model interactions of users and software, activity diagrams are often used for the latter.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3709#respond' data-commentid="3709" data-postid="2275" data-belowelement="div-comment-3709" data-respondelement="respond" data-replyto="Reply to Tim van Beek" aria-label='Reply to Tim van Beek'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 parent highlander-comment" id="comment-3720">
+				<div id="div-comment-3720" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dc21eed3ebc499422d6c4a927c71ac4f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://mobjectivist.blogspot.com' rel='external nofollow ugc' class='url'>WebHubTel</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3720">19 January, 2011 at 4:58 am</a>		</div>
+
+		<p>Whenever someone shows an Activity Diagram at a review and I point out a deadlock or race condition in their multitasking design, they get mad at me. The problem with UML is they treat formalism as an afterthought, with the UML companies marketing their tools to make as many people as happy as possible. More happy people means more sales, however poorly that translates to correct design for concurrency.</p>
+<p>Edward Lee at UC-Berkley put it bluntly with his classic paper <a href="http://escholarship.org/uc/item/63b2c5cz.pdf" rel="nofollow">&#8220;The Problem with Threads&#8221;</a>. Incidently, he has recently released a free book on <a href="http://leeseshia.org/" rel="nofollow">embedded systems</a>.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3720#respond' data-commentid="3720" data-postid="2275" data-belowelement="div-comment-3720" data-respondelement="respond" data-replyto="Reply to WebHubTel" aria-label='Reply to WebHubTel'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-3726">
+				<div id="div-comment-3726" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6b3fa8cd421b5fd2028e3c1e9c32aa7f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Tim van Beek</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3726">19 January, 2011 at 6:36 am</a>		</div>
+
+		<p>I&#8217;m not sure if there is any graphical language that is suitable for the design of multithreading systems, although many have been designed over the years. I suspect that multithreading will always be very hard to understand for humans&#8230;</p>
+<p>WebHubTel said:</p>
+<blockquote>
+<p>Whenever someone shows an Activity Diagram at a review and I point out a deadlock or race condition in their multitasking design, they get mad at me. </p>
+</blockquote>
+<p>Hmm, I do hope you don&#8217;t yell at people something like &#8220;what you call a design is obviously flawed, every idiot can see that&#8230;&#8221;.</p>
+<p>But seriously, if people get mad at you there is usually something that you can do about it by adjusting your behaviour. Before you tell people about their mistakes, you should make clear that </p>
+<p>a) you honestly try to understand what they have done,</p>
+<p>b) appreciate their competence,</p>
+<p>c) understand when and where they have been sloppy on purpose rather than due to incompetence.</p>
+<p>Then maybe it may be a good tactial decision to state your remark in the form of a question rather than an attack.</p>
+<p>Very few people are thankful of someone else telling them that something they have done is obviously wrong because&#8230;</p>
+<p>Many geniuses have to learn this the hard way, some never do (did you ever wonder why Einstein was unable to get employed in academia after he got his diploma?).</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 highlander-comment" id="comment-3727">
+				<div id="div-comment-3727" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dc21eed3ebc499422d6c4a927c71ac4f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://mobjectivist.blogspot.com' rel='external nofollow ugc' class='url'>Web Hub Tel</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3727">19 January, 2011 at 7:02 am</a>		</div>
+
+		<p>Tim, Yes its probably my fault for not being diplomatic. There are two basic rules for using Petri Nets to model concurrent systems. Rule #1, you have one token per thread. Rule #2, you make sure all threads loop back on themselves or have a clear exit state. I find #2 violated quite often in activity diagrams, pointing out that it will lead to thread exhaustion (which is similar to a mass-action law in chemical reactions). And my problem is that I don&#8217;t have a diplomatic way of phrasing that.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-3738">
+				<div id="div-comment-3738" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6b3fa8cd421b5fd2028e3c1e9c32aa7f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Tim van Beek</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3738">19 January, 2011 at 11:35 am</a>		</div>
+
+		<p>Web Hub Tel said:</p>
+<blockquote>
+<p>And my problem is that I don’t have a diplomatic way of phrasing that.</p>
+</blockquote>
+<p>I don&#8217;t have one, either, &#8220;thread exhaustion&#8221; should be known to anyone who models multithreading systems. Here is what I would try to say in a situation like that: &#8220;Sorry folks, my understanding of &#8216;thread exhaustion&#8217; is blahblah, I have been told that this has to be addressed by blabla, now I&#8217;m kinda confused that I don&#8217;t see enough of blabla in your model&#8230;&#8221; etc.</p>
+<p>Back to Petri nets:</p>
+<blockquote>
+<p>Rule #1, you have one token per thread. Rule #2, you make sure all threads loop back on themselves or have a clear exit state. </p>
+</blockquote>
+<p>Ok, I begin to see how Petri nets could be used here, but in addition we&#8217;d need we need special states where a new thread can start. A state would be characterized by shared editable data, because that&#8217;s where multithreading comes into play. Then the order of threads entering the same state would be important, but Petri nets don&#8217;t care about the order (as I learned from remarks by David Tweed below).</p>
+<p>Secondly, we&#8217;d need some priority concept for threads, and we&#8217;d need to model how the system limits the number of active threads by not creating new ones or letting existing ones sleep, besides letting existing ones finish. Do all of these aspects become part of a Petri net model?</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 highlander-comment" id="comment-3740">
+				<div id="div-comment-3740" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dc21eed3ebc499422d6c4a927c71ac4f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://mobjectivist.blogspot.com' rel='external nofollow ugc' class='url'>Web Hub Tel</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3740">19 January, 2011 at 2:20 pm</a>		</div>
+
+		<p>Tim, I would consider that C.A.R. Hoare&#8217;s classic text called &#8220;Communicating Sequential Processes&#8221; a valuable resource. (<a href="http://www.usingcsp.com/cspbook.pdf" rel="nofollow">Free electronic copy!</a>) </p>
+<p>CSP&#8217;s are one model for concurrency-based languages, Ada being an example. I can translate any working Petri Net directly into Ada code by applying Hoare&#8217;s rendezvous concept to a transition place. But realistically few people use Ada.</p>
+<p>Assigning thread priorities is not always needed in a design, especially in a simulation where you can apply discrete event methods to model instantaneous computation.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-3723">
+				<div id="div-comment-3723" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3723">19 January, 2011 at 5:49 am</a>		</div>
+
+		<p>Glad you liked my post, Web Hub Tel!  </p>
+<p>Indeed, the applications of Petri nets to chemical reactions all seem to use <i>stochastic</i> Petri nets&#8230; and <i>those</i> are what Jacob Biamonte and I are actually working on right now.  This post didn&#8217;t get around to talking about those&#8230; maybe later.</p>
+<blockquote>
+<p>Software people use these things called Activity Diagrams, which are a hybrid mishmash of the PN concept. Those things are badly abused though.</p>
+</blockquote>
+<p>Thanks for letting me know &#8211; both of the existence of these diagrams, and their &#8216;abuse&#8217;.  I&#8217;m trying to slowly sift through various diagrammatic languages and extract their category-theoretic meaning.  But as you note <a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3720" rel="nofollow">below</a>, when people design a language to &#8216;make as many people happy as possible&#8217; and &#8216;treat formalism as an afterthought&#8217;, this language can easily become a complicated mishmash from an abstract theoretical perspective, even if it&#8217;s practical and most people like it.   </p>
+<p>So, for my theoretical work I&#8217;ll try to start with diagrammatic languages that are &#8216;pure and simple&#8217;, and if getting ahold of these requires taking existing languages and mentally removing lots of features, that&#8217;s what I&#8217;ll do.</p>
+<p>Thanks for pointing out <a href="http://en.wikipedia.org/wiki/Unified_Modeling_Language" rel="nofollow">Unified Modeling Language</a>, Tim!  I have it in my database of diagrammatic languages, but I haven&#8217;t gotten around to studying it.  Even if it <i>is</i> a &#8216;mishmash&#8217;, I&#8217;m sure it&#8217;ll be full of interesting concepts which I can separate out and study.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3723#respond' data-commentid="3723" data-postid="2275" data-belowelement="div-comment-3723" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-2 parent highlander-comment" id="comment-3895">
+				<div id="div-comment-3895" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9ff406722bbbc229043a3fa12b36a198?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Aaron Denney</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3895">28 January, 2011 at 1:12 am</a>		</div>
+
+		<p>I once worked with a professor that pushed Petri nets as a generalized concurrency abstraction and proof tool.  That was actually my problem with them &#8212; they seemed _too_ general, and at the same time _unwieldy_ for expressing the things I wished to express.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3895#respond' data-commentid="3895" data-postid="2275" data-belowelement="div-comment-3895" data-respondelement="respond" data-replyto="Reply to Aaron Denney" aria-label='Reply to Aaron Denney'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-3 highlander-comment" id="comment-3897">
+				<div id="div-comment-3897" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3897">28 January, 2011 at 2:11 am</a>		</div>
+
+		<p>I wouldn&#8217;t want to write most programs in a Petri-net-based language.  On the other hand, I wouldn&#8217;t want to program with Turing machines, either &mdash; yet they&#8217;ve served as a good framework for investigating some theoretical issues.  Maybe Petri nets are a good framework for theoretical issues related to concurrency, in a similar way.  I don&#8217;t know.</p>
+<p>I&#8217;m coming to the subject from a different angle.  What I like is using Petri nets to describe chemical reactions, at least after we assign a &#8220;reaction rate&#8221; to each transition.  If you&#8217;re not permanently scarred by your previous experience, I recommend taking a quick peek at:</p>
+<p>&bull; Darren J. Wilkinson, <i>Stochastic Modelling for Systems Biology</i>, Chapman and Hall, New York, 2006.</p>
+<p>It may give you a different outlook on Petri nets!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3897#respond' data-commentid="3897" data-postid="2275" data-belowelement="div-comment-3897" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-3705">
+				<div id="div-comment-3705" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/5850d628c599d7ac60d7f7889844995a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">John F</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3705">18 January, 2011 at 1:51 pm</a>		</div>
+
+		<p>One word: LabVIEW. Your bulleted definition of symmetric monoidal categories was implemented as a programming language about 20 years ago.<br />
+<a href="http://www.ni.com/labview/" rel="nofollow ugc">http://www.ni.com/labview/</a><br />
+Electrical engineers (in the US anyway) probably have more experience and need to use LabVIEW then any other programming environment. There was a time, say 15 years ago, we would say NI makes great data acquisition hardware but their software needs work. Now it&#8217;s almost the other way around, except their hardware is still pretty good.</p>
+<p>FWIW, LabVIEW is the standard programming environment for robotics for a number of reasons. One is still that often there is no good substitute for a NI hardware component. Another is that, like Matlab, it works. And has a large user repository. High school and younger students have to use versions of LabVIEW in the FIRST competitions.<br />
+<a href="http://www.usfirst.org/" rel="nofollow ugc">http://www.usfirst.org/</a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3705#respond' data-commentid="3705" data-postid="2275" data-belowelement="div-comment-3705" data-respondelement="respond" data-replyto="Reply to John F" aria-label='Reply to John F'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-3724">
+				<div id="div-comment-3724" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3724">19 January, 2011 at 6:00 am</a>		</div>
+
+		<p>Thanks, John F!  I&#8217;ll add <a href="http://www.ni.com/labview/" rel="nofollow">LabView</a> to the list of graphical programming methods I need to learn about.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3724#respond' data-commentid="3724" data-postid="2275" data-belowelement="div-comment-3724" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-2 parent highlander-comment" id="comment-3744">
+				<div id="div-comment-3744" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3744">19 January, 2011 at 4:57 pm</a>		</div>
+
+		<p>Engineers have LabVIEW; musicians have <a href="http://en.wikipedia.org/wiki/Max_%28software%29" rel="nofollow">Max/MSP</a> and <a href="http://en.wikipedia.org/wiki/Pure_Data" rel="nofollow">Pure Data</a>.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3744#respond' data-commentid="3744" data-postid="2275" data-belowelement="div-comment-3744" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-3749">
+				<div id="div-comment-3749" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/83c16232570c763f8e0821a98c18e087?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">streamfortyseven</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3749">19 January, 2011 at 11:11 pm</a>		</div>
+
+		<p>yeah, by all means check out Pure Data, you can use it for a lot more besides music&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3749#respond' data-commentid="3749" data-postid="2275" data-belowelement="div-comment-3749" data-respondelement="respond" data-replyto="Reply to streamfortyseven" aria-label='Reply to streamfortyseven'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-3 highlander-comment" id="comment-3902">
+				<div id="div-comment-3902" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3902">28 January, 2011 at 1:38 pm</a>		</div>
+
+		<p>I&#8217;ll check it out.  When I first learned I&#8217;d be going to Singapore, I had a dream of spending a lot of time composing and recording electronic music.   It&#8217;s so much fun!  But then I got this goofy &#8216;save the planet&#8217; idea and the music went out the window.  </p>
+<p>Well, I still play it in my mind&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3902#respond' data-commentid="3902" data-postid="2275" data-belowelement="div-comment-3902" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-3708">
+				<div id="div-comment-3708" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/2c35fe624daf48f00e57289b3616c1a7?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.synapse9.com' rel='external nofollow ugc' class='url'>Phil Henshaw</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3708">18 January, 2011 at 2:16 pm</a>		</div>
+
+		<p>As Robert Rosen pointed out, with his diagram of the relation between formal and physical systems, there is a matter of &#8220;encoding and decoding&#8221; in going back and forth.    You still have the problem of discovering what abstract analog seems to correspond to the complex natural system you&#8217;re representing.  </p>
+<p>So far I&#8217;ve been generally unable to interest modelers in studying the physical system their models are intended to be analogs of&#8230; is the problem. It seems caused by disinterest in the difference between information constructs and physical ones, they&#8217;re different.  One only works in the mind and the other only in the world.</p>
+<p>What you find is that the regularities of physical systems that models are based on are temporary.  If you are not going back and forth all the time your model will lose touch with reality.<br />
+Models Learning Change.. <a href="http://www.cosmosandhistory.org/index.php/journal/article/view/176/295" rel="nofollow ugc">http://www.cosmosandhistory.org/index.php/journal/article/view/176/295</a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3708#respond' data-commentid="3708" data-postid="2275" data-belowelement="div-comment-3708" data-respondelement="respond" data-replyto="Reply to Phil Henshaw" aria-label='Reply to Phil Henshaw'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 highlander-comment" id="comment-3728">
+				<div id="div-comment-3728" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dc21eed3ebc499422d6c4a927c71ac4f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://mobjectivist.blogspot.com' rel='external nofollow ugc' class='url'>Web Hub Tel</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3728">19 January, 2011 at 7:32 am</a>		</div>
+
+		<p>I hear you Phil. The model of oil depletion that you reference in your paper is one of those thorny problems that people don&#8217;t want to continuously adapt to reality. They realize that it exists but don&#8217;t put the effort into getting a better quantitative understanding (climate scientists are doing a better job of this IMO).</p>
+<p>Incidentally, I just posted my own massive tome on oil depletion, called <a href="http://TheOilConundrum.com" rel="nofollow ugc">http://TheOilConundrum.com</a>.  I had models coming out my ears to try to understand this topic and I put about 5 years of off-hours effort into it. It&#8217;s an AzimuthProject topic that I hope to contribute to in some way.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3728#respond' data-commentid="3728" data-postid="2275" data-belowelement="div-comment-3728" data-respondelement="respond" data-replyto="Reply to Web Hub Tel" aria-label='Reply to Web Hub Tel'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-3736">
+				<div id="div-comment-3736" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3736">19 January, 2011 at 10:05 am</a>		</div>
+
+		<p>Phil wrote:</p>
+<blockquote>
+<p>So far I’ve been generally unable to interest modelers in studying the physical system their models are intended to be analogs of… </p>
+</blockquote>
+<p>I&#8217;ve been reading old papers about systems ecology, and there the modelers seemed quite acutely concerned about the deficiencies of their models (which were indeed substantial).</p>
+<p>But let&#8217;s face it.  With all the lumps and bumps airbrushed away, models seem better than the real thing.  They&#8217;re alluring, seductive.  That&#8217;s why they&#8217;re called models.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3736#respond' data-commentid="3736" data-postid="2275" data-belowelement="div-comment-3736" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-3788">
+				<div id="div-comment-3788" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/2c35fe624daf48f00e57289b3616c1a7?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.synapse9.com' rel='external nofollow ugc' class='url'>Phil Henshaw</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3788">21 January, 2011 at 4:20 pm</a>		</div>
+
+		<p>John,  you&#8217;re quite right on both, that there was a generational shift away from studying the relation of natural systems and theoretical ones, partly made possible by models being so very seductive as replacements for real systems.   I think it also developed from more natural causes, that as we successively multiplied the complexity of all our systems and interactions with each other and the environment it’s had a true numbing effect on our minds, leaving us handicapped, and making it harder and harder to point out the deep errors the theory people have been making.</p>
+<p>It is indeed “odd” that we now are seeing so many clearly documentable ways in which science has let itself become sophistry, with great consequence it seems.   The social dimension of that is how everyone is avoiding discussion of.    I think at root the question is whether you think nature *is* a network of Platonic ideals (a model), or that networks of Platonic ideals have some remarkable but limited usefulness.   </p>
+<p>The latter option gives you the best of both approaches to studying the natural world, and the former leaves you quite blind to the natural world and really unable to learn from it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3788#respond' data-commentid="3788" data-postid="2275" data-belowelement="div-comment-3788" data-respondelement="respond" data-replyto="Reply to Phil Henshaw" aria-label='Reply to Phil Henshaw'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-3790">
+				<div id="div-comment-3790" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/2c35fe624daf48f00e57289b3616c1a7?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.synapse9.com' rel='external nofollow ugc' class='url'>Phil Henshaw</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3790">21 January, 2011 at 5:14 pm</a>		</div>
+
+		<p>Web Hub Tel,  When people don’t keep studying how the environment might do something different from their model, it gets harder and harder to tell when it already did some time ago.    You just can’t anticipate change in a model unless you keep going to the effort of understanding the whole system you&#8217;re trying to model some part of.  </p>
+<p>For the world economy we&#8217;re at an &#8220;overshot start-up&#8221; phase in building modern civilization, still projecting infinite expansion when already being physically knocked down by collapsing component and environmental systems.   The great majority of people have not noticed yet that reality went some other way than the model projected.     I’m getting consistent positive feedback from other systems ecologists on an idea about what to expect at natural resource limits, when you find the price mechanism switching from being cost regulated to scarcity regulated.  That’s would reflect growing demand moving from an welcoming to a resistive environment, from a positive sum to a zero sum game.     Models would need to contain dynamic boundary condition assumptions, of environmental response.</p>
+<p>I don’t have any models though, but what I described conceptually in my OilDrum article <a href="http://www.google.com/search?sourceid=chrome&#038;ie=UTF-8&#038;q=site:www.synapse9.com+commodities" rel="nofollow ugc">http://www.google.com/search?sourceid=chrome&#038;ie=UTF-8&#038;q=site:www.synapse9.com+commodities</a> in “Profiting from Scarcity”.   Conditions of growing demand in the face of scarcity can result in explosive price increases, and profit increases.   The effect depleting resources would be to rapidly accelerate it, and  hasten the EROI point of physical system bankruptcy.    The main behavior change is from prices set by production cost and stabilized by increasing and decreasing supply, to determined by scarcity to go as high as needed to shut enough demand out to the market.     </p>
+<p>That’s what I think you are seeing in the 00’s commodity boom, <a href="http://www.synapse9.com/issues/92-08Commodities.jpg" rel="nofollow ugc">http://www.synapse9.com/issues/92-08Commodities.jpg</a>  with the whole spectrum of commodities following some hidden growth mechanism, indicating to me a world systemic resource limit of some kind, from how they’re connected.   Now that a lot of demand has been wrung out of the world economy… it seems commodity prices will now just go back up higher with growing demand, until another wave of profiting from scarcity sweeps another wave of “retirements” across the world.      </p>
+<p>That most people never realized that growth could ever run into complications and exhibit scarcity for the system as a whole, is interesting.   It’s both not a good excuse, of course, and a marvelously simple bit of evidence.   Doesn’t that show how we&#8217;ve been frequently thinking of the natural world as being nothing but our inherited cultural idea and information about it, and maybe that’s why we don’t check our models very often??   ;-)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3790#respond' data-commentid="3790" data-postid="2275" data-belowelement="div-comment-3790" data-respondelement="respond" data-replyto="Reply to Phil Henshaw" aria-label='Reply to Phil Henshaw'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-3710">
+				<div id="div-comment-3710" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6b3fa8cd421b5fd2028e3c1e9c32aa7f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Tim van Beek</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3710">18 January, 2011 at 3:45 pm</a>		</div>
+
+		<p>John: The first time you mention &#8220;token&#8221; and write</p>
+<blockquote>
+<p>Otherwise there are no molecules of any other sort.</p>
+</blockquote>
+<p>&#8230;shouldn&#8217;t it be &#8220;there is no other molecule that is an input instead of a result of a reaction&#8221;? (For example there is <img src="https://s0.wp.com/latex.php?latex=CO_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="CO_2" class="latex" />, which is not on the list of &#8220;molecules = tokens&#8221;).</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3710#respond' data-commentid="3710" data-postid="2275" data-belowelement="div-comment-3710" data-respondelement="respond" data-replyto="Reply to Tim van Beek" aria-label='Reply to Tim van Beek'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-3722">
+				<div id="div-comment-3722" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3722">19 January, 2011 at 5:10 am</a>		</div>
+
+		<p>I wrote:</p>
+<blockquote><p>
+In our example, each token represents a molecule.  Thus</p>
+<div align="center">
+<img width="350" src="https://i1.wp.com/www.azimuthproject.org/azimuth/files/chemistryNetDot1A.png" alt="" />
+</div>
+<p>describes a situation with one atom of carbon, one molecule of oxygen, one molecule of sodium hydroxide, and one molecule of hydrochloric acid. Otherwise there are no molecules of any other sort.
+</p></blockquote>
+<p>Tim wrote:</p>
+<blockquote>
+<p>…shouldn’t it be “there is no other molecule that is an input instead of a result of a reaction”? (For example there is CO<sub>2</sub>, which is not on the list of “molecules = tokens”).</p>
+</blockquote>
+<p>What I meant is that the diagram above describes a situation in which no molecules of CO<sub>2</sub>, NaHCO<sub>3</sub>, H<sub>2</sub>O or NaCl are present right now.  That&#8217;s why those circles don&#8217;t have black dots in them.  There is one atom of C, one molecule of O<sub>2</sub>, one molecule of NaOH, and one molecule of HCl.  That&#8217;s why <i>those</i> circles each have <i>one</i> black dot in them.</p>
+<p>I&#8217;m not trying to say anything about &#8220;inputs&#8221; and &#8220;outputs&#8221; here &mdash; I&#8217;m trying to explain what it means to have a certain number of black dots (&#8220;tokens&#8221;) inside a given circle (&#8220;state&#8221;).</p>
+<p>I&#8217;ve tried to rewrite my blog entry (and the Azimuth Project page) to make it clearer.  </p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3722#respond' data-commentid="3722" data-postid="2275" data-belowelement="div-comment-3722" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-3711">
+				<div id="div-comment-3711" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6b3fa8cd421b5fd2028e3c1e9c32aa7f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Tim van Beek</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3711">18 January, 2011 at 3:57 pm</a>		</div>
+
+		<p>The description of chemical reactions with Petri nets is very remindful of <a href="http://en.wikipedia.org/wiki/Finite_state_machine" rel="nofollow">finite state machines</a>. </p>
+<p>A finite state machine has a finite set of states and transitions between the states based on certain conditions. It is often used to explain the term <a href="http://en.wikipedia.org/wiki/Regular_expression" rel="nofollow">regular expression</a>: Let&#8217;s say there is an infinite input string and we search it for a certain pattern, for example &#8220;aabb&#8221;. The computer program that searches for this pattern can be modelled as a finite state machine. It starts in the state &#8220;nothing found&#8221;. Once there is an &#8220;a&#8221; in the input, it changes to the state &#8220;one a found&#8221;. If the next character is an &#8220;a&#8221;, it changes to the state &#8220;two a&#8217;s found&#8221;, if it is not, it changes to the state &#8220;nothing found&#8221;.</p>
+<p>A regular expression is a search pattern such that the machine needs only a finite amount of memory. Be warned: Most people define regular expressions in a different way and later prove the equivalence to the definition above, however. &#8220;aabb&#8221; is obviously a regular expression.</p>
+<p>Since John seems to like a littel puzzle now and then, here is one: Find a search pattern that is not a regular expression (or prove that there aren&#8217;t any).</p>
+<p>(This stuff is usually taught in introductory classes of theoretical computer science as a part of either automata theory or <a href="http://en.wikipedia.org/wiki/Formal_language" rel="nofollow">formal languages</a>.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3711#respond' data-commentid="3711" data-postid="2275" data-belowelement="div-comment-3711" data-respondelement="respond" data-replyto="Reply to Tim van Beek" aria-label='Reply to Tim van Beek'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-3712">
+				<div id="div-comment-3712" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/656e05d084448337fb49459225dc525e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">DavidTweed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3712">18 January, 2011 at 4:58 pm</a>		</div>
+
+		<p>One of the minor differences between state machines and Petri nets is that by having multiple &#8220;present&#8221; things Petri nets don&#8217;t care about certain kinds of ordering things. Consider, e.g., modelling a penalty in soccer. There&#8217;s the penalty box area (&#8220;the box&#8221;), and there&#8217;s got to be contact between an attacking player with the ball and a defender, but before you get to the contact you might want to start the model with &#8220;there&#8217;s a defender in the box&#8221; state node and &#8220;threre&#8217;s an attacker in the box&#8221; state node and transition to a &#8220;potential for a penalty&#8221; state node. In theory either the attacker or the defender could enter the penalty box first, so a strict state machine would deal with this by having two separate paths leading to the &#8220;potential for a penalty&#8221; state just to model this &#8220;order isn&#8217;t relevant&#8221;. In contrast, the Petri net naturally allows tokens to arrive on the state nodes in either order and then, once there&#8217;s one token on each, will make the transition to the &#8220;potential for a penalty&#8221; state node.</p>
+<p>(Actually, my limited experience with Petri nets has been entirely based around using them for this type of task where you need multiple &#8220;preconditions&#8221; to arise and then a transition takes place.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3712#respond' data-commentid="3712" data-postid="2275" data-belowelement="div-comment-3712" data-respondelement="respond" data-replyto="Reply to DavidTweed" aria-label='Reply to DavidTweed'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-3713">
+				<div id="div-comment-3713" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d62be404c89efbea1cd6b0dacfd0e3e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Giampiero Campa</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3713">18 January, 2011 at 8:50 pm</a>		</div>
+
+		<blockquote><p> One of the minor differences between state machines and Petri nets is that by having multiple “present” things Petri nets don’t care about certain kinds of ordering things. </p></blockquote>
+<p>Exactly. But in general logic tells me that the formalisms should be equivalent, in the sense that given a petri net you can build an equivalent FSM, and viceversa, with the petri net probably being more &#8220;compact&#8221;.</p>
+<p>Since chemical reactions express concentrations that change continuously in time, (therefore there is a <i>continuous</i> flow trough the transitions) i am not sure that this it the best formalism for chemical reactions, (perhaps stuff like block diagrams or <a href="http://books.google.com/books?id=ixnpRIr_CHUC&amp;pg=PA179&amp;lpg=PA179&amp;dq=signal+flow+graph&amp;source=bll&amp;ots=F6JyBSlLWW&amp;sig=rv_Km2kteMnPVV87t5RFdBk8So0&amp;hl=en&amp;ei=kvU1TcO8PM2r8AbS9J2wCQ&amp;sa=X&amp;oi=book_result&amp;ct=result&amp;resnum=17&amp;ved=0CIEBEOgBMBA#v=onepage&amp;q=signal%20flow%20graph&amp;f=false" rel="nofollow">signal flow</a> graphs could be better) but it is indeed cool.</p>
+<p>More generally i wonder, once you model the system as a series of equations involving objects and morphisms, how do you actually go to &#8220;solve&#8221; the system, or propagate the state in time.</p>
+<p>I also wonder whether &#8220;initial&#8221; and &#8220;final&#8221; states would be a better terminology than &#8220;input&#8221; and &#8220;output&#8221; states.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3713#respond' data-commentid="3713" data-postid="2275" data-belowelement="div-comment-3713" data-respondelement="respond" data-replyto="Reply to Giampiero Campa" aria-label='Reply to Giampiero Campa'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-3725">
+				<div id="div-comment-3725" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3725">19 January, 2011 at 6:13 am</a>		</div>
+
+		<p>Tim wrote:</p>
+<blockquote><p>
+The description of chemical reactions with Petri nets is very remindful of <a href="http://en.wikipedia.org/wiki/Finite_state_machine" rel="nofollow">finite state machines</a>.
+</p></blockquote>
+<div align="center">
+<a href="http://en.wikipedia.org/wiki/Samuel_Eilenberg" rel="nofollow"><br />
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Samuel_Eilenberg_MFO.jpeg/225px-Samuel_Eilenberg_MFO.jpeg" alt="" /><br />
+</a>
+</div>
+<p>Sammy Eilenberg, one of the founding fathers of category theory, shocked everyone when he quit working on the applications of category theory to algebraic topology and started working on finite state machines.  </p>
+<p>The reason he did this is because finite state machines can be understood very beautifully in terms of category theory.  He wrote a book about this:</p>
+<p>&bull; Samuel Eilenberg, <i>Automata, Languages and Machines</i>, 1974.</p>
+<p>I have to admit I sort of enjoy having a role model of someone who started out applying categories to &#8220;high-class&#8221; pure math topics like algebraic topology, and then switched towards applying &#8220;lower-class&#8221; applied math topics like computation.  Of course I don&#8217;t seriously believe there is a real distinction between &#8220;high-class&#8221; and &#8220;low-class&#8221; mathematics, but to a certain kind of pure mathematician, algebraic topology (or superstring theory) seem very sophisticated and prestigious, while finite state machines (or electrical circuits) seem sort of grubby and low-class.  So, it takes a certain toughness to switch research directions from the former to the latter.</p>
+<p>I&#8217;ll have to think about your puzzle later!  I should, in principle, know something about various classes of languages and the kinds of automata that can recognize them.</p>
+<p>David wrote:</p>
+<blockquote>
+<p>One of the minor differences between state machines and Petri nets is that by having multiple “present” things Petri nets don’t care about certain kinds of ordering things.</p>
+</blockquote>
+<p>Yes!  This happens quite naturally as we move from <i>categories</i> to <i>symmetric monoidal categories</i>.  The fact that we can use <i>one dot</i> to denote the current state of a finite state machine, but we can have <i>more than one token</i> on a Petri net, comes from this.</p>
+<p>There is a lot more to say about this, most of which I don&#8217;t know&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3725#respond' data-commentid="3725" data-postid="2275" data-belowelement="div-comment-3725" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-3739">
+				<div id="div-comment-3739" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/078428beaeaddf058781b9be6b2c240f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.topologicalmusings.wordpress.com' rel='external nofollow ugc' class='url'>Todd Trimble</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3739">19 January, 2011 at 11:50 am</a>		</div>
+
+		<p>John B added: </p>
+<blockquote>
+<p>Sammy Eilenberg, one of the founding fathers of category theory, shocked everyone when he quit working on the applications of category theory to algebraic topology and started working on finite state machines.</p>
+<p>The reason he did this is because finite state machines can be understood very beautifully in terms of category theory.</p>
+</blockquote>
+<p>Actually, I heard a rumor that he did this at least in part to secure funding for category theory or category theorists, perhaps at a time when certain powers were becoming skeptical of the pure-math applications of category theory. (I actually have reason to believe this rumor, because I think I remember from whom I heard it.) </p>
+<p>Sammy Eilenberg was a clever fellow.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3739#respond' data-commentid="3739" data-postid="2275" data-belowelement="div-comment-3739" data-respondelement="respond" data-replyto="Reply to Todd Trimble" aria-label='Reply to Todd Trimble'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-3750">
+				<div id="div-comment-3750" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/3f761ffe05c1c24605981803edd055a6?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.maths.gla.ac.uk/~tl' rel='external nofollow ugc' class='url'>Tom Leinster</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3750">20 January, 2011 at 12:41 am</a>		</div>
+
+		<p>Is that Saunders Mac Lane I see sprouting out of the  top of Eilenberg&#8217;s head?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3750#respond' data-commentid="3750" data-postid="2275" data-belowelement="div-comment-3750" data-respondelement="respond" data-replyto="Reply to Tom Leinster" aria-label='Reply to Tom Leinster'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even depth-2 parent highlander-comment" id="comment-3745">
+				<div id="div-comment-3745" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/656e05d084448337fb49459225dc525e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">DavidTweed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3745">19 January, 2011 at 5:57 pm</a>		</div>
+
+		<p>Regarding Tim&#8217;s puzzle, I&#8217;m not sure how he&#8217;s defining &#8220;search pattern&#8221;, so this might be wrong. Suppose you simplify from searching to just &#8220;does this string match this regular expression&#8221;. Then you can&#8217;t express &#8220;is this string (of arbitrary length) a palindrome?&#8221;, whereas you can ask &#8220;does it contain palindromes up to length <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" /> (just enumerate them all as alternatives and &#8220;factorise&#8221;) or &#8220;is it only $b$s (using &#8220;b*&#8221;).</p>
+<p>But that not be what Tim was considering as a &#8220;search pattern&#8221;.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3745#respond' data-commentid="3745" data-postid="2275" data-belowelement="div-comment-3745" data-respondelement="respond" data-replyto="Reply to DavidTweed" aria-label='Reply to DavidTweed'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-3757">
+				<div id="div-comment-3757" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6b3fa8cd421b5fd2028e3c1e9c32aa7f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Tim van Beek</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3757">20 January, 2011 at 9:09 am</a>		</div>
+
+		<p>David said:</p>
+<blockquote>
+<p>Regarding Tim’s puzzle, I’m not sure how he’s defining “search pattern”&#8230;</p>
+</blockquote>
+<p>A &#8220;search pattern&#8221; in my sense is a property that at most one finite substring of an infinite input string can have, like</p>
+<p>&#8211; be the first substring that starts with &#8216;a&#8217;, contains after that arbitrarly many &#8216;b&#8217; and &#8216;c&#8217; and ends with an &#8216;a&#8217; (regular),</p>
+<p>&#8211; be the longest palindrome (not regular),</p>
+<p>so your example is a valid answer :-)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3757#respond' data-commentid="3757" data-postid="2275" data-belowelement="div-comment-3757" data-respondelement="respond" data-replyto="Reply to Tim van Beek" aria-label='Reply to Tim van Beek'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-3730">
+				<div id="div-comment-3730" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b20ab9b4d11d5a987ef0826449c7d473?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Vasileios Anagnostopoulos</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3730">19 January, 2011 at 9:37 am</a>		</div>
+
+		<p>Why my posts are not listed?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3730#respond' data-commentid="3730" data-postid="2275" data-belowelement="div-comment-3730" data-respondelement="respond" data-replyto="Reply to Vasileios Anagnostopoulos" aria-label='Reply to Vasileios Anagnostopoulos'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-3733">
+				<div id="div-comment-3733" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3733">19 January, 2011 at 9:45 am</a>		</div>
+
+		<p>Sorry, your latest comment had a lot of links, so the automatic spam detection system classified it as spam!  I will make that comment appear now.  If other comments of yours were lost permanently, I apologize &#8211; I don&#8217;t see them now.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3733#respond' data-commentid="3733" data-postid="2275" data-belowelement="div-comment-3733" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-3731">
+				<div id="div-comment-3731" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b20ab9b4d11d5a987ef0826449c7d473?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Vasileios Anagnostopoulos</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3731">19 January, 2011 at 9:43 am</a>		</div>
+
+		<p>If you like Petri nets take a look at &#8220;Process Algebras&#8221; that have recently been seen from a categorical point of view and they are more general I think.</p>
+<p>Wikipedia uses the term &#8220;process calculus &#8221; that I do not agree.</p>
+<p>Intro : <a href="http://staff.science.uva.nl/~alban/DPM/process-algebra.pdf" rel="nofollow ugc">http://staff.science.uva.nl/~alban/DPM/process-algebra.pdf</a></p>
+<p>The definitive reference is : <a href="http://www.few.vu.nl/~wanf/books.html" rel="nofollow ugc">http://www.few.vu.nl/~wanf/books.html</a></p>
+<p>The connections are<br />
+<a href="http://intlpress.com/HHA/v10/n1/a16/pdf" rel="nofollow ugc">http://intlpress.com/HHA/v10/n1/a16/pdf</a><br />
+<object data="http://www.pps.jussieu.fr/~gaucher/GaucherATMCS.pdf" type="application/pdf" width="100%" height="800" style="height: 800px;"><p><a href="http://www.pps.jussieu.fr/~gaucher/GaucherATMCS.pdf">Click to access GaucherATMCS.pdf</a></p></object></p>
+<p>a thesis<br />
+<object data="http://alexandria.tue.nl/extra1/wskrap/publichtml/9615633.pdf" type="application/pdf" width="100%" height="800" style="height: 800px;"><p><a href="http://alexandria.tue.nl/extra1/wskrap/publichtml/9615633.pdf">Click to access 9615633.pdf</a></p></object></p>
+<p>It also has some connection with model theory.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3731#respond' data-commentid="3731" data-postid="2275" data-belowelement="div-comment-3731" data-respondelement="respond" data-replyto="Reply to Vasileios Anagnostopoulos" aria-label='Reply to Vasileios Anagnostopoulos'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-3734">
+				<div id="div-comment-3734" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3734">19 January, 2011 at 9:47 am</a>		</div>
+
+		<p>Thanks!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3734#respond' data-commentid="3734" data-postid="2275" data-belowelement="div-comment-3734" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-3752">
+				<div id="div-comment-3752" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d2c1cab36cbd088d31e71762316997f6?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.mrfm.org' rel='external nofollow ugc' class='url'>John Sidles</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3752">20 January, 2011 at 1:17 am</a>		</div>
+
+		<p>Baez says: &#8220;I’m trying to slowly sift through various diagrammatic languages and extract their category-theoretic meaning.&#8221;</p>
+<p>Among mechatronic engineers, the most popular such language (by far) is LabView&#8217;s &#8220;G&#8221;.</p>
+<p>What&#8217;s unique about G is that the most natural programming style uses *no* symbolic names at all &#8230; everything is just wires and ideograms (called &#8220;vi&#8221;&#8216;s).  The meaning of G code resides solely in the topology of the wires and the choice of ideograms connected by those wires &#8230; thus G is effectively a (uniquely?) &#8220;gauge&#8221; invariant language &#8230; where &#8220;gauge&#8221; is a shorthand for &#8220;arbitrary variable names.&#8221;</p>
+<p>In consequence, G is the *only* language where one can pass Student A&#8217;s thesis software to Student B &#8230; with a reasonable expectation that Student B will be able to &#8220;see&#8221; what the code means &#8230; without ever having to &#8220;decode&#8221; it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3752#respond' data-commentid="3752" data-postid="2275" data-belowelement="div-comment-3752" data-respondelement="respond" data-replyto="Reply to John Sidles" aria-label='Reply to John Sidles'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-3754">
+				<div id="div-comment-3754" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3754">20 January, 2011 at 3:10 am</a>		</div>
+
+		<p>I discovered &#8220;G&#8221; when looking at John F&#8217;s link to the Labview website.  There&#8217;s <a href="http://www.ni.com/labview/whatis/graphical-programming/" rel="nofollow">a bit about G there</a>. </p>
+<p>I know about a dozen different diagrammatic languages invented in different disciplines, and I keep finding more.  I think category theorists will enjoy hearing some of these languages explained using <i>their</i> language.  Whether the practioners of all these specific disciplines will enjoy seeing their languages related to each other by means of yet another language is yet to be seen.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3754#respond' data-commentid="3754" data-postid="2275" data-belowelement="div-comment-3754" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-3761">
+				<div id="div-comment-3761" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d2c1cab36cbd088d31e71762316997f6?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.mrfm.org' rel='external nofollow ugc' class='url'>John Sidles</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3761">20 January, 2011 at 2:27 pm</a>		</div>
+
+		<p>You might take a look also at the LabView resource on <a href="http://zone.ni.com/reference/en-XX/help/371361E-01/lvconcepts/polymorphic_functions/" rel="nofollow">Polymorphic Functions and Units</a> &#8230; here the deep isomorphism of <i>G</i> to category theory rises very near the surface.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3761#respond' data-commentid="3761" data-postid="2275" data-belowelement="div-comment-3761" data-respondelement="respond" data-replyto="Reply to John Sidles" aria-label='Reply to John Sidles'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3 parent highlander-comment" id="comment-3763">
+				<div id="div-comment-3763" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d62be404c89efbea1cd6b0dacfd0e3e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Giampiero Campa</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3763">20 January, 2011 at 6:56 pm</a>		</div>
+
+		<blockquote><p>Whether the practioners of all these specific disciplines will enjoy seeing their languages related to each other by means of yet another language is yet to be seen.</p></blockquote>
+<p>It would be interesting to find out. But, assuming you don&#8217;t openly criticize any of those languages, i think everyone would be ok, if not happy.</p>
+<p>Overall it looks a like a Rosetta Stone, perhaps it could eventually form the basis of a tool to translate some of these visual languages into one another. It definitely would make people (non-mathematicians) more interested to category theory.</p>
+<p>Anyway, while we are at it, control engineers mostly use <a href="http://en.wikipedia.org/wiki/Simulink" rel="nofollow">Simulink</a> as a visual &#8220;programming language&#8221;, although i think the tool is seen more like a visual modeling language for dynamic systems. The abstraction yields a continuous data flow through all the subsystems (each having input, state and output vectors, related by either ODEs or FSMs), so there are no &#8220;Tokens&#8221;. There is a 2 minutes video <a href="http://www.mathworks.com/products/simulink/" rel="nofollow">here</a> that explains the basics, but this is basically an implementation of the typical block diagrams that systems and control engineers draw on blackboards all the time.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3763#respond' data-commentid="3763" data-postid="2275" data-belowelement="div-comment-3763" data-respondelement="respond" data-replyto="Reply to Giampiero Campa" aria-label='Reply to Giampiero Campa'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-4 highlander-comment" id="comment-3800">
+				<div id="div-comment-3800" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dc21eed3ebc499422d6c4a927c71ac4f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://mobjectivist.blogspot.com' rel='external nofollow ugc' class='url'>WebHubTel</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3800">21 January, 2011 at 8:30 pm</a>		</div>
+
+		<p>Simulink has a problem with feedback loops and the latency of the delta-time update in solving differential equations conveniently. The problem is that it is not <i>declarative</i> and is solely data-flow. The tool Modelica and others like that supposedly fix that problem, in that the connections are implicitly 2-way, in line with the way that a mathematician would lay out the problem.  Modelica is thus a component-based way of building up equations ala somehing like Mathematica.<br />
+Models+Mathematica = Modelica is the mnenomic.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-3810">
+				<div id="div-comment-3810" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d62be404c89efbea1cd6b0dacfd0e3e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Giampiero Campa</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3810">23 January, 2011 at 6:39 am</a>		</div>
+
+		<p>Hi WebHubTel.</p>
+<p>I think that by &#8220;feedback loops&#8221; you actually mean &#8220;algebraic loops&#8221; which are feedback loops in which all elements are systems without any dynamics. There are ways around such loops (like inserting a small delay of solving the loop explicitly), but if you don&#8217;t adopt any of them then the solver will do the work of solving the loop at each step, which slows down the simulation.</p>
+<p>Algebraic loops tend to arise more often when you model interconnections of physical systems. If you need to model physical systems, then yes it is actually easier to use a language like Modelica or Simscape, along with 2-way wires that <i>share</i> (instead of just <i>transfer</i>) information among subsystems. </p>
+<p>However if you want to model something like, say, a signal processing system, (or any data-flow system) then you are better off using something like Simulink or Scicos.</p>
+<p>Ideally the best option is using an environment in which you can use all these paradigms together, like interfacing physical systems described in a declarative language, with data flow systems, and with systems whose behavior is better modeled using state charts.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 highlander-comment" id="comment-3813">
+				<div id="div-comment-3813" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dc21eed3ebc499422d6c4a927c71ac4f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://mobjectivist.blogspot.com' rel='external nofollow ugc' class='url'>Web Hub Tel</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3813">23 January, 2011 at 7:54 pm</a>		</div>
+
+		<p>Yes Giampiero Campa, that is what I was getting at. The classic kinds of cases that I have run across involve engineers that write Simulink diagrams that consist of several blocks that appear to consume the drawing space. When I ask them to present a mathematical relation it has often consisted of a +, &#8211; and *. Much of it is extra baggage because they have to make it data-flow instead of declarative, which requires corrective measures to simulate the bi-directional flow. They enjoy doing this though because in the end it is all just a puzzle. Not much you can do, and yes Simulink makes up for it in real data-flow apps.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-3814">
+				<div id="div-comment-3814" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/2c35fe624daf48f00e57289b3616c1a7?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.synapse9.com' rel='external nofollow ugc' class='url'>Phil Henshaw</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3814">23 January, 2011 at 9:39 pm</a>		</div>
+
+		<p>Giampiero &amp; Web, it almost sounds like you&#8217;re talking about a fairly common engineering practice similar to what I&#8217;m trying to suggest for complex environmental systems, combining diagnostic monitoring, theoretical models and study of their organizational changes, as a way to more successfully interact with them.   The mysteriously common cases are the ones where the models and the observed behavior entirely conflict and people just shrug it off and say they&#8217;re hoping to change how nature works someday&#8230; instead of their model.</p>
+<p>That problem often seems due to the very complexity of natural systems, seeming to force people to define them with the same  theories their models depict. That then also prevents them from having an independent way to account for their conflicting observations independent of fitting their theory.  If they don&#8217;t fit, the only response is to &#8220;draw a blank&#8221;. It&#8217;s a natural problem for complex systems it seems, that they&#8217;re hard enough to grasp, we turn them into information objects which keep us from thinking what they are and how they behave on their own.  Once people appreciate the difficulty I have methods for making them more identifiable and relating models to their observed behavior, to find some more questions that are answerable.</p>
+<p>Do either of you know of examples where people are trying to do what you&#8217;re discussing, but with complex natural systems, say, considered as cells of organization you could locate but not concretely define?</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even depth-3 highlander-comment" id="comment-3764">
+				<div id="div-comment-3764" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d2c1cab36cbd088d31e71762316997f6?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.mrfm.org' rel='external nofollow ugc' class='url'>John Sidles</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3764">20 January, 2011 at 8:41 pm</a>		</div>
+
+		<p>Now all we need is a koan &#8230; &#8220;What is the abstraction that has no name?&#8221;</p>
+<p>The (wholly visual) answer is a G panel, a SimuLink diagram, or any of the artworks from Karl Heinrich Hofmann&#8217;s <a href="http://www.ams.org/notices/200206/index.html" rel="nofollow"><i>Commutative Diagrams in the Fine Arts</i></a> (Notices of the {AMS}, June/July 2002).</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3764#respond' data-commentid="3764" data-postid="2275" data-belowelement="div-comment-3764" data-respondelement="respond" data-replyto="Reply to John Sidles" aria-label='Reply to John Sidles'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-even depth-1 highlander-comment" id="comment-3759">
+				<div id="div-comment-3759" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='http://lostinengineering.wordpress.com/2011/01/20/dear-john/' rel='external nofollow ugc' class='url'>Dear John &laquo; A mathematician lost in engineering</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3759">20 January, 2011 at 1:36 pm</a>		</div>
+
+		<p>[&#8230;] The following post has nothing to do with the &#8220;Dear John&#8221; TV show, as you might have guessed, seeing that screen shot. I just used the title &#8211; this post is inspired with John Baez&#8217; latest post on Petri nets. [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3759#respond' data-commentid="3759" data-postid="2275" data-belowelement="div-comment-3759" data-respondelement="respond" data-replyto="Reply to Dear John &laquo; A mathematician lost in engineering" aria-label='Reply to Dear John &laquo; A mathematician lost in engineering'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-3835">
+				<div id="div-comment-3835" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3835">22 January, 2011 at 7:04 am</a>		</div>
+
+		<p>By the way, there seem to be two common variants of the definition of &#8216;Petri net&#8217; that I gave in this blog entry. </p>
+<p>In the first definition, any transition can have at most one wire going to any of its input states, and at most one going to any of its output states.  In this case a Petri net amounts to this:</p>
+<p>We have a set <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> of states, a set <img src="https://s0.wp.com/latex.php?latex=T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T" class="latex" /> of transitions, a function </p>
+<p><img src="https://s0.wp.com/latex.php?latex=i%3A+S+%5Ctimes+T+%5Cto+%5C%7B+%5Cmathrm%7Bfalse%7D%2C+%5Cmathrm%7Btrue%7D+%5C%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i: S &#92;times T &#92;to &#92;{ &#92;mathrm{false}, &#92;mathrm{true} &#92;} " class="latex" /></p>
+<p>saying whether a given state is an input of a given transition, and another function</p>
+<p><img src="https://s0.wp.com/latex.php?latex=o%3A+S+%5Ctimes+T+%5Cto++%5C%7B+%5Cmathrm%7Bfalse%7D%2C+%5Cmathrm%7Btrue%7D+%5C%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="o: S &#92;times T &#92;to  &#92;{ &#92;mathrm{false}, &#92;mathrm{true} &#92;} " class="latex" /></p>
+<p>saying whether a given state is an output of a given transition.  </p>
+<p>In the second definition, a transition can have any finite number of wires going to any of its inputs, or to any of its outputs.  Then  a Petri net consists of this:</p>
+<p>We have a set <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> of states, a set <img src="https://s0.wp.com/latex.php?latex=T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T" class="latex" /> of transitions, and  functions </p>
+<p><img src="https://s0.wp.com/latex.php?latex=i%3A+S+%5Ctimes+T+%5Cto+%5Cmathbb%7BN%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i: S &#92;times T &#92;to &#92;mathbb{N} " class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=o%3A+S+%5Ctimes+T+%5Cto++%5Cmathbb%7BN%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="o: S &#92;times T &#92;to  &#92;mathbb{N} " class="latex" /></p>
+<p>saying how many times a given state is an input or output of a given transition.  </p>
+<p>I&#8217;ve seen one book where the first kind are called &#8216;Petri nets&#8217; and the second kind are called &#8216;generalized Petri nets&#8217;.</p>
+<p>It&#8217;s the second kind that I was talking about in my blog entry, though my examples happened to be all of the first kind.</p>
+<p>Either way, you&#8217;ll notice that the definition has two symmetries.  We can switch the functions <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=o&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="o" class="latex" />, or we can switch the sets <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T" class="latex" />.  </p>
+<p>The first symmetry corresponds to <b>time reversal</b>: we are switching inputs and outputs.</p>
+<p>The second symmetry is more interesting.  We can call it <b>duality</b>: we are switching states and transitions!  </p>
+<p>(I&#8217;ve seen books that use &#8216;duality&#8217; to mean the result of applying <i>both</i> these symmetries.)</p>
+<p>Duality means that given the free strict symmetric monoidal category <img src="https://s0.wp.com/latex.php?latex=C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C" class="latex" /> on some set of objects and some set of morphisms, we can get a new free symmetric monoidal category <img src="https://s0.wp.com/latex.php?latex=C%5E%2A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C^*" class="latex" /> where the generating objects and morphisms have been switched!</p>
+<p>This is kind of surprising.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3835#respond' data-commentid="3835" data-postid="2275" data-belowelement="div-comment-3835" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-3843">
+				<div id="div-comment-3843" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/88bc2bc9734e770e47add6c1a2fe7d4b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.tcs.tifr.res.in/~manoj' rel='external nofollow ugc' class='url'>Manoj Gopalkrishnan</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3843">24 January, 2011 at 9:44 am</a>		</div>
+
+		<p>I see, that is very interesting.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3843#respond' data-commentid="3843" data-postid="2275" data-belowelement="div-comment-3843" data-respondelement="respond" data-replyto="Reply to Manoj Gopalkrishnan" aria-label='Reply to Manoj Gopalkrishnan'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 highlander-comment" id="comment-3805">
+				<div id="div-comment-3805" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/88bc2bc9734e770e47add6c1a2fe7d4b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.tcs.tifr.res.in/~manoj' rel='external nofollow ugc' class='url'>Manoj Gopalkrishnan</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3805">22 January, 2011 at 7:47 am</a>		</div>
+
+		<p>Hi John,</p>
+<p>Nice post! It&#8217;s cool to think of both electrical circuits and chemical reactions as symmetric monoidal categories. One of the things I am trying to do is to figure out how electrical circuits and chemical networks might be related. The goal is to understand the biochemical networks that orchestrate the cellular symphony, using insights from circuits.</p>
+<p>Though Carl Petri invented his nets to represent chemical reaction networks, I don&#8217;t know if they were used much to study these networks. The first application I know of in this direction is some rather recent work by David Angeli with Patrick DeLeenheer, and Eduardo Sontag. See, for example, <a href="http://arxiv.org/abs/q-bio/0608019" rel="nofollow">A Petri Net approach to the study of persistence in chemical reaction network.&#8221;</a> and <a href="http://www.nt.ntnu.no/users/skoge/prost/proceedings/cdc-2008/data/papers/0005.pdf" rel="nofollow">On modularity and persistence of chemical reaction networks.&#8221;</a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3805#respond' data-commentid="3805" data-postid="2275" data-belowelement="div-comment-3805" data-respondelement="respond" data-replyto="Reply to Manoj Gopalkrishnan" aria-label='Reply to Manoj Gopalkrishnan'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-3807">
+				<div id="div-comment-3807" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/88bc2bc9734e770e47add6c1a2fe7d4b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.tcs.tifr.res.in/~manoj' rel='external nofollow ugc' class='url'>Manoj Gopalkrishnan</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3807">22 January, 2011 at 7:58 am</a>		</div>
+
+		<p>Is there a preview option for the comments that I&#8217;m missing? </p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3807#respond' data-commentid="3807" data-postid="2275" data-belowelement="div-comment-3807" data-respondelement="respond" data-replyto="Reply to Manoj Gopalkrishnan" aria-label='Reply to Manoj Gopalkrishnan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-3816">
+				<div id="div-comment-3816" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3816">24 January, 2011 at 3:10 am</a>		</div>
+
+		<p>Manoj wrote:</p>
+<blockquote>
+<p>It’s cool to think of both electrical circuits and chemical reactions as symmetric monoidal categories. </p>
+</blockquote>
+<p>Yes, it raises interesting questions.  By the way, I think of an electrical circuit as a <i>morphism</i> in a symmetric monoidal category.  I think of a chemical reaction network or Petri net as specifying a symmetric monoidal category; then an allowed sequence of reactions is a morphism in this category.  In both cases you can compose morphisms (which means composing circuits or sequences of reactions in series), and tensor (which means doing them &#8216;side by side&#8217;).</p>
+<blockquote>
+<p>One of the things I am trying to do is to figure out how electrical circuits and chemical networks might be related. The goal is to understand the biochemical networks that orchestrate the cellular symphony, using insights from circuits.</p>
+</blockquote>
+<p>Nice.  What sort of insights?   I recently spotted an interesting paper that combines two themes I&#8217;ve been pondering lately: chemical reaction networks and the Hopf bifurcation.</p>
+<p>&bull; Mirela Domijan and Markus Kirkilionis, <a href="http://www.math.colostate.edu/~shipman/polydynpapers/biostabilityvarieties.pdf" rel="nofollow">Bistability and oscillations in chemical reaction networks</a>.</p>
+<p>Here&#8217;s the abstract:</p>
+<blockquote><p> <b>Abstract</b>: Abstract bifurcation theory is one of the most widely used approaches for analysis of dynamical behaviour of chemical and biochemical reaction networks. Some of the interesting qualitative behaviour that are analyzed are oscillations and bistability (a situation where a system has at least two coexisting stable equilibria). Both phenomena have been identified as central features of many biological and biochemical systems. This paper, using the theory of stoichiometric network analysis (SNA) and notions from algebraic geometry, presents sufficient conditions for a reaction network to display bifurcations associated with these phenomena. The advantage of these conditions is that they impose fewer algebraic conditions on model parameters than conditions associated with standard bifurcation theorems. To derive the new conditions, a coordinate transformation will be made that will guarantee the existence of branches of positive equilibria in the system. This is particularly useful in mathematical biology, where only positive variable values are considered to be meaningful.  The first part of the paper will be an extended introduction to SNA and algebraic geometry-related methods which are used in the coordinate transformation and set up of the theorems. In the second part of the paper we will focus on the derivation of bifurcation conditions using SNA and algebraic geometry. Conditions will be derived for three bifurcations: the saddle-node bifurcation, a simple branching point, both linked to bistability, and a simple Hopf bifurcation. The latter is linked to oscillatory behaviour.
+</p></blockquote>
+<p>My friend Walter Blackstock says that a fairly simple chemical reaction network is believed to govern the circadian cycle: the daily waking-sleeping cycle that many animals have.  It would be interesting to study this mathematically and see if one could find a Hopf bifurcation lurking in it as one adjusts the reaction rates!</p>
+<p>I&#8217;m reading lots of books about Petri nets, and I&#8217;m proud to say that I now know what a &#8216;siphon&#8217; is, so I can try to understand that paper you referred me to a while back:</p>
+<p>&bull; Manoj Gopalkrishnan, <a href="http://arxiv.org/abs/1006.3627" rel="nofollow">Catalysis in reaction networks</a>.</p>
+<blockquote>
+<p>Is there a preview option for the comments that I’m missing?</p>
+</blockquote>
+<p>Sorry, no.  I fixed your HTML.  That little blurb saying &#8220;You may use these HTML tags&#8221; is not a great guide to how HTML actually works.  Apparently some people are reading that and trying to create links like this:</p>
+<p>&lt;a href = &#8220;http://arxiv.org/abs/q-bio/0608019&#8221; title = &#8220;A Petri Net approach to the study of persistence in chemical reaction networks&#8221;&gt;</p>
+<p>But that doesn&#8217;t work!  You gotta do this:</p>
+<p>&lt;a href = &#8220;http://arxiv.org/abs/q-bio/0608019&#8221;&gt;A Petri Net approach to the study of persistence in chemical reaction networks&lt;/a&gt;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3816#respond' data-commentid="3816" data-postid="2275" data-belowelement="div-comment-3816" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 parent highlander-comment" id="comment-3841">
+				<div id="div-comment-3841" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/88bc2bc9734e770e47add6c1a2fe7d4b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.tcs.tifr.res.in/~manoj' rel='external nofollow ugc' class='url'>Manoj Gopalkrishnan</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3841">24 January, 2011 at 7:40 am</a>		</div>
+
+		<blockquote><p>
+What sort of insights?
+</p></blockquote>
+<p>Thanks for fixing the HTML, John.</p>
+<p>For starters, my <a href="//arxiv.org/abs/1006.3627″" rel="nofollow">Catalysis in reaction networks</a> paper talks about viewing catalysts as switches whose presence and absence alters the network topology in a way that is not compensated by other reactions. My plan is to use this point of view to try to reverse-engineer the &#8220;input/output response&#8221; of some very simple reaction networks.</p>
+<blockquote><p>
+so I can try to understand that paper you referred<br />
+me to a while back:
+</p></blockquote>
+<p>Don&#8217;t be modest, John, you found the paper yourself. :-)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3841#respond' data-commentid="3841" data-postid="2275" data-belowelement="div-comment-3841" data-respondelement="respond" data-replyto="Reply to Manoj Gopalkrishnan" aria-label='Reply to Manoj Gopalkrishnan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-3842">
+				<div id="div-comment-3842" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3842">24 January, 2011 at 7:42 am</a>		</div>
+
+		<p>Manoj wrote:</p>
+<blockquote><p>
+Don&#8217;t be modest, John, you found the paper yourself. :-)
+</p></blockquote>
+<p>Not modest, forgetful!</p>
+<p>Okay &#8211; thinking of catalysts as switches.  Now that I understand chemical reaction networks a bit better, I&#8217;ll try your paper again with that in mind.</p>
+<p>By the way, to get really cute quotes in blog comments here, you write:</p>
+<p>&lt;blockquote&gt;<br />
+This is a quote!<br />
+&lt;/blockquote&gt;</p>
+<p>which gives:</p>
+<blockquote><p>
+This is a quote!
+</p></blockquote>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-3917">
+				<div id="div-comment-3917" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e899e756bc43920159099553885700ae?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Scott</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-3917">31 January, 2011 at 1:45 am</a>		</div>
+
+		<p>The discussion of chemical reactions and programming languages reminded me of some very thought-provoking papers I&#8217;ve encountered on &#8220;chemical programming&#8221;:<br />
+<a href="http://users.minet.uni-jena.de/csb/prj/organic/" rel="nofollow ugc">http://users.minet.uni-jena.de/csb/prj/organic/</a><br />
+<a href="http://portal.acm.org/citation.cfm?id=1706654" rel="nofollow ugc">http://portal.acm.org/citation.cfm?id=1706654</a><br />
+<a href="http://www.biosys.uni-jena.de/Projects/DFG_+CHEMORG+I_III.html" rel="nofollow ugc">http://www.biosys.uni-jena.de/Projects/DFG_+CHEMORG+I_III.html</a><br />
+etc.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=3917#respond' data-commentid="3917" data-postid="2275" data-belowelement="div-comment-3917" data-respondelement="respond" data-replyto="Reply to Scott" aria-label='Reply to Scott'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-4137">
+				<div id="div-comment-4137" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6945c54273e1b507c1bf418b84bb450c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Allowa</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-4137">15 February, 2011 at 10:30 pm</a>		</div>
+
+		<p>How can we save the planet?</p>
+<p>Please, be precise, all we can save is humanity, or animals.<br />
+Planet is not in danger, it will not be harmed. It&#8217;s only us. I don&#8217;t like the way ecologists say that we need to get altogether for the earth.. no, it&#8217;s not true. We must move from our daily thinking ways because our habits are threatened.</p>
+<p>Although, I&#8217;m quite concerned by all the stuff you post here, thank you for it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=4137#respond' data-commentid="4137" data-postid="2275" data-belowelement="div-comment-4137" data-respondelement="respond" data-replyto="Reply to Allowa" aria-label='Reply to Allowa'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-4179">
+				<div id="div-comment-4179" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/2c35fe624daf48f00e57289b3616c1a7?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.synapse9.com' rel='external nofollow ugc' class='url'>Phil Henshaw</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-4179">18 February, 2011 at 11:41 pm</a>		</div>
+
+		<p>Natural systems thrive without needing to continually expand their scale, but economies must do so for their temporal stability.  Figure that out.   That&#8217;s what would save the earth.  </p>
+<p>It&#8217;s really interesting in the world&#8217;s best data from 1970 shows that the relative rates of GDP, energy and CO2 production have remained completely constant.  That indicates that the economy has a logic as a physical system of its own.  It also means that the initial concept for how to use new kinds of growth to decouple energy and carbon from it is a complete and total failure, not showing the least bit of effect of any kind.<br />
+<a href="http://www.synapse9.com/issues/EffCO2Learn_growAs.jpg"><img src="https://i0.wp.com/www.synapse9.com/issues/EffCO2Learn_growAs.jpg" style="max-width:100%;" /></a> </p>
+<p>It&#8217;s not so mysterious to people who study economies as behavioral systems rather than theoretical systems, but the difference isn&#8217;t mathematical so needs to be discussed in another forum.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=4179#respond' data-commentid="4179" data-postid="2275" data-belowelement="div-comment-4179" data-respondelement="respond" data-replyto="Reply to Phil Henshaw" aria-label='Reply to Phil Henshaw'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1 highlander-comment" id="comment-4341">
+				<div id="div-comment-4341" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2011/03/04/network-theory-part-1/' rel='external nofollow ugc' class='url'>Network Theory (Part 1) « Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-4341">4 March, 2011 at 7:33 am</a>		</div>
+
+		<p>I already told you about Petri nets, which are popular in computer science&#8230; but also nice for describing chemical reactions [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=4341#respond' data-commentid="4341" data-postid="2275" data-belowelement="div-comment-4341" data-respondelement="respond" data-replyto="Reply to Network Theory (Part 1) « Azimuth" aria-label='Reply to Network Theory (Part 1) « Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-4970">
+				<div id="div-comment-4970" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2011/03/31/network-theory-part-2/' rel='external nofollow ugc' class='url'>Network Theory (Part 2) &laquo; Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-4970">31 March, 2011 at 4:30 am</a>		</div>
+
+		<p>[&#8230;] the science of waiting in line. If you&#8217;re a faithful reader of this blog, you&#8217;ve already seen an example of a Petri net taken from [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=4970#respond' data-commentid="4970" data-postid="2275" data-belowelement="div-comment-4970" data-respondelement="respond" data-replyto="Reply to Network Theory (Part 2) &laquo; Azimuth" aria-label='Reply to Network Theory (Part 2) &laquo; Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 highlander-comment" id="comment-7216">
+				<div id="div-comment-7216" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d3c8e55aec3b9b7beeafa1f25a87bb8d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://code.google.com/p/notebk/' rel='external nofollow ugc' class='url'>Alex Nelson</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-7216">22 August, 2011 at 5:08 am</a>		</div>
+
+		<p>These fancy Petri networks seem to be a variation of the <a href="http://chu.stanford.edu/" rel="nofollow">Chu Space</a> theme&#8230;that may give a nice topological twist to things.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=7216#respond' data-commentid="7216" data-postid="2275" data-belowelement="div-comment-7216" data-respondelement="respond" data-replyto="Reply to Alex Nelson" aria-label='Reply to Alex Nelson'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-23147">
+				<div id="div-comment-23147" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/f82e9241ffb8ffbf9d1af09e7a07d4d5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Domingo Salazar</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-23147">19 December, 2012 at 4:06 pm</a>		</div>
+
+		<p>Dear John,</p>
+<p>Myself and some friends are interested in the analogies between random walks and electrical networks.  We are familiar with the descriptions of resitors and voltages in terms of absorbing random walks but we would like to see similar analogies for capacitors and inductors, but we have not found (or being able to create ourselves) any yet.  You mentioned here that you were working on something like that.  I would appreciate it if you would point out an appropriate reference.</p>
+<p>Also, the way the analogy works for a network of resistors requires a source and a sink while for a network of capacitors we are thinking of a closed system where a unit of charge is injected and a dynamical process unforlded until that charge is distributed amond all the capacitors.  Would then the same interpretation of a resistor and voltage still apply?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=23147#respond' data-commentid="23147" data-postid="2275" data-belowelement="div-comment-23147" data-respondelement="respond" data-replyto="Reply to Domingo Salazar" aria-label='Reply to Domingo Salazar'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1 highlander-comment" id="comment-84319">
+				<div id="div-comment-84319" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/' rel='external nofollow ugc' class='url'>Complex Adaptive System Design (Part 2) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/#comment-84319">18 October, 2016 at 8:47 pm</a>		</div>
+
+		<p>[&#8230;] I would like to understand the mathematics of just these logic gates, for starters.  Ignoring delays for a minute (get the pun?), they seem to be giving a generalization of Petri nets.  In a Petri net we only get to use the logical connective &#8216;and&#8217;.  In other words, an activity can occur when <em>all</em> of some other activities have occurred.  People have considered various generalizations of Petri nets, and I think some of them allow more general logical connectives, but I&#8217;m forgetting where I saw this done.  Do you know? [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=84319#respond' data-commentid="84319" data-postid="2275" data-belowelement="div-comment-84319" data-respondelement="respond" data-replyto="Reply to Complex Adaptive System Design (Part 2) | Azimuth" aria-label='Reply to Complex Adaptive System Design (Part 2) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-4970">Network Theory (Part 2) &laquo; Azimuth</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2011/01/18/petri-nets/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2011/01/18/petri-nets/?replytocom=4970" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='2275' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='4970' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="5fb029edf5" /></p>
+<input type="hidden" name="genseq" value="1632617984" />
+<input type="hidden" id="ak_js" name="ak_js" value="159"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2011/01/18/petri-nets/?replytocom=4970"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,176,979 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-656e05d084448337fb49459225dc525e">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-dc21eed3ebc499422d6c4a927c71ac4f">
+	</div>
+	<div class="grofile-hash-map-6b3fa8cd421b5fd2028e3c1e9c32aa7f">
+	</div>
+	<div class="grofile-hash-map-9ff406722bbbc229043a3fa12b36a198">
+	</div>
+	<div class="grofile-hash-map-5850d628c599d7ac60d7f7889844995a">
+	</div>
+	<div class="grofile-hash-map-dd50e8b0462cc7fb7fa5bb0785e4f2a4">
+	</div>
+	<div class="grofile-hash-map-83c16232570c763f8e0821a98c18e087">
+	</div>
+	<div class="grofile-hash-map-2c35fe624daf48f00e57289b3616c1a7">
+	</div>
+	<div class="grofile-hash-map-7d62be404c89efbea1cd6b0dacfd0e3e">
+	</div>
+	<div class="grofile-hash-map-078428beaeaddf058781b9be6b2c240f">
+	</div>
+	<div class="grofile-hash-map-3f761ffe05c1c24605981803edd055a6">
+	</div>
+	<div class="grofile-hash-map-b20ab9b4d11d5a987ef0826449c7d473">
+	</div>
+	<div class="grofile-hash-map-d2c1cab36cbd088d31e71762316997f6">
+	</div>
+	<div class="grofile-hash-map-88bc2bc9734e770e47add6c1a2fe7d4b">
+	</div>
+	<div class="grofile-hash-map-e899e756bc43920159099553885700ae">
+	</div>
+	<div class="grofile-hash-map-6945c54273e1b507c1bf418b84bb450c">
+	</div>
+	<div class="grofile-hash-map-d3c8e55aec3b9b7beeafa1f25a87bb8d">
+	</div>
+	<div class="grofile-hash-map-f82e9241ffb8ffbf9d1af09e7a07d4d5">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"2275","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'2275','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTY5fmJHd2NlRGhKP0Z2P1JSbD1BU3w/SDd0RFdGNWt5L1J8JSsxfk1fNFl2RGptPSZhNS0tRE9henxPdFpKb3E5azc4flNnLHRddFZ1bXNreX5iWmQ5WGxVdjdBQTlkS0pTc05zc1poJSZmXS02dnd4M2hOQ2o1aTBLN282M1ZqRzRfTlJ5ZTdbRjVoQVZ5T1E3Sn5oc3EzWi05LndqcXVlc1ddVUQxSXBiTVplaUlqWWhxZzFxW3haYV1KVTBqX2N5OTQrSllhbDQmNXFRX21lWjdsfld2UGRyVQ=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '2275' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

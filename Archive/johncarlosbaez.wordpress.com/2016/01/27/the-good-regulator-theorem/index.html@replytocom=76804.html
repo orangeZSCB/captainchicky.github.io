@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>The Internal Model Principle | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; The Internal Model&nbsp;Principle Comments Feed" href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F01%2F27%2Fthe-good-regulator-theorem%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"e6f6fdfb46","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"ffcb185558\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2016\/01\/27\/the-good-regulator-theorem\/?replytocom=76804","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F01%2F27%2Fthe-good-regulator-theorem%2F%3Freplytocom%3D76804","postID":"20937","shortlink":"https:\/\/wp.me\/pRBZ9-5rH","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/20937","statsLink":"https:\/\/wordpress.com\/stats\/post\/20937\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,228 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F01%2F27%2Fthe-good-regulator-theorem%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-5rH' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F01%2F27%2Fthe-good-regulator-theorem%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F01%2F27%2Fthe-good-regulator-theorem%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The Internal Model Principle" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/" />
+<meta property="og:description" content="&#8220;Every good key must be a model of the lock it opens.&#8221; That sentence states an obvious fact, but perhaps also a profound insight if we interpret it generally enough. That sentence is al…" />
+<meta property="article:published_time" content="2016-01-27T01:00:59+00:00" />
+<meta property="article:modified_time" content="2016-01-28T06:19:06+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/mathematical/good_regulator_theorem_conant_ashby.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="The Internal Model&nbsp;Principle" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/mathematical/good_regulator_theorem_conant_ashby.jpg?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="&quot;Every good key must be a model of the lock it opens.&quot; That sentence states an obvious fact, but perhaps also a profound insight if we interpret it generally enough. That sentence is also the title of a paper: &bull; Daniel L. Scholten, Every good key must be a model of the lock it opens&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-20937 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-20937 post type-post status-publish format-standard hentry category-mathematics category-networks" id="post-20937">
+			<h2>The Internal Model&nbsp;Principle</h2>
+
+			<div class="entry">
+				<p>&#8220;Every good key must be a model of the lock it opens.&#8221;</p>
+<p>That sentence states an obvious fact, but perhaps also a profound insight if we interpret it generally enough.</p>
+<p>That sentence is also the title of a paper:</p>
+<p>&bull; Daniel L. Scholten, <a href="http://goodregulatorproject.org/images/Every_Good_Key_Must_Be_A_Model_Of_The_Lock_It_Opens.pdf">Every good key must be a model of the lock it opens (the Conant &amp; Ashby Theorem revisited)</a>, 2010.</p>
+<p>Scholten gives a lot of examples, including these:</p>
+<p>&bull; A key is a model of a lock’s keyhole.</p>
+<p>&bull; A city street map is a model of the actual city streets</p>
+<p>&bull; A restaurant menu is a model of the food the restaurant prepares and sells.</p>
+<p>&bull; Honey bees use a kind of dance to model the location of a source of nectar.</p>
+<p>&bull; An understanding of some phenomenon (for example a physicist’s understanding of lightning) is a mental model of the actual phenomenon.</p>
+<p>This line of thought has an interesting application to control theory.  It suggests that <em>to do the best job of regulating some system, a control apparatus should include a model of that system</em>.</p>
+<p>Indeed, much earlier, Conant and Ashby tried to turn this idea into a theorem, the &#8216;good regulator theorem&#8217;:</p>
+<p>&bull; Roger C. Conant and W. Ross Ashby, <a href="http://pespmc1.vub.ac.be/Books/Conant_Ashby.pdf">Every good regulator of a system must be a model of that system)</a>, <i>International Journal of Systems Science</i> <b>1</b> (1970), 89&ndash;97.</p>
+<p>Scholten&#8217;s paper is heavily based on this earlier paper.   He summarizes it as follows:</p>
+<blockquote><p>
+  What all of this means, more or less, is that the pursuit of a goal by some dynamic agent (Regulator) in the face of a source of obstacles (System) places at least one particular and unavoidable demand on that agent, which is that the agent&#8217;s behaviors must be executed in such a reliable and predictable way that they can serve as a representation (Model) of that source of obstacles.
+</p></blockquote>
+<p>It&#8217;s not clear that this is true, but it&#8217;s an appealing thought.</p>
+<p>A particularly self-referential example arises when the regulator is some organism and the System is the world it lives in, <em>including itself</em>.   In this case, it seems the regulator should include a model of <em>itself!</em>  This would lead, ultimately, to self-awareness.</p>
+<p>It all sounds great.  But Scholten raises an obvious question: if Conant and Ashby&#8217;s theorem is so great, why isn&#8217;t more well-known?   Scholten puts it quite vividly:</p>
+<blockquote><p>
+  Given the preponderance of control-models that are used by humans (the evidence for this preponderance will be surveyed in the latter part of the paper), and especially given the obvious need to regulate that system, one might guess that the C&amp;A theorem would be at least as famous as, say, the Pythagorean Theorem (<img src="https://s0.wp.com/latex.php?latex=a%5E2+%2B+b%5E2+%3D+c%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^2 + b^2 = c^2" class="latex" />), the Einstein mass-energy equivalence (<img src="https://s0.wp.com/latex.php?latex=E+%3D+mc%5E2%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="E = mc^2," class="latex" /> which can be seen on T-shirts and bumper stickers), or the DNA double helix (which actually shows up in TV crime dramas and movies about super heroes). And yet, it would appear that relatively few lay-persons have ever even heard of C&amp;A’s important prerequisite to successful regulation.
+</p></blockquote>
+<p>There could be various explanations.  But here&#8217;s mine: when I tried to read Conant and Ashby&#8217;s paper, I got stuck.  They use some very basic mathematical notation in nonstandard ways, and they don&#8217;t clearly state the hypotheses and conclusion of their theorem.</p>
+<p>Luckily, the paper is short, and the argument, while mysterious, seems simple.  So, I immediately felt I should be able to <em>dream up</em> the hypotheses, conclusion, and argument based on the hints given.</p>
+<p>Scholten&#8217;s paper didn&#8217;t help much, since he says:</p>
+<blockquote><p>
+  Throughout the following discussion I will assume that the reader has studied Conant &amp; Ashby’s original paper, possesses the level of technical competence required to understand their proof, and is familiar with the components of the basic model that they used to prove their theorem [&#8230;.]
+</p></blockquote>
+<p>However, I have a guess about the essential core of Conant and Ashby&#8217;s theorem.  So, I&#8217;ll state that, and then say more about their setup.</p>
+<p>Needless to say, I looked around to see if someone else had already done the work of figuring out what Conant and Ashby were saying.  The best thing I found was this:</p>
+<p>&bull; B. A. Francis and W. M. Wonham, <a href="https://www.researchgate.net/profile/Walter_Wonham/publication/223996193_The_internal_model_principle_of_control_theory/links/5488b5610cf289302e30b828.pdf">The internal model principle of control theory</a>, <em>Automatica</em> <strong>12</strong> (1976) 457&ndash;465.</p>
+<p>This paper works in a more specialized context: linear control theory.  They&#8217;ve got a linear system or &#8216;plant&#8217; responding to some input, a regulator or &#8216;compensator&#8217; that is trying to make the plant behave in a desired way, and a &#8216;disturbance&#8217; that affects the plant in some unwanted way.  They prove that to perfectly correct for the disturbance, the compensator must contain an &#8216;internal model&#8217; of the disturbance.</p>
+<p>I&#8217;m probably stating this a bit incorrectly.   This paper is much more technical, but it seems to be more careful in stating assumptions and conclusions.  In particular, they seem to give a precise definition of an &#8216;internal model&#8217;.  And I read elsewhere that the &#8216;internal model principle&#8217; proved here has become a classic result in control theory!</p>
+<p>This paper says that Conant and Ashby&#8217;s paper provided &#8220;plausibility arguments in favor of the internal model idea&#8221;.  So, perhaps Conant and Ashby inspired Francis and Wonham, and were then largely forgotten.</p>
+<h3>My guess </h3>
+<p>My guess is that Conant and Ashby&#8217;s theorem boils down to this:</p>
+<p><b>Theorem.</b>  Let <img src="https://s0.wp.com/latex.php?latex=R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> be finite sets, and fix a probability distribution <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> on <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" />.  Suppose <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> is any probability distribution on <img src="https://s0.wp.com/latex.php?latex=R+%5Ctimes+S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R &#92;times S" class="latex" /> such that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+p%28s%29+%3D+%5Csum_%7Br+%5Cin+R%7D+q%28r%2Cs%29++%5C%3B+%5Ctextrm%7Bfor+all%7D+%5C%3B+s+%5Cin+S%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ p(s) = &#92;sum_{r &#92;in R} q(r,s)  &#92;; &#92;textrm{for all} &#92;; s &#92;in S} " class="latex" /></p>
+<p>Let <img src="https://s0.wp.com/latex.php?latex=H%28p%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H(p)" class="latex" /> be the Shannon entropy of <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> and let <img src="https://s0.wp.com/latex.php?latex=H%28q%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H(q)" class="latex" /> be the Shannon entropy of <img src="https://s0.wp.com/latex.php?latex=q.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q." class="latex" />  Then</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H%28q%29+%5Cge+H%28p%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H(q) &#92;ge H(p) " class="latex" /></p>
+<p>and equality is achieved if there is a function</p>
+<p><img src="https://s0.wp.com/latex.php?latex=h%3A+S+%5Cto+R+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="h: S &#92;to R " class="latex" /></p>
+<p>such that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=q%28r%2Cs%29+%3D+%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bcc%7D+p%28s%29++%26++%5Ctextrm%7Bif%7D+%5C%3B+r+%3D+h%28s%29+%5C%5C+++++++++++++++++++++++++++++++++++++++++++++0++%26+%5Ctextrm%7Botherwise%7D++%5Cend%7Barray%7D+%5Cright.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q(r,s) = &#92;left&#92;{&#92;begin{array}{cc} p(s)  &amp;  &#92;textrm{if} &#92;; r = h(s) &#92;&#92;                                             0  &amp; &#92;textrm{otherwise}  &#92;end{array} &#92;right." class="latex" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &#9608;</p>
+<p>Note that this is not an &#8216;if and only if&#8217;.</p>
+<p>The proof of this is pretty easy to anyone who knows a bit about probability theory and entropy.  I can restate it using a bit of standard jargon, which may make it more obvious to experts.   We&#8217;ve got an <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" />-valued random variable, say <img src="https://s0.wp.com/latex.php?latex=%5Ctextbf%7Bs%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textbf{s}." class="latex" />   We want to extend it to an <img src="https://s0.wp.com/latex.php?latex=R+%5Ctimes+S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R &#92;times S" class="latex" />-valued random variable <img src="https://s0.wp.com/latex.php?latex=%28%5Ctextbf%7Br%7D%2C+%5Ctextbf%7Bs%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(&#92;textbf{r}, &#92;textbf{s})" class="latex" /> whose entropy is small as possible.  Then we can achieve this by choosing a function <img src="https://s0.wp.com/latex.php?latex=h%3A+S+%5Cto+R%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="h: S &#92;to R," class="latex" /> and letting <img src="https://s0.wp.com/latex.php?latex=%5Ctextbf%7Bs%7D+%3D+h%28%5Ctextbf%7Br%7D%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textbf{s} = h(&#92;textbf{r})." class="latex" /></p>
+<p>Here&#8217;s the point: if we make <img src="https://s0.wp.com/latex.php?latex=%5Ctextbf%7Bs%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textbf{s}" class="latex" /> be a function of <img src="https://s0.wp.com/latex.php?latex=%5Ctextbf%7Br%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;textbf{r}," class="latex" /> we aren&#8217;t adding any extra randomness, so the entropy doesn&#8217;t go up.</p>
+<p>What in the world does this have to do with a good regulator containing a model of the system it&#8217;s regulating?</p>
+<p>Well, I can&#8217;t explain that as well as I&#8217;d like&#8212;sorry.  But the rough idea seems to be this.  Suppose that <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> is a <strong>system</strong> with a given random behavior, and <img src="https://s0.wp.com/latex.php?latex=R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R" class="latex" /> is another system, the <strong>regulator</strong>.  If we want the combination of the system and regulator to behave as &#8216;nonrandomly&#8217; as possible, we can let the state of the regulator be a function of the state of the system.</p>
+<p>This theorem is actually a &#8216;lemma&#8217; in Conant and Ashby&#8217;s paper.  Let&#8217;s look at their setup, and the &#8216;good regulator theorem&#8217; as they actually state it.</p>
+<h3> Their setup</h3>
+<p>Conant and Ashby consider five sets and three functions.  In a picture:</p>
+<div align="center"><a href="http://pespmc1.vub.ac.be/Books/Conant_Ashby.pdf"><br />
+<img src="https://i0.wp.com/math.ucr.edu/home/baez/mathematical/good_regulator_theorem_conant_ashby.jpg" /></a></div>
+<p>The sets are these:</p>
+<p>&bull; A set <img src="https://s0.wp.com/latex.php?latex=Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Z" class="latex" /> of possible <strong>outcomes</strong>.</p>
+<p>&bull; A <strong>goal</strong>: some subset <img src="https://s0.wp.com/latex.php?latex=G+%5Csubseteq+Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="G &#92;subseteq Z" class="latex" /> of <strong>good</strong> outcomes</p>
+<p>&bull; A set <img src="https://s0.wp.com/latex.php?latex=D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D" class="latex" /> of <strong>disturbances</strong>, which I might prefer to call &#8216;inputs&#8217;.</p>
+<p>&bull; A set <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> of states of some <strong>system</strong> that is affected by the disturbances.</p>
+<p>&bull; A set <img src="https://s0.wp.com/latex.php?latex=R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R" class="latex" /> of states of some <strong>regulator</strong> that is also affected by the disturbances.</p>
+<p>The functions are these:</p>
+<p>&bull; A function <img src="https://s0.wp.com/latex.php?latex=%5Cphi+%3A+D+%5Cto+S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;phi : D &#92;to S" class="latex" /> saying how a disturbance determines a state of the system.</p>
+<p>&bull; A function <img src="https://s0.wp.com/latex.php?latex=%5Crho%3A+D+%5Cto+R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho: D &#92;to R" class="latex" /> saying how a disturbance determines a state of the regulator.</p>
+<p>&bull; A function <img src="https://s0.wp.com/latex.php?latex=%5Cpsi%3A+S+%5Ctimes+R+%5Cto+Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi: S &#92;times R &#92;to Z" class="latex" /> saying how a state of the system and a state of the regulator determines an outcome.</p>
+<p>Of course we want some conditions on these maps.  What we want, <em>I guess</em>, is for the outcome to be good regardless of the disturbance.  I might say that as follows: for every <img src="https://s0.wp.com/latex.php?latex=d+%5Cin+D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="d &#92;in D" class="latex" /> we have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cpsi%28%5Cphi%28d%29%2C+%5Crho%28d%29%29+%5Cin+G+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi(&#92;phi(d), &#92;rho(d)) &#92;in G " class="latex" /></p>
+<p>Unfortunately Conant and Ashby say they want this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Crho+%5Csubset++%5B%5Cpsi%5E%7B-1%7D%28G%29%5D%5Cphi+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho &#92;subset  [&#92;psi^{-1}(G)]&#92;phi " class="latex" /></p>
+<p>I can&#8217;t parse this: they&#8217;re using math notation in ways I don&#8217;t recognize.  Can you figure out what they mean, and whether it matches my guess above?</p>
+<p>Then, after a lot of examples and stuff, they state their theorem:</p>
+<p><b>Theorem.</b> The simplest optimal regulator <img src="https://s0.wp.com/latex.php?latex=R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R" class="latex" /> of a reguland <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> produces events <img src="https://s0.wp.com/latex.php?latex=R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R" class="latex" /> which are related to events <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> by a mapping <img src="https://s0.wp.com/latex.php?latex=h%3A+S+%5Cto+R.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="h: S &#92;to R." class="latex" /></p>
+<p>Clearly I&#8217;ve skipped over too much!  This barely makes any sense at all.</p>
+<p>Unfortunately, looking at the text before the theorem, I don&#8217;t see these terms being explained.  Furthermore, their &#8216;proof&#8217; introduces extra assumptions that were not mentioned in the statement of the theorem.  It begins:</p>
+<blockquote><p>
+  The sets <img src="https://s0.wp.com/latex.php?latex=R%2C+S%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R, S," class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Z" class="latex" /> and the mapping <img src="https://s0.wp.com/latex.php?latex=%5Cpsi%3A+R+%5Ctimes+S+%5Cto+Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi: R &#92;times S &#92;to Z" class="latex" /> are presumed given. We will assume that over the set <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> there exists a probability distribution <img src="https://s0.wp.com/latex.php?latex=p%28S%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(S)" class="latex" /> which gives the relative frequencies of the events in <img src="https://s0.wp.com/latex.php?latex=S.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S." class="latex" /> We will further assume that the behaviour of any particular regulator <img src="https://s0.wp.com/latex.php?latex=R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R" class="latex" /> is specified by a conditional distribution <img src="https://s0.wp.com/latex.php?latex=p%28R%7CS%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(R|S)" class="latex" /> giving, for each event in <img src="https://s0.wp.com/latex.php?latex=S%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S," class="latex" /> a distribution on the regulatory events in <img src="https://s0.wp.com/latex.php?latex=R.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R." class="latex" />
+</p></blockquote>
+<p>Get it?  Now they&#8217;re saying the state of the regulator <img src="https://s0.wp.com/latex.php?latex=R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R" class="latex" /> depends on the state of the system <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> via a <a href="https://en.wikipedia.org/wiki/Conditional_probability_distribution">conditional probability distribution</a> <img src="https://s0.wp.com/latex.php?latex=p%28r%7Cs%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(r|s)" class="latex" /> where <img src="https://s0.wp.com/latex.php?latex=r+%5Cin+R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r &#92;in R" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=s+%5Cin+S.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s &#92;in S." class="latex" />   It&#8217;s odd that they didn&#8217;t mention this earlier!   Their picture made it look like the state of the regulator is determined by the &#8216;disturbance&#8217; via the function <img src="https://s0.wp.com/latex.php?latex=%5Crho%3A+D+%5Cto+R.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho: D &#92;to R." class="latex" />  But okay.</p>
+<p>They&#8217;re also assuming there&#8217;s a probability distribution on <img src="https://s0.wp.com/latex.php?latex=S.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S." class="latex" />  They use this and the above conditional probability distribution to get a probability distribution on <img src="https://s0.wp.com/latex.php?latex=R.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R." class="latex" /></p>
+<p>In fact, the set <img src="https://s0.wp.com/latex.php?latex=D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D" class="latex" /> and the functions out of this set seem to play no role in their proof!</p>
+<p>It&#8217;s unclear to me exactly what we&#8217;re given, what we get to choose, and what we&#8217;re trying to optimize.  They do try to explain this.  Here&#8217;s what they say:</p>
+<blockquote><p>
+  Now <img src="https://s0.wp.com/latex.php?latex=p%28S%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(S)" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=p%28R%7CS%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(R|S)" class="latex" /> jointly determine <img src="https://s0.wp.com/latex.php?latex=p%28R%2CS%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(R,S)" class="latex" /> and hence <img src="https://s0.wp.com/latex.php?latex=p%28Z%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(Z)" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=H%28Z%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H(Z)," class="latex" /> the entropy in the set of outcomes:</p>
+<p>  <img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+H%28Z%29+%3D+-+%5Csum_%7Bz+%5Cin+Z%7D+p%28z%29+%5Clog+%28p%28z%29%29+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ H(Z) = - &#92;sum_{z &#92;in Z} p(z) &#92;log (p(z)) } " class="latex" /></p>
+<p>  With <img src="https://s0.wp.com/latex.php?latex=p%28S%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(S)" class="latex" /> fixed, the class of optimal regulators therefore corresponds to the class of optimal distributions <img src="https://s0.wp.com/latex.php?latex=p%28R%7CS%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(R|S)" class="latex" /> for which <img src="https://s0.wp.com/latex.php?latex=H%28Z%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H(Z)" class="latex" /> is minimal. We will call this class of optimal distributions <img src="https://s0.wp.com/latex.php?latex=%5Cpi.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;pi." class="latex" />
+</p></blockquote>
+<p>I could write a little essay on why this makes me unhappy, but never mind.  I&#8217;m used to the habit of using the same letter <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> to stand for probability distributions on lots of different sets: folks let the argument of <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> say which set they have in mind at any moment.  So, they&#8217;re starting with a probability distribution on <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> and a conditional probability distribution on <img src="https://s0.wp.com/latex.php?latex=r+%5Cin+R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r &#92;in R" class="latex" /> given <img src="https://s0.wp.com/latex.php?latex=s+%5Cin+S.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s &#92;in S." class="latex" />  They&#8217;re using these to determine probability distribution on <img src="https://s0.wp.com/latex.php?latex=R+%5Ctimes+S.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R &#92;times S." class="latex" />  Then, presumably using the map <img src="https://s0.wp.com/latex.php?latex=%5Cpsi%3A+S+%5Ctimes+R+%5Cto+Z%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi: S &#92;times R &#92;to Z," class="latex" /> they get a probability distribution on <img src="https://s0.wp.com/latex.php?latex=Z.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Z." class="latex" />  <img src="https://s0.wp.com/latex.php?latex=H%28Z%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H(Z)" class="latex" /> is the entropy of the probability distribution on <img src="https://s0.wp.com/latex.php?latex=Z%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Z," class="latex" /> and for some reason they are trying to minimize this.</p>
+<p>(Where did the subset <img src="https://s0.wp.com/latex.php?latex=G+%5Csubseteq+Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="G &#92;subseteq Z" class="latex" /> of &#8216;good&#8217; outcomes go?  Shouldn&#8217;t that play a role?  Oh well.)</p>
+<p>I believe the claim is that when this entropy is minimized, there&#8217;s a function <img src="https://s0.wp.com/latex.php?latex=h+%3A+S+%5Cto+R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="h : S &#92;to R" class="latex" /> such that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=p%28r%7Cs%29+%3D+1+%5C%3B+%5Ctextrm%7Bif%7D+%5C%3B+r+%3D+h%28s%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(r|s) = 1 &#92;; &#92;textrm{if} &#92;; r = h(s)" class="latex" /></p>
+<p>This says that the state of the regulator should be completely determined by the the state of the system.    And this, I believe, is what they mean by</p>
+<blockquote><p>
+  Every good regulator of a system must be a model of that system.
+</p></blockquote>
+<p>I hope you understand: I&#8217;m not worrying about whether the setup is a good one, e.g. sufficiently general for real-world applications.   I&#8217;m just trying to figure out what the setup actually <em>is</em>, what Conant and Ashby&#8217;s theorem actually <em>says</em>, and whether it&#8217;s <em>true</em>.</p>
+<p>I think I&#8217;ve just made a lot of progress.  Surely this was no fun to read.  But it I found it useful to write it.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Wednesday, January 27th, 2016 at 1:00 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/networks/" rel="category tag">networks</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2016/01/25/ken-caldeira-on-what-to-do/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2016/01/30/among-the-bone-eaters/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">56 Responses to <em>The Internal Model&nbsp;Principle</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-76735">
+				<div id="div-comment-76735" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/352603e575430df8997dad0ab4e35e17?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://plus.google.com/+JanMoren' rel='external nofollow ugc' class='url'>Jan Moren</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76735">27 January, 2016 at 1:29 am</a>		</div>
+
+		<p>Is it perhaps meant to be <img src="https://s0.wp.com/latex.php?latex=%5Csum_%7Br+%5Cin+R%7D%7Bq%28r%2Cs%29%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_{r &#92;in R}{q(r,s)} " class="latex" /> in the first equation of the theorem?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76735#respond' data-commentid="76735" data-postid="20937" data-belowelement="div-comment-76735" data-respondelement="respond" data-replyto="Reply to Jan Moren" aria-label='Reply to Jan Moren'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-76765">
+				<div id="div-comment-76765" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76765">27 January, 2016 at 3:19 pm</a>		</div>
+
+		<p>Yes, thanks!  Fixed.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76765#respond' data-commentid="76765" data-postid="20937" data-belowelement="div-comment-76765" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-76739">
+				<div id="div-comment-76739" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://i1.wp.com/abs.twimg.com/sticky/default_profile_images/default_profile_0_normal.png?resize=32%2C32' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://twitter.com/dmhlr' rel='external nofollow ugc' class='url'>Daniel Mahler (@dmhlr)</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76739">27 January, 2016 at 1:55 am</a>		</div>
+
+		<p>Are they saying that <em>R contains a model of S</em> means there is a function <em>h</em> that states of <em>S</em> to the states of <em>R</em>? That seems kind of trivial. Are the additional probability/ entropy constraints required for being good/optima or just for being a model?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76739#respond' data-commentid="76739" data-postid="20937" data-belowelement="div-comment-76739" data-respondelement="respond" data-replyto="Reply to Daniel Mahler (@dmhlr)" aria-label='Reply to Daniel Mahler (@dmhlr)'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-76804">
+				<div id="div-comment-76804" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='http://graph.facebook.com/v2.2/753002925/picture?type=large' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://www.facebook.com/app_scoped_user_id/753002925/' rel='external nofollow ugc' class='url'>Daniel Mahler</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76804">28 January, 2016 at 7:04 am</a>		</div>
+
+		<p>duplicate &#8211; please delete</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76804#respond' data-commentid="76804" data-postid="20937" data-belowelement="div-comment-76804" data-respondelement="respond" data-replyto="Reply to Daniel Mahler" aria-label='Reply to Daniel Mahler'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-76740">
+				<div id="div-comment-76740" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://i1.wp.com/abs.twimg.com/sticky/default_profile_images/default_profile_0_normal.png?resize=32%2C32' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://twitter.com/dmhlr' rel='external nofollow ugc' class='url'>Daniel Mahler (@dmhlr)</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76740">27 January, 2016 at 2:25 am</a>		</div>
+
+		<p>Do they use <em>R contains a model of S</em> to mean there is a map h from states of S to the states of S? That seems kind of trivial. Or are the probability/entropy constraints part of this definition? I read them as being part of the goodness/optimality definition.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76740#respond' data-commentid="76740" data-postid="20937" data-belowelement="div-comment-76740" data-respondelement="respond" data-replyto="Reply to Daniel Mahler (@dmhlr)" aria-label='Reply to Daniel Mahler (@dmhlr)'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-76805">
+				<div id="div-comment-76805" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='http://graph.facebook.com/v2.2/753002925/picture?type=large' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://www.facebook.com/app_scoped_user_id/753002925/' rel='external nofollow ugc' class='url'>Daniel Mahler</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76805">28 January, 2016 at 7:04 am</a>		</div>
+
+		<p>duplicate &#8211; please delete</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76805#respond' data-commentid="76805" data-postid="20937" data-belowelement="div-comment-76805" data-respondelement="respond" data-replyto="Reply to Daniel Mahler" aria-label='Reply to Daniel Mahler'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-76744">
+				<div id="div-comment-76744" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='http://graph.facebook.com/v2.2/753002925/picture?type=large' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://www.facebook.com/app_scoped_user_id/753002925/' rel='external nofollow ugc' class='url'>Daniel Mahler</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76744">27 January, 2016 at 2:34 am</a>		</div>
+
+		<p>Do they use <em>R contains a model of S</em> to simply mean there is a function h from the states of S to the states of R? That would seem kind of trivial. Or are the probability/entropy conditions a part of this definition as well? I was taking those to be the requirements for goodness/optimality.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76744#respond' data-commentid="76744" data-postid="20937" data-belowelement="div-comment-76744" data-respondelement="respond" data-replyto="Reply to Daniel Mahler" aria-label='Reply to Daniel Mahler'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-76764">
+				<div id="div-comment-76764" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76764">27 January, 2016 at 3:17 pm</a>		</div>
+
+		<p>Who is &#8220;they&#8221;?  Conant and Ashby?  I tried to figure out what they mean by <em>R contains a model of S</em>, and my answer so far is this blog post.</p>
+<p>(Francis and Wonham seem to have a different idea.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76764#respond' data-commentid="76764" data-postid="20937" data-belowelement="div-comment-76764" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 parent highlander-comment" id="comment-76770">
+				<div id="div-comment-76770" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='http://graph.facebook.com/v2.2/753002925/picture?type=large' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://www.facebook.com/app_scoped_user_id/753002925/' rel='external nofollow ugc' class='url'>Daniel Mahler</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76770">27 January, 2016 at 4:34 pm</a>		</div>
+
+		<p>I was trying to separate out being a model and being good/optimal. That separation is not clear to me even in the blog post, but maybe being a model without being good  does not make much sense since anything can be a (very) bad model of anything else</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76770#respond' data-commentid="76770" data-postid="20937" data-belowelement="div-comment-76770" data-respondelement="respond" data-replyto="Reply to Daniel Mahler" aria-label='Reply to Daniel Mahler'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-76774">
+				<div id="div-comment-76774" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76774">27 January, 2016 at 6:53 pm</a>		</div>
+
+		<p>This blog post records my struggles to understand a paper that I found very unclear.  I believe in their setup they are trying to formulate a concept of &#8220;optimal regulator&#8221; of a system, and prove that any such thing must &#8220;contain a model&#8221; of the system.  But I found their definitions of both these concepts very tough to understand, mainly because they don&#8217;t present their material in the systematic, regimented way that we mathematicians are used to.  E.g., some terms in the theorem are only defined <em>en passant</em> in the proof.  The actual math involved is all very simple.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-linasv even depth-2 parent highlander-comment" id="comment-76788">
+				<div id="div-comment-76788" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a221b4b4e6dd199750731c51ee864a91?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://linas.org' rel='external nofollow ugc' class='url'>linasv</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76788">27 January, 2016 at 8:40 pm</a>		</div>
+
+		<p>Hi Daniel,</p>
+<p>Allow me to do some forensic anthropology: in 1970, the general theory of of control systems would still be quite fresh.  So, the control theory developed in the 1940&#8217;s to prevent the unwanted vibration of fighter aircraft wings would have been mostly about linear algebra, meromorphic functions, resonances, filters, transfer functions. <a href="https://en.wikipedia.org/wiki/Transfer_function" rel="nofollow ugc">https://en.wikipedia.org/wiki/Transfer_function</a> &#8212; whereas the notion that you could use a computer to perform highly non-linear controls &#8211; discontinuous, computable recursive functions &#8211; would be both forehead-slappingly obvious and yet also mind-boggling in terms of the theoretical possibilities of this new vista.   So, for starters, you need to have a map of this new territory.</p>
+<p>The most abstract way to express a control system would indeed seem to be &#8220;for every possible state of the system S, please given me a state of the regulator R, such that R prevents S from halting and catching fire.&#8221;  Perhaps trivial, but a good place to start, to address the general concept of control.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76788#respond' data-commentid="76788" data-postid="20937" data-belowelement="div-comment-76788" data-respondelement="respond" data-replyto="Reply to linasv" aria-label='Reply to linasv'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-linasv odd alt depth-3 parent highlander-comment" id="comment-76789">
+				<div id="div-comment-76789" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a221b4b4e6dd199750731c51ee864a91?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://linas.org' rel='external nofollow ugc' class='url'>linasv</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76789">27 January, 2016 at 8:59 pm</a>		</div>
+
+		<p>To be extra-clear: a quick skim of <a href="https://en.wikipedia.org/wiki/Control_theory" rel="nofollow ugc">https://en.wikipedia.org/wiki/Control_theory</a> shows that, to this very day, the concept of control is still very much preoccupied with systems that are modeled by PDE&#8217;s: the model <em>is</em> a PDE.  Which is very very different from a model that is &#8220;a key, a map, a menu, a bee&#8217;s dance&#8221;.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76789#respond' data-commentid="76789" data-postid="20937" data-belowelement="div-comment-76789" data-respondelement="respond" data-replyto="Reply to linasv" aria-label='Reply to linasv'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 parent highlander-comment" id="comment-76791">
+				<div id="div-comment-76791" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76791">27 January, 2016 at 9:26 pm</a>		</div>
+
+		<p>I think systems of <a href="https://en.wikipedia.org/wiki/Ordinary_differential_equation" rel="nofollow">ODE</a>s, actually.  I urge anyone who has the requisite academic superpowers to get ahold of this paper:</p>
+<p>• B. A. Francis and W. M. Wonham, The internal model principle of control theory, <em>Automatica</em> <strong>12</strong> (1976) 457–465.</p>
+<p>and see how they formalize the internal model principle for systems of linear ODEs.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-linasv odd alt depth-4 highlander-comment" id="comment-76792">
+				<div id="div-comment-76792" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a221b4b4e6dd199750731c51ee864a91?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://linas.org' rel='external nofollow ugc' class='url'>linasv</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76792">27 January, 2016 at 11:43 pm</a>		</div>
+
+		<p>Applying some google-foo yields this: <a href="https://www.researchgate.net/profile/Walter_Wonham/publication/223996193_The_internal_model_principle_of_control_theory/links/5488b5610cf289302e30b828.pdf" rel="nofollow ugc">https://www.researchgate.net/profile/Walter_Wonham/publication/223996193_The_internal_model_principle_of_control_theory/links/5488b5610cf289302e30b828.pdf</a>  which appears to have been posted by Wonham himself.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 parent highlander-comment" id="comment-76796">
+				<div id="div-comment-76796" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76796">28 January, 2016 at 1:42 am</a>		</div>
+
+		<p>Excellent!  I will add this link to the blog post.  Thanks.  This paper is much more technical than the Conant&#8211;Ashby paper, but it also seems to contain the version of the internal model principle that more people actually understand and use.  It uses some special tricks with linear ODE&#8212;Laplace transforms and complex analysis&#8212;to define when one system contains an &#8216;internal model&#8217; of another.  It would be nice to have a definition that worked more generally.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-linasv odd alt depth-4 highlander-comment" id="comment-76799">
+				<div id="div-comment-76799" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a221b4b4e6dd199750731c51ee864a91?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://linas.org' rel='external nofollow ugc' class='url'>linasv</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76799">28 January, 2016 at 4:05 am</a>		</div>
+
+		<p>Yes, but &#8230; Yes, the &#8220;Internal Model Principle&#8221; paper seems to have 1500 citations, and is apparently a part of standard curriculum; yet, in many ways it is much less interesting because of its focus on ODE&#8217;s.</p>
+<p>By contrast, the good regulator theorem, and in particular, the lemma at the center of it, seems to suggest some sort of practical algorithm that might be useful in machine learning (I seem to glimpse something, but can&#8217;t quite grasp it).  Consider, for example, the rather technical and abstract ideas of Solomonoff induction and AIXI, which purportedly are so general that they can &#8216;figure out anything&#8217;, yet are explicitly non-computable.  The good regulator theorem seems to be saying &#8216;here&#8217;s how you can compute it&#8217;; it seems to offer a way forward. I&#8217;m unable to put the pieces together, but it seems like they should somehow fit.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-76822">
+				<div id="div-comment-76822" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76822">28 January, 2016 at 8:40 pm</a>		</div>
+
+		<p>I agree that the basic intuition behind the &#8220;internal model principle&#8221; extends beyond systems governed by linear (or even nonlinear ODE), so it would be nice to have a much more general theorem that captures this intuition.  I&#8217;m not sure Conant and Ashby&#8217;s theorem really captures it.  It&#8217;s hard to figure out what their theorem actually <em>says</em>, but the proof is very short, with the most technical part being the Lemma I wrote down:</p>
+<p><b>Theorem.</b>  Let <img src="https://s0.wp.com/latex.php?latex=R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> be finite sets, and fix a probability distribution <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> on <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" />.  Suppose <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> is any probability distribution on <img src="https://s0.wp.com/latex.php?latex=R+%5Ctimes+S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="R &#92;times S" class="latex" /> such that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+p%28s%29+%3D+%5Csum_%7Br+%5Cin+R%7D+q%28r%2Cs%29++%5C%3B+%5Ctextrm%7Bfor+all%7D+%5C%3B+s+%5Cin+S%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ p(s) = &#92;sum_{r &#92;in R} q(r,s)  &#92;; &#92;textrm{for all} &#92;; s &#92;in S} " class="latex" /></p>
+<p>Let <img src="https://s0.wp.com/latex.php?latex=H%28p%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H(p)" class="latex" /> be the Shannon entropy of <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> and let <img src="https://s0.wp.com/latex.php?latex=H%28q%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H(q)" class="latex" /> be the Shannon entropy of <img src="https://s0.wp.com/latex.php?latex=q.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q." class="latex" />  Then</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H%28q%29+%5Cge+H%28p%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H(q) &#92;ge H(p) " class="latex" /></p>
+<p>and equality is achieved if there is a function</p>
+<p><img src="https://s0.wp.com/latex.php?latex=h%3A+S+%5Cto+R+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="h: S &#92;to R " class="latex" /></p>
+<p>such that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=q%28r%2Cs%29+%3D+%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bcc%7D+p%28s%29++%26++%5Ctextrm%7Bif%7D+%5C%3B+r+%3D+h%28s%29+%5C%5C++++++++++++++++++++++++++++++++++++++++++++0++%26+%5Ctextrm%7Botherwise%7D++%5Cend%7Barray%7D+%5Cright.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q(r,s) = &#92;left&#92;{&#92;begin{array}{cc} p(s)  &amp;  &#92;textrm{if} &#92;; r = h(s) &#92;&#92;                                            0  &amp; &#92;textrm{otherwise}  &#92;end{array} &#92;right." class="latex" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &#9608;</p>
+<p>Furthermore, the proof of this lemma is so easy that I can&#8217;t imagine the theorem, whatever it is, is very helpful for actually doing practical things.  The lemma may look technical, but it really just says &#8220;If you have two random variables, together they must carry at least as much information as the first one.  Furthermore, together they will carry exactly as much information as the first random variable if the second variable is a function of the first.&#8221;</p>
+<p>I believe the <em>point</em> of this lemma is to say &#8220;if you&#8217;re optimally regulating a system, your regulator won&#8217;t be doing a bunch of extra random stuff that&#8217;s not determined by what the system is doing.&#8221;  Or something like that.</p>
+<p>But this doesn&#8217;t help us a whole lot in designing an optimal regulator.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-76752">
+				<div id="div-comment-76752" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/995e52a80c9f04e76c0dd589c5f259f5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Gabriel Sztorc</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76752">27 January, 2016 at 12:16 pm</a>		</div>
+
+		<p>I think the weird notation is just relational composition. The part in square brackets is a relation on S and R that connects each state s of the system with set of states of the regulator that are appropriate responses to s. If you compose that with the function from inputs to states of the system, you get a relation that maps each input d to a set of states of the regulator that are appropriate responses to the system state resulting from d.</p>
+<p>So, it looks equivalent to your guess.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76752#respond' data-commentid="76752" data-postid="20937" data-belowelement="div-comment-76752" data-respondelement="respond" data-replyto="Reply to Gabriel Sztorc" aria-label='Reply to Gabriel Sztorc'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-76766">
+				<div id="div-comment-76766" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76766">27 January, 2016 at 3:24 pm</a>		</div>
+
+		<p>Oh!  I considered that they might be using relational composition, but somehow I couldn&#8217;t get that interpretation to parse correctly.  Now I see it does.  Thanks!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76766#respond' data-commentid="76766" data-postid="20937" data-belowelement="div-comment-76766" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-76754">
+				<div id="div-comment-76754" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">domenico</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76754">27 January, 2016 at 12:33 pm</a>		</div>
+
+		<p>The link of Scholten don&#8217;t work.<br />
+I obtain on internet</p>
+<p><object data="http://goodregulatorproject.org/images/Every_Good_Key_Must_Be_A_Model_Of_The_Lock_It_Opens.pdf" type="application/pdf" width="100%" height="800" style="height: 800px;"><p><a href="http://goodregulatorproject.org/images/Every_Good_Key_Must_Be_A_Model_Of_The_Lock_It_Opens.pdf">Click to access Every_Good_Key_Must_Be_A_Model_Of_The_Lock_It_Opens.pdf</a></p></object></p>
+<p>It seem a simple assumption: the knowledge of the system permits its regulation; but I understand that could be possible to write the regulation function using probability distributions and entropy minimization.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76754#respond' data-commentid="76754" data-postid="20937" data-belowelement="div-comment-76754" data-respondelement="respond" data-replyto="Reply to domenico" aria-label='Reply to domenico'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-76763">
+				<div id="div-comment-76763" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76763">27 January, 2016 at 3:15 pm</a>		</div>
+
+		<p>Thanks&#8212;I fixed my link.  The paper is here:</p>
+<p>&bull; Daniel L. Scholten, <a href="http://goodregulatorproject.org/images/Every_Good_Key_Must_Be_A_Model_Of_The_Lock_It_Opens.pdf" rel="nofollow">Every good key must be a model of the lock it opens (the Conant &amp; Ashby Theorem revisited)</a>, 2010.</p>
+<blockquote><p>
+  It seems a simple assumption: the knowledge of the system permits its regulation.
+</p></blockquote>
+<p>It&#8217;s supposed to be a theorem, not an assumption.  The hard part in proving the theorem is stating it precisely enough so it can be a theorem!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76763#respond' data-commentid="76763" data-postid="20937" data-belowelement="div-comment-76763" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-jonawbrey odd alt thread-even depth-1 highlander-comment" id="comment-76757">
+				<div id="div-comment-76757" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/53463a46070b974244107e96ca869e5d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://inquiryintoinquiry.com/' rel='external nofollow ugc' class='url'>Jon Awbrey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76757">27 January, 2016 at 12:50 pm</a>		</div>
+
+		<p>Ashby&#8217;s book was my own first introduction to cybernetics and I recently returned to his discussion of <a href="http://inquiryintoinquiry.com/2015/10/01/forgetfulness-of-purpose-%E2%80%A2-4/" rel="nofollow">regulation games</a> in connection with some issues in Peirce&#8217;s logic of science or &ldquo;theory of inquiry&rdquo;.</p>
+<p>In that context it seems like the formula <img src="https://s0.wp.com/latex.php?latex=%5Crho+%5Csubset++%5B%5Cpsi%5E%7B-1%7D%28G%29%5D%5Cphi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho &#92;subset  [&#92;psi^{-1}(G)]&#92;phi" class="latex" /> would have to be saying that the Regulator&#8217;s choices are a subset given by applying that portion of the game matrix with goal values in the body to the Disturber&#8217;s input.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76757#respond' data-commentid="76757" data-postid="20937" data-belowelement="div-comment-76757" data-respondelement="respond" data-replyto="Reply to Jon Awbrey" aria-label='Reply to Jon Awbrey'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-k4ntico even thread-odd thread-alt depth-1 highlander-comment" id="comment-76761">
+				<div id="div-comment-76761" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/06b43ef7c724d20cc4dbb39a55a6620d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://k4ntico.wordpress.com' rel='external nofollow ugc' class='url'>Boris Borcic</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76761">27 January, 2016 at 2:21 pm</a>		</div>
+
+		<p>I am not sure I wholly buy the idea, but the one thing it reminds me of is a shorthand argument to justify predictive power of Lamarckism, which is that the animal&#8217;s behavior is a model of the animal&#8217;s ecological niche.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76761#respond' data-commentid="76761" data-postid="20937" data-belowelement="div-comment-76761" data-respondelement="respond" data-replyto="Reply to Boris Borcic" aria-label='Reply to Boris Borcic'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-76768">
+				<div id="div-comment-76768" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cae4991f398a3d24a3f1ca2e45591da4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Simon Burton</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76768">27 January, 2016 at 3:54 pm</a>		</div>
+
+		<p>Looking at the Conant Ashby paper, they have a second figure where Z appears as an error term in some kind of negative feedback control circuit. So this could help explain why they want to minimize H(Z).</p>
+<p>In the last few pages of this other paper by Scholten: <a href="http://goodregulatorproject.org/images/A_Primer_For_Conant_And_Ashby_s_Good-Regulator_Theorem.pdf" rel="nofollow ugc">http://goodregulatorproject.org/images/A_Primer_For_Conant_And_Ashby_s_Good-Regulator_Theorem.pdf</a><br />
+from page 36, &#8220;The Simplest Optimal Regulator&#8221; he shows a good example. Looking at the table for <img src="https://s0.wp.com/latex.php?latex=%5Cpsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi" class="latex" /> the idea is to always produce the same z outcome no matter what s value the system chooses. Ie. we are looking for a function <img src="https://s0.wp.com/latex.php?latex=h%3AS+%5Cto+R&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="h:S &#92;to R" class="latex" /> such that <img src="https://s0.wp.com/latex.php?latex=%5Cpsi%28h%28s%29%2C+s%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi(h(s), s)" class="latex" /> is constant.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76768#respond' data-commentid="76768" data-postid="20937" data-belowelement="div-comment-76768" data-respondelement="respond" data-replyto="Reply to Simon Burton" aria-label='Reply to Simon Burton'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-linasv even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-76778">
+				<div id="div-comment-76778" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a221b4b4e6dd199750731c51ee864a91?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://linas.org' rel='external nofollow ugc' class='url'>linasv</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76778">27 January, 2016 at 7:18 pm</a>		</div>
+
+		<p>I believe that the square-bracket notation is sometimes used to indicate a function.  This notation seems to sometimes be used in books on lattices and orders (for example, to discuss the Scott topology and Scott continuity).  In this case, I parse the formula as follows: <img src="https://s0.wp.com/latex.php?latex=%5Cpsi%5E%7B-1%7D%28G%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi^{-1}(G) " class="latex" /> is a set of pairs <img src="https://s0.wp.com/latex.php?latex=%28s%2Cr%29+%5Cin+S+%5Ctimes+R+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(s,r) &#92;in S &#92;times R " class="latex" />  Such a set is a &#8220;relation&#8221;, and can then be re-interpreted as a function by Currying:  given an element <img src="https://s0.wp.com/latex.php?latex=s+%5Cin+S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s &#92;in S " class="latex" /> , it can be mapped to  the set <img src="https://s0.wp.com/latex.php?latex=%5C%7B++r+%5Cin+R+%3A+%28s%2Cr%29+%5Cin+%5Cpsi%5E%7B-1%7D%28G%29+%5C%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{  r &#92;in R : (s,r) &#92;in &#92;psi^{-1}(G) &#92;} " class="latex" />  That is, one has a map, a function <img src="https://s0.wp.com/latex.php?latex=s+%5Cmapsto++%5C%7B++r+%5Cin+R+%3A+%28s%2Cr%29+%5Cin+%5Cpsi%5E%7B-1%7D%28G%29+%5C%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s &#92;mapsto  &#92;{  r &#92;in R : (s,r) &#92;in &#92;psi^{-1}(G) &#92;} " class="latex" />   The notation <img src="https://s0.wp.com/latex.php?latex=%5B+%5Cpsi%5E%7B-1%7D%28G%29+%5D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[ &#92;psi^{-1}(G) ] " class="latex" /> simply denotes this map.  That is, <img src="https://s0.wp.com/latex.php?latex=%5B+%5Cpsi%5E%7B-1%7D%28G%29+%5D+%3A+S+%5Cto+%5Cmathrm%7Bpowerset%7D%28R%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[ &#92;psi^{-1}(G) ] : S &#92;to &#92;mathrm{powerset}(R) " class="latex" /></p>
+<p>The rest is downhill: since <img src="https://s0.wp.com/latex.php?latex=%5Cphi%3A+D+%5Cto+S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;phi: D &#92;to S " class="latex" />, writing two functions next to each other is function composition: thus there is a</p>
+<p>function <img src="https://s0.wp.com/latex.php?latex=%5B+%5Cpsi%5E%7B-1%7D%28G%29+%5D+%5Cphi+%3A+D+%5Cto+%5Cmathrm%7Bpowerset%28R%29%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[ &#92;psi^{-1}(G) ] &#92;phi : D &#92;to &#92;mathrm{powerset(R)}" class="latex" /></p>
+<p>This function can be viewed as a set of pairs (d, subset of R).  It is being compared to <img src="https://s0.wp.com/latex.php?latex=%5Crho+%3A+D+%5Cto+R+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho : D &#92;to R " class="latex" />  which can be understood to be a set of pairs (d, singleton subsets of R).</p>
+<p>One reason I think my interpretation is the intended one is the date of the paper, and the Dept of Computer Science affiliation of one of the authors: in 1970, the discussion of functions involving Scott continuity, partial orders, and etc. would still have been fresh and common and widespread to anyone working in computer science, and so the square-bracket notation would have been &#8220;obvious&#8221; to the intended audience.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76778#respond' data-commentid="76778" data-postid="20937" data-belowelement="div-comment-76778" data-respondelement="respond" data-replyto="Reply to linasv" aria-label='Reply to linasv'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-76783">
+				<div id="div-comment-76783" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76783">27 January, 2016 at 7:44 pm</a>		</div>
+
+		<p>Thanks!  It&#8217;s interesting how notation that seems &#8220;incorrect&#8221; or at least &#8220;highly obscure&#8221; (absent further explanation) to a mathematician can make sense in some other community, even one that overlaps with quite a bit.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76783#respond' data-commentid="76783" data-postid="20937" data-belowelement="div-comment-76783" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-jonawbrey even depth-2 highlander-comment" id="comment-76785">
+				<div id="div-comment-76785" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/53463a46070b974244107e96ca869e5d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://inquiryintoinquiry.com/' rel='external nofollow ugc' class='url'>Jon Awbrey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76785">27 January, 2016 at 8:02 pm</a>		</div>
+
+		<p>The square brackets may also suggest a matrix, the kernel of a transform, with <img src="https://s0.wp.com/latex.php?latex=%5Cphi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;phi" class="latex" /> interpreted as a column vector.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76785#respond' data-commentid="76785" data-postid="20937" data-belowelement="div-comment-76785" data-respondelement="respond" data-replyto="Reply to Jon Awbrey" aria-label='Reply to Jon Awbrey'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-jonawbrey odd alt thread-even depth-1 parent highlander-comment" id="comment-76781">
+				<div id="div-comment-76781" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/53463a46070b974244107e96ca869e5d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://inquiryintoinquiry.com/' rel='external nofollow ugc' class='url'>Jon Awbrey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76781">27 January, 2016 at 7:32 pm</a>		</div>
+
+		<p>I notice also that there appears to be a period after the right square bracket, whatever significance that may have, and I don&#8217;t think they mean proper inclusion necessarily, simply using <img src="https://s0.wp.com/latex.php?latex=%5Csubset&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;subset" class="latex" /> where we&#8217;d now used <img src="https://s0.wp.com/latex.php?latex=%5Csubseteq.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;subseteq." class="latex" /></p>
+<p>Sub [Ashby/Ashcroft] twice at the end?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76781#respond' data-commentid="76781" data-postid="20937" data-belowelement="div-comment-76781" data-respondelement="respond" data-replyto="Reply to Jon Awbrey" aria-label='Reply to Jon Awbrey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-76784">
+				<div id="div-comment-76784" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76784">27 January, 2016 at 7:47 pm</a>		</div>
+
+		<p>Thrice!  Thanks, I fixed that Ashby/Ashcroft typo.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76784#respond' data-commentid="76784" data-postid="20937" data-belowelement="div-comment-76784" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-76782">
+				<div id="div-comment-76782" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/79b628d7beb93ec5978e7ece7efdb9f8?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Jaime Santos</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76782">27 January, 2016 at 7:35 pm</a>		</div>
+
+		<p>Forgive me what seems an obvious observation, but it looks to me that if R and S are discrete sets, R has to be at least the size of S, because otherwise the relation r=h(s) does not determine all the states in S, i.e. the function h(s) is not invertible. Physically, this seems to mean that there are different states in S to which R replies in the same manner. Therefore, the regulator only captures a part of the behaviour of the regulated (the one that requires regulation, I guess). Did I get this correctly?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76782#respond' data-commentid="76782" data-postid="20937" data-belowelement="div-comment-76782" data-respondelement="respond" data-replyto="Reply to Jaime Santos" aria-label='Reply to Jaime Santos'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-quineatal even thread-even depth-1 highlander-comment" id="comment-76786">
+				<div id="div-comment-76786" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/74ea8ff6b34ae457648cee8f4857f10b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://quineatal.wordpress.com' rel='external nofollow ugc' class='url'>Quine Atal</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76786">27 January, 2016 at 8:15 pm</a>		</div>
+
+		<p>I think the regulator has only to map its proximate input into it&#8217;s output, so it &#8220;models&#8221; only its proximate input including whatever expected or allowed deviations might occur. In a way that is what any function does too. Perhaps part of the difficultly is in failing to note that C&amp;A are here using the word &#8216;model&#8217; in a metaphorical sense.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76786#respond' data-commentid="76786" data-postid="20937" data-belowelement="div-comment-76786" data-respondelement="respond" data-replyto="Reply to Quine Atal" aria-label='Reply to Quine Atal'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-76790">
+				<div id="div-comment-76790" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://i2.wp.com/lh5.googleusercontent.com/-K-838BhnODM/AAAAAAAAAAI/AAAAAAAABUM/CQ_r1UYmadM/photo.jpg?resize=32%2C32&#038;ssl=1' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://plus.google.com/+AndreasGeisler' rel='external nofollow ugc' class='url'>Andreas Geisler</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76790">27 January, 2016 at 9:21 pm</a>		</div>
+
+		<p>None of the math is within my reach, but I think a lot about mental models and other representations, and I would point out that there is a dimensional difference in these Map!=Terrain relations.<br />
+A key emulates the internal surface of the lock. The map emulates the flattened appearance of the terrain (and the concept &#8220;the terrain&#8221; is a mental model of the surface of a section of the planet).</p>
+<p>Is including that too ambitious?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76790#respond' data-commentid="76790" data-postid="20937" data-belowelement="div-comment-76790" data-respondelement="respond" data-replyto="Reply to Andreas Geisler" aria-label='Reply to Andreas Geisler'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-76824">
+				<div id="div-comment-76824" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76824">28 January, 2016 at 9:06 pm</a>		</div>
+
+		<p>There should be a super-general formulation that includes these examples.  I&#8217;m not sure Conant and Ashby have it.  Regarding the map example, a flat map is &#8220;good&#8221; if for example your main task is getting from one specific latitude and longitude to another, with your altitude being largely irrelevant.  Such a map might not be so good it you were trying to walk from Kashmir to Lhasa without having to climb up and down any more than necessary.  (At the very least, contour lines would be helpful.)</p>
+<p>Generalizing this, in many cases we can imagine a kind of mapping from the system to the model that &#8220;discards irrelevant information&#8221;, where what&#8217;s irrelevant depends on the task at hand.  Mathematicians call this type of mapping a &#8220;projection&#8221;: it has a technical meaning, but it doubtless originates in humble examples like maps&#8230; as does the word &#8220;mapping&#8221;.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76824#respond' data-commentid="76824" data-postid="20937" data-belowelement="div-comment-76824" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-76800">
+				<div id="div-comment-76800" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/224bdce23ff5bdc1d79517fb512665cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://web.engr.oregonstate.edu/~tgd/' rel='external nofollow ugc' class='url'>Tom Dietterich</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76800">28 January, 2016 at 4:30 am</a>		</div>
+
+		<p>In reinforcement learning, the method of Q learning is able to achieve optimal control of a system without having a model of it. However, Q learning does need to have experimental access to the system (as a black box). The Q learning formulation is in terms of Markov decision processes rather than ODEs. One could argue that this is both more general and less general. Tali Tishby has been developing an information-theoretic account of optimal control. My understanding is that only some information about the system is useful for control and therefore the controller does not need a &#8220;complete&#8221; model of the system being controlled but only a model of how the relevant aspects of the dynamics relate to the objective function.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76800#respond' data-commentid="76800" data-postid="20937" data-belowelement="div-comment-76800" data-respondelement="respond" data-replyto="Reply to Tom Dietterich" aria-label='Reply to Tom Dietterich'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 highlander-comment" id="comment-76806">
+				<div id="div-comment-76806" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76806">28 January, 2016 at 7:17 am</a>		</div>
+
+		<p>Prof. Dietterich, I guess you are aware of the <a href="https://de.wikipedia.org/wiki/Dietrich_%28Werkzeug%29" rel="nofollow">meaning of your name in german?</a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76806#respond' data-commentid="76806" data-postid="20937" data-belowelement="div-comment-76806" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-seanny1986 odd alt depth-2 highlander-comment" id="comment-160636">
+				<div id="div-comment-160636" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/343892f1c5235b2ac9a67f7b26aab68e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">seanny1986</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-160636">8 April, 2020 at 11:44 am</a>		</div>
+
+		<p>To what extent is the reward function in Q learning a model of the system, though? Also, what do you mean by optimal? Q learning can learn the optimal Q function, but this is different to learning optimal control. You only get useful behavior when the reward function is congruent with the environment and the task, which suggests that it serves the purpose of a model that maps states X and a goal G to actions U.</p>
+<p>As an example, imagine we want the agent to go from A to B as quickly as possible, with some hazard in the environment. We give the agent a negative reward at each timestep to incentivize shorter paths to B, and a positive reward for reaching A. Depending on the relative magnitudes of these two rewards, we&#8217;ll get an agent that either goes from A to B, or suicides to prevent further negative reward. The first set of rewards all represent a valid model of behavior given the goal (getting from A to B), and the second doesn&#8217;t.</p>
+<p>Keep in mind, I&#8217;m assuming that &#8220;model&#8221; here is being used in a more general sense than it typically is in RL, where it&#8217;s mainly used to denote a transition function.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=160636#respond' data-commentid="160636" data-postid="20937" data-belowelement="div-comment-160636" data-respondelement="respond" data-replyto="Reply to seanny1986" aria-label='Reply to seanny1986'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="comment-76815">
+				<div id="div-comment-76815" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">domenico</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76815">28 January, 2016 at 4:19 pm</a>		</div>
+
+		<p>If the dna is a control mechanism for the cells, then contain it an information on the current environment and the past environment (until 100.000 years ago)? Can the phenotype give us the environment information for ancient animals (feathering, dimensions, internal organs)?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76815#respond' data-commentid="76815" data-postid="20937" data-belowelement="div-comment-76815" data-respondelement="respond" data-replyto="Reply to domenico" aria-label='Reply to domenico'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-76819">
+				<div id="div-comment-76819" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/391f38a9d37ea8151e4ea2de19e59ece?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Richard J Botting</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76819">28 January, 2016 at 6:44 pm</a>		</div>
+
+		<p>This result looks like an extension of W. Ross Ashby&#8217;s Law of Requisite Variety from his &#8220;Introduction to Cybernetics&#8221; (1956) Uk publisher Chapman &amp; Hall. The 1976 reprint was obtainable from Barnes and Noble. A good undergraduate text. Solidly based on set theory but short of rigorous proofs. Sigh.</p>
+<p>Statements about A models B and C is contained in B as applied to dynamic systems makes me think of Hartmannis and Sterns(sp?) theory which associates a monoid with each automata. The homomorphisms between monoids correspond to modelling (yes we have a category). They prove that if an automata is constructed to contain another then there is a homomorphism from the monoid of the containing automata to the component. This glosses a book I do not have with me. It is at graduate level and largely forgotten, sigh.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76819#respond' data-commentid="76819" data-postid="20937" data-belowelement="div-comment-76819" data-respondelement="respond" data-replyto="Reply to Richard J Botting" aria-label='Reply to Richard J Botting'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-jonawbrey even depth-2 highlander-comment" id="comment-76861">
+				<div id="div-comment-76861" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/53463a46070b974244107e96ca869e5d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://inquiryintoinquiry.com/' rel='external nofollow ugc' class='url'>Jon Awbrey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76861">30 January, 2016 at 12:18 am</a>		</div>
+
+		<p>I linked to an online copy in my first comment.</p>
+<p><object data="http://pespmc1.vub.ac.be/books/IntroCyb.pdf" type="application/pdf" width="100%" height="800" style="height: 800px;"><p><a href="http://pespmc1.vub.ac.be/books/IntroCyb.pdf">Click to access IntroCyb.pdf</a></p></object></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76861#respond' data-commentid="76861" data-postid="20937" data-belowelement="div-comment-76861" data-respondelement="respond" data-replyto="Reply to Jon Awbrey" aria-label='Reply to Jon Awbrey'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-jonawbrey odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-76826">
+				<div id="div-comment-76826" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/53463a46070b974244107e96ca869e5d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://inquiryintoinquiry.com/' rel='external nofollow ugc' class='url'>Jon Awbrey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76826">28 January, 2016 at 9:40 pm</a>		</div>
+
+		<p>There&#8217;s a far-ranging discussion that could take off from this point &mdash; touching on the links among analogical reasoning, arrows and morphisms, cybernetic images, iconic representations, mental models, systems simulations, etc., and just how categorically or not those functions are necessary to intelligent agency, all of which questions have enjoyed large and overlapping literatures for a long time now &mdash;, but I&#8217;m not sure how much of that you meant to open up.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76826#respond' data-commentid="76826" data-postid="20937" data-belowelement="div-comment-76826" data-respondelement="respond" data-replyto="Reply to Jon Awbrey" aria-label='Reply to Jon Awbrey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-76857">
+				<div id="div-comment-76857" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76857">29 January, 2016 at 11:00 pm</a>		</div>
+
+		<p>In this post I&#8217;m really just interested in understanding the theorem of Conant and Ashcroft.  In my opinion, there&#8217;s a lot more work to be done to understand what it&#8217;s really saying, and to understand precisely how close it comes toward formalizing the intuition they have.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76857#respond' data-commentid="76857" data-postid="20937" data-belowelement="div-comment-76857" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-76864">
+				<div id="div-comment-76864" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/465cdeaca50395b5ffb883f04dcec55d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Duffy</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76864">30 January, 2016 at 3:57 am</a>		</div>
+
+		<p>&bull; Eduardo D. Sontag, <a href="http://arxiv.org/abs/q-bio/0309003" rel="nofollow">Adaptation and regulation with signal detection implies internal model</a>.</p>
+<p>&#8230;a simple result showing, under suitable technical assumptions, that if a system Σ adapts to a class of external signals U, in the sense of regulation against disturbances or tracking signals in U, then Σ  must  necessarily  contain a subsystem which is capable of  generating all the signals in U.  It is not assumed that regulation is robust, nor is there a prior requirement for the system to be partitioned into separate plant and controller components.</p>
+<blockquote><p>
+  The internal model principle originates in the biological cybernetics literature. But, as with any &#8220;principle&#8221; in control theory (like dynamic programming, the maximum principle, etc.) and more generally in mathematics, the IMP is not a theorem but rather a &#8220;mold&#8221; for many possible theorems, each of which will hold under appropriate technical assumptions, and whose conclusions will depend upon the precise meaning of &#8220;class of external signals&#8221;, &#8220;reproducing all functions&#8221;, and so on.
+</p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76864#respond' data-commentid="76864" data-postid="20937" data-belowelement="div-comment-76864" data-respondelement="respond" data-replyto="Reply to David Duffy" aria-label='Reply to David Duffy'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-76873">
+				<div id="div-comment-76873" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76873">30 January, 2016 at 7:40 am</a>		</div>
+
+		<p>This paper looks excellent!  Thanks!  I&#8217;ll try to understand it and blog about it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76873#respond' data-commentid="76873" data-postid="20937" data-belowelement="div-comment-76873" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-76909">
+				<div id="div-comment-76909" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d62be404c89efbea1cd6b0dacfd0e3e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Giampy</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76909">31 January, 2016 at 2:27 am</a>		</div>
+
+		<p>Also if you are looking for a more general version of the Internal Model Principle, this paper is a classic by now:</p>
+<p>&bull; C. I. Byrnes and A. Isidori, <a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=1235375&amp;filter%3DAND%28p_IS_Number%3A27697%29" rel="nofollow">Limit sets, zero dynamics, and internal models in the problem of nonlinear output regulation</a>, <i>Automatic Control, IEEE Trans.</i> <b>48</b> (2003), 1712&#8211;1723.</p>
+<p>This is a closely related version, by the same authors, on arxiv:</p>
+<p>&bull; C. I. Byrnes and A. Isidori, <a href="http://arxiv.org/abs/math/0311223" rel="nofollow">Nonlinear internal models for output regulation</a>.</p>
+<p>One thing that i always wondered is if and how the IMP is related to the &#8220;no free lunch&#8221; theorem in optimization. My intuition leads me to believe that they really the same thing (because you have to have some a-priori knowledge &#8211; that is an implicit model &#8211; of the function you are trying to optimize if you want to achieve better than average results, or something like that &#8230;).</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76909#respond' data-commentid="76909" data-postid="20937" data-belowelement="div-comment-76909" data-respondelement="respond" data-replyto="Reply to Giampy" aria-label='Reply to Giampy'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-76910">
+				<div id="div-comment-76910" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76910">31 January, 2016 at 2:40 am</a>		</div>
+
+		<p>Thanks!  More for me to read and think about!  These papers seem harder than Eduardo D. Sontag&#8217;s paper.  More precisely, it seems harder to get any idea of what the authors are trying to do.</p>
+<p>What does the &#8220;no free lunch&#8221; theorem say, roughly?  Of course I can guess that <em>very</em> roughly it says that there&#8217;s no free lunch.  <img src="https://i1.wp.com/math.ucr.edu/home/baez/emoticons/tongue2.gif" />  But I meant a bit less roughly.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76910#respond' data-commentid="76910" data-postid="20937" data-belowelement="div-comment-76910" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 parent highlander-comment" id="comment-76917">
+				<div id="div-comment-76917" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d62be404c89efbea1cd6b0dacfd0e3e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www2.cemr.wvu.edu/~gcampa/' rel='external nofollow ugc' class='url'>Giampiero Campa</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76917">31 January, 2016 at 6:45 am</a>		</div>
+
+		<p>An output regulator is a controller that forces the output of a plant to track a trajectory generated by another known external system (exosystem).</p>
+<p>For example i would want the output of my plant (e.g. aircraft altitude) to grow steadily until a certain point and then stay constant for a while.</p>
+<p>This is the most general control problem, and the authors are trying to characterize the structure of the solution for the most general case in which the plant is nonlinear (actually finding and implementing the solution for a given nonlinear plant is another story, but at least we know the structure, roughly speaking).</p>
+<p>Ok, about the No Free Lunch Theorem, quoting this paper:</p>
+<p><object data="http://www.cc.gatech.edu/~isbell/reading/papers/nfl-optimization-explanation.pdf" type="application/pdf" width="100%" height="800" style="height: 800px;"><p><a href="http://www.cc.gatech.edu/~isbell/reading/papers/nfl-optimization-explanation.pdf">Click to access nfl-optimization-explanation.pdf</a></p></object></p>
+<p>&#8220;the NFLT tells us that if we cannot make any prior assumption about the optimization problem we are trying to solve, no strategy can be expected to perform better than any other. Put it another way, &#8230; the only way one strategy can outperform another is if it is specialized to the specific problem under consideration&#8221;.</p>
+<p>The paper of course formulates the problem in a formal way, providing solution and a simple (so the authors say) explanation.</p>
+<p>Now, let me try to better substantiate my earlier claim that NFLT==IMP:</p>
+<p>1) A controller can really be seen as an on-line optimization algorithm, (the connection is explicit in optimal control). Therefore if one applies NFLT, the only way a controller can perform better than a random one is if it specialized to the &#8220;problem&#8221; i.e if it uses a-priori knowledge (an internal model) of the plant, (IMP).</p>
+<p>2) It is also well known (and used to proof convergence in some cases), that an optimization algorithm can also be seen as a controller, with the plant being the function to minimize. In this case the controller/algorithm is tasked with driving the function output towards its minimum, by finding the best input. In this case, applying the IMP says that the algorithm has to have an internal model (some a priori knowledge) of the plant (function) to be controlled (minimized), which really is the NFLT.</p>
+<p>Actually since normally optimization is applied to an input-output function without dynamics (without states) it might be actually the case that IMP is more general than NFLT, but anyway, i just wanted to suggest a connection as an idea. Hope you see it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76917#respond' data-commentid="76917" data-postid="20937" data-belowelement="div-comment-76917" data-respondelement="respond" data-replyto="Reply to Giampiero Campa" aria-label='Reply to Giampiero Campa'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-76945">
+				<div id="div-comment-76945" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76945">1 February, 2016 at 12:03 am</a>		</div>
+
+		<p>Okay, I think I get the connection now.  It would be fun to dig deeper into this.  I&#8217;m starting to see biology as a bunch of systems modelling each other in order to control what&#8217;s going on&#8230;</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-76914">
+				<div id="div-comment-76914" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/465cdeaca50395b5ffb883f04dcec55d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Duffy</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76914">31 January, 2016 at 5:47 am</a>		</div>
+
+		<p>If my limited understanding is correct, Byrnes and Isidori and that related literature examine the practical problem of whether particular implementations of an internal model (eg relying on &#8220;measured output and the first r−1 derivatives with respect to time&#8221;) can control an &#8220;arbitrary&#8221; dynamical system eg</p>
+<p><a href="http://epubs.siam.org/doi/pdf/10.1137/050642344" rel="nofollow ugc">http://epubs.siam.org/doi/pdf/10.1137/050642344</a></p>
+<blockquote><p>
+  &#8230;the existence of an output feedback law that asymptotically steers to zero a given controlled variable, while keeping all state variables bounded, for any initial conditions in a fixed compact set.  The proposed framework encompasses and extends a number of existing results in the fields of output feedback stabilization and output regulation of nonlinear systems. The main assumption under which the theory is developed is the existence of a state feedback control law able to achieve boundedness of the trajectories of the zero dynamics of the controlled plant.
+</p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76914#respond' data-commentid="76914" data-postid="20937" data-belowelement="div-comment-76914" data-respondelement="respond" data-replyto="Reply to David Duffy" aria-label='Reply to David Duffy'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-jonawbrey even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-76951">
+				<div id="div-comment-76951" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/53463a46070b974244107e96ca869e5d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://inquiryintoinquiry.com/' rel='external nofollow ugc' class='url'>Jon Awbrey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76951">1 February, 2016 at 4:06 am</a>		</div>
+
+		<p>Re: Giampiero Campa</p>
+<p>It is one question whether a regulator has “knowledge” of the object system and another question whether that knowledge is embodied in the more specific form of a “model”.  At this point we encounter a variety of meanings for the word “model”. In my experience they divide into two broad classes, “logical models” and “analogical models”.</p>
+<p>Logical modeling involves a relation between a theory and anything that satisfies the theory, in practice either the original domain of phenomena from which the theory was derived in the first place or a formal object we construct to satisfy the theory.</p>
+<p>Analogical modeling involves a relation between any two things that have similar properties or structures or that satisfy the same theory.</p>
+<p>It is possible that a regulator has knowledge, competence, or a capacity for performance that exists in the form of a theory or other data structures without necessarily having either type of model on hand.</p>
+<p>I would be the last to deny that models of either sort are extremely useful when we can get them, but there are reasons for thinking that the mirror of nature does not go all the way down to the most primitive structures of adaptive functioning.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76951#respond' data-commentid="76951" data-postid="20937" data-belowelement="div-comment-76951" data-respondelement="respond" data-replyto="Reply to Jon Awbrey" aria-label='Reply to Jon Awbrey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-76968">
+				<div id="div-comment-76968" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d62be404c89efbea1cd6b0dacfd0e3e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Giampy</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76968">1 February, 2016 at 7:10 pm</a>		</div>
+
+		<p>While i&#8217;m not 100% sure about what you meant, I think i can see what you are saying, and i think i agree.</p>
+<p>I have used the word &#8220;model&#8221; in a very liberal way, but indeed i didn&#8217;t mean to restrict the thoughts to formal, analytic, explicit, mathematical, models.</p>
+<p>I really meant that when some knowledge about the environment is incorporated in your regulator, or algorithm, or system, then it&#8217;s somehow easier for your system to steer the environment to its advantage (i think you call this &#8220;analogical&#8221; modeling).</p>
+<p>This seems to me to be a very general principle or guideline.</p>
+<p>In fact perhaps in biology evolution is a way for living organism to acquire and refine such knowledge, in an implicit and iterative and randomized way.</p>
+<p>In engineering, in the last few decades, we have seen an increase in the use of formal (mathematical and computational) modeling in system design. I think it would be nice if the same happened in social sciences or law, for example.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76968#respond' data-commentid="76968" data-postid="20937" data-belowelement="div-comment-76968" data-respondelement="respond" data-replyto="Reply to Giampy" aria-label='Reply to Giampy'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-linasv even depth-2 highlander-comment" id="comment-76976">
+				<div id="div-comment-76976" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a221b4b4e6dd199750731c51ee864a91?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://linas.org' rel='external nofollow ugc' class='url'>linasv</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-76976">2 February, 2016 at 1:24 am</a>		</div>
+
+		<p>Hi Jon,</p>
+<p>Some parts of a model need to be &#8220;faithful&#8221; (or, to borrow a phrase from genetics, &#8220;highly conserved&#8221;) while other parts can be variable and/or relatively unimportant.</p>
+<p>If the model is formal in the sense of Model Theory, then how do I assign probabilities to the various parts to indicate how faithful or variable they are?  Is the result of doing so a &#8220;Markov Logic Net&#8221; (MLN)? If so, then how does it work?</p>
+<p>Now, practical control problems have either linear of ODE models, so if I walk down the Model-Theory path, this suggests employing something like a Satisfiability Modulo-Theories (SMT) framework.  But these are not probabilistic, nor do they seem to be good at tuning my ODE (for example, a Kalman filter).</p>
+<p>I am not aware of any texts that discuss model-theory+probability in any enlightened way, although there seem to be a infinite number of special-case, domain-specific treatments that all seem similar but yet all different&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76976#respond' data-commentid="76976" data-postid="20937" data-belowelement="div-comment-76976" data-respondelement="respond" data-replyto="Reply to linasv" aria-label='Reply to linasv'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-77405">
+				<div id="div-comment-77405" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a6a7e9e3c83d96b1d78de9a9bc053611?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Tom Holroyd</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-77405">16 February, 2016 at 1:24 pm</a>		</div>
+
+		<p>Robert Rosen, in his book Anticipatory Systems, says organisms must contain models of the environment, and in that work and later works expands this to say that formalisms in math are models of [part of] the world, and this is exactly why formalisms break down, because they are necessarily simple, and the world is complex. F=ma for example, cuts the formalism off at second order. It works for a while &#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=77405#respond' data-commentid="77405" data-postid="20937" data-belowelement="div-comment-77405" data-respondelement="respond" data-replyto="Reply to Tom Holroyd" aria-label='Reply to Tom Holroyd'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-77474">
+				<div id="div-comment-77474" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-77474">20 February, 2016 at 12:05 am</a>		</div>
+
+		<p>By the way, there&#8217;s no sign that Newtonian mechanics would work better with a third-order equation!  The simplifications it makes are of a different sort.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=77474#respond' data-commentid="77474" data-postid="20937" data-belowelement="div-comment-77474" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-seanny1986 odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-160662">
+				<div id="div-comment-160662" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/343892f1c5235b2ac9a67f7b26aab68e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">seanny1986</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-160662">9 April, 2020 at 2:23 am</a>		</div>
+
+		<p>So, I know this is several years old now, but I found it interesting and wanted to share some thoughts. If I&#8217;ve understood correctly, doesn&#8217;t Lemma 1 tell us that a regulator <em>has</em> to be a function of the state? Because if it isn&#8217;t, it&#8217;s essentially acting randomly (or rather, undirected). Following on from this, if the regulator is a function of the state, and we have some governing dynamics s&#8217; = f(s,a(s)), then the optimal action will be some inverse function of the dynamics system a(s) = g(s&#8217;, s), where I&#8217;ll assume that s&#8217; is the optimal next step to reaching some goal state G. I&#8217;m probably being a bit fast and loose with terminology here.</p>
+<p>That said, I&#8217;d like to tie this back to reinforcement learning, which is an area I&#8217;m a bit more familiar with. In RL, we have &#8220;model free&#8221; methods that maximize a reward signal using gradient ascent. They&#8217;re model free in the sense that they don&#8217;t use a transition function to map out a trajectory, but I&#8217;d argue that the model is actually implicit in the reward function, because it determines the behavior of the agent. You can mis-specify a reward function, in which case you get an agent that does something wildly unexpected (e.g. suiciding), or you can pick the right set of rewards to get the behavior you want. It&#8217;s only when the reward function is congruent with the task and environment that you get something useful.</p>
+<p>The interesting thing (to me at least), is that the process of learning in RL is fundamentally tied in with minimizing cross-entropy in some form or another. The policy gradient theorem uses the score function approximator to step function parameters in the direction that maximizes the reward, but this gradient approximator implies that the policy is fitting to a Boltzmann distribution given by the reward function. This turns out to be the case for <em>all</em> policy gradients through the equivalence between the score function gradient estimate and the change-of-variables gradient estimate. Furthermore, you can link all RL algorithms in this way, including Q value-based methods like Q learning, which turn out to be minimizing KL-divergence rather than cross-entropy (not sure how widely known this is &#8212; it&#8217;s something I only figured out recently, and led me to this page).</p>
+<p>You can actually do a simple test with RL and fit a distribution directly by minimizing reverse mode KL-divergence instead of cross-entropy (this gives you a slightly modified policy gradient estimator, that maximizes policy entropy as it minimizes cross-entropy). Say you have data generated by some underlying distribution k(x) ~ N(mu, sigma), and you fit a policy to a reward function that rewards prediction of the data &#8212; your policy will only fit k(x) when the weighting of the reward function is the same as k(x) (i.e. if k(x) = f(x) + sigma * eps, where eps ~ N(0, I), then for a reward function -m * (pi(a|x) &#8211; y)^2 , m = 0.5/sigma^2 ). That is to say, in this simple case, the reward function has to be a model of the original distribution for the policy to learn the optimal action and entropy (this isn&#8217;t the case with the standard PG, which minimizes cross-entropy, and thus fits the mean and becomes increasingly deterministic over time).</p>
+<p>Just some thoughts. Happy to share some code and figures if you&#8217;re interested.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=160662#respond' data-commentid="160662" data-postid="20937" data-belowelement="div-comment-160662" data-respondelement="respond" data-replyto="Reply to seanny1986" aria-label='Reply to seanny1986'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-169454">
+				<div id="div-comment-169454" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://lh3.googleusercontent.com/a-/AOh14GgfSaBmBLbEkdu92VqQ6mGmxdSe7PiEio2VLAdpdg=s96-c' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Elias Hasle</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-169454">17 February, 2021 at 12:53 pm</a>		</div>
+
+		<p>Thank you for investigating this! I think you are being too nice with the authors. After all, they are clearly abusing the high-ranking label of &#8220;theorem&#8221; for a sloppily explained hunch. It doesn&#8217;t help if their hunch is (partially) right and has inspired other researchers.</p>
+<p>It is a fascinating topic, though.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=169454#respond' data-commentid="169454" data-postid="20937" data-belowelement="div-comment-169454" data-respondelement="respond" data-replyto="Reply to Elias Hasle" aria-label='Reply to Elias Hasle'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-169458">
+				<div id="div-comment-169458" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/#comment-169458">17 February, 2021 at 10:59 pm</a>		</div>
+
+		<p>I&#8217;m a nice guy, so I preferred to focus on the interesting idea rather than the problems with making it precise.  But yes:</p>
+<blockquote><p>
+  When I tried to read Conant and Ashby’s paper, I got stuck. They use some very basic mathematical notation in nonstandard ways, and they don’t clearly state the hypotheses and conclusion of their theorem.
+</p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=169458#respond' data-commentid="169458" data-postid="20937" data-belowelement="div-comment-169458" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-76804">Daniel Mahler</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2016/01/27/the-good-regulator-theorem/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="341d8bfbf0" /><input type="hidden" name="_wp_http_referer" value="/2016/01/27/the-good-regulator-theorem/?replytocom=76804" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='20937' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='76804' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="c0e7d36bcf" /></p>
+<input type="hidden" name="genseq" value="1632669157" />
+<input type="hidden" id="ak_js" name="ak_js" value="181"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="David Corfield" class="recentcommentsavatartop" style="height:32px; width:32px;"><img alt='' src='https://lh3.googleusercontent.com/a/AATXAJxXcoKzwm_cY3LJp3qldhAQvZVoBimQd4xe5tDl=s96-c' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstexttop" style="">David Corfield on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172593">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="David Corfield" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://lh3.googleusercontent.com/a/AATXAJxXcoKzwm_cY3LJp3qldhAQvZVoBimQd4xe5tDl=s96-c' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">David Corfield on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172592">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="David Corfield" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://lh3.googleusercontent.com/a/AATXAJxXcoKzwm_cY3LJp3qldhAQvZVoBimQd4xe5tDl=s96-c' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">David Corfield on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172590">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="amarashiki" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,228 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2016/01/27/the-good-regulator-theorem/?replytocom=76804"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="ffcb185558" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,177,419 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-352603e575430df8997dad0ab4e35e17">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-72e889cf644c6a851a70a4b8a2f2d222">
+	</div>
+	<div class="grofile-hash-map-955b6f9c80ae3c733dcc870a3e35831f">
+	</div>
+	<div class="grofile-hash-map-a221b4b4e6dd199750731c51ee864a91">
+	</div>
+	<div class="grofile-hash-map-995e52a80c9f04e76c0dd589c5f259f5">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-53463a46070b974244107e96ca869e5d">
+	</div>
+	<div class="grofile-hash-map-06b43ef7c724d20cc4dbb39a55a6620d">
+	</div>
+	<div class="grofile-hash-map-cae4991f398a3d24a3f1ca2e45591da4">
+	</div>
+	<div class="grofile-hash-map-79b628d7beb93ec5978e7ece7efdb9f8">
+	</div>
+	<div class="grofile-hash-map-74ea8ff6b34ae457648cee8f4857f10b">
+	</div>
+	<div class="grofile-hash-map-cbfc152c5be625145e552072c2c69d5b">
+	</div>
+	<div class="grofile-hash-map-224bdce23ff5bdc1d79517fb512665cb">
+	</div>
+	<div class="grofile-hash-map-a114ddb2d8d68d281202f95cfd64c96c">
+	</div>
+	<div class="grofile-hash-map-343892f1c5235b2ac9a67f7b26aab68e">
+	</div>
+	<div class="grofile-hash-map-391f38a9d37ea8151e4ea2de19e59ece">
+	</div>
+	<div class="grofile-hash-map-465cdeaca50395b5ffb883f04dcec55d">
+	</div>
+	<div class="grofile-hash-map-7d62be404c89efbea1cd6b0dacfd0e3e">
+	</div>
+	<div class="grofile-hash-map-a6a7e9e3c83d96b1d78de9a9bc053611">
+	</div>
+	<div class="grofile-hash-map-1225d7f4ffda08c2b906b852cb525491">
+	</div>
+	<div class="grofile-hash-map-7d52fbe20c8ac05886a296e9ee2159b1">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=95508c5d71","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"20937","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'20937','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTZ6MTVOQ344LEgyQmdMdjdOQThqOTQ0NWdKZ2N1LkFQLV1hR0h4ZX5qeWFHN1tQa2xBOWpdfkx3QjBpZ2RxUV9+NFhIUWhrLHQxV11qMnNYNnZ2c3U2Um9vckxVJismYl95aTFYfFVvMUpXeFgudTlHY1ddR100ckhxS2w3cT1+a1dBbEV4eiVkLit8ZSx3c2xUM2E4dWZOSkFiU2RUbEtfU35LNHNEOWt8NVZPUTNNU0NjUVE9ampmQU5ddzc2dzlsOH5ralcrcTMreGdjQjdlMTZrWncwN0U1'}]);
+_stq.push([ 'clickTrackerInit', '12777403', '20937' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Network Theory (Part 6) | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Network Theory (Part&nbsp;6) Comments Feed" href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F04%2F16%2Fnetwork-theory-part-6%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2011\/04\/16\/network-theory-part-6\/?replytocom=27905","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F04%2F16%2Fnetwork-theory-part-6%2F%3Freplytocom%3D27905","postID":"3215","shortlink":"https:\/\/wp.me\/pRBZ9-PR","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/3215","statsLink":"https:\/\/wordpress.com\/stats\/post\/3215\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F04%2F16%2Fnetwork-theory-part-6%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-PR' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F04%2F16%2Fnetwork-theory-part-6%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2011%2F04%2F16%2Fnetwork-theory-part-6%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Network Theory (Part 6)" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/" />
+<meta property="og:description" content="Now for the fun part. Let&#8217;s see how tricks from quantum theory can be used to describe random processes. I&#8217;ll try to make this post self-contained. So, even if you skipped a bunch of th…" />
+<meta property="article:published_time" content="2011-04-16T06:19:41+00:00" />
+<meta property="article:modified_time" content="2011-04-16T07:58:49+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/networks/rabbit-in-hat.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Network Theory (Part&nbsp;6)" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/networks/rabbit-in-hat.jpg?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="Now for the fun part. Let&#039;s see how tricks from quantum theory can be used to describe random processes. I&#039;ll try to make this post self-contained. So, even if you skipped a bunch of the previous ones, this should make sense. You&#039;ll need to know a bit of math: calculus, a tiny bit probability theory,&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-3215 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-3215 post type-post status-publish format-standard hentry category-mathematics category-networks category-puzzles" id="post-3215">
+			<h2>Network Theory (Part&nbsp;6)</h2>
+
+			<div class="entry">
+				<p>Now for the fun part.   Let&#8217;s see how tricks from quantum theory can be used to describe random processes.  I&#8217;ll try to make this post self-contained.  So, even if you skipped a bunch of the previous ones, this should make sense.</p>
+<p>You&#8217;ll need to know a bit of math: calculus, a tiny bit probability theory, and linear operators on vector spaces.  You don&#8217;t need to know quantum theory, though you&#8217;ll have more fun if you do.  What we&#8217;re doing here is very similar&#8230; but also strangely different&mdash;for reasons I explained <a href="http://math.ucr.edu/home/baez/networks/networks_5.html">last time</a>.</p>
+<h4>Rabbits and quantum mechanics</h4>
+<p>Suppose we have a population of rabbits in a cage and we&#8217;d like to describe its growth in a stochastic way, using probability theory.  Let <img src="https://s0.wp.com/latex.php?latex=%5Cpsi_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi_n" class="latex" /> be the probability of having <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits.  We can borrow a trick from quantum theory, and summarize all these probabilities in a  <a href="http://en.wikipedia.org/wiki/Formal_power_series">formal power series</a> like this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5CPsi+%3D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+%5Cpsi_n+z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi = &#92;sum_{n = 0}^&#92;infty &#92;psi_n z^n" class="latex" /></p>
+<p>The variable <img src="https://s0.wp.com/latex.php?latex=z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z" class="latex" /> doesn&#8217;t mean anything in particular, and we don&#8217;t care if the power series converges.  See, in math &#8216;formal&#8217; means &#8220;it&#8217;s only symbols on the page, just follow the rules&#8221;.  It&#8217;s like if someone says a party is &#8216;formal&#8217;, so need to wear a white tie: you&#8217;re not supposed to ask what the tie <i>means</i>.</p>
+<p>However, there&#8217;s a good reason for this trick.  We can define two operators on formal power series, called the <b>annihilation operator</b>:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=a+%5CPsi+%3D+%5Cfrac%7Bd%7D%7Bd+z%7D+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a &#92;Psi = &#92;frac{d}{d z} &#92;Psi" class="latex" /></p>
+<p>and the <b>creation operator</b>:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=a%5E%5Cdagger+%5CPsi+%3D+z+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^&#92;dagger &#92;Psi = z &#92;Psi" class="latex" /></p>
+<p>They&#8217;re just differentiation and multiplication by <img src="https://s0.wp.com/latex.php?latex=z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z" class="latex" />, respectively.   So, for example, suppose we start out being 100% sure we have <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits for some particular number <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" />.  Then <img src="https://s0.wp.com/latex.php?latex=%5Cpsi_n+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi_n = 1" class="latex" />, while all the other probabilities are 0, so: </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5CPsi+%3D+z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi = z^n" class="latex" /></p>
+<p>If we then apply the creation operator, we obtain</p>
+<p><img src="https://s0.wp.com/latex.php?latex=a%5E%5Cdagger+%5CPsi+%3D+z%5E%7Bn%2B1%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^&#92;dagger &#92;Psi = z^{n+1}" class="latex" /></p>
+<p>Voil&agrave;!  One more rabbit!    </p>
+<div align="center">
+<img border="2" src="https://i2.wp.com/math.ucr.edu/home/baez/networks/rabbit-in-hat.jpg" alt="" />
+</div>
+<p>The annihilation operator is more subtle.  If we start out with <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5CPsi+%3D+z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi = z^n" class="latex" /></p>
+<p>and then apply the annihilation operator, we obtain</p>
+<p><img src="https://s0.wp.com/latex.php?latex=a+%5CPsi+%3D+n+z%5E%7Bn-1%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a &#92;Psi = n z^{n-1}" class="latex" /></p>
+<p>What does this mean?  The <img src="https://s0.wp.com/latex.php?latex=z%5E%7Bn-1%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z^{n-1}" class="latex" /> means we have one fewer rabbit than before.  But what about the factor of <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" />?  It means there were <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> different ways we could pick a rabbit and make it disappear!   This should seem a bit mysterious, for various reasons&#8230; but we&#8217;ll see how it works soon enough.</p>
+<p>The creation and annihilation operators don&#8217;t commute:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%28a+a%5E%5Cdagger+-+a%5E%5Cdagger+a%29+%5CPsi+%3D+%5Cfrac%7Bd%7D%7Bd+z%7D+%28z+%5CPsi%29+-+z+%5Cfrac%7Bd%7D%7Bd+z%7D+%5CPsi+%3D+%5CPsi+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(a a^&#92;dagger - a^&#92;dagger a) &#92;Psi = &#92;frac{d}{d z} (z &#92;Psi) - z &#92;frac{d}{d z} &#92;Psi = &#92;Psi " class="latex" /></p>
+<p>so for short we say:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=a+a%5E%5Cdagger+-+a%5E%5Cdagger+a+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a a^&#92;dagger - a^&#92;dagger a = 1" class="latex" /></p>
+<p>or even shorter:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Ba%2C+a%5E%5Cdagger%5D+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[a, a^&#92;dagger] = 1" class="latex" /></p>
+<p>where the <a href="http://en.wikipedia.org/wiki/Commutator#Ring_theory"><b>commutator</b></a> of two operators is </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5BS%2CT%5D+%3D+S+T+-+T+S+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[S,T] = S T - T S " class="latex" /></p>
+<p>The noncommutativity of operators is often claimed to be a special feature of <i>quantum</i> physics, and the <a href="http://en.wikipedia.org/wiki/Creation_and_annihilation_operators">creation and annihilation operators</a> are fundamental to understanding the <a href="http://en.wikipedia.org/wiki/Quantum_harmonic_oscillator">quantum harmonic oscillator</a>.  There, instead of rabbits, we&#8217;re studying <a href="http://en.wikipedia.org/wiki/Quantum">quanta of energy</a>, which are peculiarly abstract entities obeying rather counterintuitive laws.  So, it&#8217;s cool that the same math applies to purely classical entities, like rabbits! </p>
+<p>In particular, the equation <img src="https://s0.wp.com/latex.php?latex=%5Ba%2C+a%5E%5Cdagger%5D+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[a, a^&#92;dagger] = 1" class="latex" /> just says that there&#8217;s one more way to put a rabbit in a cage of rabbits, and then take one out, than to take one out and then put one in.</p>
+<p>But how do we actually <i>use</i> this setup?  We want to describe how the probabilities <img src="https://s0.wp.com/latex.php?latex=%5Cpsi_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi_n" class="latex" /> change with time, so we write</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5CPsi%28t%29+%3D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+%5Cpsi_n%28t%29+z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(t) = &#92;sum_{n = 0}^&#92;infty &#92;psi_n(t) z^n" class="latex" /></p>
+<p>Then, we write down an equation describing the rate of change of <img src="https://s0.wp.com/latex.php?latex=%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi" class="latex" />:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D+%5CPsi%28t%29+%3D+H+%5CPsi%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t} &#92;Psi(t) = H &#92;Psi(t)" class="latex" /></p>
+<p>Here <img src="https://s0.wp.com/latex.php?latex=H&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H" class="latex" /> is an operator called the <b>Hamiltonian</b>, and the equation is called the <b>master equation</b>.  The details of the Hamiltonian depend on our problem!  But we can often write it down using creation and annihilation operators.  Let&#8217;s do some examples, and then I&#8217;ll tell you the general rule.</p>
+<h4> Catching rabbits </h4>
+<div align="center">
+<img src="https://i2.wp.com/math.ucr.edu/home/baez/networks/0-in-1-out.png" alt="" />
+</div>
+<p><a href="https://johncarlosbaez.wordpress.com/2011/04/11/network-theory-part-5/">Last</a> time I told you what happens when we stand in a river and catch fish as they randomly swim past.  Let me remind you of how that works.  But today let&#8217;s use rabbits.</p>
+<p>So, suppose an inexhaustible supply of rabbits are randomly roaming around a huge field, and each time a rabbit enters a certain area, we catch it and add it to our population of caged rabbits.   Suppose that on average we catch one rabbit per unit time.  Suppose the chance of catching a rabbit during any interval of time is independent of what happened before.   What is the Hamiltonian describing the probability distribution of caged rabbits, as a function of time?</p>
+<p>There&#8217;s an obvious dumb guess: the creation operator!  However, we saw last time that this doesn&#8217;t work, and we saw how to fix it.  The right answer is</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+a%5E%5Cdagger+-+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = a^&#92;dagger - 1" class="latex" /></p>
+<p>To see why, suppose for example that at some time <img src="https://s0.wp.com/latex.php?latex=t&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t" class="latex" /> we have <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits, so:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5CPsi%28t%29+%3D+z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(t) = z^n" class="latex" /></p>
+<p>Then the master equation says that at this moment,</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D+%5CPsi%28t%29+%3D+%28a%5E%5Cdagger+-+1%29+%5CPsi%28t%29+%3D++z%5E%7Bn%2B1%7D+-+z%5En+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t} &#92;Psi(t) = (a^&#92;dagger - 1) &#92;Psi(t) =  z^{n+1} - z^n " class="latex" /></p>
+<p>Since <img src="https://s0.wp.com/latex.php?latex=%5CPsi+%3D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+%5Cpsi_n%28t%29+z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi = &#92;sum_{n = 0}^&#92;infty &#92;psi_n(t) z^n" class="latex" />, this implies that the coefficients of our formal power series are changing like this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D+%5Cpsi_%7Bn%2B1%7D%28t%29+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t} &#92;psi_{n+1}(t) = 1" class="latex" /><br />
+<img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D+%5Cpsi_%7Bn%7D%28t%29+%3D+-1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t} &#92;psi_{n}(t) = -1" class="latex" /></p>
+<p>while all the rest have zero derivative at this moment.  And that&#8217;s exactly right!   See, <img src="https://s0.wp.com/latex.php?latex=%5Cpsi_%7Bn%2B1%7D%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi_{n+1}(t)" class="latex" /> is the probability of having one more rabbit, and this is going up at rate 1.  Meanwhile, <img src="https://s0.wp.com/latex.php?latex=%5Cpsi_n%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi_n(t)" class="latex" /> is the probability of having <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits,  and this is going down at the same rate.</p>
+<p><b>Puzzle 1.</b>  Show that with this Hamiltonian and any initial conditions, the master equation predicts that the expected number of rabbits grows linearly.</p>
+<h4>Dying rabbits</h4>
+<div align="center">
+<img src="https://i1.wp.com/math.ucr.edu/home/baez/networks/1-in-0-out.png" alt="" />
+</div>
+<p>Don&#8217;t worry: no rabbits are actually injured in the research that Jacob Biamonte is doing here at the Centre for Quantum Technologies.   He&#8217;s keeping them well cared for in a big room on the 6th floor.   This is just a thought experiment.</p>
+<p>Suppose a mean nasty guy had a population of rabbits in a cage and didn&#8217;t feed them at all.  Suppose that each rabbit has a unit probability of dying per unit time.   And as always, suppose the probability of this happening in any interval of time is independent of what happens before that time.  </p>
+<p>What is the Hamiltonian?   Again there&#8217;s a dumb guess: the annihilation operator!  And again this guess is wrong, but it&#8217;s not far off.   As before, the right answer includes a &#8216;correction term&#8217;:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+a+-+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = a - N" class="latex" /></p>
+<p>This time the correction term is famous in its own right.  It&#8217;s called the <a href="http://en.wikipedia.org/wiki/Particle_number_operator"><b>number operator</b></a>:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=N+%3D+a%5E%5Cdagger+a&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N = a^&#92;dagger a" class="latex" /></p>
+<p>The reason is that if we start with <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits, and apply this operator, it amounts to multiplication by <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" />:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=N+z%5En+%3D+z+%5Cfrac%7Bd%7D%7Bd+z%7D+z%5En+%3D+n+z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N z^n = z &#92;frac{d}{d z} z^n = n z^n" class="latex" /></p>
+<p>Let&#8217;s see why this guess is right.    Again, suppose that at some particular time <img src="https://s0.wp.com/latex.php?latex=t&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t" class="latex" /> we have <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits, so</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5CPsi%28t%29+%3D+z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(t) = z^n" class="latex" /></p>
+<p>Then the master equation says that at this time</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D+%5CPsi%28t%29+%3D+%28a+-+N%29+%5CPsi%28t%29+%3D+n+z%5E%7Bn-1%7D+-+n+z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t} &#92;Psi(t) = (a - N) &#92;Psi(t) = n z^{n-1} - n z^n" class="latex" /></p>
+<p>So, our probabilities are changing like this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D+%5Cpsi_%7Bn-1%7D%28t%29+%3D+n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t} &#92;psi_{n-1}(t) = n" class="latex" /><br />
+<img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D+%5Cpsi_n%28t%29+%3D+-n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t} &#92;psi_n(t) = -n" class="latex" /></p>
+<p>while the rest have zero derivative.   And this is good!   We&#8217;re starting with <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits, and each has a unit probability per unit time of dying. So, the chance of having one less should be going up at rate <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" />.   And the chance of having the same number we started with should be going <i>down</i> at the same rate.</p>
+<p><b>Puzzle 2.</b>  Show that with this Hamiltonian and any initial conditions, the master equation predicts that the expected number of rabbits decays exponentially.</p>
+<h4>Breeding rabbits</h4>
+<div align="center">
+<img src="https://i2.wp.com/math.ucr.edu/home/baez/networks/1-in-2-out.png" alt="" />
+</div>
+<p>Suppose we have a strange breed of rabbits that reproduce asexually.  Suppose that each rabbit has a unit probability per unit time of having a baby rabbit, thus effectively duplicating itself.</p>
+<p>As you can see from the cryptic picture above, this &#8216;duplication&#8217; process takes one rabbit as input and has two rabbits as output.  So, if you&#8217;ve been paying attention, you should be ready with a dumb guess for the Hamiltonian: <img src="https://s0.wp.com/latex.php?latex=a%5E%5Cdagger+a%5E%5Cdagger+a&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^&#92;dagger a^&#92;dagger a" class="latex" />.  This operator annihilates one rabbit and then creates two!  </p>
+<p>But you should also suspect that this dumb guess will need a &#8216;correction term&#8217;.   And you&#8217;re right!  As always, the correction terms makes the probability of things staying the same <i>go down</i> at exactly the rate that the probability of things changing <i>goes up</i>.  </p>
+<p>You should guess the correction term&#8230; but I&#8217;ll just tell you:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+a%5E%5Cdagger+a%5E%5Cdagger+a+-+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = a^&#92;dagger a^&#92;dagger a - N" class="latex" /></p>
+<p>We can check this in the usual way, by seeing what it does when we have <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+z%5En+%3D++z%5E2+%5Cfrac%7Bd%7D%7Bd+z%7D+z%5En+-+n+z%5En+%3D+n+z%5E%7Bn%2B1%7D+-+n+z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H z^n =  z^2 &#92;frac{d}{d z} z^n - n z^n = n z^{n+1} - n z^n" class="latex" /></p>
+<p>That&#8217;s good: since there are <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits, the rate of rabbit duplication is <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" />.  This is the rate at which the probability of having one more rabbit goes up&#8230; and also the rate at which the probability of having <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits goes down.</p>
+<p><b>Puzzle 3.</b>  Show that with this Hamiltonian and any initial conditions, the master equation predicts that the expected number of rabbits grows exponentially.</p>
+<h4> Dueling rabbits </h4>
+<p>Let&#8217;s do some stranger examples, just so you can see the general pattern.</p>
+<div align="center">
+<img src="https://i2.wp.com/math.ucr.edu/home/baez/networks/2-in-1-out.png" alt="" />
+</div>
+<p>Here each pair of rabbits has a unit probability per unit time of fighting a duel with only one survivor.  You might guess the Hamiltonian <img src="https://s0.wp.com/latex.php?latex=a%5E%5Cdagger+a+a%2C+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^&#92;dagger a a, " class="latex" /> but in fact:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+a%5E%5Cdagger+a+a+-+N%28N-1%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = a^&#92;dagger a a - N(N-1)" class="latex" /></p>
+<p>Let&#8217;s see why this is right!  Let&#8217;s see what it does when we have <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+z%5En+%3D+z+%5Cfrac%7Bd%5E2%7D%7Bd+z%5E2%7D+z%5En+-+n%28n-1%29z%5En+%3D+n%28n-1%29+z%5E%7Bn-1%7D+-+n%28n-1%29z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H z^n = z &#92;frac{d^2}{d z^2} z^n - n(n-1)z^n = n(n-1) z^{n-1} - n(n-1)z^n" class="latex" /></p>
+<p>That&#8217;s good: since there are <img src="https://s0.wp.com/latex.php?latex=n%28n-1%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n(n-1)" class="latex" /> ordered pairs of rabbits, the rate at which duels take place is <img src="https://s0.wp.com/latex.php?latex=n%28n-1%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n(n-1)" class="latex" />.   This is the rate at which the probability of having one less rabbit goes up&#8230; and also the rate at which the probability of having <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits goes down.</p>
+<p>(If you prefer <i>unordered</i> pairs of rabbits, just divide the Hamiltonian by 2.  We should talk about this more, but not now.)</p>
+<h4>Brawling rabbits</h4>
+<div align="center">
+<img src="https://i1.wp.com/math.ucr.edu/home/baez/networks/3-in-1-out.png" alt="" />
+</div>
+<p>Now each <i>triple</i> of rabbits has a unit probability per unit time of getting into a fight with only one survivor!  I don&#8217;t know the technical term for a three-way fight, but perhaps it counts as a small &#8216;brawl&#8217; or &#8216;melee&#8217;.  In fact the Wikipedia article for <a href="http://en.wikipedia.org/wiki/Melee">&#8216;melee&#8217;</a> shows three rabbits in suits of armor, fighting it out:</p>
+<div align="center">
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Codex_Manesse_%28Herzog%29_von_Anhalt.jpg/220px-Codex_Manesse_%28Herzog%29_von_Anhalt.jpg" />
+</div>
+<p>Now the Hamiltonian is:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+a%5E%5Cdagger+a%5E3+-+N%28N-1%29%28N-2%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = a^&#92;dagger a^3 - N(N-1)(N-2)" class="latex" /></p>
+<p>You can check that:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+z%5En+%3D+n%28n-1%29%28n-2%29+z%5E%7Bn-2%7D+-+n%28n-1%29%28n-2%29+z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H z^n = n(n-1)(n-2) z^{n-2} - n(n-1)(n-2) z^n" class="latex" /></p>
+<p>and this is good, because <img src="https://s0.wp.com/latex.php?latex=n%28n-1%29%28n-2%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n(n-1)(n-2)" class="latex" /> is the number of ordered triples of rabbits.  You can see how this number shows up from the math, too:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=a%5E3+z%5En+%3D+%5Cfrac%7Bd%5E3%7D%7Bd+z%5E3%7D+z%5En+%3D+n%28n-1%29%28n-2%29+z%5E%7Bn-3%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^3 z^n = &#92;frac{d^3}{d z^3} z^n = n(n-1)(n-2) z^{n-3}" class="latex" /></p>
+<h4> The general rule </h4>
+<p>Suppose we have a process taking <img src="https://s0.wp.com/latex.php?latex=k&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="k" class="latex" /> rabbits as input and having <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" /> rabbits as output:</p>
+<div align="center">
+<img src="https://i1.wp.com/math.ucr.edu/home/baez/networks/k-in-j-out-labels.png" alt="" />
+</div>
+<p>I hope you can guess the Hamiltonian I&#8217;ll use for this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+%7Ba%5E%7B%5Cdagger%7D%7D%5Ej+a%5Ek+-+N%28N-1%29+%5Ccdots+%28N-k%2B1%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = {a^{&#92;dagger}}^j a^k - N(N-1) &#92;cdots (N-k+1)" class="latex" /></p>
+<p>This works because</p>
+<p><img src="https://s0.wp.com/latex.php?latex=a%5Ek+z%5En+%3D+%5Cfrac%7Bd%5Ek%7D%7Bd+z%5Ek%7D+z%5En+%3D+n%28n-1%29+%5Ccdots+%28n-k%2B1%29+z%5E%7Bn-k%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^k z^n = &#92;frac{d^k}{d z^k} z^n = n(n-1) &#92;cdots (n-k+1) z^{n-k}" class="latex" /></p>
+<p>so that if we apply our Hamiltonian to <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits, we get</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+z%5En+%3D++n%28n-1%29+%5Ccdots+%28n-k%2B1%29+%28z%5E%7Bn%2Bj-k%7D+-+z%5En%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H z^n =  n(n-1) &#92;cdots (n-k+1) (z^{n+j-k} - z^n)" class="latex" /></p>
+<p>See?  As the probability of having <img src="https://s0.wp.com/latex.php?latex=n%2Bj-k&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n+j-k" class="latex" /> rabbits goes up, the probability of having <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits goes down, at an equal rate.  This sort of balance is necessary for <img src="https://s0.wp.com/latex.php?latex=H&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H" class="latex" /> to be a sensible Hamiltonian in this sort of stochastic theory (an <a href="https://johncarlosbaez.wordpress.com/2011/04/11/network-theory-part-5/">&#8216;infinitesimal stochastic operator&#8217;</a>, to be precise).  And the rate is exactly the number of ordered <img src="https://s0.wp.com/latex.php?latex=k&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="k" class="latex" />-tuples taken from a collection of <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> rabbits.  This is called the <img src="https://s0.wp.com/latex.php?latex=k&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="k" class="latex" />th <a href="http://www.stanford.edu/~dgleich/publications/finite-calculus.pdf#page=6"><b>falling power</b></a> of <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" />, and written as follows:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=n%5E%7B%5Cunderline%7Bk%7D%7D+%3D+n%28n-1%29+%5Ccdots+%28n-k%2B1%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n^{&#92;underline{k}} = n(n-1) &#92;cdots (n-k+1)" class="latex" /></p>
+<p>Since we can apply functions to operators as well as numbers, we can write our Hamiltonian as: </p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+%7Ba%5E%7B%5Cdagger%7D%7D%5Ej+a%5Ek+-+N%5E%7B%5Cunderline%7Bk%7D%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = {a^{&#92;dagger}}^j a^k - N^{&#92;underline{k}}" class="latex" /></p>
+<h4>Kissing rabbits</h4>
+<div align="center">
+<img src="https://i2.wp.com/math.ucr.edu/home/baez/networks/2-in-2-out.png" alt="" />
+</div>
+<p>Let&#8217;s do one more example just to test our understanding.  This time each pair of rabbits has a unit probability per unit time of bumping into one another, exchanging a friendly kiss and walking off.  This shouldn&#8217;t affect the rabbit population at all!  But let&#8217;s follow the rules and see what they say.</p>
+<p>According to our rules, the Hamiltonian should be:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+%7Ba%5E%7B%5Cdagger%7D%7D%5E2+a%5E2+-+N%28N-1%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = {a^{&#92;dagger}}^2 a^2 - N(N-1)" class="latex" /></p>
+<p>However, </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%7Ba%5E%7B%5Cdagger%7D%7D%5E2+a%5E2+z%5En+%3D+z%5E2+%5Cfrac%7Bd%5E2%7D%7Bdz%5E2%7D+z%5En+%3D+n%28n-1%29+z%5En+%3D+N%28N-1%29+z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="{a^{&#92;dagger}}^2 a^2 z^n = z^2 &#92;frac{d^2}{dz^2} z^n = n(n-1) z^n = N(N-1) z^n" class="latex" /></p>
+<p>and since <img src="https://s0.wp.com/latex.php?latex=z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z^n" class="latex" /> form a &#8216;basis&#8217; for the formal power series, we see that:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%7Ba%5E%7B%5Cdagger%7D%7D%5E2+a%5E2+%3D+N%28N-1%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="{a^{&#92;dagger}}^2 a^2 = N(N-1)" class="latex" /></p>
+<p>so in fact:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = 0" class="latex" /></p>
+<p>That&#8217;s good: if the Hamiltonian is zero, the master equation will say </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D+%5CPsi%28t%29+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t} &#92;Psi(t) = 0" class="latex" /></p>
+<p>so the population, or more precisely the probability of having any given number of rabbits, will be constant.</p>
+<p>There&#8217;s another nice little lesson here.  Copying the calculation we just did, it&#8217;s easy to see that:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%7Ba%5E%7B%5Cdagger%7D%7D%5Ek+a%5Ek+%3D+N%5E%7B%5Cunderline%7Bk%7D%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="{a^{&#92;dagger}}^k a^k = N^{&#92;underline{k}} " class="latex" /></p>
+<p>This is a cute formula for falling powers of the number operator in terms of annihilation and creation operators.  It means that for the general transition we saw before:</p>
+<div align="center">
+<img src="https://i1.wp.com/math.ucr.edu/home/baez/networks/k-in-j-out-labels.png" alt="" />
+</div>
+<p>we can write the Hamiltonian in two equivalent ways:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+%7Ba%5E%7B%5Cdagger%7D%7D%5Ej+a%5Ek+-+N%5E%7B%5Cunderline%7Bk%7D%7D+%3D++%7Ba%5E%7B%5Cdagger%7D%7D%5Ej+a%5Ek+-+%7Ba%5E%7B%5Cdagger%7D%7D%5Ek+a%5Ek+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = {a^{&#92;dagger}}^j a^k - N^{&#92;underline{k}} =  {a^{&#92;dagger}}^j a^k - {a^{&#92;dagger}}^k a^k " class="latex" /></p>
+<p>Okay, that&#8217;s it for now!  We can, and will, generalize all this stuff to stochastic Petri nets where there are things of many different kinds&mdash;not just rabbits.  And we&#8217;ll see that the master equation we get matches the answer to the puzzle in <a href="http://math.ucr.edu/home/baez/networks/networks_4.html">Part 4</a>.  That&#8217;s pretty easy.  But first, we&#8217;ll have a guest post by Jacob Biamonte, who will explain a more realistic example from population biology.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Saturday, April 16th, 2011 at 6:19 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/networks/" rel="category tag">networks</a>, <a href="https://johncarlosbaez.wordpress.com/category/puzzles/" rel="category tag">puzzles</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2011/04/14/the-genetic-code/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2011/04/21/stabilization-wedges-part-5/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">37 Responses to <em>Network Theory (Part&nbsp;6)</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-5332">
+				<div id="div-comment-5332" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Corfield</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5332">16 April, 2011 at 11:08 am</a>		</div>
+
+		<p>For puzzle 1, you have shown for the basis element <img src="https://s0.wp.com/latex.php?latex=z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z^n" class="latex" />, that <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D+%5Cpsi_%7Bn%2B1%7D%28t%29+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t} &#92;psi_{n+1}(t) = 1" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D+%5Cpsi_%7Bn%7D%28t%29+%3D+-1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t} &#92;psi_{n}(t) = -1" class="latex" />. So the rate of increase of the expected number is <img src="https://s0.wp.com/latex.php?latex=%28n+%2B+1%29+-+n+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(n + 1) - n = 1" class="latex" />. So for a general distribution, the rate of increase of the expected number of rabbits is <img src="https://s0.wp.com/latex.php?latex=%5Csum_n+%5Cpsi_%7Bn%7D%28t%29+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_n &#92;psi_{n}(t) = 1" class="latex" />.</p>
+<p>Is there a slick way of doing it via <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D+%28N+%5CPsi%28t%29%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t} (N &#92;Psi(t))" class="latex" /> evaluated at <img src="https://s0.wp.com/latex.php?latex=z+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z = 1" class="latex" />?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5332#respond' data-commentid="5332" data-postid="3215" data-belowelement="div-comment-5332" data-respondelement="respond" data-replyto="Reply to David Corfield" aria-label='Reply to David Corfield'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-5333">
+				<div id="div-comment-5333" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5333">16 April, 2011 at 11:40 am</a>		</div>
+
+		<p>Great!  Thanks, David!  I have a slick way to do these, but I like your way because, unlike mine, it doesn&#8217;t convey the impression that you need to be a crazed quantum physicist to solve these problems.</p>
+<p>Here&#8217;s my way.  We start with some general useful observations that have nothing to do with this <i>particular</i> puzzle.  They&#8217;ll come in handy for <i>all</i> these puzzles.</p>
+<p>As you note, the expected value of the number of rabbits in any probability distribution <img src="https://s0.wp.com/latex.php?latex=%5Cpsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi" class="latex" /> is </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum_%7Bn%3D0%7D%5E%5Cinfty+n+%5Cpsi_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_{n=0}^&#92;infty n &#92;psi_n" class="latex" /> </p>
+<p>On the other hand: </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Barray%7D%7Bccl%7D+N+%5CPsi+%26%3D%26+z+%5Cfrac%7Bd%7D%7Bd+z%7D+%5Csum_%7Bn%3D0%7D%5E%5Cinfty+%5Cpsi_n+z%5En+%5C%5C+++%5C%5C+%26%3D%26+%5Csum_%7Bn%3D0%7D%5E%5Cinfty+n+%5Cpsi_n+z%5En+%5Cend%7Barray%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{array}{ccl} N &#92;Psi &amp;=&amp; z &#92;frac{d}{d z} &#92;sum_{n=0}^&#92;infty &#92;psi_n z^n &#92;&#92;   &#92;&#92; &amp;=&amp; &#92;sum_{n=0}^&#92;infty n &#92;psi_n z^n &#92;end{array}" class="latex" /></p>
+<p>So, if we evaluate <img src="https://s0.wp.com/latex.php?latex=N%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N&#92;Psi" class="latex" /> at <img src="https://s0.wp.com/latex.php?latex=z+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z = 1" class="latex" /> we get the expected number of rabbits:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=N%5CPsi+%7C_%7Bz+%3D+1%7D+%3D+%5Csum_%7Bn%3D0%7D%5E%5Cinfty+n+%5Cpsi_n+z%5En+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N&#92;Psi |_{z = 1} = &#92;sum_{n=0}^&#92;infty n &#92;psi_n z^n " class="latex" /></p>
+<p>Now suppose our probability distribution <img src="https://s0.wp.com/latex.php?latex=%5Cpsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi" class="latex" /> and thus <img src="https://s0.wp.com/latex.php?latex=%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi" class="latex" /> depend on time.  Then to see how the expected number of rabbits changes with time, we can compute</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D%28N+%5CPsi%28t%29%29+%7C_%7Bz+%3D+1%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t}(N &#92;Psi(t)) |_{z = 1}" class="latex" /></p>
+<p>Let&#8217;s try.  The old &#8220;do whatever you can do&#8221; strategy is always good in this sort of situation:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Barray%7D%7Bccl%7D+%5Cfrac%7Bd%7D%7Bd+t%7D%28N+%5CPsi%28t%29%29+%7C_%7Bz+%3D+1%7D+%26%3D%26+N+%28%5Cfrac%7Bd%7D%7Bd+t%7D+%5CPsi%28t%29%29+%7C_%7Bz+%3D+1%7D+%5C%5C+++%5C%5C+%26%3D%26+N+H+%5CPsi%28t%29+%7C_%7Bz%3D1%7D+%5Cend%7Barray%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{array}{ccl} &#92;frac{d}{d t}(N &#92;Psi(t)) |_{z = 1} &amp;=&amp; N (&#92;frac{d}{d t} &#92;Psi(t)) |_{z = 1} &#92;&#92;   &#92;&#92; &amp;=&amp; N H &#92;Psi(t) |_{z=1} &#92;end{array} " class="latex" /></p>
+<p>where in the first step we pass the derivative through the linear operator (anyone who doubts we can, belongs in math grad school), and in the second we use the master equation</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+t%7D+%5CPsi%28t%29+%3D+H+%5CPsi%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d t} &#92;Psi(t) = H &#92;Psi(t)" class="latex" /></p>
+<p>What can we do next?  Well, we can use the definition of <img src="https://s0.wp.com/latex.php?latex=H&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H" class="latex" /> (which depends on which puzzle we&#8217;re doing) and the definition of <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" /> (which doesn&#8217;t):</p>
+<p><img src="https://s0.wp.com/latex.php?latex=N+%3D+a%5E%5Cdagger+a&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N = a^&#92;dagger a" class="latex" /></p>
+<p>To solve Puzzle 1, we should show the rate at which the expected number of rabbits grows is a constant.  In fact you&#8217;ve already shown this constant equals 1, so we know what we&#8217;re aiming for.  </p>
+<p>In this puzzle we have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+a%5E%5Cdagger+-+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = a^&#92;dagger - 1" class="latex" /></p>
+<p>so the rate at which the expected number of rabbits grows is</p>
+<p><img src="https://s0.wp.com/latex.php?latex=a%5E%5Cdagger+a+%28+a%5E%5Cdagger+-+1%29+%5CPsi%28t%29+%7C_%7Bz%3D1%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^&#92;dagger a ( a^&#92;dagger - 1) &#92;Psi(t) |_{z=1} " class="latex" /></p>
+<p>and we&#8217;re trying to show this equals 1.</p>
+<p>But remember that <img src="https://s0.wp.com/latex.php?latex=a%5E%5Cdagger&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^&#92;dagger" class="latex" /> is multiplication by <img src="https://s0.wp.com/latex.php?latex=z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z" class="latex" />, while </p>
+<p><img src="https://s0.wp.com/latex.php?latex=a+%3D+%5Cfrac%7Bd%7D%7Bd+z%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a = &#92;frac{d}{d z}" class="latex" /></p>
+<p>This should do the job somehow&#8230; no?</p>
+<p>All this may seem like overkill&mdash;and indeed it is for <i>this</i> puzzle.  But it&#8217;s a powerful strategy, and after we codify it a bit, it will become less work.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5333#respond' data-commentid="5333" data-postid="3215" data-belowelement="div-comment-5333" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-5335">
+				<div id="div-comment-5335" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Corfield</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5335">16 April, 2011 at 12:23 pm</a>		</div>
+
+		<p>That last equation is where I reached. I guess there was never going to be a simplification before setting <img src="https://s0.wp.com/latex.php?latex=z+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z = 1" class="latex" />. The other two puzzles work out fine.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5335#respond' data-commentid="5335" data-postid="3215" data-belowelement="div-comment-5335" data-respondelement="respond" data-replyto="Reply to David Corfield" aria-label='Reply to David Corfield'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-5354">
+				<div id="div-comment-5354" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5354">18 April, 2011 at 8:01 am</a>		</div>
+
+		<p>Great.  But that kind of remark tends kill off anyone else&#8217;s desire to solve the puzzles: there&#8217;s this guy out there who&#8217;s already done &#8217;em&#8230;  </p>
+<p>I want to actually <i>see</i> the solutions.  I haven&#8217;t actually done them.   Should I offer a bounty?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5354#respond' data-commentid="5354" data-postid="3215" data-belowelement="div-comment-5354" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-2 parent highlander-comment" id="comment-5356">
+				<div id="div-comment-5356" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Corfield</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5356">18 April, 2011 at 8:49 am</a>		</div>
+
+		<p>My chances of having lengthy stretches of Latex working without preview are slim, but here goes.</p>
+<p>Puzzle 2: </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Barray%7D%7Bccl%7D+%5Cfrac%7Bd%7D%7Bd+t%7D%28N+%5CPsi%28t%29%29+%26%3D%26+N+%28%5Cfrac%7Bd%7D%7Bd+t%7D+%5CPsi%28t%29%29+%5C%5C+%5C%5C+%26%3D%26+N+H+%5CPsi%28t%29+%5C%5C+%5C%5C+%26%3D%26+N%28a+-+N%29+%5CPsi+%5C%5C+%5C%5C+%26%3D%26+%5Csum+n%28n+-+1%29+%5Cpsi_n+z%5E%7Bn+-+1%7D+-+n%5E2+%5Cpsi_n+z%5En+.+%5Cend%7Barray%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{array}{ccl} &#92;frac{d}{d t}(N &#92;Psi(t)) &amp;=&amp; N (&#92;frac{d}{d t} &#92;Psi(t)) &#92;&#92; &#92;&#92; &amp;=&amp; N H &#92;Psi(t) &#92;&#92; &#92;&#92; &amp;=&amp; N(a - N) &#92;Psi &#92;&#92; &#92;&#92; &amp;=&amp; &#92;sum n(n - 1) &#92;psi_n z^{n - 1} - n^2 &#92;psi_n z^n . &#92;end{array} " class="latex" /></p>
+<p>so</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Barray%7D%7Bccl%7D+%5Cfrac%7Bd%7D%7Bd+t%7D%28N+%5CPsi%28t%29%29+%7C_%7Bz+%3D+1%7D+%26%3D%26+-+%5Csum+n+%5Cpsi_n+%5C%5C+%5C%5C+%26%3D%26+%28N+%5CPsi%28t%29%29+%7C_%7Bz+%3D+1%7D+%5Cend%7Barray%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{array}{ccl} &#92;frac{d}{d t}(N &#92;Psi(t)) |_{z = 1} &amp;=&amp; - &#92;sum n &#92;psi_n &#92;&#92; &#92;&#92; &amp;=&amp; (N &#92;Psi(t)) |_{z = 1} &#92;end{array} " class="latex" /></p>
+<p>So, <img src="https://s0.wp.com/latex.php?latex=%28N+%5CPsi%28t%29%29+%7C_%7Bz+%3D+1%7D+%3D+A+e%5E%7Bt%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(N &#92;Psi(t)) |_{z = 1} = A e^{t}" class="latex" />.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5356#respond' data-commentid="5356" data-postid="3215" data-belowelement="div-comment-5356" data-respondelement="respond" data-replyto="Reply to David Corfield" aria-label='Reply to David Corfield'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-3 parent highlander-comment" id="comment-5357">
+				<div id="div-comment-5357" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5357">18 April, 2011 at 10:29 am</a>		</div>
+
+		<p>Great!  I don&#8217;t mind fixing up the LaTeX around here.  You got exponential growth instead of exponential decay, by dropping a minus sign, but that&#8217;s no big deal.</p>
+<p>Let me try it my way.  It&#8217;s really the same as your way, just with slightly different notation.  Like many physicists I&#8217;ve spent decades playing with many different formalisms for operators in quantum field theory, so I can&#8217;t resist trying different formalisms for this probabilistic version.  </p>
+<p>In my general formalism I like to use <img src="https://s0.wp.com/latex.php?latex=%5Cint+%5Cpsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;int &#92;psi" class="latex" /> to mean the total integral of a function over some measure space, so that &#8216;states&#8217;, that is probability distributions, are the functions obeying </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cint+%5Cpsi+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;int &#92;psi = 1" class="latex" /> </p>
+<p>and </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cpsi+%5Cge+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi &#92;ge 0" class="latex" />.  </p>
+<p>In the examples today the integral is really a sum, and it might be confusing to use integral notation since we&#8217;re using derivatives for a completely different purpose.  So let me define sum notation as follows:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+%5CPsi+%3D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+%5Cpsi_n+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum &#92;Psi = &#92;sum_{n = 0}^&#92;infty &#92;psi_n " class="latex" /></p>
+<p>This may annoy you, since after all we really have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5CPsi%7C_%7Bz+%3D+1%7D+%3D++%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+%5Cpsi_n+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi|_{z = 1} =  &#92;sum_{n = 0}^&#92;infty &#92;psi_n " class="latex" /></p>
+<p>but please humor me.  </p>
+<p>So, there&#8217;s a nice rule, easily verified:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+a%5E%5Cdagger+%5CPsi+%3D+%5Csum+%5CPsi+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum a^&#92;dagger &#92;Psi = &#92;sum &#92;Psi " class="latex" /></p>
+<p>I mentioned it before: it&#8217;s part of the creation operator being a stochastic operator.  This implies another nice rule:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+a+%5CPsi+%3D+%5Csum+N+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum a &#92;Psi = &#92;sum N &#92;Psi" class="latex" /></p>
+<p>Indeed:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+N+%5CPsi+%3D+%5Csum+a%5E%5Cdagger+a+%5CPsi+%3D+%5Csum+a+%5CPsi+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum N &#92;Psi = &#92;sum a^&#92;dagger a &#92;Psi = &#92;sum a &#92;Psi " class="latex" /></p>
+<p>The expected value of any observable <img src="https://s0.wp.com/latex.php?latex=O&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O" class="latex" /> in the state <img src="https://s0.wp.com/latex.php?latex=%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi" class="latex" /> is</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+O+%5CPsi+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum O &#92;Psi " class="latex" /></p>
+<p>So, if we&#8217;re trying to work out the time derivative of the expected value of <img src="https://s0.wp.com/latex.php?latex=O&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O" class="latex" />, we can start by doing</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bdt%7D+%5Csum+O+%5CPsi+%3D++%5Csum+O+%5Cfrac%7Bd%7D%7Bdt%7D+%5CPsi+%3D++%5Csum+O+H+%5CPsi+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{dt} &#92;sum O &#92;Psi =  &#92;sum O &#92;frac{d}{dt} &#92;Psi =  &#92;sum O H &#92;Psi " class="latex" /></p>
+<p>and then write <img src="https://s0.wp.com/latex.php?latex=O&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=H&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H" class="latex" /> using annihilation and creation operators and use our rules.</p>
+<p>For example, in Puzzle 2 we have </p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+a+-+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = a - N" class="latex" /></p>
+<p>and the observable we&#8217;re interested in is the number of rabbits</p>
+<p><img src="https://s0.wp.com/latex.php?latex=O+%3D+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O = N" class="latex" /></p>
+<p>so we want to understand</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+O+H+%5CPsi+%3D+%5Csum+N%28a-N%29+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum O H &#92;Psi = &#92;sum N(a-N) &#92;Psi" class="latex" /></p>
+<p>So far I&#8217;ve just gotten to the third line of our answer!  But I&#8217;m having fun playing with the machinery.</p>
+<p>Now every kid who&#8217;s studied quantum field theory knows</p>
+<p><img src="https://s0.wp.com/latex.php?latex=N+a+%3D+a+%28N+-+1%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N a = a (N - 1) " class="latex" /></p>
+<p>It&#8217;s easy to prove, and it says that annihilating a particle and then counting them is the same as counting them, subtracting one and then annihilating one.</p>
+<p>So:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+N%28a-N%29+%5CPsi+%3D+%5Csum+%28a+N+-+N+-+a%29+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum N(a-N) &#92;Psi = &#92;sum (a N - N - a) &#92;Psi" class="latex" /></p>
+<p>but here our rules come in handy!</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+%28a+N+-+N+-+a%29%5CPsi+%3D++%5Csum+%28N+-+N+-+N%29+%5CPsi+%3D+-+%5Csum+N+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum (a N - N - a)&#92;Psi =  &#92;sum (N - N - N) &#92;Psi = - &#92;sum N &#92;Psi" class="latex" /></p>
+<p>so we we see</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bdt%7D+%5Csum+N+%5CPsi+%3D+-+%5Csum+N+%5Cpsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{dt} &#92;sum N &#92;Psi = - &#92;sum N &#92;psi" class="latex" /></p>
+<p>as was to be shown.</p>
+<p>Perhaps this fascination with formalism seems odd, but I keep enjoying how everything compares with quantum mechanics!  For example, in quantum mechanics the expected value of an observable is</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+%5CPsi%2C+O+%5CPsi+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle &#92;Psi, O &#92;Psi &#92;rangle " class="latex" /></p>
+<p>and its time derivative is</p>
+<p><img src="https://s0.wp.com/latex.php?latex=i+%5Clangle+%5CPsi%2C+%28H+O+-+O+H%29+%5CPsi+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i &#92;langle &#92;Psi, (H O - O H) &#92;Psi &#92;rangle " class="latex" /></p>
+<p>hence the vast appeal of Lie algebras.  Now the expected value is</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+O+%5CPsi+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum O &#92;Psi " class="latex" /></p>
+<p>and its time derivative is just</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+O+H+%5CPsi+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum O H &#92;Psi " class="latex" /></p>
+<p>We don&#8217;t get two terms because <img src="https://s0.wp.com/latex.php?latex=%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi" class="latex" /> shows up just once in the formula &mdash; we&#8217;re using <img src="https://s0.wp.com/latex.php?latex=L%5E1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L^1" class="latex" /> instead of <img src="https://s0.wp.com/latex.php?latex=L%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L^2" class="latex" />.  So everything is similar&#8230; but eerily simple!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5357#respond' data-commentid="5357" data-postid="3215" data-belowelement="div-comment-5357" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-4 highlander-comment" id="comment-5358">
+				<div id="div-comment-5358" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Corfield</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5358">18 April, 2011 at 10:42 am</a>		</div>
+
+		<p>Now you&#8217;ve dropped the minus sign too!</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-5359">
+				<div id="div-comment-5359" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5359">18 April, 2011 at 10:47 am</a>		</div>
+
+		<p>Yup.  I caught that <i>while</i> you were writing your comment.  And I added a bunch of new stuff.  Moderator&#8217;s privilege, sorry.  <img src="https://i1.wp.com/math.ucr.edu/home/baez/emoticons/redface.gif" alt="" /></p>
+<p>Anyway, someone else should try Puzzle 3, to try out the spiffy new modifications of quantum theory!</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 highlander-comment" id="comment-5360">
+				<div id="div-comment-5360" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Corfield</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5360">18 April, 2011 at 10:54 am</a>		</div>
+
+		<p>Why does </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+N%28a-N%29+%5CPsi+%3D+%5Csum+%28a+N+-+N+-+a%29+%5CPsi%3F&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum N(a-N) &#92;Psi = &#92;sum (a N - N - a) &#92;Psi?" class="latex" /> Shouldn&#8217;t it be </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+%28a+N+-+N%5E2+-+a%29+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum (a N - N^2 - a) &#92;Psi" class="latex" />?</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-5362">
+				<div id="div-comment-5362" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5362">18 April, 2011 at 11:03 am</a>		</div>
+
+		<p>Let me try again:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=Na+%3D+aN+-+a&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Na = aN - a" class="latex" /></p>
+<p>so </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+N%28a-N%29+%5CPsi+%3D+%5Csum+%28a+N+-+a+-+N%5E2%29+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum N(a-N) &#92;Psi = &#92;sum (a N - a - N^2) &#92;Psi" class="latex" /></p>
+<p>but </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+a+%5CPsi+%3D+%5Csum+N+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum a &#92;Psi = &#92;sum N &#92;Psi" class="latex" /></p>
+<p>and for the same reason </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+a+N+%5CPsi+%3D+N%5E2+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum a N &#92;Psi = N^2 &#92;Psi" class="latex" /></p>
+<p>so two terms cancel and we&#8217;re left with </p>
+<p><img src="https://s0.wp.com/latex.php?latex=-+%5Csum+N+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="- &#92;sum N &#92;Psi" class="latex" /></p>
+<p>as desired.  </p>
+<p>I knew what answer I wanted, so I wasn&#8217;t gonna let a few mistakes stop me from getting it!  </p>
+<p>Thanks, David.  But I think all the mathematicians and physicists out there should be ashamed to be lurking in the background while a philosopher is doing all the hard work here.  <img src="https://i0.wp.com/math.ucr.edu/home/baez/emoticons/shame_on_you.gif" alt="" /></p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 highlander-comment" id="comment-5363">
+				<div id="div-comment-5363" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/656e05d084448337fb49459225dc525e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">DavidTweed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5363">18 April, 2011 at 11:20 am</a>		</div>
+
+		<p>I&#8217;m a little confused about the second line above. Unless I&#8217;m missing something</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Barray%7D%7Bccl%7D+%5Csum+N%28a-N%29%5CPsi+%26%3D%26+%5Csum+%28N+a-N%5E2%29+%5CPsi+%5C%5C++%5C%5C+%26%3D%26%5Csum+%28a+N+-+a+-N%5E2%29%5CPsi.+%5Cend%7Barray%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{array}{ccl} &#92;sum N(a-N)&#92;Psi &amp;=&amp; &#92;sum (N a-N^2) &#92;Psi &#92;&#92;  &#92;&#92; &amp;=&amp;&#92;sum (a N - a -N^2)&#92;Psi. &#92;end{array}" class="latex" /></p>
+<p>If <img src="https://s0.wp.com/latex.php?latex=%5Csum+a+N+%5CPsi%3D%5Csum+N%5E2%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum a N &#92;Psi=&#92;sum N^2&#92;Psi" class="latex" />, then what rewriting makes this <img src="https://s0.wp.com/latex.php?latex=-%5Csum+N+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="-&#92;sum N &#92;Psi" class="latex" /> rather than <img src="https://s0.wp.com/latex.php?latex=-%5Csum+a+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="-&#92;sum a &#92;Psi" class="latex" />?</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-5364">
+				<div id="div-comment-5364" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/656e05d084448337fb49459225dc525e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">DavidTweed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5364">18 April, 2011 at 11:21 am</a>		</div>
+
+		<p>Sorry. I didn&#8217;t see the equivalence of <img src="https://s0.wp.com/latex.php?latex=%5Csum+a+%5CPsi%3D%5Csum+N+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum a &#92;Psi=&#92;sum N &#92;Psi" class="latex" /> immediately below the line you mentioned.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 highlander-comment" id="comment-5366">
+				<div id="div-comment-5366" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Corfield</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5366">18 April, 2011 at 11:48 am</a>		</div>
+
+		<p>What&#8217;s quickest for 3? Something like </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Barray%7D%7Bccl%7D+N%28a%5E%5Cdagger+a%5E%5Cdagger+a+-+N%29+%26%3D%26+N+a%5E%5Cdagger+N+-+N%5E2+%5C%5C++%5C%5C+%26%3D%26+a%5E%5Cdagger+%28N%2B1%29+N+-+N%5E2.+%5Cend%7Barray%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{array}{ccl} N(a^&#92;dagger a^&#92;dagger a - N) &amp;=&amp; N a^&#92;dagger N - N^2 &#92;&#92;  &#92;&#92; &amp;=&amp; a^&#92;dagger (N+1) N - N^2. &#92;end{array} " class="latex" /></p>
+<p>Then </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Barray%7D%7Bccl%7D+%5Csum+N+H+%5CPsi+%26%3D%26+%5Csum+%28a%5E%5Cdagger+%28N%2B1%29+N+-+N%5E2%29+%5CPsi+%5C%5C++%5C%5C+%26%3D%26+%5Csum+%28%28N%2B1%29N+-N%5E2%29+%5CPsi+%5C%5C++%5C%5C+%26%3D%26+%5Csum+N+%5CPsi.+%5Cend%7Barray%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{array}{ccl} &#92;sum N H &#92;Psi &amp;=&amp; &#92;sum (a^&#92;dagger (N+1) N - N^2) &#92;Psi &#92;&#92;  &#92;&#92; &amp;=&amp; &#92;sum ((N+1)N -N^2) &#92;Psi &#92;&#92;  &#92;&#92; &amp;=&amp; &#92;sum N &#92;Psi. &#92;end{array} " class="latex" /></p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-5339">
+				<div id="div-comment-5339" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d2f1e2a04453a6071251c5712ecd9df0?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://florifulgurator.wordpress.com/' rel='external nofollow ugc' class='url'>Florifulgurator</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5339">16 April, 2011 at 3:28 pm</a>		</div>
+
+		<blockquote><p>Now each triple of rabbits has a unit probability per unit time of getting into a fight with only one survivor! I don’t know the technical term for a three-way fight,</p></blockquote>
+<p>In english it&#8217;s called a <a href="http://en.wikipedia.org/wiki/Truel" rel="nofollow">truel</a>, but I would prefer it as in German, <a href="http://de.wikipedia.org/wiki/Triell" rel="nofollow">triel</a>. I know of two western films with truels: <a href="http://en.wikipedia.org/wiki/The_Good,_the_Bad_and_the_Ugly" rel="nofollow">The Good, the Bad and the Ugly</a> of which I have forgotten the triel scene, and another good western whose title I&#8217;ve forgotten, but remember the paradigmatic triel scene (one character was a poker player)&#8230; Sigh, my swiss cheese brain.</p>
+<p>I guess the quantum and octonion philosopher has more to say of why its not the duel what makes the world move, but the truel&#8230;</p>
+<p>BTW I got interested in that stuff because I once worked for the inventor of a <a href="http://www.jestersgame.com/" rel="nofollow">3-player chess variant</a>. (Mess and design of that page is not my fault&#8230;.). Now I know why I always found duel-chess  boring &#8211; and methinks it actually makes stupid&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5339#respond' data-commentid="5339" data-postid="3215" data-belowelement="div-comment-5339" data-respondelement="respond" data-replyto="Reply to Florifulgurator" aria-label='Reply to Florifulgurator'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-5352">
+				<div id="div-comment-5352" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c4b16ed3ff55565573c1c1b4d91ab90c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">jack fuller</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5352">17 April, 2011 at 7:00 pm</a>		</div>
+
+		<p>Seems to me we are either in the process of total revolution or meddling in things of the devil &#8212; or both! &#8220;All seriousness aside&#8221;, as once said, Newton and Maxwell/Faraday asserted that there was a continuum of &#8220;forces&#8221; in the universe, albeit under the aegis of the &#8220;field&#8221; concept in the latter case.  Einstein made the most of this in his remarkable &#8220;warping&#8221; of space-time dimensional parameters we use to converse about nature.  Now, under the province of field operators and commutators we discover maybe all of the universe is &#8216;quantized&#8217;, where integers come to the fore.  However, importantly and certainly fortuitously, in physics and perhaps everywhere there exists an inherent &#8220;correspondence&#8221; in the &#8220;classical limit&#8221; to the original continuum.  All very well, except that the &#8216;limit&#8217; is apparently only for experimental verification, whereas the quantum picture is what&#8217;s &#8220;really happening&#8221;, except that according to Bohr and Feynman, we don&#8217;t &#8216;understand&#8217; what&#8217;s happening!</p>
+<p>The mathematical tricks involving differentiation and other operations as enlighteningly shown above are the mechanism behind all this quantization, but except for the various eponyms involved, what, really, are we doing when carrying out this revolution (or diabolical collusion)?</p>
+<p>My original venerable antique Leonard Schiff-era QFT background probably accounts for my ignorance here, but I feel there has to be a fairly clear path to just a few fundamental and universally relevant premises that, at least insofar as simply logic is concerned (perhaps abandoning any hope for &#8220;common sense&#8221;), we substantively know what IS the revolutions.  (Which for good measure, according to another post might be involved with the coding of the very life process besides.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5352#respond' data-commentid="5352" data-postid="3215" data-belowelement="div-comment-5352" data-respondelement="respond" data-replyto="Reply to jack fuller" aria-label='Reply to jack fuller'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-5355">
+				<div id="div-comment-5355" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5355">18 April, 2011 at 8:21 am</a>		</div>
+
+		<p>Jack wrote:</p>
+<blockquote>
+<p>Seems to me we are either in the process of total revolution or meddling in things of the devil — or both! </p>
+</blockquote>
+<p>Since I don&#8217;t really believe in the devil, I guess it must be a revolution!  </p>
+<p>Seriously: in my former life as a mathematical physicist mainly concerned with &#8216;foundational&#8217; issues like quantum gravity, I spent a lot of time wondering what quantum theory was trying to tell us.  And I wrote a lot about this, too.  It&#8217;s hard to write about these things without descending into flakiness, unless one uses lots of math as a kind of cold-water cure.  So, most of my thoughts are camouflaged under thick layers of math.</p>
+<p>If you go <a href="http://math.ucr.edu/home/baez/quantum/" rel="nofollow">here</a>, you&#8217;ll see me arguing that to reach a deeper understanding of quantum theory and spacetime, we must exploit the fact that these two columns are mathematically a lot more similar than we tend to give them credit for being:</p>
+<div align="center">
+SPACE &nbsp; &nbsp; &nbsp; STATE<br />
+&nbsp;<br />
+SPACETME &nbsp; &nbsp; PROCESS
+</div>
+<p>We tend to describe states of matter quantum-mechanically as vectors in a Hilbert space, while also thinking of these states as &#8216;living in space&#8217; at a given time.  We tend to describe quantum-mechanical processes using operators between Hilbert spaces, while also thinking of these processes as &#8216;living in spacetime&#8217;.  But from work on quantum gravity, one of the few things that seems really is that space itself must have a quantum state, and spacetime itself must be a quantum process.   </p>
+<p>As Wheeler put it: in general relativity, spacetime stops being the mere stage on which events play out, and becomes one of the actors.  But we also know the actors are quantum-mechanical.  So we need a theory of quantum spacetime.</p>
+<p>This sounds scary, but luckily there are lots of mathematical clues to point the way.  The paper I just linked to lists some.   This one lists a lot more:</p>
+<p>&bull; John Baez and Aaron Lauda, <a href="http://math.ucr.edu/home/baez/history.pdf" rel="nofollow">A prehistory of <i>n</i>-categorical physics</a>, to appear in <i>Deep Beauty: Mathematical Innovation and the Search for an Underlying Intelligibility of the Quantum World</i>, ed. Hans Halvorson, Cambridge U. Press. </p>
+<p>When we&#8217;re done figuring this out, I&#8217;m sure the world will make a lot more sense&#8230; though it won&#8217;t be &#8216;common sense&#8217;.  </p>
+<p>But now I&#8217;m trying to think about slightly more practical issues.  So in this series of posts, I&#8217;m taking some of the math developed for the purposes of understanding quantum theory (so-called <a href="http://math.ucr.edu/home/baez/groupoidification" rel="nofollow">groupoidification</a>), and reusing a tiny piece of it to think about stochastic processes.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5355#respond' data-commentid="5355" data-postid="3215" data-belowelement="div-comment-5355" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-5365">
+				<div id="div-comment-5365" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/656e05d084448337fb49459225dc525e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">DavidTweed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5365">18 April, 2011 at 11:35 am</a>		</div>
+
+		<p>I&#8217;m trying to relate what I know about using probability generating functions to the physics formalism. Now John has presented &#8220;creation&#8221; as an operator. Another way of looking at it is using, for two pgf&#8217;s <img src="https://s0.wp.com/latex.php?latex=%5CPsi%28z%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(z)" class="latex" /> for <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%5CLambda%28z%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Lambda(z)" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" />, then the pgf of <img src="https://s0.wp.com/latex.php?latex=X%2BY&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X+Y" class="latex" /> is <img src="https://s0.wp.com/latex.php?latex=%5CPsi%28z%29+%5CLambda%28z%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(z) &#92;Lambda(z)" class="latex" />. So we get the same answer by taking <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> (via <img src="https://s0.wp.com/latex.php?latex=%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi" class="latex" />) as the current distribution and <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" /> as the distribution with &#8220;definitely exactly one rabbit&#8221; (ie <img src="https://s0.wp.com/latex.php?latex=%5CLambda%28z%29%3Dz&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Lambda(z)=z" class="latex" />).</p>
+<p>The corresponding rule for <img src="https://s0.wp.com/latex.php?latex=X-Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X-Y" class="latex" /> is <img src="https://s0.wp.com/latex.php?latex=%5CPsi%28z%29+%5CLambda%281%2Fz%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(z) &#92;Lambda(1/z)" class="latex" />, so (assuming we&#8217;re fine with a probability distribution including a value of -1 when we initially had no rabbits) the same calculation gives <img src="https://s0.wp.com/latex.php?latex=%5CPsi%28z%29%2Fz&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(z)/z" class="latex" /> for this. So there&#8217;s a difference between annihilating a rabbit and &#8220;subtracting a rabbit&#8221;. I can see intuitively the difference, because it&#8217;s due to the selection of <em>which</em> rabbit dies, but is there a more clear rule for demarcating which cases count as &#8220;annihilation&#8221; and which count as &#8220;subtraction&#8221;?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5365#respond' data-commentid="5365" data-postid="3215" data-belowelement="div-comment-5365" data-respondelement="respond" data-replyto="Reply to DavidTweed" aria-label='Reply to DavidTweed'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-5387">
+				<div id="div-comment-5387" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5387">19 April, 2011 at 5:07 am</a>		</div>
+
+		<p>Hi, David!  </p>
+<blockquote>
+<p>So there’s a difference between annihilating a rabbit and “subtracting a rabbit”. I can see intuitively the difference, because it’s due to the selection of which rabbit dies, but is there a more clear rule for demarcating which cases count as “annihilation” and which count as “subtraction”?</p>
+</blockquote>
+<p>It sounds like you understand what&#8217;s going on, but would like to see it formalized a bit better.  Perhaps you&#8217;ll feel better if I provide some reassurance that this is a known issue.  The question is whether you want to say there are <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> different ways to annihilate one of <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> things, or just <i>one</i> way.  The problem at hand determines which answer is right.</p>
+<p>In combinatorics they distinguish between two types of generating functions: so-called <a href="http://en.wikipedia.org/wiki/Generating_function#Ordinary_generating_function" rel="nofollow">ordinary generating functions</a>:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BOG%7D%28a_n%2Cz%29+%3D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+a_n+z%5En+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{OG}(a_n,z) = &#92;sum_{n = 0}^&#92;infty a_n z^n " class="latex" /></p>
+<p>and so-called <a href="http://en.wikipedia.org/wiki/Generating_function#Exponential_generating_function" rel="nofollow">exponential generating functions</a>:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BEG%7D%28a_n%2C+z%29+%3D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+a_n+%5Cfrac%7Bz%5En%7D%7Bn%21%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{EG}(a_n, z) = &#92;sum_{n = 0}^&#92;infty a_n &#92;frac{z^n}{n!} " class="latex" /></p>
+<p>(Writing <img src="https://s0.wp.com/latex.php?latex=a_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_n" class="latex" /> on the left here instead of just <img src="https://s0.wp.com/latex.php?latex=a&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a" class="latex" /> should be enough to drive Giampiero Campara insane; even I can&#8217;t stand it, because <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> is just a dummy variable on the right-hand side: these generating functions are not really functions of <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" />.  But the combinatorists have a good reason for this abuse of notation: there is no standard name for the sequence <img src="https://s0.wp.com/latex.php?latex=n%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n^2" class="latex" />, say, except <img src="https://s0.wp.com/latex.php?latex=n%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n^2" class="latex" />.)</p>
+<p>In these notes I&#8217;ve been using ordinary generating functions.  If you differentiate one of these, a factor of <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> shows up:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+z%7D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+a_n+z%5En+%3D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+n+a_%7Bn%2B1%7D+z%5En+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d z} &#92;sum_{n = 0}^&#92;infty a_n z^n = &#92;sum_{n = 0}^&#92;infty n a_{n+1} z^n " class="latex" /></p>
+<p>That suits my applications.  If you don&#8217;t want that factor of <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> to show up here, you can use exponential generating functions:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+z%7D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+a_n+%5Cfrac%7Bz%5En%7D%7Bn%21%7D+%3D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+a_%7Bn%2B1%7D+%5Cfrac%7Bz%5En%7D%7Bn%21%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d z} &#92;sum_{n = 0}^&#92;infty a_n &#92;frac{z^n}{n!} = &#92;sum_{n = 0}^&#92;infty a_{n+1} &#92;frac{z^n}{n!} " class="latex" /></p>
+<p>But you pay a price: multiplying an exponential generating function by <img src="https://s0.wp.com/latex.php?latex=z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z" class="latex" /> introduces a factor of <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" />, while this doesn&#8217;t happen for ordinary generating functions.  Again, ordinary generating functions do the right thing for my applications.</p>
+<p>If you don&#8217;t want this factor of <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> either way, and you don&#8217;t want to introduce any ugly ad hoc rules, I think you&#8217;re forced to allow negative numbers of things as well as positive numbers of things.  Then instead of a formal power series we can use a Laurent series</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum_%7Bn+%3D+-%5Cinfty%7D%5E%5Cinfty+a_n+z%5En+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_{n = -&#92;infty}^&#92;infty a_n z^n " class="latex" /></p>
+<p>As you note, multiplying or dividing this Laurent series by <img src="https://s0.wp.com/latex.php?latex=z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z" class="latex" /> shifts it without introducing any factor of <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> either way:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=z+%5Csum_%7Bn+%3D+-%5Cinfty%7D%5E%5Cinfty+a_n+z%5En+%3D+%5Csum_%7Bn+%3D+-%5Cinfty%7D%5E%5Cinfty+a_%7Bn-1%7D+z%5En+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z &#92;sum_{n = -&#92;infty}^&#92;infty a_n z^n = &#92;sum_{n = -&#92;infty}^&#92;infty a_{n-1} z^n " class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=z%5E%7B-1%7D+%5Csum_%7Bn+%3D+-%5Cinfty%7D%5E%5Cinfty+a_n+z%5En+%3D+%5Csum_%7Bn+%3D+-%5Cinfty%7D%5E%5Cinfty+a_%7Bn%2B1%7D+z%5En+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z^{-1} &#92;sum_{n = -&#92;infty}^&#92;infty a_n z^n = &#92;sum_{n = -&#92;infty}^&#92;infty a_{n+1} z^n " class="latex" /></p>
+<p>I&#8217;ve generally avoided this trick because I&#8217;m somewhat confused about the mathematical status of &#8216;sets with a negative number of elements&#8217;, a mysterious topic that has spawned many interesting papers.  In physics, when you have one antiparticle, that may perhaps count as having -1 particles, and that&#8217;s one reason why negative sets would be nice. But in biology, I see no application of antirabbits.  Chemistry is an interesting borderline case: antihydrogen <i>exists</i>, but you won&#8217;t find it in your typical child&#8217;s chemistry set.  Good thing, too.</p>
+<p>For vastly more about these issues, see Wilf&#8217;s <a href="http://www.math.upenn.edu/~wilf/DownldGF.html" rel="nofollow"><i>Generatingfunctionology</i></a> and my page on <a href="http://math.ucr.edu/home/baez/counting/" rel="nofollow">the mysteries of counting</a>.</p>
+<p>And by the way: in case anyone is confused by the fact that differentating (&#8216;annihilating one rabbit&#8217;) changes <img src="https://s0.wp.com/latex.php?latex=a_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_n" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=a_%7Bn%2B1%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_{n+1}" class="latex" /> here, instead of <img src="https://s0.wp.com/latex.php?latex=a_%7Bn-1%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_{n-1}" class="latex" />:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bd+z%7D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+a_n+z%5En+%3D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+n+a_%7Bn%2B1%7D+z%5En+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{d z} &#92;sum_{n = 0}^&#92;infty a_n z^n = &#92;sum_{n = 0}^&#92;infty n a_{n+1} z^n " class="latex" /></p>
+<p>don&#8217;t worry: it only took me 10 years to feel perfectly comfortable with this.  It&#8217;s basically the same effect as when you&#8217;re riding a train: the scenery looks like it&#8217;s moving backwards, but it&#8217;s because you&#8217;re moving forwards.  </p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5387#respond' data-commentid="5387" data-postid="3215" data-belowelement="div-comment-5387" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-5391">
+				<div id="div-comment-5391" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/656e05d084448337fb49459225dc525e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">DavidTweed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5391">19 April, 2011 at 9:02 am</a>		</div>
+
+		<p>It&#8217;s more that I can see what&#8217;s happening mathematically, but I&#8217;m trying to figure out why, and in what &#8220;application&#8221; situations, it&#8217;s annihilation or subtraction. I&#8217;ve been pondering this and I <em>think</em> that it&#8217;s this: the sum becomes product of pgf&#8217;s is actually only valid for independent variables. And it&#8217;s a <em>coincidence</em> that increasing the number of rabbits in a distribution by one is a sum of two independent distributions as well as a transformation of one pgf. So there&#8217;s no a priori reason to believe that removing a rabbit is expressible as a difference of two independent distributions, and it doesn&#8217;t look like it is expressible that way at all. So given a situation to analyse I guess it&#8217;s a case of figuring out if all the operations you&#8217;re modelling are combining two independent distributions or transforming one distribution.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5391#respond' data-commentid="5391" data-postid="3215" data-belowelement="div-comment-5391" data-respondelement="respond" data-replyto="Reply to DavidTweed" aria-label='Reply to DavidTweed'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-5401">
+				<div id="div-comment-5401" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cd90f0688cecdf25a11b4ba396151b5f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Peter Morgan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5401">19 April, 2011 at 3:48 pm</a>		</div>
+
+		<p>The Laurent series example has raising and lowering operators that commute, which ties in, though I&#8217;m not sure how loosely, with my paper showing that the quantized complex Klein-Gordon field is empirically equivalent to a Klein-Gordon random field, <a href="http://dx.doi.org/10.1209/0295-5075/87/31002" rel="nofollow">EPL 87 (2009) 31002</a>.</p>
+<p>Dollars in a bank account seem to match the Laurent series model, where there&#8217;s exactly one way both to add or to remove one dollar, there aren&#8217;t $n$ ways to remove a dollar, and one can be in debt? Must read Wilf&#8217;s page and yours on generating functions.</p>
+<p>Incidentally, your RSS feed seems not to be working (at least not from Mozilla or Thunderbird).</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5401#respond' data-commentid="5401" data-postid="3215" data-belowelement="div-comment-5401" data-respondelement="respond" data-replyto="Reply to Peter Morgan" aria-label='Reply to Peter Morgan'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-3 parent highlander-comment" id="comment-27843">
+				<div id="div-comment-27843" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b301e135f66001af402e86be87e56d51?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://arjunjainblog.wordpress.com' rel='external nofollow ugc' class='url'>Arjun Jain</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-27843">24 April, 2013 at 5:55 pm</a>		</div>
+
+		<p>Shouldn&#8217;t it be </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd%7D%7Bd+z%7D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+a_n+z%5En+%3D+%5Csum_%7Bn+%3D+0%7D%5E%5Cinfty+%28n%2B1%29+a_%7Bn%2B1%7D+z%5En+%7D++%3F&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d}{d z} &#92;sum_{n = 0}^&#92;infty a_n z^n = &#92;sum_{n = 0}^&#92;infty (n+1) a_{n+1} z^n }  ?" class="latex" /> </p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=27843#respond' data-commentid="27843" data-postid="3215" data-belowelement="div-comment-27843" data-respondelement="respond" data-replyto="Reply to Arjun Jain" aria-label='Reply to Arjun Jain'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-27858">
+				<div id="div-comment-27858" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-27858">25 April, 2013 at 12:20 am</a>		</div>
+
+		<p>Yes, thanks!</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-5382">
+				<div id="div-comment-5382" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5382">19 April, 2011 at 4:28 am</a>		</div>
+
+		<p>I put clearly explained (?) answers to all 3 puzzles at the bottom of this page on my website:</p>
+<p>&bull; <a href="http://math.ucr.edu/home/baez/networks/networks_6.html" rel="nofollow">Network Theory (Part 6)</a>.  </p>
+<p>This page uses jsmath to put LaTeX on a webpage.  I think jsmath takes a while to grab the necessary math fonts if you don&#8217;t have them.  So, while I can <a href="http://math.ucr.edu/home/baez/networks/networks_6.html#answers" rel="nofollow">link directly to the correct location on the page</a>, the page then expands and I&#8217;m left at another location&mdash;at least using Firefox 3.6.16 without the math fonts installed. I&#8217;d be curious what happens to you!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5382#respond' data-commentid="5382" data-postid="3215" data-belowelement="div-comment-5382" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-5389">
+				<div id="div-comment-5389" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Corfield</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5389">19 April, 2011 at 8:28 am</a>		</div>
+
+		<p>It might help the reader if you took David T&#8217;s <a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5363" rel="nofollow">point</a> and put in an extra line.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5389#respond' data-commentid="5389" data-postid="3215" data-belowelement="div-comment-5389" data-respondelement="respond" data-replyto="Reply to David Corfield" aria-label='Reply to David Corfield'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-5395">
+				<div id="div-comment-5395" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5395">19 April, 2011 at 10:20 am</a>		</div>
+
+		<p>I rewrote the explanation so that future David T&#8217;s wouldn&#8217;t be confused, but it seems my new explanation was confusing in other ways &#8211; more below on that.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5395#respond' data-commentid="5395" data-postid="3215" data-belowelement="div-comment-5395" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 parent highlander-comment" id="comment-5399">
+				<div id="div-comment-5399" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Corfield</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5399">19 April, 2011 at 11:10 am</a>		</div>
+
+		<p>I mean as you have it, you&#8217;ve already used Rule 2 when you write</p>
+<blockquote>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+N%28a-N%29+%5CPsi+%3D+%5Csum+%28a+N+-+N+-+N%5E2%29+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum N(a-N) &#92;Psi = &#92;sum (a N - N - N^2) &#92;Psi" class="latex" /></p>
+</blockquote>
+<p>Why not write</p>
+<blockquote>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+N%28a-N%29+%5CPsi+%3D+%5Csum+%28a+N+-+a+-+N%5E2%29+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum N(a-N) &#92;Psi = &#92;sum (a N - a - N^2) &#92;Psi" class="latex" />, then invoke Rule 2 twice?</p>
+</blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5399#respond' data-commentid="5399" data-postid="3215" data-belowelement="div-comment-5399" data-respondelement="respond" data-replyto="Reply to David Corfield" aria-label='Reply to David Corfield'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-5412">
+				<div id="div-comment-5412" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5412">20 April, 2011 at 5:53 am</a>		</div>
+
+		<p>I wasn&#8217;t using Rule 2, I was using the commutation relations <img src="https://s0.wp.com/latex.php?latex=N+a+%3D+a+N+-+a&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N a = a N - a" class="latex" /> and then making a typo, which gave <img src="https://s0.wp.com/latex.php?latex=N+a+%3D+a+N+-+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N a = a N - N" class="latex" />.  </p>
+<p>I think the typos are mostly gone now, thanks to you.  The more important problem here is that there are so many ways to use the rules to do these calculations that it&#8217;s hard to find the &#8216;best&#8217; way.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-5390">
+				<div id="div-comment-5390" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Corfield</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5390">19 April, 2011 at 8:36 am</a>		</div>
+
+		<p>Then you have </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+%28a+N+-+N+-+a%29+%5CPsi+%3D+%5Csum+%28N%5E2+-+N+-+N%5E2%29+%5CPsi+%3D+-%5Csum+N+%5CPsi+.+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum (a N - N - a) &#92;Psi = &#92;sum (N^2 - N - N^2) &#92;Psi = -&#92;sum N &#92;Psi . " class="latex" /></p>
+<p>The second <img src="https://s0.wp.com/latex.php?latex=a&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a" class="latex" /> in the first term should be <img src="https://s0.wp.com/latex.php?latex=N%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N^2" class="latex" />. </p>
+<p>And is it obvious that <img src="https://s0.wp.com/latex.php?latex=%5Csum+a+N+%5CPsi+%3D+%5Csum+N%5E2+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum a N &#92;Psi = &#92;sum N^2 &#92;Psi" class="latex" />? It&#8217;s true, but it&#8217;s not by Rule 2, unless you strengthen that to <img src="https://s0.wp.com/latex.php?latex=%5Csum+a+O+%5CPsi+%3D+%5Csum+N+O+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum a O &#92;Psi = &#92;sum N O &#92;Psi" class="latex" /> for all <img src="https://s0.wp.com/latex.php?latex=O.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="O." class="latex" /></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5390#respond' data-commentid="5390" data-postid="3215" data-belowelement="div-comment-5390" data-respondelement="respond" data-replyto="Reply to David Corfield" aria-label='Reply to David Corfield'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-odd thread-alt depth-1 highlander-comment" id="comment-5396">
+				<div id="div-comment-5396" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5396">19 April, 2011 at 10:23 am</a>		</div>
+
+		<p>David C. wrote:</p>
+<blockquote><p>
+The second <img src="https://s0.wp.com/latex.php?latex=a&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a" class="latex" /> in the first term should be <img src="https://s0.wp.com/latex.php?latex=N%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N^2" class="latex" />.
+</p></blockquote>
+<p>Thanks &#8211; fixed!</p>
+<blockquote><p>
+And is it obvious that <img src="https://s0.wp.com/latex.php?latex=%5Csum+a+N+%5CPsi+%3D+%5Csum+N%5E2+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum a N &#92;Psi = &#92;sum N^2 &#92;Psi" class="latex" />? It’s true, but it’s not by Rule 2&#8230;
+</p></blockquote>
+<p>Rule 2 (for those not keeping score) says</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+a+%5CPsi+%3D+%5Csum+N+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum a &#92;Psi = &#92;sum N &#92;Psi" class="latex" /></p>
+<p>but surely it was clear that this rule applies to <i>all</i> formal power series <img src="https://s0.wp.com/latex.php?latex=%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi" class="latex" />, even those that happen to be called <img src="https://s0.wp.com/latex.php?latex=N+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N &#92;Psi" class="latex" />.  </p>
+<p>Well, okay: it obviously <i>wasn&#8217;t</i> clear.  I&#8217;ll make it clearer.</p>
+<p>This is how all papers and books should be written: with an audience of actual people reading it as it&#8217;s written, saying what they like, what they don&#8217;t like, and what they find confusing.  Otherwise it&#8217;s too easy for author to dream up perfectly convincing reasons that the audience should like or understand something.  But if they don&#8217;t, they don&#8217;t!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5396#respond' data-commentid="5396" data-postid="3215" data-belowelement="div-comment-5396" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-5398">
+				<div id="div-comment-5398" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e12fed9193da121c6337ce250d548759?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">David Corfield</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5398">19 April, 2011 at 11:03 am</a>		</div>
+
+		<p>Where you have </p>
+<blockquote>
+<p>&#8230;the commutation relation <img src="https://s0.wp.com/latex.php?latex=%5Ba%5E%7B%5Cdagger%7D%2C+N%5D+%3D+-a%5E%7B%5Cdagger%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[a^{&#92;dagger}, N] = -a^{&#92;dagger}" class="latex" /> implies that <img src="https://s0.wp.com/latex.php?latex=N+a%5E%7B%5Cdagger%7D+%3D+a%5E%7B%5Cdagger%7D+N+%2B+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N a^{&#92;dagger} = a^{&#92;dagger} N + 1" class="latex" /></p>
+</blockquote>
+<p>you need brackets around <img src="https://s0.wp.com/latex.php?latex=N+%2B+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N + 1" class="latex" />. And again in the next line.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5398#respond' data-commentid="5398" data-postid="3215" data-belowelement="div-comment-5398" data-respondelement="respond" data-replyto="Reply to David Corfield" aria-label='Reply to David Corfield'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-5410">
+				<div id="div-comment-5410" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-5410">20 April, 2011 at 5:49 am</a>		</div>
+
+		<p>Thanks.  I decided to switch to an argument that seems a bit simpler:</p>
+<blockquote>
+<p>In Puzzle 1, the Hamiltonian for catching rabbits is </p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+a%5E%5Cdagger+-+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = a^&#92;dagger - 1" class="latex" /></p>
+<p>so the rate of change of the expected number of rabbits caught is</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Barray%7D%7Bccl%7D+%5Cfrac%7Bd%7D%7Bdt%7D+%5Csum+N+%5CPsi%28t%29+%26%3D%26+%5Csum+N+H+%5CPsi%28t%29+%5C%5C++%26%3D%26+%5Csum+N%28a%5E%5Cdagger+-+1%29+%5CPsi%28t%29+%5Cend%7Barray%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{array}{ccl} &#92;frac{d}{dt} &#92;sum N &#92;Psi(t) &amp;=&amp; &#92;sum N H &#92;Psi(t) &#92;&#92;  &amp;=&amp; &#92;sum N(a^&#92;dagger - 1) &#92;Psi(t) &#92;end{array} " class="latex" /></p>
+<p>There are many ways to use our rules to evaluate this.  For example, Rule 1 implies that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+N%28a%5E%5Cdagger+-+1%29+%5CPsi%28t%29+%3D+%5Csum+a%28a%5E%5Cdagger+-+1%29%5CPsi%28t%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum N(a^&#92;dagger - 1) &#92;Psi(t) = &#92;sum a(a^&#92;dagger - 1)&#92;Psi(t) " class="latex" />$</p>
+<p>but the commutation relations say </p>
+<p><img src="https://s0.wp.com/latex.php?latex=a+a%5E%5Cdagger+%3D+a%5E%5Cdagger+a+%2B+1+%3D+N%2B1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a a^&#92;dagger = a^&#92;dagger a + 1 = N+1" class="latex" /></p>
+<p>so</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+a%28a%5E%5Cdagger+-+1%29%5CPsi%28t%29+%3D+%5Csum+%28N+%2B+1+-+a%29+%5CPsi%28t%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum a(a^&#92;dagger - 1)&#92;Psi(t) = &#92;sum (N + 1 - a) &#92;Psi(t) " class="latex" /></p>
+<p>and using Rule 1 again we see this equals</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+%5CPsi%28t%29+%3D+1+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum &#92;Psi(t) = 1 " class="latex" /></p>
+<p>Thus we have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%7D%7Bdt%7D+%5Csum+N+%5CPsi%28t%29+%3D+1+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d}{dt} &#92;sum N &#92;Psi(t) = 1 " class="latex" /></p>
+<p>It follows that the expected number of rabbits grows linearly:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum+N+%5CPsi%28t%29+%3D+t+%2B+c+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum N &#92;Psi(t) = t + c " class="latex" /></p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=5410#respond' data-commentid="5410" data-postid="3215" data-belowelement="div-comment-5410" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-arjunjain16 odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-27885">
+				<div id="div-comment-27885" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b301e135f66001af402e86be87e56d51?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://arjunjainblog.wordpress.com' rel='external nofollow ugc' class='url'>Arjun Jain</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-27885">25 April, 2013 at 5:47 pm</a>		</div>
+
+		<p>Why are we considering all the <img src="https://s0.wp.com/latex.php?latex=a%5E%7B%5Cdagger%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^{&#92;dagger}" class="latex" />s to appear on the left side of all the <img src="https://s0.wp.com/latex.php?latex=a&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a" class="latex" />s in H (<img src="https://s0.wp.com/latex.php?latex=%7Ba%5E%7B%5Cdagger%7D%7D%5Ej+a%5Ek+-+N%5E%7B%5Cunderline%7Bk%7D%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="{a^{&#92;dagger}}^j a^k - N^{&#92;underline{k}}" class="latex" />)?</p>
+<p>Surely, there can be situations when the order is not- all inputs, then all outputs. Suppose that 2 rabbits meet and fight and one gets killed. The overconfident victor then challenges any one of the remaining rabbits to a duel and one of them then gets killed. The new victor seeing that he might get killed if he further challenges, stops. If this constitutes the transition, shouldn&#8217;t H be <img src="https://s0.wp.com/latex.php?latex=a%5E%7B%5Cdagger%7D+a+a%5E%7B%5Cdagger%7D+a%5E2+-+N%28N-1%29%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^{&#92;dagger} a a^{&#92;dagger} a^2 - N(N-1)^2" class="latex" />  ?</p>
+<p>Also, if operating with a on <img src="https://s0.wp.com/latex.php?latex=z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z^n" class="latex" /> includes n, the number of ways a rabbit can be chosen from n rabbits, then shouldn&#8217;t operating with <img src="https://s0.wp.com/latex.php?latex=a%5E%7B%5Cdagger%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^{&#92;dagger}" class="latex" /> also include the number of ways an output rabbit can be chosen from the k inputs?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=27885#respond' data-commentid="27885" data-postid="3215" data-belowelement="div-comment-27885" data-respondelement="respond" data-replyto="Reply to Arjun Jain" aria-label='Reply to Arjun Jain'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-27902">
+				<div id="div-comment-27902" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-27902">26 April, 2013 at 2:27 am</a>		</div>
+
+		<p>Arjun wrote:</p>
+<blockquote><p>
+Why are we considering all the <img src="https://s0.wp.com/latex.php?latex=a%5E%7B%5Cdagger%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^{&#92;dagger}" class="latex" />s to appear on the left side of all the <img src="https://s0.wp.com/latex.php?latex=a&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a" class="latex" />s in <img src="https://s0.wp.com/latex.php?latex=H+%3D+%28%7Ba%5E%7B%5Cdagger%7D%7D%5Ej+a%5Ek+-+N%5E%7B%5Cunderline%7Bk%7D%7D%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = ({a^{&#92;dagger}}^j a^k - N^{&#92;underline{k}})" class="latex" />?
+</p></blockquote>
+<p>Because each transition in a stochastic Petri net describes a processes where a bunch of things get used simultaneously to create some other bunch of things.</p>
+<blockquote><p>
+Surely, there can be situations when the order is not- all inputs, then all outputs. Suppose that 2 rabbits meet and fight and one gets killed. The overconfident victor then challenges any one of the remaining rabbits to a duel and one of them then gets killed. The new victor seeing that he might get killed if he further challenges, stops.
+</p></blockquote>
+<p>That&#8217;s true.  I would think of this using a Petri net with a set <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> consisting of several states.  For example: ordinary rabbits, and &#8216;overconfident victor rabbits&#8217;, and &#8216;wisely cautious victor rabbits&#8217;.     I&#8217;d also introduce several transitions in <img src="https://s0.wp.com/latex.php?latex=T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T" class="latex" />, for example:</p>
+<p>ordinary rabbit + ordinary rabbit <img src="https://s0.wp.com/latex.php?latex=%5Cto+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;to " class="latex" /> overconfident victor rabbit</p>
+<p>overconfident victor rabbit + ordinary rabbit <img src="https://s0.wp.com/latex.php?latex=%5Cto&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;to" class="latex" /> wisely cautious rabbit</p>
+<p>You can try to work out the Hamiltonian for such a process.  </p>
+<p>Or, you can check to see if the Hamiltonian you propose is an infinitesimal stochastic operator.  If it is, it describes some random process.  If not, there&#8217;s something wrong with it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=27902#respond' data-commentid="27902" data-postid="3215" data-belowelement="div-comment-27902" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-arjunjain16 odd alt depth-3 parent highlander-comment" id="comment-27905">
+				<div id="div-comment-27905" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b301e135f66001af402e86be87e56d51?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://arjunjainblog.wordpress.com' rel='external nofollow ugc' class='url'>Arjun Jain</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-27905">26 April, 2013 at 3:51 am</a>		</div>
+
+		<p>Also, if operating with a on <img src="https://s0.wp.com/latex.php?latex=z%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z^n" class="latex" /> includes <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" />, the number of ways a rabbit can be chosen from n rabbits, then shouldn’t operating with <img src="https://s0.wp.com/latex.php?latex=a%5E%7B%5Cdagger%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^{&#92;dagger}" class="latex" /> also include the number of ways an output rabbit can be chosen from the <img src="https://s0.wp.com/latex.php?latex=k&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="k" class="latex" /> inputs (at least in some cases)?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=27905#respond' data-commentid="27905" data-postid="3215" data-belowelement="div-comment-27905" data-respondelement="respond" data-replyto="Reply to Arjun Jain" aria-label='Reply to Arjun Jain'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-4 highlander-comment" id="comment-27921">
+				<div id="div-comment-27921" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-27921">26 April, 2013 at 2:45 pm</a>		</div>
+
+		<p>We shouldn&#8217;t redefine <img src="https://s0.wp.com/latex.php?latex=a%5E%5Cdagger%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^&#92;dagger," class="latex" /> it&#8217;s too beautiful to change.  If we have a situation where a transition occurs at a rate proportional to <img src="https://s0.wp.com/latex.php?latex=f%28k%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f(k)" class="latex" /> because we need to make some choice among the <img src="https://s0.wp.com/latex.php?latex=k&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="k" class="latex" /> inputs, we can multiply the Hamiltonian by <img src="https://s0.wp.com/latex.php?latex=f%28k%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f(k)" class="latex" /> to account for that.  I don&#8217;t think duels between rabbits occur twice as fast because there are 2 choices of which rabbit might survive.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-28794">
+				<div id="div-comment-28794" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b301e135f66001af402e86be87e56d51?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://arjunjainblog.wordpress.com' rel='external nofollow ugc' class='url'>Arjun Jain</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-28794">19 May, 2013 at 6:13 pm</a>		</div>
+
+		<p>In the section on Dueling Rabbits, you say &#8220;(If you prefer unordered pairs of rabbits, just divide the Hamiltonian by 2. We should talk about this more, but not now.)&#8221;. Have you talked about this in some later post?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=28794#respond' data-commentid="28794" data-postid="3215" data-belowelement="div-comment-28794" data-respondelement="respond" data-replyto="Reply to Arjun Jain" aria-label='Reply to Arjun Jain'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 highlander-comment" id="comment-28801">
+				<div id="div-comment-28801" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/#comment-28801">19 May, 2013 at 8:37 pm</a>		</div>
+
+		<p>I never got around to it.  But it&#8217;s easy to create a number of variants of the rate equation and master equation, depending on whether one is interested in:</p>
+<p>&bull; ordered k-tuples of not-necessarily-distinct inputs<br />
+&bull; unordered k-tuples of not-necessarily-distinct inputs<br />
+&bull; ordered k-tuples of distinct inputs<br />
+&bull; unordered k-tuples of distinct inputs</p>
+<p>In my notes I&#8217;m always considering ordered k-tuples of distinct inputs.  These are counted by the falling powers <img src="https://s0.wp.com/latex.php?latex=n%5E%7B%5Cunderline%7Bk%7D%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n^{&#92;underline{k}}." class="latex" />   This case turns out to be most easily described using annihilation and creation operators.  However, to count unordered k-tuples of distinct inputs, you just divide by <img src="https://s0.wp.com/latex.php?latex=k%21&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="k!" class="latex" />.  So, you can just divide each term in the Hamiltonian by a suitable factor.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=28801#respond' data-commentid="28801" data-postid="3215" data-belowelement="div-comment-28801" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-27905">Arjun Jain</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2011/04/16/network-theory-part-6/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2011/04/16/network-theory-part-6/?replytocom=27905" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='3215' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='27905' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="2849fcc2bf" /></p>
+<input type="hidden" name="genseq" value="1632625266" />
+<input type="hidden" id="ak_js" name="ak_js" value="22"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2011/04/16/network-theory-part-6/?replytocom=27905"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,177,022 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-e12fed9193da121c6337ce250d548759">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-656e05d084448337fb49459225dc525e">
+	</div>
+	<div class="grofile-hash-map-d2f1e2a04453a6071251c5712ecd9df0">
+	</div>
+	<div class="grofile-hash-map-c4b16ed3ff55565573c1c1b4d91ab90c">
+	</div>
+	<div class="grofile-hash-map-cd90f0688cecdf25a11b4ba396151b5f">
+	</div>
+	<div class="grofile-hash-map-b301e135f66001af402e86be87e56d51">
+	</div>
+	<div class="grofile-hash-map-b301e135f66001af402e86be87e56d51">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"3215","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'3215','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTZVV01+c0h1XTBjcWE3elh6QzRrREN8Z11GXWpnRXhHLVgmeE1sNDdDaC5NXWUvNlg1bk1WUUguZENGSlEuTWxdck02W2lPd1k5Vy9KUSszWDZSdiYvP0d8XVprOERHYllRL0laLS93d2xMRDd3WnJmZnhYbGVQbzMxaW00NkJFVTJDMV9OYy00cFl3aHZLLjlvTzMldmI9K0RdVzJhJjVQU0U5cWlLVU9JWjd0b0thUCxSalhJLGtEdG0uUjhZeWpHVDBUV2UuTjJOamJzSVN0dk1kZWhEcDYsMQ=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '3215' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script defer id="bilmur"  data-provider="wordpress.com" data-service="simple" src="/wp-content/js/bilmur.min.js?i=2&m=202138"></script><script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

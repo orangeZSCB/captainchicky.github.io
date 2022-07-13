@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en">
+<![endif]-->
+<!--[if (!IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+<meta charset="UTF-8" />
+<title>Does the Higgs Field Give the Higgs Particle Its Mass, or Not? | Of Particular Significance</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://profmattstrassler.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large' />
+<meta name="google-site-verification" content="atBcEfQYCIwhTkcOnVU26d7Pp3Jj8sJQ8u-frrJyoi8" />
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.parentNode.removeChild( dom_node ); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[ i ].parentNode.removeChild( dom_nodes[ i ] );
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+					+ '//' + window.location.hostname
+					+ '&postid=4815'
+					+ '&is_singular=1';
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly9wcm9mbWF0dHN0cmFzc2xlci5jb20%3D"
+		+ "&wpcomid=24633746"
+		+ "&time=1633056481";
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//profmattstrassler.wordpress.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Feed" href="https://profmattstrassler.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Comments Feed" href="https://profmattstrassler.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Does the Higgs Field Give the Higgs Particle Its Mass, or&nbsp;Not? Comments Feed" href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkt1SAyEMhV9IFrfOtPbC8Vn4yWDawDIEuvL2UkaddWtXbxgOyZccAnKOwkwhQ8jSFxGpOAws52gmL9gjQV2pwTA/yN+xBKQyWBEnziu1hRGegeUJclTmLLq6Sf/KdaVJDcm1SAJ5GcdhPzxKXZCs1DT1AjqpVCXnSvBdCIOhYq99WHqwqIDAdyMLEUlVSILAKVMHj+FvvMWW+gd033x3urizqlPJwiW0K9v/LpFUxuD4Dr6Y9nVu7dxHdWt+A5vROmiv2lI+9yLD+zbS/43WMQGzaKvH4kV+a736A7/6l3H/tDvuDsfD8+kDj5z1pg==?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s1.wp.com/_static/??-eJyFi0EKAjEMAD9kDAsV9SC+pRtiraRJaVMWf++KF0XQ2wzM4FKBTJ3V0a9cuGMdM5K1KFkZu9+Ft9T7Bv+UWelVw1LJytdTBlQZKWvHxAZiFD2bfghcJOb2a208i6UVE67Vmz6nczlNYXcM4bCfwu0Bks1RNg==?cssminify=yes' type='text/css' media='all' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-4-1' href='https://s1.wp.com/_static/??-eJxti8sKgCAQAH8o297RIfoWE1NjdaVV+v3o0CHqNAzMwBmFopB0SOCziJiNCwyROIkNpTuArTxcMA9LxVzA/8WknESBZOgtnylZ7TWD7cAgrRLvYPFzPbT12PRTX+0XZRA3zg==?cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"24633746","siteName":"Of Particular Significance","siteURL":"https:\/\/profmattstrassler.com","siteHost":"profmattstrassler.com","icon":"<img alt='' src='https:\/\/secure.gravatar.com\/blavatar\/9192dd01619d8fdbea0a34ba4b097323?s=50&d=https%3A%2F%2Fs2.wp.com%2Fi%2Flogo%2Fwpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/coraline","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2012%252F10%252F23%252Fdoes-the-higgs-field-give-the-higgs-particle-its-mass-or-not%252F","themeURL":"","xhrURL":"https:\/\/profmattstrassler.com\/wp-admin\/admin-ajax.php","nonce":"f715b72a96","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"a2d8da805d\" \/>","referer":"https:\/\/profmattstrassler.com\/2012\/10\/23\/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not\/","canFollow":"1","feedID":"241531","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/profmattstrassler.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fprofmattstrassler.wordpress.com%2F2012%2F10%2F23%2Fdoes-the-higgs-field-give-the-higgs-particle-its-mass-or-not%2F","postID":"4815","shortlink":"https:\/\/wp.me\/p1Fmmu-1fF","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/profmattstrassler.com\/4815","statsLink":"https:\/\/wordpress.com\/stats\/post\/4815\/profmattstrassler.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Coraline","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 15,952 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2012%252F10%252F23%252Fdoes-the-higgs-field-give-the-higgs-particle-its-mass-or-not%252F\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=profmattstrassler.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??-eJyFjtEKwjAMRX/IrBaZPonfMrdYWpq0Ji1zf28HCnMvPl3CPTlcM2cYExfkYoKanLQQqg4Ou6AH89tSuvuIUBWlAVzA8yPtOaqQY3We1QjGoeAEq3V3fb88j7FOqKs+PCvK8omOPP+FgLyTJt3Cm70SC2RJr6V1N7ra88lejr21fXgDNTpbfw=='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://profmattstrassler.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/" />
+<link rel='shortlink' href='https://wp.me/p1Fmmu-1fF' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fprofmattstrassler.com%2F2012%2F10%2F23%2Fdoes-the-higgs-field-give-the-higgs-particle-its-mass-or-not%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fprofmattstrassler.com%2F2012%2F10%2F23%2Fdoes-the-higgs-field-give-the-higgs-particle-its-mass-or-not%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Does the Higgs Field Give the Higgs Particle Its Mass, or Not?" />
+<meta property="og:url" content="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/" />
+<meta property="og:description" content="When I wrote my article last week about the relation between the Higgs and gravity, emphasizing that there really was no relation at all, I said that the Higgs field is not the universal giver of m…" />
+<meta property="article:published_time" content="2012-10-23T12:45:44+00:00" />
+<meta property="article:modified_time" content="2012-10-25T02:05:13+00:00" />
+<meta property="og:site_name" content="Of Particular Significance" />
+<meta property="og:image" content="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=200&#038;ts=1633056481" />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:creator" content="@MattStrassler" />
+<meta name="twitter:site" content="@MattStrassler" />
+<meta name="twitter:text:title" content="Does the Higgs Field Give the Higgs Particle Its Mass, or&nbsp;Not?" />
+<meta name="twitter:image" content="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=240" />
+<meta name="twitter:card" content="summary" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="apple-touch-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=114" />
+<link rel='openid.server' href='https://profmattstrassler.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://profmattstrassler.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://profmattstrassler.com/osd.xml" title="Of Particular Significance" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<meta name="theme-color" content="#fefae3" />
+<style type="text/css">
+.widget_twitter li {
+	word-wrap: break-word;
+}
+</style>
+<meta name="application-name" content="Of Particular Significance" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="Conversations About Science with Theoretical Physicist Matt Strassler" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://profmattstrassler.com/feed/;icon-uri=https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=16" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="When I wrote my article last week about the relation between the Higgs and gravity, emphasizing that there really was no relation at all, I said that the Higgs field is not the universal giver of mass. I cited four reasons: The Higgs field does not give an atomic nucleus all of its mass, and&hellip;" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #fefae3; }
+</style>
+	<link rel="amphtml" href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/amp/"></head>
+
+<body class="post-template-default single single-post postid-4815 single-format-standard custom-background customizer-styles-applied two-column sidebar-content highlander-enabled highlander-light">
+<div id="container" class="hfeed contain">
+	<div id="header">
+		<div id="masthead" role="banner">
+						<div id="site-title">
+				<span>
+					<a href="https://profmattstrassler.com/" title="Of Particular Significance" rel="home">Of Particular Significance</a>
+				</span>
+			</div>
+			<div id="site-description">Conversations About Science with Theoretical Physicist Matt Strassler</div>
+		</div><!-- #masthead -->
+
+		<div id="access" role="navigation">
+		  			<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+						<div class="menu"><ul>
+<li ><a href="https://profmattstrassler.com/">Home</a></li><li class="page_item page-item-1026 page_item_has_children"><a href="https://profmattstrassler.com/about/">About</a>
+<ul class='children'>
+	<li class="page_item page-item-2 page_item_has_children"><a href="https://profmattstrassler.com/about/about-me/">About Me</a>
+	<ul class='children'>
+		<li class="page_item page-item-5295"><a href="https://profmattstrassler.com/about/about-me/a-new-career-phase/">A New Career&nbsp;Phase</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-1029"><a href="https://profmattstrassler.com/about/about-this-site-and-how-to-use-it/">About This Site and How to Use&nbsp;It</a></li>
+</ul>
+</li>
+<li class="page_item page-item-26 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/">Articles</a>
+<ul class='children'>
+	<li class="page_item page-item-64 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/">Large Hadron Collider&nbsp;FAQ</a>
+	<ul class='children'>
+		<li class="page_item page-item-196"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/how-to-figure-out-what-happened-in-a-microcollision/">How We Learn What Happened in a Proton-Proton&nbsp;Collision</a></li>
+		<li class="page_item page-item-67"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/introduction-to-the-large-hadron-collider/">Introduction to the&nbsp;LHC</a></li>
+		<li class="page_item page-item-70"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/photosofthelhc/">Photos Of The&nbsp;LHC</a></li>
+		<li class="page_item page-item-498 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/">Some Technical Concepts</a>
+		<ul class='children'>
+			<li class="page_item page-item-661"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/fermions-and-bosons/">Fermions and Bosons</a></li>
+			<li class="page_item page-item-497"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-gev-and-tev/">GeV and TeV</a></li>
+			<li class="page_item page-item-461"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-invariant-mass/">Invariant Mass</a></li>
+			<li class="page_item page-item-568"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/what-are-anti-particles/">What are anti-particles?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1560 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/">The Trigger: Discarding All But the&nbsp;Gold</a>
+		<ul class='children'>
+			<li class="page_item page-item-7821"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/trigger-failure-and-repair/">Trigger Failure, and Repair, at the&nbsp;LHC</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-602"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-hadron-as-in-large-hadron-collider/">What&#8217;s a Hadron?</a></li>
+		<li class="page_item page-item-152 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/">What&#8217;s a Proton,&nbsp;Anyway?</a>
+		<ul class='children'>
+			<li class="page_item page-item-2668"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/checking-whats-inside-a-proton/">Checking What&#8217;s Inside a&nbsp;Proton</a></li>
+			<li class="page_item page-item-2613"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/proton-collisions-vs-quarkgluonantiquark-mini-collisions/">Proton Collisions Vs. Quark/Gluon/Antiquark Mini-Collisions</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-15 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/">Large Hadron Collider&nbsp;News</a>
+	<ul class='children'>
+		<li class="page_item page-item-340"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/a-historic-day-or-just-an-important-one/">A Historic Day? Or Just an Important&nbsp;One?</a></li>
+		<li class="page_item page-item-49"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/gangbusters/">Gangbusters!</a></li>
+		<li class="page_item page-item-10"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/hey-where-did-my-higgs-go/">Hey Where&#8217;d My Higgs&nbsp;Go?</a></li>
+		<li class="page_item page-item-1703"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/higgs-search-atlas-and-cms-summer-data-combined/">Higgs Search: ATLAS and CMS Summer Data&nbsp;Combined</a></li>
+		<li class="page_item page-item-1395"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/multi-lepton-events-a-good-place-to-look-for-new-physics/">Multi-Lepton Events: A Good Place to Look for New&nbsp;Physics</a></li>
+		<li class="page_item page-item-2241 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/">Old Pages (Of Historical&nbsp;Interest)</a>
+		<ul class='children'>
+			<li class="page_item page-item-2240"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-december-higgs-update/">The December 2011 Higgs&nbsp;Update</a></li>
+			<li class="page_item page-item-2251"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-july-2011-higgs-hints/">The July 2011 Higgs&nbsp;Hints</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1049 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/">Searches for New Phenomena (as of&nbsp;9/2011)</a>
+		<ul class='children'>
+			<li class="page_item page-item-1050 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/">Searches Aimed at&nbsp;Supersymmetry</a>
+			<ul class='children'>
+				<li class="page_item page-item-1091"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-new-particles-with-long-lifetimes/">Seeking New Particles with Long&nbsp;Lifetimes</a></li>
+				<li class="page_item page-item-1051"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-photonszs-and-something-undetectable/">Seeking Photons/Zs and Something&nbsp;Undetectable</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-4216 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/">Triggering: Advances in&nbsp;2012</a>
+		<ul class='children'>
+			<li class="page_item page-item-4205"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/data-parking-at-cms/">Data Parking at&nbsp;CMS</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1539"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/two-photons-data-and-theory-disagree/">Two-Photons: Data and Theory&nbsp;Disagree</a></li>
+		<li class="page_item page-item-753"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/what-do-current-mid-august-2011-lhc-results-imply-about-supersymmetry/">What do current LHC results (mid-August 2011) imply about&nbsp;supersymmetry?</a></li>
+		<li class="page_item page-item-114"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/why-so-quiet-at-lhc/">Why so quiet at&nbsp;LHC?</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-413 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/">Particle Physics Basics</a>
+	<ul class='children'>
+		<li class="page_item page-item-5927"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/c-p-t-and-their-combinations/">C, P, T (And Their&nbsp;Combinations)</a></li>
+		<li class="page_item page-item-1249"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/cerenkov-radiation/">Cerenkov Radiation</a></li>
+		<li class="page_item page-item-4267 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/">Fields and Their Particles: With&nbsp;Math</a>
+		<ul class='children'>
+			<li class="page_item page-item-4269 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/">1. Ball on a Spring&nbsp;(Classical)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4611"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/1a-resonance/">1a. Resonance</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4272"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-quantum/">2. Ball on a Spring&nbsp;(Quantum)</a></li>
+			<li class="page_item page-item-4376"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-form/">3. Waves (Classical&nbsp;Form)</a></li>
+			<li class="page_item page-item-4402 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/">4. Waves (Classical Equation of&nbsp;Motion)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4442"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/waves-the-quick-calculation/">4a. Waves (The Quick&nbsp;Calculation)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4450"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/5-waves-quantum/">5. Waves (Quantum)</a></li>
+			<li class="page_item page-item-4468 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/">6. Fields</a>
+			<ul class='children'>
+				<li class="page_item page-item-4501"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/chicken-and-egg-matter-and-field/">6a. Chicken and Egg; Matter and&nbsp;Field</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4526 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/">7. Particles Are&nbsp;Quanta</a>
+			<ul class='children'>
+				<li class="page_item page-item-4536"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/7a-how-bosons-and-fermions-differ/">7a. How Bosons and Fermions&nbsp;Differ</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4627"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/8-how-particles-and-fields-interact/">8. How Particles and Fields Interact (an&nbsp;introduction)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4585 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/">How the Higgs Field Works (with&nbsp;math)</a>
+		<ul class='children'>
+			<li class="page_item page-item-4663 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/">1. The Basic&nbsp;Idea</a>
+			<ul class='children'>
+				<li class="page_item page-item-4587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/1-the-basic-idea/">1. The Basic Idea (1st&nbsp;version)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4710"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/2-why-the-higgs-field-is-non-zero-on-average/">2. Why the Higgs Field is Non-Zero on&nbsp;Average</a></li>
+			<li class="page_item page-item-4789"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/3-how-the-higgs-particle-arises/">3. How the Higgs Particle&nbsp;Arises</a></li>
+			<li class="page_item page-item-5032"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/4-why-the-higgs-field-is-necessary/">4. Why the Higgs Field is&nbsp;Necessary</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3077 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/">Mass, Energy, Matter,&nbsp;Etc.</a>
+		<ul class='children'>
+			<li class="page_item page-item-3118 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/">Mass and Energy</a>
+			<ul class='children'>
+				<li class="page_item page-item-3321"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/how-did-einstein-do-it/">How Did Einstein Do&nbsp;It?</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3079"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/matter-and-energy-a-false-dichotomy/">Matter and Energy: A False&nbsp;Dichotomy</a></li>
+			<li class="page_item page-item-6247 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/">More on Mass</a>
+			<ul class='children'>
+				<li class="page_item page-item-6245"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/the-two-definitions-of-mass-and-why-i-use-only-one/">The Two Definitions of &#8220;Mass&#8221;, And Why I Use Only&nbsp;One</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3452 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/">The Energy That Holds Things&nbsp;Together</a>
+			<ul class='children'>
+				<li class="page_item page-item-3534"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/neutron-stability-in-atomic-nuclei/">Neutron Stability in Atomic&nbsp;Nuclei</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-1213 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/">Neutrinos</a>
+		<ul class='children'>
+			<li class="page_item page-item-1791 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/">How One Detects&nbsp;Neutrinos</a>
+			<ul class='children'>
+				<li class="page_item page-item-6044"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/icecube-a-giant-frozen-neutrino-catcher/">IceCube: A Giant Frozen Neutrino&nbsp;Catcher</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1793"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/making-neutrino-beams/">Making Neutrino Beams</a></li>
+			<li class="page_item page-item-1212 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/">Neutrino Types and Neutrino&nbsp;Oscillations</a>
+			<ul class='children'>
+				<li class="page_item page-item-1229"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/velocity-differences-of-neutrinos/">Velocity Differences of&nbsp;Neutrinos</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1737 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/">Neutrinos Faster Than&nbsp;Light?</a>
+			<ul class='children'>
+				<li class="page_item page-item-1811"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-additional-supporting-info/">OPERA: Additional Supporting&nbsp;Info</a></li>
+				<li class="page_item page-item-1736"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-comparing-the-two-versions/">OPERA: Comparing the Two&nbsp;Versions</a></li>
+				<li class="page_item page-item-1799 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/">OPERA: Some Arguments&nbsp;Against</a>
+				<ul class='children'>
+					<li class="page_item page-item-1801"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/cohen-glashow-opera-is-self-contradictory/">Cohen-Glashow: OPERA is Self-Contradictory</a></li>
+					<li class="page_item page-item-1805"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-vs-icarus/">OPERA vs ICARUS</a></li>
+					<li class="page_item page-item-1802"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-another-speed-bump/">OPERA: Another Speed&nbsp;Bump</a></li>
+					<li class="page_item page-item-1782"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/supernovas-and-neutrino-speeds/">Supernovas and Neutrino&nbsp;Speeds</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-1795 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/">OPERA: The First Few&nbsp;Days</a>
+				<ul class='children'>
+					<li class="page_item page-item-1784"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-paper-my-initial-reaction/">OPERA&#8217;s Paper: My Initial&nbsp;Reaction</a></li>
+					<li class="page_item page-item-1788"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-presentation-my-initial-comments/">OPERA&#8217;s Presentation: My Initial&nbsp;Comments</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-3160 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/">OPERA: What Went&nbsp;Wrong</a>
+				<ul class='children'>
+					<li class="page_item page-item-3185"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/how-opera-and-lvd-confirmed-operas-problem/">How LVD Helped Solve OPERA&#8217;s&nbsp;Mystery</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-412"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particle-physics-why-do-it-and-why-do-it-that-way/">Particle Physics: Why do it? And why do it *that*&nbsp;way?</a></li>
+		<li class="page_item page-item-3090"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particleanti-particle-annihilation/">Particle/Anti-Particle Annihilation</a></li>
+		<li class="page_item page-item-6499"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/quantum-fluctuations-and-their-energy/">Quantum Fluctuations and Their&nbsp;Energy</a></li>
+		<li class="page_item page-item-721 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/">The Hierarchy Problem</a>
+		<ul class='children'>
+			<li class="page_item page-item-6461 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/">Naturalness and the Standard&nbsp;Model</a>
+			<ul class='children'>
+				<li class="page_item page-item-6594"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/adding-curves/">How to Add 2&nbsp;Curves</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-566 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/">The Known (Apparently-) Elementary&nbsp;Particles</a>
+		<ul class='children'>
+			<li class="page_item page-item-1396 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/">Jets: The Manifestation of Quarks and&nbsp;Gluons</a>
+			<ul class='children'>
+				<li class="page_item page-item-2919"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/b-tagging-identifying-jets-from-bottom-quarks/">B-tagging: Identifying Jets from Bottom&nbsp;Quarks</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1401"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/tau-leptons/">Tau Leptons</a></li>
+			<li class="page_item page-item-616"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/the-known-particles-if-the-higgs-field-were-zero/">The Known Particles &#8212; If The Higgs Field Were&nbsp;Zero</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-6088 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/">The Known Forces of&nbsp;Nature</a>
+		<ul class='children'>
+			<li class="page_item page-item-6072"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/the-strength-of-the-known-forces/">The Strengths of the Known&nbsp;Forces</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3621 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/">The Structure of&nbsp;Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5096 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/">Atoms: Building Blocks of&nbsp;Molecules</a>
+			<ul class='children'>
+				<li class="page_item page-item-5184"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-of-an-isotope-are-identical-literally/">Atoms of an Isotope Are Identical,&nbsp;Literally</a></li>
+				<li class="page_item page-item-5363"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-their-inner-workings/">Atoms: Their Inner&nbsp;Workings</a></li>
+				<li class="page_item page-item-5177"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/isotopes-variations-on-an-atom/">Isotopes: Variations on an&nbsp;Atom</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-5416"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/electrons-on-the-outskirts-of-atoms/">Electrons: On the Outskirts of&nbsp;Atoms</a></li>
+			<li class="page_item page-item-5815"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/protons-and-neutrons/">Protons and Neutrons: The Massive Pandemonium in&nbsp;Matter</a></li>
+			<li class="page_item page-item-3618"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-molecular-structure-of-matter/">The Molecular Structure of&nbsp;Matter</a></li>
+			<li class="page_item page-item-5564 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/">The Nuclei of Atoms: At the Heart of&nbsp;Matter</a>
+			<ul class='children'>
+				<li class="page_item page-item-5592"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/what-holds-nuclei-together/">What Holds Nuclei&nbsp;Together?</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-7624"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/theories-and-vacua/">Theories and Vacua</a></li>
+		<li class="page_item page-item-7587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/tunneling-a-quantum-process/">Tunneling: A Quantum&nbsp;Process</a></li>
+		<li class="page_item page-item-1285"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/virtual-particles-what-are-they/">Virtual Particles: What are&nbsp;they?</a></li>
+		<li class="page_item page-item-3080 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/">Why Do Particles&nbsp;Decay?</a>
+		<ul class='children'>
+			<li class="page_item page-item-531"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-why/">Most Particles Decay &#8212; But&nbsp;Why?</a></li>
+			<li class="page_item page-item-1333"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-yet-some-dont/">Most Particles Decay &#8212; Yet Some&nbsp;Don&#8217;t!</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-1819 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/">Relativity, Space, Astronomy and&nbsp;Cosmology</a>
+	<ul class='children'>
+		<li class="page_item page-item-1672"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/big-bang-classic-confusions/">Big Bang, Classic&nbsp;Confusions</a></li>
+		<li class="page_item page-item-7183 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/">Black Holes</a>
+		<ul class='children'>
+			<li class="page_item page-item-7185"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/black-hole-information-paradox-an-introduction/">Black Hole Information Paradox: An&nbsp;Introduction</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3366 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/">Dark Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5907"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/current-hints-of-dark-matter-413/">Current Hints of Dark Matter&nbsp;(4/13)</a></li>
+			<li class="page_item page-item-7903"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/searching-for-dark-matter-at-the-lhc/">Searching for Dark Matter at the&nbsp;LHC</a></li>
+			<li class="page_item page-item-3365"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/dark-matter-annihilation/">Seeing Signs of Dark Matter&nbsp;Annihilation</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-7383 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/">History of the&nbsp;Universe</a>
+		<ul class='children'>
+			<li class="page_item page-item-7390"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/before-inflation/">Before Inflation</a></li>
+			<li class="page_item page-item-7426"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/big-bang-expansion-not-explosion/">Big Bang: Expansion, NOT&nbsp;Explosion</a></li>
+			<li class="page_item page-item-7407"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/hot-big-bang/">Hot Big Bang</a></li>
+			<li class="page_item page-item-7393 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/">Inflation</a>
+			<ul class='children'>
+				<li class="page_item page-item-7840"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/dust-thou-art-bicep2/">Dust Thou Art,&nbsp;BICEP2</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-7505"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/some-definitions-for-cosmology/">Some Definitions for&nbsp;Cosmology</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3681"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/parallax-seeing-in-depth/">Parallax: Seeing in&nbsp;Depth</a></li>
+		<li class="page_item page-item-2698"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/reflections-on-beauty-in-motion/">Reflections on Beauty in&nbsp;Motion</a></li>
+		<li class="page_item page-item-1821"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/the-first-principle-of-relativity/">The First Principle of&nbsp;Relativity</a></li>
+		<li class="page_item page-item-3706"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/transit-of-venus-and-the-distance-to-the-sun/">Transit of Venus and the Distance to the&nbsp;Sun</a></li>
+		<li class="page_item page-item-6167 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/">Why Do Astronauts&nbsp;Float?</a>
+		<ul class='children'>
+			<li class="page_item page-item-6231"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/how-strong-is-gravity-at-the-space-station/">How Strong Is Gravity at the Space&nbsp;Station?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-755 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/">Some Speculative Theoretical Ideas for the&nbsp;LHC</a>
+	<ul class='children'>
+		<li class="page_item page-item-1574 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/">Extra Dimensions</a>
+		<ul class='children'>
+			<li class="page_item page-item-1575 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/">Extra Dimensions &#8211; How to Think About&nbsp;Them</a>
+			<ul class='children'>
+				<li class="page_item page-item-1642"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/dimensions-of-physical-space/">Dimensions of Physical&nbsp;Space</a></li>
+				<li class="page_item page-item-2290"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/what-is-an-extra-dimension-an-example/">What is an &#8220;Extra&#8221; Dimension? Some&nbsp;Examples</a></li>
+				<li class="page_item page-item-1584"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-1-spatial-dimension/">Worlds of 1 Spatial&nbsp;Dimension</a></li>
+				<li class="page_item page-item-1668"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-2-spatial-dimensions/">Worlds of 2 Spatial&nbsp;Dimensions</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2331 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/">How to Look for Signs of Extra&nbsp;Dimensions</a>
+			<ul class='children'>
+				<li class="page_item page-item-3815"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/extra-dimensions-newtons-gravity/">Extra Dimensions &amp; Newton&#8217;s&nbsp;Gravity</a></li>
+				<li class="page_item page-item-3764"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/how-big-could-an-extra-dimension-be/">How Big Could an Extra Dimension&nbsp;Be?</a></li>
+				<li class="page_item page-item-2350"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-1/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;1</a></li>
+				<li class="page_item page-item-2364"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-2/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;2</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-758 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/">Supersymmetry</a>
+		<ul class='children'>
+			<li class="page_item page-item-697 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/">How to Look for Supersymmetry at the&nbsp;LHC</a>
+			<ul class='children'>
+				<li class="page_item page-item-808 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/">When The Standard Assumptions About Supersymmetry are&nbsp;Relaxed</a>
+				<ul class='children'>
+					<li class="page_item page-item-4172"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/test-page/">Test Page</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+			<li class="page_item page-item-660"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-what-is-it/">Supersymmetry &#8212; What Is&nbsp;It?</a></li>
+			<li class="page_item page-item-1399"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-and-multi-lepton-events/">Supersymmetry and Multi-Lepton&nbsp;Events</a></li>
+			<li class="page_item page-item-7017"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-122013/">Where Stands Supersymmetry (as of&nbsp;12/2013)</a></li>
+			<li class="page_item page-item-3411"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-as-of-42012/">Where Stands Supersymmetry (as of&nbsp;4/2012)?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-210 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/">Tevatron News</a>
+	<ul class='children'>
+		<li class="page_item page-item-222"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/a-rare-and-interesting-decay-of-a-b-meson/">A Rare and Interesting Decay of a &#8220;B meson&#8221; &#8211; update&nbsp;2</a></li>
+		<li class="page_item page-item-894"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/apparent-unexpected-asymmetries-in-the-production-of-quarks/">Apparent Unexpected Asymmetries in the Production of&nbsp;Quarks</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-362 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/">The Higgs Particle</a>
+	<ul class='children'>
+		<li class="page_item page-item-3956 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/">Discovery of the&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-4009"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-higgs/">Higgs Discovery: Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4015"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-simplest-higgs/">Higgs Discovery: Is it a Simplest&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4100"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-personal-reflections/">Higgs Discovery: Personal&nbsp;Reflections</a></li>
+			<li class="page_item page-item-3980"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-skill-and-a-little-luck/">Higgs Discovery: Skill and A Little&nbsp;Luck</a></li>
+			<li class="page_item page-item-3958"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-the-data/">Higgs Discovery: The&nbsp;Data</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2198"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/holiday-higgs-hints-confidence-inspiring-or-not/">Holiday Higgs Hints: Confidence-Inspiring or&nbsp;Not?</a></li>
+		<li class="page_item page-item-4265"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/how-the-higgs-field-works/">How The Higgs Field&nbsp;Works</a></li>
+		<li class="page_item page-item-960"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/implications-of-higgs-searches-as-of-92011/">Implications of Higgs Searches (as of&nbsp;9/2011)</a></li>
+		<li class="page_item page-item-7236 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/">Non-Standard Decays of the Observed Higgs&nbsp;Particle</a>
+		<ul class='children'>
+			<li class="page_item page-item-7282"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decay-to-unknown-spin-one-particles/">Higgs Decay to Unknown Spin-One&nbsp;Particles</a></li>
+			<li class="page_item page-item-7218"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decays-to-unknown-spin-zero-particles/">Higgs Decays to Unknown Spin-Zero&nbsp;Particles</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-5394 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/">Taking Stock of the &#8220;Higgs&#8221; (Jan.&nbsp;2013)</a>
+		<ul class='children'>
+			<li class="page_item page-item-5446"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/1-is-it-a-higgs/">1. Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5447"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/2-perhaps-composite/">2. Perhaps Composite?</a></li>
+			<li class="page_item page-item-5448"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/3-a-higgs-of-simplest-type/">3. A Higgs of Simplest&nbsp;Type?</a></li>
+			<li class="page_item page-item-5454"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/4-more-than-one-higgs/">4. More Than One&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5460"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/5-supersymmetry/">5. Supersymmetry?</a></li>
+			<li class="page_item page-item-5494"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/6-surprises/">6. Surprises?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4690"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">The Higgs FAQ&nbsp;2.0</a></li>
+		<li class="page_item page-item-4693 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/">The Old Higgs&nbsp;FAQ</a>
+		<ul class='children'>
+			<li class="page_item page-item-360"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/higgs-faq-1-0/">The Higgs FAQ&nbsp;1.0</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2000 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/">The Standard Model&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-2004"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/decays-of-the-standard-model-higgs/">Decays of the Standard Model&nbsp;Higgs</a></li>
+			<li class="page_item page-item-2509 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/">Lightweight Higgs: A `Sensitive&nbsp;Creature&#8217;</a>
+			<ul class='children'>
+				<li class="page_item page-item-2587 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/">A Quantitative Addendum to the Sensitive&nbsp;Creature</a>
+				<ul class='children'>
+					<li class="page_item page-item-5855 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/">Non-SM h Decays</a>
+					<ul class='children'>
+						<li class="page_item page-item-6041"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/table-of-decays/">Table of Decays</a></li>
+					</ul>
+</li>
+				</ul>
+</li>
+				<li class="page_item page-item-3649"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/decay-to-unusual-jets/">Decay to Unusual&nbsp;Jets</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2002"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/production-of-the-standard-model-higgs-particle/">Production of the Standard Model Higgs&nbsp;Particle</a></li>
+			<li class="page_item page-item-2007"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/seeking-and-studying-the-standard-model-higgs-particle/">Seeking and Studying the Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1932 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/">Why is it Hard to Find the Higgs&nbsp;Particle?</a>
+		<ul class='children'>
+			<li class="page_item page-item-1935"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/a-lightweight-standard-model-higgs-particle/">A Lightweight Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3892 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/">Why the Higgs Particle&nbsp;Matters</a>
+		<ul class='children'>
+			<li class="page_item page-item-3908"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/why-the-higgs-particle-matters-2/">Why the Higgs Particle Matters (Old&nbsp;Version)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-443"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-hints-of-higgs-currently-rest-on-uncertain-ground/">Why The Hints of Higgs Currently Rest on Uncertain&nbsp;Ground</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-291 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/">Thoughts on the Scientific&nbsp;Process</a>
+	<ul class='children'>
+		<li class="page_item page-item-1808"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/scientific-scepticism-isnt-just-politics/">Scientific Scepticism Isn&#8217;t Just&nbsp;Politics</a></li>
+		<li class="page_item page-item-286"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/why-is-the-tevatron-so-busy-with-hints-of-new-physics/">Why is the Tevatron So Busy with Hints of New&nbsp;Physics?</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="page_item page-item-90"><a href="https://profmattstrassler.com/videoclips/">Movie Clips</a></li>
+<li class="page_item page-item-1032"><a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a></li>
+<li class="page_item page-item-1018 page_item_has_children"><a href="https://profmattstrassler.com/technical-zone/">Technical Zone</a>
+<ul class='children'>
+	<li class="page_item page-item-10344"><a href="https://profmattstrassler.com/technical-zone/test-page/">Test Page</a></li>
+</ul>
+</li>
+<li class="page_item page-item-159 page_item_has_children"><a href="https://profmattstrassler.com/xotica/">Xotica</a>
+<ul class='children'>
+	<li class="page_item page-item-2302"><a href="https://profmattstrassler.com/xotica/hurriquake-2011-what-are-the-chances/">Hurriquake 2011: What are the&nbsp;Chances?</a></li>
+	<li class="page_item page-item-5354 page_item_has_children"><a href="https://profmattstrassler.com/xotica/sunrise/">Sunrise</a>
+	<ul class='children'>
+		<li class="page_item page-item-215"><a href="https://profmattstrassler.com/xotica/sunrise/sunrise_old/">Sunrise (older version)</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-2300"><a href="https://profmattstrassler.com/xotica/the-grand-si11iness-of-111111-111111/">The Grand Si11iness of 11/11/11&nbsp;11:11:11</a></li>
+</ul>
+</li>
+</ul></div>
+		</div><!-- #access -->
+
+		<div id="branding">
+						<a href="https://profmattstrassler.com/">
+									<img src="https://profmattstrassler.files.wordpress.com/2011/06/cropped-cerntunnel1.jpg" width="990" height="180" alt="" />
+							</a>
+					</div><!-- #branding -->
+	</div><!-- #header -->
+
+	<div id="content-box">
+
+<div id="content-container">
+	<div id="content" role="main">
+
+	
+		<div id="nav-above" class="navigation">
+			<div class="nav-previous"><a href="https://profmattstrassler.com/2012/10/22/from-the-higgs-field-to-the-higgs-particle/" rel="prev"><span class="meta-nav">&larr;</span> From the Higgs Field to the Higgs&nbsp;Particle</a></div>
+			<div class="nav-next"><a href="https://profmattstrassler.com/2012/10/24/garistos-reply-to-previous-post/" rel="next">Garisto&#8217;s Reply to Previous&nbsp;Post <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-above -->
+
+		<div id="post-4815" class="post-4815 post type-post status-publish format-standard hentry category-higgs category-lhc-background-info category-particle-physics tag-fields tag-gravity tag-higgs tag-mass tag-particles">
+
+			
+			<h1 class="entry-title">Does the Higgs Field Give the Higgs Particle Its Mass, or&nbsp;Not?</h1>
+							<div class="entry-meta">
+					<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/" title="8:45 AM" rel="bookmark"><span class="entry-date">October 23, 2012</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comments">34 Comments</a></span>
+									</div><!-- .entry-meta -->
+			
+			<div class="entry-content">
+				<p>When I wrote <a title="Why the Higgs and Gravity are Unrelated" href="https://profmattstrassler.com/2012/10/15/why-the-higgs-and-gravity-are-unrelated/" target="_blank">my article last week</a> about the relation between <a title="The Higgs FAQ 2.0" href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/" target="_blank">the Higgs</a> and gravity, emphasizing that there really was no relation at all, I said that the Higgs field is not the universal giver of mass. I cited four reasons:</p>
+<ol>
+<li>The Higgs field does not give an atomic nucleus all of its mass, and since the nucleus is the vast majority of the mass of an atom, that means it does not provide all of the mass of ordinary matter.</li>
+<li>Black holes appear at the centers of galaxies, and they appear to be crucial to galaxy formation; but the Higgs field does not provide all of a black hole&#8217;s mass. In fact the Higgs field&#8217;s contribution to a black hole&#8217;s mass can even be zero, because black holes can in principle be formed from massless objects, such as photons.</li>
+<li>There is no reason to think that dark matter, which appears to make up the majority of the masses of galaxies and indeed of all matter in the universe, is made from particles that get all of their mass from the Higgs field.</li>
+<li>The Higgs field, though it provides the mass for all other known particles with masses, does not provide the Higgs particle with its mass.</li>
+</ol>
+<p>Although it doesn&#8217;t matter too much to the main point of the Higgs-and-gravity article (since the first three points are not in question), the editor of a leading physics journal, Robert Garisto, took issue with the fourth point, arguing that I was making a statement that really wasn&#8217;t right, or at least is too strong. His argument has some merit, though in the end, I stick with my statement. I think it&#8217;s worth describing what he had in mind (as best I understand it) and why I feel strongly that one should think about it differently. There are some semantic aspects to the disagreement, but there are also some interesting and important subtle scientific points.  I don&#8217;t want to suggest that this discussion is really that big a deal &#8212; the very fact that we can argue about whether the Higgs field does or doesn&#8217;t provide the Higgs particle with its mass distinguishes the Higgs particle from, say, the W particle, whose mass <em>indisputably</em> arises from the Higgs field. But there&#8217;s something to learn here about quantum field theory and how the Higgs mechanism works.<span id="more-4815"></span></p>
+<p>What Garisto said was basically this: within the Standard Model (the equations for the known particles and forces along with <a title="The Standard Model Higgs" href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/" target="_blank">the simplest possible Higgs particle</a>), the formula for the Higgs particle&#8217;s mass is simply (as explained in <a title="3. How the Higgs Particle Arises" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/3-how-the-higgs-particle-arises/" target="_blank">this article</a>, for those who&#8217;ve got a little math background)</p>
+<ul>
+<li>m<sub>h</sub> = √2 (h/2πc<sup>2</sup>) b v</li>
+</ul>
+<p>where</p>
+<ul>
+<li>v is the non-zero average value of the Higgs field, equal to 246 GeV</li>
+<li>b is a quantity that determines how strongly the Higgs field interacts with itself</li>
+<li>h is Planck&#8217;s constant, and</li>
+<li>c is the universal speed limit (often called &#8220;the speed of light.&#8221;)</li>
+</ul>
+<p>This is to be compared with the formula for the W particle&#8217;s mass</p>
+<ul>
+<li>m<sub>W</sub> = ½ (g<sub>W</sub>/c<sup>2</sup>) v</li>
+</ul>
+<p>where g<sub>W</sub> is the number that determines how strongly the Higgs field interacts with the W field. These formulas look very similar, in that both the W mass and the Higgs mass are proportional to v &#8212; and so, what&#8217;s the difference? It would appear that the Higgs field&#8217;s value v determines <strong>both</strong> masses.</p>
+<p>That this argument has a flaw isn&#8217;t instantly obvious, and is subtle, especially if you don&#8217;t have some technical experience. I&#8217;ve been slow to answer because it isn&#8217;t so simple to answer this in a form that non-experts can follow. <em>[Fine point: And then, there&#8217;s an additional complication which I haven&#8217;t yet explained on this website, involving the effect of the strong nuclear force on certain particle masses, which means that making precise statements requires some very tricky caveats.]</em></p>
+<p>To explain my viewpoint, let me start by making an almost-true statement:</p>
+<ul>
+<li>If the Higgs field&#8217;s value were zero instead of v, nature would have a massless W particle, a massless Z particle, a massless electron, massless quarks, massless neutrinos, and so forth.</li>
+<li>However, <strong>there would be no massless Higgs particle</strong>.</li>
+</ul>
+<p>This is a crucial indication that there is something fundamentally different about the Higgs particle, as far as its relation to the value v, compared to the others.</p>
+<p><strong>A Minor Complication, Requiring a Caveat</strong></p>
+<p>Now this statement, though simple and clear, isn&#8217;t exactly right, because it turns out the strong nuclear force does something complicated: it creates, spontaneously, a composite (i.e. not elementary) Higgs-like field [which I&#8217;ll call the &#8220;Sigma field&#8221;, or &#8220;Σ&#8221;].  The non-zero value of Σ is far too small to play the role of the what we call the real &#8220;Higgs field&#8221; H, but it does mean that if H were zero, the W and Z particle and the others wouldn&#8217;t <em>quite</em> be massless.  So to evade having to explain this subtlety every single time I make a remark that&#8217;s not quite true, I&#8217;m going to call this the <strong>Σ caveat, </strong>and whenever you see me refer to it, you should understand this to mean that the nearby statement in the text is <em>almost</em> true, and would be <em>precisely</em> true if somehow the strong nuclear force were turned off, in which case Σ would not exist at all.</p>
+<p><em>[Fine point:  The correct version of the statement above about the masslessness of other particles is this: in the presence of the strong nuclear force and its composite Σ field, made from combining quarks and antiquark fields to form a new one, the masses of the various known particles wouldn&#8217;t quite be zero, but they would be extremely small compared to their actual masses &#8212; smaller than we observe by at least a factor of a thousand and in many cases much more. The exception is the Higgs particle&#8217;s mass &#8212; the mass of the particle of the field H &#8212; which would <strong>not</strong> be similarly reduced.]<br />
+</em></p>
+<p><strong>Underlying Principles</strong></p>
+<p>What&#8217;s at stake here? The issue is connected to very deep issues in particle physics.</p>
+<p>For certain types of particles, masses can be forbidden by fundamental obstructions, and there are mathematical theorems that for masses to arise, something has to come along and violate the conditions of those theorems, and remove the obstructions.  In the case of W particles and electrons and the rest of <a title="The Known (Apparently-) Elementary Particles" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/" target="_blank">the known particles</a>, the theorems apply, and what violates them is &#8220;v&#8221;, the non-zero value of the Higgs field.  (Σ caveat: or the non-zero value of Σ.) But <em>there is no such theorem for the mass of a Higgs particle</em>, or indeed for any similar type of particle.  The absence of such a theorem is intimately related to the existence of the <a title="The Hierarchy Problem" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/" target="_blank">hierarchy problem</a>.</p>
+<p>It is these theorems, and their limitations, that assure that the Higgs field being zero would force <strong>many</strong> types of particles to be massless (Σ caveat), but not necessarily <strong>all</strong> of them&#8230; and among the massive ones would be the particles of the H field themselves. <em>(Should we still call them &#8220;Higgs particles&#8221; even when the Higgs field&#8217;s average value is zero? I still would, but Garisto wants to call by a different name.  However, this point is semantic: it doesn&#8217;t matter what we call them, the important point is that they aren&#8217;t massless.)</em></p>
+<p>No matter how we word the debate, the conclusion is the same: <span style="color:#ff0000;">the Higgs field is not, in principle, the universal giver of mass to all the elementary particles of nature.</span></p>
+<p><strong>The Demonstration</strong></p>
+<p>Still, we&#8217;ve seen above that in the formulas of the Standard Model, it sure does look as though the value of the Higgs field determines <strong>both</strong> the W particle&#8217;s <strong>and</strong> the Higgs particle&#8217;s mass.  Both masses are proportional to v.  So how do I explain that?</p>
+<p><strong><em>It&#8217;s an accident</em></strong>.  The Standard Model is so very simple that this accident is unavoidable.   In other theories that are even just a little more complicated than the Standard Model, it isn&#8217;t true that the Higgs particle&#8217;s mass is proportional to v.</p>
+<p>In any theory with a single Higgs field, the W particle&#8217;s mass <strong>must</strong> be proportional to v <em>[even more precisely, must vanish when H=0 (Σ caveat)]</em>, because of a <strong>theorem</strong>; but the fact that the Standard Model Higgs particle&#8217;s mass is proportional to v is an accident<em> [and in general it need not vanish when H=0 </em><em><em>(and on this point there is no <em>Σ caveat</em>)</em>]</em>.</p>
+<p>So let me now prove this to you.  Apologies to those of you who don&#8217;t do math; you&#8217;ll have to take my word for the final conclusion.</p>
+<p>First let&#8217;s recall what happens in the Standard Model, and its simplest possible Higgs.  <a title="2. Why the Higgs Field is Non-Zero on Average" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/2-why-the-higgs-field-is-non-zero-on-average/" target="_blank">The Higgs field&#8217;s constant value satisfies the equation of motion</a></p>
+<ul>
+<li>0 = a<sup>2</sup> H – b<sup>2</sup> H<sup>3</sup> = – b<sup>2</sup> H (H<sup>2</sup>  – [a/b]<sup>2</sup>)</li>
+</ul>
+<p>where a and b are positive constants.  This has an unstable solution at H=0; the stable solution is at H = a/b, so we identify v, the equilibrium value of the Higgs field, as simply a/b.  The formula for the Higgs mass m<sub>h</sub>, obtained in <a title="3. How the Higgs Particle Arises" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/3-how-the-higgs-particle-arises/" target="_blank">this article</a>, was quoted above in terms of b and v, but we should write it in terms of the parameters a and b that actually appear in the equation of motion,</p>
+<ol>
+<li>v = a/b</li>
+<li>m<sub>h</sub> = √2 (h/2πc<sup>2</sup>) a</li>
+</ol>
+<p><em><strong>Now in this case, because v = a/b and therefore a = b v, we can choose to rewrite the second formula as </strong></em></p>
+<ul>
+<li>m<sub>h</sub> = √2 (h/2πc<sup>2</sup>) b v</li>
+</ul>
+<p><em>which seems to imply the Higgs field&#8217;s value determines the Higgs particle&#8217;s mass the same way it determines all the other masses.<br />
+</em></p>
+<p>However, suppose we move away from the Standard Model very slightly; we don&#8217;t add any additional fields or particles, but we change the equation of motion to read</p>
+<ul>
+<li>0 = a<sup>2</sup> H – b<sup>2</sup> H<sup>3</sup> – d<sup>2</sup> H<sup>5</sup></li>
+</ul>
+<p>where d, like a and b, is a positive constant.  If you now follow the same mathematical logic used in <a title="2. Why the Higgs Field is Non-Zero on Average" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/2-why-the-higgs-field-is-non-zero-on-average/" target="_blank">this article</a> and <a title="3. How the Higgs Particle Arises" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/3-how-the-higgs-particle-arises/" target="_blank">this one</a>, you will find that v is given by one formula in terms of a, b and d, while m<sub>h</sub> is given by a quite different formula &#8212; and <em><strong>in this case the formula for m<sub>h</sub> <span style="color:#800000;">cannot</span> be written as proportional to v.  </strong></em><strong><span style="color:#800080;">Despite this, the formulas for the masses of the W and Z particle, the electron, the top quark and the rest continue to be proportional to v.</span>  </strong><em>[<em>(Σ caveat)</em>] </em></p>
+<p>Where <em>does</em> the Higgs mass come from, then?  We can&#8217;t say it comes from the Higgs field&#8217;s value v; they&#8217;re related, but not closely enough for one to say that v is entirely responsible for the Higgs particle&#8217;s mass.  All we can say is that it arises in a more complex way from the quantities a, b and d in the equation of motion, and so we have to figure out where they come from &#8212; which has not yet been done.</p>
+<p><strong>Final Comments</strong></p>
+<p>The example given above is far from the only one.  A few comments about others.</p>
+<p>In other similar variants, it can happen that m<sub>h</sub> is zero even when v is not, and it can happen that v is zero even when m<sub>h</sub> is not.  This is never true of, say, the W particle&#8217;s mass <em>[<em>(Σ caveat).</em>]</em>.</p>
+<p>And there are plenty of other variants, including ones with one or more additional spin-zero fields that are unaffected by the electromagnetic, weak nuclear or strong nuclear forces, with similar features.</p>
+<p>Also there are variants where the formula relating v to the mass of, say, the top quark, can become more complicated.  Nevertheless, <strong>it always remains true that its mass is zero when the Higgs field is zero </strong><em>[<em>(Σ caveat).</em>]</em>  This is not true of the Higgs particle&#8217;s mass.</p>
+<p>So the point is that while v and the mass of the Higgs particle (or masses of the various Higgs-like particles that may be in the theory) are always given by functions of the parameters (such as a, b and d) that appear in the equations, <strong>only in the Standard Model</strong> (and a few of its simple variants) can one can write the formula for the mass of the Higgs particle in a form that naively looks very similar to the formula for the mass of any other known particle, such as a W particle.  And this is a consequence of the underlying logical point: for particles like the quanta of the W field, the Z field, the electron field, the muon field, the quark fields, etc., it is <strong>impossible</strong> for their particles to have masses unless there is a Higgs field around [<em>(Σ caveat)]</em>.  But that&#8217;s simply not true for the Higgs field H and its particle.</p>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-4815" class="share-twitter sd-button share-icon" href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/?share=twitter" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-4815" class="share-facebook sd-button share-icon" href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/?share=facebook" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-end"></li></ul></div></div></div><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-24633746-4815-615676e145ef3' data-src='//widgets.wp.com/likes/index.html?ver=20210818#blog_id=24633746&amp;post_id=4815&amp;origin=profmattstrassler.wordpress.com&amp;obj_id=24633746-4815-615676e145ef3&amp;domain=profmattstrassler.com' data-name='like-post-frame-24633746-4815-615676e145ef3' data-title='Like or Reblog'><h3 class='sd-title'>Like this:</h3><div class='likes-widget-placeholder post-likes-widget-placeholder' style='height: 55px;'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>							</div><!-- .entry-content -->
+
+			<div class="entry-info">
+							This entry was posted in <a href="https://profmattstrassler.com/tag/higgs/" rel="category tag">Higgs</a>, <a href="https://profmattstrassler.com/category/lhc-background-info/" rel="category tag">LHC Background Info</a>, <a href="https://profmattstrassler.com/category/particle-physics/" rel="category tag">Particle Physics</a> and tagged <a href="https://profmattstrassler.com/tag/fields/" rel="tag">fields</a>, <a href="https://profmattstrassler.com/tag/gravity/" rel="tag">gravity</a>, <a href="https://profmattstrassler.com/tag/higgs/" rel="tag">Higgs</a>, <a href="https://profmattstrassler.com/tag/mass/" rel="tag">mass</a>, <a href="https://profmattstrassler.com/tag/particles/" rel="tag">particles</a>. Bookmark the <a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/" title="Permalink to Does the Higgs Field Give the Higgs Particle Its Mass, or&nbsp;Not?" rel="bookmark">permalink</a>.							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		<div id="nav-below" class="navigation">
+			<div class="nav-previous"><a href="https://profmattstrassler.com/2012/10/22/from-the-higgs-field-to-the-higgs-particle/" rel="prev"><span class="meta-nav">&larr;</span> From the Higgs Field to the Higgs&nbsp;Particle</a></div>
+			<div class="nav-next"><a href="https://profmattstrassler.com/2012/10/24/garistos-reply-to-previous-post/" rel="next">Garisto&#8217;s Reply to Previous&nbsp;Post <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-below -->
+
+		
+<div id="comments">
+
+	
+			<h3 id="comments-title">
+			34 responses to &ldquo;<span>Does the Higgs Field Give the Higgs Particle Its Mass, or&nbsp;Not?</span>&rdquo;		</h3>
+
+		
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-23273">
+		<div id="comment-23273">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a10ee79e4031a67db3d8eff9b4f6a90d?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Marcel van Velzen</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-23273">
+				October 23, 2012 at 11:10 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Hello Matt,</p>
+<p>To complicate things even more I have a nice question:</p>
+<p>Can there still exist inertial reference frames if the vacuum expectation value of the Higgs is zero?<br />
+That is, can we build mass from massless particles that can behave as rest mass and not move at the speed of light?<br />
+Or should we use your massive Higgs particles?</p>
+<p>I get the impression that the answer to this question is or extremely simple or extremely complicated.</p>
+<p>Thanks in Advance</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-23314">
+		<div id="comment-23314">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b483d3b0a863c09c597a5ed8055af61b?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Kudzu</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-23314">
+				October 23, 2012 at 7:09 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>This is another interesting article that raises questions. Firstly, is the strong force the only force capable of exerting a &#8216;sigma effect&#8217;, or merely one with a large (but not compared to the Higgs field) effect? I assume the mechanism is similar to that of the Higgs mechanism, involving mixing particles. Do the same particles mix as in the Higgs mechanism? what are the particles of the sigma field? Mesons? Quark-antiquark pairs? Ripples in both quark and antiquark fields, or something else?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-23317">
+		<div id="comment-23317">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a6cc923ff68ac030784db695a84b1b6e?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Rex Groves</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-23317">
+				October 23, 2012 at 8:42 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Dr. Strassler,</p>
+<p>Since mass is a property that can exist with and without a Higgs field, are we any closer to understanding &#8220;fundamentally&#8221; what mass &#8220;is&#8221;? E=mc^2 shows the energy equivalence, but what is it? Is non-Higgs mass a &#8220;requirement&#8221; of some unknown broken symmetry group as the universe cooled because as we approach the early big bang before quark production, all was massless&#8230;right? I know we&#8217;re taught that if particles have mass, light speed is unattainable. But is it correct to see it the other way? For particles to go at sublight speed or even stop, mass is a requirement.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-23319">
+		<div id="comment-23319">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a6cc923ff68ac030784db695a84b1b6e?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Rex Groves</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-23319">
+				October 23, 2012 at 9:16 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I think I might have been thinking about this classically.  Mass is a property in CFT. In QFT,  masses are field excitations. So my question above is modified somewhat but the same, are the mass excitations a &#8220;requirement&#8221; or a by-product?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-23322">
+		<div id="comment-23322">
+		<div class="comment-author vcard">
+			<img alt='' src='https://i0.wp.com/a0.twimg.com/profile_images/2047768740/oaktree-1217860-1995077889_normal.jpg?resize=48%2C48' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://twitter.com/Oaktree_' rel='external nofollow ugc' class='url'>Oaktree (@Oaktree_)</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-23322">
+				October 23, 2012 at 9:57 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Calm down Professor, calm down &#8230;<br />
+While young and energetic folk like yourself are dwelling on the differences among &#8220;things&#8221;, I, who has only few years left in the &#8220;organic state&#8221; am interested in the common denominator of Nature. I don&#8217;t know if it is still valid to call it the Z particle (not to confuse it with the Z boson), the particle of the fundamental field, call it the &#8220;G&#8221; field. </p>
+<p>With this preamble, I ask you if you had a chance to look at the link (sorry for the link) and my comment (19-Oct) to your article, &#8220;Why the Higgs and Gravity are Unrelated&#8221;?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-23372">
+		<div id="comment-23372">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/51958f87e33a51b6bc9d7049f8fb1feb?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Dilaton</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-23372">
+				October 24, 2012 at 7:22 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Nah Oaktree,</p>
+<p>what Prof. Strassler explains are not just some random pedantic unimportant differences among &#8220;things&#8221; one can gracefully overlook. They are very deep and important if one really wants to understand where mass comes from.<br />
+And that Prof. Strassler cares so much in setting misunderstood things straigth is a very good thing too. I always like and appreciate this a lot and I learn many things from reading such articles here 🙂</p>
+<p>Cheers</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-23333">
+		<div id="comment-23333">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cef5970926315df2a16854e3d0879ae9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">veeramohan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-23333">
+				October 24, 2012 at 1:26 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Dr Strassler, I take  / In QFT, masses are field excitations/  this from Rex Groves.<br />
+For example, a rotating wheel appears stationary in stroboscopic effect, is&#8217;nt an analogy of zero value of other fields than Higgs Field giving mass to other unknown things- because it is also having momentum and energy.? </p>
+<p>Higgs field is a relative field because it have a mass?. We feel the excitation(non-zero) only if there is no harmony(mathematical illusion) with zero value?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-23339">
+		<div id="comment-23339">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cef5970926315df2a16854e3d0879ae9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">veeramohan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-23339">
+				October 24, 2012 at 2:27 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>The Higgs field is not, in principle, the universal giver of mass to all the elementary particles of nature. &#8211; because it is relative and mathematically tuned to parameters measured by experiment or Lagrangian, and not to quantum corrections to it.<br />
+But Higgs particle(s)are(is) not relative and universal?. Is that Higgs mechanism is an another Darwin theory bridging the discrepancies in Hierarchy problem between quantum mechanics and classical mechanics like bridging man and the ape, the ape-man ?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-23386">
+		<div id="comment-23386">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/ad238f09bbfe172eb1bbc47c472d4f52?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Fred</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-23386">
+				October 24, 2012 at 8:44 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Dear Prof Strassler,</p>
+<p>I really like this article. I have 2 points to suggest to perhaps clarify even more:</p>
+<p>1) Another central reason why the higgs is not connected to gravity is: the higgs is not the graviton, and it does not set the value of Newton&#8217;s constant.</p>
+<p>2) Another way of explaining why the higgs does not give mass to itself is to consider the early universe, where V(h)=+a h^2+b h^4 (rather than -a h^2). In this case v=0, so the W boson, etc, are massless, but the higgs is evidently massive, with m^2=a.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-23437">
+		<div id="comment-23437">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cfabf152b117687976a09db3c16632b8?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://thetasteofscience@wordpress.com' rel='external nofollow ugc' class='url'>thetasteofscience</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-23437">
+				October 24, 2012 at 3:31 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>My question is about the limits of validity of the Standard Model, since you talk about the parameter d in an &#8220;on the other hand&#8221; kind of way. I know you are basing your articles on the Standard Model which is a lot simpler to understand than the alternatives, but please give us a feeling for its problems. What I know of the alternatives is which not all that much. But the incorrect predictions of important physical constants by string theory for example really make me wonder about about the limits of their validity.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-2 highlander-comment" id="li-comment-23439">
+		<div id="comment-23439">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d2a82d27327e643963026b2c7bb80fa1?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Dilaton</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-23439">
+				October 24, 2012 at 3:51 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>The only thing I&#8217;ve heared is that, apart from some minor not even 2 sigma deviations, the standard model works quite fine so far.<br />
+So there is no reason to talk about alternatives or other off topic  things, that when mentioned here cause nothing but flame wars &#8230;</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor odd alt depth-2 highlander-comment" id="li-comment-23796">
+		<div id="comment-23796">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-23796">
+				October 26, 2012 at 10:24 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>An article on the limitations of the Standard Model is needed on this site, I agree.  I have been giving public lectures on this, which is a good exercise for me in advance of writing such an article.   You might want to listen to the colloquium I gave (at least the first half of it) at the University of Toronto, intended for junior physics majors and above &#8212; I think you have the background to follow it, if not let me know.  <a href="https://profmattstrassler.com/2012/10/19/colloquia-here-and-there/" rel="nofollow ugc">https://profmattstrassler.com/2012/10/19/colloquia-here-and-there/</a></p>
+<p>The Standard Model is a self-consistent but incomplete story; there are 20 or so parameters put in by hand; we don&#8217;t know where they come from.  But with those 20 parameters we make 1000s of predictions, so it&#8217;s still progress.  Many of these parameters are well-measured and it&#8217;s known that we have the right ones in the equations, because we have used the equations to make many correct predictions.</p>
+<p>But among these parameters are those of the Higgs field; since we don&#8217;t even know whether there is one Higgs field or several, we can&#8217;t say yet whether the Standard Model matches the data and whether we even have the right kinds of parameters in the equations.  There could certainly be new phenomena which means the simple equation of motion for a single Higgs field isn&#8217;t right.  So this is the most pressing issue; to determine whether the Higgs field is that of the Standard Model.</p>
+<p>Also important is whether there are other particles that can be discovered at the LHC, in which case they will need to be incorporated into an extension of the Standard Model or of a more complicated theory that has a more complicated set of Higgs fields or something even more exotic.</p>
+<p>String theory hasn&#8217;t made any definitive predictions yet (despite what you will read here and there).  It&#8217;s too rich a theory, with too many possible universes that it could exhibit, and so as of now there&#8217;s no way to evaluate its validity.  Specific applications of string theory with specific types of possible universes have given wrong predictions, but to say that string theory gives wrong predictions is spectacularly overstating the point.  It&#8217;s like this: imagine you wanted to predict the actions of President Obama, so you took a proposed theory of human beings&#8230; and then when you treated the equations in a particular way and looked for a particular type of solution, hoping to find a description of Obama, what came out of the equations was Frank Zappa.  The fact that this happens doesn&#8217;t necessarily mean your theory <strong>can&#8217;t</strong> describe Obama, it just may mean that you didn&#8217;t use the equations in just the right way; any theory of humans is pretty darned complicated!</p>
+<p>In any case, string theory isn&#8217;t an **alternative** to the Standard Model; it&#8217;s really something vastly more ambitious, and there&#8217;s many steps to go from one to the other.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='https://profmattstrassler.com/2012/10/24/garistos-reply-to-previous-post/' rel='external nofollow ugc' class='url'>Garisto&#8217;s Reply to Previous Post | Of Particular Significance</a></p>
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='http://ellmanbooks.com/2012/11/01/massive-equation/' rel='external nofollow ugc' class='url'>Massive Equation &laquo; amaya ellman</a></p>
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='http://mbcalyn.com/2012/11/03/minute-physics-why-emc%c2%b2-is-incomplete/' rel='external nofollow ugc' class='url'>Minute Physics: Why E=mc² is Incomplete &laquo; Ye Olde Soapbox</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-40033">
+		<div id="comment-40033">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a36e09d9c883c396c771db1bacd5107c?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.fwspenterprisesinc.com' rel='external nofollow ugc' class='url'>Marino Mangone</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-40033">
+				January 21, 2013 at 2:02 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>E=mc2 results in an explosion (hence the atom bomb/big bang theory)<br />
+E/m=c2 gives you fusion<br />
+E/c2=m gives matter its mass<br />
+A.E.I.O.U (Absolute Energy equals Input, Output Utilization)</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='https://profmattstrassler.com/2013/03/20/why-the-higgs-matters-in-a-few-sentences/' rel='external nofollow ugc' class='url'>Why the Higgs Matters, In A Few Sentences | Of Particular Significance</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-53023">
+		<div id="comment-53023">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/f901f841afffbab2ed590a303539a60f?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Xu Jia</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-53023">
+				April 12, 2013 at 11:39 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Dear Matt, two questions<br />
+1. What if the potential is just lambda*phi^4, no symmetry breaking, no quadratic term? Is this a massless or massive Higgs? What is the mass?<br />
+2. If you add higher order terms to the potential, is that still renormalizable?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='http://hexacoto.wordpress.com/2013/10/07/understanding-what-the-god-particle-isnt/' rel='external nofollow ugc' class='url'>Understanding what the &#8220;God particle&#8221; isn&#8217;t | The Hexacoto</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-91891">
+		<div id="comment-91891">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/add89f92bc2ee363a8a929fcfcd12af8?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.linkedin.com/pub/donald-p-hutchins/18/501/b17' rel='external nofollow ugc' class='url'>Donald P. Hutchins</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-91891">
+				October 10, 2013 at 12:37 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>For proper clarification to the general public, could you plainly specify exactly: what is a &#8216;point&#8217;?; what is a &#8216;wave&#8217;?; what is a &#8216;field&#8217;?; in their physics sense of the words?  Please be specific if shape or any geometry can be used to help visualize the three concepts.  You have Higgs particles and Higgs fields, how are the not identical?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-120037">
+		<div id="comment-120037">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7a3bec62d015621fa2ea4d03ea264204?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">phd ayhan yuzubenli</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-120037">
+				November 18, 2013 at 3:16 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>if in quantum field theory self interaction is possible, for example an electron can interact with its photon, then it must be possible a higgs particle can interact with its higgs field, then it must acquire mass,</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-171660">
+		<div id="comment-171660">
+		<div class="comment-author vcard">
+			<img alt='' src='http://graph.facebook.com/100001306015073/picture?type=large&#038;_md5=bffd412b80b190b9d44609fb6e6422c0' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://www.facebook.com/fundamentally' rel='external nofollow ugc' class='url'>Hans van Leunen</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-171660">
+				January 28, 2014 at 2:52 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>For an elementary particle having mass means that it curves space. The crucial question is not how the particle obtained its mass. The real crucial question is how the particle curves space! Or with other words, how can space be curved?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-283902">
+		<div id="comment-283902">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/fbf186a9be3d19925d8eac9b2239494c?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Siva Prasad Kodukula</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-283902">
+				December 9, 2014 at 9:11 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Sir, Space is not alone.When it combines with time it will form a fluid like medium. Every mass will be balanced and associated with certain space-time fluid. It is related by &#8216;Siva&#8217;s classical Equations for space-time&#8217;m =7×10^12 (d^1/3).and  γ d^(8/3) = 1.69×10^12 . The density of the space time fluid give rise to curvature just similar to fluid mechanics. Also the same space time fluid is cause for the creation of mass and explained as the basic building block of mass named as&#8217;K-Suryon&#8217;.</p>
+<p>Siva Prasad Kodukula</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-174237">
+		<div id="comment-174237">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/f47ddb8e1d8e17a0bfa279989ce42efc?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Siva Prasad Kodukula</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-174237">
+				February 5, 2014 at 11:59 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I predicted a particle K-Suryon which is mass less and a singularity point as per &#8216;siva&#8217;s Quantum Theory of Gravity&#8217;. When a film chage occurs as per &#8216;Film theory of science it interact with another k-suryon thus the space or diameter will be formed for that singularity. and space time fluid creation starts. This again combines with another two k-suryons to form a mass. The  real particle with combination of four k-suryons forms a mass that can exist in this nature. Its mass will be 4.6&#215;10^-64kg and radius is 10^-134mts.It is the least mass and basic building block of any mass.Not Higgs.The formation of space time fluid will have a curvature to hold its mass which is not yet created thus there is a relation between K-Suryon and gravity.Even this is related to electromagnetic field also. The K-Suryon which is in the form of black hole is dark matter.<br />
+People should have stamina to go deep to find the secrets.The arguments will be lenghty when they are not interested to go deep.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor odd alt depth-2 highlander-comment" id="li-comment-174238">
+		<div id="comment-174238">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-174238">
+				February 5, 2014 at 12:00 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>In short, you failed to predict the Higgs particle which was discovered last year.  Bye.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-174454">
+		<div id="comment-174454">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e40ad0fc5577ae68e81d4498a0ede020?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Vincent</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-174454">
+				February 6, 2014 at 3:58 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>It&#8217;s all within never and always. Like infinity one should be very precausious when we get close to &#8216;nothing&#8217; in calculations. Nothing &#8211; or no mass &#8211; meassured with what? Guess with what we got in our toolbox today.<br />
+like: 0 = a2 H – b2 H3 = – b2 H (H2  – [a/b]2<br />
+0 could as well be a ? There&#8217;s more to that dawn 0 than meet our eyes.<br />
+Good Will Hunting (-;</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-279005">
+		<div id="comment-279005">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c7b74609d9c8e14572f50a3adca5c988?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://seeWikipediaMartinSchumacher(Physiker)' rel='external nofollow ugc' class='url'>Prof. Martin Schumacher Goettingen</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-279005">
+				December 2, 2014 at 9:20 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Please read my article: &#8220;Nambu&#8217;s Nobel Prize, the $\sigma$ meson and the mass of visible matter&#8221;,  Martin Schumacher,<br />
+Ann. Phys. (Berlin) 526, 215 (2014), arXiv:1403.7804</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-293190">
+		<div id="comment-293190">
+		<div class="comment-author vcard">
+			<img alt='' src='http://graph.facebook.com/1218379265/picture?type=large&#038;_md5=c389a0c894a987f1e7290d1ab0d14642' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://www.facebook.com/bobpturner' rel='external nofollow ugc' class='url'>Bob Turner</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-293190">
+				December 29, 2014 at 7:01 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Can there be such a thing as a phi particle? m = sqrt(e^phi hbar^2 c / G)<br />
+Note that&#8217;s little phi 0.618</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-293515">
+		<div id="comment-293515">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cc41e9b75170ed37dd32d93594002332?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://gravatar.com/politicalsmash' rel='external nofollow ugc' class='url'>David Jeffrey Spetch</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-293515">
+				December 30, 2014 at 6:57 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I&#8217;ve been sharing this with inter parliamentary unions and government officials of the globe recently.including Norway, Nordic council and Nobel Committee (since they so freely handed an award to a liar just because he is a physicist)</p>
+<p>Physicists Claims of Higgs Boson is Proof of Origin Is False</p>
+<p> &#8230; because where did the energy to generate near the speed of light come from in the first place as the well particles that collided? I&#8217;ll answer that which proves the Higgs Boson proving origin is still nothing more than a falsified theory right now! </p>
+<p>What is missing here is, how does smashing particles together near light speed equal proof that a Higgs boson exists? These physicists appear to be so stuck on the big bang &#8220;theory&#8221; in how they think space was created that they are so very desperate to call proof of the Higgs Boson exists because they smashed particles at light speed together. To top it off with attempting to reduce their false attempt of discovery to use as propaganda to further promote religious anything further reveals the greedy and selfish motivations behind this inferior exposed plot.</p>
+<p>What I suspect is what happened with the physicists involved recently with this is that Higgs made an observation upon seeing things bang at high speed. He made a theory by using what he observed to further confirm the big bang theory but didn&#8217;t succeed with factual evidence. Now these Physicists are observing the same thing that Higgs observed which now, they are attempting to claim that them seeing the same thing that Higgs observed to inspire Higgs to come up with a theory proves that the theory is anything more than still a theory. It&#8217;s only a theory that still has not been validated with any kind of validity or factual evidence.. People are so very desperate to get their name into history books.</p>
+<p> Fact remains that for any bang to first occur, no matter how large or small the bang is, it first takes energy matter and time to re create energy and matter for any bang no matter how large or small to first occur. Energy matter and time always was, is and always will be because the fact remains that not anything goes poof into existence out of nothingness. Not anything that exists goes poof into nothingness.</p>
+<p> Many religious are those who worship or pray to the factually proven lie referred to by the religious as god, which is acknowledgement from themselves that what they worship or pray to must have intelligence to be able to understand. They also claim that what they pray to or worship is the creator of everything.</p>
+<p> Not anything is able to go poof into existence out of nothingness, let alone be able to develop an intelligence without there first be energy matter and time to re create energy and matter.</p>
+<p> Share with me even one example of anything going poof into existence out of nothingness?! No one ever will because the fact remains that it takes energy matter and time to recreate energy and matter.</p>
+<p>  For any particle to have the opportunity to collide with an opposing particle near the speed of light it first took energy matter and time to re create energy and matter.</p>
+<p> Here are these physicists, whom themselves consist of energy and matter and these physicists are aging which is evidence of time. They are constructing equipment through a processes of energy matter and time to re create energy and matter. They are using what they construct to conduct experiments of which the results of their experiments is more proof that it takes energy matter and time to re create energy and matter. </p>
+<p> You want proof that everything always is was and always will be enduring through infinite change, For a demonstration of factual evidence of origin just watch this 23 minute video and lets see even one physicist across the planet contest what I share with so much as a shred of validity, let alone everyone else on the planet! Not one physicist  is capable let alone anyone else on the planet and that&#8217;s a fact! </p>
+<p>To watch the video simply:<br />
+Go to You Tube.<br />
+In the search box on You Tube type my name, David Jeffrey Spetch..<br />
+When the list of videos comes up,  avoid clicking on a video but instead click on my member name David Jeffrey Spetch.<br />
+This will bring you to my channel page.<br />
+The feature video on my channel page is what you are looking for. </p>
+<p> I did not include the link to the video directly here because I find that some elected and appointed Officials do not choose to accept links in emails.</p>
+<p>love</p>
+<p>David Jeffrey Spetch<br />
+Ps. Be good, be strong!﻿<br />
+Hamilton Ontario Canada</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-2 highlander-comment" id="li-comment-293545">
+		<div id="comment-293545">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/82303044441cc63bc5717de19e035cf9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.e-physics.eu' rel='external nofollow ugc' class='url'>hansvanleunen</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-293545">
+				December 30, 2014 at 8:38 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I fear that you make the same mistake as the people that you criticize make.<br />
+Why not provide a theory that shows how particles obtain mass? That would make the Higgs obsolete!<br />
+For me having mass means having the capability to curve space in the embedding environment.<br />
+Thus, show how massive elementary particles curve their embedding continuum.</p>
+<p>A suggestion is given in &#8220;A mathematical model of reality&#8221;;<br />
+<a href="http://vixra.org/abs/1409.0050" rel="nofollow ugc">http://vixra.org/abs/1409.0050</a></p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-politicalsmash odd alt depth-3 highlander-comment" id="li-comment-293585">
+		<div id="comment-293585">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d7090d838381250a2c53d70aa5a23d35?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">politicalsmash</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-293585">
+				December 30, 2014 at 10:58 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Why waste my time with theory when I am obviously past theory by sharing fact.</p>
+<p>Again, You want proof that everything always is was and always will be enduring through infinite change, For a demonstration of factual evidence of origin just watch this 23 minute video and lets see even one physicist across the planet contest what I share with so much as a shred of validity, let alone everyone else on the planet! Not one physicist is capable let alone anyone else on the planet and that’s a fact!</p>
+<p>To watch the video simply:<br />
+Go to You Tube.<br />
+In the search box on You Tube type my name, David Jeffrey Spetch..<br />
+When the list of videos comes up, avoid clicking on a video but instead click on my member name David Jeffrey Spetch.<br />
+This will bring you to my channel page.<br />
+The feature video on my channel page is what you are looking for.</p>
+<p>also I will share this:  Not one person on the globe is able to contest the facts I share with so much as a shred of validity.</p>
+<p> They even claim that particles appear then disappear. Take photons for example.</p>
+<p> It took energy matter and time to re create energy and matter for the sun to send a photon.</p>
+<p> That photon comes to  Earth for example but doesn&#8217;t just disappear, it helps warm the planet, aids life with such as photosynthesis because the facts remains that it takes energy matter and time to re create energy and matter.</p>
+<p> Not anything goes poof into existence out of nothingness and not anything that exists goes poof into nothingness.</p>
+<p>love</p>
+<p>David Jeffrey Spetch<br />
+Ps. Be good, be strong!</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-politicalsmash even depth-3 highlander-comment" id="li-comment-293591">
+		<div id="comment-293591">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d7090d838381250a2c53d70aa5a23d35?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">politicalsmash</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-293591">
+				December 30, 2014 at 11:14 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Again why would I want to waste my time with theory when what I already share is  the factual evidence proving that the higgs boson proving origin is false. I am not some physicist desperate to get his name into history books with any delusions I can possibly fathom, I am a Primary Factual Fundamentalist and World Class Activist whom takes great pleasure in fighting for the well being of current and future generations.</p>
+<p> You want o contest what I share as fact, instead of wasting your time with theories, simply share one factual example of anything going poof into existence out of nothingness or one factual example of anything going poof from existence into nothingness.</p>
+<p> You never will because what I am sharing is fact.</p>
+<p>love</p>
+<p>David Jeffrey Spetch<br />
+Ps. Be good, be strong!</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-300694">
+		<div id="comment-300694">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/ae3a89463580a318599d1c833c0ef76f?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Srdjan Budisin</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-300694">
+				January 18, 2015 at 10:13 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>If Higgs field would give mass to all fundamental particles wouldn&#8217;t it be logical not to consider mass a funadamental property of elementary particles &#8211; after all mass was observed first in macroscopic objects and the concept was generalized to elementary particles later. In that case interaction of any elementary particle with Higgs field would be the fundamental proporety of that particle and mass would be the deduced property.<br />
+However if the Higgs boson have its own mass doesn&#8217;t this make it an exception? The fundamental physics is all about unifications, right. Exceptions should not be wellcome or even allowed?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-302233">
+		<div id="comment-302233">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1dedcca12fb3da9b52c905989ec2a626?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Mark A. Simpson</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/10/23/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not/#comment-302233">
+				January 22, 2015 at 4:05 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I had come to the same conclusions, and the apparent charade that went on last year was not amusing, when they paraded Prof Higgs around. He couldn&#8217;t even explain his own theory. I have a few more reasons than what prof Strassler reports, to come to the same conclusion. Fortunately, I have my own models for Mass that are considered intuitively correct and consistent with the standard model, AND, a model we have for the branch of particle formation for Dark Matter as well. There is a special field that adds to the Mass effect in larger nuclei containing Neutrons, and it is described in a model of great detail. This was found in the experiments to simulate the Neutron as part of a Unified Fields Approach last year.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+		</ol>
+
+		
+	
+	
+</div><!-- #comments -->
+	
+	</div><!-- #content -->
+</div><!-- #content-container -->
+
+
+		
+		<div id="primary" class="widget-area" role="complementary">
+					<ul class="xoxo">
+
+			<li id="text-2" class="widget-container widget_text"><h3 class="widget-title">First Time Visitor?</h3>			<div class="textwidget">This site addresses various aspects of science, with a current focus on particle physics.  I aim to serve the public, including those with no background knowledge of physics.  If you're not yourself an expert, you might want to click on "<a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a>" or "<a href="https://profmattstrassler.com/about/">About</a>" to get started. If you'd like to watch my hour-long public lecture about the <a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">Higgs particle</a>, try ``<a href="https://profmattstrassler.com/videoclips/">Movie Clips</a>''.</div>
+		</li><li id="media_image-4" class="widget-container widget_media_image"><style>.widget.widget_media_image { overflow: hidden; }.widget.widget_media_image img { height: auto; max-width: 100%; }</style><div style="width: 310px" class="wp-caption alignnone"><a href="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png"><img width="300" height="172" src="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" class="image wp-image-10515 alignnone attachment-300x172 size-300x172" alt="" loading="lazy" style="max-width: 100%; height: auto;" srcset="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300 300w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=600 600w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=150 150w" sizes="(max-width: 300px) 100vw, 300px" data-attachment-id="10515" data-permalink="https://profmattstrassler.com/htogammagamma_v1/" data-orig-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png" data-orig-size="640,366" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="HtoGammaGamma_v1" data-image-description="" data-image-caption="" data-medium-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" data-large-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=500" /></a><p class="wp-caption-text">From the CMS experiment at the Large Hadron collider, a proton-proton collision that created a Higgs boson, which subsequently decayed to two particles of light (shown as green rods.)</p></div></li><li id="search-3" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="https://profmattstrassler.com/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search" />
+				</div>
+			</form></li>
+		<li id="recent-posts-3" class="widget-container widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="https://profmattstrassler.com/2021/04/12/physics-is-broken/">Physics is Broken!!!</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/11/25/has-a-new-force-of-nature-been-discovered/">Has a New Force of Nature Been&nbsp;Discovered?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/28/the-new-york-times-remembers-a-great-physicist/">The New York Times Remembers A Great&nbsp;Physicist</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/06/a-catastrophic-weekend-for-theoretical-high-energy-physics/">A Catastrophic Weekend for Theoretical High Energy&nbsp;Physics</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo/">A Ring of Controversy Around a Black Hole&nbsp;Photo</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/16/the-black-hole-photo-seeing-more-clearly/">The Black Hole `Photo&#8217;: Seeing More&nbsp;Clearly</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/15/the-black-hole-photo-what-are-we-looking-at/">The Black Hole `Photo&#8217;: What Are We Looking&nbsp;At?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/10/a-black-day-and-a-happy-one-in-scientific-history/">A Black Day (and a Happy One) In Scientific&nbsp;History</a>
+									</li>
+					</ul>
+
+		</li><li id="categories-4" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3><form action="https://profmattstrassler.com" method="get"><label class="screen-reader-text" for="cat">Categories</label><select  name='cat' id='cat' class='postform' >
+	<option value='-1'>Select Category</option>
+	<option class="level-0" value="4003">Astronomy</option>
+	<option class="level-0" value="175813">black holes</option>
+	<option class="level-0" value="51517">Dark Matter</option>
+	<option class="level-0" value="545298">Evolution and Biology</option>
+	<option class="level-0" value="39338">Geology</option>
+	<option class="level-0" value="133890">Gravitational Waves</option>
+	<option class="level-0" value="738724">Higgs</option>
+	<option class="level-0" value="27530">History of Science</option>
+	<option class="level-0" value="19640">Housekeeping</option>
+	<option class="level-0" value="59940768">LHC Background Info</option>
+	<option class="level-0" value="11550283">LHC News</option>
+	<option class="level-0" value="59940787">Other Collider News</option>
+	<option class="level-0" value="12547">Particle Physics</option>
+	<option class="level-0" value="1211">Physics</option>
+	<option class="level-0" value="560543">Public Outreach</option>
+	<option class="level-0" value="36114049">Quantum Field Theory</option>
+	<option class="level-0" value="119528">Quantum Gravity</option>
+	<option class="level-0" value="59940867">Science and Modern Society</option>
+	<option class="level-0" value="7682">Science News</option>
+	<option class="level-0" value="26444">String Theory</option>
+	<option class="level-0" value="41175177">The Scientific Process</option>
+	<option class="level-0" value="1">Uncategorized</option>
+</select>
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+			</li><li id="pd_top_rated-3" class="widget-container top_rated"><h3 class="widget-title">Popular Pages</h3><div id="pd_top_rated_holder" class="pd_top_rated_holder_pages"></div><script language="javascript" src="https://polldaddy.com/js/rating/top-rated.js"></script><script language="javascript" type="text/javascript">PDRTJS_TOP = new PDRTJS_RATING_TOP( 4811599, 0, 0, '010', 5 );PDRTJS_TOP.get_top( 'pages', '0' );</script></li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+		
+			</div><!-- #content-box -->
+
+	<div id="footer" role="contentinfo">
+		
+<div id="footer-widget-area" role="complementary">
+
+	<div id="first" class="widget-area">
+		<ul class="xoxo">
+			<li id="text-3" class="widget-container widget_text">			<div class="textwidget"><font color="FF0000"><b>I went to college at <a href="http://www.simons-rock.edu"> Simon's Rock.  </a></b></font></div>
+		</li>		</ul>
+	</div><!-- #first .widget-area -->
+
+
+	<div id="third" class="widget-area">
+		<ul class="xoxo">
+			<li id="rss_links-3" class="widget-container widget_rss_links"><h3 class="widget-title">Add this site to your RSS feed</h3><p class="size-small"><a class="feed-image-link" href="https://profmattstrassler.com/feed/" title="Subscribe to Posts"><img src="https://profmattstrassler.com/i/rss/red-small.png" alt="RSS Feed" /></a>&nbsp;<a href="https://profmattstrassler.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p>
+</li><li id="linkcat-8548552" class="widget-container widget_links"><h3 class="widget-title">My Facebook Page</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.facebook.com/ProfMattStrassler" rel="me" target="_blank">http://www.facebook.com/ProfMattStrassler</a></li>
+
+	</ul>
+</li>
+		</ul>
+	</div><!-- #third .widget-area -->
+
+	<div id="fourth" class="widget-area">
+		<ul class="xoxo">
+			<li id="twitter-2" class="widget-container widget_twitter"><h3 class="widget-title"><a href='http://twitter.com/MattStrassler'>Follow me on Twitter</a></h3><ul class='tweets'>
+			<li>
+				@<a href='http://twitter.com/StevenLowette'>StevenLowette</a> @<a href='http://twitter.com/CatDogLUofM'>CatDogLUofM</a> @<a href='http://twitter.com/suchi_kulkarni'>suchi_kulkarni</a> @<a href='http://twitter.com/jsheltino'>jsheltino</a> Good to be a part of it.  We need to open these communicatio… <a href="https://twitter.com/i/web/status/1443656122460741633"> twitter.com/i/web/status/1…</a> 				<a href="http://twitter.com/MattStrassler/statuses/1443656122460741633" class="timesince">7&nbsp;hours&nbsp;ago</a>
+			</li>
+
+			</ul><a href="http://twitter.com/MattStrassler"  class='twitter-follow-button' data-show-count='false' data-link-color='#0060ff' data-text-color='#333333'>Follow @MattStrassler</a></li>		</ul>
+	</div><!-- #fourth .widget-area -->
+
+</div><!-- #footer-widget-area -->
+		<div id="colophon">
+			<span class="generator-link"><a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a></span>
+					</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #container -->
+
+<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202139y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-a10ee79e4031a67db3d8eff9b4f6a90d">
+	</div>
+	<div class="grofile-hash-map-b483d3b0a863c09c597a5ed8055af61b">
+	</div>
+	<div class="grofile-hash-map-a6cc923ff68ac030784db695a84b1b6e">
+	</div>
+	<div class="grofile-hash-map-f823fcedb73242744e03d0b5bef58cf8">
+	</div>
+	<div class="grofile-hash-map-51958f87e33a51b6bc9d7049f8fb1feb">
+	</div>
+	<div class="grofile-hash-map-cef5970926315df2a16854e3d0879ae9">
+	</div>
+	<div class="grofile-hash-map-ad238f09bbfe172eb1bbc47c472d4f52">
+	</div>
+	<div class="grofile-hash-map-cfabf152b117687976a09db3c16632b8">
+	</div>
+	<div class="grofile-hash-map-d2a82d27327e643963026b2c7bb80fa1">
+	</div>
+	<div class="grofile-hash-map-adeb244d3a56730027286aae9204ecc5">
+	</div>
+	<div class="grofile-hash-map-a36e09d9c883c396c771db1bacd5107c">
+	</div>
+	<div class="grofile-hash-map-f901f841afffbab2ed590a303539a60f">
+	</div>
+	<div class="grofile-hash-map-add89f92bc2ee363a8a929fcfcd12af8">
+	</div>
+	<div class="grofile-hash-map-7a3bec62d015621fa2ea4d03ea264204">
+	</div>
+	<div class="grofile-hash-map-82303044441cc63bc5717de19e035cf9">
+	</div>
+	<div class="grofile-hash-map-fbf186a9be3d19925d8eac9b2239494c">
+	</div>
+	<div class="grofile-hash-map-f47ddb8e1d8e17a0bfa279989ce42efc">
+	</div>
+	<div class="grofile-hash-map-e40ad0fc5577ae68e81d4498a0ede020">
+	</div>
+	<div class="grofile-hash-map-c7b74609d9c8e14572f50a3adca5c988">
+	</div>
+	<div class="grofile-hash-map-b356e8e143d1c36a0479c79349ae8a64">
+	</div>
+	<div class="grofile-hash-map-cc41e9b75170ed37dd32d93594002332">
+	</div>
+	<div class="grofile-hash-map-d7090d838381250a2c53d70aa5a23d35">
+	</div>
+	<div class="grofile-hash-map-ae3a89463580a318599d1c833c0ef76f">
+	</div>
+	<div class="grofile-hash-map-1dedcca12fb3da9b52c905989ec2a626">
+	</div>
+	</div>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/profmattstrassler.com\/2012\/10\/23\/does-the-higgs-field-give-the-higgs-particle-its-mass-or-not\/":4815};
+	</script>
+				<script src='https://platform.twitter.com/widgets.js?ver=20111117' id='twitter-widgets-js'></script>
+<script id='sharing-js-js-extra'>
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjskSwiAQRH9IQrkkVR4svwVhNINAcAay+PXOQQ96MKeepV916ykrO6QCqWjP2sGIFvLceN7o75d/VKDlLQ2mEWFatXko2di7ImB8wq89VpVDvWFiHfAOrAWq0JvkAtAfs3ERk7oY0tFwAZJJFZIcXi00ZTtElWmYFyklNy4fBpMN1UkLgWSFeAHXSNCfInngoq7BIGnuDWG6fVSgczxtu1132O3bY+tft6aG7A=='></script>
+<script type='text/javascript'>
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-twitter' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-twitter' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+</script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>	<iframe src='https://widgets.wp.com/likes/master.html?ver=20210818#ver=20210818&amp;origin=https://profmattstrassler.com' scrolling='no' id='likes-master' name='likes-master' style='display:none;'></iframe>
+	<div id='likes-other-gravatars'>
+		<div class="likes-text">
+			<span>%d</span> bloggers like this:		</div>
+		<ul class="wpl-avatars sd-like-gravatars"></ul>
+	</div>
+	
+		<script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'24633746','blog_tz':'-4','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'24633746','v':'wpcom','tz':'-4','user_id':'0','post':'4815','subd':'profmattstrassler'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eXFaMjhuQz1aPzNNMy12XUZlK1VEaF9ZMkRhXS9kfnpXU3U3LUtbLSZsakpoUnExOGVDJWhWOExpalJ+c0h1XTBjcWE3elh6QzRrREN8Z11GXWpnRXhHLVgmeE1sNDdDaC5NXWUvNlg1bk1WUUguZENGSlEuRi9bNFpoNG81NFBvNXNGK20wZDJfTVVNSWJfK11bd1FfQ0V2OVVRU29+NmQ2WmlraX49NHImVW4uaT9sR1hneXRHU3QrQnZ1XUErUz1QczRWbHZIZnJ3fDNkZ3xpSkU0bnVLV0lDVGRMSng5aD1sX2RJSw=='}]);
+_stq.push([ 'clickTrackerInit', '24633746', '4815' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script></body>
+</html>

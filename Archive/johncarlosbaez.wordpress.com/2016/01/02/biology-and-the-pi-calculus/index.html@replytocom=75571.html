@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Biology and the Pi-Calculus | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Biology and the&nbsp;Pi-Calculus Comments Feed" href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F01%2F02%2Fbiology-and-the-pi-calculus%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2016\/01\/02\/biology-and-the-pi-calculus\/?replytocom=75571","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F01%2F02%2Fbiology-and-the-pi-calculus%2F%3Freplytocom%3D75571","postID":"20511","shortlink":"https:\/\/wp.me\/pRBZ9-5kP","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/20511","statsLink":"https:\/\/wordpress.com\/stats\/post\/20511\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F01%2F02%2Fbiology-and-the-pi-calculus%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-5kP' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F01%2F02%2Fbiology-and-the-pi-calculus%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F01%2F02%2Fbiology-and-the-pi-calculus%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Biology and the Pi-Calculus" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/" />
+<meta property="og:description" content="I&#8217;m going to try posting more short articles here. I often read papers and want to jot down a few notes about them. I&#8217;ve avoided doing that here, on the theory that articles here should…" />
+<meta property="article:published_time" content="2016-01-02T18:45:12+00:00" />
+<meta property="article:modified_time" content="2016-01-04T18:24:26+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Glycolysis_metabolic_pathway_3.svg/600px-Glycolysis_metabolic_pathway_3.svg.png" />
+<meta property="og:image:width" content="450" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Biology and the&nbsp;Pi-Calculus" />
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Glycolysis_metabolic_pathway_3.svg/600px-Glycolysis_metabolic_pathway_3.svg.png?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="I&#039;m going to try posting more short articles here. I often read papers and want to jot down a few notes about them. I&#039;ve avoided doing that here, on the theory that articles here should be beautiful works of art. Now I&#039;ll try being a bit more relaxed. I hope you ask questions, or fill&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-20511 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-20511 post type-post status-publish format-standard hentry category-biology" id="post-20511">
+			<h2>Biology and the&nbsp;Pi-Calculus</h2>
+
+			<div class="entry">
+				<p>I&#8217;m going to try posting more short articles here.  I often read papers and want to jot down a few notes about them.  I&#8217;ve avoided doing that here, on the theory that articles here should be beautiful works of art.  Now I&#8217;ll try being a bit more relaxed.  I hope you ask questions, or fill in details I leave out.</p>
+<p>My former grad student Mike Stay has become fascinated by the <a href="https://golem.ph.utexas.edu/category/2015/05/a_2categorical_approach_to_the.html">pi-calculus</a> as model of computation.   The more famous lambda-calculus is a simple model of functional programming: each expression in this calculus can be seen as a program, or a description of a function.  The pi-calculus can do all the same things, but more: it models processes that can compute but also create channels and send messages to each other along these channels.</p>
+<p>I&#8217;m trying to use network theory to understand the essence of biology in a very simplified way.   I&#8217;m not convinced that the pi-calculus is the right formalism for this.  But some people are trying to apply it to cell biology, so I want to learn what they&#8217;re doing.</p>
+<p>I&#8217;m especially fascinated by this paper, and I&#8217;d like to understand it in detail:</p>
+<p>&bull; Davide Chiarugi, Pierpaolo Degano and Roberto Marangoni, <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0030174">A computational approach to the functional screening of genomes</a>, <em>PLoS Computational Biology</em>, 28 September 2007.</p>
+<p>They used a framework for describing computational networks, the &#8220;enhanced pi-calculus&#8221;, to help find a minimal set of genes required for the survival of a bacterial cell.  If we knew this, it would help us make a guess for the genome of the <a href="https://en.wikipedia.org/wiki/Last_universal_ancestor">Last Universal Ancestor</a>.  This is the most recent ancestor of all organisms now living on Earth&#8212;some single-celled guy, between 3.5 and 3.8 billion years old.</p>
+<p>I&#8217;m not mainly interested in understanding the Last Universal Ancestor: I&#8217;m mainly interested in understanding a very simple form of life.  So, I want to find what sort of equations they&#8217;re using to describe what happens in a cell&#8230; and how they&#8217;re converting their pi-calculus model to those equations. Unfortunately this paper doesn&#8217;t say, and it doesn&#8217;t seem like their code is open-source.  But I&#8217;ll poke around.</p>
+<p>I know how to use <a href="http://math.ucr.edu/home/baez/stoch_stable.pdf">Petri nets</a> to model chemical reactions.  In their paper they mildly disparage these, and refer to other papers on this general issue.  So, I should read that stuff.  But I want to see whether Petri nets are merely <em>inconvenient</em> for them, or <em>insufficiently powerful to describe their model</em>.</p>
+<p>I especially want to see if their model includes processes involving membranes, like the cell membrane, since Petri nets are not really suited to these.  A eukaryotic cell has lots of organelles with membranes, so we will need some kind of <a href="https://en.wikipedia.org/wiki/Membrane_computing">&#8216;membrane calculus&#8217;</a> to understand it, and I&#8217;ve been gradually gearing up to understand that.  But it&#8217;s possible their prokaryotic cell is just treated as a single bag of chemicals all of which can freely react with each other.  Petri nets would suffice for this!</p>
+<p>They write:</p>
+<blockquote><p>
+  The π-calculus was designed to express, run, and reason about concurrent systems. These are abstract systems composed of processes, i.e., autonomous, independent processing units that run in parallel and eventually communicate, by exchanging messages through channels. A biochemical reaction between two metabolites, catalyzed by an enzyme, can be modeled in π-calculus as a communication. The two metabolites are represented by two processes, and, in our approach, the enzyme is modeled as the channel which permits the communication.</p>
+<p>  In addition to communications, the π-calculus also allows us to specify silent internal actions, used to model those activities of the cell, the details of which we are not interested in (e.g., the pure presence of a catalyst in a reaction, where it is not actively involved). The calculus has the means to express alternative behavior, when a metabolite can act in different possible manners: the way to follow is chosen according to a given probability distribution.</p>
+<p>  The main difference between the standard π-calculus and the enhanced version we used in this work is the notion of address. An address is a unique identifier of a process, totally transparent to the user, automatically assigned to all of its child subprocesses. This labeling technique helps in tracking the history of virtual metabolites and reasoning about computations, in a purely mechanical way. In particular, stochastic implementation or causality are kept implicit and are recovered as needed.
+</p></blockquote>
+<p>I would also like to understand all the chemical reactions that occur in their minimal model of a cell.  They started by simulating an already known model, the <a href="https://en.wikipedia.org/wiki/Minimal_genome">&#8216;minimal gene set&#8217;</a> or &#8216;MGS&#8217;:</p>
+<blockquote><p>
+  The MGS-prokaryote has been exhaustively described in the enhanced π-calculus. We represented the 237 genes, their relative products, and the metabolic pathways expressed and regulated by the genes, as the corresponding processes and channels. In particular: the <a href="https://en.wikipedia.org/wiki/Glycolysis">glycolytic pathway</a>, the <a href="https://en.wikipedia.org/wiki/Pentose_phosphate_pathway">pentose phosphate pathway</a>, the pathways involved in nucleotide, aminoacids, coenzyme, lipids, and glycerol metabolism. Moreover, MGS genes encode for a set of membrane carriers for metabolite uptake, including the PTS carrier. We placed this virtual cell in an optimal virtual environment, in which all nutrients and water were available, and where no problems were present in eliminating waste substances.
+</p></blockquote>
+<p>However, they found that a cell described by this minimal gene set would soon die!  So, they added more features until they got a cell that could survive.</p>
+<p>This seems like a fun way to learn a manageable amount of biochemistry.  I&#8217;m less interested in knowing all the molecules on a first-name basis than in getting a rough overview of what goes on the simplest organisms.</p>
+<p>Many of the processes mentioned above seem adequately described by chemical reaction networks&#8212;or in other words, Petri nets. For example, here is the  <a href="https://en.wikipedia.org/wiki/Glycolysis">glycolytic pathway</a>:</p>
+<p><img width="450" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Glycolysis_metabolic_pathway_3.svg/600px-Glycolysis_metabolic_pathway_3.svg.png" /></p>
+<p>I didn&#8217;t know what the &#8216;PTS carrier&#8217; is, but Graham Jones helped out, writing:</p>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/PEP_group_translocation">Wikipedia says</a> the &#8216;phosphotransferase system or PTS, is a distinct method used by bacteria for sugar uptake where the source of energy is from phosphoenolpyruvate (PEP).&#8217;)</p>
+<p>and</p>
+<blockquote><p>
+Pyruvate is then converted to acetate which, being a catabolite, can diffuse out of the cell. A transmembrane reduced-NAD dehydrogenase complex catalyzes the oxidation of reduced-NAD; this reaction is coupled with the synthesis of ATP through the ATP synthase/ATPase transmembrane system. This set of reactions enables the cell to manage its energetic metabolism.
+</p></blockquote>
+<p>and</p>
+<blockquote><p>
+The cell “imports” fatty acids, glycerol, and some other metabolites, e.g., choline, and uses them for the synthesis of triglycerides and phospholipids; these are essential components of the plasma membrane. (plasma membrane = cell membrane).
+</p></blockquote>
+<p>I guess that a Petri net could suffice, with some tricks to represent the environment outside the cell. But I think it would need to be stochastic, not just differential equations, because some processes would involve a single copy, or a tiny number of copies, of a molecule.
+</p></blockquote>
+<h3> For more </h3>
+<p>For more references and links to the pi-calculus, other process calculi and their applications to biology, see:</p>
+<p>&bull; Azimuth Library, <a href="http://www.azimuthproject.org/azimuth/show/Process+calculus">Process calculus</a>.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Saturday, January 2nd, 2016 at 6:45 pm and is filed under <a href="https://johncarlosbaez.wordpress.com/category/biology/" rel="category tag">biology</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2016/01/01/azimuth-news-part-4/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2016/01/04/underestimating-renewables/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">15 Responses to <em>Biology and the&nbsp;Pi-Calculus</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-75568">
+				<div id="div-comment-75568" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/f994fe33ff5c213efea77b23e0acbcc4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Walter Blackstock</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75568">2 January, 2016 at 7:41 pm</a>		</div>
+
+		<p>Larry Moran, a Professor of Biochemistry in Toronto, recently discussed in his blog  <a href="http://sandwalk.blogspot.com/" rel="nofollow">Sandwalk</a> the question,  <a href="http://sandwalk.blogspot.co.uk/2015/12/how-many-human-protein-coding-genes-are.html" rel="nofollow">&#8220;How many human protein-coding genes are essential for cell survival?&#8221;</a>  Granted, the examples are for eukaryotic cell lines, not prokaryotic minimal gene set models, but the numbers are interesting. Citing three 2015 papers (one using CRISPR screens) he notes:</p>
+<p>&#8220;Each group identified between 1500 and 2000 protein-coding genes that are essential in their chosen cell lines&#8221;.</p>
+<p>He thinks this is too low, supporting his view with the glycolytic pathway and citric acid cycle.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75568#respond' data-commentid="75568" data-postid="20511" data-belowelement="div-comment-75568" data-respondelement="respond" data-replyto="Reply to Walter Blackstock" aria-label='Reply to Walter Blackstock'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-75572">
+				<div id="div-comment-75572" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75572">2 January, 2016 at 9:30 pm</a>		</div>
+
+		<p>That&#8217;s interesting, thanks!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75572#respond' data-commentid="75572" data-postid="20511" data-belowelement="div-comment-75572" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-75570">
+				<div id="div-comment-75570" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75570">2 January, 2016 at 9:21 pm</a>		</div>
+
+		<p>On G+ Marshall Hampton wrote:</p>
+<blockquote><p>
+  I wonder what their &#8220;optimal virtual environment&#8221; was.  The actual environment of the LUCA was probably a hydrothermal vent with some very steep chemical and thermal gradients, and rather unusual chemical components compared to modern oceans.﻿
+</p></blockquote>
+<p>I think their &#8220;optimal virtual environment&#8221; was much less challenging than this.  They said it was one &#8220;in which all nutrients and water were available, and where no problems were present in eliminating waste substances&#8221;.  I believe the cells were in sugar water, since they say:</p>
+<blockquote><p>
+  A large number of simulations (about 5,000) have been run, differing in the values of the initial parameters. We independently varied the amount of glucose in the extracellular environment (the number of copies was in the range 100–5,000) &#8230;
+</p></blockquote>
+<p>By &#8220;copies&#8221; I guess they mean molecules.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75570#respond' data-commentid="75570" data-postid="20511" data-belowelement="div-comment-75570" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-75754">
+				<div id="div-comment-75754" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/eee1900328979212bebce09fd861c148?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Graham</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75754">6 January, 2016 at 5:43 pm</a>		</div>
+
+		<p>The earliest life is a very different thing from the LAST universal common ancestor. A billion years may have separated the first self-replicator from the LUCA, including the RNA world (<a href="https://en.wikipedia.org/wiki/RNA_world" rel="nofollow ugc">https://en.wikipedia.org/wiki/RNA_world</a>).</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75754#respond' data-commentid="75754" data-postid="20511" data-belowelement="div-comment-75754" data-respondelement="respond" data-replyto="Reply to Graham" aria-label='Reply to Graham'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-even depth-1 parent highlander-comment" id="comment-75571">
+				<div id="div-comment-75571" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75571">2 January, 2016 at 9:23 pm</a>		</div>
+
+		<p>On G+ Vance Morris wrote:</p>
+<blockquote>
+<blockquote><p>
+    &#8220;A biochemical reaction between two metabolites, catalyzed by an enzyme, can be modeled in π-calculus as a communication. The two metabolites are represented by two processes, and, in our approach, the enzyme is modeled as the channel which permits the communication.&#8221;
+  </p></blockquote>
+<p>  I have no inclination regarding Petri nets, but it seems to me that one could use pi-calculus to describe each side of a plasma membrane and describe a channel for communication and translation (the actual membrane).﻿
+</p></blockquote>
+<p>That sounds right.  I wish they gave details, but they don&#8217;t!  Not in this paper, at least.  Walter Blackstock was complaining about some math papers being too long, but this paper goes to the other extreme and does not provide anywhere near enough detail to verify or even understand what&#8217;s been done.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75571#respond' data-commentid="75571" data-postid="20511" data-belowelement="div-comment-75571" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-75573">
+				<div id="div-comment-75573" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d2f1e2a04453a6071251c5712ecd9df0?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.facebook.com/100000540035116' rel='external nofollow ugc' class='url'>Gisser Martin</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75573">2 January, 2016 at 9:55 pm</a>		</div>
+
+		<p>I like to say that I studied math because I&#8217;m too stupid for anything else &#8212; above all, biochemistry. Still I can&#8217;t help being fascinated this stuff, mainly for the philosophical question: Is Life computable?</p>
+<p>1) The question of autopoiesis: Are the enzymes/channels produced by other enzymes/channels?<br />
+2) They write: &#8220;ViCe has no pathways for amino acid synthesis.&#8221;. Do amino acids occur in abiotic nature? I guess not. Then ViCe would be far away from the primordial ancestral cell.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75573#respond' data-commentid="75573" data-postid="20511" data-belowelement="div-comment-75573" data-respondelement="respond" data-replyto="Reply to Gisser Martin" aria-label='Reply to Gisser Martin'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-75583">
+				<div id="div-comment-75583" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75583">3 January, 2016 at 12:06 am</a>		</div>
+
+		<p>Martin wrote:</p>
+<blockquote><p>
+  1) The question of autopoiesis: Are the enzymes/channels produced by other enzymes/channels?
+</p></blockquote>
+<p>Unfortunately they don&#8217;t seem to say!  First they simulated their competitor&#8217;s cell, the one with the claimed &#8220;minimal gene set&#8221;.  It crashed and died quite soon:</p>
+<p><img width="380" src="https://i2.wp.com/math.ucr.edu/home/baez/chemical/minimal_gene_set_atp_graph.png" /></p>
+<p>Their own model cell lasted longer.  But I don&#8217;t think they got it to reproduce!  So it could be like simulating a guy but leaving out his testes.  There&#8217;s <a href="http://www.nytimes.com/2012/07/21/science/in-a-first-an-entire-organism-is-simulated-by-software.html" rel="nofollow">another experiment</a> where people claim to have simulated the whole life cycle of a bacterium, including reproduction.  But that was a much bigger product:</p>
+<blockquote><p>
+  The simulation of the complete life cycle of the pathogen, <em>Mycoplasma genitalium</em>, was presented on Friday <a href="http://files.figshare.com/95033/dataS1.pdf" rel="nofollow">in the journal <i>Cell</i></a>. The scientists called it a “first draft” but added that the effort was the first time an entire organism had been modeled in such detail — in this case, all of its 525 genes.</p>
+<p>  The simulation, which runs on a cluster of 128 computers, models the complete life span of the cell at the molecular level, charting the interactions of 28 categories of molecules — including DNA, RNA, proteins and small molecules known as metabolites, which are generated by cell processes.</p>
+<p>  [&#8230;]</p>
+<p>  For the new computer simulation, the researchers had the advantage of extensive scientific literature on the bacterium. They were able to use data taken from more than 900 scientific papers to validate the accuracy of their software model.</p>
+<p>  Still, they said, the model of the simplest biological system was pushing the limits of their computers.</p>
+<p>  “Right now, running a simulation for a single cell to divide only one time takes around 10 hours and generates half a gigabyte of data,” Dr. Covert wrote. “I find this fact completely fascinating, because I don’t know that anyone has ever asked how much data a living thing truly holds. We often think of the DNA as the storage medium, but clearly there is more to it than that.”
+</p></blockquote>
+<p>Martin wrote:</p>
+<blockquote><p>
+2)  They write: “ViCe has no pathways for amino acid synthesis.” Do amino acids occur in abiotic nature? I guess not. Then ViCe would be far away from the primordial ancestral cell.
+</p></blockquote>
+<p>There actually are some amino acids in abiotic nature: there&#8217;s even <a href="http://physicsworld.com/cws/article/news/2003/aug/11/amino-acid-detected-in-space" rel="nofollow">glycine in interstellar clouds</a> and <a href="http://www.nasa.gov/mission_pages/stardust/news/stardust_amino_acid.html" rel="nofollow">comets</a>.  But the cell being simulated here is not an attempt to reconstruct one of the first organisms: it&#8217;s an attempt to reconstruct the <em>last</em> organism that&#8217;s an ancestor to all living today.  So, it would be the result of at least hundreds of millions of years of evolution, and it would probably live in an environment where &#8216;primordial&#8217; supplies of chemicals had already been largely eaten.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75583#respond' data-commentid="75583" data-postid="20511" data-belowelement="div-comment-75583" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-75575">
+				<div id="div-comment-75575" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/151c18cc6cc3bd1bb7a0528c6ef88c77?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://gravatar.com/reperiendi' rel='external nofollow ugc' class='url'>Mike Stay</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75575">2 January, 2016 at 9:59 pm</a>		</div>
+
+		<p>Luca Cardelli has done a lot of stuff with simulating cells with pi calculus:<br />
+<a href="http://lucacardelli.name/biocomputing.htm" rel="nofollow ugc">http://lucacardelli.name/biocomputing.htm</a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75575#respond' data-commentid="75575" data-postid="20511" data-belowelement="div-comment-75575" data-respondelement="respond" data-replyto="Reply to Mike Stay" aria-label='Reply to Mike Stay'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-75622">
+				<div id="div-comment-75622" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75622">4 January, 2016 at 6:09 pm</a>		</div>
+
+		<p>Thanks!   I know about some of those papers.  I want to get into this stuff more deeply now.</p>
+<p>Corrado Priami introduced the stochastic pi-calculus and applied it to biology here:</p>
+<p>&bull; C. Priami, Stochastic pi-calculus, <em>The Computer Journal</em> <strong>38</strong> (1995), 578&ndash;589.</p>
+<p>&bull; C. Priami, A. Regev, E. Shapiro, W. Silverman, Application of a stochastic name-passing calculus to representation and simulation of molecular processes, <em>Information Processing Letters</em> <strong>80</strong> (2001), 25.</p>
+<p>Also, COSBI (www.cosbi.eu) developed a set of languages to model biological systems which are related to the pi-calculus (e.g., beta-binders, BlenX, L languages). Most of them are implemented and freely available online (<a href="http://www.cosbi.eu/research/prototypes" rel="nofollow ugc">http://www.cosbi.eu/research/prototypes</a>  and also  <a href="http://www.cosbi.eu/research/cosbi-lab" rel="nofollow ugc">http://www.cosbi.eu/research/cosbi-lab</a>). Some relevant papers are here:</p>
+<p>&bull; C. Priami and P. Quaglia, Beta binders for biological interactions. <em>Computational Methods in Systems Biology</em> (2005), 20&ndash;33.</p>
+<p>&bull; L. Dematte, C. Priami, and A. Romanel, The Beta Workbench: a computational tool to study the dynamics of biological systems, <em>Briefings in Bioinformatics</em> <strong>9</strong> (2008), 437&ndash;449.</p>
+<p>&bull; R. Gostner, B. Baldacci, M.J. Morine and C. Priami, Graphical modelling tools for systems biology, <em>ACM Computing Surveys</em> <strong>47</strong> (2014).</p>
+<p>Lot of details on language-based models of biology can be found in this book:</p>
+<p>&bull; C. Priami and M.J. Morine, <em>Analysis of Biological Systems</em>, Imperial College Press, 2015.</p>
+<p>I need to get this and read it!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75622#respond' data-commentid="75622" data-postid="20511" data-belowelement="div-comment-75622" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-75639">
+				<div id="div-comment-75639" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a7999146288d8cc479027acec1ce7171?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.marcharper.net/' rel='external nofollow ugc' class='url'>Marc Harper</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75639">4 January, 2016 at 11:16 pm</a>		</div>
+
+		<p>Regarding minimal sets of genes, it&#8217;s crucial to identify the environment. For example, Spiegelman&#8217;s monster is an RNA strand selected for minimal length in a solution that contained the proteins necessary for replication, and so those proteins did not need to be coded for in the final/minimal genome, and indeed they were lost after many generations of evolution. [1]</p>
+<p>For bacteria, if the environment is e.g. a Petri dish, then the nutrient medium is crucial. If glucose is the only carbon source in the medium then the cell does not need the genes for other utilizing other carbon sources (unless, of course, those genes are critical for other metabolic pathways). We don&#8217;t really know what the environment of the last universal ancestor was, but knowing some of its genes would shed some light on its environment &#8212; it&#8217;s an intringuing question biologically. Of course some information may have been irrevocably lost since there have been major changes to the global enviroment (reductive to oxidative being a big one), but perhaps that information is preserved in extremophiles.</p>
+<p>I would guess that a minimal set of genes for say E. coli could be arrived at empirically by knocking out genes in successive generations perhaps pathway by pathway, using known functional association databases to avoid genes that are involved in multiple pathways, and allowing other genes to atrophy by mutation. It would be tedious work but within current technological reach. This could be repeated for other organisms (preferrably distintly related) and the intersection of the minimal genes sets would likely have to been in the LUA (more precisely, genes that are ancestors of the common genes). I&#8217;m imagining something much like the inference of extinct ancestor languages in linguistics.</p>
+<p>[1] <a href="https://en.wikipedia.org/wiki/Spiegelman&#039;s_Monster" rel="nofollow ugc">https://en.wikipedia.org/wiki/Spiegelman&#039;s_Monster</a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75639#respond' data-commentid="75639" data-postid="20511" data-belowelement="div-comment-75639" data-respondelement="respond" data-replyto="Reply to Marc Harper" aria-label='Reply to Marc Harper'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="comment-75745">
+				<div id="div-comment-75745" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">domenico</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75745">6 January, 2016 at 2:42 pm</a>		</div>
+
+		<p>I don&#8217;t see much difference between a chain of chemical reaction and a human thought, through a chemical action potential.<br />
+It can be that the cell signaling and g-proteins can forming a though in a single cell, like a primordial brain; so that it could be possible to write a primordial theory for the chain of chemical reactions to obtain a first conscious program.<br />
+The last universal ancestor could be a first self-replicating rna that it is connected with an helical capsid, so that in a right &#8211; with complex molecules – environment the evolution can be possible, with a great and stable Helmholtz free energy reservoir (like a hydrothermal vent) that could generate these complex molecules.<br />
+It is interesting that some researchers try to simulate some complex biological behaviour using all branches of knowledge.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75745#respond' data-commentid="75745" data-postid="20511" data-belowelement="div-comment-75745" data-respondelement="respond" data-replyto="Reply to domenico" aria-label='Reply to domenico'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-75751">
+				<div id="div-comment-75751" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/12c2fdae49b80379ac0eec6a2094eacf?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://gravatar.com/leithaus' rel='external nofollow ugc' class='url'>leithaus</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75751">6 January, 2016 at 4:36 pm</a>		</div>
+
+		<p>Regarding Petri nets and expressiveness, there are competing understandings of expressiveness. The older notion was related to functionally complete, aka Turing complete. Can i say anything in this formalism that i can say in lambda calculus or Turing machines? Iirc, Petri nets with inhibitor arcs are functionally complete.</p>
+<p>More modern notions of expressiveness stemming from investigations of programming language semantics and the relationship of programming language semantics to category theory are much more nuanced. They get at how well a particular language expresses a particular notion (typically captured in yet another language!). In this domain the moral equivalent of functoriality plays a big role.</p>
+<p>Let me illustrate with an example. There are several fragments and variations of the π-calculus. One of them is the asynchronous (no continuations after output), choice-free (no summation construct) π-calculus. This is provably Turing complete (because you can give a rather elementary encoding of the lambda calculus into it). However, if you compare it to another Turing complete fragment, the synchronous (output guards on continuations) π-calculus  with mixed choice (summations that involve both input and output guards), then you can see an expressiveness gap.</p>
+<p>Catuscia Palamidessi shows that there is no translation from the latter fragment (synchronous with mixed sums) to the former (asynchronous with no sums) that preserves parallel composition. That is, if [| &#8211; |] is our translation function, then insisting that</p>
+<p>[| P|Q |] = [| P |] | [| Q |]</p>
+<p>exposes an expressiveness gap between the two calculi because no such translation exists. We can argue whether this is a reasonable requirement. But it is still a nice way to separate the two calculi.</p>
+<p>There&#8217;s a gold standard with respect to expressiveness and this is called full abstraction. Suppose we have two calculi, C1 and C2 and a translation between them [| &#8211; |] : C1 -&gt; C2. We want the native notion of equivalence in C1 to exactly match the native notion of equivalence in C2. For example, if C1 is the lambda calculus, then we might use contextual or Morris-style equivalence as the native notion of equivalence, or we might use applicative bisimulation. Meanwhile, if C2 is the π-calculus we might use barbed bisimulation as the native notion of equivalence. Writing ∼ for the equivalence in C1 and ≈ for the equivalence in C2 we can write down what we mean by full abstraction:</p>
+<p>[| &#8211; |] is fully abstract just when P ∼ Q iff [| P |] ≈ [| Q |].</p>
+<p>The content of this definition is that whenever P is substitutable for Q in some computation in C1, then [| P |] is substitutable for [| Q |] in C2. This is a demanding correspondence between the formalisms.</p>
+<p>Having laid out these more nuanced notions of expressiveness it becomes possible to get a more nuanced view of when to choose certain formalisms over others when modeling certain kinds of phenomena.</p>
+<p>For example, if you compare two mobile process calculi that have been widely used in modeling biological phenomena, namely Milner&#8217;s π-calculus with Cardelli and Gordon&#8217;s ambient calculus, then you can immediately see practical differences that make a difference. First, as Luca is fond of pointing out, no one has found a fully abstract encoding of the ambient calculus into the π-calculus. So, on the face of it, there appears to be an expressiveness gap.</p>
+<p>In the biological domain we are often dealing with phenomena related to membranes. The ambient calculus seems tailor-made for modeling such phenomena, while there&#8217;s a kind of conceptual gap in the π-calculus for modeling this kind of thing.</p>
+<p>In connection with this Mike Stay and i have been working on results that might be summarized via the slogan &#8220;logic is a distributive law&#8221; that fits very nicely with our higher-category semantics for the π-calculus. Briefly, if you think of the realizability programme as interpreting formulae in terms of the collections of computations that realize them, then you can interpret a logic as weaving together 3 data: a notion of collecting computations (list, set, bag, etc) which is always modeled as a kind of monad; a notion of computation (lambda, π-calculus, ambient calculus, etc) which turns out to also be modeled in terms of a monad (for the free term algebra); a way of distributing term formation over collections into collections of terms (this turns out to be a distributive law).</p>
+<p>Thinking about this idea from the perspective of comparing ambients to π-calculus i have come to suspect that they are talking on completely different levels. i believe that a proper encoding of ambient terms is as modal formulae interpreted over π-calculus terms. This stems from the intuition that an ambient, aka a membrane, identifies a particular kind of collection semantics (everything that&#8217;s inside the membrane is collected by the membrane), and the fact that containment in an ambient membrane is dynamic is what motivates the modal aspect of the formulae that interpret ambient agents.</p>
+<p>So, this suggests both practically and theoretically why these calculi are of different expressiveness.</p>
+<p>Notice that this kind of thing goes the other way. Ambients are so expressive that you can write down leader election (a class of algorithms that&#8217;s getting renewed attention what with the growing interest in distributed and decentralized computation on Internet-scale applications) in a single line program. This is simply too expressive to allow as an infrastructure on the Internet at this stage because the trust model for the nodes that run ambient calculus programs would be too high. An attacker could inject code of enormous expressivity into a node and it&#8217;s halting hard to say that it doesn&#8217;t do unexpectedly bad things. The π-calculus, on the other hand, enjoys a nice result that says you can always encode code-shipping computation into channel-exchanging computation. This makes it much more suitable for today&#8217;s Internet with today&#8217;s trust model considerations.</p>
+<p>To complete the picture and return to the topic of the relationship between Petri nets and π-calculus, Petri nets have a static data flow topology. It can&#8217;t change as a result of the computation. The π-calculus has a dynamic communication topology more generally. Which computations are connected to which changes as a result of computation. This corresponds very closely with the way computational activities happen on the Internet. First i connect with amazon.com, but very soon the AMZN servers generate a fresh URL that reflects our specific interaction and during the course of that interaction will generate several more. It also corresponds to what happens in biological interactions where cells, and higher level organisms, are in more or less constant motion. A predator runs after some prey who runs toward a group of more appealing prey of a different species. The communication topology changes. A single cell organism with a flagellum will follow a trail of sugar and move away from a region of poison. The communication topology changes.</p>
+<p>It&#8217;s very hard to model these kinds of phenomena in the Petri nets. Of course it can be done because Petri nets (with inhibitor arcs) are Turing complete. However, by the time you&#8217;ve built the model you&#8217;ve probably build a π-calculus interpreter into your translation into Petri nets.</p>
+<p>Finally, the biggest problem with Petri nets can be illustrated with the following example. Using the Priami/Silverman/Shapiro approach to modeling chemical reactions in the π-calculus you can do the following kind of thing. Suppose you have a beaker A with some reagents in it and you write down the π-calculus model of that as [| A |]. Similarly, for beaker B with it&#8217;s reagents, you write down the π-calculus model as [| B |]. To write down the π-calculus model of beaker C into which you simply pour the contents of beaker A and B, you need only write [| A |] | [| B |], the semantics of parallel composition does the rest. Now, to the best of my knowledge, you can&#8217;t do that with Petri nets. If you have an approach that does that, then you&#8217;ve got a really significant result that would be of interest to several communities.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75751#respond' data-commentid="75751" data-postid="20511" data-belowelement="div-comment-75751" data-respondelement="respond" data-replyto="Reply to leithaus" aria-label='Reply to leithaus'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-75756">
+				<div id="div-comment-75756" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75756">6 January, 2016 at 7:27 pm</a>		</div>
+
+		<p>Thanks for the wonderfully detailed comments. Since you note that you&#8217;re working with my student Mike Stay, I suppose it&#8217;s not giving away a big secret to reveal that &#8220;leithaus&#8221; is a pseudonym for Greg Meredith.</p>
+<p>I wish I knew all the concepts you&#8217;re using.  I don&#8217;t.  But luckily I get the general drift.</p>
+<p>You hinted at this observation, but perhaps not everyone noticed, so I&#8217;ll say it out loud: more expressiveness is not always better.  You mentioned one reason: it makes computer security harder:</p>
+<blockquote><p>
+  Ambients are so expressive that you can write down leader election (a class of algorithms that’s getting renewed attention what with the growing interest in distributed and decentralized computation on Internet-scale applications) in a single line program. This is simply too expressive to allow as an infrastructure on the Internet at this stage because the trust model for the nodes that run ambient calculus programs would be too high. An attacker could inject code of enormous expressivity into a node and it’s halting hard to say that it doesn’t do unexpectedly bad things
+</p></blockquote>
+<p>But the underlying problem here, that you can&#8217;t easily predict the behavior of programs written in highly expressive languages, is also a problem for people wanting to understand models of systems, e.g. in biology.  In modelling systems, I generally want to use the least expressive language necessary for a given task&#8212;so I can understand what&#8217;s going on in the most detail.</p>
+<p>Petri nets are great for understanding a single well-mixed container of chemicals, and because they&#8217;re rather inexpressive we can prove lots of great theorems about them&#8212;as long as we don&#8217;t include fancy features like &#8216;inhibitor arcs&#8217;.</p>
+<p>Supplementing them with extra features is necessary for understanding full-fledged biochemistry, where membranes and &#8216;containers&#8217; play a big role.   I want to slowly start exploring these extra features, a bit at a time.  But extra features that I don&#8217;t actually need will just be confusing.   So you&#8217;re making me feel confirmed in what I already thought, that that pi-calculus is not quite right for what I want.  The ambient calculus feels closer, but it feels complicated.  For its mathematical elegance, I&#8217;m really attracted to this:</p>
+<p>&bull; Nicolas Ouray and Gordon Plotkin, <a href="http://homepages.inf.ed.ac.uk/gdp/publications/Multilevel.pdf" rel="nofollow">Multi-level modelling via stochastic multi-level multiset rewriting</a>.</p>
+<p>But I&#8217;m just getting started&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75756#respond' data-commentid="75756" data-postid="20511" data-belowelement="div-comment-75756" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-75840">
+				<div id="div-comment-75840" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2016/01/08/glycolysis/' rel='external nofollow ugc' class='url'>Glycolysis | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-75840">8 January, 2016 at 1:00 am</a>		</div>
+
+		<p>[&#8230;]I’m trying to understand some biology. Being a mathematician I’m less interested in all the complicated details of life on this particular planet than in something a bit more abstract. I want to know ‘the language of life’: the right way to talk about living systems.</p>
+<p>Of course, there’s no way to reach this goal without learning a lot of the complicated details. But I might as well be honest and state my goal, since it’s bound to put a strange spin on how I learn and talk about biology.</p>
+<p>For example, when I heard people were using the pi-calculus to model a very simple bacterium, I wasn’t eager to know how close their model is to the Last Universal Ancestor, the primordial bug from which we all descend. Even though it’s a fascinating question, it’s not one I can help solve. Instead, I wanted to know if the pi-calculus is really the best language for this kind of model. [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75840#respond' data-commentid="75840" data-postid="20511" data-belowelement="div-comment-75840" data-respondelement="respond" data-replyto="Reply to Glycolysis | Azimuth" aria-label='Reply to Glycolysis | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 highlander-comment" id="comment-76152">
+				<div id="div-comment-76152" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://i0.wp.com/lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?resize=32%2C32&#038;ssl=1' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://plus.google.com/115571036309347564478' rel='external nofollow ugc' class='url'>Torbjörn Larsson</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/#comment-76152">12 January, 2016 at 1:07 pm</a>		</div>
+
+		<blockquote><p>
+  a minimal set of genes required for the survival of a bacterial cell. If we knew this, it would help us make a guess for the genome of the Last Universal Ancestor.
+</p></blockquote>
+<p>It probably wouldn&#8217;t help since last ancestors are routinely found by phylogenetic methods to be surprisingly complex. (E.g. LUCA, LECA, ancestor metazoan, et cetera.)</p>
+<p>I am reviewing the latest Astrobiology meeting, and a popular description of life was as an opportunistic geological process. Gisser Martin discuss environmental production of biochemicals that are produced in modern cells, and besides amino acids it seems gluconeogenesis/glycolysis was environmental in Hadean oceans. (See e.g. Keller et al on that.) And so were inorganic cell compartments (pores in vents).</p>
+<p>Taking that to the extreme, Woese&#8217;s method seems to be much more informative. (I.e. to study the phylogenetics of the ribosome, which today dig deep before the LUCA to the RNA/protein ancestor lineage; see Petrov et al on that, together with the recent uncovered set of ancestral polypeptides.)</p>
+<p>A fun observation is that while LUCA likely was a vent occupant, the evolution of chemiosmosis seems to be possible only on the surface of alkaline hydrothermal vents and the heat stress protein root matches in temperature, the above indicates that the whole lineage evolved there. Simplicity may yet again be a good guess.</p>
+<p>Since comments on LUCA age abound, I note that recent finds may also put other theories in tension, LUCA may have evolved at neck breaking pace by repetitive accretion as both the ribosome and ancestral polypeptide finds suggest. A putative &gt; 4.1 billion year old fossil* was recently described after painstaking work on old zircons. The find needs to be repeated and better constrained by context as it is a microfossil. But it fits nicely with the &gt; 4.3 billion year habitable ocean (see Valley&#8217;s latest review on zircon data) and the &gt; 4.2 billion year old LUCA phylogenetic date of TimeTree (from 3 independent papers!). The carbon isotope ratios was the typical of photosynthesis, set by RuBisCO of the Calvin cycle. That general type of metabolism evolved in the bacteria clade and not in archaea, i.e. it could be dating after the first recognizable split from the LUCA population.</p>
+<p>*Actually two fossils nicely encapsulated in one zircon, if we count as paleontologists do.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=76152#respond' data-commentid="76152" data-postid="20511" data-belowelement="div-comment-76152" data-respondelement="respond" data-replyto="Reply to Torbjörn Larsson" aria-label='Reply to Torbjörn Larsson'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-75571">John Baez</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2016/01/02/biology-and-the-pi-calculus/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2016/01/02/biology-and-the-pi-calculus/?replytocom=75571" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='20511' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='75571' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="2e86af255e" /></p>
+<input type="hidden" name="genseq" value="1632628413" />
+<input type="hidden" id="ak_js" name="ak_js" value="185"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2016/01/02/biology-and-the-pi-calculus/?replytocom=75571"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,177,056 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-f994fe33ff5c213efea77b23e0acbcc4">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-eee1900328979212bebce09fd861c148">
+	</div>
+	<div class="grofile-hash-map-d2f1e2a04453a6071251c5712ecd9df0">
+	</div>
+	<div class="grofile-hash-map-151c18cc6cc3bd1bb7a0528c6ef88c77">
+	</div>
+	<div class="grofile-hash-map-a7999146288d8cc479027acec1ce7171">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-12c2fdae49b80379ac0eec6a2094eacf">
+	</div>
+	<div class="grofile-hash-map-9c5dd242d3459181385e90a6503a045b">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"20511","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'20511','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTY5VH43aUU1L0xnSXBRYkdYP2syVFJfblNQL0pKUHJxVEdLflpYZlR8d0ZWL2dTd0lPZ0JNcy5QX1JhdW1ZdkNRQVRMPTdFOHBRZVFFTXZ3TnImLXpafFJ5bysya1NOelBaRF9vWnZyaF8lLzl+LXhreEF6P2cuVjJSc1FBa21XSzN8cWxVdTl4Z0VyJSt8ai1abjRbN0s4VFFRYTBGTmpGUUZRWG9SbFdkaStZVlhGVzRfT2J8M3I5alpZeltlelBxLyxzSGNQfDNkYUtUYlZZLVRIZ2JRLUVJbw=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '20511' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

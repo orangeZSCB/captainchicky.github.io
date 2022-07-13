@@ -1,0 +1,2027 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en">
+<![endif]-->
+<!--[if (!IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+<meta charset="UTF-8" />
+<title>Why You Can&#8217;t Easily Dismiss the Cosmological Constant Problem | Of Particular Significance</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://profmattstrassler.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large' />
+<meta name="google-site-verification" content="atBcEfQYCIwhTkcOnVU26d7Pp3Jj8sJQ8u-frrJyoi8" />
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.parentNode.removeChild( dom_node ); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[ i ].parentNode.removeChild( dom_nodes[ i ] );
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+					+ '//' + window.location.hostname
+					+ '&postid=6533'
+					+ '&is_singular=1';
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly9wcm9mbWF0dHN0cmFzc2xlci5jb20%3D"
+		+ "&wpcomid=24633746"
+		+ "&time=1633132864";
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//profmattstrassler.wordpress.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Feed" href="https://profmattstrassler.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Comments Feed" href="https://profmattstrassler.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Why You Can&#8217;t Easily Dismiss the Cosmological Constant&nbsp;Problem Comments Feed" href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkt1SAyEMhV9IFrfOtPbC8Vn4yWDawDIEuvL2UkaddWtXbxgOyZccAnKOwkwhQ8jSFxGpOAws52gmL9gjQV2pwTA/yN+xBKQyWBEnziu1hRGegeUJclTmLLq6Sf/KdaVJDcm1SAJ5GcdhPzxKXZCs1DT1AjqpVCXnSvBdCIOhYq99WHqwqIDAdyMLEUlVSILAKVMHj+FvvMWW+gd033x3urizqlPJwiW0K9v/LpFUxuD4Dr6Y9nVu7dxHdWt+A5vROmiv2lI+9yLD+zbS/43WMQGzaKvH4kV+a736A7/6l3H/tDvuDsfD8+kDj5z1pg==?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s1.wp.com/_static/??-eJyFi0EKAjEMAD9kDAsV9SC+pRtiraRJaVMWf++KF0XQ2wzM4FKBTJ3V0a9cuGMdM5K1KFkZu9+Ft9T7Bv+UWelVw1LJytdTBlQZKWvHxAZiFD2bfghcJOb2a208i6UVE67Vmz6nczlNYXcM4bCfwu0Bks1RNg==?cssminify=yes' type='text/css' media='all' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-4-1' href='https://s1.wp.com/_static/??-eJxti8sKgCAQAH8o297RIfoWE1NjdaVV+v3o0CHqNAzMwBmFopB0SOCziJiNCwyROIkNpTuArTxcMA9LxVzA/8WknESBZOgtnylZ7TWD7cAgrRLvYPFzPbT12PRTX+0XZRA3zg==?cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"24633746","siteName":"Of Particular Significance","siteURL":"https:\/\/profmattstrassler.com","siteHost":"profmattstrassler.com","icon":"<img alt='' src='https:\/\/secure.gravatar.com\/blavatar\/9192dd01619d8fdbea0a34ba4b097323?s=50&d=https%3A%2F%2Fs2.wp.com%2Fi%2Flogo%2Fwpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/coraline","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2013%252F08%252F30%252Fwhy-you-cant-easily-dismiss-the-cosmological-constant-problem%252F","themeURL":"","xhrURL":"https:\/\/profmattstrassler.com\/wp-admin\/admin-ajax.php","nonce":"ca49f5a612","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"a161e76bee\" \/>","referer":"https:\/\/profmattstrassler.com\/2013\/08\/30\/why-you-cant-easily-dismiss-the-cosmological-constant-problem\/","canFollow":"1","feedID":"241531","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/profmattstrassler.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fprofmattstrassler.wordpress.com%2F2013%2F08%2F30%2Fwhy-you-cant-easily-dismiss-the-cosmological-constant-problem%2F","postID":"6533","shortlink":"https:\/\/wp.me\/p1Fmmu-1Hn","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/profmattstrassler.com\/6533","statsLink":"https:\/\/wordpress.com\/stats\/post\/6533\/profmattstrassler.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Coraline","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 15,952 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2013%252F08%252F30%252Fwhy-you-cant-easily-dismiss-the-cosmological-constant-problem%252F\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=profmattstrassler.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??-eJyFjtEKwjAMRX/IrBaZPonfMrdYWpq0Ji1zf28HCnMvPl3CPTlcM2cYExfkYoKanLQQqg4Ou6AH89tSuvuIUBWlAVzA8yPtOaqQY3We1QjGoeAEq3V3fb88j7FOqKs+PCvK8omOPP+FgLyTJt3Cm70SC2RJr6V1N7ra88lejr21fXgDNTpbfw=='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://profmattstrassler.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/" />
+<link rel='shortlink' href='https://wp.me/p1Fmmu-1Hn' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fprofmattstrassler.com%2F2013%2F08%2F30%2Fwhy-you-cant-easily-dismiss-the-cosmological-constant-problem%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fprofmattstrassler.com%2F2013%2F08%2F30%2Fwhy-you-cant-easily-dismiss-the-cosmological-constant-problem%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Why You Can&#8217;t Easily Dismiss the Cosmological Constant Problem" />
+<meta property="og:url" content="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/" />
+<meta property="og:description" content="I&#8217;m still early on in my attempts to explain the &#8220;naturalness problem of the Standard Model&#8221; and its implications.  A couple of days ago I explained what particle physicists mean …" />
+<meta property="article:published_time" content="2013-08-30T12:49:40+00:00" />
+<meta property="article:modified_time" content="2013-08-30T03:35:49+00:00" />
+<meta property="og:site_name" content="Of Particular Significance" />
+<meta property="og:image" content="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=200&#038;ts=1633132864" />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:creator" content="@MattStrassler" />
+<meta name="twitter:site" content="@MattStrassler" />
+<meta name="twitter:text:title" content="Why You Can&#8217;t Easily Dismiss the Cosmological Constant&nbsp;Problem" />
+<meta name="twitter:image" content="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=240" />
+<meta name="twitter:card" content="summary" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="apple-touch-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=114" />
+<link rel='openid.server' href='https://profmattstrassler.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://profmattstrassler.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://profmattstrassler.com/osd.xml" title="Of Particular Significance" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<meta name="theme-color" content="#fefae3" />
+<style type="text/css">
+.widget_twitter li {
+	word-wrap: break-word;
+}
+</style>
+<meta name="application-name" content="Of Particular Significance" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="Conversations About Science with Theoretical Physicist Matt Strassler" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://profmattstrassler.com/feed/;icon-uri=https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=16" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="I&#039;m still early on in my attempts to explain the ``naturalness problem of the Standard Model&#039;&#039; and its implications.  A couple of days ago I explained what particle physicists mean by the term ``natural&#039;&#039; -- it means ``typical&#039;&#039; or ``generic&#039;&#039;.  And I described how, at least from one naive point of view, the Standard Model&hellip;" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #fefae3; }
+</style>
+	<link rel="amphtml" href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/amp/"></head>
+
+<body class="post-template-default single single-post postid-6533 single-format-standard custom-background customizer-styles-applied two-column sidebar-content highlander-enabled highlander-light">
+<div id="container" class="hfeed contain">
+	<div id="header">
+		<div id="masthead" role="banner">
+						<div id="site-title">
+				<span>
+					<a href="https://profmattstrassler.com/" title="Of Particular Significance" rel="home">Of Particular Significance</a>
+				</span>
+			</div>
+			<div id="site-description">Conversations About Science with Theoretical Physicist Matt Strassler</div>
+		</div><!-- #masthead -->
+
+		<div id="access" role="navigation">
+		  			<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+						<div class="menu"><ul>
+<li ><a href="https://profmattstrassler.com/">Home</a></li><li class="page_item page-item-1026 page_item_has_children"><a href="https://profmattstrassler.com/about/">About</a>
+<ul class='children'>
+	<li class="page_item page-item-2 page_item_has_children"><a href="https://profmattstrassler.com/about/about-me/">About Me</a>
+	<ul class='children'>
+		<li class="page_item page-item-5295"><a href="https://profmattstrassler.com/about/about-me/a-new-career-phase/">A New Career&nbsp;Phase</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-1029"><a href="https://profmattstrassler.com/about/about-this-site-and-how-to-use-it/">About This Site and How to Use&nbsp;It</a></li>
+</ul>
+</li>
+<li class="page_item page-item-26 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/">Articles</a>
+<ul class='children'>
+	<li class="page_item page-item-64 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/">Large Hadron Collider&nbsp;FAQ</a>
+	<ul class='children'>
+		<li class="page_item page-item-196"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/how-to-figure-out-what-happened-in-a-microcollision/">How We Learn What Happened in a Proton-Proton&nbsp;Collision</a></li>
+		<li class="page_item page-item-67"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/introduction-to-the-large-hadron-collider/">Introduction to the&nbsp;LHC</a></li>
+		<li class="page_item page-item-70"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/photosofthelhc/">Photos Of The&nbsp;LHC</a></li>
+		<li class="page_item page-item-498 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/">Some Technical Concepts</a>
+		<ul class='children'>
+			<li class="page_item page-item-661"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/fermions-and-bosons/">Fermions and Bosons</a></li>
+			<li class="page_item page-item-497"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-gev-and-tev/">GeV and TeV</a></li>
+			<li class="page_item page-item-461"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-invariant-mass/">Invariant Mass</a></li>
+			<li class="page_item page-item-568"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/what-are-anti-particles/">What are anti-particles?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1560 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/">The Trigger: Discarding All But the&nbsp;Gold</a>
+		<ul class='children'>
+			<li class="page_item page-item-7821"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/trigger-failure-and-repair/">Trigger Failure, and Repair, at the&nbsp;LHC</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-602"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-hadron-as-in-large-hadron-collider/">What&#8217;s a Hadron?</a></li>
+		<li class="page_item page-item-152 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/">What&#8217;s a Proton,&nbsp;Anyway?</a>
+		<ul class='children'>
+			<li class="page_item page-item-2668"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/checking-whats-inside-a-proton/">Checking What&#8217;s Inside a&nbsp;Proton</a></li>
+			<li class="page_item page-item-2613"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/proton-collisions-vs-quarkgluonantiquark-mini-collisions/">Proton Collisions Vs. Quark/Gluon/Antiquark Mini-Collisions</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-15 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/">Large Hadron Collider&nbsp;News</a>
+	<ul class='children'>
+		<li class="page_item page-item-340"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/a-historic-day-or-just-an-important-one/">A Historic Day? Or Just an Important&nbsp;One?</a></li>
+		<li class="page_item page-item-49"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/gangbusters/">Gangbusters!</a></li>
+		<li class="page_item page-item-10"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/hey-where-did-my-higgs-go/">Hey Where&#8217;d My Higgs&nbsp;Go?</a></li>
+		<li class="page_item page-item-1703"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/higgs-search-atlas-and-cms-summer-data-combined/">Higgs Search: ATLAS and CMS Summer Data&nbsp;Combined</a></li>
+		<li class="page_item page-item-1395"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/multi-lepton-events-a-good-place-to-look-for-new-physics/">Multi-Lepton Events: A Good Place to Look for New&nbsp;Physics</a></li>
+		<li class="page_item page-item-2241 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/">Old Pages (Of Historical&nbsp;Interest)</a>
+		<ul class='children'>
+			<li class="page_item page-item-2240"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-december-higgs-update/">The December 2011 Higgs&nbsp;Update</a></li>
+			<li class="page_item page-item-2251"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-july-2011-higgs-hints/">The July 2011 Higgs&nbsp;Hints</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1049 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/">Searches for New Phenomena (as of&nbsp;9/2011)</a>
+		<ul class='children'>
+			<li class="page_item page-item-1050 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/">Searches Aimed at&nbsp;Supersymmetry</a>
+			<ul class='children'>
+				<li class="page_item page-item-1091"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-new-particles-with-long-lifetimes/">Seeking New Particles with Long&nbsp;Lifetimes</a></li>
+				<li class="page_item page-item-1051"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-photonszs-and-something-undetectable/">Seeking Photons/Zs and Something&nbsp;Undetectable</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-4216 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/">Triggering: Advances in&nbsp;2012</a>
+		<ul class='children'>
+			<li class="page_item page-item-4205"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/data-parking-at-cms/">Data Parking at&nbsp;CMS</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1539"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/two-photons-data-and-theory-disagree/">Two-Photons: Data and Theory&nbsp;Disagree</a></li>
+		<li class="page_item page-item-753"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/what-do-current-mid-august-2011-lhc-results-imply-about-supersymmetry/">What do current LHC results (mid-August 2011) imply about&nbsp;supersymmetry?</a></li>
+		<li class="page_item page-item-114"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/why-so-quiet-at-lhc/">Why so quiet at&nbsp;LHC?</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-413 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/">Particle Physics Basics</a>
+	<ul class='children'>
+		<li class="page_item page-item-5927"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/c-p-t-and-their-combinations/">C, P, T (And Their&nbsp;Combinations)</a></li>
+		<li class="page_item page-item-1249"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/cerenkov-radiation/">Cerenkov Radiation</a></li>
+		<li class="page_item page-item-4267 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/">Fields and Their Particles: With&nbsp;Math</a>
+		<ul class='children'>
+			<li class="page_item page-item-4269 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/">1. Ball on a Spring&nbsp;(Classical)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4611"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/1a-resonance/">1a. Resonance</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4272"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-quantum/">2. Ball on a Spring&nbsp;(Quantum)</a></li>
+			<li class="page_item page-item-4376"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-form/">3. Waves (Classical&nbsp;Form)</a></li>
+			<li class="page_item page-item-4402 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/">4. Waves (Classical Equation of&nbsp;Motion)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4442"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/waves-the-quick-calculation/">4a. Waves (The Quick&nbsp;Calculation)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4450"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/5-waves-quantum/">5. Waves (Quantum)</a></li>
+			<li class="page_item page-item-4468 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/">6. Fields</a>
+			<ul class='children'>
+				<li class="page_item page-item-4501"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/chicken-and-egg-matter-and-field/">6a. Chicken and Egg; Matter and&nbsp;Field</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4526 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/">7. Particles Are&nbsp;Quanta</a>
+			<ul class='children'>
+				<li class="page_item page-item-4536"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/7a-how-bosons-and-fermions-differ/">7a. How Bosons and Fermions&nbsp;Differ</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4627"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/8-how-particles-and-fields-interact/">8. How Particles and Fields Interact (an&nbsp;introduction)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4585 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/">How the Higgs Field Works (with&nbsp;math)</a>
+		<ul class='children'>
+			<li class="page_item page-item-4663 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/">1. The Basic&nbsp;Idea</a>
+			<ul class='children'>
+				<li class="page_item page-item-4587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/1-the-basic-idea/">1. The Basic Idea (1st&nbsp;version)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4710"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/2-why-the-higgs-field-is-non-zero-on-average/">2. Why the Higgs Field is Non-Zero on&nbsp;Average</a></li>
+			<li class="page_item page-item-4789"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/3-how-the-higgs-particle-arises/">3. How the Higgs Particle&nbsp;Arises</a></li>
+			<li class="page_item page-item-5032"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/4-why-the-higgs-field-is-necessary/">4. Why the Higgs Field is&nbsp;Necessary</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3077 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/">Mass, Energy, Matter,&nbsp;Etc.</a>
+		<ul class='children'>
+			<li class="page_item page-item-3118 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/">Mass and Energy</a>
+			<ul class='children'>
+				<li class="page_item page-item-3321"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/how-did-einstein-do-it/">How Did Einstein Do&nbsp;It?</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3079"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/matter-and-energy-a-false-dichotomy/">Matter and Energy: A False&nbsp;Dichotomy</a></li>
+			<li class="page_item page-item-6247 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/">More on Mass</a>
+			<ul class='children'>
+				<li class="page_item page-item-6245"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/the-two-definitions-of-mass-and-why-i-use-only-one/">The Two Definitions of &#8220;Mass&#8221;, And Why I Use Only&nbsp;One</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3452 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/">The Energy That Holds Things&nbsp;Together</a>
+			<ul class='children'>
+				<li class="page_item page-item-3534"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/neutron-stability-in-atomic-nuclei/">Neutron Stability in Atomic&nbsp;Nuclei</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-1213 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/">Neutrinos</a>
+		<ul class='children'>
+			<li class="page_item page-item-1791 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/">How One Detects&nbsp;Neutrinos</a>
+			<ul class='children'>
+				<li class="page_item page-item-6044"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/icecube-a-giant-frozen-neutrino-catcher/">IceCube: A Giant Frozen Neutrino&nbsp;Catcher</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1793"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/making-neutrino-beams/">Making Neutrino Beams</a></li>
+			<li class="page_item page-item-1212 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/">Neutrino Types and Neutrino&nbsp;Oscillations</a>
+			<ul class='children'>
+				<li class="page_item page-item-1229"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/velocity-differences-of-neutrinos/">Velocity Differences of&nbsp;Neutrinos</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1737 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/">Neutrinos Faster Than&nbsp;Light?</a>
+			<ul class='children'>
+				<li class="page_item page-item-1811"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-additional-supporting-info/">OPERA: Additional Supporting&nbsp;Info</a></li>
+				<li class="page_item page-item-1736"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-comparing-the-two-versions/">OPERA: Comparing the Two&nbsp;Versions</a></li>
+				<li class="page_item page-item-1799 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/">OPERA: Some Arguments&nbsp;Against</a>
+				<ul class='children'>
+					<li class="page_item page-item-1801"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/cohen-glashow-opera-is-self-contradictory/">Cohen-Glashow: OPERA is Self-Contradictory</a></li>
+					<li class="page_item page-item-1805"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-vs-icarus/">OPERA vs ICARUS</a></li>
+					<li class="page_item page-item-1802"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-another-speed-bump/">OPERA: Another Speed&nbsp;Bump</a></li>
+					<li class="page_item page-item-1782"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/supernovas-and-neutrino-speeds/">Supernovas and Neutrino&nbsp;Speeds</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-1795 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/">OPERA: The First Few&nbsp;Days</a>
+				<ul class='children'>
+					<li class="page_item page-item-1784"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-paper-my-initial-reaction/">OPERA&#8217;s Paper: My Initial&nbsp;Reaction</a></li>
+					<li class="page_item page-item-1788"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-presentation-my-initial-comments/">OPERA&#8217;s Presentation: My Initial&nbsp;Comments</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-3160 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/">OPERA: What Went&nbsp;Wrong</a>
+				<ul class='children'>
+					<li class="page_item page-item-3185"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/how-opera-and-lvd-confirmed-operas-problem/">How LVD Helped Solve OPERA&#8217;s&nbsp;Mystery</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-412"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particle-physics-why-do-it-and-why-do-it-that-way/">Particle Physics: Why do it? And why do it *that*&nbsp;way?</a></li>
+		<li class="page_item page-item-3090"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particleanti-particle-annihilation/">Particle/Anti-Particle Annihilation</a></li>
+		<li class="page_item page-item-6499"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/quantum-fluctuations-and-their-energy/">Quantum Fluctuations and Their&nbsp;Energy</a></li>
+		<li class="page_item page-item-721 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/">The Hierarchy Problem</a>
+		<ul class='children'>
+			<li class="page_item page-item-6461 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/">Naturalness and the Standard&nbsp;Model</a>
+			<ul class='children'>
+				<li class="page_item page-item-6594"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/adding-curves/">How to Add 2&nbsp;Curves</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-566 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/">The Known (Apparently-) Elementary&nbsp;Particles</a>
+		<ul class='children'>
+			<li class="page_item page-item-1396 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/">Jets: The Manifestation of Quarks and&nbsp;Gluons</a>
+			<ul class='children'>
+				<li class="page_item page-item-2919"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/b-tagging-identifying-jets-from-bottom-quarks/">B-tagging: Identifying Jets from Bottom&nbsp;Quarks</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1401"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/tau-leptons/">Tau Leptons</a></li>
+			<li class="page_item page-item-616"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/the-known-particles-if-the-higgs-field-were-zero/">The Known Particles &#8212; If The Higgs Field Were&nbsp;Zero</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-6088 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/">The Known Forces of&nbsp;Nature</a>
+		<ul class='children'>
+			<li class="page_item page-item-6072"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/the-strength-of-the-known-forces/">The Strengths of the Known&nbsp;Forces</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3621 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/">The Structure of&nbsp;Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5096 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/">Atoms: Building Blocks of&nbsp;Molecules</a>
+			<ul class='children'>
+				<li class="page_item page-item-5184"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-of-an-isotope-are-identical-literally/">Atoms of an Isotope Are Identical,&nbsp;Literally</a></li>
+				<li class="page_item page-item-5363"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-their-inner-workings/">Atoms: Their Inner&nbsp;Workings</a></li>
+				<li class="page_item page-item-5177"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/isotopes-variations-on-an-atom/">Isotopes: Variations on an&nbsp;Atom</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-5416"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/electrons-on-the-outskirts-of-atoms/">Electrons: On the Outskirts of&nbsp;Atoms</a></li>
+			<li class="page_item page-item-5815"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/protons-and-neutrons/">Protons and Neutrons: The Massive Pandemonium in&nbsp;Matter</a></li>
+			<li class="page_item page-item-3618"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-molecular-structure-of-matter/">The Molecular Structure of&nbsp;Matter</a></li>
+			<li class="page_item page-item-5564 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/">The Nuclei of Atoms: At the Heart of&nbsp;Matter</a>
+			<ul class='children'>
+				<li class="page_item page-item-5592"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/what-holds-nuclei-together/">What Holds Nuclei&nbsp;Together?</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-7624"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/theories-and-vacua/">Theories and Vacua</a></li>
+		<li class="page_item page-item-7587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/tunneling-a-quantum-process/">Tunneling: A Quantum&nbsp;Process</a></li>
+		<li class="page_item page-item-1285"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/virtual-particles-what-are-they/">Virtual Particles: What are&nbsp;they?</a></li>
+		<li class="page_item page-item-3080 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/">Why Do Particles&nbsp;Decay?</a>
+		<ul class='children'>
+			<li class="page_item page-item-531"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-why/">Most Particles Decay &#8212; But&nbsp;Why?</a></li>
+			<li class="page_item page-item-1333"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-yet-some-dont/">Most Particles Decay &#8212; Yet Some&nbsp;Don&#8217;t!</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-1819 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/">Relativity, Space, Astronomy and&nbsp;Cosmology</a>
+	<ul class='children'>
+		<li class="page_item page-item-1672"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/big-bang-classic-confusions/">Big Bang, Classic&nbsp;Confusions</a></li>
+		<li class="page_item page-item-7183 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/">Black Holes</a>
+		<ul class='children'>
+			<li class="page_item page-item-7185"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/black-hole-information-paradox-an-introduction/">Black Hole Information Paradox: An&nbsp;Introduction</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3366 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/">Dark Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5907"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/current-hints-of-dark-matter-413/">Current Hints of Dark Matter&nbsp;(4/13)</a></li>
+			<li class="page_item page-item-7903"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/searching-for-dark-matter-at-the-lhc/">Searching for Dark Matter at the&nbsp;LHC</a></li>
+			<li class="page_item page-item-3365"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/dark-matter-annihilation/">Seeing Signs of Dark Matter&nbsp;Annihilation</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-7383 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/">History of the&nbsp;Universe</a>
+		<ul class='children'>
+			<li class="page_item page-item-7390"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/before-inflation/">Before Inflation</a></li>
+			<li class="page_item page-item-7426"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/big-bang-expansion-not-explosion/">Big Bang: Expansion, NOT&nbsp;Explosion</a></li>
+			<li class="page_item page-item-7407"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/hot-big-bang/">Hot Big Bang</a></li>
+			<li class="page_item page-item-7393 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/">Inflation</a>
+			<ul class='children'>
+				<li class="page_item page-item-7840"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/dust-thou-art-bicep2/">Dust Thou Art,&nbsp;BICEP2</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-7505"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/some-definitions-for-cosmology/">Some Definitions for&nbsp;Cosmology</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3681"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/parallax-seeing-in-depth/">Parallax: Seeing in&nbsp;Depth</a></li>
+		<li class="page_item page-item-2698"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/reflections-on-beauty-in-motion/">Reflections on Beauty in&nbsp;Motion</a></li>
+		<li class="page_item page-item-1821"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/the-first-principle-of-relativity/">The First Principle of&nbsp;Relativity</a></li>
+		<li class="page_item page-item-3706"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/transit-of-venus-and-the-distance-to-the-sun/">Transit of Venus and the Distance to the&nbsp;Sun</a></li>
+		<li class="page_item page-item-6167 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/">Why Do Astronauts&nbsp;Float?</a>
+		<ul class='children'>
+			<li class="page_item page-item-6231"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/how-strong-is-gravity-at-the-space-station/">How Strong Is Gravity at the Space&nbsp;Station?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-755 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/">Some Speculative Theoretical Ideas for the&nbsp;LHC</a>
+	<ul class='children'>
+		<li class="page_item page-item-1574 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/">Extra Dimensions</a>
+		<ul class='children'>
+			<li class="page_item page-item-1575 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/">Extra Dimensions &#8211; How to Think About&nbsp;Them</a>
+			<ul class='children'>
+				<li class="page_item page-item-1642"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/dimensions-of-physical-space/">Dimensions of Physical&nbsp;Space</a></li>
+				<li class="page_item page-item-2290"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/what-is-an-extra-dimension-an-example/">What is an &#8220;Extra&#8221; Dimension? Some&nbsp;Examples</a></li>
+				<li class="page_item page-item-1584"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-1-spatial-dimension/">Worlds of 1 Spatial&nbsp;Dimension</a></li>
+				<li class="page_item page-item-1668"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-2-spatial-dimensions/">Worlds of 2 Spatial&nbsp;Dimensions</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2331 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/">How to Look for Signs of Extra&nbsp;Dimensions</a>
+			<ul class='children'>
+				<li class="page_item page-item-3815"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/extra-dimensions-newtons-gravity/">Extra Dimensions &amp; Newton&#8217;s&nbsp;Gravity</a></li>
+				<li class="page_item page-item-3764"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/how-big-could-an-extra-dimension-be/">How Big Could an Extra Dimension&nbsp;Be?</a></li>
+				<li class="page_item page-item-2350"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-1/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;1</a></li>
+				<li class="page_item page-item-2364"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-2/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;2</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-758 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/">Supersymmetry</a>
+		<ul class='children'>
+			<li class="page_item page-item-697 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/">How to Look for Supersymmetry at the&nbsp;LHC</a>
+			<ul class='children'>
+				<li class="page_item page-item-808 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/">When The Standard Assumptions About Supersymmetry are&nbsp;Relaxed</a>
+				<ul class='children'>
+					<li class="page_item page-item-4172"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/test-page/">Test Page</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+			<li class="page_item page-item-660"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-what-is-it/">Supersymmetry &#8212; What Is&nbsp;It?</a></li>
+			<li class="page_item page-item-1399"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-and-multi-lepton-events/">Supersymmetry and Multi-Lepton&nbsp;Events</a></li>
+			<li class="page_item page-item-7017"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-122013/">Where Stands Supersymmetry (as of&nbsp;12/2013)</a></li>
+			<li class="page_item page-item-3411"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-as-of-42012/">Where Stands Supersymmetry (as of&nbsp;4/2012)?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-210 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/">Tevatron News</a>
+	<ul class='children'>
+		<li class="page_item page-item-222"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/a-rare-and-interesting-decay-of-a-b-meson/">A Rare and Interesting Decay of a &#8220;B meson&#8221; &#8211; update&nbsp;2</a></li>
+		<li class="page_item page-item-894"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/apparent-unexpected-asymmetries-in-the-production-of-quarks/">Apparent Unexpected Asymmetries in the Production of&nbsp;Quarks</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-362 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/">The Higgs Particle</a>
+	<ul class='children'>
+		<li class="page_item page-item-3956 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/">Discovery of the&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-4009"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-higgs/">Higgs Discovery: Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4015"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-simplest-higgs/">Higgs Discovery: Is it a Simplest&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4100"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-personal-reflections/">Higgs Discovery: Personal&nbsp;Reflections</a></li>
+			<li class="page_item page-item-3980"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-skill-and-a-little-luck/">Higgs Discovery: Skill and A Little&nbsp;Luck</a></li>
+			<li class="page_item page-item-3958"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-the-data/">Higgs Discovery: The&nbsp;Data</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2198"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/holiday-higgs-hints-confidence-inspiring-or-not/">Holiday Higgs Hints: Confidence-Inspiring or&nbsp;Not?</a></li>
+		<li class="page_item page-item-4265"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/how-the-higgs-field-works/">How The Higgs Field&nbsp;Works</a></li>
+		<li class="page_item page-item-960"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/implications-of-higgs-searches-as-of-92011/">Implications of Higgs Searches (as of&nbsp;9/2011)</a></li>
+		<li class="page_item page-item-7236 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/">Non-Standard Decays of the Observed Higgs&nbsp;Particle</a>
+		<ul class='children'>
+			<li class="page_item page-item-7282"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decay-to-unknown-spin-one-particles/">Higgs Decay to Unknown Spin-One&nbsp;Particles</a></li>
+			<li class="page_item page-item-7218"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decays-to-unknown-spin-zero-particles/">Higgs Decays to Unknown Spin-Zero&nbsp;Particles</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-5394 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/">Taking Stock of the &#8220;Higgs&#8221; (Jan.&nbsp;2013)</a>
+		<ul class='children'>
+			<li class="page_item page-item-5446"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/1-is-it-a-higgs/">1. Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5447"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/2-perhaps-composite/">2. Perhaps Composite?</a></li>
+			<li class="page_item page-item-5448"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/3-a-higgs-of-simplest-type/">3. A Higgs of Simplest&nbsp;Type?</a></li>
+			<li class="page_item page-item-5454"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/4-more-than-one-higgs/">4. More Than One&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5460"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/5-supersymmetry/">5. Supersymmetry?</a></li>
+			<li class="page_item page-item-5494"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/6-surprises/">6. Surprises?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4690"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">The Higgs FAQ&nbsp;2.0</a></li>
+		<li class="page_item page-item-4693 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/">The Old Higgs&nbsp;FAQ</a>
+		<ul class='children'>
+			<li class="page_item page-item-360"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/higgs-faq-1-0/">The Higgs FAQ&nbsp;1.0</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2000 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/">The Standard Model&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-2004"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/decays-of-the-standard-model-higgs/">Decays of the Standard Model&nbsp;Higgs</a></li>
+			<li class="page_item page-item-2509 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/">Lightweight Higgs: A `Sensitive&nbsp;Creature&#8217;</a>
+			<ul class='children'>
+				<li class="page_item page-item-2587 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/">A Quantitative Addendum to the Sensitive&nbsp;Creature</a>
+				<ul class='children'>
+					<li class="page_item page-item-5855 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/">Non-SM h Decays</a>
+					<ul class='children'>
+						<li class="page_item page-item-6041"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/table-of-decays/">Table of Decays</a></li>
+					</ul>
+</li>
+				</ul>
+</li>
+				<li class="page_item page-item-3649"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/decay-to-unusual-jets/">Decay to Unusual&nbsp;Jets</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2002"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/production-of-the-standard-model-higgs-particle/">Production of the Standard Model Higgs&nbsp;Particle</a></li>
+			<li class="page_item page-item-2007"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/seeking-and-studying-the-standard-model-higgs-particle/">Seeking and Studying the Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1932 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/">Why is it Hard to Find the Higgs&nbsp;Particle?</a>
+		<ul class='children'>
+			<li class="page_item page-item-1935"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/a-lightweight-standard-model-higgs-particle/">A Lightweight Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3892 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/">Why the Higgs Particle&nbsp;Matters</a>
+		<ul class='children'>
+			<li class="page_item page-item-3908"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/why-the-higgs-particle-matters-2/">Why the Higgs Particle Matters (Old&nbsp;Version)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-443"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-hints-of-higgs-currently-rest-on-uncertain-ground/">Why The Hints of Higgs Currently Rest on Uncertain&nbsp;Ground</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-291 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/">Thoughts on the Scientific&nbsp;Process</a>
+	<ul class='children'>
+		<li class="page_item page-item-1808"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/scientific-scepticism-isnt-just-politics/">Scientific Scepticism Isn&#8217;t Just&nbsp;Politics</a></li>
+		<li class="page_item page-item-286"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/why-is-the-tevatron-so-busy-with-hints-of-new-physics/">Why is the Tevatron So Busy with Hints of New&nbsp;Physics?</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="page_item page-item-90"><a href="https://profmattstrassler.com/videoclips/">Movie Clips</a></li>
+<li class="page_item page-item-1032"><a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a></li>
+<li class="page_item page-item-1018 page_item_has_children"><a href="https://profmattstrassler.com/technical-zone/">Technical Zone</a>
+<ul class='children'>
+	<li class="page_item page-item-10344"><a href="https://profmattstrassler.com/technical-zone/test-page/">Test Page</a></li>
+</ul>
+</li>
+<li class="page_item page-item-159 page_item_has_children"><a href="https://profmattstrassler.com/xotica/">Xotica</a>
+<ul class='children'>
+	<li class="page_item page-item-2302"><a href="https://profmattstrassler.com/xotica/hurriquake-2011-what-are-the-chances/">Hurriquake 2011: What are the&nbsp;Chances?</a></li>
+	<li class="page_item page-item-5354 page_item_has_children"><a href="https://profmattstrassler.com/xotica/sunrise/">Sunrise</a>
+	<ul class='children'>
+		<li class="page_item page-item-215"><a href="https://profmattstrassler.com/xotica/sunrise/sunrise_old/">Sunrise (older version)</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-2300"><a href="https://profmattstrassler.com/xotica/the-grand-si11iness-of-111111-111111/">The Grand Si11iness of 11/11/11&nbsp;11:11:11</a></li>
+</ul>
+</li>
+</ul></div>
+		</div><!-- #access -->
+
+		<div id="branding">
+						<a href="https://profmattstrassler.com/">
+									<img src="https://profmattstrassler.files.wordpress.com/2011/06/cropped-cerntunnel1.jpg" width="990" height="180" alt="" />
+							</a>
+					</div><!-- #branding -->
+	</div><!-- #header -->
+
+	<div id="content-box">
+
+<div id="content-container">
+	<div id="content" role="main">
+
+	
+		<div id="nav-above" class="navigation">
+			<div class="nav-previous"><a href="https://profmattstrassler.com/2013/08/29/light-hearted-higgs-questions-from-a-high-school-teacher/" rel="prev"><span class="meta-nav">&larr;</span> Light-Hearted Higgs Questions From a High School&nbsp;Teacher</a></div>
+			<div class="nav-next"><a href="https://profmattstrassler.com/2013/09/03/a-new-academic-year/" rel="next">A New Academic&nbsp;Year <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-above -->
+
+		<div id="post-6533" class="post-6533 post type-post status-publish format-standard hentry category-astronomy category-particle-physics category-quantum-gravity category-string-theory tag-astronomy-2 tag-cosmologicalconstant tag-darkenergy tag-fields tag-gravity tag-particle-physics-2 tag-virtual_particles">
+
+			
+			<h1 class="entry-title">Why You Can&#8217;t Easily Dismiss the Cosmological Constant&nbsp;Problem</h1>
+							<div class="entry-meta">
+					<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/" title="8:49 AM" rel="bookmark"><span class="entry-date">August 30, 2013</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comments">43 Comments</a></span>
+									</div><!-- .entry-meta -->
+			
+			<div class="entry-content">
+				<p>I&#8217;m still early on in my attempts to explain the &#8220;naturalness problem of the Standard Model&#8221; and its implications.  <a title="A First Stab at Explaining “Naturalness”" href="https://profmattstrassler.com/2013/08/27/a-first-stab-at-explaining-naturalness/" target="_blank">A couple of days ago</a> I explained what particle physicists mean by the term &#8220;natural&#8221; &#8212; it means &#8220;typical&#8221; or &#8220;generic&#8221;.  And I described how, at least from one naive point of view, the Standard Model (the equations we use to describe <a title="The Known (Apparently-) Elementary Particles" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/" target="_blank">the known elementary particles and forces</a>) is unnatural.  Indeed any theory is unnatural that has a</p>
+<ul>
+<li>a spin-zero particle (in the Standard Model, the newly discovered Higgs particle), which</li>
+<li>is very lightweight in the following sense: it has a very very low mass-energy compared to the energy at which gravity becomes <a title="The Strengths of the Known Forces" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/the-strength-of-the-known-forces/" target="_blank">a strong force</a>, and which</li>
+<li>isn&#8217;t accompanied (in the Standard Model specifically) by other related particles that also have small masses.</li>
+</ul>
+<p>But I didn&#8217;t actually <em>explain</em> any of this yet; I just described it.</p>
+<p>Specifically, I didn&#8217;t start yet to explain what <em>causes</em> the Standard Model to be unnatural.  This is important to do, because, as many attentive readers naturally complained, my statements about the unnatural aspect of the Standard Model was based on a rather arbitrary-sounding statistical argument, and story-telling, which is hardly enough for scientific discussion.  Patience; I&#8217;ll get there, not today but probably the next installment after today&#8217;s.</p>
+<p>To see why the argument I gave is actually legitimate <em>(which doesn&#8217;t mean it is right, but if it&#8217;s wrong it&#8217;s not for a simple reason you&#8217;ll think of in five minutes),</em> it is necessary to look in a little bit more detail at one of the most fundamental aspects of quantum field theory: quantum fluctuations, and the energy they carry.  So for today I have written <a title="Quantum Fluctuations and Their Energy" href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/quantum-fluctuations-and-their-energy/" target="_blank">an article about this</a>, reasonably complete.</p>
+<p>Be prepared &#8212; the article runs headlong into the only naturalness problem in particle physics that is worse than the naturalness problem of the Standard Model (the one I wrote about <a title="A First Stab at Explaining “Naturalness”" href="https://profmattstrassler.com/2013/08/27/a-first-stab-at-explaining-naturalness/" target="_blank">on Tuesday</a>)!  I am referring to the &#8220;cosmological constant problem&#8221;.  In a nutshell:</p>
+<ul>
+<li>we can calculate that, in any typical quantum field theory with gravity, the amount of energy in empty space (often called `dark energy&#8217;) should be huge, and we know of no way to avoid having it in a typical somewhat-realistic theory of the universe,</li>
+<li>yet measurements of the cosmos &#8212; in fact, the very existence of a large and old universe &#8212; assure that, if Einstein&#8217;s theory of gravity is basically right, then instead of a huge amount of `dark energy&#8217;, there&#8217;s just a very small amount &#8212; not much more than the total amount of mass-energy [E=mc² energy] found in all the matter that&#8217;s scattered thinly throughout the universe.</li>
+</ul>
+<p>After you&#8217;ve read about quantum fluctuations and the cosmological constant problem, and have a bit of a sense as to why it is so hard to make it go away, we can go back to the Standard Model, and try to understand the naturalness problem that is associated with the Higgs particle and field.  It all has to do with another aspect of quantum fluctuations &#8212; the fact that their energy depends on, and therefore helps determine, the average value of the Higgs field.</p>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-6533" class="share-twitter sd-button share-icon" href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/?share=twitter" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-6533" class="share-facebook sd-button share-icon" href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/?share=facebook" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-end"></li></ul></div></div></div><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-24633746-6533-6157a14107061' data-src='//widgets.wp.com/likes/index.html?ver=20210818#blog_id=24633746&amp;post_id=6533&amp;origin=profmattstrassler.wordpress.com&amp;obj_id=24633746-6533-6157a14107061&amp;domain=profmattstrassler.com' data-name='like-post-frame-24633746-6533-6157a14107061' data-title='Like or Reblog'><h3 class='sd-title'>Like this:</h3><div class='likes-widget-placeholder post-likes-widget-placeholder' style='height: 55px;'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>							</div><!-- .entry-content -->
+
+			<div class="entry-info">
+							This entry was posted in <a href="https://profmattstrassler.com/category/astronomy/" rel="category tag">Astronomy</a>, <a href="https://profmattstrassler.com/category/particle-physics/" rel="category tag">Particle Physics</a>, <a href="https://profmattstrassler.com/category/quantum-gravity/" rel="category tag">Quantum Gravity</a>, <a href="https://profmattstrassler.com/category/string-theory/" rel="category tag">String Theory</a> and tagged <a href="https://profmattstrassler.com/tag/astronomy-2/" rel="tag">astronomy</a>, <a href="https://profmattstrassler.com/tag/cosmologicalconstant/" rel="tag">CosmologicalConstant</a>, <a href="https://profmattstrassler.com/tag/darkenergy/" rel="tag">DarkEnergy</a>, <a href="https://profmattstrassler.com/tag/fields/" rel="tag">fields</a>, <a href="https://profmattstrassler.com/tag/gravity/" rel="tag">gravity</a>, <a href="https://profmattstrassler.com/tag/particle-physics-2/" rel="tag">particle physics</a>, <a href="https://profmattstrassler.com/tag/virtual_particles/" rel="tag">virtual_particles</a>. Bookmark the <a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/" title="Permalink to Why You Can&#8217;t Easily Dismiss the Cosmological Constant&nbsp;Problem" rel="bookmark">permalink</a>.							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		<div id="nav-below" class="navigation">
+			<div class="nav-previous"><a href="https://profmattstrassler.com/2013/08/29/light-hearted-higgs-questions-from-a-high-school-teacher/" rel="prev"><span class="meta-nav">&larr;</span> Light-Hearted Higgs Questions From a High School&nbsp;Teacher</a></div>
+			<div class="nav-next"><a href="https://profmattstrassler.com/2013/09/03/a-new-academic-year/" rel="next">A New Academic&nbsp;Year <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-below -->
+
+		
+<div id="comments">
+
+	
+			<h3 id="comments-title">
+			43 responses to &ldquo;<span>Why You Can&#8217;t Easily Dismiss the Cosmological Constant&nbsp;Problem</span>&rdquo;		</h3>
+
+		
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-82505">
+		<div id="comment-82505">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/18d4ba6233bff951a1245661cc0bf2e7?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://Yahoo' rel='external nofollow ugc' class='url'>aa.sh.</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82505">
+				August 30, 2013 at 12:11 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Matt. , don&#8217;t you realize writing all these wonderful articles that the only solution is DESIGN ?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-82518">
+		<div id="comment-82518">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/20387cab90049b63a88a1932d0498c93?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Kevin</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82518">
+				August 30, 2013 at 12:39 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Who designed the designer ?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-82532">
+		<div id="comment-82532">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/18d4ba6233bff951a1245661cc0bf2e7?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://Yahoo' rel='external nofollow ugc' class='url'>aa.sh.</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82532">
+				August 30, 2013 at 1:36 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Print : who designed the designer ?<br />
+Repeat to infinity&#8230;&#8230;&#8230;&#8230;&#8230;.</p>
+<p>Understood??</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-83383">
+		<div id="comment-83383">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/2cc1d0c2b7d67965395b4bbdff32ae14?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Krystal</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83383">
+				September 4, 2013 at 12:35 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Designer had no beginning and will have no end. Designer exists from before everything else. Your mind is too tied up with what your eyes see here on earth and the idea that universe had a beginning. Maybe it did, maybe it didn&#8217;t, but the  one that created it out of the energy that belongs to its body is not affected by time or this universe. thus, Eternal, Omnipresent, Omnipotent, Omniscient. <a href="http://www.youtube.com/watch?v" rel="nofollow ugc">http://www.youtube.com/watch?v</a>&#8230;</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-82538">
+		<div id="comment-82538">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/3a0f8eec598eddc3e6a26e348c1b9bdd?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Chris Bolger</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82538">
+				August 30, 2013 at 1:46 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Design is not the only solution.  But it is one.  When (if) we finally answer all there is to answer about the origin of everything there will be only three answers:<br />
+1.  It was created by some God like being(s).<br />
+2.  It occurred naturally without the existence of a God<br />
+3.  We will prove we can never figure it out.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-82554">
+		<div id="comment-82554">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/18d4ba6233bff951a1245661cc0bf2e7?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://Yahoo' rel='external nofollow ugc' class='url'>aa.sh.</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82554">
+				August 30, 2013 at 2:49 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Anon<br />
+If asking the most fundamental questions is  trolling , then all of our investigations are mere nonsense.<br />
+Chris<br />
+But we are already calling it un-natural , extra-normal , not expected , so the more we know the more we will see its huge un-naturalness. That is point 2.<br />
+Point 3proves design.<br />
+Point 1 proves your extreme lack of understanding the fundamental attributes of GOD.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-profmattstrassler bypostauthor even depth-2 highlander-comment" id="li-comment-82557">
+		<div id="comment-82557">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/adeb244d3a56730027286aae9204ecc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='https://profmattstrassler.wordpress.com' rel='external nofollow ugc' class='url'>Matt Strassler</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82557">
+				August 30, 2013 at 3:28 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Boys and Girls &#8212;</p>
+<p>to all: atheists, agnostics and devout believers are all permitted here on this website.  However, attempts to convince others of one&#8217;s opinion on a <em>non-scientific</em> question are discouraged.</p>
+<p>aa.sh &#8212; it seems that every time I write anything at all, your reply is &#8220;it&#8217;s obvious from what you say that God exists&#8221;.  I don&#8217;t need to hear this every time, nor do my readers; we all know that there are always questions about science, truth, origin of the universe, etc., and we all know that people have different opinions, and any of us who have been on this site already know your opinion.</p>
+<p>Actually, if you want to convince people of things, it is a good idea not to be unpleasant as a person.  And a commenter who says the same provocative thing again and again, and generates a whole host of useless back-and-forth comments on a regular basis, becomes an impolite annoyance on a website.  I would prefer not to ban you from this site, but if you persist in this not very nice behavior, I will do so.  </p>
+<p>So &#8212; out of politeness &#8212; please desist from discussions of God on posts that have nothing to do with God.  If you happen to think my post about scientific reasoning has something to do with God, keep it to yourself, please.  We can discuss these issues in more appropriate settings &#8212; specifically, when the question is raised by the post or article, and not by you. .</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-82558">
+		<div id="comment-82558">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/18d4ba6233bff951a1245661cc0bf2e7?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://Yahoo' rel='external nofollow ugc' class='url'>aa.sh.</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82558">
+				August 30, 2013 at 3:39 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>O.K.<br />
+Thanks.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-82598">
+		<div id="comment-82598">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/62992b0a3ec78e65a0601c5f9b60e579?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Farhad</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82598">
+				August 30, 2013 at 8:00 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Dear Professor: I recently saw a video of a talk given by Dr Fay Dowker given at the Perimeter Institute in which she claimed the cosmological constant problem had been solved long before dark energy was discovered by theorists working on the Causal Set structure of spacetime. What do you think about that? Thanks.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-82604">
+		<div id="comment-82604">
+		<div class="comment-author vcard">
+			<img alt='' src='https://i2.wp.com/a0.twimg.com/profile_images/2786334097/cf4aef9cc695b0b802b59d036d69b650_normal.jpeg?resize=48%2C48' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://twitter.com/moriturimax' rel='external nofollow ugc' class='url'>moriturimax (@moriturimax)</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82604">
+				August 30, 2013 at 9:02 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I would pose to aash the simple request that instead of just answering our questions with a statement, he go out and get the evidence to support it. That would be INTERESTING!</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-kimmorouvari even thread-even depth-1 highlander-comment" id="li-comment-82670">
+		<div id="comment-82670">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/503a3ee5e84c915924add8e54ff8a137?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.toebi.com' rel='external nofollow ugc' class='url'>Kimmo Rouvari</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82670">
+				August 31, 2013 at 5:40 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Well, physicists love measurable predictions. I want to remind that on October 9 happens Juno Earth flyby. Naturally physicists are watching closely possible flyby anomaly. Contemporary physics can&#8217;t explain the phenomenon not to mention predict its value!</p>
+<p>But as I have claimed (arrogantly by Matt) previously, my pet theory can. Here is a quote from my blog (including predictions). This comment concerns very much the naturalness discussion going on here.</p>
+<p>&#8220;Quote from SPACEFLIGHT101:</p>
+<p>During its mission, Juno spins at different rates depending on mission maneuvers. During Cruise, Juno makes one rotation per minute, during science operations, the spin rate is 2rpm and for Main Engine Burns, the spin rate is increased to 5rpm.<br />
+Ok, what will be the spin frequency during the flyby? Probably that 2 rpm. After all, they are going to do some science operations near Earth, right? And why would they use the Main engine (even though it would give the biggest boost 🙂 )? Anyway, here are the predictions for all those three different spin frequencies. Total anomalous acceleration is in case of</p>
+<p>1 rpm: 0.278 mm/s^2<br />
+2 rpm: 1.111 mm/s^2<br />
+5 prm: 6.944 mm/s^2<br />
+Calculations are based purely on a spin frequency of the spacecraft. Contemporary physics includes factors other than the effect from spin frequency of the spacecraft. Some very small deviations from predictions might emerge due to possible spin frequency changes right before or after the closest part of flyby.&#8221;</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-kimmorouvari odd alt depth-2 highlander-comment" id="li-comment-82672">
+		<div id="comment-82672">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/503a3ee5e84c915924add8e54ff8a137?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.toebi.com' rel='external nofollow ugc' class='url'>Kimmo Rouvari</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82672">
+				August 31, 2013 at 5:47 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>That first part was a quote from SPACEFLIGHT101 site, the rest was mine.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-3 highlander-comment" id="li-comment-83138">
+		<div id="comment-83138">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/739df6e04ec29d1bd95cc491615df1c0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Xezlec</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83138">
+				September 2, 2013 at 7:48 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>You give some &#8220;anomalous acceleration&#8221;, but what is that supposed to refer to?  Presumably the anomalous acceleration would vary continuously from small, to large, and back to small again as the flyby progresses.  It can&#8217;t be a constant, or the anomaly would not be limited to the flyby, it would continue on forever and also still be happening long before the flyby.  There would be an unlimited gain in kinetic energy rather than a finite, measurable gain as has always been the case for flybys in the past.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-kimmorouvari odd alt depth-4 highlander-comment" id="li-comment-83157">
+		<div id="comment-83157">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/503a3ee5e84c915924add8e54ff8a137?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.toebi.com' rel='external nofollow ugc' class='url'>Kimmo Rouvari</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83157">
+				September 2, 2013 at 11:14 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Good point! Acceleration surely varies during the flyby. I won&#8217;t go into mathematical details here but the most significant acceleration is gained during the time when the spacecraft&#8217;s spin plane is towards Earth. There is an acceleration gained before and after the closest part of flyby but it&#8217;s very much weaker (distance &amp; spin plane angle in relation to Earth).</p>
+<p>My pet theory can be used also in the cases of Pioneer anomalies.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-5 highlander-comment" id="li-comment-83158">
+		<div id="comment-83158">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/739df6e04ec29d1bd95cc491615df1c0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Xezlec</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83158">
+				September 2, 2013 at 11:52 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>You didn&#8217;t answer my question.  Are the numbers you gave supposed to represent the maximum acceleration reached at any point during the anomaly, or what?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt depth-5 highlander-comment" id="li-comment-83159">
+		<div id="comment-83159">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/739df6e04ec29d1bd95cc491615df1c0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Xezlec</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83159">
+				September 2, 2013 at 11:54 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Also, does your pet theory predict any detectable anomalous acceleration for the Pioneer flyby, or an undetectably small amount?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-kimmorouvari even depth-5 highlander-comment" id="li-comment-83161">
+		<div id="comment-83161">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/503a3ee5e84c915924add8e54ff8a137?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.toebi.com' rel='external nofollow ugc' class='url'>Kimmo Rouvari</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83161">
+				September 3, 2013 at 12:07 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Yes, they are maximum values. </p>
+<p>(Pioneer anomalies) Naturally detectable. You pretty much need only the Pioneer spacecraft spin plane angle in relation to Sun and spin frequency of the spacecraft. There has been naturally changes both in angle and spin frequency so in order to calculate the exact value I should know all history data regarding spin plane angle and spin frequency.</p>
+<p>However, rough estimate is easy to calculate.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt depth-5 highlander-comment" id="li-comment-83354">
+		<div id="comment-83354">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/739df6e04ec29d1bd95cc491615df1c0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Xezlec</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83354">
+				September 3, 2013 at 8:19 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>OK, then I guess your theory has been knocked out.  When the radiative anisotropy of the RTG was finally factored into the calculations in 2012, the anomaly disappeared.  There is no longer any detectable Pioneer anomaly.  A quote from one of the last papers on the subject:</p>
+<p>&#8220;&#8221;We find no statistically significant difference between the two estimates and conclude that once the thermal recoil force is properly accounted for, no anomalous acceleration remains.&#8221;</p>
+<p>Better luck next time.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-kimmorouvari even depth-5 highlander-comment" id="li-comment-83373">
+		<div id="comment-83373">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/503a3ee5e84c915924add8e54ff8a137?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.toebi.com' rel='external nofollow ugc' class='url'>Kimmo Rouvari</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83373">
+				September 3, 2013 at 10:47 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>And this same reason is behind ALL the cases where this anomaly is detected? There are other cases than Pioneer 10/11. Besides, flyby anomaly and Pioneer anomaly are related. And the contemporary explanation for the flyby anomaly is&#8230;? </p>
+<p>Other than that, modified Cavendish experiment and generating particle annihilations without high energy supports my case.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-kimmorouvari odd alt depth-5 highlander-comment" id="li-comment-83375">
+		<div id="comment-83375">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/503a3ee5e84c915924add8e54ff8a137?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.toebi.com' rel='external nofollow ugc' class='url'>Kimmo Rouvari</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83375">
+				September 3, 2013 at 11:07 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Ok, those other spacecraft cases are not so reliable due to various reasons. <a href="http://arxiv.org/pdf/1001.3686.pdf" rel="nofollow ugc">http://arxiv.org/pdf/1001.3686.pdf</a> (section 6.7.2).</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even depth-5 highlander-comment" id="li-comment-83591">
+		<div id="comment-83591">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/739df6e04ec29d1bd95cc491615df1c0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Xezlec</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83591">
+				September 4, 2013 at 8:33 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>It&#8217;s very simple.  Your theory made a prediction regarding the Pioneer anomaly.  That prediction was false, therefore your theory has been shown to be false.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-kimmorouvari odd alt depth-5 highlander-comment" id="li-comment-83619">
+		<div id="comment-83619">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/503a3ee5e84c915924add8e54ff8a137?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.toebi.com' rel='external nofollow ugc' class='url'>Kimmo Rouvari</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83619">
+				September 4, 2013 at 10:59 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>That&#8217;s true.  But only in the case that mr. Anderson made his case correctly (which I doubt). Also, it&#8217;s possible that those spacecrafts had the exact 90 degrees angle between spin plane and Sun hence no &#8220;ToEbi effect&#8221;. But getting that angle absolutely 90 degrees, without any deviations, sounds impossible. Therefore I put my money on my case.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even depth-5 highlander-comment" id="li-comment-83798">
+		<div id="comment-83798">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/739df6e04ec29d1bd95cc491615df1c0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Xezlec</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83798">
+				September 5, 2013 at 7:19 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>&#8220;Mr. Anderson&#8221;?  The result regarding the effect of the thermal recoil force was reached by several research groups independently.  What reason do you have to suspect that they have each independently made an error in their analysis?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-kimmorouvari odd alt depth-5 highlander-comment" id="li-comment-83836">
+		<div id="comment-83836">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/503a3ee5e84c915924add8e54ff8a137?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.toebi.com' rel='external nofollow ugc' class='url'>Kimmo Rouvari</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83836">
+				September 5, 2013 at 11:33 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>There is a simpler explanation for the acceleration and I prefer Occam&#8217;s razor. There is uncertainties with that modeling and we both have our own views regarding Pioneer anomalies, that&#8217;s ok. We need a better example for the &#8220;new&#8221; physics.</p>
+<p>But things are going to be *much* more interesting in the case of Juno Earth flyby! There the effect is a very strong compared to Pioneer. What is your suggestion as the cause for the flyby anomaly? It surely ain&#8217;t thermal recoil force, right? 😉</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-123bielefeld even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-82678">
+		<div id="comment-82678">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cef5970926315df2a16854e3d0879ae9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">veeramohan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82678">
+				August 31, 2013 at 6:21 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>The logic of charles darwin &#8216;s evolutionary natural selection (idea) is valid only in local symmetry conditions like &#8220;Rest mass&#8221; &#8211; but it is not a physical reality.<br />
+We cannot switch off Higgs field is sounds like &#8220;we cannot stop all the relative movements of planets and stars&#8221;. Indeed we cannot stop, it need very high energy. Cosmological constant is vacuum energy + negative energy ? &#8211; and the matter is positive energy ?</p>
+<p>But the &#8220;rest mass is not a physical reality&#8221; &#8211; so the Higgs field also. This arise as a mathematical necessities in models using rest mass in their calculations. We cannot avoid consistency particle theory, but wave theory is more realistic &#8211; but we cannot calculate in QFT without manipulating (virtual particles) Quantum fluctuations of a field &#8211; like in law of quantum physics by Louis de Broglie. </p>
+<p>The Uncertainty Principle states that for a pair of conjugate variables such as position/momentum and energy(mass)/time(dilation), it is impossible to have a precisely determined value of each member of the pair at the same time. For example, a particle pair can pop out of the vacuum during a very short time interval.<br />
+An extension is applicable to the &#8220;uncertainty in time&#8221; and &#8220;uncertainty in energy&#8221; (including the rest mass energy mc^2). When the mass is very large like a macroscopic object, the uncertainties and thus the quantum effect become very small, and classical physics is applicable. </p>
+<p>Thus the non zero cosmological constant, space expansion, the creation of new space by cancellation of negative and positive energies were related to the energy withstanding capacity of spacetime (membrane)?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-martenvandijk odd alt thread-even depth-1 highlander-comment" id="li-comment-82708">
+		<div id="comment-82708">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/add29c3c2833c71dc81830b2f8cb6dda?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://cosmicsignals.wordpress.com' rel='external nofollow ugc' class='url'>martenvandijk</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82708">
+				August 31, 2013 at 9:58 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>The cosmological constant is based on particles from nothing and the  quantative easing is based on moneyfrom nothing. I am afraid that  they share the same problem.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-2 highlander-comment" id="li-comment-82738">
+		<div id="comment-82738">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/20387cab90049b63a88a1932d0498c93?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Kevin</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82738">
+				August 31, 2013 at 12:17 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>What is that problem ? Genuinely, I am interested in your answer..</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-martenvandijk odd alt depth-3 highlander-comment" id="li-comment-82741">
+		<div id="comment-82741">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/add29c3c2833c71dc81830b2f8cb6dda?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://cosmicsignals.wordpress.com' rel='external nofollow ugc' class='url'>martenvandijk</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82741">
+				August 31, 2013 at 12:41 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>The inconsistency with reality.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-4 highlander-comment" id="li-comment-82746">
+		<div id="comment-82746">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7cb508eb4a44eaf275e90bdf229f622d?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Edwin Steiner</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82746">
+				August 31, 2013 at 1:19 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>It is quite the opposite. Detailed <em>observations</em> of the universe (e.g. the recent Planck mission) show that the universe is apparently expanding at an increasing rate. One way to make our models of the universe consistent with these observations is to put the so-called cosmological constant into the equations. In this sense it is <em>required</em> for consistency with reality. (There could be other ways to make the models fit reality, and scientists are investigating those, too.)</p>
+<p>Now the other end of the question is: How can we explain the existence of the cosmological constant and its value (that we can estimate from observations) from <em>microscopic</em> physics? This is were vacuum fluctuations come in, and there we hit upon a really big and fascinating problem, which Prof. Strassler explains in the article.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-martenvandijk odd alt depth-5 highlander-comment" id="li-comment-82757">
+		<div id="comment-82757">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/add29c3c2833c71dc81830b2f8cb6dda?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://cosmicsignals.wordpress.com' rel='external nofollow ugc' class='url'>martenvandijk</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82757">
+				August 31, 2013 at 2:04 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>&#8230;&#8221;to make the models fit reality&#8221;&#8230;</p>
+<p>&#8230;&#8221;explain the existence of the cosmological constant&#8221;&#8230;</p>
+<p>I rest my case.</p>
+<p>Apart from cosmology: Bernanke and Dragi use a model which does not fit reality. The Dow Jones for instance is about 3000 points above intrinsic. Money for nothing is MTV, not economy.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-123bielefeld even depth-2 highlander-comment" id="li-comment-82762">
+		<div id="comment-82762">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cef5970926315df2a16854e3d0879ae9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">veeramohan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82762">
+				August 31, 2013 at 2:29 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Soothing Mr  martenvandijk,<br />
+vacuum in vacuum fluctuations is filled by &#8220;The 1%&#8221; with virtual particles, evolutionary theory, money and theorems based on this as &#8220;Peace and Truce of God&#8221; &#8211; running their own Roman Empire ?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-harryjohnston odd alt depth-2 highlander-comment" id="li-comment-83117">
+		<div id="comment-83117">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/1616c7e4fab23f6e014ee11d75408bba?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://harryjohnston.wordpress.com' rel='external nofollow ugc' class='url'>harryjohnston</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83117">
+				September 2, 2013 at 5:29 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>That&#8217;s why they&#8217;re called &#8220;virtual particles&#8221; &#8211; they&#8217;re not really particles at all.  But the energy should be real if you trust the math.  Ultimately, of course, the problem is somewhere in the maths; either the excess energy isn&#8217;t really there, or it is cancelled out, or it doesn&#8217;t interact with gravity for some reason.  The point is that we can&#8217;t just ignore the problem, we need to figure out how to make the math work properly.  Otherwise we&#8217;re not doing physics.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-82751">
+		<div id="comment-82751">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/2353ad72636f06c4b8167b504b75f4ca?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Martin</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82751">
+				August 31, 2013 at 1:41 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Thank you professor Strassler for a very interesting article. This is one of many topics I am trying to understand.</p>
+<p>Just out of curiosity: in mid-April you wrote a very good description of the interior of protons and neutrons and mentioned there would be a more detailed follow-up (second and third layer). I was wondering if this is still in plan. Thank you.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-123bielefeld odd alt thread-even depth-1 highlander-comment" id="li-comment-82752">
+		<div id="comment-82752">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cef5970926315df2a16854e3d0879ae9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">veeramohan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-82752">
+				August 31, 2013 at 1:52 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>/1. Is supersymmetry equivalent to a singularity?/ &#8211; Oak Tree.</p>
+<p>Is vacuum in vacuum fluctuations is almost a singularity?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-83183">
+		<div id="comment-83183">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b093f00314f1aaf8ad0652c32ecda507?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Brody Facoum</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83183">
+				September 3, 2013 at 4:18 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>cf. Baez&#8217;s overview (ca. 2010 vintage) here, notably the paragraphs numbered 3,  4 and 5.</p>
+<p><a href="http://math.ucr.edu/home/baez/vacuum.html" rel="nofollow ugc">http://math.ucr.edu/home/baez/vacuum.html</a></p>
+<p>(Sorry in advance for not significantly adding to the crankiness as it approaches criticality.)</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='https://profmattstrassler.com/2013/09/03/a-new-academic-year/' rel='external nofollow ugc' class='url'>A New Academic Year | Of Particular Significance</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-123bielefeld odd alt thread-even depth-1 highlander-comment" id="li-comment-83287">
+		<div id="comment-83287">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cef5970926315df2a16854e3d0879ae9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">veeramohan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-83287">
+				September 3, 2013 at 2:14 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Thank you Mr. harryjohnston, we know the &#8220;energy&#8221;, that was something burning. Moment of inertia and gravity cannot be separated.<br />
+(.) The explosion (combustion) of gunpowder:<br />
+     4KNO3(s)+7C(s)+S(s) &#8212;&gt; 3CO2(g)+3CO(g)+2N2(g).<br />
+(.) The explosion (Decomposition or Detonation) of Nitroglycerin:<br />
+     4C3H5(NO3)^3 (s) &#8212;-&gt; 12CO2(g)+10H2O(g)+6N2(g)+=2(g).<br />
+Nitroglycerine contains its own oxidant. One gram of TNT produces about one liter of gas, which is a 1000 fold sudden increase in volume &#8211; that produces the blast pressure. For instance, when a particle and its antiparticle annihilate and vanish in a puff of electromagnetic radiation, comparatively little matter is transformed into rather a lot radiation.<br />
+The explosions is due to strained &#8220;chemical&#8221; bonds in the molecules which have stored potential energy.</p>
+<p>That does not mean, &#8220;matter is converted to gas&#8221;. Only energy is changing its one form to another.</p>
+<p>This is also true for sudden increase in the volume of &#8220;new space&#8221; &#8211; because &#8220;space&#8221; is a form of energy. </p>
+<p>(.) Nuclear explosion: Equivalence or transformation? : For Einstein, mass (more precisely: relativistic mass; the property that determines how difficult it is to change a body&#8217;s speed or its direction of motion) and energy are simply two different names for one and the same physical quantity.<br />
+The angular momentum &#8220;c^2&#8221; (in quantum mechanics h-bar) is already changed the speed and direction of &#8220;inertia&#8221;. Thus producing a new kind of energy called the &#8220;rest mass&#8221;.<br />
+So Einstein&#8217;s formula explains the power of the nuclear bomb &#8211; and that the large conversion factor c2 is responsible for the immense amounts of energy released?</p>
+<p>Binding energies: nuclei vs. molecules: When hydrogen and oxygen explosively combine to make water, the sum of the rest masses of the initial hydrogen and oxygen atoms is just a little bit less than the sum of the rest masses of the resulting water molecules. The same is true for the chemical reactions involving spontaneous oxydation &#8211; in other words: burning. The same formula applies: The mass difference, multiplied by c2, gives the energy set free during the chemical reaction.<br />
+This clearly shows that the difference between nuclear and chemical reactions must be due to something other than E=mc2. </p>
+<p>This is wahat explained by Nima Arkani-Hamed, &#8220;the difference between massive and massless particles. If we understand that, we can tilt the &#8220;vase&#8221; from unnaturalness (rest mass) to naturalness (relative mass).<br />
+[video  src="http://media.scgp.stonybrook.edu/video/video.php?f=20130820_5_qtp.mp4" /]</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-88051">
+		<div id="comment-88051">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a3561bebbc0bac41d97ace8913bb6e03?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.watchsvinterest.com/' rel='external nofollow ugc' class='url'>サマンサ ベガ</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-88051">
+				September 25, 2013 at 2:33 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>時計 ブランド 人気 サマンサ ベガ <a href="http://www.watchsvinterest.com/" rel="nofollow ugc">http://www.watchsvinterest.com/</a></p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-martenvandijk odd alt thread-even depth-1 highlander-comment" id="li-comment-88064">
+		<div id="comment-88064">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/add29c3c2833c71dc81830b2f8cb6dda?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://cosmicsignals.wordpress.com' rel='external nofollow ugc' class='url'>martenvandijk</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-88064">
+				September 25, 2013 at 2:56 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Apparently Big Blothel is watching us.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-90066">
+		<div id="comment-90066">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/8d7d63ad6fd23abb96fc868a629cacc5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">SilverLight</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-90066">
+				October 3, 2013 at 10:56 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Hi Matt,<br />
+I see why this is a real problem, thanks for the illuminating article as always.<br />
+Can I ask a more basic question about the cosmological constant and its consequences? I apologize if this is a hoary old one but I never really found a definitive answer (although you have touched on it in other articles). Here Goes:</p>
+<p>I have no problem with the concept of the expansion of &#8220;space&#8221; due to some cosmological constant. Can we visualise this as tiny additions to all the quantum fields periodically appearing at random locations?<br />
+While I get that this is not a force between objects, it is nevertheless said to result in objects at large scales moving further apart. If these objects at large scales are being carried along with &#8220;space&#8221; as it expands, then the objects (or the matter from which they are made) must be interacting with said &#8220;space&#8221;; the objects are moved relative to one another, &#8220;space&#8221; does not simply slide through everything.<br />
+So the next logical question people like me ask is something like: &#8216;what happens to the &#8220;space&#8221; inside a proton?, and does this affect the proton in any way?&#8217;. In other words if large scale objects, like galaxies,  move apart as a result of &#8220;space&#8221; expanding, do those same objects also grow larger? If they do, then is there then a cut-off scale at which this effect no longer applies? I am sure most people are not comfortable with the notion that a proton today could be a different size that it was in the past due to &#8220;space&#8221; expanding.</p>
+<p>BTW &#8211; how do you track these comments in all these articles? is there a time limit for each &#8216;thread&#8217;? it looks as though whenever you add a new article the volume of incoming questions would increase&#8230;I hope you are not swamped..<br />
+Cheers<br />
+S</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='https://profmattstrassler.com/2014/03/07/what-if-the-large-hadron-collider-finds-nothing-else/' rel='external nofollow ugc' class='url'>What if the Large Hadron Collider Finds Nothing Else? | Of Particular Significance</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-180256">
+		<div id="comment-180256">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/526c7038fbf076a8c804cc3c6f3914af?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.youtube.com/watch?v=khBc4-3hVnE' rel='external nofollow ugc' class='url'>inspirational bible verses</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2013/08/30/why-you-cant-easily-dismiss-the-cosmological-constant-problem/#comment-180256">
+				March 11, 2014 at 2:58 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>My partner and I stumbled over here from a different page and<br />
+thought I should check things out. I like what I see so i am just following<br />
+you. Look forward to exploring your web page again.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='http://patriceayme.wordpress.com/2014/03/13/philosophia-naturalis-i/' rel='external nofollow ugc' class='url'>Philosophia Naturalis I | Patrice Ayme&#039;s Thoughts</a></p>
+	</li><!-- #comment-## -->
+		</ol>
+
+		
+	
+	
+</div><!-- #comments -->
+	
+	</div><!-- #content -->
+</div><!-- #content-container -->
+
+
+		
+		<div id="primary" class="widget-area" role="complementary">
+					<ul class="xoxo">
+
+			<li id="text-2" class="widget-container widget_text"><h3 class="widget-title">First Time Visitor?</h3>			<div class="textwidget">This site addresses various aspects of science, with a current focus on particle physics.  I aim to serve the public, including those with no background knowledge of physics.  If you're not yourself an expert, you might want to click on "<a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a>" or "<a href="https://profmattstrassler.com/about/">About</a>" to get started. If you'd like to watch my hour-long public lecture about the <a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">Higgs particle</a>, try ``<a href="https://profmattstrassler.com/videoclips/">Movie Clips</a>''.</div>
+		</li><li id="media_image-4" class="widget-container widget_media_image"><style>.widget.widget_media_image { overflow: hidden; }.widget.widget_media_image img { height: auto; max-width: 100%; }</style><div style="width: 310px" class="wp-caption alignnone"><a href="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png"><img width="300" height="172" src="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" class="image wp-image-10515 alignnone attachment-300x172 size-300x172" alt="" loading="lazy" style="max-width: 100%; height: auto;" srcset="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300 300w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=600 600w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=150 150w" sizes="(max-width: 300px) 100vw, 300px" data-attachment-id="10515" data-permalink="https://profmattstrassler.com/htogammagamma_v1/" data-orig-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png" data-orig-size="640,366" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="HtoGammaGamma_v1" data-image-description="" data-image-caption="" data-medium-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" data-large-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=500" /></a><p class="wp-caption-text">From the CMS experiment at the Large Hadron collider, a proton-proton collision that created a Higgs boson, which subsequently decayed to two particles of light (shown as green rods.)</p></div></li><li id="search-3" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="https://profmattstrassler.com/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search" />
+				</div>
+			</form></li>
+		<li id="recent-posts-3" class="widget-container widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="https://profmattstrassler.com/2021/04/12/physics-is-broken/">Physics is Broken!!!</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/11/25/has-a-new-force-of-nature-been-discovered/">Has a New Force of Nature Been&nbsp;Discovered?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/28/the-new-york-times-remembers-a-great-physicist/">The New York Times Remembers A Great&nbsp;Physicist</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/06/a-catastrophic-weekend-for-theoretical-high-energy-physics/">A Catastrophic Weekend for Theoretical High Energy&nbsp;Physics</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo/">A Ring of Controversy Around a Black Hole&nbsp;Photo</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/16/the-black-hole-photo-seeing-more-clearly/">The Black Hole `Photo&#8217;: Seeing More&nbsp;Clearly</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/15/the-black-hole-photo-what-are-we-looking-at/">The Black Hole `Photo&#8217;: What Are We Looking&nbsp;At?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/10/a-black-day-and-a-happy-one-in-scientific-history/">A Black Day (and a Happy One) In Scientific&nbsp;History</a>
+									</li>
+					</ul>
+
+		</li><li id="categories-4" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3><form action="https://profmattstrassler.com" method="get"><label class="screen-reader-text" for="cat">Categories</label><select  name='cat' id='cat' class='postform' >
+	<option value='-1'>Select Category</option>
+	<option class="level-0" value="4003">Astronomy</option>
+	<option class="level-0" value="175813">black holes</option>
+	<option class="level-0" value="51517">Dark Matter</option>
+	<option class="level-0" value="545298">Evolution and Biology</option>
+	<option class="level-0" value="39338">Geology</option>
+	<option class="level-0" value="133890">Gravitational Waves</option>
+	<option class="level-0" value="738724">Higgs</option>
+	<option class="level-0" value="27530">History of Science</option>
+	<option class="level-0" value="19640">Housekeeping</option>
+	<option class="level-0" value="59940768">LHC Background Info</option>
+	<option class="level-0" value="11550283">LHC News</option>
+	<option class="level-0" value="59940787">Other Collider News</option>
+	<option class="level-0" value="12547">Particle Physics</option>
+	<option class="level-0" value="1211">Physics</option>
+	<option class="level-0" value="560543">Public Outreach</option>
+	<option class="level-0" value="36114049">Quantum Field Theory</option>
+	<option class="level-0" value="119528">Quantum Gravity</option>
+	<option class="level-0" value="59940867">Science and Modern Society</option>
+	<option class="level-0" value="7682">Science News</option>
+	<option class="level-0" value="26444">String Theory</option>
+	<option class="level-0" value="41175177">The Scientific Process</option>
+	<option class="level-0" value="1">Uncategorized</option>
+</select>
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+			</li><li id="pd_top_rated-3" class="widget-container top_rated"><h3 class="widget-title">Popular Pages</h3><div id="pd_top_rated_holder" class="pd_top_rated_holder_pages"></div><script language="javascript" src="https://polldaddy.com/js/rating/top-rated.js"></script><script language="javascript" type="text/javascript">PDRTJS_TOP = new PDRTJS_RATING_TOP( 4811599, 0, 0, '010', 5 );PDRTJS_TOP.get_top( 'pages', '0' );</script></li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+		
+			</div><!-- #content-box -->
+
+	<div id="footer" role="contentinfo">
+		
+<div id="footer-widget-area" role="complementary">
+
+	<div id="first" class="widget-area">
+		<ul class="xoxo">
+			<li id="text-3" class="widget-container widget_text">			<div class="textwidget"><font color="FF0000"><b>I went to college at <a href="http://www.simons-rock.edu"> Simon's Rock.  </a></b></font></div>
+		</li>		</ul>
+	</div><!-- #first .widget-area -->
+
+
+	<div id="third" class="widget-area">
+		<ul class="xoxo">
+			<li id="rss_links-3" class="widget-container widget_rss_links"><h3 class="widget-title">Add this site to your RSS feed</h3><p class="size-small"><a class="feed-image-link" href="https://profmattstrassler.com/feed/" title="Subscribe to Posts"><img src="https://profmattstrassler.com/i/rss/red-small.png" alt="RSS Feed" /></a>&nbsp;<a href="https://profmattstrassler.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p>
+</li><li id="linkcat-8548552" class="widget-container widget_links"><h3 class="widget-title">My Facebook Page</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.facebook.com/ProfMattStrassler" rel="me" target="_blank">http://www.facebook.com/ProfMattStrassler</a></li>
+
+	</ul>
+</li>
+		</ul>
+	</div><!-- #third .widget-area -->
+
+	<div id="fourth" class="widget-area">
+		<ul class="xoxo">
+			<li id="twitter-2" class="widget-container widget_twitter"><h3 class="widget-title"><a href='http://twitter.com/MattStrassler'>Follow me on Twitter</a></h3><ul class='tweets'>
+			<li>
+				@<a href='http://twitter.com/StevenLowette'>StevenLowette</a> @<a href='http://twitter.com/CatDogLUofM'>CatDogLUofM</a> @<a href='http://twitter.com/suchi_kulkarni'>suchi_kulkarni</a> @<a href='http://twitter.com/jsheltino'>jsheltino</a> Good to be a part of it.  We need to open these communicatio… <a href="https://twitter.com/i/web/status/1443656122460741633"> twitter.com/i/web/status/1…</a> 				<a href="http://twitter.com/MattStrassler/statuses/1443656122460741633" class="timesince">1&nbsp;day&nbsp;ago</a>
+			</li>
+
+			</ul><a href="http://twitter.com/MattStrassler"  class='twitter-follow-button' data-show-count='false' data-link-color='#0060ff' data-text-color='#333333'>Follow @MattStrassler</a></li>		</ul>
+	</div><!-- #fourth .widget-area -->
+
+</div><!-- #footer-widget-area -->
+		<div id="colophon">
+			<span class="generator-link"><a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a></span>
+					</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #container -->
+
+<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202139y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-18d4ba6233bff951a1245661cc0bf2e7">
+	</div>
+	<div class="grofile-hash-map-20387cab90049b63a88a1932d0498c93">
+	</div>
+	<div class="grofile-hash-map-2cc1d0c2b7d67965395b4bbdff32ae14">
+	</div>
+	<div class="grofile-hash-map-3a0f8eec598eddc3e6a26e348c1b9bdd">
+	</div>
+	<div class="grofile-hash-map-adeb244d3a56730027286aae9204ecc5">
+	</div>
+	<div class="grofile-hash-map-62992b0a3ec78e65a0601c5f9b60e579">
+	</div>
+	<div class="grofile-hash-map-57c437b92fca5a010e1647f6a6ee4779">
+	</div>
+	<div class="grofile-hash-map-503a3ee5e84c915924add8e54ff8a137">
+	</div>
+	<div class="grofile-hash-map-739df6e04ec29d1bd95cc491615df1c0">
+	</div>
+	<div class="grofile-hash-map-cef5970926315df2a16854e3d0879ae9">
+	</div>
+	<div class="grofile-hash-map-add29c3c2833c71dc81830b2f8cb6dda">
+	</div>
+	<div class="grofile-hash-map-7cb508eb4a44eaf275e90bdf229f622d">
+	</div>
+	<div class="grofile-hash-map-1616c7e4fab23f6e014ee11d75408bba">
+	</div>
+	<div class="grofile-hash-map-2353ad72636f06c4b8167b504b75f4ca">
+	</div>
+	<div class="grofile-hash-map-b093f00314f1aaf8ad0652c32ecda507">
+	</div>
+	<div class="grofile-hash-map-a3561bebbc0bac41d97ace8913bb6e03">
+	</div>
+	<div class="grofile-hash-map-8d7d63ad6fd23abb96fc868a629cacc5">
+	</div>
+	<div class="grofile-hash-map-526c7038fbf076a8c804cc3c6f3914af">
+	</div>
+	</div>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/profmattstrassler.com\/2013\/08\/30\/why-you-cant-easily-dismiss-the-cosmological-constant-problem\/":6533};
+	</script>
+				<script src='https://platform.twitter.com/widgets.js?ver=20111117' id='twitter-widgets-js'></script>
+<script id='sharing-js-js-extra'>
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjskSwiAQRH9IQrkkVR4svwVhNINAcAay+PXOQQ96MKeepV916ykrO6QCqWjP2sGIFvLceN7o75d/VKDlLQ2mEWFatXko2di7ImB8wq89VpVDvWFiHfAOrAWq0JvkAtAfs3ERk7oY0tFwAZJJFZIcXi00ZTtElWmYFyklNy4fBpMN1UkLgWSFeAHXSNCfInngoq7BIGnuDWG6fVSgczxtu1132O3bY+tft6aG7A=='></script>
+<script type='text/javascript'>
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-twitter' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-twitter' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+</script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>	<iframe src='https://widgets.wp.com/likes/master.html?ver=20210818#ver=20210818&amp;origin=https://profmattstrassler.com' scrolling='no' id='likes-master' name='likes-master' style='display:none;'></iframe>
+	<div id='likes-other-gravatars'>
+		<div class="likes-text">
+			<span>%d</span> bloggers like this:		</div>
+		<ul class="wpl-avatars sd-like-gravatars"></ul>
+	</div>
+	
+		<script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'24633746','blog_tz':'-4','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'24633746','v':'wpcom','tz':'-4','user_id':'0','post':'6533','subd':'profmattstrassler'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eXFaMjhuQz1aPzNNMy12XUZlK1VEaF9ZMkRhXS9kfnpXU3U3LUtbLSZsakpoUnExOGVDJWhWOExffFJJZkphaSVQRzVpTk58eltoaSZkdG9XaVkudTNYTU4xW1NOMnZOeGpaaXRRLHxuLnZtOVlnTiYuWXNPSitmOFY0MF10eDVpTzcuRDlbSyx5c2xEZF9OTTksckImMXRpUUtWQkJbQXFyb1FobTAwQTRVZEpXRGJSP05qQ2VVb3VWL01haXJpQltKVHJtcS1qLFsleT0/Y2xvRS4sLmU/RT9LVkd3WVdsVHp3WDc9OQ=='}]);
+_stq.push([ 'clickTrackerInit', '24633746', '6533' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script></body>
+</html>

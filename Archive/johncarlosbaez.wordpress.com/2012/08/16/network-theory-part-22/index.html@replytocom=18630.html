@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Network Theory (Part 22) | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Network Theory (Part&nbsp;22) Comments Feed" href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2012%2F08%2F16%2Fnetwork-theory-part-22%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"e6f6fdfb46","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"ffcb185558\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2012\/08\/16\/network-theory-part-22\/?replytocom=18630","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2012%2F08%2F16%2Fnetwork-theory-part-22%2F%3Freplytocom%3D18630","postID":"11586","shortlink":"https:\/\/wp.me\/pRBZ9-30S","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/11586","statsLink":"https:\/\/wordpress.com\/stats\/post\/11586\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,228 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2012%2F08%2F16%2Fnetwork-theory-part-22%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-30S' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2012%2F08%2F16%2Fnetwork-theory-part-22%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2012%2F08%2F16%2Fnetwork-theory-part-22%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Network Theory (Part 22)" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/" />
+<meta property="og:description" content="Okay, now let&#8217;s dig deeper into the proof of the deficiency zero theorem. We&#8217;re only going to prove a baby version, at first. Later we can enhance it: Deficiency Zero Theorem (Baby Vers…" />
+<meta property="article:published_time" content="2012-08-16T05:45:08+00:00" />
+<meta property="article:modified_time" content="2012-08-19T06:40:49+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/networks/reaction_network_diagram_1.png" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Network Theory (Part&nbsp;22)" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/networks/reaction_network_diagram_1.png?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="Okay, now let&#039;s dig deeper into the proof of the deficiency zero theorem. We&#039;re only going to prove a baby version, at first. Later we can enhance it: Deficiency Zero Theorem (Baby Version). Suppose we have a weakly reversible reaction network with deficiency zero. Then for any choice of rate constants there exists an equilibrium&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-11586 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-11586 post type-post status-publish format-standard hentry category-chemistry category-mathematics category-networks" id="post-11586">
+			<h2>Network Theory (Part&nbsp;22)</h2>
+
+			<div class="entry">
+				<p>Okay, now let&#8217;s dig deeper into the proof of the deficiency zero theorem.  We&#8217;re only going to prove a baby version, at first.  Later we can enhance it:</p>
+<p><b>Deficiency Zero Theorem (Baby Version).</b>   Suppose we have a weakly reversible reaction network with deficiency zero.  Then for any choice of rate constants there exists an equilibrium solution of the rate equation where all species are present in nonzero amounts.</p>
+<p>The first step is to write down the rate equation in a new, more conceptual way.  It&#8217;s incredibly cool.   You&#8217;ve probably seen Schr&ouml;dinger&#8217;s equation, which describes the motion of a quantum particle:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle+%7B+%5Cfrac%7Bd+%5Cpsi%7D%7Bd+t%7D+%3D+-i+H+%5Cpsi+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle { &#92;frac{d &#92;psi}{d t} = -i H &#92;psi } " class="latex" /></p>
+<p>If you&#8217;ve been following this series, you&#8217;ve probably also seen the master equation, which describes the motion of a &#8216;stochastic&#8217; particle:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle+%7B+%5Cfrac%7Bd+%5Cpsi%7D%7Bd+t%7D+%3D+H+%5Cpsi+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle { &#92;frac{d &#92;psi}{d t} = H &#92;psi } " class="latex" /></p>
+<p>A &#8216;stochastic&#8217; particle is one that&#8217;s carrying out a random walk, and now <img src="https://s0.wp.com/latex.php?latex=%5Cpsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi" class="latex" /> describes its probability to be somewhere, instead of its amplitude.</p>
+<p>Today we&#8217;ll see that the rate equation for a reaction network looks somewhat similar:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle+%7B+%5Cfrac%7Bd+x%7D%7Bd+t%7D+%3D++Y+H+x%5EY+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle { &#92;frac{d x}{d t} =  Y H x^Y } " class="latex" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" /> is some matrix, and <img src="https://s0.wp.com/latex.php?latex=x%5EY&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^Y" class="latex" /> is defined using a new thing called &#8216;matrix exponentiation&#8217;, which makes the equation <i>nonlinear!</i> </p>
+<p>If you&#8217;re reading this you probably know how to multiply a vector by a matrix.  But if you&#8217;re like me, you&#8217;ve never seen anyone take a vector and raise to the power of some matrix!   I&#8217;ll explain it, don&#8217;t worry&#8230; right now I&#8217;m just trying to get you intrigued.  It&#8217;s not complicated, but it&#8217;s exciting how this unusual operation shows up naturally in chemistry.  That&#8217;s just what I&#8217;m looking for these days: new math ideas that show up in practical subjects like chemistry, and new ways that math can help people in these subjects.</p>
+<p>Since we&#8217;re looking for an <i>equilibrium</i> solution of the rate equation, we actually want to solve</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle+%7B+%5Cfrac%7Bd+x%7D%7Bd+t%7D+%3D++0+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle { &#92;frac{d x}{d t} =  0 } " class="latex" /></p>
+<p>or in other words</p>
+<p><img src="https://s0.wp.com/latex.php?latex=Y+H+x%5EY+%3D+0+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y H x^Y = 0 " class="latex" /></p>
+<p>In fact we will do better: we will find a solution of</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+x%5EY+%3D+0+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H x^Y = 0 " class="latex" /></p>
+<p>And we&#8217;ll do this in two stages:</p>
+<p>&bull; First we&#8217;ll find all solutions of</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%5Cpsi+%3D+0+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H &#92;psi = 0 " class="latex" /></p>
+<p>This equation is <i>linear</i>, so it&#8217;s easy to understand.</p>
+<p>&bull; Then, among these solutions <img src="https://s0.wp.com/latex.php?latex=%5Cpsi%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi," class="latex" /> we&#8217;ll find one that also obeys</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cpsi+%3D+x%5EY+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi = x^Y " class="latex" /></p>
+<p>This is a <i>nonlinear</i> problem involving matrix exponentiation, but still, we can do it, using a clever trick called &#8216;logarithms&#8217;.</p>
+<p>Putting the pieces together, we get our solution of </p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+x%5EY+%3D+0+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H x^Y = 0 " class="latex" /></p>
+<p>and thus our equilibrium solution of the rate equation:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle+%7B+%5Cfrac%7Bd+x%7D%7Bd+t%7D+%3D+Y+H+x%5EY+%3D+0+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle { &#92;frac{d x}{d t} = Y H x^Y = 0 } " class="latex" /></p>
+<p>That&#8217;s a rough outline of the plan.  But now let&#8217;s get started, because the details are actually fascinating.  Today I&#8217;ll just show you how to rewrite the rate equation in this new way.</p>
+<h3> The rate equation </h3>
+<p>Remember how the rate equation goes.  We start with a <b>stochastic reaction network</b>, meaning a little diagram like this:</p>
+<div align="center">
+<img src="https://i2.wp.com/math.ucr.edu/home/baez/networks/reaction_network_diagram_1.png" alt="" />
+</div>
+<p>This contains quite a bit of information:</p>
+<p>&bull; a finite set <img src="https://s0.wp.com/latex.php?latex=T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T" class="latex" /> of <b>transitions</b>,</p>
+<p>&bull; a finite set <img src="https://s0.wp.com/latex.php?latex=K&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="K" class="latex" /> of <b>complexes</b>,</p>
+<p>&bull; a finite set <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> of <b>species</b>, </p>
+<p>&bull; a map <img src="https://s0.wp.com/latex.php?latex=r%3A+T+%5Cto+%280%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r: T &#92;to (0,&#92;infty)" class="latex" /> giving a <b>rate constant</b> for each transition,</p>
+<p>&bull; <b>source</b> and <b>target</b> maps <img src="https://s0.wp.com/latex.php?latex=s%2Ct+%3A+T+%5Cto+K&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s,t : T &#92;to K" class="latex" /> saying where each transition starts and ends,</p>
+<p>&bull; a one-to-one map <img src="https://s0.wp.com/latex.php?latex=Y+%3A+K+%5Cto+%5Cmathbb%7BN%7D%5ES&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y : K &#92;to &#92;mathbb{N}^S" class="latex" /> saying how each complex is made of species.</p>
+<p>Given all this, the rate equation says how the amount of each species changes with time.  We describe these amounts with a vector <img src="https://s0.wp.com/latex.php?latex=x+%5Cin+%5B0%2C%5Cinfty%29%5ES.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x &#92;in [0,&#92;infty)^S." class="latex" />  So, we want a differential equation filling in the question marks here:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd+x%7D%7Bd+t%7D+%3D+%3F%3F%3F+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d x}{d t} = ??? } " class="latex" /></p>
+<p>Now <a href="https://johncarlosbaez.wordpress.com/2012/08/14/network-theory-part-21/">last time</a>, we started by thinking of <img src="https://s0.wp.com/latex.php?latex=K&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="K" class="latex" /> as a subset of <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BN%7D%5ES%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{N}^S," class="latex" /> and thus of the vector space <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5ES.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^S." class="latex" />  Back then, we wrote the rate equation as follows:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd+x%7D%7Bd+t%7D+%3D+%5Csum_%7B%5Ctau+%5Cin+T%7D+r%28%5Ctau%29+%5C%3B+%5Cleft%28t%28%5Ctau%29+-+s%28%5Ctau%29%5Cright%29+%5C%3B+x%5E%7Bs%28%5Ctau%29%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d x}{d t} = &#92;sum_{&#92;tau &#92;in T} r(&#92;tau) &#92;; &#92;left(t(&#92;tau) - s(&#92;tau)&#92;right) &#92;; x^{s(&#92;tau)} } " class="latex" /></p>
+<p>where vector exponentiation is defined by</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x%5Es+%3D+x_1%5E%7Bs_1%7D+%5Ccdots+x_k%5E%7Bs_k%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^s = x_1^{s_1} &#92;cdots x_k^{s_k} " class="latex" /></p>
+<p>when <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> are vectors in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5ES.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^S." class="latex" /></p>
+<p>However, we&#8217;ve now switched to thinking of our set of complexes <img src="https://s0.wp.com/latex.php?latex=K&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="K" class="latex" /> as a set in its own right that is mapped into <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BN%7D%5ES&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{N}^S" class="latex" /> by <img src="https://s0.wp.com/latex.php?latex=Y.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y." class="latex" />  This is good for lots of reasons, like defining the concept of &#8216;deficiency&#8217;, which we did last time.   But it means the rate equation above doesn&#8217;t quite parse anymore!   Things like <img src="https://s0.wp.com/latex.php?latex=s%28%5Ctau%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s(&#92;tau)" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=t%28%5Ctau%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t(&#92;tau)" class="latex" /> live in <img src="https://s0.wp.com/latex.php?latex=K&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="K" class="latex" />; we need to explicitly convert them into elements of <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5ES&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^S" class="latex" /> using <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" /> for our equation to make sense!</p>
+<p>So now we have to write the <b>rate equation</b> like this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd+x%7D%7Bd+t%7D+%3D+Y+%5Csum_%7B%5Ctau+%5Cin+T%7D+r%28%5Ctau%29+%5C%3B++%5Cleft%28t%28%5Ctau%29+-+s%28%5Ctau%29%5Cright%29+%5C%3B+x%5E%7BY+s%28%5Ctau%29%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d x}{d t} = Y &#92;sum_{&#92;tau &#92;in T} r(&#92;tau) &#92;;  &#92;left(t(&#92;tau) - s(&#92;tau)&#92;right) &#92;; x^{Y s(&#92;tau)} } " class="latex" /></p>
+<p>This looks more ugly, but if you&#8217;ve got even one mathematical bone in your body, you can already see vague glimmerings of how we&#8217;ll rewrite this the way we want:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle+%7B+%5Cfrac%7Bd+x%7D%7Bd+t%7D+%3D++Y+H+x%5EY+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle { &#92;frac{d x}{d t} =  Y H x^Y } " class="latex" /></p>
+<p>Here&#8217;s how.</p>
+<p>First, we extend our maps <img src="https://s0.wp.com/latex.php?latex=s%2C+t&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s, t" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" /> to linear maps between vector spaces:</p>
+<div align="center">
+<img src="https://i0.wp.com/math.ucr.edu/home/baez/networks/reaction_network_diagram_6.png" /></div>
+<p>Then, we put an inner product on the vector spaces <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5ET%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^T," class="latex" /> <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5EK&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^K" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5ES.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^S." class="latex" />  For <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5EK&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^K" class="latex" /> we do this in the most obvious way, by letting the complexes be an orthonormal basis.  So, given two complexes <img src="https://s0.wp.com/latex.php?latex=%5Ckappa%2C+%5Ckappa%27%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;kappa, &#92;kappa&#039;," class="latex" /> we define their inner product by</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+%5Ckappa%2C+%5Ckappa%27+%5Crangle+%3D+%5Cdelta_%7B%5Ckappa%2C+%5Ckappa%27%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle &#92;kappa, &#92;kappa&#039; &#92;rangle = &#92;delta_{&#92;kappa, &#92;kappa&#039;} " class="latex" /></p>
+<p>We do the same for <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5ES.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^S." class="latex" />  But for <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5ET&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^T" class="latex" /> we define the inner product in a more clever way involving the rate constants.  If <img src="https://s0.wp.com/latex.php?latex=%5Ctau%2C+%5Ctau%27+%5Cin+T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;tau, &#92;tau&#039; &#92;in T" class="latex" /> are two transitions, we define their inner product by:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+%5Ctau%2C+%5Ctau%27+%5Crangle+%3D+%5Cfrac%7B1%7D%7Br%28%5Ctau%29%7D+%5Cdelta_%7B%5Ctau%2C+%5Ctau%27%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle &#92;tau, &#92;tau&#039; &#92;rangle = &#92;frac{1}{r(&#92;tau)} &#92;delta_{&#92;tau, &#92;tau&#039;} " class="latex" /></p>
+<p>This will seem perfectly natural when we continue our study of circuits made of electrical resistors, and if you&#8217;re very clever you can already see it lurking in <a href="http://math.ucr.edu/home/baez/networks/networks_16.html">Part 16</a>.  But never mind.</p>
+<p>Having put inner products on these three vector spaces, we can take the adjoints of the linear maps between them, to get linear maps going back the other way:</p>
+<div align="center">
+<img src="https://i1.wp.com/math.ucr.edu/home/baez/networks/reaction_network_diagram_3.png" /></div>
+<p>These are defined in the usual way&#8212;though we&#8217;re using daggers here they way physicists do, where mathematicians would prefer to see stars!   For example, <img src="https://s0.wp.com/latex.php?latex=s%5E%5Cdagger+%3A+%5Cmathbb%7BR%7D%5EK+%5Cto+%5Cmathbb%7BR%7D%5ET&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s^&#92;dagger : &#92;mathbb{R}^K &#92;to &#92;mathbb{R}^T" class="latex" /> is defined by the relation</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+s%5E%5Cdagger+%5Cphi%2C+%5Cpsi+%5Crangle+%3D+%5Clangle+%5Cphi%2C+s+%5Cpsi+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle s^&#92;dagger &#92;phi, &#92;psi &#92;rangle = &#92;langle &#92;phi, s &#92;psi &#92;rangle " class="latex" /></p>
+<p>and so on.</p>
+<p>Next, we set up a random walk on the set of complexes.  Remember, our reaction network is a graph with complexes as vertices and transitions as edges, like this:</p>
+<div align="center">
+<img width="200" src="https://i1.wp.com/math.ucr.edu/home/baez/networks/chemical_reaction_network_part_20_V.png" alt="" />
+</div>
+<p>Each transition <img src="https://s0.wp.com/latex.php?latex=%5Ctau&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;tau" class="latex" /> has a number attached to it: the rate constant <img src="https://s0.wp.com/latex.php?latex=r%28%5Ctau%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r(&#92;tau)." class="latex" />  So, we can randomly hop from complex to complex along these transitions, with probabilities per unit time described by these numbers.  The probability of being at some particular complex will then be described by a function </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cpsi+%3A+K+%5Cto+%5Cmathbb%7BR%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi : K &#92;to &#92;mathbb{R} " class="latex" /></p>
+<p>which also depends on time, and changes according to the equation</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle+%7B+%5Cfrac%7Bd+%5Cpsi%7D%7Bd+t%7D+%3D+H+%5Cpsi+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle { &#92;frac{d &#92;psi}{d t} = H &#92;psi } " class="latex" /></p>
+<p>for some <b>Hamiltonian</b> </p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3A+%5Cmathbb%7BR%7D%5EK+%5Cto+%5Cmathbb%7BR%7D%5EK+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H : &#92;mathbb{R}^K &#92;to &#92;mathbb{R}^K " class="latex" /></p>
+<p>I defined this Hamiltonian back in <a href="https://johncarlosbaez.wordpress.com/2011/10/26/network-theory-part-15/">Part 15</a>, but now I see a slicker way to write it:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+%28t+-+s%29+s%5E%5Cdagger+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = (t - s) s^&#92;dagger " class="latex" /></p>
+<p>I&#8217;ll justify this next time.  For now, the main point is that with this Hamiltonian, the rate equation is equivalent to this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd+x%7D%7Bd+t%7D+%3D+Y+H+x%5EY+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d x}{d t} = Y H x^Y } " class="latex" /></p>
+<p>The only thing I haven&#8217;t defined yet is the funny exponential <img src="https://s0.wp.com/latex.php?latex=x%5EY.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^Y." class="latex" />  That&#8217;s what makes the equation nonlinear.  We&#8217;re taking a <i>vector</i> to the power of a <i>matrix</i> and getting a <i>vector</i>.  This sounds weird&#8212;but it actually makes sense!</p>
+<p>It only makes sense because we have chosen bases for our vector spaces. To understand it, let&#8217;s number our species <img src="https://s0.wp.com/latex.php?latex=1%2C+%5Cdots%2C+k&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1, &#92;dots, k" class="latex" /> as we&#8217;ve been doing all along, and number our complexes <img src="https://s0.wp.com/latex.php?latex=1%2C+%5Cdots%2C+%5Cell.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1, &#92;dots, &#92;ell." class="latex" />   Our linear map <img src="https://s0.wp.com/latex.php?latex=Y+%3A+%5Cmathbb%7BR%7D%5EK+%5Cto+%5Cmathbb%7BR%7D%5ES&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y : &#92;mathbb{R}^K &#92;to &#92;mathbb{R}^S" class="latex" /> then becomes a <img src="https://s0.wp.com/latex.php?latex=k+%5Ctimes+%5Cell&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="k &#92;times &#92;ell" class="latex" /> matrix of natural numbers.  Its entries say how many times each species shows up in each complex:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=Y+%3D+%5Cleft%28+%5Cbegin%7Barray%7D%7Bcccc%7D+++Y_%7B11%7D+%26+Y_%7B12%7D++%26+%5Ccdots+%26+Y_%7B1+%5Cell%7D+%5C%5C++Y_%7B21%7D+%26+Y_%7B22%7D++%26+%5Ccdots+%26+Y_%7B2+%5Cell%7D+%5C%5C++%5Cvdots++%26+%5Cvdots+++%26+%5Cddots+%26+%5Cvdots+%5C%5C++Y_%7Bk1%7D+%26+Y_%7Bk2%7D++%26+%5Ccdots+%26+Y_%7Bk+%5Cell%7D+%5Cend%7Barray%7D+%5Cright%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y = &#92;left( &#92;begin{array}{cccc}   Y_{11} &amp; Y_{12}  &amp; &#92;cdots &amp; Y_{1 &#92;ell} &#92;&#92;  Y_{21} &amp; Y_{22}  &amp; &#92;cdots &amp; Y_{2 &#92;ell} &#92;&#92;  &#92;vdots  &amp; &#92;vdots   &amp; &#92;ddots &amp; &#92;vdots &#92;&#92;  Y_{k1} &amp; Y_{k2}  &amp; &#92;cdots &amp; Y_{k &#92;ell} &#92;end{array} &#92;right) " class="latex" /></p>
+<p>The entry <img src="https://s0.wp.com/latex.php?latex=Y_%7Bi+j%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y_{i j}" class="latex" /> says how many times the <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" />th species shows up in the <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" />th complex.  </p>
+<p>Now, let&#8217;s be a bit daring and think of the vector <img src="https://s0.wp.com/latex.php?latex=x+%5Cin+%5Cmathbb%7BR%7D%5ES&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x &#92;in &#92;mathbb{R}^S" class="latex" /> as a row vector with <img src="https://s0.wp.com/latex.php?latex=k&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="k" class="latex" /> entries:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x+%3D+%5Cleft%28x_1+%2C+x_2+%2C++%5Cdots+%2C++x_k+%5Cright%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x = &#92;left(x_1 , x_2 ,  &#92;dots ,  x_k &#92;right) " class="latex" /></p>
+<p>Then we can multiply <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> on the <i>right</i> by the matrix <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" /> and get a vector in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5EK&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^K" class="latex" />:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Barray%7D%7Bccl%7D+x+Y+%26%3D%26+%28+x_1+%2C+x_2%2C+%5Cdots%2C+x_k%29+%5C%3B+++%5Cleft%28+%5Cbegin%7Barray%7D%7Bcccc%7D+++Y_%7B11%7D+%26+Y_%7B12%7D++%26+%5Ccdots+%26+Y_%7B1+%5Cell%7D+%5C%5C++Y_%7B21%7D+%26+Y_%7B22%7D++%26+%5Ccdots+%26+Y_%7B2+%5Cell%7D+%5C%5C++%5Cvdots++%26+%5Cvdots+++%26+%5Cddots+%26+%5Cvdots+%5C%5C++Y_%7Bk1%7D+%26+Y_%7Bk2%7D++%26+%5Ccdots+%26+Y_%7Bk+%5Cell%7D+%5Cend%7Barray%7D+%5Cright%29+++%5C%5C++%5C%5C++%26%3D%26+%5Cleft%28+x_1+Y_%7B11%7D+%2B+%5Ccdots+%2B+x_k+Y_%7Bk1%7D%2C+%5C%3B+%5Cdots%2C+%5C%3B+x_1+Y_%7B1+%5Cell%7D+%2B+%5Ccdots+%2B+x_k+Y_%7Bk+%5Cell%7D+%5Cright%29+++%5Cend%7Barray%7D++&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{array}{ccl} x Y &amp;=&amp; ( x_1 , x_2, &#92;dots, x_k) &#92;;   &#92;left( &#92;begin{array}{cccc}   Y_{11} &amp; Y_{12}  &amp; &#92;cdots &amp; Y_{1 &#92;ell} &#92;&#92;  Y_{21} &amp; Y_{22}  &amp; &#92;cdots &amp; Y_{2 &#92;ell} &#92;&#92;  &#92;vdots  &amp; &#92;vdots   &amp; &#92;ddots &amp; &#92;vdots &#92;&#92;  Y_{k1} &amp; Y_{k2}  &amp; &#92;cdots &amp; Y_{k &#92;ell} &#92;end{array} &#92;right)   &#92;&#92;  &#92;&#92;  &amp;=&amp; &#92;left( x_1 Y_{11} + &#92;cdots + x_k Y_{k1}, &#92;; &#92;dots, &#92;; x_1 Y_{1 &#92;ell} + &#92;cdots + x_k Y_{k &#92;ell} &#92;right)   &#92;end{array}  " class="latex" /></p>
+<p>So far, no big deal.  But now you&#8217;re ready to see the definition of <img src="https://s0.wp.com/latex.php?latex=x%5EY%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^Y," class="latex" /> which is very similar:</p>
+<p><img src="https://i1.wp.com/math.ucr.edu/home/baez/networks/matrix_exponential.png" /></p>
+<p>It&#8217;s exactly the same, but with <i>multiplication</i> replacing <i>addition</i>, and <i>exponentiation</i> replacing <i>multiplication!</i>   Apparently my class on matrices stopped too soon: we learned about matrix multiplication, but matrix exponentiation is also worthwhile. </p>
+<p>What&#8217;s the point of it?  Well, suppose you have a certain number of hydrogen molecules, a certain number of oxygen molecules, a certain number of water molecules, and so on&#8212;a certain number of things of each species.  You can list these numbers and get a vector <img src="https://s0.wp.com/latex.php?latex=x+%5Cin+%5Cmathbb%7BR%7D%5ES.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x &#92;in &#92;mathbb{R}^S." class="latex" />  Then the components of <img src="https://s0.wp.com/latex.php?latex=x%5EY&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^Y" class="latex" /> describe how many ways you can build up each complex from the things you have.  For example, </p>
+<p><img src="https://s0.wp.com/latex.php?latex=x_1%5E%7BY_%7B11%7D%7D+x_2%5E%7BY_%7B21%7D%7D+%5Ccdots++x_k%5E%7BY_%7Bk1%7D%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1^{Y_{11}} x_2^{Y_{21}} &#92;cdots  x_k^{Y_{k1}} " class="latex" /></p>
+<p>say roughly how many ways you can build complex 1 by picking <img src="https://s0.wp.com/latex.php?latex=Y_%7B11%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y_{11}" class="latex" /> things of species 1, <img src="https://s0.wp.com/latex.php?latex=Y_%7B21%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y_{21}" class="latex" /> things of species 2, and so on.  </p>
+<p>Why &#8216;roughly&#8217;?   Well, we&#8217;re pretending we can pick the same thing twice.  So if we have 4 water molecules and we need to pick 3, this formula gives <img src="https://s0.wp.com/latex.php?latex=4%5E3.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="4^3." class="latex" />  The right answer is <img src="https://s0.wp.com/latex.php?latex=4+%5Ctimes+3+%5Ctimes+2.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="4 &#92;times 3 &#92;times 2." class="latex" />   To get this answer we&#8217;d need to use the &#8216;falling power&#8217; <img src="https://s0.wp.com/latex.php?latex=4%5E%7B%5Cunderline%7B3%7D%7D+%3D+4+%5Ctimes+3+%5Ctimes+2%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="4^{&#92;underline{3}} = 4 &#92;times 3 &#92;times 2," class="latex" /> as explained in <a href="http://math.ucr.edu/home/baez/networks/networks_4.html">Part 4</a>.  But the rate equation describes chemistry in the limit where we have lots of things of each species.  In this limit, the ordinary power becomes a good approximation.</p>
+<p><b>Puzzle.</b> In this post we&#8217;ve seen a vector raised to a matrix power, which is a vector, and also a vector raised to a vector power, which is a number.  How are they related?</p>
+<p>There&#8217;s more to say about this, which I&#8217;d be glad to explain if you&#8217;re interested.  But let&#8217;s get to the punchline:</p>
+<p><b>Theorem.</b>  The rate equation:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd+x%7D%7Bd+t%7D+%3D+Y+%5Csum_%7B%5Ctau+%5Cin+T%7D+r%28%5Ctau%29+%5C%3B+%5Cleft%28t%28%5Ctau%29+-+s%28%5Ctau%29%5Cright%29+%5C%3B+x%5E%7BY+s%28%5Ctau%29%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d x}{d t} = Y &#92;sum_{&#92;tau &#92;in T} r(&#92;tau) &#92;; &#92;left(t(&#92;tau) - s(&#92;tau)&#92;right) &#92;; x^{Y s(&#92;tau)} } " class="latex" /></p>
+<p>is equivalent to this equation:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd+x%7D%7Bd+t%7D+%3D+Y+%28t+-+s%29+s%5E%5Cdagger+x%5EY+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d x}{d t} = Y (t - s) s^&#92;dagger x^Y } " class="latex" /></p>
+<p>or in other words:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd+x%7D%7Bd+t%7D+%3D+Y+H+x%5EY+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d x}{d t} = Y H x^Y } " class="latex" /></p>
+<p><i>Proof.</i>  It&#8217;s enough to show </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%28t+-+s%29+s%5E%5Cdagger+x%5EY+%3D+%5Csum_%7B%5Ctau+%5Cin+T%7D+r%28%5Ctau%29+%5C%3B+%5Cleft%28t%28%5Ctau%29+-+s%28%5Ctau%29%5Cright%29+%5C%3B+x%5E%7BY+s%28%5Ctau%29%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ (t - s) s^&#92;dagger x^Y = &#92;sum_{&#92;tau &#92;in T} r(&#92;tau) &#92;; &#92;left(t(&#92;tau) - s(&#92;tau)&#92;right) &#92;; x^{Y s(&#92;tau)} } " class="latex" /></p>
+<p>So, we&#8217;ll compute <img src="https://s0.wp.com/latex.php?latex=%28t+-+s%29+s%5E%5Cdagger+x%5EY%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(t - s) s^&#92;dagger x^Y," class="latex" /> and think about the meaning of each quantity we get <i>en route</i>.  </p>
+<p>We start with <img src="https://s0.wp.com/latex.php?latex=x+%5Cin+%5Cmathbb%7BR%7D%5ES.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x &#92;in &#92;mathbb{R}^S." class="latex" />  This is a list of numbers saying how many things of each species we have: our raw ingredients, as it were.  Then we compute</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x%5EY+%3D+%28x_1%5E%7BY_%7B11%7D%7D+%5Ccdots++x_k%5E%7BY_%7Bk1%7D%7D+%2C++%5Cdots%2C++x_1%5E%7BY_%7B1+%5Cell%7D%7D+%5Ccdots+x_k%5E%7BY_%7Bk+%5Cell%7D%7D+%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^Y = (x_1^{Y_{11}} &#92;cdots  x_k^{Y_{k1}} ,  &#92;dots,  x_1^{Y_{1 &#92;ell}} &#92;cdots x_k^{Y_{k &#92;ell}} ) " class="latex" /></p>
+<p>This is a vector in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5EK.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^K." class="latex" />  It&#8217;s a list of numbers saying how many ways we can build each complex starting from our raw ingredients.  </p>
+<p>Alternatively, we can write this vector <img src="https://s0.wp.com/latex.php?latex=x%5EY&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^Y" class="latex" /> as a sum over basis vectors:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x%5EY+%3D+%5Csum_%7B%5Ckappa+%5Cin+K%7D+x_1%5E%7BY_%7B1%5Ckappa%7D%7D+%5Ccdots++x_k%5E%7BY_%7Bk%5Ckappa%7D%7D+%5C%3B+%5Ckappa+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^Y = &#92;sum_{&#92;kappa &#92;in K} x_1^{Y_{1&#92;kappa}} &#92;cdots  x_k^{Y_{k&#92;kappa}} &#92;; &#92;kappa " class="latex" /></p>
+<p>Next let&#8217;s apply <img src="https://s0.wp.com/latex.php?latex=s%5E%5Cdagger&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s^&#92;dagger" class="latex" /> to this.  We claim that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+s%5E%5Cdagger+%5Ckappa+%3D+%5Csum_%7B%5Ctau+%5C%3B+%3A+%5C%3B+s%28%5Ctau%29+%3D+%5Ckappa%7D+r%28%5Ctau%29+%5C%3B+%5Ctau+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ s^&#92;dagger &#92;kappa = &#92;sum_{&#92;tau &#92;; : &#92;; s(&#92;tau) = &#92;kappa} r(&#92;tau) &#92;; &#92;tau } " class="latex" /></p>
+<p>In other words, we claim <img src="https://s0.wp.com/latex.php?latex=s%5E%5Cdagger+%5Ckappa&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s^&#92;dagger &#92;kappa" class="latex" /> is the sum of all the transitions having <img src="https://s0.wp.com/latex.php?latex=%5Ckappa&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;kappa" class="latex" /> as their source, <i>weighted by their rate constants!</i>   To prove this claim, it&#8217;s enough to take the inner product of each side with any transition <img src="https://s0.wp.com/latex.php?latex=%5Ctau%27%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;tau&#039;," class="latex" /> and check that we get the same answer.  For the left side we get</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clangle+s%5E%5Cdagger+%5Ckappa%2C+%5Ctau%27+%5Crangle+%3D+%5Clangle+%5Ckappa%2C+s%28%5Ctau%27%29+%5Crangle+%3D+%5Cdelta_%7B%5Ckappa%2C+s+%28%5Ctau%27%29+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle s^&#92;dagger &#92;kappa, &#92;tau&#039; &#92;rangle = &#92;langle &#92;kappa, s(&#92;tau&#039;) &#92;rangle = &#92;delta_{&#92;kappa, s (&#92;tau&#039;) } " class="latex" /></p>
+<p>To compute the right side, we need to use the cleverly chosen inner product on <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5ET.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^T." class="latex" />  Here we get</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cleft%5Clangle+%5Csum_%7B%5Ctau+%5C%3B+%3A+%5C%3B+s%28%5Ctau%29+%3D+%5Ckappa%7D+r%28%5Ctau%29+%5Ctau%2C+%5C%3B+%5Ctau%27+%5Cright%5Crangle+%3D++%5Csum_%7B%5Ctau+%5C%3B+%3A+%5C%3B+s%28%5Ctau%29+%3D+%5Ckappa%7D+%5Cdelta_%7B%5Ctau%2C+%5Ctau%27%7D+%3D+%5Cdelta_%7B%5Ckappa%2C+s%28%5Ctau%27%29%7D++%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;left&#92;langle &#92;sum_{&#92;tau &#92;; : &#92;; s(&#92;tau) = &#92;kappa} r(&#92;tau) &#92;tau, &#92;; &#92;tau&#039; &#92;right&#92;rangle =  &#92;sum_{&#92;tau &#92;; : &#92;; s(&#92;tau) = &#92;kappa} &#92;delta_{&#92;tau, &#92;tau&#039;} = &#92;delta_{&#92;kappa, s(&#92;tau&#039;)}  } " class="latex" /></p>
+<p>In the first step here, the factor of <img src="https://s0.wp.com/latex.php?latex=1+%2Fr%28%5Ctau%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1 /r(&#92;tau)" class="latex" /> in the cleverly chosen inner product canceled the visible factor of <img src="https://s0.wp.com/latex.php?latex=r%28%5Ctau%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r(&#92;tau)." class="latex" />  For the second step, you just need to think for half a minute&mdash;or ten, depending on how much coffee you&#8217;ve had.   </p>
+<p>Either way, we we conclude that indeed</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+s%5E%5Cdagger+%5Ckappa+%3D+%5Csum_%7B%5Ctau+%5C%3B+%3A+%5C%3B+s%28%5Ctau%29+%3D+%5Ckappa%7D+r%28%5Ctau%29+%5Ctau+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ s^&#92;dagger &#92;kappa = &#92;sum_{&#92;tau &#92;; : &#92;; s(&#92;tau) = &#92;kappa} r(&#92;tau) &#92;tau } " class="latex" /></p>
+<p>Next let&#8217;s combine this with our formula for <img src="https://s0.wp.com/latex.php?latex=x%5EY&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^Y" class="latex" />:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle+%7B+x%5EY+%3D+%5Csum_%7B%5Ckappa+%5Cin+K%7D+x_1%5E%7BY_%7B1%5Ckappa%7D%7D+%5Ccdots++x_k%5E%7BY_%7Bk%5Ckappa%7D%7D+%5C%3B+%5Ckappa+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle { x^Y = &#92;sum_{&#92;kappa &#92;in K} x_1^{Y_{1&#92;kappa}} &#92;cdots  x_k^{Y_{k&#92;kappa}} &#92;; &#92;kappa } " class="latex" /></p>
+<p>We get this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle+%7B+s%5E%5Cdagger+x%5EY+%3D+%5Csum_%7B%5Ckappa%2C+%5Ctau+%5C%3B+%3A+%5C%3B+s%28%5Ctau%29+%3D+%5Ckappa%7D+r%28%5Ctau%29+%5C%3B+x_1%5E%7BY_%7B1%5Ckappa%7D%7D+%5Ccdots++x_k%5E%7BY_%7Bk%5Ckappa%7D%7D+%5C%3B+%5Ctau+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle { s^&#92;dagger x^Y = &#92;sum_{&#92;kappa, &#92;tau &#92;; : &#92;; s(&#92;tau) = &#92;kappa} r(&#92;tau) &#92;; x_1^{Y_{1&#92;kappa}} &#92;cdots  x_k^{Y_{k&#92;kappa}} &#92;; &#92;tau } " class="latex" /></p>
+<p>In other words, <img src="https://s0.wp.com/latex.php?latex=s%5E%5Cdagger+x%5EY&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s^&#92;dagger x^Y" class="latex" /> is a linear combination of transitions, where each one is weighted both by <i>the rate it happens</i> and <i>how many ways it can happen</i> starting with our raw ingredients.</p>
+<p>Our goal is to compute <img src="https://s0.wp.com/latex.php?latex=%28t+-+s%29s%5E%5Cdagger+x%5EY.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(t - s)s^&#92;dagger x^Y." class="latex" />  We&#8217;re almost there.  Remember, <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> says which complex is the input of a given transition, and <img src="https://s0.wp.com/latex.php?latex=t&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t" class="latex" /> says which complex is the output.  So, <img src="https://s0.wp.com/latex.php?latex=%28t+-+s%29+s%5E%5Cdagger+x%5EY&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(t - s) s^&#92;dagger x^Y" class="latex" /> says the total rate at which complexes are created and/or destroyed starting with the species in <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> as our raw ingredients.  </p>
+<p>That sounds good.   But let&#8217;s just pedantically check that everything works.  Applying <img src="https://s0.wp.com/latex.php?latex=t+-+s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t - s" class="latex" /> to both sides of our last equation, we get</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%28t+-+s%29+s%5E%5Cdagger+x%5EY+%3D+%5Csum_%7B%5Ckappa%2C+%5Ctau+%5C%3B+%3A+%5C%3B+s%28%5Ctau%29+%3D+%5Ckappa%7D+r%28%5Ctau%29+%5C%3B+x_1%5E%7BY_%7B1%5Ckappa%7D%7D+%5Ccdots++x_k%5E%7BY_%7Bk%5Ckappa%7D%7D+%5C%3B+%5Cleft%28+t%28%5Ctau%29+-+s%28%5Ctau%29%5Cright%29+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ (t - s) s^&#92;dagger x^Y = &#92;sum_{&#92;kappa, &#92;tau &#92;; : &#92;; s(&#92;tau) = &#92;kappa} r(&#92;tau) &#92;; x_1^{Y_{1&#92;kappa}} &#92;cdots  x_k^{Y_{k&#92;kappa}} &#92;; &#92;left( t(&#92;tau) - s(&#92;tau)&#92;right) } " class="latex" /></p>
+<p>Remember, our goal was to prove that this equals</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Csum_%7B%5Ctau+%5Cin+T%7D+r%28%5Ctau%29+%5C%3B+%5Cleft%28t%28%5Ctau%29+-+s%28%5Ctau%29%5Cright%29+%5C%3B+x%5E%7BY+s%28%5Ctau%29%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;sum_{&#92;tau &#92;in T} r(&#92;tau) &#92;; &#92;left(t(&#92;tau) - s(&#92;tau)&#92;right) &#92;; x^{Y s(&#92;tau)} } " class="latex" /></p>
+<p>But if you stare at these a while and think, you&#8217;ll see they&#8217;re equal.     &nbsp;  &#9608;</p>
+<p>It took me a couple of weeks to really understand this, so I&#8217;ll be happy if it takes you just a few days.  It seems peculiar at first but ultimately it all makes sense.  The interesting subtlety is that we use the linear map called &#8216;multiplying by <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" />’:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Barray%7D%7Bccc%7D+%5Cmathbb%7BR%7D%5EK+%26%5Cto%26+%5Cmathbb%7BR%7D%5ES+%5C%5C+++++++++++++++++++++++++++++++%5Cpsi+++++%26%5Cmapsto%26+++Y+%5Cpsi+%5Cend%7Barray%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{array}{ccc} &#92;mathbb{R}^K &amp;&#92;to&amp; &#92;mathbb{R}^S &#92;&#92;                               &#92;psi     &amp;&#92;mapsto&amp;   Y &#92;psi &#92;end{array} " class="latex" /></p>
+<p>to take a bunch of complexes and work out the species they contain, while we use the <i>nonlinear</i> map called &#8216;raising to the <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" />th power’:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Barray%7D%7Bccc%7D+%5Cmathbb%7BR%7D%5ES+%26%5Cto%26+%5Cmathbb%7BR%7D%5EK+%5C%5C+++++++++++++++++++++++++++++++x+++++%26%5Cmapsto%26+++x%5EY+%5Cend%7Barray%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{array}{ccc} &#92;mathbb{R}^S &amp;&#92;to&amp; &#92;mathbb{R}^K &#92;&#92;                               x     &amp;&#92;mapsto&amp;   x^Y &#92;end{array} " class="latex" /></p>
+<p>to take a bunch of species and work out how many ways we can build each complex from them.  There is much more to say about this: for example, these maps arise from a pair of what category theorists call &#8216;adjoint functors&#8217;.  But I&#8217;m worn out and you probably are too, if you&#8217;re still here at all.</p>
+<h3> References </h3>
+<p>I found this thesis to be the most helpful reference when I was trying to understand the proof of the deficiency zero theorem:</p>
+<p>&bull; Jonathan M. Guberman, <i><a href="http://www4.utsouthwestern.edu/altschulerwulab/theses/GubermanJ_Thesis.pdf">Mass Action Reaction Networks and the Deficiency Zero Theorem</a></i>, B.A. thesis, Department of Mathematics, Harvard University, 2003.</p>
+<p>I urge you to check it out.  In particular, Section 3 and Appendix A discuss matrix exponentiation.  Has anyone discussed this before?</p>
+<p>Here&#8217;s another good modern treatment of the deficiency zero theorem:</p>
+<p>&bull; Jeremy Gunawardena, <a href="http://vcp.med.harvard.edu/papers/crnt.pdf">Chemical reaction network theory for <i>in silico</i> biologists</a>, 2003.</p>
+<p>The theorem was first proved here:</p>
+<p>&bull; Martin Feinberg, <a href="http://www.seas.upenn.edu/~jadbabai/ESE680/Fei87a.pdf">Chemical reaction network structure and the stability of complex isothermal reactors: I. The deficiency zero and deficiency one theorems</a>, <i>Chemical Engineering Science</i> <b>42</b> (1987), 2229-2268. </p>
+<p>However, Feinberg&#8217;s treatment here relies heavily on this paper:</p>
+<p>&bull; F. Horn and R. Jackson, General mass action kinetics, <a href="http://www.springerlink.com/content/p345k578348107tj/"><i>Archive for Rational Mechanics and Analysis</i></a> <b>47</b> (1972), 81-116.</p>
+<p>(Does anyone work on &#8216;irrational mechanics&#8217;?)  These lectures are also very helpful:</p>
+<p>&bull; Martin Feinberg, <a href="http://www.che.eng.ohio-state.edu/~FEINBERG/LecturesOnReactionNetworks/">Lectures on reaction networks</a>, 1979.</p>
+<p>If you&#8217;ve seen other proofs, let us know.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Thursday, August 16th, 2012 at 5:45 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/chemistry/" rel="category tag">chemistry</a>, <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/networks/" rel="category tag">networks</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2012/08/14/network-theory-part-21/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2012/08/21/network-theory-part-23/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">17 Responses to <em>Network Theory (Part&nbsp;22)</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-18540">
+				<div id="div-comment-18540" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d707283082331178dd04da841510b82?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Dan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18540">18 August, 2012 at 9:24 pm</a>		</div>
+
+		<p>As to the puzzle, the vector raised to a matrix power appears to be a vector of vectors raised to vector powers, namely, the base vector raised to each column of the matrix in turn.  Is that all you&#8217;re getting at, or is there something deeper?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18540#respond' data-commentid="18540" data-postid="11586" data-belowelement="div-comment-18540" data-respondelement="respond" data-replyto="Reply to Dan" aria-label='Reply to Dan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-18560">
+				<div id="div-comment-18560" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18560">19 August, 2012 at 6:29 am</a>		</div>
+
+		<p>That&#8217;s good for starters, but there&#8217;s something else to say, which is even &#8216;better&#8217;.  </p>
+<p>Still, you get the prize for being the being the only person in the world to have read this post.  I found this post to the most exciting one to write so far, but that&#8217;s always dangerous.  In school, I&#8217;ve noticed that when the teacher gets interested in what they&#8217;re saying, the class gets lost or bored.  So my usual rule for teaching is: don&#8217;t focus on what you&#8217;re saying, focus on how you&#8217;re saying it and how people react.  But I broke that rule here because I&#8217;d just understood a bunch of new stuff.  </p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18560#respond' data-commentid="18560" data-postid="11586" data-belowelement="div-comment-18560" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 parent highlander-comment" id="comment-18571">
+				<div id="div-comment-18571" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d707283082331178dd04da841510b82?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Dan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18571">19 August, 2012 at 5:05 pm</a>		</div>
+
+		<p>Okay, well, I&#8217;ll take another stab at it then.  If you think of vectors as column vectors (i.e., as <img src="https://s0.wp.com/latex.php?latex=n%5Ctimes+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n&#92;times 1" class="latex" /> matrices) then the two definitions coincide (assuming you identify <img src="https://s0.wp.com/latex.php?latex=1%5Ctimes+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1&#92;times 1" class="latex" /> vectors with numbers), so that raising a vector to a vector is a special case of raising a vector to a matrix.  Am I getting warmer or colder?</p>
+<p>And I enjoyed this post very much.  I just need to chew on it a while longer.  Hopefully I&#8217;ll be able to find the time.</p>
+<p>Speaking of which, I have a (possibly silly, ill-posed, not well-thought out) question.  I haven&#8217;t been able to keep up with this series as closely as I&#8217;d like, so it may have been discussed in one of the earlier posts, but here goes.  If I think of the stochastic reaction network as a stochastic Petri net, is the adjoint of the <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> map introduced here related to some kind of Fockification (maybe something akin to the <img src="https://s0.wp.com/latex.php?latex=%5CGamma&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Gamma" class="latex" /> functor in Reed and Simon that I vaguely recall from another life) that gives rise to the appropriate powers of raising and lowering operators we saw so much of in the earlier posts?  Hopefully that makes some kind of sense&#8230;. If not, I&#8217;ll think on it some more and try to ask a better question.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18571#respond' data-commentid="18571" data-postid="11586" data-belowelement="div-comment-18571" data-respondelement="respond" data-replyto="Reply to Dan" aria-label='Reply to Dan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-18583">
+				<div id="div-comment-18583" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d707283082331178dd04da841510b82?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Dan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18583">19 August, 2012 at 10:57 pm</a>		</div>
+
+		<p>On further reflection, that question is overly convoluted.  So, let me try a simpler version: Where are the raising and lowering operators hiding in this formalism?  Is it another map that isn&#8217;t present here or do they arise from one of the maps you&#8217;ve introduced (or perhaps a composition of some of the maps you&#8217;ve introduced)?</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even depth-3 highlander-comment" id="comment-18573">
+				<div id="div-comment-18573" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/656e05d084448337fb49459225dc525e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">davetweed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18573">19 August, 2012 at 6:20 pm</a>		</div>
+
+		<p>I&#8217;ll make the trivial observation that raising a vector to a vector can be regarded as looking at what the &#8220;projection&#8221; of raising the vector to a matrix with that as one of the columns along that basis. So in particular, one can imagine a &#8220;spectrum&#8221; of exponentiaions ranging from along one basis dimension (ie, result complex) trhrough subsets of the resulting complexes (using a sub-matrix formed from the columns) ending up at the exponential using the full matrix (ie, accounting for all the complexes generatable).</p>
+<p>At this point, my mind reaches for the standard tools for understanding linear algebra, namely the singular value decomposition. This talks about how any matrix linear transformation can be decomposed into a sum of its actions on an orthogonal basis. If we were to look for some similarish decomposition of the matrix that would still tell us something about the result of the nonlinear vector exponential&#8230;.?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18573#respond' data-commentid="18573" data-postid="11586" data-belowelement="div-comment-18573" data-respondelement="respond" data-replyto="Reply to davetweed" aria-label='Reply to davetweed'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-18593">
+				<div id="div-comment-18593" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/656e05d084448337fb49459225dc525e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">davidtweed</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18593">20 August, 2012 at 6:58 am</a>		</div>
+
+		<p>Continuing the thought in my (currently awaiting approval) comment, if we get an SVD-like decomposition <img src="https://s0.wp.com/latex.php?latex=Y%3D%5Csum_i+a%5Ei+%7Bb%5Ei%7D%5ET&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y=&#92;sum_i a^i {b^i}^T" class="latex" /> where we&#8217;ve absorbed the diagonal term of the SVD into the <img src="https://s0.wp.com/latex.php?latex=b&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="b" class="latex" />s (say), then then if <img src="https://s0.wp.com/latex.php?latex=x%5E%7Ba%5Ei%7D%3Dz_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^{a^i}=z_i" class="latex" />, then the contribution to first component is <img src="https://s0.wp.com/latex.php?latex=z_i%5E%7Bb%5Ei_1%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z_i^{b^i_1}" class="latex" />, the contribution to the second component is <img src="https://s0.wp.com/latex.php?latex=z_i%5E%7Bb%5Ei_2%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z_i^{b^i_2}" class="latex" />, etc. So &#8220;having computed the <img src="https://s0.wp.com/latex.php?latex=z_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z_i" class="latex" />s&#8221;, the <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" />th component of <img src="https://s0.wp.com/latex.php?latex=x%5EY&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^Y" class="latex" /> is <img src="https://s0.wp.com/latex.php?latex=%5Cprod_i+z_i%5E%7Bb%5Ej_i%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;prod_i z_i^{b^j_i}" class="latex" />. Not sure if this actually helps understand possible behaviours much better though&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18593#respond' data-commentid="18593" data-postid="11586" data-belowelement="div-comment-18593" data-respondelement="respond" data-replyto="Reply to davidtweed" aria-label='Reply to davidtweed'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-3 highlander-comment" id="comment-18598">
+				<div id="div-comment-18598" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18598">20 August, 2012 at 9:32 am</a>		</div>
+
+		<p>Dan wrote:</p>
+<blockquote><p>
+Okay, well, I’ll take another stab at it then. If you think of vectors as column vectors (i.e., as <img src="https://s0.wp.com/latex.php?latex=n%5Ctimes+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n&#92;times 1" class="latex" /> matrices) then the two definitions coincide (assuming you identify <img src="https://s0.wp.com/latex.php?latex=1%5Ctimes+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1&#92;times 1" class="latex" /> vectors with numbers), so that raising a vector to a vector is a special case of raising a vector to a matrix. Am I getting warmer or colder?
+</p></blockquote>
+<p>You&#8217;re <font color="red">hot!</font></p>
+<p>That&#8217;s the answer I was fishing for: when you raise a vector to a vector power and get a number, it&#8217;s a <i>special case</i> of raising an <img src="https://s0.wp.com/latex.php?latex=%5Cell+%5Ctimes+n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ell &#92;times n" class="latex" /> matrix to the power of an <img src="https://s0.wp.com/latex.php?latex=n+%5Ctimes+m&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n &#92;times m" class="latex" /> matrix and getting an <img src="https://s0.wp.com/latex.php?latex=%5Cell+%5Ctimes+m&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ell &#92;times m" class="latex" /> matrix.  Just take <img src="https://s0.wp.com/latex.php?latex=%5Cell+%3D+m+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ell = m = 1" class="latex" />.  </p>
+<p>It just like how when you take the dot product of two vectors and get a number, you can see it as a special case of matrix multiplication.   Think of the first vector as a row vector: a <img src="https://s0.wp.com/latex.php?latex=1+%5Ctimes+n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1 &#92;times n" class="latex" /> matrix.  Think of the second vector as a column vector: a <img src="https://s0.wp.com/latex.php?latex=n+%5Ctimes+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n &#92;times 1" class="latex" /> matrix.  Multiply these matrices and presto, you get a <img src="https://s0.wp.com/latex.php?latex=1+%5Ctimes+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1 &#92;times 1" class="latex" /> matrix, or number.</p>
+<p>Of course later, when we get sophisticated, we like to think of column vectors and row vectors as living in dual vector spaces, not the same vector space, and then this operation is called, not the &#8216;dot product&#8217;, but the pairing between a vector and a dual vector.  </p>
+<p>But never mind: all that sophisticated stuff is designed to ultimately make things basis-independent, but matrix exponentiation definitely <i>does</i> depend on a choice of basis.  That&#8217;s okay, because our vectors here are really functions on a finite set: the set of complexes, say, or the set of species.  So, we have god-given bases, and we get to use them.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18598#respond' data-commentid="18598" data-postid="11586" data-belowelement="div-comment-18598" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-3 parent highlander-comment" id="comment-18628">
+				<div id="div-comment-18628" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18628">21 August, 2012 at 5:54 am</a>		</div>
+
+		<p>Dan wrote:</p>
+<blockquote><p>
+Where are the raising and lowering operators hiding in this formalism?
+</p></blockquote>
+<p>If you watched the earlier episodes of this show, you know that raising and lowering operators, and Fock space, are extremely important in studying the <a href="http://math.ucr.edu/home/baez/networks/networks_6.html" rel="nofollow">master equation</a> for a stochastic reaction network (aka stochastic Petri net).    </p>
+<p>But now we&#8217;re talking about the rate equation.  This is like the &#8216;classical limit&#8217; of the master equation, or more precisely its &#8216;large number limit&#8217;.</p>
+<p>The master equation is all about the probability that we have some number of things of each species.  These numbers are natural numbers, so they jump discretely&#8230; but we only know the <i>probability</i> that these numbers are this or that, and these probabilities vary smoothly with the passage of time.</p>
+<p>The rate equation is all about the number of things of each species.  Now we act like we know them for sure, and that they&#8217;re positive real numbers, and that they vary smoothly with the passage of time.</p>
+<p>That&#8217;s all fun&#8230; and we can rigorously derive the rate equation from the master equation in a certain limit where there are large numbers of things.  </p>
+<p>But in <a href="https://johncarlosbaez.wordpress.com/2012/08/21/network-theory-part-23/" rel="nofollow">Part 23</a> we&#8217;ll see an amazing extra twist!  In our quest to prove the deficiency zero theorem, we&#8217;ll introduce <i>another</i> master equation, which describes a Markov process on the set of complexes (which are bunches of things of our various species).   The dynamics of this Markov process are in general different than that of the rate equation&#8230; but we&#8217;ll get equilibrium solutions of the rate equation from equilibria of this Markov process!</p>
+<p>Operators like <img src="https://s0.wp.com/latex.php?latex=%5Cpartial&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;partial" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=s%5E%5Cdagger&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s^&#92;dagger" class="latex" /> play a huge role in constructing the Hamiltonian for this Markov process on complexes.  But they are not, as far as I can tell, directly related to operators on the Fock space we saw earlier. </p>
+<p>But of course, this is the sort of thing I&#8217;m still busy trying to understand.</p>
+<p>By the way, any Markov process gives rise to a stochastic Petri net of a special sort, where each transition has just one input and one output.   The space of states for the stochastic Petri net is the &#8216;Fock space&#8217; of that for the Markov process.   In other words, the space of states for the Markov process is the &#8216;single-particle space&#8217; of the space of states for the stochastic Petri net.   And here&#8217;s what you&#8217;ll like: time evolution for the Petri net is obtained by applying Reed and Simon&#8217;s <img src="https://s0.wp.com/latex.php?latex=%5CGamma&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Gamma" class="latex" />, or at least its stochastic analogue, to time evolution for the Markov process!   </p>
+<p>I&#8217;ve been meaning to talk about this for a long time.  But this is <i>not</i> one of the games I&#8217;m playing right now.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18628#respond' data-commentid="18628" data-postid="11586" data-belowelement="div-comment-18628" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-4 highlander-comment" id="comment-18668">
+				<div id="div-comment-18668" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d707283082331178dd04da841510b82?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Dan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18668">22 August, 2012 at 11:22 am</a>		</div>
+
+		<p>Thank you for the detailed reply to a very vague question.  It hit exactly on what was confusing me, namely,  the <img src="https://s0.wp.com/latex.php?latex=H&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H" class="latex" /> you introduced above is (in retrospect, obviously) different from the hamiltonian that gives rise to the Master equation that the rate equation is a large number approximation for.  </p>
+<p>But of course, the danger of a detailed reply is that it often raises other questions that can get you off topic.  So, rather than ask an off topic question, I&#8217;ll just put in a request: I&#8217;d love to see the rigorous proof showing the rate equation as the limit of the Master equation.  Defining <img src="https://s0.wp.com/latex.php?latex=x%3D%5Csum+N+%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x=&#92;sum N &#92;Psi" class="latex" />, using some notation from a ways back, it&#8217;s straightforward algebra to show that the Master equation implies something very much like the rate equation, only with falling powers in place of ordinary powers.  And intuitively, for large N those are the same.  But from there, I&#8217;m not sure what sort of convergence to try and whether I need to make additional assumptions, like possibly a condition on the variance of <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" />?</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-18670">
+				<div id="div-comment-18670" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18670">22 August, 2012 at 11:41 am</a>		</div>
+
+		<p>Dan wrote:</p>
+<blockquote><p>
+I’d love to see the rigorous proof showing the rate equation as the limit of the master equation&#8230;
+</p></blockquote>
+<p>Yes, that&#8217;s something that&#8217;s missing in these posts, which really should be included.  I haven&#8217;t actually written up such a proof, and I haven&#8217;t seen one anywhere though it seems like an obvious thing for people to have studied.  You sketched the basic idea quite nicely&#8212;and based on that idea, my &#8216;analysis brain&#8217; feels completely confident it can jump in and supply all the necessary epsilons and deltas, and hypotheses, that will lead to a nice theorem.  Getting the strongest possible theorem would be hard!  Getting a theorem that illustrates the idea should not be hard.  But I won&#8217;t try to do it now&#8230; that&#8217;s more like a blog post on its own, and one that will take about a week to write.</p>
+<p>A crucial point is that the solution of the master equation will only be close to that of the rate equation if the &#8216;spread&#8217; of the probability distributions of the numbers of particles of each species is sufficiently small, as well as their means being large.   However, as time passes, the spread will tend to grow.  So, the rate equation will only be a good approximation to the master equation for a certain amount of time, not forever&#8230; except in certain very special cases.</p>
+<p>For example, there are stochastic reaction networks whose rate equations have periodic solutions which never approach any sort of equilibrium.  However, the solutions of the corresponding master equation will probably &#8216;smear out&#8217; and approach an equilibrium, at least in many cases.</p>
+<blockquote><p>
+I’m not sure what sort of convergence to try and whether I need to make additional assumptions, like possibly a condition on the variance of N?
+</p></blockquote>
+<p>You certainly need something like that, but probably more. I did a bunch of calculations at one point and it seems I needed not just bounds on the variance but also the higher moments.  Basically the trick is just to calculate the difference between what you want and what you&#8217;ve got, and see what&#8217;s required to make that be small!</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even depth-2 highlander-comment" id="comment-18567">
+				<div id="div-comment-18567" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18567">19 August, 2012 at 2:14 pm</a>		</div>
+
+		<p>I read it!  I just don&#8217;t have anything all that interesting to say.</p>
+<p>(I&#8217;m trying to arrange things so that I&#8217;ll have time to work on the spatial version of stochastic mechanics later in the fall.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18567#respond' data-commentid="18567" data-postid="11586" data-belowelement="div-comment-18567" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-18568">
+				<div id="div-comment-18568" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c0b1840383e0015d5e55adfff4a95fc4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">William Rutiser</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18568">19 August, 2012 at 2:46 pm</a>		</div>
+
+		<p>I read it too &#8212;  But not carefully enough to understand what it is that I don&#8217;t understand.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18568#respond' data-commentid="18568" data-postid="11586" data-belowelement="div-comment-18568" data-respondelement="respond" data-replyto="Reply to William Rutiser" aria-label='Reply to William Rutiser'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-18629">
+				<div id="div-comment-18629" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18629">21 August, 2012 at 6:00 am</a>		</div>
+
+		<p>Okay.  If you have any questions, don&#8217;t be shy.  The series is building up to a climax: in Part 24 I&#8217;ll prove the deficiency zero theorem, or at least the part of it that I want to prove.  But as usual in math, this climax involves putting together lots of ideas that were discussed earlier&#8230; and as usual in math, most people will be left scratching their heads and wondering what just happened.  <img src="https://i1.wp.com/math.ucr.edu/home/baez/emoticons/tongue2.gif" alt="" />   At least in a blog, unlike a textbook, one can ask questions or complain.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18629#respond' data-commentid="18629" data-postid="11586" data-belowelement="div-comment-18629" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-18590">
+				<div id="div-comment-18590" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d23a6c273d1789e854afb27a85f4df0e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Ruggero</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18590">20 August, 2012 at 2:52 am</a>		</div>
+
+		<p>Puzzle: if I see things correctly, as you say a vector raised to a vector power gives you a number, which is similar to a dot product, while a vector raised to a matrix power, gives you a vector, which is similar to a vector (external) product, since the dimensionality can be whatever you want. But there is something more I think that goes around here, I think. </p>
+<p>In fact, let&#8217;s assume that you choose a square matrix so that the initial vector and the final vector both live on the same space, then I&#8217;d guess you may find a bunch of matrices which leave the initial vector unchanged up to an overall constant. This is like an eigenstate/eigenvector of the matrix power operator, and the whole story looks like a generalization of the usual &#8216;linear&#8217; version of it, very common in linear algebra or quantum mechanics. You can find your projectors, orthogonal spaces, and so on, and even do a little group theory using matrices that will switch around components of the initial vector and so on.</p>
+<p>I&#8217;m too tired right now to actually try, but it seems very intriguing since the generators of the typical groups (rotations etc) must have the same algebra by definition but I think will have a different form, since the way the algebra acts on them is not the usual matrix multiplication but this power multiplications. It would be fun to see how this generators relate to the &#8216;linear&#8217; ones.</p>
+<p>In some sense the S matrix in particle physics represents all the possible interactions between an initial and a final state, and now I&#8217;m starting thinking whether this formulation could be useful in physics in general or at least in cosmology before the last scattering or so, when all the fundamental interactions may look more like chemistry. </p>
+<p>Maybe I&#8217;m really to tired hahaha, anyhow I hope I&#8217;m not seeing ghosts here, and thanks a lot for the very cool post!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18590#respond' data-commentid="18590" data-postid="11586" data-belowelement="div-comment-18590" data-respondelement="respond" data-replyto="Reply to Ruggero" aria-label='Reply to Ruggero'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-18630">
+				<div id="div-comment-18630" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18630">21 August, 2012 at 6:06 am</a>		</div>
+
+		<p>Ruggero wrote:</p>
+<blockquote><p>
+This is like an eigenstate/eigenvector of the matrix power operator, and the whole story looks like a generalization of the usual ‘linear’ version of it, very common in linear algebra or quantum mechanics.
+</p></blockquote>
+<p>Indeed this &#8216;generalization&#8217; is closely related to the usual linear story.  In the climactic moment of Part 24, I will suddenly pull out this formula:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x%5EY+%3D+%5Cexp%28Y%5E%5Cdagger+%5Cln%28x%29%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^Y = &#92;exp(Y^&#92;dagger &#92;ln(x)) " class="latex" /></p>
+<p>and use it to reduce a problem involving <img src="https://s0.wp.com/latex.php?latex=x%5EY&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^Y" class="latex" /> to a problem involving ordinary matrix multiplication.  </p>
+<p>I&#8217;ll explain this formula when I need it, but in fact I&#8217;ve already begun to explain it <a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18597" rel="nofollow">down here</a> in the comments.   The above formula would look nicer if I let myself multiply a vector by a matrix on the right:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x%5EY+%3D+%5Cexp%28%5Cln%28x%29+Y%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^Y = &#92;exp(&#92;ln(x) Y) " class="latex" /></p>
+<p>and it would look even nicer, perhaps, if I took the componentwise logarithm of each side:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cln%28x%5EY%29+%3D+%5Cln%28x%29+Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ln(x^Y) = &#92;ln(x) Y" class="latex" /></p>
+<p>Anyway, this means that tools developed for matrix multiplication can be applied to matrix exponentiation.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18630#respond' data-commentid="18630" data-postid="11586" data-belowelement="div-comment-18630" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-18597">
+				<div id="div-comment-18597" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-18597">20 August, 2012 at 9:24 am</a>		</div>
+
+		<p>Over on Google+, I admitted that with matrix exponentiation as defined here, <img src="https://s0.wp.com/latex.php?latex=A%5E0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A^0" class="latex" /> needn&#8217;t be an identity matrix.</p>
+<p>Dayal D. Purohit replied:</p>
+<blockquote><p> In that case, in what sense will it be called &#8216;matrix exponentiation&#8217;? Does it satisfy any rule of exponentiation at all?﻿
+</p></blockquote>
+<p>I responded, a wee bit tetchily:</p>
+<blockquote><p>
+I don&#8217;t really care what this operation is called: what matters is its applications to chemical reaction networks. </p>
+<p>There&#8217;s no operation on pairs of matrices that obeys all, or even most, of the usual rules of exponentiation.  The rules obeyed by this operation  are listed in Appendix A here:</p>
+<p>• Jonathan M. Guberman, <a href="http://www4.utsouthwestern.edu/altschulerwulab/theses/GubermanJ_Thesis.pdf" rel="nofollow"><i>Mass Action Reaction Networks and the Deficiency Zero Theorem</i></a>, B.A. thesis, Department of Mathematics, Harvard University, 2003.  </p>
+<p>One of the most important for applications is this.  There&#8217;s a &#8216;logarithm&#8217; operation defined component-wise on vectors with positive components, and an &#8216;exponential&#8217; operation defined component-wise on all vectors, and then</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cln%28x%5EA%29+%3D+%5Cln%28x%29+A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ln(x^A) = &#92;ln(x) A" class="latex" /></p>
+<p>Here <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> is a vector with <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> components, which we can think of as a <img src="https://s0.wp.com/latex.php?latex=1+%5Ctimes+n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1 &#92;times n" class="latex" /> matrix.  <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> is an <img src="https://s0.wp.com/latex.php?latex=n+%5Ctimes+m&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n &#92;times m" class="latex" /> matrix, <img src="https://s0.wp.com/latex.php?latex=x%5EA&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x^A" class="latex" /> is the <img src="https://s0.wp.com/latex.php?latex=1+%5Ctimes+m&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1 &#92;times m" class="latex" /> matrix given by matrix exponentiation as defined in this paper, and <img src="https://s0.wp.com/latex.php?latex=%5Cln%28x%29+A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ln(x) A" class="latex" /> is given by ordinary matrix multiplication.</p>
+<p>The reason this is important is that a list of concentrations of chemicals can be seen as a vector with nonnegative (and often positive) components.</p>
+<p>But I also like this kind of matrix exponentiation because it arises from the usual concept of an <a href="http://en.wikipedia.org/wiki/Exponential_object" rel="nofollow">&#8216;exponential object&#8217;</a> in category theory.
+</p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18597#respond' data-commentid="18597" data-postid="11586" data-belowelement="div-comment-18597" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-arjunjain16 even thread-even depth-1 highlander-comment" id="comment-30957">
+				<div id="div-comment-30957" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b301e135f66001af402e86be87e56d51?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://arjunjainblog.wordpress.com' rel='external nofollow ugc' class='url'>Arjun Jain</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/#comment-30957">22 June, 2013 at 3:43 pm</a>		</div>
+
+		<p>In this article, if we reversed the directions of s, t so that <img src="https://s0.wp.com/latex.php?latex=s%5E%5Cdagger+%2C+t%5E%5Cdagger+%3A+%5Cmathbb%7BR%7D%5ET+%5Cto+%5Cmathbb%7BR%7D%5EK&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s^&#92;dagger , t^&#92;dagger : &#92;mathbb{R}^T &#92;to &#92;mathbb{R}^K" class="latex" />, then  wouldn&#8217;t the new rate equation even more resemble the master equation, i.e. <img src="https://s0.wp.com/latex.php?latex=H+%3D+%28t%5E%5Cdagger+-+s%5E%5Cdagger%29+s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = (t^&#92;dagger - s^&#92;dagger) s" class="latex" /> ?</p>
+<p>Also, am I right in concluding that we rewrote the rate equation to have a complex based definition rather than a transition based definition as before, perhaps because the ACK and the deficiency 0 theorems have conditions involving complexes in their statements?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=30957#respond' data-commentid="30957" data-postid="11586" data-belowelement="div-comment-30957" data-respondelement="respond" data-replyto="Reply to Arjun Jain" aria-label='Reply to Arjun Jain'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-18630">John Baez</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2012/08/16/network-theory-part-22/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="341d8bfbf0" /><input type="hidden" name="_wp_http_referer" value="/2012/08/16/network-theory-part-22/?replytocom=18630" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='11586' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='18630' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="44e5279051" /></p>
+<input type="hidden" name="genseq" value="1632670697" />
+<input type="hidden" id="ak_js" name="ak_js" value="236"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="David Corfield" class="recentcommentsavatartop" style="height:32px; width:32px;"><img alt='' src='https://lh3.googleusercontent.com/a/AATXAJxXcoKzwm_cY3LJp3qldhAQvZVoBimQd4xe5tDl=s96-c' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstexttop" style="">David Corfield on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172593">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="David Corfield" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://lh3.googleusercontent.com/a/AATXAJxXcoKzwm_cY3LJp3qldhAQvZVoBimQd4xe5tDl=s96-c' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">David Corfield on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172592">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="David Corfield" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://lh3.googleusercontent.com/a/AATXAJxXcoKzwm_cY3LJp3qldhAQvZVoBimQd4xe5tDl=s96-c' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">David Corfield on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172590">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="amarashiki" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,228 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2012/08/16/network-theory-part-22/?replytocom=18630"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="ffcb185558" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,177,452 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-7d707283082331178dd04da841510b82">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-656e05d084448337fb49459225dc525e">
+	</div>
+	<div class="grofile-hash-map-dd50e8b0462cc7fb7fa5bb0785e4f2a4">
+	</div>
+	<div class="grofile-hash-map-c0b1840383e0015d5e55adfff4a95fc4">
+	</div>
+	<div class="grofile-hash-map-d23a6c273d1789e854afb27a85f4df0e">
+	</div>
+	<div class="grofile-hash-map-b301e135f66001af402e86be87e56d51">
+	</div>
+	<div class="grofile-hash-map-7d52fbe20c8ac05886a296e9ee2159b1">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=95508c5d71","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"11586","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'11586','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTZ6eGg0bVhaand5VGJsZTd+MldneUU0a1cwY3VlSG1XYzB3LXNZMVYsXzlDZXxXNl01RkprP1JYMVBRVE9JL1cwZ35xa2JoNnZkRlFDQWE0XUhCfnowOXQ2b3lUZHZDVzBiTVtrfmFuRStScGglZGNoOTNCM2crV3A4PWp1RU5lWXYwTy1dRiZkb3Q4eWNPSUdjZUhYdmRvMXB+WWtCbkViRVk4MC5XSHhCV3NhVTU/UGpNTzFKWlhOVzgxVGF0SEJKMm9MRkJCR1VqVFtmb3Ntb0Jrd2Z8NjA='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '11586' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>A Compositional Framework for Markov Processes | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; A Compositional Framework for Markov&nbsp;Processes Comments Feed" href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F09%2F04%2Fa-compositional-framework-for-markov-processes%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2015\/09\/04\/a-compositional-framework-for-markov-processes\/?replytocom=70671","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F09%2F04%2Fa-compositional-framework-for-markov-processes%2F%3Freplytocom%3D70671","postID":"20046","shortlink":"https:\/\/wp.me\/pRBZ9-5dk","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/20046","statsLink":"https:\/\/wordpress.com\/stats\/post\/20046\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F09%2F04%2Fa-compositional-framework-for-markov-processes%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-5dk' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F09%2F04%2Fa-compositional-framework-for-markov-processes%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2015%2F09%2F04%2Fa-compositional-framework-for-markov-processes%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="A Compositional Framework for Markov Processes" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/" />
+<meta property="og:description" content="&nbsp; This summer my students Brendan Fong and Blake Pollard visited me at the Centre for Quantum Technologies, and we figured out how to understand open continuous-time Markov chains! I think thi…" />
+<meta property="article:published_time" content="2015-09-04T06:18:13+00:00" />
+<meta property="article:modified_time" content="2015-09-05T10:57:20+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/students/blake-brendan.jpg" />
+<meta property="og:image:width" content="450" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="A Compositional Framework for Markov&nbsp;Processes" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/students/blake-brendan.jpg?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="&nbsp; This summer my students Brendan Fong and Blake Pollard visited me at the Centre for Quantum Technologies, and we figured out how to understand open continuous-time Markov chains! I think this is a nice step towards understanding the math of living systems. Admittedly, it&#039;s just a small first step. But I&#039;m excited by this&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-20046 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-20046 post type-post status-publish format-standard hentry category-mathematics category-networks category-probability" id="post-20046">
+			<h2>A Compositional Framework for Markov&nbsp;Processes</h2>
+
+			<div class="entry">
+				<p>&nbsp;</p>
+<div align="center"><a href="http://math.ucr.edu/home/baez/students/blake-brendan_big.jpg"><img width="450" src="https://i2.wp.com/math.ucr.edu/home/baez/students/blake-brendan.jpg" /><br />
+</a></div>
+<p>This summer my students <a href="http://www.cs.ox.ac.uk/people/brendan.fong/">Brendan Fong</a> and <a href="http://www.azimuthproject.org/azimuth/show/Blake+Pollard">Blake Pollard</a> visited me at the <a href="http://www.quantumlah.org/">Centre for Quantum Technologies</a>, and we figured out how to understand <i>open</i> continuous-time Markov chains!  I think this is a nice step towards understanding the math of living systems.</p>
+<p>Admittedly, it&#8217;s just a small first step.  But I&#8217;m excited by this step, since Blake and I have been trying to get this stuff to work for a couple years, and it finally fell into place.  And we think we know what to do next.</p>
+<p>Here&#8217;s our paper:</p>
+<p>&bull; John C. Baez, Brendan Fong and Blake S. Pollard, <a href="http://arxiv.org/abs/1508.06448">A compositional framework for open Markov processes</a>.</p>
+<p>And here&#8217;s the basic idea&#8230;</p>
+<h3> Open detailed balanced Markov processes </h3>
+<p>A <a href="https://en.wikipedia.org/wiki/Continuous-time_Markov_chain">continuous-time Markov chain</a> is a way to specify the dynamics of a population which is spread across some finite set of states. Population can flow between the states. The larger the population of a state, the more rapidly population flows out of the state.  Because of this property, under certain conditions the populations of the states tend toward an equilibrium where at any state the inflow of population is balanced by its outflow.</p>
+<p>In applications to statistical mechanics, we are often interested in equilibria such that for any two states connected by an edge, say <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=j%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j," class="latex" /> the flow from <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" /> equals the flow from <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=i.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i." class="latex" />  A continuous-time Markov chain with a chosen equilibrium having this property is called &#8216;<a href="https://en.wikipedia.org/wiki/Detailed_balance">detailed balanced</a>&#8216;.</p>
+<p>I&#8217;m getting tired of saying &#8216;continuous-time Markov chain&#8217;, so from now on I&#8217;ll just say &#8216;Markov process&#8217;, just because it&#8217;s shorter.  Okay?  That will let me say the next sentence without running out of breath:</p>
+<p>Our paper is about <i>open</i> detailed balanced Markov processes.</p>
+<p>Here&#8217;s an example:</p>
+<div align="center">
+<img width="450" src="https://i2.wp.com/math.ucr.edu/home/baez/mathematical/compositional_markov/open_markov_process_1.png" /></div>
+<p>The detailed balanced Markov process itself consists of a finite set of states together with a finite set of edges between them, with each state <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> labelled by an equilibrium population <img src="https://s0.wp.com/latex.php?latex=q_i+%3E0%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q_i &gt;0," class="latex" /> and each edge <img src="https://s0.wp.com/latex.php?latex=e&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="e" class="latex" /> labelled by a rate constant <img src="https://s0.wp.com/latex.php?latex=r_e+%3E+0.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r_e &gt; 0." class="latex" /></p>
+<p>These populations and rate constants are required to obey an equation called the &#8216;detailed balance condition&#8217;.  This equation means that in equilibrium, the flow from <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" /> equal the flow from <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=i.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i." class="latex" />  Do you see how it works in this example?</p>
+<p>To get an &#8216;open&#8217; detailed balanced Markov process, some states are designated as inputs or outputs.  In general each state may be specified as both an input and an output, or as inputs and outputs multiple times.  See how that&#8217;s happening in this example?  It may seem weird, but it makes things work better.</p>
+<p>People usually say Markov processes are all about how <i>probabilities</i> flow from one state to another.  But we work with un-normalized probabilities, which we call &#8216;populations&#8217;, rather than probabilities that must sum to 1.  The reason is that in an <i>open</i> Markov process, probability is not conserved: it can flow in or out at the inputs and outputs.  We allow it to flow both in and out at both the input states and the output states.</p>
+<p>Our most fundamental result is that there&#8217;s a category <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BDetBalMark%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{DetBalMark}" class="latex" /> where a morphism is an open detailed balanced Markov process.  We think of it as a morphism from its inputs to its outputs.</p>
+<p>We compose morphisms in <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BDetBalMark%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{DetBalMark}" class="latex" /> by identifying the output states of one open detailed balanced Markov process with the input states of another. The populations of identified states must match. For example, we may compose this morphism <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" />:</p>
+<div align="center">
+<img width="450" src="https://i2.wp.com/math.ucr.edu/home/baez/mathematical/compositional_markov/open_markov_process_2.png" /></div>
+<p>with the previously shown morphism <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> to get this morphism <img src="https://s0.wp.com/latex.php?latex=M+%5Ccirc+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M &#92;circ N" class="latex" />:</p>
+<div align="center">
+<img width="450" src="https://i0.wp.com/math.ucr.edu/home/baez/mathematical/compositional_markov/composite_open_markov_process.png" /></div>
+<p>And here&#8217;s our second most fundamental result: the category <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BDetBalMark%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{DetBalMark}" class="latex" /> is actually a <a href="https://en.wikipedia.org/wiki/Dagger_compact_category">dagger compact category</a>. This lets us do other stuff with open Markov processes. An important one is &#8216;tensoring&#8217;, which lets us take two open Markov processes like <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" /> above and set them side by side, giving <img src="https://s0.wp.com/latex.php?latex=M+%5Cotimes+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M &#92;otimes N" class="latex" />:</p>
+<div align="center">
+<img width="450" src="https://i1.wp.com/math.ucr.edu/home/baez/mathematical/compositional_markov/tensored_open_markov_process.png" /></div>
+<p>The so-called <a href="https://en.wikipedia.org/wiki/Compact_closed_category">compactness</a> is also important. This means we can take some inputs of an open Markov process and turn them into outputs, or vice versa. For example, using the compactness of <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BDetBalMark%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{DetBalMark}" class="latex" /> we can get this open Markov process from <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" />:</p>
+<div align="center">
+<img width="450" src="https://i2.wp.com/math.ucr.edu/home/baez/mathematical/compositional_markov/dualized_open_markov_process.png" /></div>
+<p>In fact all the categories in our paper are dagger compact categories, and all our functors preserve this structure.  Dagger compact categories are a well-known framework for describing systems with inputs and outputs, so this is good.</p>
+<h3> The analogy to electrical circuits </h3>
+<p>In a detailed balanced Markov process, population can flow along edges.  In the detailed balanced equilibrium, without any flow of population from outside, the flow along from state <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> to state <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" /> will be matched by the flow back from <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=i.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i." class="latex" />   The populations need to take specific values for this to occur.</p>
+<p>In an electrical circuit made of linear resistors, charge can flow along wires.  In equilibrium, without any driving voltage from outside, the current along each wire will be zero.   The potentials will be equal at every node.</p>
+<p>This sets up an analogy between detailed balanced continuous-time Markov chains and electrical circuits made of linear resistors!  I love analogy charts, so this makes me very happy:</p>
+<div align="center">
+<table border="1">
+<tr>
+<td align="center"><b>&nbsp; &nbsp; Circuits&nbsp; &nbsp; </b></td>
+<td align="center"><b>Detailed balanced Markov processes</b></td>
+</tr>
+<tr>
+<td align="center">potential</td>
+<td align="center">population</td>
+</tr>
+<tr>
+<td align="center">current</td>
+<td align="center">flow</td>
+</tr>
+<tr>
+<td align="center">conductance</td>
+<td align="center">rate constant</td>
+</tr>
+<tr>
+<td align="center">power</td>
+<td align="center">dissipation</td>
+</tr>
+</table>
+</div>
+<p>This analogy is already well known.  Schnakenberg used it in his book <i>Thermodynamic Network Analysis of Biological Systems</i>.   So, our main goal is to formalize and exploit it.  This analogy extends from systems in equilibrium to the more interesting case of nonequilibrium steady states, which are the main topic of our paper.</p>
+<p><a href="https://johncarlosbaez.wordpress.com/2015/04/28/a-compositional-framework-for-passive-linear-networks/">Earlier</a>, Brendan and I introduced a way to &#8216;black box&#8217; a circuit and define the relation it determines between potential-current pairs at the input and output terminals.  This relation describes the circuit&#8217;s external behavior as seen by an observer who can only perform measurements at the terminals.</p>
+<p>An important fact is that black boxing is &#8216;compositional&#8217;: if one builds a circuit from smaller pieces, the external behavior of the whole circuit can be determined from the external behaviors of the pieces.  For category theorists, this means that black boxing is a functor!</p>
+<p>Our new paper with Blake develops a similar &#8216;black box functor&#8217; for detailed balanced Markov processes, and relates it to the earlier one for circuits.</p>
+<p>When you black box a detailed balanced Markov process, you get the relation between population&#8211;flow pairs at the terminals.  (By the &#8216;flow at a terminal&#8217;, we more precisely mean the net population outflow.)  This relation holds not only in equilibrium, but also in any nonequilibrium steady state.  Thus, <i>black boxing an open detailed balanced Markov process gives its steady state dynamics as seen by an observer who can only measure populations and flows at the terminals</i>.</p>
+<h3> The principle of minimum dissipation </h3>
+<p>At least since the work of Prigogine, it&#8217;s been widely accepted that a large class of systems minimize entropy production in a nonequilibrium steady state.  But people still fight about the the precise boundary of this class of systems, and even the meaning of this &#8216;principle of minimum entropy production&#8217;.</p>
+<p>For detailed balanced open Markov processes, we show that a quantity we call the &#8216;dissipation&#8217; is minimized in any steady state.  This is a quadratic function of the populations and flows, analogous to the power dissipation of a circuit made of resistors.  We make no claim that this quadratic function actually deserves to be called &#8216;entropy production&#8217;.  Indeed, <a href="http://journals.aps.org/rmp/abstract/10.1103/RevModPhys.48.571">Schnakenberg</a> has convincingly argued that they are only approximately equal.</p>
+<p>But still, the &#8216;dissipation&#8217; function is very natural and useful&mdash;and Prigogine&#8217;s so-called &#8216;entropy production&#8217; is also a quadratic function.</p>
+<h3> Black boxing </h3>
+<p>I&#8217;ve already mentioned the category <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BDetBalMark%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{DetBalMark}," class="latex" /> where a morphism is an open detailed balanced Markov process.  But our paper needs two more categories to tell its story!  There&#8217;s the category of circuits, and the category of linear relations.</p>
+<p>A morphism in the category <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BCirc%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{Circ}" class="latex" /> is an open electrical circuit made of resistors: that is, a graph with each edge labelled by a &#8216;conductance&#8217; <img src="https://s0.wp.com/latex.php?latex=c_e+%3E+0%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="c_e &gt; 0," class="latex" /> together with specified input and output nodes:</p>
+<div align="center">
+<img width="450" src="https://i2.wp.com/math.ucr.edu/home/baez/mathematical/compositional_markov/open_circuit.png" /></div>
+<p>A morphism in the category <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BLinRel%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{LinRel}" class="latex" /> is a linear relation <img src="https://s0.wp.com/latex.php?latex=L+%3A+U+%5Cleadsto+V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L : U &#92;leadsto V" class="latex" /> between finite-dimensional real vector spaces <img src="https://s0.wp.com/latex.php?latex=U&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="U" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=V.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V." class="latex" />   This is nothing but a linear subspace <img src="https://s0.wp.com/latex.php?latex=L+%5Csubseteq+U+%5Coplus+V.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L &#92;subseteq U &#92;oplus V." class="latex" />  Just as relations generalize functions, linear relations generalize linear functions!</p>
+<p>In our <a href="https://johncarlosbaez.wordpress.com/2015/04/28/a-compositional-framework-for-passive-linear-networks/">previous paper</a>, Brendan and I introduced these two categories and a functor between them, the &#8216;black box functor&#8217;:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cblacksquare+%3A+%5Cmathrm%7BCirc%7D+%5Cto+%5Cmathrm%7BLinRel%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;blacksquare : &#92;mathrm{Circ} &#92;to &#92;mathrm{LinRel} " class="latex" /></p>
+<p>The idea is that any circuit determines a linear relation between the potentials and net current flows at the inputs and outputs.   This relation describes the behavior of a circuit of resistors as seen from outside.</p>
+<p>Our new paper introduces a black box functor for detailed balanced Markov processes:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csquare+%3A+%5Cmathrm%7BDetBalMark%7D+%5Cto+%5Cmathrm%7BLinRel%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;square : &#92;mathrm{DetBalMark} &#92;to &#92;mathrm{LinRel} " class="latex" /></p>
+<p>We draw this functor as a white box merely to distinguish it from the other black box functor.  The functor <img src="https://s0.wp.com/latex.php?latex=%5Csquare&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;square" class="latex" /> maps any detailed balanced Markov process to the linear relation obeyed by populations and flows at the inputs and outputs in a steady state.  In short, it describes the steady state behavior of the Markov process &#8216;as seen from outside&#8217;.</p>
+<p>How do we manage to black box detailed balanced Markov processes?  We do it using the analogy with circuits!</p>
+<h3> The analogy becomes a functor </h3>
+<p>Every analogy wants to be a functor.  So, we make the analogy between detailed balanced Markov processes and circuits precise by turning it into a functor:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=K+%3A+%5Cmathrm%7BDetBalMark%7D+%5Cto+%5Cmathrm%7BCirc%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="K : &#92;mathrm{DetBalMark} &#92;to &#92;mathrm{Circ}" class="latex" /></p>
+<p>This functor converts any open detailed balanced Markov process into an open electrical circuit made of resistors.  This circuit is carefully chosen to reflect the steady-state behavior of the Markov process.   Its underlying graph is the same as that of the Markov process.  So, the &#8216;states&#8217; of the Markov process are the same as the &#8216;nodes&#8217; of the circuit.</p>
+<p>Both the equilibrium populations at states of the Markov process and the rate constants labelling edges of the Markov process are used to compute the conductances of edges of this circuit.  In the simple case where the Markov process has exactly one edge from any state <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> to any state <img src="https://s0.wp.com/latex.php?latex=j%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j," class="latex" /> the rule is this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=C_%7Bi+j%7D+%3D+H_%7Bi+j%7D+q_j+++&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C_{i j} = H_{i j} q_j   " class="latex" /></p>
+<p>where:</p>
+<p>&bull; <img src="https://s0.wp.com/latex.php?latex=q_j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q_j" class="latex" /> is the equilibrium population of the <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" />th state of the Markov process,</p>
+<p>&bull; <img src="https://s0.wp.com/latex.php?latex=H_%7Bi+j%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H_{i j}" class="latex" /> is the rate constant for the edge from the <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" />th state to the <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" />th state of the Markov process, and</p>
+<p>&bull; <img src="https://s0.wp.com/latex.php?latex=C_%7Bi+j%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C_{i j}" class="latex" /> is the conductance (that is, the reciprocal of the resistance) of the wire from the <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" />th node to the <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" />th node of the resulting circuit.</p>
+<p>The detailed balance condition for Markov processes says precisely that the matrix <img src="https://s0.wp.com/latex.php?latex=C_%7Bi+j%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="C_{i j}" class="latex" /> is symmetric!  This is just right for an electrical circuit made of resistors, since it means that the resistance of the wire from node <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> to node <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" /> equals the resistance of the same wire in the reverse direction, from node <img src="https://s0.wp.com/latex.php?latex=j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="j" class="latex" /> to node <img src="https://s0.wp.com/latex.php?latex=i.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i." class="latex" /></p>
+<h3> A triangle of functors </h3>
+<p>If you paid careful attention, you&#8217;ll have noticed that I&#8217;ve described a triangle of functors:</p>
+<div align="center">
+<img width="350" src="https://i0.wp.com/math.ucr.edu/home/baez/mathematical/compositional_markov/triangle_of_functors.png" /></div>
+<p>And if you know anything about how category theorists think, you&#8217;ll be wondering if this diagram commutes.</p>
+<p>In fact, this triangle of functors does not commute!   However, a general lesson of category theory is that we should only expect diagrams of functors to commute <i>up to natural isomorphism</i>, and this is what happens here:</p>
+<div align="center">
+<img width="350" src="https://i0.wp.com/math.ucr.edu/home/baez/mathematical/compositional_markov/triangle_of_functors_with_natural_iso.png" /></div>
+<p>The natural transformation <img src="https://s0.wp.com/latex.php?latex=%5Calpha&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha" class="latex" /> &#8216;corrects&#8217; the black box functor for resistors to give the one for detailed balanced Markov processes.</p>
+<p>The functors <img src="https://s0.wp.com/latex.php?latex=%5Csquare&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;square" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%5Cblacksquare+%5Ccirc+K&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;blacksquare &#92;circ K" class="latex" /> are actually equal on objects.  An object in <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BDetBalMark%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{DetBalMark}" class="latex" /> is a finite set <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> with each element <img src="https://s0.wp.com/latex.php?latex=i+%5Cin+X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i &#92;in X" class="latex" /> labelled a positive populations <img src="https://s0.wp.com/latex.php?latex=q_i.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q_i." class="latex" /> Both functors map this object to the vector space <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5EX+%5Coplus+%5Cmathbb%7BR%7D%5EX.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^X &#92;oplus &#92;mathbb{R}^X." class="latex" />    For the functor <img src="https://s0.wp.com/latex.php?latex=%5Csquare%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;square," class="latex" /> we think of this as a space of population-flow pairs.  For the functor <img src="https://s0.wp.com/latex.php?latex=%5Cblacksquare+%5Ccirc+K%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;blacksquare &#92;circ K," class="latex" /> we think of it as a space of potential-current pairs.  The natural transformation <img src="https://s0.wp.com/latex.php?latex=%5Calpha&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha" class="latex" /> then gives a linear relation</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Calpha_%7BX%2Cq%7D+%3A+%5Cmathbb%7BR%7D%5EX+%5Coplus+%5Cmathbb%7BR%7D%5EX+%5Cleadsto+%5Cmathbb%7BR%7D%5EX+%5Coplus+%5Cmathbb%7BR%7D%5EX&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha_{X,q} : &#92;mathbb{R}^X &#92;oplus &#92;mathbb{R}^X &#92;leadsto &#92;mathbb{R}^X &#92;oplus &#92;mathbb{R}^X" class="latex" /></p>
+<p>in fact an isomorphism of vector spaces, which converts potential-current pairs into population-flow pairs in a manner that depends on the <img src="https://s0.wp.com/latex.php?latex=q_i.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q_i." class="latex" />  I&#8217;ll skip the formula; it&#8217;s in the paper.</p>
+<p>But here&#8217;s the key point.  The naturality of <img src="https://s0.wp.com/latex.php?latex=%5Calpha&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha" class="latex" /> actually allows us to reduce the problem of computing the functor <img src="https://s0.wp.com/latex.php?latex=%5Csquare&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;square" class="latex" /> to the problem of computing <img src="https://s0.wp.com/latex.php?latex=%5Cblacksquare.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;blacksquare." class="latex" />   Suppose</p>
+<p><img src="https://s0.wp.com/latex.php?latex=M%3A+%28X%2Cq%29+%5Cto+%28Y%2Cr%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M: (X,q) &#92;to (Y,r)" class="latex" /></p>
+<p>is any morphism in <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BDetBalMark%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{DetBalMark}." class="latex" />  The object <img src="https://s0.wp.com/latex.php?latex=%28X%2Cq%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(X,q)" class="latex" /> is some finite set <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> labelled by populations <img src="https://s0.wp.com/latex.php?latex=q%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q," class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%28Y%2Cr%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(Y,r)" class="latex" /> is some finite set <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" /> labelled by populations <img src="https://s0.wp.com/latex.php?latex=r.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r." class="latex" />  Then the naturality of <img src="https://s0.wp.com/latex.php?latex=%5Calpha&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha" class="latex" /> means that this square commutes:</p>
+<div align="center">
+<img width="300" src="https://i1.wp.com/math.ucr.edu/home/baez/mathematical/compositional_markov/naturality_square.png" /></div>
+<p>Since <img src="https://s0.wp.com/latex.php?latex=%5Calpha_%7BX%2Cq%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha_{X,q}" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%5Calpha_%7BY%2Cr%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha_{Y,r}" class="latex" /> are isomorphisms, we can solve for the functor <img src="https://s0.wp.com/latex.php?latex=%5Csquare&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;square" class="latex" /> as follows:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csquare%28M%29+%3D+%5Calpha_Y+%5Ccirc+%5Cblacksquare+K%28M%29+%5Ccirc+%5Calpha_X%5E%7B-1%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;square(M) = &#92;alpha_Y &#92;circ &#92;blacksquare K(M) &#92;circ &#92;alpha_X^{-1} " class="latex" /></p>
+<p>This equation has a clear intuitive meaning!   It says that to compute the behavior of a detailed balanced Markov process, namely <img src="https://s0.wp.com/latex.php?latex=%5Csquare%28f%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;square(f)," class="latex" /> we convert it into a circuit made of resistors and compute the behavior of that, namely <img src="https://s0.wp.com/latex.php?latex=%5Cblacksquare+K%28f%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;blacksquare K(f)." class="latex" />  This is not <i>equal</i> to the behavior of the Markov process, but we can compute that behavior by converting the input populations and flows into potentials and currents, feeding them into our circuit, and then converting the outputs back into populations and flows.</p>
+<h3> What we really do </h3>
+<p>So that&#8217;s a sketch of what we do, and I hope you ask questions if it&#8217;s not clear.  But I also hope you read our paper!  Here&#8217;s what we actually do in there.  After an introduction and summary of results:</p>
+<p>&bull; Section 3 defines open Markov processes and the open master equation.</p>
+<p>&bull; Section 4 introduces detailed balance for open Markov<br />
+processes.</p>
+<p>&bull; Section 5 recalls the principle of minimum power<br />
+for open circuits made of linear resistors, and explains how to black box them.</p>
+<p>&bull; Section 6 introduces the principle of minimum dissipation for open detailed balanced Markov processes, and describes how to black box these.</p>
+<p>&bull; Section 7 states the analogy between circuits and detailed balanced Markov processes in a formal way.</p>
+<p>&bull; Section 8 describes how to compose open Markov processes, making them into the morphisms of a category.</p>
+<p>&bull; Section 9 does the same for detailed balanced Markov processes.</p>
+<p>&bull; Section 10 describes the &#8216;black box functor&#8217; that sends any open detailed balanced Markov process to the linear relation describing its external behavior, and recalls the similar functor for circuits.</p>
+<p>&bull; Section 11 makes the analogy between between open detailed balanced Markov processes and open circuits even more formal, by making it into a functor.  We prove that together with the two black box functors, this forms a triangle that commutes up to natural isomorphism.</p>
+<p>&bull; Section 12 is about geometric aspects of this theory.  We show that the linear relations in the image of these black box functors are Lagrangian relations between symplectic vector spaces.  We also show that the master equation can be seen as a gradient flow equation.</p>
+<p>&bull; Section 13 is a summary of what we have learned.</p>
+<p>Finally, Appendix A is a quick tutorial on decorated cospans.  This is a key mathematical tool in our work, developed by Brendan in <a href="http://arxiv.org/abs/1502.00872">an earlier paper</a>.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Friday, September 4th, 2015 at 6:18 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/networks/" rel="category tag">networks</a>, <a href="https://johncarlosbaez.wordpress.com/category/probability/" rel="category tag">probability</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2015/08/30/the-inverse-cube-force-law/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2015/09/13/biology-networks-control/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">28 Responses to <em>A Compositional Framework for Markov&nbsp;Processes</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-70493">
+				<div id="div-comment-70493" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cb1c5882ecf3b2d1be9e99dac3041124?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://ncatlab.org/nlab/show/David+Roberts' rel='external nofollow ugc' class='url'>David Roberts</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70493">4 September, 2015 at 7:20 am</a>		</div>
+
+		<p>Got some broken images there&#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70493#respond' data-commentid="70493" data-postid="20046" data-belowelement="div-comment-70493" data-respondelement="respond" data-replyto="Reply to David Roberts" aria-label='Reply to David Roberts'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-70496">
+				<div id="div-comment-70496" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70496">4 September, 2015 at 8:15 am</a>		</div>
+
+		<p>I don&#8217;t see any problems.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70496#respond' data-commentid="70496" data-postid="20046" data-belowelement="div-comment-70496" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-70528">
+				<div id="div-comment-70528" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cb1c5882ecf3b2d1be9e99dac3041124?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://ncatlab.org/nlab/show/David+Roberts' rel='external nofollow ugc' class='url'>David Roberts</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70528">5 September, 2015 at 3:25 am</a>		</div>
+
+		<p>Well, it&#8217;s fixed now. Not sure what happened.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70528#respond' data-commentid="70528" data-postid="20046" data-belowelement="div-comment-70528" data-respondelement="respond" data-replyto="Reply to David Roberts" aria-label='Reply to David Roberts'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-70500">
+				<div id="div-comment-70500" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/08e866f967bac320259c093563d3d47c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.gregegan.net' rel='external nofollow ugc' class='url'>Greg Egan</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70500">4 September, 2015 at 10:00 am</a>		</div>
+
+		<blockquote><p>(In this example, one state was specified as an output twice, which means we need to identify two input states of another Markov process with it. Get it?)</p></blockquote>
+<p>Sorry to be thick, but I don&#8217;t get it.  In the first Markov process, apart from the fact that you used the plural, &#8220;outputs&#8221;, when pointing to the circle with a 2 in it at the right of the diagram, how are we meant to know that this &#8220;was specified as an output twice&#8221;?  And similarly, how do we know that the circle with a 2 in it at the left of the second Markov process counts as two inputs?</p>
+<p>I also have no idea what the specific implications would be of a state being an n-fold input or output.  If a population is initially flowing into a state in process A that is nominated as a 3-fold output, how does that population flow within the composite Markov process BA in which it somehow has to be spread between 3 different states that were 3 different input states of process B?  Or can a 3-fold output only be joined to a 3-fold input, rather than 3 separate 1-fold inputs?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70500#respond' data-commentid="70500" data-postid="20046" data-belowelement="div-comment-70500" data-respondelement="respond" data-replyto="Reply to Greg Egan" aria-label='Reply to Greg Egan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-70501">
+				<div id="div-comment-70501" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70501">4 September, 2015 at 10:33 am</a>		</div>
+
+		<p>Greg wrote:</p>
+<blockquote><p>
+  Sorry to be thick, but I don’t get it. In the first Markov process, apart from the fact that you used the plural, “outputs”, when pointing to the circle with a 2 in it at the right of the diagram, how are we meant to know that this “was specified as an output twice”? And similarly, how do we know that the circle with a 2 in it at the left of the second Markov process counts as two inputs?
+</p></blockquote>
+<p>Whoops!  In fact, these pictures don&#8217;t illustrate that subtle issue.</p>
+<p>This business about states being multiple inputs or outputs is one of those nitpicky technical details that turns out to make the machine run more smoothly, but seems only weird and confusing at first.</p>
+<blockquote><p>
+  I also have no idea what the specific implications would be of a state being an n-fold input or output.
+</p></blockquote>
+<p>I&#8217;ll eventually answer your questions about that, and you&#8217;ll see it&#8217;s all very nice.  But right now I&#8217;m being called to dinner!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70501#respond' data-commentid="70501" data-postid="20046" data-belowelement="div-comment-70501" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-70541">
+				<div id="div-comment-70541" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70541">5 September, 2015 at 10:15 am</a>		</div>
+
+		<p>Okay, let me answer this:</p>
+<blockquote><p>
+  I also have no idea what the specific implications would be of a state being an n-fold input or output. If a population is initially flowing into a state in process A that is nominated as a 3-fold output, how does that population flow within the composite Markov process BA in which it somehow has to be spread between 3 different states that were 3 different input states of process B? Or can a 3-fold output only be joined to a 3-fold input, rather than 3 separate 1-fold inputs?
+</p></blockquote>
+<p>For starters, let me discuss the case of Markov processes rather than detailed balanced Markov processes, which are slightly more complicated.</p>
+<p>For us a <b>Markov process</b> consists of a finite set <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" /> of <b>nodes</b> or <b>states</b>, a finite set <img src="https://s0.wp.com/latex.php?latex=E&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="E" class="latex" /> of <b>edges</b> or <b>transitions</b>, maps</p>
+<p><img src="https://s0.wp.com/latex.php?latex=s%2C+t+%3A+E+%5Cto+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s, t : E &#92;to N" class="latex" /></p>
+<p>assigning each edge its <b>source</b> and <b>target</b>, and a map</p>
+<p><img src="https://s0.wp.com/latex.php?latex=r%3A+E+%5Cto+%280%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="r: E &#92;to (0,&#92;infty)" class="latex" /></p>
+<p>assigning a <b>rate constant</b> to each edge.  So, we&#8217;ve got a graph (a &#8216;directed multigraph&#8217;, to be painfully precise) where nodes are states, edges are transitions between states, and each transition has a rate constant.</p>
+<p>To make our Markov process into an <b>open Markov process</b> we simply equip it with two maps</p>
+<p><img src="https://s0.wp.com/latex.php?latex=i+%3A+X+%5Cto+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i : X &#92;to N" class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=o+%3A+Y+%5Cto+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="o : Y &#92;to N" class="latex" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=X%2CY&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X,Y" class="latex" /> are arbitrary finite sets.  Elements of <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> are <b>inputs</b>, and the <b>input map</b> <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> says how to interpret these inputs as states.  Elements of <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" /> are <b>outputs</b>, and the <b>output map</b> <img src="https://s0.wp.com/latex.php?latex=o&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="o" class="latex" /> says how to interpret these outputs as states.  This is the stuff that was not drawn clearly in the pictures in this blog article (which I may fix).</p>
+<p>Note that we don&#8217;t require <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=o&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="o" class="latex" /> to be one-to-one.  Nor do we require them to have disjoint ranges.  So, a state in <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" /> can correspond to more than one input, or more than one output, or both.   I need to convince you that this is a good thing.</p>
+<p>For this, I need to say a word about how we compose open Markov processes.</p>
+<p>Note that an open Markov process consists in part of maps</p>
+<p><img src="https://s0.wp.com/latex.php?latex=X+%5Cstackrel%7Bi%7D%7B%5Clongrightarrow%7D+N+%5Cstackrel%7Bo%7D%7B%5Clongleftarrow%7D+Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X &#92;stackrel{i}{&#92;longrightarrow} N &#92;stackrel{o}{&#92;longleftarrow} Y" class="latex" /></p>
+<p>In this situation we want to think of our open Markov process as a &#8216;morphism&#8217; from <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=Y.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y." class="latex" />   That means want to be able to compose it with an open Markov process that&#8217;s a morphism from <img src="https://s0.wp.com/latex.php?latex=Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y" class="latex" /> to some finite set <img src="https://s0.wp.com/latex.php?latex=Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Z" class="latex" />, like this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=Y+%5Cstackrel%7Bi%27%7D%7B%5Clongrightarrow%7D+M+%5Cstackrel%7Bo%27%7D%7B%5Clongleftarrow%7D+Z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y &#92;stackrel{i&#039;}{&#92;longrightarrow} M &#92;stackrel{o&#039;}{&#92;longleftarrow} Z" class="latex" /></p>
+<p>We do this by &#8216;gluing the outputs of the first open Markov process to the inputs of the second&#8217;.  That is, we identify each state of the form <img src="https://s0.wp.com/latex.php?latex=o%28y%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="o(y)" class="latex" /> for <img src="https://s0.wp.com/latex.php?latex=y+%5Cin+Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y &#92;in Y" class="latex" /> with the corresponding state <img src="https://s0.wp.com/latex.php?latex=i%27%28y%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i&#039;(y)." class="latex" />   I hope you can visualize how this will let us build a new graph by gluing together the two we started with&#8212;and indeed a new open Markov process!  This will be a morphism from <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=Z.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Z." class="latex" /></p>
+<p>Now I&#8217;m ready to explain why it&#8217;s good to let states correspond to more than one input, or more than one output, or both.</p>
+<p>A category needs to have identity morphisms.  What will an identity morphism be like?  It will be a graph with no edges, and thus no need for rate constants.  It will have some set <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" /> of nodes, each of which is in the image of both the input and output maps!  The input and output maps will be identity functions, like this:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=N+%5Cstackrel%7B1%7D%7B%5Clongrightarrow%7D+N+%5Cstackrel%7B1%7D%7B%5Clongleftarrow%7D+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N &#92;stackrel{1}{&#92;longrightarrow} N &#92;stackrel{1}{&#92;longleftarrow} N" class="latex" /></p>
+<p>I hope you see that composing this with some other open Markov process gives that same open Markov process back.  That&#8217;s good: composing with an identity morphism should have no effect.</p>
+<p>Well, this has been rather long, and I still haven&#8217;t explained why it&#8217;s good to let the input and output maps fail to be one-to-one.  Briefly: we can use composition with these to turn inputs of an open Markov process into outputs, or vice versa.  This is the &#8216;compactness&#8217; stuff mentioned in the blog article.</p>
+<p>By now I should have implicitly answered your question, but let&#8217;s see:</p>
+<blockquote><p>
+  If a population is initially flowing into a state in process A that is nominated as a 3-fold output, how does that population flow within the composite Markov process BA in which it somehow has to be spread between 3 different states that were 3 different input states of process B? Or can a 3-fold output only be joined to a 3-fold input, rather than 3 separate 1-fold inputs?
+</p></blockquote>
+<p>In my example</p>
+<p><img src="https://s0.wp.com/latex.php?latex=X+%5Cstackrel%7Bi%7D%7B%5Clongrightarrow%7D+N+%5Cstackrel%7Bo%7D%7B%5Clongleftarrow%7D+Y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X &#92;stackrel{i}{&#92;longrightarrow} N &#92;stackrel{o}{&#92;longleftarrow} Y" class="latex" /></p>
+<p>what you&#8217;re calling a &#8216;3-fold output&#8217; is a point in <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" /> that&#8217;s in the image of 3 different points of <img src="https://s0.wp.com/latex.php?latex=Y.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Y." class="latex" />   That is, we have <img src="https://s0.wp.com/latex.php?latex=n+%5Cin+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n &#92;in N" class="latex" /> with</p>
+<p><img src="https://s0.wp.com/latex.php?latex=n+%3D+o%28y_1%29+%3D+o%28y_2%29+%3D+o%28y_3%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n = o(y_1) = o(y_2) = o(y_3)" class="latex" /></p>
+<p>for exactly three distinct points <img src="https://s0.wp.com/latex.php?latex=y_1%2C+y_2%2C+y_3+%5Cin+Y.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y_1, y_2, y_3 &#92;in Y." class="latex" /></p>
+<p>When we compose this open Markov process with another, we identify <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> with all 3 points <img src="https://s0.wp.com/latex.php?latex=i%27%28y_1%29%2C+i%27%28y_2%29%2C+i%27%28y_3%29+%5Cin+N%27.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i&#039;(y_1), i&#039;(y_2), i&#039;(y_3) &#92;in N&#039;." class="latex" /></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70541#respond' data-commentid="70541" data-postid="20046" data-belowelement="div-comment-70541" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-florifulgurator even depth-3 highlander-comment" id="comment-70547">
+				<div id="div-comment-70547" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d2f1e2a04453a6071251c5712ecd9df0?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://florifulgurator.wordpress.com' rel='external nofollow ugc' class='url'>Florifulgurator</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70547">5 September, 2015 at 1:09 pm</a>		</div>
+
+		<p>(Typo at top: s,t should have values in N, not X)</p>
+<p>Beautiful! It induced in me severe mathematical hallucinations. They only stopped at functors from nCob to Hilb: Is Life a topological stochastico-quantum field theory?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70547#respond' data-commentid="70547" data-postid="20046" data-belowelement="div-comment-70547" data-respondelement="respond" data-replyto="Reply to Florifulgurator" aria-label='Reply to Florifulgurator'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-3 highlander-comment" id="comment-70677">
+				<div id="div-comment-70677" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70677">6 September, 2015 at 9:30 am</a>		</div>
+
+		<p>Thanks, Flori &#8211; I fixed that typo.</p>
+<p>I&#8217;m glad you like this stuff.   Indeed, I&#8217;m taking concepts from topological quantum field theory and adapting them.  But instead of chopping spacetime into pieces, I&#8217;m chopping &#8216;space&#8217;&#8212;or some abstraction thereof, like an electrical circuit&#8212;and chopping it into pieces.  And instead of doing a quantum theory, and getting linear operators between Hilbert spaces of quantum states, I&#8217;m doing a classical theory, and getting linear Lagrangian relations between symplectic vector spaces describing classical boundary conditions.  This seems like a good way to go&#8230;</p>
+<p>So far we&#8217;re mainly doing statics, or <em>almost</em> statics, like &#8216;nonequilibrium steady states&#8217;, or problems where you use the Laplace transform to convert an ODE into a mere algebra problem.   But with some 2-categories we can do true dynamics.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70677#respond' data-commentid="70677" data-postid="20046" data-belowelement="div-comment-70677" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-70544">
+				<div id="div-comment-70544" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70544">5 September, 2015 at 11:00 am</a>		</div>
+
+		<p>It turns out I was completely wrong when I wrote:</p>
+<blockquote><p>
+  (In this example, one state was specified as an output twice, which means we need to identify two input states of another Markov process with it. Get it?)
+</p></blockquote>
+<p>In fact the pictures in this blog article don&#8217;t illustrate that subtle possibility&#8230;. which is fine.  So, I&#8217;ve deleted this parenthetical remark from my blog article!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70544#respond' data-commentid="70544" data-postid="20046" data-belowelement="div-comment-70544" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-70545">
+				<div id="div-comment-70545" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/08e866f967bac320259c093563d3d47c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.gregegan.net' rel='external nofollow ugc' class='url'>Greg Egan</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70545">5 September, 2015 at 12:13 pm</a>		</div>
+
+		<p>Thanks for explaining this!  And sorry to make you write such a long reply.  I ended up looking at the paper as well &#8230; and if anyone else reading this is as confused as I was, page 23 of the paper makes it much clearer what happens when you compose Markov processes where some states are n-fold outputs.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70545#respond' data-commentid="70545" data-postid="20046" data-belowelement="div-comment-70545" data-respondelement="respond" data-replyto="Reply to Greg Egan" aria-label='Reply to Greg Egan'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-70573">
+				<div id="div-comment-70573" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70573">5 September, 2015 at 3:18 pm</a>		</div>
+
+		<p>Don&#8217;t be sorry!  I&#8217;ve been working hard on this paper for the last 2 months, and now I&#8217;m eager to talk about it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70573#respond' data-commentid="70573" data-postid="20046" data-belowelement="div-comment-70573" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-kix1426 odd alt thread-even depth-1 parent highlander-comment" id="comment-70518">
+				<div id="div-comment-70518" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/81e32dcadd5fcf3d48c92bd32e290954?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://textureoftime.wordpress.com' rel='external nofollow ugc' class='url'>Kerri</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70518">4 September, 2015 at 7:21 pm</a>		</div>
+
+		<p>Would you mind saying a bit more about how Markov processes can help explain the math of living systems?</p>
+<p>I&#8217;ve been working to understand the Markov process/Wiener process/integral (unsure of the distinctions here, clarification welcome) in Laurent Nottale&#8217;s work, as a method of transitioning back and forth between quantum and classical realms. I&#8217;m also curious to hear more about the Markov process&#8217; relationship to imaginary time and brown noise in the context of understanding the math of living systems&#8230;</p>
+<p>Lots in there, so feel free to just pick one that might jump out at you. I majored in Physics as an undergrad, but beyond that am largely self-taught in physics and math. I did my gradute work in philosophy of physics and tend to approach from the conceptual/philosophical side before adding the mathematical elaboration, if that helps to frame your response.</p>
+<p>Love your blog &#8211; thanks!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70518#respond' data-commentid="70518" data-postid="20046" data-belowelement="div-comment-70518" data-respondelement="respond" data-replyto="Reply to Kerri" aria-label='Reply to Kerri'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-70534">
+				<div id="div-comment-70534" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70534">5 September, 2015 at 6:23 am</a>		</div>
+
+		<p>Kerri wrote:</p>
+<blockquote><p>
+  Would you mind saying a bit more about how Markov processes can help explain the math of living systems?
+</p></blockquote>
+<p>Since Blake and I are planning to write some papers on this subject,  I&#8217;ll beg you to wait for those.  I&#8217;ll definitely blog about them, and I&#8217;m really eager to talk about this line of work, but I don&#8217;t think it&#8217;s a good idea to explain it before I actually do it!</p>
+<p>For now I recommend this:</p>
+<p>&bull; J. Schnakenberg, <i>Thermodynamic Network Analysis of Biological Systems</i>, Springer, Berlin, 1981.</p>
+<p>This paper is more recent and more advanced, but it has lots of references and it&#8217;s free:</p>
+<p>&bull; Matteo Polettini and Massimiliano Esposito, <a href="http://arxiv.org/abs/1404.1181" rel="nofollow">Irreversible thermodynamics of open chemical networks I: Emergent cycles and broken conservation laws</a>.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70534#respond' data-commentid="70534" data-postid="20046" data-belowelement="div-comment-70534" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-kix1426 odd alt depth-3 highlander-comment" id="comment-70704">
+				<div id="div-comment-70704" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/81e32dcadd5fcf3d48c92bd32e290954?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://textureoftime.wordpress.com' rel='external nofollow ugc' class='url'>Kerri</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70704">6 September, 2015 at 8:33 pm</a>		</div>
+
+		<p>Excellent. Thank you!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70704#respond' data-commentid="70704" data-postid="20046" data-belowelement="div-comment-70704" data-respondelement="respond" data-replyto="Reply to Kerri" aria-label='Reply to Kerri'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-70539">
+				<div id="div-comment-70539" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70539">5 September, 2015 at 10:01 am</a>		</div>
+
+		<p>If I understood correctly then at any time instant one could normalize the &#8220;populations&#8221; and thus compute things like entropy, relative entropy and information (with respect to the equilibrium population) at any instant. Since open Markov processes are used in thermodynamics I suspect a lot has been studied in that context? Like does e.g. relative information also decrease in an understandable fashion like <a href="https://johncarlosbaez.wordpress.com/2012/06/07/information-geometry-part-11/" rel="nofollow">here</a>, if inputs and outputs are fixed?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70539#respond' data-commentid="70539" data-postid="20046" data-belowelement="div-comment-70539" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-70543">
+				<div id="div-comment-70543" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70543">5 September, 2015 at 10:53 am</a>		</div>
+
+		<p>Yes, in open Markov processes relative information decreases if the input and output populations are fixed.  I forgot to remind everyone that Blake has a paper about this stuff.  He blogged about it here:</p>
+<p>&bull; Blake Pollard, <a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/" rel="nofollow">A Second Law for open Markov processes</a>, <i>Azimuth</i>, 15 November 2014.</p>
+<p>Schnakenberg has also written about related things.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70543#respond' data-commentid="70543" data-postid="20046" data-belowelement="div-comment-70543" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-70670">
+				<div id="div-comment-70670" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70670">6 September, 2015 at 6:15 am</a>		</div>
+
+		<p>I didn&#8217;t look at Blakes paper but I looked at the blog post. I feel a bit uncomfortable with the fact that you don&#8217;t normalize, I wrote about that <a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59968" rel="nofollow">in a comment to that blog post.</a>  So in some sense I interpreted this as &#8220;your approach&#8221;, but there may be others, who normalize. I currently have no intuition wether normalizing is important or not I just want to get a better picture of whats going on there. Like for the formula for the <a href="https://johncarlosbaez.wordpress.com/2012/06/07/information-geometry-part-11/" rel="nofollow">relative information</a>  I think the normalization was used.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70670#respond' data-commentid="70670" data-postid="20046" data-belowelement="div-comment-70670" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-3 parent highlander-comment" id="comment-70671">
+				<div id="div-comment-70671" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70671">6 September, 2015 at 6:27 am</a>		</div>
+
+		<p>It&#8217;s incredibly important for us to not normalize.  Our work is all about putting together little Markov processes to form big ones, but you can alternatively think of it as being about taking a big one and breaking it  into smaller pieces.  If you have some set of states on which the probability distribution is normalized, and you break it into smaller pieces, it will not be normalized on each of these smaller pieces.</p>
+<p>Another way to put it is this: if you want to study open systems where probability flows in or out, you can&#8217;t demand that the probability distribution sum to 1 at all times.  (One of my missions is to generalize everything to open systems.)</p>
+<p>For closed systems, conservation laws say some quantity doesn&#8217;t change.  For open systems, conservation laws merely state that the change in this quantity can be completely accounted for by some kind of flow through the boundary&#8230; and that when you glue together two systems to form a larger one, the flow from system A to system B is minus the flow from system B to system A.</p>
+<p>Luckily, most of the key properties of Markov processes, entropy etc. easily generalize to the non-normalized case.  Blake has been busy doing this, starting with the paper I just mentioned.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70671#respond' data-commentid="70671" data-postid="20046" data-belowelement="div-comment-70671" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-4 highlander-comment" id="comment-70673">
+				<div id="div-comment-70673" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-70673">6 September, 2015 at 7:12 am</a>		</div>
+
+		<blockquote><p>t’s incredibly important for us to not normalize. Our work is all about putting together little Markov processes</p></blockquote>
+<p>I understand that for the composition it may be important not to normalize, but for computing entropies, especially with respect to a comparision to closed systems I could imagine that it makes sense to normalize. At least one could compare non normalized and normlaized approaches. Finally -at least in my understanding- entropy is loosely speaking quite about proportions. I dont have the time to check what it means to give up normalization with respect to the axiomatic approach to entropy. <a href="http://www2.ulg.ac.be/stat-mqg/roubens_files/axiom.pdf" rel="nofollow">Here</a> for example people seem to generalize discrete probability distributions to socalled Choquet capacities and at least in this article it seems they prefer to normalize for deriving a generalized entropy (I found the paper only &#8220;au hasard&#8221; and just browsed through it):</p>
+<blockquote><p>In the sequel, we<br />
+restrict ourselves to the study of the notion of uncertainty<br />
+only for normalized Choquet  capacities. </p></blockquote>
+<p>But as far as I can tell they don&#8217;t say why they restrict themselves.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-even depth-1 highlander-comment" id="comment-75842">
+				<div id="div-comment-75842" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2016/01/08/glycolysis/' rel='external nofollow ugc' class='url'>Glycolysis | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-75842">8 January, 2016 at 1:00 am</a>		</div>
+
+		<p>[&#8230;] Let&#8217;s see what we get if we &#8216;black-box&#8217; glycolysis. I&#8217;ve written about black-boxing electrical circuits and Markov processes: it&#8217;s a way to ignore their inner workings and focus on the relation between inputs and outputs [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=75842#respond' data-commentid="75842" data-postid="20046" data-belowelement="div-comment-75842" data-respondelement="respond" data-replyto="Reply to Glycolysis | Azimuth" aria-label='Reply to Glycolysis | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback even thread-odd thread-alt depth-1 highlander-comment" id="comment-76083">
+				<div id="div-comment-76083" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2016/01/11/information-geometry-part-15/' rel='external nofollow ugc' class='url'>Information Geometry (Part 15) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-76083">11 January, 2016 at 6:00 am</a>		</div>
+
+		<p>Blake Pollard considers a concrete class of open systems, a very large class called &#8216;open Markov processes&#8217;.  He shows that nonequilibrium steady states obey the principle of minimum entropy production only approximately&#8212;with the approximation being good for steady states that are <em>near equilibrium!</em></p>
+<p>However, he shows that another minimum principle holds exactly, even for steady states that are far from equilibrium.  He calls this the &#8216;principle of minimum dissipation&#8217;.</p>
+<p>We actually discussed the principle of minimum dissipation in an earlier paper:</p>
+<p>&bull; John Baez, Brendan Fong and Blake Pollard, <a href="http://arxiv.org/abs/1504.05625" rel="nofollow">A compositional framework for Markov processes</a>.  (Blog article <a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/" rel="nofollow">here</a>.)</p>
+<p>But one advantage of Blake&#8217;s new paper is that it presents the results with a minimum of category theory.  Of course I love category theory, and I think it&#8217;s the right way to formalize open systems, but it can be intimidating.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=76083#respond' data-commentid="76083" data-postid="20046" data-belowelement="div-comment-76083" data-respondelement="respond" data-replyto="Reply to Information Geometry (Part 15) | Azimuth" aria-label='Reply to Information Geometry (Part 15) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-even depth-1 highlander-comment" id="comment-76230">
+				<div id="div-comment-76230" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2016/01/14/information-geometry-part-16/' rel='external nofollow ugc' class='url'>Information Geometry (Part 16) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-76230">14 January, 2016 at 7:04 am</a>		</div>
+
+		<p>Lately we&#8217;ve been thinking about open Markov processes.  These are random processes where something can hop randomly from one state to another (that&#8217;s the &#8216;Markov process&#8217; part) but also enter or leave the system (that&#8217;s the &#8216;open&#8217; part).</p>
+<p>The ultimate goal is to understand the nonequilibrium thermodynamics of open systems&#8212;systems where energy and maybe matter flows in and out.  If we could understand this well enough, we could understand in detail how <i>life</i> works.  That&#8217;s a difficult job!  But one has to start somewhere, and this is one place to start.</p>
+<p>We have a few papers on this subject:</p>
+<p>&bull; Blake Pollard, <a href="http://arxiv.org/abs/1410.6531" rel="nofollow">A Second Law for open Markov processes</a>.  (Blog article <a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/" rel="nofollow">here</a>.)</p>
+<p>&bull; John Baez, Brendan Fong and Blake Pollard, <a href="http://arxiv.org/abs/1504.05625" rel="nofollow">A compositional framework for Markov processes</a>.  (Blog article <a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/" rel="nofollow">here</a>.)</p>
+<p>&bull; Blake Pollard, <a href="http://arxiv.org/abs/1601.00711" rel="nofollow">Open Markov processes: A compositional perspective on non-equilibrium steady states in biology</a>.  (Blog article <a href="https://johncarlosbaez.wordpress.com/2016/01/11/information-geometry-part-15/" rel="nofollow">here</a>.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=76230#respond' data-commentid="76230" data-postid="20046" data-belowelement="div-comment-76230" data-respondelement="respond" data-replyto="Reply to Information Geometry (Part 16) | Azimuth" aria-label='Reply to Information Geometry (Part 16) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback even thread-odd thread-alt depth-1 highlander-comment" id="comment-78237">
+				<div id="div-comment-78237" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://www.physicsforums.com/insights/interview-mathematical-physicist-john-baez-part-1/' rel='external nofollow ugc' class='url'>Interview with a Mathematical Physicist: John Baez Part 1</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-78237">16 March, 2016 at 12:36 am</a>		</div>
+
+		<p>Blake Pollard is a student of mine in the physics department here at U. C. Riverside. Together with Brendan and me, he developed a <a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/" rel="nofollow">category­-theoretic approach to Markov processes</a>: random processes where a system hops around between different states. We used Brendan&#8217;s general formalism to reduce Markov processes to electrical circuits. Now Blake is going further and using these ideas to tackle chemical reaction networks.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=78237#respond' data-commentid="78237" data-postid="20046" data-belowelement="div-comment-78237" data-respondelement="respond" data-replyto="Reply to Interview with a Mathematical Physicist: John Baez Part 1" aria-label='Reply to Interview with a Mathematical Physicist: John Baez Part 1'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-even depth-1 highlander-comment" id="comment-78288">
+				<div id="div-comment-78288" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2016/03/18/interview-part-1/' rel='external nofollow ugc' class='url'>Interview (Part 1) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-78288">18 March, 2016 at 1:01 am</a>		</div>
+
+		<p>Blake Pollard is a student of mine in the physics department here at U. C. Riverside. Together with Brendan and me, he developed a <a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/" rel="nofollow">category­-theoretic approach to Markov processes</a>: random processes where a system hops around between different states. We used Brendan&#8217;s general formalism to reduce Markov processes to electrical circuits. Now Blake is going further and using these ideas to tackle chemical reaction networks.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=78288#respond' data-commentid="78288" data-postid="20046" data-belowelement="div-comment-78288" data-respondelement="respond" data-replyto="Reply to Interview (Part 1) | Azimuth" aria-label='Reply to Interview (Part 1) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback even thread-odd thread-alt depth-1 highlander-comment" id="comment-84475">
+				<div id="div-comment-84475" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2016/10/23/open-and-interconnected-systems/' rel='external nofollow ugc' class='url'>Open and Interconnected Systems | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-84475">23 October, 2016 at 11:50 pm</a>		</div>
+
+		<p>At some point I gave Brendan Fong a project: <i>describe the category whose morphisms are electrical circuits</i>. He took up the challenge much more ambitiously than I&#8217;d ever expected, developing powerful general frameworks to solve not only this problem but also many others. He did this in a number of papers, most of which I’ve already discussed [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=84475#respond' data-commentid="84475" data-postid="20046" data-belowelement="div-comment-84475" data-respondelement="respond" data-replyto="Reply to Open and Interconnected Systems | Azimuth" aria-label='Reply to Open and Interconnected Systems | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-even depth-1 highlander-comment" id="comment-110720">
+				<div id="div-comment-110720" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2018/03/04/coarse-graining-open-markov-processes/' rel='external nofollow ugc' class='url'>Coarse-Graining Open Markov Processes | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-110720">4 March, 2018 at 3:56 am</a>		</div>
+
+		<p>Kenny Courser and I have been working hard on this paper for months:</p>
+<p>&bull; John Baez and Kenny Courser, <a href="http://math.ucr.edu/home/baez/coarse.pdf" rel="nofollow">Coarse-graining open Markov processes</a>.</p>
+<p>A while back, Brendan Fong,  Blake Pollard and I showed that these constructions make open Markov processes into the morphisms of a symmetric monoidal category:</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/">A compositional framework for Markov processes</a>, <i>Azimuth</i>, January 12, 2016.</p>
+<p>Here Kenny and I go further by constructing a symmetric monoidal <em>double</em> category where the 2-morphisms include ways of coarse-graining open Markov processes.    We also extend the previously defined &#8216;black-boxing&#8217; functor from the category of open Markov processes to this double category.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=110720#respond' data-commentid="110720" data-postid="20046" data-belowelement="div-comment-110720" data-respondelement="respond" data-replyto="Reply to Coarse-Graining Open Markov Processes | Azimuth" aria-label='Reply to Coarse-Graining Open Markov Processes | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback even thread-odd thread-alt depth-1 highlander-comment" id="comment-111122">
+				<div id="div-comment-111122" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2018/03/11/hypergraph_categories_of_cospans/' rel='external nofollow ugc' class='url'>Hypergraph Categories of Cospans | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-111122">11 March, 2018 at 9:14 pm</a>		</div>
+
+		<p>Two students in the <a href="http://www.appliedcategorytheory.org/school/" rel="nofollow"> Applied Category Theory 2018 school</a> wrote a blog article about Brendan Fong&#8217;s theory of decorated cospans:</p>
+<p>&bull; Jonathan Lorand and Fabrizio Genovese, <a href="https://golem.ph.utexas.edu/category/2018/02/hypergraph_categories_of_cospa.html" rel="nofollow">Hypergraph categories of cospans</a>, The <i>n</i>-Category Caf&eacute;, 28 February 2018.</p>
+<p>What&#8217;s especially interesting to me is that both Jonathan and Fabrizio know some mathematical physics, and they&#8217;re part of a group who will be working with me on some problems as part of the Applied Category Theory 2018 school!  Brendan and Blake Pollard and I used symplectic geometry and decorated cospans to study the black-boxing of <a href="https://johncarlosbaez.wordpress.com/2015/04/28/a-compositional-framework-for-passive-linear-networks/">electrical circuits</a> and <a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/">Markov processes</a>&#8230; maybe we should try to go further with that project!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=111122#respond' data-commentid="111122" data-postid="20046" data-belowelement="div-comment-111122" data-respondelement="respond" data-replyto="Reply to Hypergraph Categories of Cospans | Azimuth" aria-label='Reply to Hypergraph Categories of Cospans | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-even depth-1 highlander-comment" id="comment-162833">
+				<div id="div-comment-162833" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2020/07/04/open-markov-processes/' rel='external nofollow ugc' class='url'>Open Markov Processes | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/#comment-162833">4 July, 2020 at 12:06 am</a>		</div>
+
+		<p>I&#8217;m giving a talk on some work I did with Kenny Courser.  It&#8217;s part of the <a href="https://johncarlosbaez.wordpress.com/2020/06/27/act2020-program/">ACT2020</a> conference, and it&#8217;s happening on 20:40 UTC on Tuesday July 7th, 2020.  (That&#8217;s 1:40 pm here in California, just so I don&#8217;t forget.)</p>
+<p>Like all talks at this conference, you can watch it live <a href="https://mit.zoom.us/j/7055345747" rel="nofollow ugc">on Zoom</a> or <a href="https://www.youtube.com/playlist?list=PLCOXjXDLt3pZDHGYOIqtg1m1lLOURjl1Q" rel="nofollow ugc">on YouTube</a>.  It&#8217;ll also be recorded, so you can watch it later on YouTube too, somewhere <a href="https://www.youtube.com/playlist?list=PLCOXjXDLt3pYot9VNdLlZqGajHyZUywdI" rel="nofollow ugc">here</a>.</p>
+<p>You can see my slides now, and read some other helpful things:</p>
+<p>• <a href="http://math.ucr.edu/home/baez/open_markov/open_markov.pdf" rel="nofollow ugc">Coarse-graining open Markov processes</a>.</p>
+<blockquote><p>
+  <strong>Abstract.</strong> We illustrate some new paradigms in applied category theory with the example of coarse-graining open Markov processes. Coarse-graining is a standard method of extracting a simpler Markov process from a more complicated one by identifying states. Here we extend coarse-graining to &#8216;open&#8217; Markov processes: that is, those where probability can flow in or out of certain states called &#8216;inputs&#8217; and &#8216;outputs&#8217;. One can build up an ordinary Markov process from smaller open pieces in two basic ways: composition, where we identify the outputs of one open Markov process with the inputs of another, and tensoring, where we set two open Markov processes side by side. These constructions make open Markov processes into the morphisms of a symmetric monoidal category. But we can go further and construct a symmetric monoidal double category where the 2-morphisms include ways of coarse-graining open Markov processes. We can describe the behavior of open Markov processes using double functors out of this double category.
+</p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=162833#respond' data-commentid="162833" data-postid="20046" data-belowelement="div-comment-162833" data-respondelement="respond" data-replyto="Reply to Open Markov Processes | Azimuth" aria-label='Reply to Open Markov Processes | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-70671">John Baez</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2015/09/04/a-compositional-framework-for-markov-processes/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70671" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='20046' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='70671' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="6d1ec21f8d" /></p>
+<input type="hidden" name="genseq" value="1632619123" />
+<input type="hidden" id="ak_js" name="ak_js" value="106"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/?replytocom=70671"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,176,992 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-cb1c5882ecf3b2d1be9e99dac3041124">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-08e866f967bac320259c093563d3d47c">
+	</div>
+	<div class="grofile-hash-map-d2f1e2a04453a6071251c5712ecd9df0">
+	</div>
+	<div class="grofile-hash-map-81e32dcadd5fcf3d48c92bd32e290954">
+	</div>
+	<div class="grofile-hash-map-a114ddb2d8d68d281202f95cfd64c96c">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"20046","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'20046','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTZVeHRpLXB0U3J1elBvZCZiTkEzXXlsLi1PU25PbltLcyZONi1Lay1ia3RtU0ZEcmxjdDdab2FqP3lnNTdjREcvfi93LG1GJS5WSk1jVm9BP0F6XWJteXFYWlEzeHZDTmdNLWRpOVM9eGI0TV04KzN+aDB8UkZnL3JsK3N3Mi90UkFiXz8mT01yWWU9ZkJ6ZXZ2UEwyL2xbdisvRmsuek9XXWdWQ0JHRzVSXS9FL2QuYzZJdVIxfjJUbmljRzNhbFdLN3gvTzVqX0F8SGxpeWlFXS89OFlWRUliQw=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '20046' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

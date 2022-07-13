@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:media="http://search.yahoo.com/mrss/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Fisher&#8217;s Fundamental Theorem (Part 2)	</title>
+	<atom:link href="https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/feed/" rel="self" type="application/rss+xml" />
+	<link>https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/</link>
+	<description></description>
+	<lastBuildDate>Tue, 13 Jul 2021 15:41:57 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>http://wordpress.com/</generator>
+	<item>
+		<title>
+		By: Marc Harper		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166918</link>
+
+		<dc:creator><![CDATA[Marc Harper]]></dc:creator>
+		<pubDate>Fri, 09 Oct 2020 06:23:11 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=28714#comment-166918</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734&quot;&gt;John Baez&lt;/a&gt;.
+
+That explanation matches up with the information geometry formulation, where a relationship between a derivative of a mean of a function and its variance is given without a dynamic being involved, just the Fisher geometry of the simplex. In [1] Amari shows the following.
+
+Let $latex X = \{ 1, 2, \ldots, n\}$ be a finite set of size $latex n$. We&#039;ll equate the manifold of discrete probability distributions $latex P(X)$ with the simplex $latex \Delta^n$, where the elements of $latex X$ correspond to the obvious corner points of the simplex. So
+
+$latex p \in P(X) \mapsto (p_1, \ldots, p_n) \in \Delta^n.$
+
+Let $latex A: X \to \mathbb{R}$ be a function and $latex E[A]: \Delta^n \to \mathbb{R}$ denote the map computing the mean of $latex A$ at $latex p \in \Delta^n$, i.e. $latex p \mapsto E_p[A] = \sum_i{p_i A(i)}$. Then the variance is
+
+$latex V_p[A] = &#124;&#124;(dE[A])_p&#124;&#124;_{p}^{2} = &#124;&#124;\nabla E[A]_p&#124;&#124;_{p}^{2},$
+
+where the norm is induced by the Fisher metric.
+
+The proof basically boils down to that $latex A - E_p[A]$ is the gradient of $latex E[A]$ at $latex p$, and then the norm from the Fisher metric gives
+
+$latex  &#124;&#124;\nabla E[A]_p&#124;&#124;_{p}^{2} = \sum_i {p_i \left(A - E_p[A]\right)^2} = \mathrm{Var}_p[A].$
+
+That&#039;s basically your explanation of $latex f_i(x) - \bar{f}$ being the gradient of $latex V$ if $latex V$ were the mean fitness -- if the $latex f_i$ are all constants, then
+
+$latex \frac{\partial V}{\partial p_i}(p \cdot f) = f_i.$
+
+So then this version of FFT comes down, as you said above, to the replicator equation (sometimes) being the gradient flow of the mean fitness on the simplex.
+
+[1] Amari, &lt;i&gt;Methods of Information Geometry&lt;/i&gt;, 1995, p. 42.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734">John Baez</a>.</p>
+<p>That explanation matches up with the information geometry formulation, where a relationship between a derivative of a mean of a function and its variance is given without a dynamic being involved, just the Fisher geometry of the simplex. In [1] Amari shows the following.</p>
+<p>Let <img src="https://s0.wp.com/latex.php?latex=X+%3D+%5C%7B+1%2C+2%2C+%5Cldots%2C+n%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X = &#92;{ 1, 2, &#92;ldots, n&#92;}" class="latex" /> be a finite set of size <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" />. We&#8217;ll equate the manifold of discrete probability distributions <img src="https://s0.wp.com/latex.php?latex=P%28X%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(X)" class="latex" /> with the simplex <img src="https://s0.wp.com/latex.php?latex=%5CDelta%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Delta^n" class="latex" />, where the elements of <img src="https://s0.wp.com/latex.php?latex=X&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="X" class="latex" /> correspond to the obvious corner points of the simplex. So</p>
+<p><img src="https://s0.wp.com/latex.php?latex=p+%5Cin+P%28X%29+%5Cmapsto+%28p_1%2C+%5Cldots%2C+p_n%29+%5Cin+%5CDelta%5En.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p &#92;in P(X) &#92;mapsto (p_1, &#92;ldots, p_n) &#92;in &#92;Delta^n." class="latex" /></p>
+<p>Let <img src="https://s0.wp.com/latex.php?latex=A%3A+X+%5Cto+%5Cmathbb%7BR%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A: X &#92;to &#92;mathbb{R}" class="latex" /> be a function and <img src="https://s0.wp.com/latex.php?latex=E%5BA%5D%3A+%5CDelta%5En+%5Cto+%5Cmathbb%7BR%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="E[A]: &#92;Delta^n &#92;to &#92;mathbb{R}" class="latex" /> denote the map computing the mean of <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" /> at <img src="https://s0.wp.com/latex.php?latex=p+%5Cin+%5CDelta%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p &#92;in &#92;Delta^n" class="latex" />, i.e. <img src="https://s0.wp.com/latex.php?latex=p+%5Cmapsto+E_p%5BA%5D+%3D+%5Csum_i%7Bp_i+A%28i%29%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p &#92;mapsto E_p[A] = &#92;sum_i{p_i A(i)}" class="latex" />. Then the variance is</p>
+<p><img src="https://s0.wp.com/latex.php?latex=V_p%5BA%5D+%3D+%7C%7C%28dE%5BA%5D%29_p%7C%7C_%7Bp%7D%5E%7B2%7D+%3D+%7C%7C%5Cnabla+E%5BA%5D_p%7C%7C_%7Bp%7D%5E%7B2%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V_p[A] = ||(dE[A])_p||_{p}^{2} = ||&#92;nabla E[A]_p||_{p}^{2}," class="latex" /></p>
+<p>where the norm is induced by the Fisher metric.</p>
+<p>The proof basically boils down to that <img src="https://s0.wp.com/latex.php?latex=A+-+E_p%5BA%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A - E_p[A]" class="latex" /> is the gradient of <img src="https://s0.wp.com/latex.php?latex=E%5BA%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="E[A]" class="latex" /> at <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" />, and then the norm from the Fisher metric gives</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%7C%7C%5Cnabla+E%5BA%5D_p%7C%7C_%7Bp%7D%5E%7B2%7D+%3D+%5Csum_i+%7Bp_i+%5Cleft%28A+-+E_p%5BA%5D%5Cright%29%5E2%7D+%3D+%5Cmathrm%7BVar%7D_p%5BA%5D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="||&#92;nabla E[A]_p||_{p}^{2} = &#92;sum_i {p_i &#92;left(A - E_p[A]&#92;right)^2} = &#92;mathrm{Var}_p[A]." class="latex" /></p>
+<p>That&#8217;s basically your explanation of <img src="https://s0.wp.com/latex.php?latex=f_i%28x%29+-+%5Cbar%7Bf%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_i(x) - &#92;bar{f}" class="latex" /> being the gradient of <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> if <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> were the mean fitness &#8212; if the <img src="https://s0.wp.com/latex.php?latex=f_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_i" class="latex" /> are all constants, then</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial+V%7D%7B%5Cpartial+p_i%7D%28p+%5Ccdot+f%29+%3D+f_i.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial V}{&#92;partial p_i}(p &#92;cdot f) = f_i." class="latex" /></p>
+<p>So then this version of FFT comes down, as you said above, to the replicator equation (sometimes) being the gradient flow of the mean fitness on the simplex.</p>
+<p>[1] Amari, <i>Methods of Information Geometry</i>, 1995, p. 42.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: John Baez		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166910</link>
+
+		<dc:creator><![CDATA[John Baez]]></dc:creator>
+		<pubDate>Fri, 09 Oct 2020 00:34:26 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=28714#comment-166910</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734&quot;&gt;John Baez&lt;/a&gt;.
+
+Thanks, Marc!  I think I finally get it.  Hofbauer and Sigmund are really talking about a conceptually different replicator equation in Theorem 19.5.1 of &lt;i&gt;Evolutionary Games and Population Dynamics&lt;/i&gt;---different than the one I&#039;ve been talking about, that is.  And thanks to you I actually understand this other equation.
+
+We could say it like this: we don&#039;t have populations, we just have a time-dependent probability distribution $latex p : \mathbb{R} \to \Delta^{n-1} .$  We can think of the simplex $latex \Delta^{n-1}$ as sitting in $latex \mathbb{R}^n$ in the usual way, and pick a function $latex V$ defined on a neighborhood of $latex \Delta^{n-1},$ and demand this version of the replicator equation:
+
+$latex \dot{p}_i(t) = (f_i(p(t)) - \overline{f}(p(t))) \; p_i(t) $
+
+where
+
+$latex \displaystyle{ f_i(x) = \frac{\partial V}{\partial x_i}(x) }$
+
+and
+
+$latex \displaystyle{ \overline{f}(x) = \sum_i f_i(x) x_i } $
+
+The vector field $latex v$ with
+
+$latex v_i(x) = (f_i(x) - \overline{f}(x)) \; x_i $
+
+is tangent to the simplex, because $latex f_i(x) - \overline{f}(x) $ is the gradient of $latex V$ with its normal component subtracted out.  So our replicator equation
+
+$latex \dot{p}_i(t) = v_i(p(t)) $
+
+describes a point $latex p(t)$ moving around on the simplex.
+
+In fact $latex v$ is just the gradient of $latex V$ &lt;i&gt;restricted to the simplex&lt;/i&gt;, and the replicator equation describes gradient flow &lt;i&gt;on the simplex&lt;/i&gt;.
+
+The weird thing, from this point of view, is why we&#039;re bothering to do such a roundabout procedure.  All we needed to get our replicator equation was a function $latex V$ on the simplex. But what we do is this: arbitrarily extend $latex V$ to a neighborhood of the simplex in $latex \mathbb{R}^n,$ then take its gradient to get a vector field on that neighborhood, and then subtract off the normal component and restrict the result to the simplex to get our vector field $latex v.$
+
+The only reason for doing this that I see is that
+
+$latex v_i(x) = (f_i(x) - \overline{f}(x))\; x_i $
+
+looks like &quot;excess fitness&quot;, so in the end we get a result reminiscent of Fisher&#039;s fundamental theorem.  But we don&#039;t really have any populations, just probabilities, so the functions $latex f_i$ really don&#039;t have any significance by themselves anymore: only the $latex v_i$ do.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734">John Baez</a>.</p>
+<p>Thanks, Marc!  I think I finally get it.  Hofbauer and Sigmund are really talking about a conceptually different replicator equation in Theorem 19.5.1 of <i>Evolutionary Games and Population Dynamics</i>&#8212;different than the one I&#8217;ve been talking about, that is.  And thanks to you I actually understand this other equation.</p>
+<p>We could say it like this: we don&#8217;t have populations, we just have a time-dependent probability distribution <img src="https://s0.wp.com/latex.php?latex=p+%3A+%5Cmathbb%7BR%7D+%5Cto+%5CDelta%5E%7Bn-1%7D+.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p : &#92;mathbb{R} &#92;to &#92;Delta^{n-1} ." class="latex" />  We can think of the simplex <img src="https://s0.wp.com/latex.php?latex=%5CDelta%5E%7Bn-1%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Delta^{n-1}" class="latex" /> as sitting in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n" class="latex" /> in the usual way, and pick a function <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> defined on a neighborhood of <img src="https://s0.wp.com/latex.php?latex=%5CDelta%5E%7Bn-1%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Delta^{n-1}," class="latex" /> and demand this version of the replicator equation:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bp%7D_i%28t%29+%3D+%28f_i%28p%28t%29%29+-+%5Coverline%7Bf%7D%28p%28t%29%29%29+%5C%3B+p_i%28t%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{p}_i(t) = (f_i(p(t)) - &#92;overline{f}(p(t))) &#92;; p_i(t) " class="latex" /></p>
+<p>where</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+f_i%28x%29+%3D+%5Cfrac%7B%5Cpartial+V%7D%7B%5Cpartial+x_i%7D%28x%29+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ f_i(x) = &#92;frac{&#92;partial V}{&#92;partial x_i}(x) }" class="latex" /></p>
+<p>and</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Coverline%7Bf%7D%28x%29+%3D+%5Csum_i+f_i%28x%29+x_i+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;overline{f}(x) = &#92;sum_i f_i(x) x_i } " class="latex" /></p>
+<p>The vector field <img src="https://s0.wp.com/latex.php?latex=v&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v" class="latex" /> with</p>
+<p><img src="https://s0.wp.com/latex.php?latex=v_i%28x%29+%3D+%28f_i%28x%29+-+%5Coverline%7Bf%7D%28x%29%29+%5C%3B+x_i+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v_i(x) = (f_i(x) - &#92;overline{f}(x)) &#92;; x_i " class="latex" /></p>
+<p>is tangent to the simplex, because <img src="https://s0.wp.com/latex.php?latex=f_i%28x%29+-+%5Coverline%7Bf%7D%28x%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_i(x) - &#92;overline{f}(x) " class="latex" /> is the gradient of <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> with its normal component subtracted out.  So our replicator equation</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bp%7D_i%28t%29+%3D+v_i%28p%28t%29%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{p}_i(t) = v_i(p(t)) " class="latex" /></p>
+<p>describes a point <img src="https://s0.wp.com/latex.php?latex=p%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(t)" class="latex" /> moving around on the simplex.</p>
+<p>In fact <img src="https://s0.wp.com/latex.php?latex=v&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v" class="latex" /> is just the gradient of <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> <i>restricted to the simplex</i>, and the replicator equation describes gradient flow <i>on the simplex</i>.</p>
+<p>The weird thing, from this point of view, is why we&#8217;re bothering to do such a roundabout procedure.  All we needed to get our replicator equation was a function <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> on the simplex. But what we do is this: arbitrarily extend <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> to a neighborhood of the simplex in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n," class="latex" /> then take its gradient to get a vector field on that neighborhood, and then subtract off the normal component and restrict the result to the simplex to get our vector field <img src="https://s0.wp.com/latex.php?latex=v.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v." class="latex" /></p>
+<p>The only reason for doing this that I see is that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=v_i%28x%29+%3D+%28f_i%28x%29+-+%5Coverline%7Bf%7D%28x%29%29%5C%3B+x_i+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v_i(x) = (f_i(x) - &#92;overline{f}(x))&#92;; x_i " class="latex" /></p>
+<p>looks like &#8220;excess fitness&#8221;, so in the end we get a result reminiscent of Fisher&#8217;s fundamental theorem.  But we don&#8217;t really have any populations, just probabilities, so the functions <img src="https://s0.wp.com/latex.php?latex=f_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_i" class="latex" /> really don&#8217;t have any significance by themselves anymore: only the <img src="https://s0.wp.com/latex.php?latex=v_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v_i" class="latex" /> do.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Marc Harper		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166855</link>
+
+		<dc:creator><![CDATA[Marc Harper]]></dc:creator>
+		<pubDate>Wed, 07 Oct 2020 00:30:21 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=28714#comment-166855</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734&quot;&gt;John Baez&lt;/a&gt;.
+
+(1) As you point out, we&#039;re talking about two different replicator equations. The reference and I are using an autonomous system of only the population proportions / probabilities that isn&#039;t necessarily derived from a Lotka-Volterra equation.
+
+For a combination of mathematical and conceptual reasons, from my experience with the literature, people tend to use models like
+
+&#8226; the replicator equation for &quot;very large&quot; or infinite populations, involving only proportions and with fitness functions that only depend on proportions
+&#8226; the Lotka-Volterra for finite yet &quot;continuous&quot; population sizes, so that derivatives or discrete dynamics systems can still be used
+&#8226; Markov processes such as the Moran and Wright-Fisher processes for &quot;more realistic&quot; populations (finite with integral population sizes)
+
+(Note I&#039;m not taking issue with your approach and I understand that it retains all the $latex P_i$ as finite and unbounded.)
+
+(2) Along a trajectory of my replicator equation the population proportions are all functions of a single independent variable, time. Since we&#039;re taking a derivative of a function $latex V$ along a trajectory of the system with respect to time, there&#039;s no freedom to choose a direction for the derivative, even though $latex V$ is multivariate when not constrained to the trajectory. So it is a directional derivative with direction determined by the dynamical system. IIUC this applies in the abstract to both our formulations, but your equation has both $latex P_i$ and $latex p_i$ (also functions of just time ultimately, and perhaps the directions are often the same up to normalization).
+
+In my case, the derivative of function $latex V$ (like the mean fitness) along a trajectory can then be understood as
+
+$latex \displaystyle{ \frac{dV}{dt} = \nabla V \cdot \dot{p} = \sum_i { \frac{\partial V}{\partial p_i} \frac{d p_i}{dt} } }$
+
+where the gradient is given by the partial derivatives (with all other variables constant) and $latex \dot{p}$ by the dynamical system. See [1] or a text like [2].
+
+[1] https://en.wikipedia.org/wiki/Lyapunov_function#Basic_Lyapunov_theorems_for_autonomous_systems
+[2] Hassan Khalil, &quot;Nonlinear Systems&quot;, just above Theorem 4.1]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734">John Baez</a>.</p>
+<p>(1) As you point out, we&#8217;re talking about two different replicator equations. The reference and I are using an autonomous system of only the population proportions / probabilities that isn&#8217;t necessarily derived from a Lotka-Volterra equation.</p>
+<p>For a combination of mathematical and conceptual reasons, from my experience with the literature, people tend to use models like</p>
+<p>&bull; the replicator equation for &#8220;very large&#8221; or infinite populations, involving only proportions and with fitness functions that only depend on proportions<br />
+&bull; the Lotka-Volterra for finite yet &#8220;continuous&#8221; population sizes, so that derivatives or discrete dynamics systems can still be used<br />
+&bull; Markov processes such as the Moran and Wright-Fisher processes for &#8220;more realistic&#8221; populations (finite with integral population sizes)</p>
+<p>(Note I&#8217;m not taking issue with your approach and I understand that it retains all the <img src="https://s0.wp.com/latex.php?latex=P_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P_i" class="latex" /> as finite and unbounded.)</p>
+<p>(2) Along a trajectory of my replicator equation the population proportions are all functions of a single independent variable, time. Since we&#8217;re taking a derivative of a function <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> along a trajectory of the system with respect to time, there&#8217;s no freedom to choose a direction for the derivative, even though <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> is multivariate when not constrained to the trajectory. So it is a directional derivative with direction determined by the dynamical system. IIUC this applies in the abstract to both our formulations, but your equation has both <img src="https://s0.wp.com/latex.php?latex=P_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P_i" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=p_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_i" class="latex" /> (also functions of just time ultimately, and perhaps the directions are often the same up to normalization).</p>
+<p>In my case, the derivative of function <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> (like the mean fitness) along a trajectory can then be understood as</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7BdV%7D%7Bdt%7D+%3D+%5Cnabla+V+%5Ccdot+%5Cdot%7Bp%7D+%3D+%5Csum_i+%7B+%5Cfrac%7B%5Cpartial+V%7D%7B%5Cpartial+p_i%7D+%5Cfrac%7Bd+p_i%7D%7Bdt%7D+%7D+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{dV}{dt} = &#92;nabla V &#92;cdot &#92;dot{p} = &#92;sum_i { &#92;frac{&#92;partial V}{&#92;partial p_i} &#92;frac{d p_i}{dt} } }" class="latex" /></p>
+<p>where the gradient is given by the partial derivatives (with all other variables constant) and <img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bp%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{p}" class="latex" /> by the dynamical system. See [1] or a text like [2].</p>
+<p>[1] <a href="https://en.wikipedia.org/wiki/Lyapunov_function#Basic_Lyapunov_theorems_for_autonomous_systems" rel="nofollow ugc">https://en.wikipedia.org/wiki/Lyapunov_function#Basic_Lyapunov_theorems_for_autonomous_systems</a><br />
+[2] Hassan Khalil, &#8220;Nonlinear Systems&#8221;, just above Theorem 4.1</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: John Baez		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166850</link>
+
+		<dc:creator><![CDATA[John Baez]]></dc:creator>
+		<pubDate>Tue, 06 Oct 2020 18:44:32 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=28714#comment-166850</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734&quot;&gt;John Baez&lt;/a&gt;.
+
+Your reply leaves me even more befuddled.
+
+1) In the framework I&#039;m describing in this post the population is never &quot;infinite&quot;.  The populations $latex P_i(t)$ are treated as valued in $latex (0,\infty).$  This is an idealization which works best for large populations, but using it we get the Lotka--Volterra equations and these equations are the starting-point of my post.    These equations make mathematical sense for any positive finite real populations $latex P_i(t)$, so we don&#039;t ask question like &quot;what does a population of 2.5 mean?&quot;---we just work with the math.   From these equations we derive the replicator equation
+
+$latex  \displaystyle{ \dot{p}_i(t) =  f_i(P(t)) p_i(t)  - \left( \sum_j f_j(P(t)) p_j(t) \right) p_i(t) } $
+
+for the probabilities $latex p_i(t)$.  But the replicator equation is not an autonomous system of differential equations for the probabilities, because it involves the populations as well, and many different choices of populations $latex P_1(t), \dots, P_n(t)$ give the same probabilities
+
+$latex \displaystyle{ p_i(t) = \frac{P_i(t)}{\sum_j P_j(t)} } $
+
+Thus, the time evolution of the probabilities does not depend on just the probabilities now, but also the choice of populations giving these probabilities.   Unless, of course, we make an extra assumption on the nature of the fitness functions $latex f_i$, such as that they depend only on the probabilities!  This assumption is equivalent to demanding
+
+$latex f_i(cP_1, \dots, cP_n) = f_i(P_1, \dots, P_n) $
+
+for all $latex c &#062; 0$ and all $latex P_1, \dots, P_n &#062; 0.$   This in turn is equivalent to
+
+$latex \displaystyle{ \sum_j \frac{\partial f_i}{\partial x_j}(x_1, \dots, x_n) = 0 }$
+
+for all $latex x_1, \dots, x_n &#062; 0.$
+
+2) A partial derivative with respect to one coordinate only makes sense if we know what other coordinate functions are being held constant: the answer depends on that choice.  If we have a function $latex V$ defined on $latex \mathbb{R}^n$ or the positive orthant,
+
+$latex \displaystyle{ \frac{\partial V}{\partial x_i} } $
+
+makes sense because implicitly we are holding all the other $latex n-1$ coordinates $latex x_1, \dots, x_{i-1}, x_{i+1}, \dots, x_n$ constant.   If we have a function $latex V$ defined only on the simplex, this partial derivative becomes ambiguous, since it&#039;s impossible to change $latex x_i$ without changing some of the other coordinates.   I can imagine ways to disambiguate it, e.g.: take the directional derivative in the direction on the simplex that makes the smallest angle to the vector pointing in the $latex x_i$ direction in $latex \mathbb{R}^n.$
+
+Theorem 19.5.1 in &lt;i&gt;Evolutionary Games and Population Dynamics&lt;/i&gt; does not address either of these issues, making their proof (and yours) very hard to interpret.   I&#039;ve tried a number of ways to get it make sense, and they keep breaking down when I try to write up a proof.  Right now I have yet another way in mind, but I&#039;m nervous.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734">John Baez</a>.</p>
+<p>Your reply leaves me even more befuddled.</p>
+<p>1) In the framework I&#8217;m describing in this post the population is never &#8220;infinite&#8221;.  The populations <img src="https://s0.wp.com/latex.php?latex=P_i%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P_i(t)" class="latex" /> are treated as valued in <img src="https://s0.wp.com/latex.php?latex=%280%2C%5Cinfty%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(0,&#92;infty)." class="latex" />  This is an idealization which works best for large populations, but using it we get the Lotka&#8211;Volterra equations and these equations are the starting-point of my post.    These equations make mathematical sense for any positive finite real populations <img src="https://s0.wp.com/latex.php?latex=P_i%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P_i(t)" class="latex" />, so we don&#8217;t ask question like &#8220;what does a population of 2.5 mean?&#8221;&#8212;we just work with the math.   From these equations we derive the replicator equation</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cdot%7Bp%7D_i%28t%29+%3D++f_i%28P%28t%29%29+p_i%28t%29++-+%5Cleft%28+%5Csum_j+f_j%28P%28t%29%29+p_j%28t%29+%5Cright%29+p_i%28t%29+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;dot{p}_i(t) =  f_i(P(t)) p_i(t)  - &#92;left( &#92;sum_j f_j(P(t)) p_j(t) &#92;right) p_i(t) } " class="latex" /></p>
+<p>for the probabilities <img src="https://s0.wp.com/latex.php?latex=p_i%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_i(t)" class="latex" />.  But the replicator equation is not an autonomous system of differential equations for the probabilities, because it involves the populations as well, and many different choices of populations <img src="https://s0.wp.com/latex.php?latex=P_1%28t%29%2C+%5Cdots%2C+P_n%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P_1(t), &#92;dots, P_n(t)" class="latex" /> give the same probabilities</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+p_i%28t%29+%3D+%5Cfrac%7BP_i%28t%29%7D%7B%5Csum_j+P_j%28t%29%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ p_i(t) = &#92;frac{P_i(t)}{&#92;sum_j P_j(t)} } " class="latex" /></p>
+<p>Thus, the time evolution of the probabilities does not depend on just the probabilities now, but also the choice of populations giving these probabilities.   Unless, of course, we make an extra assumption on the nature of the fitness functions <img src="https://s0.wp.com/latex.php?latex=f_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_i" class="latex" />, such as that they depend only on the probabilities!  This assumption is equivalent to demanding</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f_i%28cP_1%2C+%5Cdots%2C+cP_n%29+%3D+f_i%28P_1%2C+%5Cdots%2C+P_n%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_i(cP_1, &#92;dots, cP_n) = f_i(P_1, &#92;dots, P_n) " class="latex" /></p>
+<p>for all <img src="https://s0.wp.com/latex.php?latex=c+%3E+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="c &gt; 0" class="latex" /> and all <img src="https://s0.wp.com/latex.php?latex=P_1%2C+%5Cdots%2C+P_n+%3E+0.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P_1, &#92;dots, P_n &gt; 0." class="latex" />   This in turn is equivalent to</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Csum_j+%5Cfrac%7B%5Cpartial+f_i%7D%7B%5Cpartial+x_j%7D%28x_1%2C+%5Cdots%2C+x_n%29+%3D+0+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;sum_j &#92;frac{&#92;partial f_i}{&#92;partial x_j}(x_1, &#92;dots, x_n) = 0 }" class="latex" /></p>
+<p>for all <img src="https://s0.wp.com/latex.php?latex=x_1%2C+%5Cdots%2C+x_n+%3E+0.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1, &#92;dots, x_n &gt; 0." class="latex" /></p>
+<p>2) A partial derivative with respect to one coordinate only makes sense if we know what other coordinate functions are being held constant: the answer depends on that choice.  If we have a function <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> defined on <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n" class="latex" /> or the positive orthant,</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7B%5Cpartial+V%7D%7B%5Cpartial+x_i%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{&#92;partial V}{&#92;partial x_i} } " class="latex" /></p>
+<p>makes sense because implicitly we are holding all the other <img src="https://s0.wp.com/latex.php?latex=n-1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n-1" class="latex" /> coordinates <img src="https://s0.wp.com/latex.php?latex=x_1%2C+%5Cdots%2C+x_%7Bi-1%7D%2C+x_%7Bi%2B1%7D%2C+%5Cdots%2C+x_n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_1, &#92;dots, x_{i-1}, x_{i+1}, &#92;dots, x_n" class="latex" /> constant.   If we have a function <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> defined only on the simplex, this partial derivative becomes ambiguous, since it&#8217;s impossible to change <img src="https://s0.wp.com/latex.php?latex=x_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_i" class="latex" /> without changing some of the other coordinates.   I can imagine ways to disambiguate it, e.g.: take the directional derivative in the direction on the simplex that makes the smallest angle to the vector pointing in the <img src="https://s0.wp.com/latex.php?latex=x_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_i" class="latex" /> direction in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n." class="latex" /></p>
+<p>Theorem 19.5.1 in <i>Evolutionary Games and Population Dynamics</i> does not address either of these issues, making their proof (and yours) very hard to interpret.   I&#8217;ve tried a number of ways to get it make sense, and they keep breaking down when I try to write up a proof.  Right now I have yet another way in mind, but I&#8217;m nervous.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Marc Harper		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166838</link>
+
+		<dc:creator><![CDATA[Marc Harper]]></dc:creator>
+		<pubDate>Tue, 06 Oct 2020 04:48:38 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=28714#comment-166838</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734&quot;&gt;John Baez&lt;/a&gt;.
+
+For the replicator equation I assumed that the population is infinite and that $latex \sum_i{p_i} = 1$. (Above I used $latex x_i$ from the reference which was intended to match your $latex p_i$.) Note if we start from the replicator equation, we have that
+$latex \sum_i{\dot{p}_i} = 0$
+(even if we don&#039;t assume the proportions sum to 1), so the sum has to be constant and preserved along trajectories (the replicator equation is &quot;forward-invariant&quot;). Anyway in my case only the proportions appear.
+
+As for $latex \frac{\partial V}{\partial p_i}$ ... I think they are just the formal partial derivatives (assuming variable independence) within the context of the multivariate chain rule for $latex \frac{dV}{dt}$ where all the $latex p_i$ are implicitly functions of $latex t$. IIUC we don&#039;t need to consider the impact of holding some variables constant in this case.  If we knew $latex p_i$ explicitly as functions of $latex t$ (satisfying constraints), it wouldn&#039;t matter if we used the chain rule as above or rewrote $latex V$ to a function of $latex t$ and then took the derivative.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734">John Baez</a>.</p>
+<p>For the replicator equation I assumed that the population is infinite and that <img src="https://s0.wp.com/latex.php?latex=%5Csum_i%7Bp_i%7D+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_i{p_i} = 1" class="latex" />. (Above I used <img src="https://s0.wp.com/latex.php?latex=x_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_i" class="latex" /> from the reference which was intended to match your <img src="https://s0.wp.com/latex.php?latex=p_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_i" class="latex" />.) Note if we start from the replicator equation, we have that<br />
+<img src="https://s0.wp.com/latex.php?latex=%5Csum_i%7B%5Cdot%7Bp%7D_i%7D+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_i{&#92;dot{p}_i} = 0" class="latex" /><br />
+(even if we don&#8217;t assume the proportions sum to 1), so the sum has to be constant and preserved along trajectories (the replicator equation is &#8220;forward-invariant&#8221;). Anyway in my case only the proportions appear.</p>
+<p>As for <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial+V%7D%7B%5Cpartial+p_i%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial V}{&#92;partial p_i}" class="latex" /> &#8230; I think they are just the formal partial derivatives (assuming variable independence) within the context of the multivariate chain rule for <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7BdV%7D%7Bdt%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{dV}{dt}" class="latex" /> where all the <img src="https://s0.wp.com/latex.php?latex=p_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_i" class="latex" /> are implicitly functions of <img src="https://s0.wp.com/latex.php?latex=t&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t" class="latex" />. IIUC we don&#8217;t need to consider the impact of holding some variables constant in this case.  If we knew <img src="https://s0.wp.com/latex.php?latex=p_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_i" class="latex" /> explicitly as functions of <img src="https://s0.wp.com/latex.php?latex=t&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t" class="latex" /> (satisfying constraints), it wouldn&#8217;t matter if we used the chain rule as above or rewrote <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> to a function of <img src="https://s0.wp.com/latex.php?latex=t&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t" class="latex" /> and then took the derivative.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: John Baez		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166833</link>
+
+		<dc:creator><![CDATA[John Baez]]></dc:creator>
+		<pubDate>Mon, 05 Oct 2020 20:08:54 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=28714#comment-166833</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734&quot;&gt;John Baez&lt;/a&gt;.
+
+I&#039;m still confused, Marc, about whether the $latex x_i$ in your argument are supposed to be probabilities or populations.  That is: are they constrained to sum to 1, or not?
+
+In your calculation you say they sum to 1, so let&#039;s assume that.
+
+If they are constrained to sum to 1, I&#039;m not sure what
+
+$latex \displaystyle{ \frac{\partial V}{\partial x_i} }$
+
+means, since we can&#039;t change just one $latex x_i$ while holding the rest fixed.   Maybe $latex V$ is defined on the whole orthant
+
+$latex \{(x_1, \dots, x_n) : x_i &#062; 0 \} $
+
+so we know what
+
+$latex \displaystyle{ \frac{\partial V}{\partial x_i} }$
+
+means, but then in your calculation below they sum to 1?
+
+This would solves some problems, but not all, since when we derive the replicator equation from the Lotka--Volterra equation, the right-hand side of the replicator equation actually involves not just the &lt;em&gt;probabilities&lt;/em&gt; but actually the &lt;em&gt;populations&lt;/em&gt;:
+
+$latex \dot{p}_i = (f_i(P) - \overline{f}(P)) p_i $
+
+(Here I&#039;m using $latex p_i$ for probabilities and $latex P_i$ for populations.)  So my next question is, when you write
+
+$latex \displaystyle{ \frac{\partial V}{\partial x_i} }$
+
+is this partial derivative being evaluated at $latex p$ (in the simplex) or $latex P$ (in the orthant)?]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734">John Baez</a>.</p>
+<p>I&#8217;m still confused, Marc, about whether the <img src="https://s0.wp.com/latex.php?latex=x_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_i" class="latex" /> in your argument are supposed to be probabilities or populations.  That is: are they constrained to sum to 1, or not?</p>
+<p>In your calculation you say they sum to 1, so let&#8217;s assume that.</p>
+<p>If they are constrained to sum to 1, I&#8217;m not sure what</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7B%5Cpartial+V%7D%7B%5Cpartial+x_i%7D+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{&#92;partial V}{&#92;partial x_i} }" class="latex" /></p>
+<p>means, since we can&#8217;t change just one <img src="https://s0.wp.com/latex.php?latex=x_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_i" class="latex" /> while holding the rest fixed.   Maybe <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> is defined on the whole orthant</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5C%7B%28x_1%2C+%5Cdots%2C+x_n%29+%3A+x_i+%3E+0+%5C%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{(x_1, &#92;dots, x_n) : x_i &gt; 0 &#92;} " class="latex" /></p>
+<p>so we know what</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7B%5Cpartial+V%7D%7B%5Cpartial+x_i%7D+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{&#92;partial V}{&#92;partial x_i} }" class="latex" /></p>
+<p>means, but then in your calculation below they sum to 1?</p>
+<p>This would solves some problems, but not all, since when we derive the replicator equation from the Lotka&#8211;Volterra equation, the right-hand side of the replicator equation actually involves not just the <em>probabilities</em> but actually the <em>populations</em>:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bp%7D_i+%3D+%28f_i%28P%29+-+%5Coverline%7Bf%7D%28P%29%29+p_i+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{p}_i = (f_i(P) - &#92;overline{f}(P)) p_i " class="latex" /></p>
+<p>(Here I&#8217;m using <img src="https://s0.wp.com/latex.php?latex=p_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_i" class="latex" /> for probabilities and <img src="https://s0.wp.com/latex.php?latex=P_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P_i" class="latex" /> for populations.)  So my next question is, when you write</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7B%5Cpartial+V%7D%7B%5Cpartial+x_i%7D+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{&#92;partial V}{&#92;partial x_i} }" class="latex" /></p>
+<p>is this partial derivative being evaluated at <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> (in the simplex) or <img src="https://s0.wp.com/latex.php?latex=P&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P" class="latex" /> (in the orthant)?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: John Baez		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166759</link>
+
+		<dc:creator><![CDATA[John Baez]]></dc:creator>
+		<pubDate>Thu, 01 Oct 2020 19:38:29 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=28714#comment-166759</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734&quot;&gt;John Baez&lt;/a&gt;.
+
+Thanks for your detailed reply---this is really helpful!  I&#039;ll try to explain some of this stuff in a nice way.
+
+I fixed the typos, and I&#039;m happy to do so because it gives me a chance to work through the equations in detail.
+
+One thing I can&#039;t fix is this:
+
+Expert blog-commenters know to click &quot;Reply&quot;, not on the comment they&#039;re replying to, but on the comment &lt;i&gt;it&lt;/i&gt; was replying to.
+
+If you do this, you create a comment that&#039;s the same width as the comment you&#039;re replying to.    If you don&#039;t do this, the comment thread gets skinnier and skinnier, which is especially unpleasant for comments with equations.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734">John Baez</a>.</p>
+<p>Thanks for your detailed reply&#8212;this is really helpful!  I&#8217;ll try to explain some of this stuff in a nice way.</p>
+<p>I fixed the typos, and I&#8217;m happy to do so because it gives me a chance to work through the equations in detail.</p>
+<p>One thing I can&#8217;t fix is this:</p>
+<p>Expert blog-commenters know to click &#8220;Reply&#8221;, not on the comment they&#8217;re replying to, but on the comment <i>it</i> was replying to.</p>
+<p>If you do this, you create a comment that&#8217;s the same width as the comment you&#8217;re replying to.    If you don&#8217;t do this, the comment thread gets skinnier and skinnier, which is especially unpleasant for comments with equations.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: leebloomquist		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166746</link>
+
+		<dc:creator><![CDATA[leebloomquist]]></dc:creator>
+		<pubDate>Thu, 01 Oct 2020 09:52:00 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=28714#comment-166746</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166727&quot;&gt;ecoquant&lt;/a&gt;.
+
+&#039;fitness&#039;--
+
+Maybe a biologist would include learning as a part of fitness.
+
+There is a laboratory experiment called &#039;probability learning&#039; in which the laboratory animal forages optimally in the presence of changes in probability.
+
+The set-up is a number of doors and a very hungry rat. The door to its cage opens. He faces in front of him a number of closed doors. Behind one of these closed doors there is food. If he guess correctly and goes to the correct door, the door will open when he gets there, and there will be food.
+
+(By the way, all the other doors will open as well, showing him that there was food only behind the door that he chose.)
+
+Now let&#039;s say that he chooses incorrectly. The door he&#039;s chosen will open, but there will be no food behind it. All of the other doors will open as well. And at that point, the rat sees the door he should have chosen, behind which there is food. But it is not the particular door that he did choose. Again, there is food behind only one of the doors.
+
+Well, the rat ultimately goes back to his cage for water or to sleep. The door to his cage closes behind him.
+
+And then, after some amount of time, the same situation repeats. The door to his cage opens and he has to make another choice between the closed doors.
+
+Will he choose correctly or not?
+
+(I never got involved in one of these experiments, and I know there may be ethical issues here about starving a rat.)
+
+Little did the rat know that the experimenter had a random number generator and was randomly putting food behind, say, door A 75 percent of the time, and behind door B 25 percent of the time.
+
+When all is said and done, the rat will have chosen door A 75 percent of the time and door B 25 percent of the time. He has &#039;learned the probability&#039; and hence the name of the experiment: &#039;probability learning.&#039;
+
+The equation goes like this:
+
+Say the probability of the experimenter putting food behind a particular door is x.
+
+And the probability of the rat choosing that particular door is y.
+
+Then with a probability of (1-x) the experimenter will put the food behind some door other than that particular door.
+
+And with a probability of (1-y) the rat will choose some door other than that particular door.
+
+For each door, the model for the equation is that the rat will associate two different kinds of regret:
+
+
+Regret at having chosen that particular door when he sees that the food occurred at some other door. Which for a particular door means that the rat will experience this kind of regret with probability &#039;y(1-x)&#039;
+Regret at having NOT chosen that particular door when he has chosen some other door, and he sees that the food DID occur at that door. Which for a particular door means the rat will experience this kind of regret with probability &#039;(1-y)x&#039;&#039;
+
+
+For each door, these two different kinds of regret in the model oppose each other in &#039;force&#039;, and the solution will be when these two forces of regret balance each other.
+
+Here is the equation that the rat appears to solve unconsciously:
+
+y(1-x)=x(1-y)
+
+For each door behind which there is food, the answer is x=y.
+
+Now I have to refer you to Randy Gallistel&#039;s book &#039;The Organization of Learning,&#039; chapter 11.  There he reports a related foraging experiment with fish. But now instead of an individual animal in a laboratory, the experiment occurs in a fish pond.
+
+Say there are two feeding tubes, out of which prey fish are sent with some probability by the experimenter.
+
+Say that in a chosen window of time, the experimenter sends 7 prey fish out of tube A and 3 prey fish out of tube B. And, say that waiting for this prey is a school of 10 predator fish.
+
+What happens is this:
+
+7 of the predator fish will compete for prey at door A.
+
+While 3 of the predator fish will compete for prey at door B.
+
+It&#039;s a Nash equilibirum.
+
+No single predator fish can improve his chances for a prey fish by going to the other door. Very rarely is a predator fish observed to change doors.
+
+A model for the result is this:
+
+Regret #2, above, becomes dominated by a fear of the competitive group. Within its current group, a fish is probably experiencing some kind of order.  While joining the other group is an unknown. Better the devil you know than the one you don&#039;t, I guess.
+
+Now substitute a dollar bill of cost for each predator fish and a dollar bill of benefit for each prey fish, and substitute for the feeding tubes-- projects wit positive cash flow for financial investment. &#039;Optimal capital budgeting&#039; would also be this kind Nash equilibirum. No dollar bill of cost could improve its payoff by changing to a different project for investment.
+
+Improved fitness relative to these types of models might come from more evolved imagination and then language, where stories could be told and the language enables more and more things to be imagined, more and more things to regret, doubt and fear.
+
+But then technology enters and the wilderness starts to be eliminated on a limited planet. Highly tuned imaginative story telling that supports ever increasing regret, doubt and fear about more and more things becomes a signal of reduced fitness, and some way of evolving or learning cooperation seems needed for survival.
+
+What does seem evident to more and more people today is that human fitness on a limited planet requires reality-based cooperation rather than more and more highly evolved fantasy in story telling, story telling that&#039;s clearly intended to generate ever increasing levels of doubt and fear.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166727">ecoquant</a>.</p>
+<p>&#8216;fitness&#8217;&#8211;</p>
+<p>Maybe a biologist would include learning as a part of fitness.</p>
+<p>There is a laboratory experiment called &#8216;probability learning&#8217; in which the laboratory animal forages optimally in the presence of changes in probability.</p>
+<p>The set-up is a number of doors and a very hungry rat. The door to its cage opens. He faces in front of him a number of closed doors. Behind one of these closed doors there is food. If he guess correctly and goes to the correct door, the door will open when he gets there, and there will be food.</p>
+<p>(By the way, all the other doors will open as well, showing him that there was food only behind the door that he chose.)</p>
+<p>Now let&#8217;s say that he chooses incorrectly. The door he&#8217;s chosen will open, but there will be no food behind it. All of the other doors will open as well. And at that point, the rat sees the door he should have chosen, behind which there is food. But it is not the particular door that he did choose. Again, there is food behind only one of the doors.</p>
+<p>Well, the rat ultimately goes back to his cage for water or to sleep. The door to his cage closes behind him.</p>
+<p>And then, after some amount of time, the same situation repeats. The door to his cage opens and he has to make another choice between the closed doors.</p>
+<p>Will he choose correctly or not?</p>
+<p>(I never got involved in one of these experiments, and I know there may be ethical issues here about starving a rat.)</p>
+<p>Little did the rat know that the experimenter had a random number generator and was randomly putting food behind, say, door A 75 percent of the time, and behind door B 25 percent of the time.</p>
+<p>When all is said and done, the rat will have chosen door A 75 percent of the time and door B 25 percent of the time. He has &#8216;learned the probability&#8217; and hence the name of the experiment: &#8216;probability learning.&#8217;</p>
+<p>The equation goes like this:</p>
+<p>Say the probability of the experimenter putting food behind a particular door is x.</p>
+<p>And the probability of the rat choosing that particular door is y.</p>
+<p>Then with a probability of (1-x) the experimenter will put the food behind some door other than that particular door.</p>
+<p>And with a probability of (1-y) the rat will choose some door other than that particular door.</p>
+<p>For each door, the model for the equation is that the rat will associate two different kinds of regret:</p>
+<p>Regret at having chosen that particular door when he sees that the food occurred at some other door. Which for a particular door means that the rat will experience this kind of regret with probability &#8216;y(1-x)&#8217;<br />
+Regret at having NOT chosen that particular door when he has chosen some other door, and he sees that the food DID occur at that door. Which for a particular door means the rat will experience this kind of regret with probability &#8216;(1-y)x&#8221;</p>
+<p>For each door, these two different kinds of regret in the model oppose each other in &#8216;force&#8217;, and the solution will be when these two forces of regret balance each other.</p>
+<p>Here is the equation that the rat appears to solve unconsciously:</p>
+<p>y(1-x)=x(1-y)</p>
+<p>For each door behind which there is food, the answer is x=y.</p>
+<p>Now I have to refer you to Randy Gallistel&#8217;s book &#8216;The Organization of Learning,&#8217; chapter 11.  There he reports a related foraging experiment with fish. But now instead of an individual animal in a laboratory, the experiment occurs in a fish pond.</p>
+<p>Say there are two feeding tubes, out of which prey fish are sent with some probability by the experimenter.</p>
+<p>Say that in a chosen window of time, the experimenter sends 7 prey fish out of tube A and 3 prey fish out of tube B. And, say that waiting for this prey is a school of 10 predator fish.</p>
+<p>What happens is this:</p>
+<p>7 of the predator fish will compete for prey at door A.</p>
+<p>While 3 of the predator fish will compete for prey at door B.</p>
+<p>It&#8217;s a Nash equilibirum.</p>
+<p>No single predator fish can improve his chances for a prey fish by going to the other door. Very rarely is a predator fish observed to change doors.</p>
+<p>A model for the result is this:</p>
+<p>Regret #2, above, becomes dominated by a fear of the competitive group. Within its current group, a fish is probably experiencing some kind of order.  While joining the other group is an unknown. Better the devil you know than the one you don&#8217;t, I guess.</p>
+<p>Now substitute a dollar bill of cost for each predator fish and a dollar bill of benefit for each prey fish, and substitute for the feeding tubes&#8211; projects wit positive cash flow for financial investment. &#8216;Optimal capital budgeting&#8217; would also be this kind Nash equilibirum. No dollar bill of cost could improve its payoff by changing to a different project for investment.</p>
+<p>Improved fitness relative to these types of models might come from more evolved imagination and then language, where stories could be told and the language enables more and more things to be imagined, more and more things to regret, doubt and fear.</p>
+<p>But then technology enters and the wilderness starts to be eliminated on a limited planet. Highly tuned imaginative story telling that supports ever increasing regret, doubt and fear about more and more things becomes a signal of reduced fitness, and some way of evolving or learning cooperation seems needed for survival.</p>
+<p>What does seem evident to more and more people today is that human fitness on a limited planet requires reality-based cooperation rather than more and more highly evolved fantasy in story telling, story telling that&#8217;s clearly intended to generate ever increasing levels of doubt and fear.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Marc Harper		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166740</link>
+
+		<dc:creator><![CDATA[Marc Harper]]></dc:creator>
+		<pubDate>Thu, 01 Oct 2020 05:46:00 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=28714#comment-166740</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734&quot;&gt;John Baez&lt;/a&gt;.
+
+Yes that proof isn&#039;t the most enlightening / well explained -- they reuse the dummy variable $latex x$ in a confusing way as you&#039;ve noted.
+
+FFT can also be shown directly as follows.
+
+Assuming that $latex f_i = \frac{\partial V}{\partial x_i}$ and that $latex x$ follows the replicator equation, using the chain rule we have that
+
+$latex \begin{array}{ccl} \displaystyle{ \frac{dV}{dt}} &#038;=&#038; \displaystyle{ \sum_i{ \frac{\partial V}{\partial x_i} \dot{x}_i } }
+\\ \\
+&#038;=&#038; \displaystyle{ \sum{f_i \dot{x}_i} } 
+\\ \\
+&#038;=&#038; \displaystyle{ \sum{f_i \left(x_i (f_i - \bar{f}) \right)} }
+\\ \\
+&#038;=&#038; \displaystyle{ \sum{x_i \left(f_i - \bar{f} \right)^2} }
+\end{array} $
+
+The last step is bit tricky and follows because we can subtract
+
+$latex \displaystyle{ 0 = \sum{x_i \left(f_i - \bar{f} \right) \bar{f}} }$
+
+That sum is zero because $latex \bar{f}$ factors out (doesn&#039;t depend on i) and so
+
+$latex \displaystyle{ \bar{f} \sum_i x_i \left(f_i - \bar{f} \right) = \bar{f} \left((\sum_i x_i f_i) - (\sum_i x_i) \bar{f} \right) }$
+
+and since $latex \sum_i {x_i} = 1$ and $latex \bar{f} = \sum_i {x_i f_i},$ we have
+
+$latex \bar{f} (\bar{f} - \bar{f}) = 0$
+
+So FFT works for the gradient because of the chain rule. In the text Theorem 7.8.1 (on page 82) does this calculation for the special case that $latex f(x) = Ax$ for a symmetric matrix $latex A$.
+
+More generally, if one looks at the mean fitness for an arbitrary $latex f$, there&#039;s an extra term $latex \langle \frac{df}{dt} \rangle$ (like in Wakeham&#039;s article). Why? If we start instead with a vector-valued function $latex V$ and ask about the time derivative of its mean, we have that
+
+$latex \dot{x \cdot V} = \dot{x} \cdot{V} + x \cdot \dot{V}$
+
+The right most term can be manipulated into $latex \dot{x} \cdot ( x \circ \nabla V)$ where $latex \circ$ denotes the element-wise product (Hadamard product). The two terms are equal when $latex V = x \circ \nabla V$ and it&#039;s easy to see that happens if $latex V = A x$ for a symmetric matrix $latex A$. That makes the two terms of  $latex \dot{x \cdot V}$ equal so we get twice the variance (e.g. the extra term in FFT is just another copy of the variance). Alternatively, we can start with $latex V$ as the half-mean fitness so that the time derivative is just the variance.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734">John Baez</a>.</p>
+<p>Yes that proof isn&#8217;t the most enlightening / well explained &#8212; they reuse the dummy variable <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> in a confusing way as you&#8217;ve noted.</p>
+<p>FFT can also be shown directly as follows.</p>
+<p>Assuming that <img src="https://s0.wp.com/latex.php?latex=f_i+%3D+%5Cfrac%7B%5Cpartial+V%7D%7B%5Cpartial+x_i%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_i = &#92;frac{&#92;partial V}{&#92;partial x_i}" class="latex" /> and that <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> follows the replicator equation, using the chain rule we have that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbegin%7Barray%7D%7Bccl%7D+%5Cdisplaystyle%7B+%5Cfrac%7BdV%7D%7Bdt%7D%7D+%26%3D%26+%5Cdisplaystyle%7B+%5Csum_i%7B+%5Cfrac%7B%5Cpartial+V%7D%7B%5Cpartial+x_i%7D+%5Cdot%7Bx%7D_i+%7D+%7D+%5C%5C+%5C%5C+%26%3D%26+%5Cdisplaystyle%7B+%5Csum%7Bf_i+%5Cdot%7Bx%7D_i%7D+%7D++%5C%5C+%5C%5C+%26%3D%26+%5Cdisplaystyle%7B+%5Csum%7Bf_i+%5Cleft%28x_i+%28f_i+-+%5Cbar%7Bf%7D%29+%5Cright%29%7D+%7D+%5C%5C+%5C%5C+%26%3D%26+%5Cdisplaystyle%7B+%5Csum%7Bx_i+%5Cleft%28f_i+-+%5Cbar%7Bf%7D+%5Cright%29%5E2%7D+%7D+%5Cend%7Barray%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;begin{array}{ccl} &#92;displaystyle{ &#92;frac{dV}{dt}} &amp;=&amp; &#92;displaystyle{ &#92;sum_i{ &#92;frac{&#92;partial V}{&#92;partial x_i} &#92;dot{x}_i } } &#92;&#92; &#92;&#92; &amp;=&amp; &#92;displaystyle{ &#92;sum{f_i &#92;dot{x}_i} }  &#92;&#92; &#92;&#92; &amp;=&amp; &#92;displaystyle{ &#92;sum{f_i &#92;left(x_i (f_i - &#92;bar{f}) &#92;right)} } &#92;&#92; &#92;&#92; &amp;=&amp; &#92;displaystyle{ &#92;sum{x_i &#92;left(f_i - &#92;bar{f} &#92;right)^2} } &#92;end{array} " class="latex" /></p>
+<p>The last step is bit tricky and follows because we can subtract</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+0+%3D+%5Csum%7Bx_i+%5Cleft%28f_i+-+%5Cbar%7Bf%7D+%5Cright%29+%5Cbar%7Bf%7D%7D+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ 0 = &#92;sum{x_i &#92;left(f_i - &#92;bar{f} &#92;right) &#92;bar{f}} }" class="latex" /></p>
+<p>That sum is zero because <img src="https://s0.wp.com/latex.php?latex=%5Cbar%7Bf%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;bar{f}" class="latex" /> factors out (doesn&#8217;t depend on i) and so</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cbar%7Bf%7D+%5Csum_i+x_i+%5Cleft%28f_i+-+%5Cbar%7Bf%7D+%5Cright%29+%3D+%5Cbar%7Bf%7D+%5Cleft%28%28%5Csum_i+x_i+f_i%29+-+%28%5Csum_i+x_i%29+%5Cbar%7Bf%7D+%5Cright%29+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;bar{f} &#92;sum_i x_i &#92;left(f_i - &#92;bar{f} &#92;right) = &#92;bar{f} &#92;left((&#92;sum_i x_i f_i) - (&#92;sum_i x_i) &#92;bar{f} &#92;right) }" class="latex" /></p>
+<p>and since <img src="https://s0.wp.com/latex.php?latex=%5Csum_i+%7Bx_i%7D+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_i {x_i} = 1" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=%5Cbar%7Bf%7D+%3D+%5Csum_i+%7Bx_i+f_i%7D%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;bar{f} = &#92;sum_i {x_i f_i}," class="latex" /> we have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cbar%7Bf%7D+%28%5Cbar%7Bf%7D+-+%5Cbar%7Bf%7D%29+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;bar{f} (&#92;bar{f} - &#92;bar{f}) = 0" class="latex" /></p>
+<p>So FFT works for the gradient because of the chain rule. In the text Theorem 7.8.1 (on page 82) does this calculation for the special case that <img src="https://s0.wp.com/latex.php?latex=f%28x%29+%3D+Ax&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f(x) = Ax" class="latex" /> for a symmetric matrix <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" />.</p>
+<p>More generally, if one looks at the mean fitness for an arbitrary <img src="https://s0.wp.com/latex.php?latex=f&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f" class="latex" />, there&#8217;s an extra term <img src="https://s0.wp.com/latex.php?latex=%5Clangle+%5Cfrac%7Bdf%7D%7Bdt%7D+%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle &#92;frac{df}{dt} &#92;rangle" class="latex" /> (like in Wakeham&#8217;s article). Why? If we start instead with a vector-valued function <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> and ask about the time derivative of its mean, we have that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bx+%5Ccdot+V%7D+%3D+%5Cdot%7Bx%7D+%5Ccdot%7BV%7D+%2B+x+%5Ccdot+%5Cdot%7BV%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{x &#92;cdot V} = &#92;dot{x} &#92;cdot{V} + x &#92;cdot &#92;dot{V}" class="latex" /></p>
+<p>The right most term can be manipulated into <img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bx%7D+%5Ccdot+%28+x+%5Ccirc+%5Cnabla+V%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{x} &#92;cdot ( x &#92;circ &#92;nabla V)" class="latex" /> where <img src="https://s0.wp.com/latex.php?latex=%5Ccirc&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;circ" class="latex" /> denotes the element-wise product (Hadamard product). The two terms are equal when <img src="https://s0.wp.com/latex.php?latex=V+%3D+x+%5Ccirc+%5Cnabla+V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V = x &#92;circ &#92;nabla V" class="latex" /> and it&#8217;s easy to see that happens if <img src="https://s0.wp.com/latex.php?latex=V+%3D+A+x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V = A x" class="latex" /> for a symmetric matrix <img src="https://s0.wp.com/latex.php?latex=A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="A" class="latex" />. That makes the two terms of  <img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bx+%5Ccdot+V%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{x &#92;cdot V}" class="latex" /> equal so we get twice the variance (e.g. the extra term in FFT is just another copy of the variance). Alternatively, we can start with <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> as the half-mean fitness so that the time derivative is just the variance.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: John Baez		</title>
+		<link>https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166734</link>
+
+		<dc:creator><![CDATA[John Baez]]></dc:creator>
+		<pubDate>Thu, 01 Oct 2020 00:57:48 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=28714#comment-166734</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166704&quot;&gt;John Baez&lt;/a&gt;.
+
+I&#039;m finding Theorem 19.5.1 a bit frustrating.  The statement gives two mutually incompatible equations involving $latex \dot{x}_i:$
+
+$latex \dot{x}_i = f_i(\mathbf{x}) = \frac{\partial V}{\partial x_i} $
+
+and
+
+$latex \dot{x}_i = \hat{f}_i(\mathbf{x}) = x_i (f_i(\mathbf{x}) - \overline{f}(\mathbf{x})) $
+
+My guess is that the first equation for $latex \dot{x}_i$ is &quot;just for fun&quot;, not something we should use, though we &lt;em&gt;should&lt;/em&gt; use
+
+$latex f_i(\mathbf{x}) = \frac{\partial V}{\partial x_i} $
+
+The second equation for $latex \dot{x}_i$ is the one actually used in the proof.
+
+Is that right?
+
+Then in (19.18) below, $latex \dot{\mathbf{x}}$ is the time derivative of a point moving around on the probability simplex, defined to have components
+
+$latex \dot{x}_i = \hat{f}_i(\mathbf{x}) = x_i (f_i(\mathbf{x}) - \overline{f}(\mathbf{x}) $
+
+Right?]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2020/09/29/fishers-fundamental-theorem-part-2/#comment-166704">John Baez</a>.</p>
+<p>I&#8217;m finding Theorem 19.5.1 a bit frustrating.  The statement gives two mutually incompatible equations involving <img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bx%7D_i%3A&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{x}_i:" class="latex" /></p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bx%7D_i+%3D+f_i%28%5Cmathbf%7Bx%7D%29+%3D+%5Cfrac%7B%5Cpartial+V%7D%7B%5Cpartial+x_i%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{x}_i = f_i(&#92;mathbf{x}) = &#92;frac{&#92;partial V}{&#92;partial x_i} " class="latex" /></p>
+<p>and</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bx%7D_i+%3D+%5Chat%7Bf%7D_i%28%5Cmathbf%7Bx%7D%29+%3D+x_i+%28f_i%28%5Cmathbf%7Bx%7D%29+-+%5Coverline%7Bf%7D%28%5Cmathbf%7Bx%7D%29%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{x}_i = &#92;hat{f}_i(&#92;mathbf{x}) = x_i (f_i(&#92;mathbf{x}) - &#92;overline{f}(&#92;mathbf{x})) " class="latex" /></p>
+<p>My guess is that the first equation for <img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bx%7D_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{x}_i" class="latex" /> is &#8220;just for fun&#8221;, not something we should use, though we <em>should</em> use</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f_i%28%5Cmathbf%7Bx%7D%29+%3D+%5Cfrac%7B%5Cpartial+V%7D%7B%5Cpartial+x_i%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f_i(&#92;mathbf{x}) = &#92;frac{&#92;partial V}{&#92;partial x_i} " class="latex" /></p>
+<p>The second equation for <img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bx%7D_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{x}_i" class="latex" /> is the one actually used in the proof.</p>
+<p>Is that right?</p>
+<p>Then in (19.18) below, <img src="https://s0.wp.com/latex.php?latex=%5Cdot%7B%5Cmathbf%7Bx%7D%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{&#92;mathbf{x}}" class="latex" /> is the time derivative of a point moving around on the probability simplex, defined to have components</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdot%7Bx%7D_i+%3D+%5Chat%7Bf%7D_i%28%5Cmathbf%7Bx%7D%29+%3D+x_i+%28f_i%28%5Cmathbf%7Bx%7D%29+-+%5Coverline%7Bf%7D%28%5Cmathbf%7Bx%7D%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;dot{x}_i = &#92;hat{f}_i(&#92;mathbf{x}) = x_i (f_i(&#92;mathbf{x}) - &#92;overline{f}(&#92;mathbf{x}) " class="latex" /></p>
+<p>Right?</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

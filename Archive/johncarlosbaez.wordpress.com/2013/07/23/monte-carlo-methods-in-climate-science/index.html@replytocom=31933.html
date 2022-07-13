@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Monte Carlo Methods in Climate Science | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Monte Carlo Methods in Climate&nbsp;Science Comments Feed" href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F07%2F23%2Fmonte-carlo-methods-in-climate-science%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"677eca7dd0","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"0272f16312\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2013\/07\/23\/monte-carlo-methods-in-climate-science\/?replytocom=31933","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F07%2F23%2Fmonte-carlo-methods-in-climate-science%2F%3Freplytocom%3D31933","postID":"16530","shortlink":"https:\/\/wp.me\/pRBZ9-4iC","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/16530","statsLink":"https:\/\/wordpress.com\/stats\/post\/16530\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F07%2F23%2Fmonte-carlo-methods-in-climate-science%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-4iC' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F07%2F23%2Fmonte-carlo-methods-in-climate-science%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F07%2F23%2Fmonte-carlo-methods-in-climate-science%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Monte Carlo Methods in Climate Science" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/" />
+<meta property="og:description" content="joint with David Tweed One way the Azimuth Project can help save the planet is to get bright young students interested in ecology, climate science, green technology, and stuff like that. So, we are…" />
+<meta property="article:published_time" content="2013-07-23T02:35:26+00:00" />
+<meta property="article:modified_time" content="2013-07-25T01:44:34+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/horizons/fig1.jpg" />
+<meta property="og:image:width" content="450" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Monte Carlo Methods in Climate&nbsp;Science" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/horizons/fig1.jpg?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="joint with David Tweed One way the Azimuth Project can help save the planet is to get bright young students interested in ecology, climate science, green technology, and stuff like that. So, we are writing an article for Math Horizons, an American magazine for undergraduate math majors. This blog article is a draft of that.&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-16530 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-16530 post type-post status-publish format-standard hentry category-climate category-mathematics category-oceans category-probability" id="post-16530">
+			<h2>Monte Carlo Methods in Climate&nbsp;Science</h2>
+
+			<div class="entry">
+				<p><i>joint with <b><a href="http://www.azimuthproject.org/azimuth/show/David+Tweed">David Tweed</a></b></i></p>
+<p>One way the Azimuth Project can help save the planet is to get bright young students interested in ecology, climate science, green technology, and stuff like that.  So, we are writing an article for <i><a href="http://www.maa.org/publications/periodicals/math-horizons">Math Horizons</a></i>, an American magazine for undergraduate math majors.  This blog article is a draft of that.  You can also see it in PDF form <a href="http://math.ucr.edu/home/baez/horizons.pdf">here</a>.</p>
+<p>We’d really like to hear your comments!  There are severe limits on including more detail, since the article should be easy to read and short.  So please don&#8217;t ask us to explain more stuff: we&#8217;re most interested to know if you sincerely don’t understand something, or feel that students would have trouble understanding something.   For comparison, you can see sample <i>Math Horizons</i> articles <a href="http://www.maa.org/publications/periodicals/math-horizons/math-horizons-sample-articles">here</a>.</p>
+<h3>Introduction</h3>
+<p>They look placid lapping against the beach on a calm day, but the oceans are actually quite dynamic. The ocean currents act as &#8216;conveyor belts&#8217;, transporting heat both vertically between the water&#8217;s surface and the depths and laterally from one area of the globe to another. This effect is so significant that the temperature and precipitation patterns can change dramatically when currents do.</p>
+<p>For example: shortly after the last ice age, northern Europe experienced a shocking change in climate from 10,800 to 9,500 BC.  At the start of this period temperatures plummeted in a matter of decades.  It became 7&deg; Celsius colder, and glaciers started forming in England!  The cold spell lasted for over a thousand years, but it ended as suddenly as it had begun.</p>
+<p>Why?  The most popular theory is that that a huge lake in North America formed by melting glaciers burst its bank&#8212;and in a massive torrent lasting for years, the water from this lake rushed out to the northern Atlantic ocean. By floating atop the denser salt water, this fresh water blocked a major current: the Atlantic Meridional Overturning Circulation. This current brings warm water north and helps keep northern Europe warm. So, when iit shut down, northern Europe was plunged into a deep freeze.</p>
+<p>Right now global warming is causing ice sheets in Greenland to melt and release fresh water into the North Atlantic.  Could this shut down the Atlantic Meridional Overturning Circulation and make the climate of Northern Europe much colder?  In 2010, Keller and Urban [KU] tackled this question using a simple climate model, historical data, probability theory, and lots of computing power.  Their goal was to understand the spectrum of possible futures compatible with what we know today.</p>
+<p>Let us look at some of the ideas underlying their work.</p>
+<h3>Box models</h3>
+<p>The earth&#8217;s physical behaviour, including the climate is far too complex to simulate from the bottom up using basic physical principles, at least for now.  The most detailed models today can take days to run on very powerful computers.  So to make reasonable predictions on a laptop in a tractable time-frame, geophysical modellers use some tricks.</p>
+<p>First, it is possible to split geophysical phenomena into &#8216;boxes&#8217; containing strongly related things.  For example: atmospheric gases, particulate levels and clouds all affect each other strongly; likewise the heat content, currents and salinity of the oceans all interact strongly. However, the interactions <i>between</i> the atmosphere and the oceans are weaker, and we can approximately describe them using just a few settings, such as the amount of atmospheric CO<sub>2</sub> entering or leaving the oceans. Clearly these interactions must be consistent&#8212;for example, the amount of CO<sub>2</sub> leaving the atmosphere box must equal the amount entering the ocean box&#8212;but breaking a complicated system into parts lets different specialists focus on different aspects; then we can combine these parts and get an approximate model of entire planet. The box model used by Keller and Urban is shown in Figure 1.</p>
+<div align="center">
+<a href="http://math.ucr.edu/home/baez/horizons/fig1.jpg"><br />
+<img width="450" src="https://i0.wp.com/math.ucr.edu/home/baez/horizons/fig1.jpg" /></a><br />
+1.  The box model used by Keller and Urban.
+</div>
+<p>&nbsp;<br />
+Second, it turn out that simple but effective box models can be distilled from the complicated physics in terms of forcings and feedbacks. Essentially a <b>forcing</b> is a measured input to the system, such as solar radiation or CO<sub>2</sub> released by burning fossil fuels. As an analogy, consider a child on a swing: the adult&#8217;s push every so often is a forcing. Similarly a <b>feedback</b> describes how the current &#8216;box variables&#8217; influence future ones. In the swing analogy, one feedback is how the velocity will influence the future height. Specifying feedbacks typically uses knowledge of the detailed low-level physics to derive simple, tractable functional relationships between groups of large-scale observables, a bit like how we derive the physics of a gas by thinking about collisions of lots of particles.</p>
+<p>However, it is often not feasible to get actual settings for the parameters in our model starting from first principles.  In other words, often we can get the general form of the equations in our model, but they contain a lot of constants that we can estimate only by looking at historical data.</p>
+<h3>Probability modeling</h3>
+<p>Suppose we have a box model that depends on some settings <img src="https://s0.wp.com/latex.php?latex=S.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S." class="latex" /> For example, in Keller and Urban&#8217;s model, <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> is a list of 18 numbers.  To keep things simple, suppose the settings are element of some finite set.  Suppose we also have huge hard disc full of historical measurements, and we want to use this to find the best estimate of <img src="https://s0.wp.com/latex.php?latex=S.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S." class="latex" />  Because our data is full of &#8216;noise&#8217; from other, unmodeled phenomena we generally cannot unambiguously deduce a single set of settings.  Instead we have to look at things in terms of probabilities. More precisely, we need to study the probability that <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> take some value <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> given that the measurements take some value.  Let&#8217;s call the measurements <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" />, and again let&#8217;s keep things simple by saying <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> takes values in some finite set of possible measurements.</p>
+<p>The probability that <img src="https://s0.wp.com/latex.php?latex=S+%3D+s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S = s" class="latex" /> given that <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> takes some value <img src="https://s0.wp.com/latex.php?latex=m&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m" class="latex" /> is called the <b>conditional probability</b> <img src="https://s0.wp.com/latex.php?latex=P%28S%3Ds+%7C+M%3Dm%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S=s | M=m)." class="latex" />  How can we compute this conditional probability?  This is a somewhat tricky problem.</p>
+<p>One thing we can more easily do is repeatedly run our model with randomly chosen settings and see what measurements it predicts.  By doing this, we can compute the probability that given setting values <img src="https://s0.wp.com/latex.php?latex=S+%3D+s%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S = s," class="latex" /> the model predicts measurements <img src="https://s0.wp.com/latex.php?latex=M%3Dm.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M=m." class="latex" />  This again is a conditional probability, but now it is called <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm%7CS%3Ds%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m|S=s)." class="latex" /></p>
+<p>This is <i>not</i> what we want: it&#8217;s backwards!   But here <b>Bayes&#8217; rule</b> comes to the rescue, relating what we want to what we can more easily compute:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+P%28S+%3D+s+%7C+M+%3D+m%29+%3D+P%28M+%3D+m%7C+S+%3D+s%29+%5Cfrac%7BP%28S+%3D+s%29%7D%7BP%28M+%3D+m%29%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ P(S = s | M = m) = P(M = m| S = s) &#92;frac{P(S = s)}{P(M = m)} } " class="latex" /></p>
+<p>Here <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s)" class="latex" /> is the probability that the settings take a specific value <img src="https://s0.wp.com/latex.php?latex=s%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s," class="latex" /> and similarly for <img src="https://s0.wp.com/latex.php?latex=P%28M+%3D+m%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M = m)." class="latex" />  Bayes&#8217; rule is quite easy to prove, and it is actually a general rule that applies to any random  variables, not just the settings and the measurements in our problem [Y].  It underpins most methods of figuring out hidden quantities from observed ones. For this reason, it is widely used in modern statistics and data analysis [K].</p>
+<p>How does Bayes&#8217; rule help us here?  When we repeatedly run our model with randomly chosen settings, we have control over <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s)." class="latex" />  As mentioned, we can compute <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm%7C+S%3Ds%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m| S=s)." class="latex" />  Finally, <img src="https://s0.wp.com/latex.php?latex=P%28M+%3D+m%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M = m)" class="latex" /> is independent of our choice of settings.  So, we can use Bayes&#8217; rule to compute <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s+%7C+M+%3D+m%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s | M = m)" class="latex" /> up to a constant factor.  And since probabilities must sum to 1, we can figure out this constant.</p>
+<p>This lets us do many things.  It lets us find the most likely values of the settings for our model, given our hard disc full of observed data.  It also lets us find the probability that the settings lie within some set.  This is important: if we&#8217;re facing the possibility of a climate disaster, we don&#8217;t just want to know the most likely outcome.  We would like to know to know that with 95% probability, the outcome will lie in some range.</p>
+<h3>An example</h3>
+<p>Let us look at an example much simpler than that considered by Keller and Urban.   Suppose our measurements are real numbers <img src="https://s0.wp.com/latex.php?latex=m_0%2C%5Cdots%2C+m_T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m_0,&#92;dots, m_T" class="latex" /> related by</p>
+<p><img src="https://s0.wp.com/latex.php?latex=m_%7Bt%2B1%7D+%3D+s+m_t+-+m_%7Bt-1%7D+%2B+N_t+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m_{t+1} = s m_t - m_{t-1} + N_t " class="latex" /></p>
+<p>Here <img src="https://s0.wp.com/latex.php?latex=s%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s," class="latex" /> a real constant, is our &#8216;setting&#8217;, while <img src="https://s0.wp.com/latex.php?latex=N_t&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N_t" class="latex" /> is some &#8216;noise&#8217;: an independent Gaussian random variable for each time <img src="https://s0.wp.com/latex.php?latex=t%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t," class="latex" /> each with mean zero and some fixed standard  deviation.  Then the measurements <img src="https://s0.wp.com/latex.php?latex=m_t&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m_t" class="latex" /> will have roughly sinusoidal behavior but with irregularity added by the noise at each time step, as illustrated in Figure 2.  </p>
+<div align="center">
+<a href="http://math.ucr.edu/home/baez/horizons/fig2.jpg"><br />
+<img width="450" src="https://i1.wp.com/math.ucr.edu/home/baez/horizons/fig2.jpg" /></a><br />
+2.  The example system: red are predicted measurements for a given value of the settings, green is another simulation for the same <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> value and blue is a simulation for a slightly different <img src="https://s0.wp.com/latex.php?latex=s.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s." class="latex" />
+</div>
+<p>&nbsp;<br />
+Note how there is  no clear signal from either the curves or the differences that the green curve is at the correct setting value while the blue one has the wrong one: the noise makes it nontrivial to estimate <img src="https://s0.wp.com/latex.php?latex=s.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s." class="latex" />   This is a baby version of the problem faced by Keller and Urban.</p>
+<h3>Markov Chain Monte Carlo</h3>
+<p>Having glibly said that we can compute the conditional probability <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm+%7C+S%3Ds%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m | S=s)," class="latex" /> how do we actually do this?  The simplest way would be to run our model many, many times with the settings set at <img src="https://s0.wp.com/latex.php?latex=S%3Ds&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S=s" class="latex" /> and determine the fraction of times it predicts measurements equal to <img src="https://s0.wp.com/latex.php?latex=m.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m." class="latex" />  This gives us an estimate of <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm+%7C+S%3Ds%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m | S=s)." class="latex" />  Then we can use Bayes&#8217; rule to work out <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm%7CS%3Ds%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m|S=s)," class="latex" /> at least up to a constant factor.</p>
+<p>Doing all this by hand would be incredibly time consuming and error prone, so computers are used for this task.  In our example, we do this in Figure 3.  As we keep running our model over and over, the curve showing <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm+%7CS%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m |S=s)" class="latex" /> as a function of <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> settles down to the right answer.</p>
+<div align="center">
+<a href="http://math.ucr.edu/home/baez/horizons/fig3.jpg"><br />
+<img width="450" src="https://i1.wp.com/math.ucr.edu/home/baez/horizons/fig3.jpg" /></a></p>
+<p>3.  The estimates of <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm+%7C+S%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m | S=s)" class="latex" /> as a function of <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> using uniform sampling, ending up with 480 samples at each point.
+</div>
+<p>&nbsp;</p>
+<p>However, this is computationally inefficient, as shown in the probability distribution for small numbers of samples.  This has quite a few &#8216;kinks&#8217;, which only disappear later.  The problem is that there are lots of possible choices of <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> to try.  And this is for a very simple model!</p>
+<p>When dealing with the 18 settings involved in the model of Keller and Urban, trying every combination would take far too long. A way to avoid this is <b>Markov Chain Monte Carlo</b> sampling.  Monte Carlo is famous for its casinos, so a &#8216;Monte Carlo&#8217; algorithm is one that uses randomness.  A &#8216;Markov chain&#8217; is a random walk: for example, where you repeatedly flip a coin and take one step right when you get heads, and one step right when you get tails.  So, in Markov Chain Monte Carlo, we perform a random walk through the collection of all possible settings, collecting samples.</p>
+<p>The key to making this work is that at each step on the walk a proposed modification <img src="https://s0.wp.com/latex.php?latex=s%27&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s&#039;" class="latex" /> to the current settings <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> is generated randomly&#8212;but it may be rejected if it does not seem to improve the estimates. The essence of the rule is:</p>
+<blockquote><p>
+The modification <img src="https://s0.wp.com/latex.php?latex=s+%5Cmapsto+s%27&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s &#92;mapsto s&#039;" class="latex" /> is randomly accepted with a probability equal to the ratio</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7BP%28M%3Dm+%7C+S%3Ds%27%29%7D%7B+P%28M%3Dm+%7C+S%3Ds%29%7D+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{P(M=m | S=s&#039;)}{ P(M=m | S=s)} }" class="latex" /></p>
+<p>Otherwise the walk stays at the current position.
+</p></blockquote>
+<p>If the modification is better, so that the ratio is greater than 1, the new state is always accepted.  With some additional tricks&#8212;such as discarding the very beginning of the walk&#8212;this gives a set of samples from which can be used to compute <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm+%7C+S%3Ds%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m | S=s)." class="latex" />  Then we can compute <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s+%7C+M+%3D+m%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s | M = m)" class="latex" /> using Bayes&#8217; rule.</p>
+<p>Figure 4 shows the results of using the Markov Chain Monte Carlo procedure to figure out <img src="https://s0.wp.com/latex.php?latex=P%28S%3D+s%7C+M%3D+m%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S= s| M= m)" class="latex" /> in our example.</p>
+<div align="center">
+<a href="http://math.ucr.edu/home/baez/horizons/fig4.jpg"><br />
+<img src="https://i1.wp.com/math.ucr.edu/home/baez/horizons/fig4.jpg" /></a></p>
+<p>4.  The estimates of <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s%7CM+%3D+m%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s|M = m)" class="latex" /> curves using Markov Chain Monte Carlo, showing the current distribution estimate at increasing intervals. The red line shows the current position of the random   walk. Again the kinks are almost gone in the final distribution.
+</div>
+<p>&nbsp;</p>
+<p>Note that the final distribution has only peformed about 66 thousand simulations <i>in total</i>, while the full sampling peformed over 1.5 million. The key advantage of Markov Chain Monte Carlo is that it avoids performing many simulations in areas where the probability is low, as we can see from the way the walk path remains under the big peak in the probability density almost all the time. What is more impressive is that it achieves this without any <i>global view</i> of the probability density, just by looking at how <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm+%7C+S%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m | S=s)" class="latex" /> changes when we make small changes in the settings.  This becomes even more important as we move to dealing with systems with many more dimensions and settings, where it proves very effective at finding regions of high probability density whatever their shape.</p>
+<p>Why is it worth doing so much work to estimate the probability distribution for settings for a climate model?  One reason is that we can then estimate probabilities of <i>future</i> events, such as the collapse of the Atlantic Meridional Ocean Current.  And what&#8217;s the answer? According to Keller and Urban&#8217;s calculation, this current will likely weaken by about a fifth in the 21st century, but a complete collapse is unlikely before 2300.  This claim needs to be checked in many ways&#8212;for example, using more detailed models.  But the importance of the issue is clear, and we hope we have made the importance of good mathematical ideas for climate science clear as well.</p>
+<h3>Exploring the topic</h3>
+<p>The Azimuth Project is a group of scientists, engineers and computer programmers interested in questions like this [A].  If you have questions, or want to help out, just email us.  Versions of the computer programs we used in this paper will be made available here in a while.</p>
+<p>Here are some projects you can try, perhaps with the help of Kruschke&#8217;s textbook [K]:</p>
+<p>&bull; There are other ways to do setting estimation using time series: compare some to MCMC in terms of accuracy and robustness.</p>
+<p>&bull; We&#8217;ve seen a 1-dimensional system with one setting. Simulate some multi-dimensional and multi-setting systems. What new issues arise?</p>
+<p><b>Acknowledgements.</b> We thank Nathan Urban and other<br />
+members of the Azimuth Project for many helpful discussions.</p>
+<h3> References </h3>
+<p>[A] Azimuth Project, <a href="http://www.azimuthproject.org"></a><a href="http://www.azimuthproject.org" rel="nofollow">http://www.azimuthproject.org</a>.</p>
+<p>[KU] Klaus Keller and Nathan Urban, Probabilistic hindcasts and projections of the coupled climate, carbon cycle and Atlantic meridional overturning circulation system: a Bayesian fusion of century-scale measurements with a simple model, <i>Tellus A</i> <b>62</b> (2010), 737&#8211;750.  Also available <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.140.9169">free online</a>.</p>
+<p>[K] John K. Kruschke, <i>Doing Bayesian Data Analysis: A Tutorial with R and BUGS</i>, Academic Press, New York, 2010.</p>
+<p>[Y] Eliezer S. Yudkowsky, <a href="http://yudkowsky.net/rational/bayes">An intuitive explanation of Bayes&#8217; theorem</a>.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Tuesday, July 23rd, 2013 at 2:35 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/climate/" rel="category tag">climate</a>, <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/oceans/" rel="category tag">oceans</a>, <a href="https://johncarlosbaez.wordpress.com/category/probability/" rel="category tag">probability</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2013/07/19/negative-probabilities/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2013/07/29/the-selected-papers-network-part-4/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">21 Responses to <em>Monte Carlo Methods in Climate&nbsp;Science</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment byuser comment-author-jonawbrey even thread-even depth-1 parent highlander-comment" id="comment-31904">
+				<div id="div-comment-31904" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/53463a46070b974244107e96ca869e5d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://inquiryintoinquiry.com/' rel='external nofollow ugc' class='url'>Jon Awbrey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31904">23 July, 2013 at 3:48 am</a>		</div>
+
+		<p>Doesn&#8217;t it seem to you though that the biggest obstacles to saving the planet are more political than scientific? Bright young students have come to college interested in “stuff like that” since I was an undergrad in the 60s, at least, but it little availed them or humanity or the planet when they ran into wall after wall of corporate disinformation and political obstruction.  There is a great backlog of knowledge already but no general will to act on it — indeed, a massively greenbacked opposition to every wave of greening that comes along.  Perhaps some thought should be given to the political front before sending more greenhorns into that valley.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31904#respond' data-commentid="31904" data-postid="16530" data-belowelement="div-comment-31904" data-respondelement="respond" data-replyto="Reply to Jon Awbrey" aria-label='Reply to Jon Awbrey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-31909">
+				<div id="div-comment-31909" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31909">23 July, 2013 at 6:01 am</a>		</div>
+
+		<p>It&#8217;s true that the biggest obstacles are political, and it&#8217;s true that more thought must be given to that.</p>
+<p>But this is not primarily what the <a href="http://www.azimuthproject.org/azimuth/show/HomePage" rel="nofollow">Azimuth Project</a> is about.  The Azimuth Project is about things that engineers, scientists and mathematicians can do to save the planet.  So the idea is something like this: young mathematicians read <i>Math Horizons</i> and get ideas for cool things to work on.  Most of these ideas have nothing to do with climate science, ecology, sustainability, or the like.  They may not even know how math is relevant to these issues.</p>
+<p>I think it&#8217;s good to plant this idea in their head: math <i>is</i> relevant to these issues.  Getting interested in these issues won&#8217;t hurt their chances of getting jobs compared to the other activities <i>Math Horizons</i> describes.   And some of these students will wind up doing important things.</p>
+<p>Of course, if they&#8217;re not already set on becoming mathematicians&#8212;if all they want is to solve the world&#8217;s problems&#8212;it might be better for them to become politicians.</p>
+<p>But in any case: having already written this article, we would like people to give us suggestions about how to make it easier to understand.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31909#respond' data-commentid="31909" data-postid="16530" data-belowelement="div-comment-31909" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-31913">
+				<div id="div-comment-31913" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cd90f0688cecdf25a11b4ba396151b5f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://gravatar.com/peterwmorgan' rel='external nofollow ugc' class='url'>Peter Morgan</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31913">23 July, 2013 at 2:32 pm</a>		</div>
+
+		<p>Proofreading, 3rd para of introduction, &#8220;that that&#8221;, &#8220;iit&#8221;. 2nd para of &#8220;box models&#8221;, &#8220;containing related strongly related things&#8221; seems stilted; I think it means, from what comes later, that the boxes are weakly related, but the contents of the boxes are strongly related. &#8220;Clearly these interactions must be consistent&#8221; &#8212; IMO, &#8220;of course&#8221;, &#8220;clearly&#8221;, and similar expressions are usually best removed; in this case, just omitting &#8220;Clearly&#8221; works just fine; part of this is a pedantry, that the &#8220;clearly&#8221; is only true if *all* possible sources and sinks are in the model, which, ultimately, they are not. &#8220;Second, it turn out&#8221; needs an &#8216;s&#8217; on &#8220;turn&#8221;. &#8220;the settings are element of some finite set&#8221; needs an &#8216;s&#8217; on &#8220;element&#8221; (or &#8220;each setting is an&#8230;&#8221;). But the article seems quite clear.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31913#respond' data-commentid="31913" data-postid="16530" data-belowelement="div-comment-31913" data-respondelement="respond" data-replyto="Reply to Peter Morgan" aria-label='Reply to Peter Morgan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-31919">
+				<div id="div-comment-31919" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31919">24 July, 2013 at 3:37 am</a>		</div>
+
+		<p>Thanks very much for the proofreading&#8212;I agree with all your comments!  I will keep polishing the prose, but I&#8217;m glad the article made sense to you.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31919#respond' data-commentid="31919" data-postid="16530" data-belowelement="div-comment-31919" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-31916">
+				<div id="div-comment-31916" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7b8c11bc19a524da9aac988120936d9a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">John Davidson</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31916">23 July, 2013 at 5:44 pm</a>		</div>
+
+		<p>This article would benefit from a good proofreader. When explaining the Monte Carlo method the user always &#8220;talks&#8221; a right turn, wheter the coin is heads or tails. I am certain this is not correct.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31916#respond' data-commentid="31916" data-postid="16530" data-belowelement="div-comment-31916" data-respondelement="respond" data-replyto="Reply to John Davidson" aria-label='Reply to John Davidson'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-31943">
+				<div id="div-comment-31943" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31943">25 July, 2013 at 1:43 am</a>		</div>
+
+		<p>It&#8217;s &#8220;takes&#8221;.  Thanks.  The article will get proofread by the magazine (if its accepted), so right now I&#8217;m most eager to get comments about the way we explain the ideas: is there anything that&#8217;s hard to understand?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31943#respond' data-commentid="31943" data-postid="16530" data-belowelement="div-comment-31943" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-31929">
+				<div id="div-comment-31929" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d707283082331178dd04da841510b82?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Dan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31929">24 July, 2013 at 3:13 pm</a>		</div>
+
+		<p>I&#8217;m a little confused.  In my limited understanding of MCMC, I thought it was used to sample directly from the posterior (with your notation, I believe the posterior would be <img src="https://s0.wp.com/latex.php?latex=P%28S%3Ds%7CM%3Dm%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S=s|M=m)" class="latex" />, correct?).  You seem to be saying that you&#8217;re using MCMC to sample from the likelihood <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm%7CS%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m|S=s)" class="latex" /> and then getting the posterior by Bayes theorem.  Is that really what you&#8217;re doing?  If so, how do you use Bayes theorem to get a posterior when you only have the likelihood as samples?  It seems like an empirical estimate would be pretty inefficient.  Why not just sample from the posterior?<br />
+In particular, if you&#8217;re doing Metropolis and if I understand your notation and what you&#8217;re trying to achieve, I think you ought to be looking at the ratio</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7BP%28M%3Dm%7CS%3Ds%27%29+P%28S%3Ds%27%29%7D%7BP%28M%3Dm%7CS%3Ds%29P%28S%3Ds%29%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{P(M=m|S=s&#039;) P(S=s&#039;)}{P(M=m|S=s)P(S=s)}" class="latex" /></p>
+<p>Or maybe I&#8217;m just really confused?  Wouldn&#8217;t be the first time&#8230;.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31929#respond' data-commentid="31929" data-postid="16530" data-belowelement="div-comment-31929" data-respondelement="respond" data-replyto="Reply to Dan" aria-label='Reply to Dan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-31944">
+				<div id="div-comment-31944" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31944">25 July, 2013 at 1:56 am</a>		</div>
+
+		<p>If we&#8217;re as mixed up as you think, we&#8217;re seriously mixed up.  </p>
+<p>To make probabilistic predictions like &#8220;what&#8217;s the probability that that the Atlantic Meridional Overturning Circulation will collapse if we pump enough CO<sub>2</sub> into the atmosphere to double its concentration by 2100, and then stop?&#8221;, we need to know the posterior <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s+%7C+M+%3D+m%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s | M = m)." class="latex" />  We say this.  You seem to agree with that.</p>
+<p>But we also say this quantity is very hard to compute directly for a complicated climate model, while <img src="https://s0.wp.com/latex.php?latex=P%28M+%3D+m+%7C+S+%3D+s%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M = m | S = s)" class="latex" /> is easier:</p>
+<blockquote><p>
+Suppose we have a box model that depends on some settings <img src="https://s0.wp.com/latex.php?latex=S.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S." class="latex" /> For example, in Keller and Urban&#8217;s model, <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> is a list of 18 numbers.  To keep things simple, suppose the settings are element of some finite set.  Suppose we also have huge hard disc full of historical measurements, and we want to use this to find the best estimate of <img src="https://s0.wp.com/latex.php?latex=S.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S." class="latex" />  Because our data is full of &#8216;noise&#8217; from other, unmodeled phenomena we generally cannot unambiguously deduce a single set of settings.  More precisely, we need to study the probability that <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> take some value <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> given that the measurements take some value.  Let&#8217;s call the measurements <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" />, and again let&#8217;s keep things simple by saying <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> takes values in some finite set of possible measurements.</p>
+<p>The probability that <img src="https://s0.wp.com/latex.php?latex=S+%3D+s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S = s" class="latex" /> given that <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> takes some value <img src="https://s0.wp.com/latex.php?latex=m&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m" class="latex" /> is called the <b>conditional probability</b> <img src="https://s0.wp.com/latex.php?latex=P%28S%3Ds+%7C+M%3Dm%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S=s | M=m)." class="latex" />  How can we compute this conditional probability?  This is a somewhat tricky problem.</p>
+<p>One thing we can more easily do is repeatedly run our model with randomly chosen settings and see what measurements it predicts.  By doing this, we can compute the probability that given setting values <img src="https://s0.wp.com/latex.php?latex=S+%3D+s%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S = s," class="latex" /> the model predicts measurements <img src="https://s0.wp.com/latex.php?latex=M%3Dm.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M=m." class="latex" />  This again is a conditional probability, but now it is called <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm%7CS%3Ds%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m|S=s)." class="latex" /></p>
+<p>This is <i>not</i> what we want: it&#8217;s backwards!   But here <b>Bayes&#8217; rule</b> comes to the rescue&#8230;
+</p></blockquote>
+<p>If we&#8217;re mixed up, we&#8217;ll thank you for correcting us.  But if we&#8217;re right, and you come to agree that we are, maybe something in the above explanation was not sufficiently clear or convincing.  In that case, it would be good for us to improve it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31944#respond' data-commentid="31944" data-postid="16530" data-belowelement="div-comment-31944" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 parent highlander-comment" id="comment-31958">
+				<div id="div-comment-31958" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d707283082331178dd04da841510b82?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Dan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31958">25 July, 2013 at 12:31 pm</a>		</div>
+
+		<p>Well, one of us is pretty mixed up.  It&#8217;s probably me.  But let me quote the bit that is confusing me, explain what it seems (to me) to be saying that you&#8217;re doing (which I think is far from standard practice, if not downright wrong), and then tell you what I think you ought to be doing (and quite possibly are, though it doesn&#8217;t sound like it :)).  Anyway, here&#8217;s the quote from the section entitled &#8220;Markov Chain Monte Carlo&#8221;:</p>
+<blockquote><p>
+The key to making this work is that at each step on the walk a proposed modification <img src="https://s0.wp.com/latex.php?latex=s%27&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s&#039;" class="latex" /> to the current settings <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> is generated randomly—but it may be rejected if it does not seem to improve the estimates. The essence of the rule is:</p>
+<blockquote><p>
+    The modification <img src="https://s0.wp.com/latex.php?latex=s+%5Cmapsto+s%27&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s &#92;mapsto s&#039;" class="latex" /> is randomly accepted with a probability equal to the ratio</p>
+<p>    <img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7BP%28M%3Dm+%7C+S%3Ds%27%29%7D%7B+P%28M%3Dm+%7C+S%3Ds%29%7D+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{P(M=m | S=s&#039;)}{ P(M=m | S=s)} }" class="latex" /></p>
+<p>    Otherwise the walk stays at the current position.
+</p></blockquote>
+<p>If the modification is better, so that the ratio is greater than 1, the new state is always accepted. With some additional tricks—such as discarding the very beginning of the walk—this gives a set of samples from which can be used to compute <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm+%7C+S%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m | S=s)" class="latex" />. Then we can compute <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s+%7C+M+%3D+m%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s | M = m)" class="latex" /> using Bayes’ rule.
+</p></blockquote>
+<p>Now, to me, it sounds like you&#8217;re using the Metropolis algorithm to get your Markov chain.  Within that algorithm, you are deciding to accept or reject a step based on consideration of the ratio</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7BP%28M%3Dm+%7C+S%3Ds%27%29%7D%7B+P%28M%3Dm+%7C+S%3Ds%29%7D+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{P(M=m | S=s&#039;)}{ P(M=m | S=s)} }" class="latex" /></p>
+<p>My understanding is that if you do that, then the stationary distribution of your Markov chain will be</p>
+<p><img src="https://s0.wp.com/latex.php?latex=f%28s%7Cm%29+%5Cequiv+%5Cfrac%7BP%28M%3Dm%7CS%3Ds%29%7D%7BZ%28m%29%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f(s|m) &#92;equiv &#92;frac{P(M=m|S=s)}{Z(m)}" class="latex" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=Z%28m%29%3D%5Cint+P%28M%3Dm%7CS%3Ds%29+ds&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Z(m)=&#92;int P(M=m|S=s) ds" class="latex" /> is a normalizing constant making your likelihood into a probability density when thought of as a function of the settings <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" />.  In other words, I think the stationary distribution will be the posterior under the assumption of a uniform prior.  Now, there isn&#8217;t anything wrong with this (although, if <img src="https://s0.wp.com/latex.php?latex=S&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S" class="latex" /> is not compactly supported, you may get some numerical instabilities), but it doesn&#8217;t seem to be standard practice. But, forgetting that and pressing on, you then say that you run the algorithm and do the necessary tricks to get random samples from <img src="https://s0.wp.com/latex.php?latex=f%28s%7Cm%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f(s|m)" class="latex" />.  That&#8217;s fine, if you want the posterior under the assumption of a uniform prior.  But now, you seem to be wanting to think of these samples from <img src="https://s0.wp.com/latex.php?latex=f%28s%7Cm%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f(s|m)" class="latex" /> as samples from <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm%7CS%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m|S=s)" class="latex" /> and then you&#8217;re somehow using these samples to get <img src="https://s0.wp.com/latex.php?latex=P%28S%3Ds%7CM%3Dm%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S=s|M=m)" class="latex" /> from Bayes rule?  I&#8217;m not sure how you would do that.  I mean, I guess you could construct a density estimator of <img src="https://s0.wp.com/latex.php?latex=f%28s%7Cm%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f(s|m)" class="latex" /> from its samples, multiply by <img src="https://s0.wp.com/latex.php?latex=P%28s%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(s)" class="latex" />, and then do a numerical integration to get the normalization, but that seems kind of convoluted.  You&#8217;d basically be canceling out <img src="https://s0.wp.com/latex.php?latex=Z%28m%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="Z(m)" class="latex" /> numerically, which makes me wonder why you&#8217;d want to run the MCMC algorithm to begin with.  Why not just numerically integrate <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm%7CS%3Ds%29P%28S%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m|S=s)P(S=s)" class="latex" /> to find its normalization?  </p>
+<p>So, that&#8217;s what it sounds (to me) like you&#8217;re doing.  Now, here&#8217;s what I think you ought to be doing (and quite possibly are, since I believe the following is standard practice).  Make your decisions of whether or not to make a step based on the ratio:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7BP%28M%3Dm+%7C+S%3Ds%27%29+P%28S%3Ds%27%29%7D%7B+P%28M%3Dm+%7C+S%3Ds%29+P%28S%3Ds%29%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{P(M=m | S=s&#039;) P(S=s&#039;)}{ P(M=m | S=s) P(S=s)} " class="latex" /></p>
+<p>Then, the stationary distribution of the resulting Markov chain should be the posterior distribution <img src="https://s0.wp.com/latex.php?latex=P%28S%3Ds%7CM%3Dm%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S=s|M=m)" class="latex" />.  So, you run the algorithm and you get random samples from the posterior.  There is no need to use Bayes theorem again because you already used it (i.e., by Bayes, your step decision rule is basically the ratio of posteriors, but the unknown normalization <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m)" class="latex" /> cancels out making it possible to evaluate the ratio).  Now you can use those random samples from the posterior to make a density estimator of the posterior, but more likely you&#8217;ll want to use them to calculate posterior expectations by appealing to the Law of Large Numbers for Markov Chains (a.k.a. the Ergodic Theorem):</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Clim_%7Bn%5Crightarrow+%5Cinfty%7D+%5Cfrac%7B1%7D%7Bn%7D%5Csum_%7Bi%3D1%7D%5En+h%28s_i%29+%5Crightarrow+%5Cint+h%28s%29+P%28S%3Ds%7CM%3Dm%29+ds&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;lim_{n&#92;rightarrow &#92;infty} &#92;frac{1}{n}&#92;sum_{i=1}^n h(s_i) &#92;rightarrow &#92;int h(s) P(S=s|M=m) ds" class="latex" /></p>
+<p>So, that&#8217;s all my cards on the table&#8230;.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31958#respond' data-commentid="31958" data-postid="16530" data-belowelement="div-comment-31958" data-respondelement="respond" data-replyto="Reply to Dan" aria-label='Reply to Dan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-31971">
+				<div id="div-comment-31971" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31971">26 July, 2013 at 12:38 am</a>		</div>
+
+		<p>Thanks for the detailed description of the potential problem, Dan!  You wrote:</p>
+<blockquote><p>
+My understanding is that if you do that, then the stationary distribution of your Markov chain will be</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+f%28s%7Cm%29+%5Cequiv+%5Cfrac%7BP%28M%3Dm%7CS%3Ds%29%7D%7BZ%28m%29%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ f(s|m) &#92;equiv &#92;frac{P(M=m|S=s)}{Z(m)} } " class="latex" />
+</p></blockquote>
+<p>That&#8217;s my understanding too.</p>
+<blockquote><p>
+ So, that’s what it sounds (to me) like you’re doing. Now, here’s what I think you ought to be doing (and quite possibly are, since I believe the following is standard practice). Make your decisions of whether or not to make a step based on the ratio:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7BP%28M%3Dm+%7C+S%3Ds%27%29+P%28S%3Ds%27%29%7D%7B+P%28M%3Dm+%7C+S%3Ds%29+P%28S%3Ds%29%7D+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{P(M=m | S=s&#039;) P(S=s&#039;)}{ P(M=m | S=s) P(S=s)} }" class="latex" /></p>
+<p>Then, the stationary distribution of the resulting Markov chain should be the posterior distribution <img src="https://s0.wp.com/latex.php?latex=P%28S%3Ds%7CM%3Dm%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S=s|M=m)." class="latex" />
+</p></blockquote>
+<p>Okay, yes, if we had some non-uniform prior <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s)" class="latex" /> in mind for the &#8216;settings&#8217; of our model, we could do that.  But we&#8217;re using a uniform prior, so <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s)" class="latex" /> becomes invisible here.  We&#8217;re doing this because&#8212;as far as I know&#8212;Keller and Urban are using a uniform prior on their 18 settings, with each setting uniformly distributed in an interval as shown on <a href="http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A224E3DAC13132A9EFA5CBBE32DA8257?doi=10.1.1.140.9169&amp;rep=rep1&amp;type=pdf" rel="nofollow">Table 1 on page 15</a> of their paper.  From this they get a posterior distribution whose marginals are shown in Figure 2 of page 11.</p>
+<p>But I see your point.   Even if we&#8217;re using a uniform prior, that&#8217;s a <i>decision</i> on our part: a uniform prior is just a special case of using some prior <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s)," class="latex" /> so the conceptually more significant formula is the one you mention.   I&#8217;ll have to think about how this should affect our explanation.  At the very least, I think we need to clarify the role that <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s)" class="latex" /> plays in the whole calculation.</p>
+<p>Thanks for putting in the time needed for me to get your point!</p>
+<p>(Of course, it&#8217;s possible I&#8217;m confused <i>now</i>, but I know enough smart people that I can make sure this is straightened out by the time we submit the paper.)</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 highlander-comment" id="comment-31981">
+				<div id="div-comment-31981" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d707283082331178dd04da841510b82?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Dan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31981">26 July, 2013 at 1:04 pm</a>		</div>
+
+		<p>Okay, that makes more sense now.   Thanks for taking the time to hear me out and explain things.   Now that I understand what you&#8217;re doing, I would suggest that you change </p>
+<blockquote><p>
+If the modification is better, so that the ratio is greater than 1, the new state is always accepted. With some additional tricks—such as discarding the very beginning of the walk—this gives a set of samples from which can be used to compute <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm+%7C+S%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m | S=s)" class="latex" />. Then we can compute <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s+%7C+M+%3D+m%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s | M = m)" class="latex" /> using Bayes’ rule.
+</p></blockquote>
+<p>to something like</p>
+<blockquote><p>
+If the modification is better, so that the ratio is greater than 1, the new state is always accepted. With some additional tricks—such as discarding the very beginning of the walk—this gives a set of samples from <img src="https://s0.wp.com/latex.php?latex=P%28S%3Ds%7CM%3Dm%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S=s|M=m)" class="latex" />.
+</p></blockquote>
+<p>That is, leave out the stuff about using Bayes theorem again, because as far as I can tell you don&#8217;t use it again.  And just go ahead and call the thing you&#8217;ve got samples from the posterior, because that&#8217;s what it is and that&#8217;s what you say you&#8217;re showing in figure 4.  Alternately, you could call it <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm%7CS%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m|S=s)" class="latex" /> thought of as a function of <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> and normalized to be a probability density.  But I think it is confusing to say that you&#8217;re doing all of this MCMC stuff &#8220;to compute <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm%7CS%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m|S=s)" class="latex" />&#8221; because you really need to already know how to evaluate <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm%7CS%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m|S=s)" class="latex" /> in order to do the analysis.  <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm%7CS%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m|S=s)" class="latex" /> is your stochastic model for how the data are generated given the settings.  You have to pick one of those before you can do anything (and, of course, you did; it is implicitly defined by <img src="https://s0.wp.com/latex.php?latex=m_%7Bt%2B1%7D+%3D+s+m_t+-+m_%7Bt-1%7D+%2B+N_t&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m_{t+1} = s m_t - m_{t-1} + N_t" class="latex" /> with <img src="https://s0.wp.com/latex.php?latex=N_t&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N_t" class="latex" /> being Gaussian noise).  </p>
+<p>But, however you decide to write it up, I guess what I&#8217;m saying is that the following sentence and a half</p>
+<blockquote><p>
+&#8230;this gives a set of samples from which can be used to compute <img src="https://s0.wp.com/latex.php?latex=P%28M%3Dm+%7C+S%3Ds%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M=m | S=s)" class="latex" />. Then we can compute <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s+%7C+M+%3D+m%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s | M = m)" class="latex" /> using Bayes’ rule.
+</p></blockquote>
+<p> were ultimately my source of confusion.  Hope that helps in some small way.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-32158">
+				<div id="div-comment-32158" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d6dccf2ff26b8d7bfd392f162465ab5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://public.lanl.gov/nurban/' rel='external nofollow ugc' class='url'>Nathan Urban</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-32158">3 August, 2013 at 3:38 am</a>		</div>
+
+		<p>John,</p>
+<p>We use bounded uniform priors on all the parameters except climate sensitivity, which uses a truncated Cauchy prior.  The preprint you link to is not the final published version.  Use <a href="http://public.lanl.gov/nurban/pubs/moc-projections.pdf" rel="nofollow">my version</a>.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-31930">
+				<div id="div-comment-31930" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/0626d49e1c8a054ab27cd35e2d6b62f8?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nick</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31930">24 July, 2013 at 3:27 pm</a>		</div>
+
+		<p>First off, great article! As someone who studied math and physics as an undergrad, and has gone on to graduate school in oceanography (which I learned about only after finishing school), I think a greater exposure to the problems in earth sciences for undergrads is vital. </p>
+<p>Secondly, there are a few typos/points of confusion:</p>
+<p>i) &#8220;containing related strongly related things&#8221;</p>
+<p>This seems awkwardly phrased. </p>
+<p>ii) &#8220;it turn out that simple but effective &#8221;</p>
+<p>turns</p>
+<p>iii) Figure 2: &#8220;red are predicted measurements&#8221;</p>
+<p>I guess this is slightly ambiguous, depending on whether you&#8217;re referring to red as a line or a collection of points, but for consistency with the rest of your figure 2 description, I think it should be something like &#8220;red is the predicted measurement&#8221;</p>
+<p>iv) &#8220;modification s&#8217; to the current settings s&#8217; &#8221;</p>
+<p>Do you mean &#8220;modification s to the current settings s&#8217; &#8220;?</p>
+<p>v) I feel like the word nonlinear should be included somewhere in this article. </p>
+<p>Anyways, good job on getting the word out that there is plenty of room in these fields for mathematicians/physicists. </p>
+<p>Nick</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31930#respond' data-commentid="31930" data-postid="16530" data-belowelement="div-comment-31930" data-respondelement="respond" data-replyto="Reply to nick" aria-label='Reply to nick'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-31946">
+				<div id="div-comment-31946" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31946">25 July, 2013 at 2:24 am</a>		</div>
+
+		<p>Nick wrote:</p>
+<blockquote><p>
+“containing related strongly related things”</p>
+<p>This seems awkwardly phrased.
+</p></blockquote>
+<p>It was just a typo for &#8220;strongly related&#8221;, not a deliberate phrasing.  Fixed!</p>
+<blockquote><p>
+“red are predicted measurements”</p>
+<p>I guess this is slightly ambiguous, depending on whether you’re referring to red as a line or a collection of points, but for consistency with the rest of your figure 2 description, I think it should be something like “red is the predicted measurement”
+</p></blockquote>
+<p>I&#8217;ll have to think about that.  Right now we&#8217;re calling <img src="https://s0.wp.com/latex.php?latex=m&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m" class="latex" /> <b>the measurements</b>, and in our example it&#8217;s a list of numbers <img src="https://s0.wp.com/latex.php?latex=m_1%2C+%5Cdots%2C+m_T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m_1, &#92;dots, m_T" class="latex" />, each of which we could call &#8216;a measurement&#8217;, though actually we just say:</p>
+<blockquote><p>
+ Suppose our measurements are real numbers <img src="https://s0.wp.com/latex.php?latex=m_0%2C%5Cdots%2C+m_T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m_0,&#92;dots, m_T" class="latex" /> related by</p>
+<p><img src="https://s0.wp.com/latex.php?latex=m_%7Bt%2B1%7D+%3D+s+m_t+-+m_%7Bt-1%7D+%2B+N_t+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m_{t+1} = s m_t - m_{t-1} + N_t " class="latex" />
+</p></blockquote>
+<p>So, the red curve shows &#8220;the measurements&#8221;.</p>
+<blockquote><p>
+ “modification s’ to the current settings s’ ”</p>
+<p>Do you mean “modification s to the current settings s’ “?
+</p></blockquote>
+<p>No, we mean &#8220;the modification s&#8217; to the current settings s.  In math, primes are often used for &#8216;modified&#8217; or &#8216;changed&#8217; things.  Thanks for catching this mistake, though!  Fixed.</p>
+<blockquote><p>
+I feel like the word nonlinear should be included somewhere in this article.
+</p></blockquote>
+<p>Hmm, personally I&#8217;m a bit tired of how people keep emphasizing that real life involves a lot of nonlinear phenomena.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31946#respond' data-commentid="31946" data-postid="16530" data-belowelement="div-comment-31946" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-31932">
+				<div id="div-comment-31932" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6c65b3d3fc035beec559f878228d7d43?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">arch1</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31932">24 July, 2013 at 4:24 pm</a>		</div>
+
+		<p>Thanks, I found this very helpful!  It deals with a *lot* of concepts in a short article (Bayes’ formula, Monte Carlo, parameterized events, multidimensional parameters, and optimization via Markov Chains) so I think it will challenge people new to most of them.  It needs some copy editing.  I did find a couple of things confusing (one I think I resolved, one I’m not sure):</p>
+<p>1) “One thing we can more easily do is repeatedly run our model with randomly chosen settings and see what measurements it predicts. By doing this, we can compute the probability that given setting values   the model predicts measurements  ”</p>
+<p>This was a head-scratcher, as it seemed to imply that the probability in sentence 2 was determined based on the randomness in sentence 1.  But I couldn’t see how use of “randomly chosen settings” in the model could yield a nondeterministic value of m for a given settings choice s; and I didn&#8217;t know of any *other*  randomness in the model which could produce this nondeterminism.  (You earlier mention that noise causes this, but since that noise was &#8220;from other, unmodeled phenomena&#8221;, I jumped to the conclusion that it wasn&#8217;t included in the model).  Only later when I saw your example did I realize a) you *do* model the noise as a separate random variable,  b) the “randomly chosen settings” (the Markov Chain stuff) is only for efficiency.</p>
+<p> 2) “When we repeatedly run our model with randomly chosen settings, we have control over P(S=s).  As mentioned, we can compute P(M=m|S=s).  Finally, P(M=m) is independent of our choice of settings. So, we can use Bayes’ rule to compute P(S=s|M=m) up to a constant factor.”</p>
+<p>I still find this confusing, maybe because I have a misconception.  I get how &#8220;control over P(S=s)&#8221; in your MCMC runs helps compute P(M=m|S=s).  But in order to use Bayes’ Rule to determine P(S=s|M=m), don’t you also need to know the value of P(S=s) in the real world?  If so, how do you know or estimate that?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31932#respond' data-commentid="31932" data-postid="16530" data-belowelement="div-comment-31932" data-respondelement="respond" data-replyto="Reply to arch1" aria-label='Reply to arch1'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-31933">
+				<div id="div-comment-31933" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6c65b3d3fc035beec559f878228d7d43?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">arch1</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31933">24 July, 2013 at 4:48 pm</a>		</div>
+
+		<p>Oops, the first quote in my previous comment omitted some text.  It should read:  &#8220;&#8230;the probability that given setting values S = s, the model predicts measurements M=m.&#8221;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31933#respond' data-commentid="31933" data-postid="16530" data-belowelement="div-comment-31933" data-respondelement="respond" data-replyto="Reply to arch1" aria-label='Reply to arch1'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-31948">
+				<div id="div-comment-31948" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31948">25 July, 2013 at 3:38 am</a>		</div>
+
+		<p>arch1 wrote:</p>
+<blockquote><p>
+It deals with a *lot* of concepts in a short article (Bayes’ formula, Monte Carlo, parametrized events, multidimensional parameters, and optimization via Markov Chains) so I think it will challenge people new to most of them.
+</p></blockquote>
+<p>Yes.  In a way it&#8217;s hopelessly ambitious to introduce all these ideas in one short article, and I&#8217;m afraid our article is more dry and compressed than typical for this magazine.  I&#8217;m hoping that adding a few carefully chosen sentences here or there could help&#8230; not to explain more information, or address nuances, but simply to make the existing information easier to digest.</p>
+<p>Or at the very least, we can try to remove all road bumps, like this:</p>
+<blockquote>
+<p>&#8220;“One thing we can more easily do is repeatedly run our model with randomly chosen settings and see what measurements it predicts. By doing this, we can compute the probability that given setting values <img src="https://s0.wp.com/latex.php?latex=S+%3D+s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S = s" class="latex" /> the model predicts measurements <img src="https://s0.wp.com/latex.php?latex=M+%3D+m&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M = m" class="latex" />.”</p>
+<p>This was a head-scratcher,
+</p></blockquote>
+<p>Thanks!  Yes, it could be confusing that we introduce <i>randomly chosen settings</i> here: it adds an extra layer of randomness that the reader won&#8217;t be expecting.  A more obvious thing to do would be simply <i>choose</i> settings <img src="https://s0.wp.com/latex.php?latex=S+%3D+s%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S = s," class="latex" /> repeatedly run the model with these settings, and work out <img src="https://s0.wp.com/latex.php?latex=P%28M+%3D+m%7C+S+%3D+s%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M = m| S = s)." class="latex" />   </p>
+<p>Of course we want to do this for lots of settings, and in the end we want to choose different settings <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> with different probabilities, or frequencies, <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s)." class="latex" />  Then we can use Bayes&#8217; rule:  </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+P%28S+%3D+s+%7C+M+%3D+m%29+%3D+P%28M+%3D+m%7C+S+%3D+s%29+%5Cfrac%7BP%28S+%3D+s%29%7D%7BP%28M+%3D+m%29%7D+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ P(S = s | M = m) = P(M = m| S = s) &#92;frac{P(S = s)}{P(M = m)} }" class="latex" /></p>
+<blockquote><p>
+I still find this confusing, maybe because I have a misconception. I get how “control over P(S=s)” in your MCMC runs helps compute P(M=m|S=s). But in order to use Bayes’ Rule to determine P(S=s|M=m), don’t you also need to know the value of P(S=s) in the real world?
+</p></blockquote>
+<p>No: the &#8216;real world&#8217; doesn&#8217;t know anything about our model or the probability that some settings of our model take some value <img src="https://s0.wp.com/latex.php?latex=S+%3D+s.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S = s." class="latex" />   In this stage of the calculation the probability <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s)" class="latex" /> is something <i>we</i> control, and our goal is to do that cleverly to efficiently compute <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s+%7C+M+%3D+m%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s | M = m)." class="latex" /></p>
+<p>However, I sympathize with your confusion, because we zipped through something very quickly: namely, what we do when we have <img src="https://s0.wp.com/latex.php?latex=P%28S+%3D+s+%7C+M+%3D+m%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(S = s | M = m)" class="latex" />.   This conditional probability tells us the probability that we should use various possible settings for our model as a function of some actual past or imagined future measurements.  So it&#8217;s very useful, but it&#8217;s not the final answer to any real-world question.</p>
+<p>By the way, you once complained about what happens when you cut-and-paste a passage containing equations, like this:</p>
+<blockquote><p>
+But here <b>Bayes&#8217; rule</b> comes to the rescue, relating what we want to what we can more easily compute:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+P%28S+%3D+s+%7C+M+%3D+m%29+%3D+P%28M+%3D+m%7C+S+%3D+s%29+%5Cfrac%7BP%28S+%3D+s%29%7D%7BP%28M+%3D+m%29%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ P(S = s | M = m) = P(M = m| S = s) &#92;frac{P(S = s)}{P(M = m)} } " class="latex" />
+</p></blockquote>
+<p>If you cut-and-paste it, for some stupid reason you get</p>
+<blockquote><p>
+But here Bayes&#8217; rule comes to the rescue, relating what we want to what we can more easily compute:</p>
+<p>\displaystyle{ P(S = s | M = m) = P(M = m| S = s) \frac{P(S = s)}{P(M = m)} }
+</p></blockquote>
+<p>This looks like a mess, but you just need to put &#036;latex in front of the equation, leaving a space before the other stuff, and &#036; after it, like this:</p>
+<blockquote><p>
+But here Bayes&#8217; rule comes to the rescue, relating what we want to what we can more easily compute:</p>
+<p>&#036;latex \displaystyle{ P(S = s | M = m) = P(M = m| S = s) \frac{P(S = s)}{P(M = m)} } &#036;
+</p></blockquote>
+<p>to get something nice:</p>
+<blockquote><p>
+But here Bayes&#8217; rule comes to the rescue, relating what we want to what we can more easily compute:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+P%28S+%3D+s+%7C+M+%3D+m%29+%3D+P%28M+%3D+m%7C+S+%3D+s%29+%5Cfrac%7BP%28S+%3D+s%29%7D%7BP%28M+%3D+m%29%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ P(S = s | M = m) = P(M = m| S = s) &#92;frac{P(S = s)}{P(M = m)} } " class="latex" />
+</p></blockquote>
+<p>(The boldface on &#8220;<b>Bayes&#8217; rule</b>&#8221; is still gone, but life is short.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31948#respond' data-commentid="31948" data-postid="16530" data-belowelement="div-comment-31948" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-31968">
+				<div id="div-comment-31968" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6c65b3d3fc035beec559f878228d7d43?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">arch1</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31968">26 July, 2013 at 12:27 am</a>		</div>
+
+		<p>Thanks for the careful explanation John.  Regarding my 2nd point of confusion, I’m still puzzled.  I’m almost certainly misinterpreting or mis-thinking, but I’ll try to be clearer about what confuses me in case on the chance that it helps clarity of the article.</p>
+<p>In the MCMC runs which compute <img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+P%28M+%3D+m+%7C+S+%3D+s+%29%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ P(M = m | S = s )} " class="latex" /> as a function of s, your random-walk approach tends to cluster around s values which make that function big.  In other words, for a given m, <img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+P%28S+%3D+s%29+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ P(S = s) } " class="latex" /> for your MCMC runs tends to be large for precisely those s values for which <img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+P%28M+%3D+m+%7C+S+%3D+s%29+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ P(M = m | S = s) } " class="latex" /> is also large.</p>
+<p>Are you saying that, having thus computed <img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+P%28M+%3D+m+%7C+S+%3D+s%29+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ P(M = m | S = s) } " class="latex" />, you then compute <img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+P%28S+%3D+s+%7C+M+%3D+m%29+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ P(S = s | M = m) } " class="latex" /> by plugging this same value of <img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+P%28S+%3D+s+%29%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ P(S = s )} " class="latex" /> into the RHS of Bayes’ formula, and you then use the resulting <img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+P%28S+%3D+s+%7C+M+%3D+m+%29%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ P(S = s | M = m )} " class="latex" /> values to draw conclusions about actual or potential real world scenarios?</p>
+<p>If so, I don’t see how this can work, because it seems to me that in order for the LHS of Bayes’ formula to apply to the real world, the inputs on the RHS have to, also.  But the <img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+P%28S+%3D+s%29+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ P(S = s) } " class="latex" /> values which characterize your MCMC runs have no relation to the real world; rather, they were chosen solely to improve efficiency in an intermediate phase of the computation.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31968#respond' data-commentid="31968" data-postid="16530" data-belowelement="div-comment-31968" data-respondelement="respond" data-replyto="Reply to arch1" aria-label='Reply to arch1'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-hypergeometric even thread-odd thread-alt depth-1 highlander-comment" id="comment-31987">
+				<div id="div-comment-31987" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/750466fc8ce55280172d2f06234ef7f7?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://hypergeometric.wordpress.com' rel='external nofollow ugc' class='url'>hypergeometric</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31987">26 July, 2013 at 5:23 pm</a>		</div>
+
+		<p>Hi John,</p>
+<p>Limited comments now. More later. Great article. Great appetizer.</p>
+<p>(1) In the discussion of MCMC suggest putting a reference to [K] since you have him anyway and he does a superb job of introducing Metropolis-Rosenbluth-Hastings to the uninitiated, with problem sets. I would not sweat the details of burn-in or other nuances of Monte Carlo for the introductory.</p>
+<p>(2) I&#8217;d replace</p>
+<p>&#8220;Note how there is no clear signal from either the curves or the differences that the green curve is at the correct setting value while the blue one has the wrong one: the noise makes it nontrivial to estimate s.&#8221;</p>
+<p>with something like</p>
+<p> &#8220;Note how it&#8217;s difficult to make a compelling argument for why the green curve or the blue curve are more faithful representations of the red and, accordingly, which value of s is better. Their difference is due to the variability of noise.&#8221; </p>
+<p>followed by the &#8220;This is a baby version &#8230;.&#8221;</p>
+<p>(3) To overcome some of the confusion implicit in the comments above, it may be helpful to use less formal notation for Likelihood vs Posterior and simply say that more than one s value may be a candidate explanation and we want to estimate all of them, with associated probability masses. When I have a real computer, I&#8217;ll work up some proposed language for that.</p>
+<p>Nice job, all!</p>
+<p>  &#8212; Jan</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31987#respond' data-commentid="31987" data-postid="16530" data-belowelement="div-comment-31987" data-respondelement="respond" data-replyto="Reply to hypergeometric" aria-label='Reply to hypergeometric'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-hypergeometric odd alt thread-even depth-1 highlander-comment" id="comment-31993">
+				<div id="div-comment-31993" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/750466fc8ce55280172d2f06234ef7f7?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://hypergeometric.wordpress.com' rel='external nofollow ugc' class='url'>hypergeometric</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-31993">26 July, 2013 at 11:19 pm</a>		</div>
+
+		<p>Additional comment on the above Comment discussion including Dan says: 25 July, 2013 at 12:31 pm, while MCMC is used in a Bayesian scheme to find or describe a Posterior, it can be used to do the same for ANY density, irrespective. It&#8217;s used in Bayesian work but is just machinery.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31993#respond' data-commentid="31993" data-postid="16530" data-belowelement="div-comment-31993" data-respondelement="respond" data-replyto="Reply to hypergeometric" aria-label='Reply to hypergeometric'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-hypergeometric even thread-odd thread-alt depth-1 highlander-comment" id="comment-32068">
+				<div id="div-comment-32068" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/750466fc8ce55280172d2f06234ef7f7?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://hypergeometric.wordpress.com' rel='external nofollow ugc' class='url'>hypergeometric</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/#comment-32068">30 July, 2013 at 4:00 pm</a>		</div>
+
+		<p>Note, BTW, that <img src="https://s0.wp.com/latex.php?latex=P%28M+%3D+m%29+%3D+%5Cint+P%28M+%3D+m%7CS+%3D+s%29+P%28S+%3D+s%29%5C%3B%5Cmathrm%7Bd%7Ds&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M = m) = &#92;int P(M = m|S = s) P(S = s)&#92;;&#92;mathrm{d}s" class="latex" /> and that <img src="https://s0.wp.com/latex.php?latex=P%28M+%3D+m%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="P(M = m)" class="latex" /> is sometimes called [i]evidence[/i] per [K].</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=32068#respond' data-commentid="32068" data-postid="16530" data-belowelement="div-comment-32068" data-respondelement="respond" data-replyto="Reply to hypergeometric" aria-label='Reply to hypergeometric'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-31933">arch1</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2013/07/23/monte-carlo-methods-in-climate-science/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="6dd877e3cf" /><input type="hidden" name="_wp_http_referer" value="/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31933" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='16530' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='31933' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="5e1855e0c7" /></p>
+<input type="hidden" name="genseq" value="1632613521" />
+<input type="hidden" id="ak_js" name="ak_js" value="126"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2013/07/23/monte-carlo-methods-in-climate-science/?replytocom=31933"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="0272f16312" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,176,945 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-53463a46070b974244107e96ca869e5d">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-cd90f0688cecdf25a11b4ba396151b5f">
+	</div>
+	<div class="grofile-hash-map-7b8c11bc19a524da9aac988120936d9a">
+	</div>
+	<div class="grofile-hash-map-7d707283082331178dd04da841510b82">
+	</div>
+	<div class="grofile-hash-map-7d6dccf2ff26b8d7bfd392f162465ab5">
+	</div>
+	<div class="grofile-hash-map-0626d49e1c8a054ab27cd35e2d6b62f8">
+	</div>
+	<div class="grofile-hash-map-6c65b3d3fc035beec559f878228d7d43">
+	</div>
+	<div class="grofile-hash-map-750466fc8ce55280172d2f06234ef7f7">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=f7f58f7d33","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"16530","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'16530','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTZVSTVKW2VqN2ZlfC5WbGQ/MTY9dmIxVytZNy5qYUxVXWRxMml5PURScmNEN1BzfnFKV1FEVEpPS2JwRU1GVj9ELFM9JXNjM24tais1N1MlejRVRHl2X3lkbVQ9JVRibFdtQmJNN214clV3Qm0sN0xoazM/R1BPcyx8bU1oWzdGZCxSeVVDV1YlY2p4W1NiblZNdVssUXpyc3NERSVwZGFZWnQtbFZDYll5U0Jwc1VwbkxscF9HckFTY0RGWHdjQ0VVVms5Y3VPSSxsRno5ZC1wRFNdMWhYdFYuUg=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '16530' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script defer id="bilmur"  data-provider="wordpress.com" data-service="simple" src="/wp-content/js/bilmur.min.js?i=2&m=202138"></script><script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

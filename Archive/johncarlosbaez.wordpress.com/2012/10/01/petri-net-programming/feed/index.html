@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:media="http://search.yahoo.com/mrss/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Petri Net Programming (Part 1)	</title>
+	<atom:link href="https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/feed/" rel="self" type="application/rss+xml" />
+	<link>https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/</link>
+	<description></description>
+	<lastBuildDate>Tue, 12 Aug 2014 10:38:34 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>http://wordpress.com/</generator>
+	<item>
+		<title>
+		By: Petri Net Programming (Part 2) « Azimuth		</title>
+		<link>https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-23183</link>
+
+		<dc:creator><![CDATA[Petri Net Programming (Part 2) « Azimuth]]></dc:creator>
+		<pubDate>Thu, 20 Dec 2012 18:22:48 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=12315#comment-23183</guid>
+
+					<description><![CDATA[In the previous article, I explored a simple computational model called Petri nets [...]]]></description>
+			<content:encoded><![CDATA[<p>In the previous article, I explored a simple computational model called Petri nets [&#8230;]</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Boris Borcic		</title>
+		<link>https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20717</link>
+
+		<dc:creator><![CDATA[Boris Borcic]]></dc:creator>
+		<pubDate>Sat, 13 Oct 2012 11:21:00 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=12315#comment-20717</guid>
+
+					<description><![CDATA[The only thing that&#039;s 2.7 is the Counter library class (itself a subclass of dict) which saves me some definitions, such as that of the &#038; operator by a special method of the user-defined subclass Bag. That subclass itself (through special __methods__ that are the Python way of overloading operators) serves to implement the syntax for transitions. This is comparable in power and limitations to making up user syntax by defining operators in Prolog. &quot;Practicality beats purity&quot; is a motto of Python, and this is reflected in using that single general-purpose subclass Bag to represent at once species, transition inputs, transitions outputs, and transitions (given this, the name of the subclass is debatable - as it doesn&#039;t properly fit the last specialization).
+
+The implementation is a hack, and can be largely characterized as using reflection to re-target Python&#039;s own compilation engine. The syntax @petrinet is what&#039;s called a decorator (iirc it was borrowed from Java around python 2.4), and the way it works is that the result of compiling the function definition that follows, gets passed to the function petrinet, and the return value bound instead to the name of the defined function in the outer scope.
+
+The function petrinet() takes apart the compiled function object which allows it to create bindings for all unbound variables meant to name species, to values that are singleton Bags with 1 exemplary of the name or species token counted in. The code of the function is then evaluated while the Bag class of these bound values provides appropriate definitions for the algebraic syntax of transitions. The most flaky is the cheap way transition names get associated with transitions; this is done by simply mapping evaluations of the &#062;&#062; operator in the sandboxed function evaluation, in order, to the names of local variables listed by the compiled function object. This boils down to the unenforced requirement that the decorated petri net function is formed of simple assignment statements to distinct variables, of the form
+
+transition_name = (expression involving a single call to &#062;&#062;)
+
+that is, with the RHS an expression involving exactly one evaluation of the &#062;&#062; operator. Also, the function must be declared with an empty parameter list or things will break.
+
+The function petrirun is there to demonstrate that the intended semantics is captured (in a more realistic setting the procedural interpretation of the petri net would be better decoupled). petrirun() gets instantiated by petrinet() for each petri net as the executable object. It is actually a generator because it returns values with a yield statement, what allows to pull out of it, subsequent values on demand, for instance as the generator in a for-loop as demonstrated above. The list of transitions and the list of species are attached to it as user function attributes for allowing later user access. The petrirun instance should also be renamed to the decorated function name (to appear under that name when coming out in the REPL or tracebacks)  but that was left out. petrirun() is also designed to exploit named parameters function call syntax to serve the stipulation of the initial labelling of the run.]]></description>
+			<content:encoded><![CDATA[<p>The only thing that&#8217;s 2.7 is the Counter library class (itself a subclass of dict) which saves me some definitions, such as that of the &amp; operator by a special method of the user-defined subclass Bag. That subclass itself (through special __methods__ that are the Python way of overloading operators) serves to implement the syntax for transitions. This is comparable in power and limitations to making up user syntax by defining operators in Prolog. &#8220;Practicality beats purity&#8221; is a motto of Python, and this is reflected in using that single general-purpose subclass Bag to represent at once species, transition inputs, transitions outputs, and transitions (given this, the name of the subclass is debatable &#8211; as it doesn&#8217;t properly fit the last specialization).</p>
+<p>The implementation is a hack, and can be largely characterized as using reflection to re-target Python&#8217;s own compilation engine. The syntax @petrinet is what&#8217;s called a decorator (iirc it was borrowed from Java around python 2.4), and the way it works is that the result of compiling the function definition that follows, gets passed to the function petrinet, and the return value bound instead to the name of the defined function in the outer scope.</p>
+<p>The function petrinet() takes apart the compiled function object which allows it to create bindings for all unbound variables meant to name species, to values that are singleton Bags with 1 exemplary of the name or species token counted in. The code of the function is then evaluated while the Bag class of these bound values provides appropriate definitions for the algebraic syntax of transitions. The most flaky is the cheap way transition names get associated with transitions; this is done by simply mapping evaluations of the &gt;&gt; operator in the sandboxed function evaluation, in order, to the names of local variables listed by the compiled function object. This boils down to the unenforced requirement that the decorated petri net function is formed of simple assignment statements to distinct variables, of the form</p>
+<p>transition_name = (expression involving a single call to &gt;&gt;)</p>
+<p>that is, with the RHS an expression involving exactly one evaluation of the &gt;&gt; operator. Also, the function must be declared with an empty parameter list or things will break.</p>
+<p>The function petrirun is there to demonstrate that the intended semantics is captured (in a more realistic setting the procedural interpretation of the petri net would be better decoupled). petrirun() gets instantiated by petrinet() for each petri net as the executable object. It is actually a generator because it returns values with a yield statement, what allows to pull out of it, subsequent values on demand, for instance as the generator in a for-loop as demonstrated above. The list of transitions and the list of species are attached to it as user function attributes for allowing later user access. The petrirun instance should also be renamed to the decorated function name (to appear under that name when coming out in the REPL or tracebacks)  but that was left out. petrirun() is also designed to exploit named parameters function call syntax to serve the stipulation of the initial labelling of the run.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: David Tanzer		</title>
+		<link>https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20703</link>
+
+		<dc:creator><![CDATA[David Tanzer]]></dc:creator>
+		<pubDate>Fri, 12 Oct 2012 20:00:46 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=12315#comment-20703</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20700&quot;&gt;David Tanzer&lt;/a&gt;.
+
+I.e., How does it work?  I am not familiar with these 2.7 language constructs.  
+
+Looking it over some more, I&#039;m getting some hazy pciture of it..   The syntax &quot;@petrinet ___&quot; is a way to pass the defined set of transitions to the function &quot;petrinet.&quot;    
+
+What is the type of the defined objects like &quot;chemical_reaction.&quot;   Are they something like rulesets?  And what is the general role of the symbols &#124;, _ and &#062;&#062;.   Yet you call the object AIDS like a function.
+
+Above and beyond these language specifics, can you post here a small amount of dissection of the code?   Saying essentially, here is what I wanted to achieve, and these are the mechanisms I used, which work together correctly because of XYZ.   Thanks.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20700">David Tanzer</a>.</p>
+<p>I.e., How does it work?  I am not familiar with these 2.7 language constructs.  </p>
+<p>Looking it over some more, I&#8217;m getting some hazy pciture of it..   The syntax &#8220;@petrinet ___&#8221; is a way to pass the defined set of transitions to the function &#8220;petrinet.&#8221;    </p>
+<p>What is the type of the defined objects like &#8220;chemical_reaction.&#8221;   Are they something like rulesets?  And what is the general role of the symbols |, _ and &gt;&gt;.   Yet you call the object AIDS like a function.</p>
+<p>Above and beyond these language specifics, can you post here a small amount of dissection of the code?   Saying essentially, here is what I wanted to achieve, and these are the mechanisms I used, which work together correctly because of XYZ.   Thanks.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: David Tanzer		</title>
+		<link>https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20700</link>
+
+		<dc:creator><![CDATA[David Tanzer]]></dc:creator>
+		<pubDate>Fri, 12 Oct 2012 19:31:04 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=12315#comment-20700</guid>
+
+					<description><![CDATA[Cool.  Can you say a bit about how these DSL language constructs are working together to make this program run?]]></description>
+			<content:encoded><![CDATA[<p>Cool.  Can you say a bit about how these DSL language constructs are working together to make this program run?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Boris Borcic		</title>
+		<link>https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20548</link>
+
+		<dc:creator><![CDATA[Boris Borcic]]></dc:creator>
+		<pubDate>Sun, 07 Oct 2012 15:13:09 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=12315#comment-20548</guid>
+
+					<description><![CDATA[While I don&#039;t feel this way of running Petri nets is very useful, I used the opportunity of the proposed exercise to extend the engine for the case of transitions with relative rates. This, to better show the flexibility of Python as a base to create DSL - domain specific languages. In this case a DSL for petri nets, which for the three examples of the post, allows to encode them entirely as
+
+[sourcecode language=&quot;python&quot; wraplines=&quot;false&quot;]
+@petrinet
+def AIDS() :
+    α = 0.1 &#124; _ &#062;&#062; healthy
+    β = healthy+virion &#062;&#062; infected
+    γ = 0.2 &#124; healthy &#062;&#062; _
+    δ = 0.3 &#124; infected &#062;&#062; _
+    ε = infected &#062;&#062; infected+virion
+    ζ = 0.2 &#124; virion &#062;&#062; _
+
+@petrinet
+def rabbits_and_wolves() :
+    birth = rabbit &#062;&#062; 2*rabbit
+    predation = rabbit+wolf &#062;&#062; 2*wolf
+    death = 0.3 &#124; wolf &#062;&#062; _
+
+@petrinet
+def chemical_reaction() :
+    split = H2O &#062;&#062; 2*H+O
+    combine = 2*H+O &#062;&#062; H2O
+[/sourcecode]
+
+The optional number and vertical bar at the beginning of a rule expresses a weight or unnormalized rate different from unity.
+
+The code is written for Python 3.3 but except for the use of greek letters in the &quot;AIDS&quot; petri net, should also run on Python 2.7. The implementation of the syntax in 65 LOCs is minimalistic, as no step is taken ensure graceful errors when the DSL code strays from the syntax illustrated. 
+
+The way to invoke the code is
+[sourcecode language=&quot;python&quot; wraplines=&quot;false&quot; collapse=&quot;false&quot;]
+&#062;&#062;&#062; for step,transition,labelling in AIDS(healthy=5,virion=5):
+	print(transition,&#034;==&#062;&#034;,labelling)
+	if step&#062;10 : break
+
+β ==&#062; 4*healthy+1*infected+4*virion
+ε ==&#062; 4*healthy+1*infected+5*virion
+β ==&#062; 3*healthy+2*infected+4*virion
+β ==&#062; 2*healthy+3*infected+3*virion
+ε ==&#062; 2*healthy+3*infected+4*virion
+β ==&#062; 1*healthy+4*infected+3*virion
+ε ==&#062; 1*healthy+4*infected+4*virion
+β ==&#062; 5*infected+3*virion
+ε ==&#062; 5*infected+4*virion
+ε ==&#062; 5*infected+5*virion
+ε ==&#062; 5*infected+6*virion
+[/sourcecode]
+
+And here is the code. I just hope the sourcecode quoting works as advertised :)
+
+[sourcecode language=&quot;python&quot; wraplines=&quot;false&quot; collapse=&quot;false&quot;]
+# -*- coding: utf-8 -*-
+from __future__ import print_function
+from collections import Counter
+
+class Bag(Counter) :
+    weight=1
+    transitions=[]
+    output={}
+    
+    def __rmul__(self, other) :
+        return Bag({s:n*other for s,n in self.items()})
+    
+    def __add__(self,other) :
+        return Bag(Counter.__add__(self,other))
+    
+    def __rshift__(self,other) :
+        self.output=other
+        self.transitions.append(self)
+        return self
+
+    def __ror__(self,other) :
+        self.weight=other
+        return self
+
+    def __call__(self,other) :
+        return Bag(other-self+self.output)
+
+    def __repr__(self) :
+        return &#039;+&#039;.join(&#034;%s*%s&#034; % (n,s)
+                        for s,n in sorted(self.items())
+                        if n) or &#039;{}&#039;
+
+def petrinet(fun) :
+
+    code = getattr(fun,&#039;__code__&#039;,0) or fun.func_code
+    
+    species={ n : Bag([n]) for n in code.co_names }
+    species[&#039;_&#039;] = Bag()
+
+    Bag.transitions[:]=[]
+    eval(code,species,{})
+    transitions=Bag.transitions[:]
+    
+    for n,t in zip(code.co_varnames,transitions):
+        t.name=n
+    del species[&#039;__builtins__&#039;]
+    del species[&#039;_&#039;]
+        
+    def petrirun(**labelling) :
+        from random import random
+        from itertools import count
+        labelling=Bag(labelling)
+        for step in count(1) :
+            possible=[t for t in transitions if t == t &#038; labelling]
+            if not possible : break
+            pick=random()*sum(t.weight for t in possible)
+            for k,transition in enumerate(possible) :
+                pick-=transition.weight
+                if pick&#060;=0 :
+                    labelling=transition(labelling)
+                    yield step,transition.name,labelling
+                    break
+                
+    petrirun.species=species
+    petrirun.transitions=transitions
+    return petrirun
+[/sourcecode]]]></description>
+			<content:encoded><![CDATA[<p>While I don&#8217;t feel this way of running Petri nets is very useful, I used the opportunity of the proposed exercise to extend the engine for the case of transitions with relative rates. This, to better show the flexibility of Python as a base to create DSL &#8211; domain specific languages. In this case a DSL for petri nets, which for the three examples of the post, allows to encode them entirely as</p>
+<pre class="brush: python; title: ; wrap-lines: false; notranslate">
+@petrinet
+def AIDS() :
+    α = 0.1 | _ &gt;&gt; healthy
+    β = healthy+virion &gt;&gt; infected
+    γ = 0.2 | healthy &gt;&gt; _
+    δ = 0.3 | infected &gt;&gt; _
+    ε = infected &gt;&gt; infected+virion
+    ζ = 0.2 | virion &gt;&gt; _
+
+@petrinet
+def rabbits_and_wolves() :
+    birth = rabbit &gt;&gt; 2*rabbit
+    predation = rabbit+wolf &gt;&gt; 2*wolf
+    death = 0.3 | wolf &gt;&gt; _
+
+@petrinet
+def chemical_reaction() :
+    split = H2O &gt;&gt; 2*H+O
+    combine = 2*H+O &gt;&gt; H2O
+</pre>
+<p>The optional number and vertical bar at the beginning of a rule expresses a weight or unnormalized rate different from unity.</p>
+<p>The code is written for Python 3.3 but except for the use of greek letters in the &#8220;AIDS&#8221; petri net, should also run on Python 2.7. The implementation of the syntax in 65 LOCs is minimalistic, as no step is taken ensure graceful errors when the DSL code strays from the syntax illustrated. </p>
+<p>The way to invoke the code is</p>
+<pre class="brush: python; collapse: false; title: ; wrap-lines: false; notranslate">
+&gt;&gt;&gt; for step,transition,labelling in AIDS(healthy=5,virion=5):
+	print(transition,&quot;==&gt;&quot;,labelling)
+	if step&gt;10 : break
+
+β ==&gt; 4*healthy+1*infected+4*virion
+ε ==&gt; 4*healthy+1*infected+5*virion
+β ==&gt; 3*healthy+2*infected+4*virion
+β ==&gt; 2*healthy+3*infected+3*virion
+ε ==&gt; 2*healthy+3*infected+4*virion
+β ==&gt; 1*healthy+4*infected+3*virion
+ε ==&gt; 1*healthy+4*infected+4*virion
+β ==&gt; 5*infected+3*virion
+ε ==&gt; 5*infected+4*virion
+ε ==&gt; 5*infected+5*virion
+ε ==&gt; 5*infected+6*virion
+</pre>
+<p>And here is the code. I just hope the sourcecode quoting works as advertised :)</p>
+<pre class="brush: python; collapse: false; title: ; wrap-lines: false; notranslate">
+# -*- coding: utf-8 -*-
+from __future__ import print_function
+from collections import Counter
+
+class Bag(Counter) :
+    weight=1
+    transitions=[]
+    output={}
+    
+    def __rmul__(self, other) :
+        return Bag({s:n*other for s,n in self.items()})
+    
+    def __add__(self,other) :
+        return Bag(Counter.__add__(self,other))
+    
+    def __rshift__(self,other) :
+        self.output=other
+        self.transitions.append(self)
+        return self
+
+    def __ror__(self,other) :
+        self.weight=other
+        return self
+
+    def __call__(self,other) :
+        return Bag(other-self+self.output)
+
+    def __repr__(self) :
+        return '+'.join(&quot;%s*%s&quot; % (n,s)
+                        for s,n in sorted(self.items())
+                        if n) or '{}'
+
+def petrinet(fun) :
+
+    code = getattr(fun,'__code__',0) or fun.func_code
+    
+    species={ n : Bag([n]) for n in code.co_names }
+    species['_'] = Bag()
+
+    Bag.transitions[:]=[]
+    eval(code,species,{})
+    transitions=Bag.transitions[:]
+    
+    for n,t in zip(code.co_varnames,transitions):
+        t.name=n
+    del species['__builtins__']
+    del species['_']
+        
+    def petrirun(**labelling) :
+        from random import random
+        from itertools import count
+        labelling=Bag(labelling)
+        for step in count(1) :
+            possible=[t for t in transitions if t == t &amp; labelling]
+            if not possible : break
+            pick=random()*sum(t.weight for t in possible)
+            for k,transition in enumerate(possible) :
+                pick-=transition.weight
+                if pick&lt;=0 :
+                    labelling=transition(labelling)
+                    yield step,transition.name,labelling
+                    break
+                
+    petrirun.species=species
+    petrirun.transitions=transitions
+    return petrirun
+</pre>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: David Tanzer		</title>
+		<link>https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20538</link>
+
+		<dc:creator><![CDATA[David Tanzer]]></dc:creator>
+		<pubDate>Sun, 07 Oct 2012 04:46:39 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=12315#comment-20538</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20494&quot;&gt;davidtweed&lt;/a&gt;.
+
+Wow.  I sort of get the idea, but not well.
+
+If the stochastic pi-machine is pi-calculus in action, then that is proof that the calculus is cool and useful.
+
+So I&#039;m trying to make sense of the code that have for the sample reactions.   Here a document that explains the some of the examples in the Sliverlight reaction simulator:
+
+http://research.microsoft.com/en-us/projects/spim/gillespie.pdf
+
+It includes radioactive decay, and Lotka reactions.   Here is the Lotka reaction logic:
+
+directive sample 5.0 1000
+directive plot Y()
+new c1@5.0:chan
+new c2@0.0025:chan
+
+let X() = ?c1; X()
+let Y() =
+  do !c1; (Y() &#124; Y())
+  or !c2
+  or ?c2
+run (X() &#124; 10 of Y())
+
+The following questions are directed generally to anyone here.   How much of this is pure pi-calculus, and how much is in the stochastic extension?   The channels have rate constants associated with them, but is that the extent of the extension?
+
+Can anyone give a detailed analysis and explanation of this code, to explain how it is acheiving the marvelous simulation result?   Remember, I don&#039;t really know what pi-calculus is, so you&#039;ll have to start from a point of few assumptions.  
+
+Here is the the language definition document for stochastic pi-calculus:
+
+http://research.microsoft.com/en-us/projects/spim/language.pdf
+
+Thanks]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20494">davidtweed</a>.</p>
+<p>Wow.  I sort of get the idea, but not well.</p>
+<p>If the stochastic pi-machine is pi-calculus in action, then that is proof that the calculus is cool and useful.</p>
+<p>So I&#8217;m trying to make sense of the code that have for the sample reactions.   Here a document that explains the some of the examples in the Sliverlight reaction simulator:</p>
+<p><object data="http://research.microsoft.com/en-us/projects/spim/gillespie.pdf" type="application/pdf" width="100%" height="800" style="height: 800px;"><p><a href="http://research.microsoft.com/en-us/projects/spim/gillespie.pdf">Click to access gillespie.pdf</a></p></object></p>
+<p>It includes radioactive decay, and Lotka reactions.   Here is the Lotka reaction logic:</p>
+<p>directive sample 5.0 1000<br />
+directive plot Y()<br />
+new c1@5.0:chan<br />
+new <a href="mailto:c2@0.0025">c2@0.0025</a>:chan</p>
+<p>let X() = ?c1; X()<br />
+let Y() =<br />
+  do !c1; (Y() | Y())<br />
+  or !c2<br />
+  or ?c2<br />
+run (X() | 10 of Y())</p>
+<p>The following questions are directed generally to anyone here.   How much of this is pure pi-calculus, and how much is in the stochastic extension?   The channels have rate constants associated with them, but is that the extent of the extension?</p>
+<p>Can anyone give a detailed analysis and explanation of this code, to explain how it is acheiving the marvelous simulation result?   Remember, I don&#8217;t really know what pi-calculus is, so you&#8217;ll have to start from a point of few assumptions.  </p>
+<p>Here is the the language definition document for stochastic pi-calculus:</p>
+<p><object data="http://research.microsoft.com/en-us/projects/spim/language.pdf" type="application/pdf" width="100%" height="800" style="height: 800px;"><p><a href="http://research.microsoft.com/en-us/projects/spim/language.pdf">Click to access language.pdf</a></p></object></p>
+<p>Thanks</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: sean matthews		</title>
+		<link>https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20507</link>
+
+		<dc:creator><![CDATA[sean matthews]]></dc:creator>
+		<pubDate>Fri, 05 Oct 2012 19:52:17 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=12315#comment-20507</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20484&quot;&gt;David Tanzer&lt;/a&gt;.
+
+Hmmm...  My point wasn&#039;t really about petri nets, and more about the
+relevance of the specific programming language.  However, now that I
+am confronted with the problem, I suppose I should put my money where
+my mouth is. How would I implement petri-nets?
+
+Call it Graham&#039;s principle that the structure visible in a program
+should correspond to the problem, and not to the programming
+language. The ideal for this is usually Lisp (for which see Paul
+Graham passim), or, say, for large scale linear algebra, APL (alas
+only once upon a time) or (today) Matlab. For working with relations
+on tuples I think Prolog is likely to provide a clean map between
+concrete and abstract.
+
+A petri-net is a bipartite graph G plus a set of counters on one of
+the types of nodes, T, so that the vector of these counters defines a
+state. G defines a relation R, of transitions from state to state;
+thus a particular run of a simulation of a petri-net has the form
+
+   T1 -R-&#062; T2 -R-&#062; T3 -R-&#062; T4 -R-&#062; ...
+
+Prolog allows me to model tuple transitions very easily.  If I model
+numbers &#039;peano-style&#039;, as s(s(...(0))), and T has the form
+
+t(n1, n2, n3, ....)
+
+Then I can model a rule directly in Prolog as:
+
+r(rulename,
+  t(n1.old, n2.old, n3.old, ....),
+  t(n1.new, n2.new, n3.new, ....)).
+
+which is simply a declared relation between states (I&#039;ve also included
+the name - which gives me a bit more control and documentation) and I
+am done.
+
+So how does this work in practice?
+
+Well I can write down the the &#039;Chemical reaction&#039; net as:
+
+% t(O, H, H2O).
+
+r(split,
+  t(  O ,     H  , s(H2O)),
+  t(s(O), s(s(H)),   H2O ).
+
+r(combine,
+  t(s(O), s(s(H)),   H2O ),
+  t(  O ,     H  , s(H2O)).
+
+Note that rules are directly declarative and I have completely
+separated them from any other interpretive framework - I can modify my
+non-deterministic model, or implement breadth first or bounded
+depth-first search on the space easily as extensions.  I can even run
+my model backwards, should I so want.
+
+A basic simulator (with a bound on the number of transitions) then
+looks like:
+
+simulate(T, T, [], 0).
+simulate(Tinit, Tfinal, [(Tinit, R) &#124; L], N) :-
+             choose(R),
+	     r(R, Tinit, Tnext),
+	     PrecN is N - 1,
+	     simulate(Tnext, Tfinal, L, PrecN).
+simulate(T, T, [], N) :-
+	    not r(_, T, _),
+	    N &#062; 0.
+
+choose is a bit more messy, since it should enumerate the possible
+rules in random order. A state specific version (we can do much better
+- more general - with a bit more space) would be
+
+choose(R) :-
+	  (0 =:= rand(2) -&#062;
+	     (X = split  ; X = combine)
+	  &#124;  (X = combine; X = split  ).
+
+A call to the simulator, with a bound of 20 transitions, is then:
+
+simulate(t(s(s(s(s(s(0))))), s(s(s(0))), s(s(s(s(0))))), Tfinal, L, 20).
+
+Not sure there is enough code here to count as a program (&#060;= 19
+lines). I don&#039;t have a prolog interpreter to hand - my employers are
+very unenthusiastic about my installing my own software, so there may
+be typos above, but I hope the idea is clear.
+
+Note the argument here is not in favor of Prolog (a similar-flavored
+- though not quite identical and not quite so concise - implementation
+would be easy in a language like Scheme), but in favor of choosing
+your tools so as to move you close to the problem rather than trying
+to move the problem closer to your tools, and thus, in this case, no
+objects/classes; if you were designing a user-interface, then an
+object/class model would be close to your problem.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20484">David Tanzer</a>.</p>
+<p>Hmmm&#8230;  My point wasn&#8217;t really about petri nets, and more about the<br />
+relevance of the specific programming language.  However, now that I<br />
+am confronted with the problem, I suppose I should put my money where<br />
+my mouth is. How would I implement petri-nets?</p>
+<p>Call it Graham&#8217;s principle that the structure visible in a program<br />
+should correspond to the problem, and not to the programming<br />
+language. The ideal for this is usually Lisp (for which see Paul<br />
+Graham passim), or, say, for large scale linear algebra, APL (alas<br />
+only once upon a time) or (today) Matlab. For working with relations<br />
+on tuples I think Prolog is likely to provide a clean map between<br />
+concrete and abstract.</p>
+<p>A petri-net is a bipartite graph G plus a set of counters on one of<br />
+the types of nodes, T, so that the vector of these counters defines a<br />
+state. G defines a relation R, of transitions from state to state;<br />
+thus a particular run of a simulation of a petri-net has the form</p>
+<p>   T1 -R-&gt; T2 -R-&gt; T3 -R-&gt; T4 -R-&gt; &#8230;</p>
+<p>Prolog allows me to model tuple transitions very easily.  If I model<br />
+numbers &#8216;peano-style&#8217;, as s(s(&#8230;(0))), and T has the form</p>
+<p>t(n1, n2, n3, &#8230;.)</p>
+<p>Then I can model a rule directly in Prolog as:</p>
+<p>r(rulename,<br />
+  t(n1.old, n2.old, n3.old, &#8230;.),<br />
+  t(n1.new, n2.new, n3.new, &#8230;.)).</p>
+<p>which is simply a declared relation between states (I&#8217;ve also included<br />
+the name &#8211; which gives me a bit more control and documentation) and I<br />
+am done.</p>
+<p>So how does this work in practice?</p>
+<p>Well I can write down the the &#8216;Chemical reaction&#8217; net as:</p>
+<p>% t(O, H, H2O).</p>
+<p>r(split,<br />
+  t(  O ,     H  , s(H2O)),<br />
+  t(s(O), s(s(H)),   H2O ).</p>
+<p>r(combine,<br />
+  t(s(O), s(s(H)),   H2O ),<br />
+  t(  O ,     H  , s(H2O)).</p>
+<p>Note that rules are directly declarative and I have completely<br />
+separated them from any other interpretive framework &#8211; I can modify my<br />
+non-deterministic model, or implement breadth first or bounded<br />
+depth-first search on the space easily as extensions.  I can even run<br />
+my model backwards, should I so want.</p>
+<p>A basic simulator (with a bound on the number of transitions) then<br />
+looks like:</p>
+<p>simulate(T, T, [], 0).<br />
+simulate(Tinit, Tfinal, [(Tinit, R) | L], N) :-<br />
+             choose(R),<br />
+	     r(R, Tinit, Tnext),<br />
+	     PrecN is N &#8211; 1,<br />
+	     simulate(Tnext, Tfinal, L, PrecN).<br />
+simulate(T, T, [], N) :-<br />
+	    not r(_, T, _),<br />
+	    N &gt; 0.</p>
+<p>choose is a bit more messy, since it should enumerate the possible<br />
+rules in random order. A state specific version (we can do much better<br />
+&#8211; more general &#8211; with a bit more space) would be</p>
+<p>choose(R) :-<br />
+	  (0 =:= rand(2) -&gt;<br />
+	     (X = split  ; X = combine)<br />
+	  |  (X = combine; X = split  ).</p>
+<p>A call to the simulator, with a bound of 20 transitions, is then:</p>
+<p>simulate(t(s(s(s(s(s(0))))), s(s(s(0))), s(s(s(s(0))))), Tfinal, L, 20).</p>
+<p>Not sure there is enough code here to count as a program (&lt;= 19<br />
+lines). I don&#039;t have a prolog interpreter to hand &#8211; my employers are<br />
+very unenthusiastic about my installing my own software, so there may<br />
+be typos above, but I hope the idea is clear.</p>
+<p>Note the argument here is not in favor of Prolog (a similar-flavored<br />
+&#8211; though not quite identical and not quite so concise &#8211; implementation<br />
+would be easy in a language like Scheme), but in favor of choosing<br />
+your tools so as to move you close to the problem rather than trying<br />
+to move the problem closer to your tools, and thus, in this case, no<br />
+objects/classes; if you were designing a user-interface, then an<br />
+object/class model would be close to your problem.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: John Baez		</title>
+		<link>https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20505</link>
+
+		<dc:creator><![CDATA[John Baez]]></dc:creator>
+		<pubDate>Fri, 05 Oct 2012 19:14:34 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=12315#comment-20505</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20404&quot;&gt;David Tanzer&lt;/a&gt;.
+
+David Tanzer asked:
+
+&lt;blockquote&gt;
+Bistable and periodic refer to the solutions to the rate equation, right? 
+&lt;/blockquote&gt;
+
+Right.
+
+&lt;blockquote&gt;
+We could think of the state space of a Petri net with k species either as the non-negative region of $latex \mathbb{R}^k$ or $latex \mathbb{N}^k$, depending on whether you use a continuous approximation or not. In the continuous case we use a differential equation, the rate equation. 
+&lt;/blockquote&gt;
+
+Right.  My &lt;a href=&quot;http://math.ucr.edu/home/baez/stoch_stable.pdf&quot; rel=&quot;nofollow&quot;&gt;book&lt;/a&gt; with Jacob Biamonte wound up spending a lot of time on the rate equation.  We explained that when a Petri net has &#039;deficiency zero&#039; and is &#039;weakly reversible&#039;, people have a good understanding of solutions of the rate equation.  There are just as many equilibrium solutions as you&#039;d expect, no more and no less.  They&#039;re all stable, and there are no periodic solutions.
+
+Even better, in this case, the &#039;Anderson--Craciun--Kurtz theorem&#039; lets you quickly obtain equilibrium solutions of the &lt;i&gt;master&lt;/i&gt; equation from equilibrium solutions of the rate equation.
+
+But this case is, in a sense, the &lt;i&gt;boring&lt;/i&gt; case!
+
+&lt;blockquote&gt;
+( Is there a discrete analog?)
+&lt;/blockquote&gt;
+
+Yes, but people haven&#039;t studied this as much.  In fact, I don&#039;t know if I&#039;ve seen it anywhere, but I could easily describe it.  It might be fun to generalize the zero deficiency theorem to this case, if nobody has yet.  I think I could do it.
+
+&lt;blockquote&gt;
+The solutions to the equations give the trajectories in state space, given an initial state. So we can look at attractor points and basins of attraction.
+&lt;/blockquote&gt;
+
+What I&#039;m calling a &#039;stable equilibrium&#039; is exactly the same as what you&#039;re calling an attractor.   When the &#039;zero deficiency&#039; condition holds, we have a good handle on the attractors, and there&#039;s only one attractor in each &#039;stoichiometric compatibility class&#039;.
+
+&lt;blockquote&gt;
+Does bistable mean that there are two attractors and the whole (non-negative) region of $latex \mathbb{R}^k$ is divided into the basins of attraction for these points?
+&lt;/blockquote&gt;
+
+No, but close.  It means there are two attractors in some stoichiometric compability class.
+
+I&#039;m reluctant to explain &#039;stoichiometric compatibility class&#039; in general, having already done so &lt;a href=&quot;http://math.ucr.edu/home/baez/networks/networks_17.html&quot; rel=&quot;nofollow&quot;&gt;here&lt;/a&gt;, but if you think about the water formation and dissociation example you described, you&#039;ll quickly get the idea.  
+
+There&#039;s one stoichiometric compatibility class for each choice of these two quantities:
+
+1) number of H&lt;sub&gt;2&lt;/sub&gt;O&#039;s plus the number of O&#039;s
+
+2) twice the number of H&lt;sub&gt;2&lt;/sub&gt;O&#039;s plus the number of H&#039;s
+
+These quantities can never change, since hydrogen and oxygen atoms can&#039;t be created or destroyed by the reactions in this Petri net.  So, a solution of the rate equation &lt;i&gt;or&lt;/i&gt; master equation can only wander around in one stoichiometric compatibility class.
+
+Thanks to the deficiency zero theorem, the rate equation has one attractor in each stoichometric compatibility class.  Where this attractor is depends on the rate constants for the formation and dissociation of water.  
+
+This is a nice example of the zero deficiency theorem.
+
+&lt;blockquote&gt;
+Does periodic means that there are points that cycle back to themselves, 
+&lt;/blockquote&gt;
+
+Yes.  The time it takes to come back is called the &#039;period&#039;.
+
+&lt;blockquote&gt;
+or is it a broader notion, meaning that there are points whose trajectories are bounded, but do not converge to an attractor?
+&lt;/blockquote&gt;
+
+No, that broader notion would includes not just periodic solutions but quasiperiodic and chaotic ones.
+
+&lt;blockquote&gt;
+Can a system be bistable and periodic, in the sense that there are two attractors, but there are also points that are periodic?
+&lt;/blockquote&gt;
+
+What&#039;s periodic is not the system but a particular solution. A system can have any number of attractors and any number of periodic solutions.  
+
+The word &#039;bistable&#039; focuses undo attention on the number &lt;i&gt;two&lt;/i&gt;, which is interesting just because it&#039;s the first number bigger than one.  A light switch is bistable, and people are interested in &#039;switches&#039; in biochemistry, but a general switch could have many stable settings.
+
+&lt;blockquote&gt;
+Basically I’m asking about the character of the solutions to the rate equation, which I have not yet investigated. Can you summarize the main theorems regarding the solutions.
+&lt;/blockquote&gt;
+
+I summarized the deficiency zero theorem and Anderson-Craciun-Kurtz theorem rather vaguely above.  I did it quite precisely in the &lt;a href=&quot;http://math.ucr.edu/home/baez/stoch_stable.pdf&quot; rel=&quot;nofollow&quot;&gt;book&lt;/a&gt;.  There are also lots of other theorems, like the deficiency one theorem. 
+
+&lt;blockquote&gt;
+3. Given a stochastic Petri net, is there a decision procedure to say whether it is “bistable,” or “periodic”? 
+&lt;/blockquote&gt;
+
+There are theorems---most notably the deficiency zero theorem and deficiency one theorem--that give necessary or sufficient theorems for these properties, but I don&#039;t believe a full-fledged decision procedure is known.
+
+&lt;blockquote&gt;
+Or does one have to resort to a probabilistic test, involving selections of an initial starting vector, and testing to see whether (1) it appears to be headed for an attractor (or infinity), or (2) whether it appears to be a periodic point. Clearly “appears” needs to be defined.
+&lt;/blockquote&gt;
+
+People can already do a lot better than this brute-force method, thanks in part to all the theorems people have shown, but I think there&#039;s a huge unexplored territory here.  Mathematical chemists are interested in this problem, and it seems to be tricky.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20404">David Tanzer</a>.</p>
+<p>David Tanzer asked:</p>
+<blockquote><p>
+Bistable and periodic refer to the solutions to the rate equation, right?
+</p></blockquote>
+<p>Right.</p>
+<blockquote><p>
+We could think of the state space of a Petri net with k species either as the non-negative region of <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5Ek&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^k" class="latex" /> or <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BN%7D%5Ek&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{N}^k" class="latex" />, depending on whether you use a continuous approximation or not. In the continuous case we use a differential equation, the rate equation.
+</p></blockquote>
+<p>Right.  My <a href="http://math.ucr.edu/home/baez/stoch_stable.pdf" rel="nofollow">book</a> with Jacob Biamonte wound up spending a lot of time on the rate equation.  We explained that when a Petri net has &#8216;deficiency zero&#8217; and is &#8216;weakly reversible&#8217;, people have a good understanding of solutions of the rate equation.  There are just as many equilibrium solutions as you&#8217;d expect, no more and no less.  They&#8217;re all stable, and there are no periodic solutions.</p>
+<p>Even better, in this case, the &#8216;Anderson&#8211;Craciun&#8211;Kurtz theorem&#8217; lets you quickly obtain equilibrium solutions of the <i>master</i> equation from equilibrium solutions of the rate equation.</p>
+<p>But this case is, in a sense, the <i>boring</i> case!</p>
+<blockquote><p>
+( Is there a discrete analog?)
+</p></blockquote>
+<p>Yes, but people haven&#8217;t studied this as much.  In fact, I don&#8217;t know if I&#8217;ve seen it anywhere, but I could easily describe it.  It might be fun to generalize the zero deficiency theorem to this case, if nobody has yet.  I think I could do it.</p>
+<blockquote><p>
+The solutions to the equations give the trajectories in state space, given an initial state. So we can look at attractor points and basins of attraction.
+</p></blockquote>
+<p>What I&#8217;m calling a &#8216;stable equilibrium&#8217; is exactly the same as what you&#8217;re calling an attractor.   When the &#8216;zero deficiency&#8217; condition holds, we have a good handle on the attractors, and there&#8217;s only one attractor in each &#8216;stoichiometric compatibility class&#8217;.</p>
+<blockquote><p>
+Does bistable mean that there are two attractors and the whole (non-negative) region of <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5Ek&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^k" class="latex" /> is divided into the basins of attraction for these points?
+</p></blockquote>
+<p>No, but close.  It means there are two attractors in some stoichiometric compability class.</p>
+<p>I&#8217;m reluctant to explain &#8216;stoichiometric compatibility class&#8217; in general, having already done so <a href="http://math.ucr.edu/home/baez/networks/networks_17.html" rel="nofollow">here</a>, but if you think about the water formation and dissociation example you described, you&#8217;ll quickly get the idea.  </p>
+<p>There&#8217;s one stoichiometric compatibility class for each choice of these two quantities:</p>
+<p>1) number of H<sub>2</sub>O&#8217;s plus the number of O&#8217;s</p>
+<p>2) twice the number of H<sub>2</sub>O&#8217;s plus the number of H&#8217;s</p>
+<p>These quantities can never change, since hydrogen and oxygen atoms can&#8217;t be created or destroyed by the reactions in this Petri net.  So, a solution of the rate equation <i>or</i> master equation can only wander around in one stoichiometric compatibility class.</p>
+<p>Thanks to the deficiency zero theorem, the rate equation has one attractor in each stoichometric compatibility class.  Where this attractor is depends on the rate constants for the formation and dissociation of water.  </p>
+<p>This is a nice example of the zero deficiency theorem.</p>
+<blockquote><p>
+Does periodic means that there are points that cycle back to themselves,
+</p></blockquote>
+<p>Yes.  The time it takes to come back is called the &#8216;period&#8217;.</p>
+<blockquote><p>
+or is it a broader notion, meaning that there are points whose trajectories are bounded, but do not converge to an attractor?
+</p></blockquote>
+<p>No, that broader notion would includes not just periodic solutions but quasiperiodic and chaotic ones.</p>
+<blockquote><p>
+Can a system be bistable and periodic, in the sense that there are two attractors, but there are also points that are periodic?
+</p></blockquote>
+<p>What&#8217;s periodic is not the system but a particular solution. A system can have any number of attractors and any number of periodic solutions.  </p>
+<p>The word &#8216;bistable&#8217; focuses undo attention on the number <i>two</i>, which is interesting just because it&#8217;s the first number bigger than one.  A light switch is bistable, and people are interested in &#8216;switches&#8217; in biochemistry, but a general switch could have many stable settings.</p>
+<blockquote><p>
+Basically I’m asking about the character of the solutions to the rate equation, which I have not yet investigated. Can you summarize the main theorems regarding the solutions.
+</p></blockquote>
+<p>I summarized the deficiency zero theorem and Anderson-Craciun-Kurtz theorem rather vaguely above.  I did it quite precisely in the <a href="http://math.ucr.edu/home/baez/stoch_stable.pdf" rel="nofollow">book</a>.  There are also lots of other theorems, like the deficiency one theorem. </p>
+<blockquote><p>
+3. Given a stochastic Petri net, is there a decision procedure to say whether it is “bistable,” or “periodic”?
+</p></blockquote>
+<p>There are theorems&#8212;most notably the deficiency zero theorem and deficiency one theorem&#8211;that give necessary or sufficient theorems for these properties, but I don&#8217;t believe a full-fledged decision procedure is known.</p>
+<blockquote><p>
+Or does one have to resort to a probabilistic test, involving selections of an initial starting vector, and testing to see whether (1) it appears to be headed for an attractor (or infinity), or (2) whether it appears to be a periodic point. Clearly “appears” needs to be defined.
+</p></blockquote>
+<p>People can already do a lot better than this brute-force method, thanks in part to all the theorems people have shown, but I think there&#8217;s a huge unexplored territory here.  Mathematical chemists are interested in this problem, and it seems to be tricky.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: John Baez		</title>
+		<link>https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20503</link>
+
+		<dc:creator><![CDATA[John Baez]]></dc:creator>
+		<pubDate>Fri, 05 Oct 2012 18:41:43 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=12315#comment-20503</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20485&quot;&gt;David Tanzer&lt;/a&gt;.
+
+The pi calculus is meant as a distilled framework for describing &#039;concurrency&#039;---roughly, computer networks where nodes can create channels to other nodes and send messages along these nodes---much as the lambda calculus is a distilled framework for describing computations done sequentially by a single processor.
+
+Personally I find these distilled frameworks, that seek to get everything done with as few primitives as possible, less clear than a category-theoretic description of &lt;i&gt;large classes&lt;/i&gt; of frameworks.  When you try to distill everything down to a few primitives you wind up making a lot of arbitrary choices, and the resulting framework tends to look cryptic.
+
+Of course, category theory also looks cryptic to those who haven&#039;t studied it... but it has the advantage of being so generally useful that once you learn it and formulate some idea in this way, a bunch of connections to other ideas are instantly visible---ideas in math, logic, physics, and computation, for starters.
+
+Right now I have just one grad student: Mike Stay, who works at Google.  He&#039;s working with me on categories and computation.  In that post David Tweed mentions, he was endeavoring to explain the pi calculus to me, in response to my &lt;a href=&quot;http://golem.ph.utexas.edu/category/2009/08/the_pi_calculus.html&quot; rel=&quot;nofollow&quot;&gt;plea for help&lt;/a&gt;.  As a result, he got interested in describing 
+
+By now he&#039;s gone a lot further.  See:
+
+&#8226; Mike Stay, &lt;a href=&quot;http://golem.ph.utexas.edu/category/2011/04/higher_categories_for_concurre.html&quot; rel=&quot;nofollow&quot;&gt;Higher categories for concurrency&lt;/a&gt;, &lt;i&gt;n&lt;/i&gt;-Category Caf&#233;.
+
+for the state of his thinking a year and a half ago.  Since then he&#039;s been working on this subject with Jamie Vicary and making even more progress.
+
+By now it&#039;s clear to me that bigraphs, the pi calculus and other frameworks for concurrency would really profit from a category-theoretic description, and that when this is done it&#039;ll look a bit like a &lt;i&gt;categorification&lt;/i&gt; of Petri net theory, with symmetric monoidal bicategories replacing symmetric monoidal categories.
+
+In other words: instead of describing a bunch of &#039;particles&#039; interacting in time, these fancier frameworks describe a bunch of &lt;i&gt;labelled graphs&lt;/i&gt; interacting and changing topology in time.  The vertices of the graph are what I called &#039;nodes&#039;, and the edges are what I called &#039;channels&#039;.  The nodes can do things (e.g. compute) and send messages to each other along the edges.
+
+This sort of framework might be useful in biology and ecology, too.  It would certainly be relevant to the &#039;smart grid&#039;.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20485">David Tanzer</a>.</p>
+<p>The pi calculus is meant as a distilled framework for describing &#8216;concurrency&#8217;&#8212;roughly, computer networks where nodes can create channels to other nodes and send messages along these nodes&#8212;much as the lambda calculus is a distilled framework for describing computations done sequentially by a single processor.</p>
+<p>Personally I find these distilled frameworks, that seek to get everything done with as few primitives as possible, less clear than a category-theoretic description of <i>large classes</i> of frameworks.  When you try to distill everything down to a few primitives you wind up making a lot of arbitrary choices, and the resulting framework tends to look cryptic.</p>
+<p>Of course, category theory also looks cryptic to those who haven&#8217;t studied it&#8230; but it has the advantage of being so generally useful that once you learn it and formulate some idea in this way, a bunch of connections to other ideas are instantly visible&#8212;ideas in math, logic, physics, and computation, for starters.</p>
+<p>Right now I have just one grad student: Mike Stay, who works at Google.  He&#8217;s working with me on categories and computation.  In that post David Tweed mentions, he was endeavoring to explain the pi calculus to me, in response to my <a href="http://golem.ph.utexas.edu/category/2009/08/the_pi_calculus.html" rel="nofollow">plea for help</a>.  As a result, he got interested in describing </p>
+<p>By now he&#8217;s gone a lot further.  See:</p>
+<p>&bull; Mike Stay, <a href="http://golem.ph.utexas.edu/category/2011/04/higher_categories_for_concurre.html" rel="nofollow">Higher categories for concurrency</a>, <i>n</i>-Category Caf&eacute;.</p>
+<p>for the state of his thinking a year and a half ago.  Since then he&#8217;s been working on this subject with Jamie Vicary and making even more progress.</p>
+<p>By now it&#8217;s clear to me that bigraphs, the pi calculus and other frameworks for concurrency would really profit from a category-theoretic description, and that when this is done it&#8217;ll look a bit like a <i>categorification</i> of Petri net theory, with symmetric monoidal bicategories replacing symmetric monoidal categories.</p>
+<p>In other words: instead of describing a bunch of &#8216;particles&#8217; interacting in time, these fancier frameworks describe a bunch of <i>labelled graphs</i> interacting and changing topology in time.  The vertices of the graph are what I called &#8216;nodes&#8217;, and the edges are what I called &#8216;channels&#8217;.  The nodes can do things (e.g. compute) and send messages to each other along the edges.</p>
+<p>This sort of framework might be useful in biology and ecology, too.  It would certainly be relevant to the &#8216;smart grid&#8217;.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: davidtweed		</title>
+		<link>https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20494</link>
+
+		<dc:creator><![CDATA[davidtweed]]></dc:creator>
+		<pubDate>Fri, 05 Oct 2012 14:38:24 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=12315#comment-20494</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20485&quot;&gt;David Tanzer&lt;/a&gt;.
+
+There&#039;s surely better actual tutorials, but &lt;a href=&quot;http://golem.ph.utexas.edu/category/2009/09/the_pi_calculus_ii.html&quot; rel=&quot;nofollow&quot;&gt;here&#039;s&lt;/a&gt; a lightning introduction by Mike Stay.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2012/10/01/petri-net-programming/#comment-20485">David Tanzer</a>.</p>
+<p>There&#8217;s surely better actual tutorials, but <a href="http://golem.ph.utexas.edu/category/2009/09/the_pi_calculus_ii.html" rel="nofollow">here&#8217;s</a> a lightning introduction by Mike Stay.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>this week&#8217;s finds &#8211; Azimuth</title>
+	<atom:link href="https://johncarlosbaez.wordpress.com/tag/this-weeks-finds/feed/" rel="self" type="application/rss+xml" />
+	<link>https://johncarlosbaez.wordpress.com</link>
+	<description></description>
+	<lastBuildDate>Fri, 13 Aug 2010 02:53:04 +0000</lastBuildDate>
+	<language>en</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>http://wordpress.com/</generator>
+<cloud domain='johncarlosbaez.wordpress.com' port='80' path='/?rsscloud=notify' registerProcedure='' protocol='http-post' />
+<image>
+		<url>https://s0.wp.com/i/buttonw-com.png</url>
+		<title>this week&#8217;s finds &#8211; Azimuth</title>
+		<link>https://johncarlosbaez.wordpress.com</link>
+	</image>
+	<atom:link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+	<atom:link rel='hub' href='https://johncarlosbaez.wordpress.com/?pushpress=hub'/>
+	<item>
+		<title>This Week&#8217;s Finds in Mathematical Physics (Week 300)</title>
+		<link>https://johncarlosbaez.wordpress.com/2010/08/11/this-weeks-finds-in-mathematical-physics-week-300/</link>
+					<comments>https://johncarlosbaez.wordpress.com/2010/08/11/this-weeks-finds-in-mathematical-physics-week-300/#comments</comments>
+		
+		<dc:creator><![CDATA[John Baez]]></dc:creator>
+		<pubDate>Wed, 11 Aug 2010 09:42:33 +0000</pubDate>
+				<category><![CDATA[this week's finds]]></category>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=252</guid>
+
+					<description><![CDATA[In the last issue of This Week's in Mathematical Physics, we'll see how to categorify the Riemann zeta function.
+]]></description>
+										<content:encoded><![CDATA[<p>This is the last of the old series of This Week&#8217;s Finds.  Soon the new series will start, focused on technology and environmental issues &mdash; but still with a hefty helping of math, physics, and other science.  </p>
+<p>When I decided to do something useful for a change, I realized that the best way to start was by interviewing people who take the future and its challenges seriously, but think about it in very different ways.  So far, I&#8217;ve done interviews with:</p>
+<p>&bull; <a href="http://www.jesus.ox.ac.uk/fellows-and-staff/fellows/professor-tim-palmer">Tim Palmer</a> on climate modeling and predictability.</p>
+<p>&bull; <a href="http://www.soton.ac.uk/ses/people/staff/thomas_fischbacher.html">Thomas Fischbacher</a> on sustainability and permaculture.</p>
+<p>&bull; <a href="http://yudkowsky.net/">Eliezer Yudkowsky</a> on artificial intelligence and the art of rationality.</p>
+<p>I hope to do more.  I think it&#8217;ll be fun having <i>This Week&#8217;s Finds</i> be a dialogue instead of a monologue now and then.</p>
+<p>Other things are changing too.  I started a new blog!  If you&#8217;re interested in how scientists can help save the planet, I hope you visit:</p>
+<p>1) Azimuth, <a href="https://johncarlosbaez.wordpress.com">https://johncarlosbaez.wordpress.com</a></p>
+<p>This is where you can find This Week&#8217;s Finds, starting now</p>
+<p>Also, instead of teaching math in hot dry Riverside, I&#8217;m now doing research at the Centre for Quantum Technologies in hot and steamy Singapore.  This too will be reflected in the new This Week&#8217;s Finds.</p>
+<p>But now&#8230; <b><i>the grand finale of This Week&#8217;s Finds in Mathematical Physics!</i></b></p>
+<p>I&#8217;d like to take everything I&#8217;ve been discussing so far and wrap it up in a nice neat package.  Unfortunately that&#8217;s impossible &#8211; there are too many loose ends. But I&#8217;ll do my best: I&#8217;ll tell you how to categorify the Riemann zeta function.  This will give us a chance to visit lots of our old friends one last time: the number 24, string theory, zeta functions, torsors, Joyal&#8217;s theory of species, groupoidification, and more.</p>
+<p>Let me start by telling you how to count.  </p>
+<p>I&#8217;ll assume you already know how to count elements of a <i>set</i>, and move right along to counting objects in a <i>groupoid</i>.  </p>
+<p>A groupoid is a gadget with a bunch of objects and a bunch of isomorphisms between them.  Unlike an element of a set, an object of a groupoid may have symmetries: that is, isomorphisms between it and <i>itself</i>.  And unlike an element of a set, an object of a groupoid doesn&#8217;t always count as &#8220;1 thing&#8221;: when it has n symmetries, it counts as &#8220;1/nth of a thing&#8221;.   That may seem strange, but it&#8217;s really right.  We also need to make sure not to count isomorphic objects as different.  </p>
+<p>So, to count the objects in our groupoid, we go through it, take one representative of each isomorphism class, and add 1/n to our count when this representative has n symmetries.  </p>
+<p>Let&#8217;s see how this works.  Let&#8217;s start by counting all the n-element sets!</p>
+<p>Now, you may have thought there were infinitely many sets with n elements, and that&#8217;s true. But remember: we&#8217;re not counting the <i>set</i> of n-element sets &#8211; that&#8217;s way too big.  So big, in fact, that people call it a &#8220;class&#8221; rather than a set!  Instead, we&#8217;re counting the <i>groupoid</i> of n-element sets: the groupoid with n-element sets as objects, and one-to-one and onto functions between these as isomorphisms.</p>
+<p>All n-element sets are isomorphic, so we only need to look at one.  It has n! symmetries: all the permutations of n elements.  So, the answer is 1/n!.</p>
+<p>That may seem weird, but remember: in math, you get to make up the rules of the game.  The only requirements are that the game be consistent and profoundly fun &#8211; so profoundly fun, in fact, that it seems insulting to call it a mere &#8220;game&#8221;.   </p>
+<p>Now let&#8217;s be more ambitious: let&#8217;s count <i>all</i> the finite sets.   In other words, let&#8217;s work out the cardinality of the groupoid where the objects are <i>all</i> the finite sets, and the isomorphisms are all the one-to-one and onto functions between these.</p>
+<p>There&#8217;s only one 0-element set, and it has 0! symmetries, so it counts for 1/0!.  There are tons of 1-element sets, but they&#8217;re all isomorphic, and they each have 1! symmetries, so they count for 1/1!.  Similarly the 2-element sets count for 1/2!, and so on.  So the total count is</p>
+<p>1/0! + 1/1! + 1/2! + &#8230; = e</p>
+<p>The base of the natural logarithm is the number of finite sets!  You learn something new every day.</p>
+<p>Spurred on by our success, you might want to find a groupoid whose cardinality is &pi;.  It&#8217;s not hard to do: you can just find a groupoid whose cardinality is 3, and a groupoid whose cardinality is .1, and a groupoid whose cardinality is .04, and so on, and lump them all together to get a groupoid whose cardinality is 3.14&#8230;  But this is a silly solution: it doesn&#8217;t shed any light on the nature of &pi;.  </p>
+<p>I don&#8217;t want to go into it in detail now, but the previous problem really <i>does</i> shed light on the nature of e: it explains why this number is related to combinatorics, and it gives a purely combinatorial proof that the derivative of e<sup>x</sup> is e<sup>x</sup>, and lots more.  Try these books to see what I mean:</p>
+<p>2)  Herbert Wilf, Generatingfunctionology,  Academic Press, Boston, 1994.   Available for free at <a href="http://www.cis.upenn.edu/~wilf/">http://www.cis.upenn.edu/~wilf/</a>.</p>
+<p>3)  F. Bergeron, G. Labelle, and P. Leroux, Combinatorial Species and Tree-Like Structures, Cambridge, Cambridge U. Press, 1998.</p>
+<p>For example: if you take a huge finite set, and randomly pick a permutation of it, the chance every element is mapped to a <i>different</i> element is close to 1/e.  It approaches 1/e in the limit where the set gets larger and larger.  That&#8217;s well-known &#8211; but the neat part is how it&#8217;s related to the cardinality of the groupoid of finite sets.</p>
+<p>Anyway, I have not succeeded in finding a really illuminating groupoid whose cardinality is &pi;, but recently James Dolan found a nice one whose cardinality is &pi;<sup>2</sup>/6, and I want to lead up to that.</p>
+<p>Here&#8217;s a not-so-nice groupoid whose cardinality is &pi;<sup>2</sup>/6.  You can build a groupoid as the &#8220;disjoint union&#8221; of a collection of groups.  How?  Well, you can think of a group as a groupoid with one object: just one object having that group of symmetries.  And you can build more complicated groupoids as disjoint unions of groupoids with one object.  So, if you give me a collection of groups, I can take their disjoint union and get a groupoid.  </p>
+<p>So give me this collection of groups:</p>
+<p>Z/1&times;Z/1, Z/2&times;Z/2, Z/3&times;Z/3, &#8230;</p>
+<p>where Z/n is the integers mod n, also called the &#8220;cyclic group&#8221; with n elements.  Then I&#8217;ll take their disjoint union and get a groupoid, and the cardinality of this groupoid is</p>
+<p>1/1<sup>2</sup> + 1/2<sup>2</sup> + 1/3<sup>2</sup> + &#8230; = &pi;<sup>2</sup>/6</p>
+<p>This is not as silly as the trick I used to get a groupoid whose cardinality is &pi;, but it&#8217;s still not perfectly satisfying, because I haven&#8217;t given you a groupoid of &#8220;interesting mathematical gadgets and isomorphisms between them&#8221;, as I did for e.  Later we&#8217;ll see Jim&#8217;s better answer.</p>
+<p>We might also try taking various groupoids of interesting mathematical gadgets and computing their cardinality.  For example, how about the groupoid of all finite groups?  I think that&#8217;s infinite &#8211; there are just &#8220;too many&#8221;.  How about the groupoid of all finite abelian groups?  I&#8217;m not sure, that could be infinite too.  </p>
+<p>But suppose we restrict ourselves to abelian groups whose size is some power of a fixed prime p?  Then we&#8217;re in business!  The answer isn&#8217;t a famous number like &pi;, but it was computed by Philip Hall here:</p>
+<p>4) Philip Hall, A partition formula connected with Abelian groups, Comment. Math. Helv. 11 (1938), 126-129.</p>
+<p>We can write the answer using an infinite product:</p>
+<p>1/(1-p<sup>-1</sup>)(1-p<sup>-2</sup>)(1-p<sup>-3</sup>) &#8230;</p>
+<p>Or, we can write the answer using an infinite sum:</p>
+<p>p(0)/p<sup>0</sup> + p(1)/p<sup>1</sup> + p(2)/p<sup>2</sup> + &#8230;</p>
+<p>Here p(n) is the number of &#8220;partitions&#8221; of n: that is, the number of ways to write it as a sum of positive integers in decreasing order.  For example, p(4) = 5 since we can write 4 as a sum in 5 ways like this:</p>
+<p>4 = 4<br />
+4 = 3+1<br />
+4 = 2+2<br />
+4 = 2+1+1<br />
+4 = 1+1+1+1</p>
+<p>If you haven&#8217;t thought about this before, you can have fun proving that the infinite product equals the infinite sum.  It&#8217;s a cute fact, and quite famous.</p>
+<p>But Hall proved something even cuter. This number</p>
+<p>p(0)/p<sup>0</sup> + p(1)/p<sup>1</sup> + p(2)/p<sup>2</sup> + &#8230;</p>
+<p>is also the cardinality of another, really <i>different</i> groupoid.  Remember how I said you can build a groupoid as the &#8220;disjoint union&#8221; of a collection of groups?  To get this other groupoid, we take the disjoint union of all the abelian groups whose size is a power of p.</p>
+<p>Hall didn&#8217;t know about groupoid cardinality, so here&#8217;s how he said it:</p>
+<blockquote>
+<p>The sum of the reciprocals of the orders of all the Abelian groups of order a power of p is equal to the sum of the reciprocals of the orders of their groups of automorphisms.</p>
+</blockquote>
+<p>It&#8217;s pretty easy to see that sum of the reciprocals of the orders of all the Abelian groups of order a power of p is</p>
+<p>p(0)/p<sup>0</sup> + p(1)/p<sup>1</sup> + p(2)/p<sup>2</sup> + &#8230;</p>
+<p>To do this, you just need to show that there are p(n) abelian groups with p<sup>n</sup> elements.  If I shows you how it works for n = 4, you can guess how the proof works in general:</p>
+<p>4 = 4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z/p<sup>4</sup></p>
+<p>4 = 3+1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          Z/p<sup>3</sup> &times; Z/p</p>
+<p>4 = 2+2   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        Z/p<sup>2</sup> &times; Z/p<sup>2</sup></p>
+<p>4 = 2+1+1  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     Z/p<sup>2</sup> &times; Z/p<sup>2</sup> &times; Z/p</p>
+<p>4 = 1+1+1+1  &nbsp;      Z/p &times; Z/p &times; Z/p &times; Z/p</p>
+<p>So, the hard part is showing that</p>
+<p>
+p(0)/p<sup>0</sup> + p(1)/p<sup>1</sup> + p(2)/p<sup>2</sup> + &#8230;</p>
+<p>is also the sum of the reciprocals of the sizes of the automorphism groups of all groups whose size is a power of p.</p>
+<p>I learned of Hall&#8217;s result from Aviv Censor, a colleague who is an expert on groupoids.  He had instantly realized this result had a nice formulation in terms of groupoid cardinality.  We went through several proofs, but we haven&#8217;t yet been able to extract any deep inner meaning from them:</p>
+<p>5) Avinoam Mann, Philip Hall&#8217;s &#8220;rather curious&#8221; formula for abelian p-groups, Israel J. Math. 96 (1996), part B, 445-448.</p>
+<p>6) Francis Clarke, Counting abelian group structures, Proceedings of the AMS, 134 (2006), 2795-2799.</p>
+<p>However, I still have hopes, in part because the math is related to zeta functions&#8230; and that&#8217;s what I want to turn to now.</p>
+<p>Let&#8217;s do another example: what&#8217;s the cardinality of the groupoid of semisimple commutative rings with n elements? </p>
+<p>What&#8217;s a semisimple commutative ring?  Well, since we&#8217;re only talking about <i>finite</i> ones, I can avoid giving the general definition and take advantage of a classification theorem.  Finite semisimple commutative rings are the same as finite products of finite fields.  There&#8217;s a finite field with p<sup>n</sup> whenever p is prime and n is a positive integer.  This field is called F<sub>p<sup>n</sup></sub>, and it has n symmetries.  And that&#8217;s all the finite fields!  In other words, they&#8217;re all isomorphic to these.</p>
+<p>This is enough to work out the cardinality of the groupoid of semisimple commutative rings with n elements.  Let&#8217;s do some examples.   Let&#8217;s try n = 6, for example.</p>
+<p>This one is pretty easy.  The only way to get a finite product of finite fields with 6 elements is to take the product of F<sub>2</sub> and F<sub>3</sub>:</p>
+<p> F<sub>2</sub> &times; F<sub>3</sub></p>
+<p>This has just one symmetry &#8211; the identity &#8211; since that&#8217;s all the symmetries either factor has, and there&#8217;s no symmetry that interchanges the two factors.  (Hmm&#8230; you may need check this, but it&#8217;s not hard.)</p>
+<p>Since we have one object with one symmetry, the groupoid cardinality is </p>
+<p>1/1 = 1</p>
+<p>Let&#8217;s try a more interesting one, say n = 4.  Now there are two options: </p>
+<p>F<sub>4</sub>  </p>
+<p>F<sub>2</sub> &times; F<sub>2</sub></p>
+<p>The first option has 2 symmetries: remember, F<sub>p<sup>n</sup></sub> has n symmetries.  The second option also has 2 symmetries, namely the identity and the symmetry that switches the two factors.  So, the groupoid cardinality is</p>
+<p>1/2 + 1/2 = 1</p>
+<p>But now let&#8217;s try something even more interesting, like n = 16.  Now there are 5 options:</p>
+<p>F<sub>16</sub></p>
+<p>F<sub>8</sub>&times;F<sub>2</sub> </p>
+<p>F<sub>4</sub>&times;F<sub>4</sub></p>
+<p>F<sub>4</sub>&times;F<sub>2</sub>&times;F<sub>2</sub></p>
+<p>F<sub>2</sub>&times;F<sub>2</sub>&times;F<sub>2</sub>&times;F<sub>2</sub> </p>
+<p>The field F<sub>16</sub> has 4 symmetries because 16 = 2<sup>4</sup>, and any field F<sub>p<sup>n</sup></sub> has n symmetries. F<sub>8</sub>&times;F<sub>2</sub> has 3 symmetries, coming from the symmetries of the first factor.   F<sub>4</sub>&times;F<sub>4</sub> has 2 symmetries in each factor and 2 coming from permutations of the factors, for a total of 2&times; 2&times;2 = 8.  F<sub>4</sub>&times;F<sub>2</sub>&times;F<sub>2</sub> has 2 symmetries coming from those of the first factor, and 2 symmetries coming from permutations of the last two factors, for a total of 2&times;2 = 4 symmetries.    And finally, F<sub>2</sub>&times;F<sub>2</sub>&times;F<sub>2</sub>&times;F<sub>2</sub> has 24 symmetries coming from permutations of the factors.  So, the cardinality of this groupoid works out to be</p>
+<p>1/4 + 1/3 +  1/8 + 1/4 + 1/24</p>
+<p>Hmm, let&#8217;s put that on a common denominator:</p>
+<p>6/24 + 8/24 + 3/24 + 6/24 + 1/24 = 24/24 = 1</p>
+<p>So, we&#8217;re getting the same answer again: 1.</p>
+<p>Is this just a weird coincidence?  No: this is what we <i>always</i> get!  For <i>any</i> positive integer n, the groupoid of n-element semsimple commutative rings has cardinality 1.  For a proof, see:</p>
+<p>7) John Baez and James Dolan, Zeta functions, at <a href="http://ncatlab.org/johnbaez/show/Zeta+functions">http://ncatlab.org/johnbaez/show/Zeta+functions</a></p>
+<p>Now, you might think this fact is just a curiosity, but actually it&#8217;s a step towards categorifying the Riemann zeta function.  The Riemann zeta function is  </p>
+<p>&zeta;(s) = &sum;<sub>n &gt; 0</sub> n<sup>-s</sup></p>
+<p>It&#8217;s an example of a &#8220;Dirichlet series&#8221;, meaning a series of this form:</p>
+<p>&sum;<sub>n &gt; 0</sub> a<sub>n</sub> n<sup>-s</sup></p>
+<p>In fact, any reasonable way of equipping finite sets with extra stuff gives a Dirichlet series &#8211; and if this extra stuff is &#8220;being a semisimple commutative ring&#8221;, we get the Riemann zeta function.  </p>
+<p>To explain this, I need to remind you about &#8220;stuff types&#8221;, and then explain how they give Dirichlet series.  </p>
+<p>A stuff type is a groupoid Z where the objects are finite sets equipped with &#8220;extra stuff&#8221; of some type.  More precisely, it&#8217;s a groupoid with a functor to the groupoid of finite sets.  For example, Z could be the groupoid of finite semsimple commutative rings &#8211; that&#8217;s the example we care about now.  Here the functor forgets that we have a semisimple commutative ring, and only remembers the underlying finite set.  In other words, it forgets the &#8220;extra stuff&#8221;.</p>
+<p>In this example, the extra stuff is really just extra <i>structure</i>, namely the structure of being a semisimple commutative ring.  But we could also take X to be the groupoid of pairs of finite sets.  A pair of finite sets is a finite set equipped with honest-to-goodness extra <i>stuff</i>, namely another finite set!</p>
+<p>Structure is a special case of stuff.  If you&#8217;re not clear on the difference, try this:</p>
+<p>8) John Baez and Mike Shulman, Lectures on n-categories and cohomology, Sec. 2.4: Stuff, structure and properties, in n-Categories: Foundations and Applications, eds. John Baez and Peter May, Springer, Berlin, 2009.  Also available as <a href="http://arxiv.org/abs/math/0608420">arXiv:math/0608420</a>.</p>
+<p>Then you can tell your colleagues: &#8220;I finally understand <i>stuff</i>.&#8221;  And they&#8217;ll ask: &#8220;What stuff?&#8221;  And you can answer, rolling your eyes condescendingly: &#8220;Not any <i>particular</i> stuff &#8211; just <i>stuff</i>, in general!&#8221;</p>
+<p>But it&#8217;s not really necessary to understand stuff in general here.  Just think of a stuff type as a groupoid where the objects are finite sets equipped with extra bells and whistles of some particular sort.</p>
+<p>Now, if we have a stuff type, say Z, we get a list of groupoids Z(n).  How?  Simple! Objects of Z are finite sets equipped with some particular type of extra stuff.  So, we can take the objects of Z(n) to be the <i>n-element</i> sets equipped with that type of extra stuff.  The groupoid Z will be a disjoint union of these groupoids Z(n).</p>
+<p>We can encode the cardinalities of all these groupoids into a Dirichlet series:</p>
+<p>z(s) = &sum;<sub>n &gt; 0</sub> |Z(n)| n<sup>-s</sup></p>
+<p>where |Z(n)| is the cardinality of Z(n).  In case you&#8217;re wondering about the minus sign: it&#8217;s just a dumb convention, but I&#8217;m too overawed by the authority of tradition to dream of questioning it, even though it makes everything to come vastly more ugly.</p>
+<p>Anyway: the point is that a Dirichlet series is like the &#8220;cardinality&#8221; of a stuff type.  To show off, we say stuff types <i>categorify</i> Dirichlet series: they contain more information, and they&#8217;re objects in a category (or something even better, like a 2-category) rather than elements of a set.</p>
+<p>Let&#8217;s look at an example.  When Z is the groupoid of finite semisimple commutative rings, then</p>
+<p>|Z(n)| = 1</p>
+<p>so the corresponding Dirichlet series is the Riemann zeta function:</p>
+<p>z(s) = &zeta;(s)</p>
+<p>So, we&#8217;ve categorified the Riemann zeta function!  Using this, we can construct an interesting groupoid whose cardinality is </p>
+<p>&zeta;(2) = &sum;<sub>n &gt; 0</sub> n<sup>-2</sup> = &pi;<sup>2</sup>/6</p>
+<p>How?  Well, let&#8217;s step back and consider a more general problem.  Any stuff type Z gives a Dirichlet series </p>
+<p>z(s) = &sum;<sub>n &gt; 0</sub> |Z(n)| n<sup>-s</sup></p>
+<p>How can use this to concoct a groupoid whose cardinality is z(s) for some particular value of s?  It&#8217;s easy when s is a <i>negative</i> integer (here that minus sign raises its ugly head).  Suppose S is a set with s elements:</p>
+<p>|S| = s</p>
+<p>Then we can define a groupoid as follows:</p>
+<p>Z(-S) = &sum;<sub>n &gt; 0</sub> Z(n) &times; n<sup>S</sup></p>
+<p>Here we are playing some notational tricks: n<sup>S</sup> means &#8220;the set of functions from S to our favorite n-element set&#8221;, the symbol &times; stands for the product of groupoids, and  &sum; stands for what I&#8217;ve been calling the &#8220;disjoint union&#8221; of groupoids (known more technically as the &#8220;coproduct&#8221;).  So, Z(-S) is a groupoid.   But this formula is supposed to remind us of a simpler one, namely</p>
+<p>z(-s) = &sum;<sub>n &gt; 0</sub> |Z(n)| n<sup>s</sup></p>
+<p>and indeed it&#8217;s a <i>categorified version</i> of this simpler formula.  </p>
+<p>In particular, if we take the cardinality of the groupoid Z(-S), we get the number z(-s).  To see this, you just need to check each step in this calculation:</p>
+<p>|Z(-S)| = |&sum; Z(n) &times; n<sup>S</sup>|</p>
+<p>= &sum; |Z(n) &times; n<sup>S</sup>|</p>
+<p>= &sum; |Z(n)| &times; |n<sup>S</sup>|</p>
+<p>= &sum; |Z(n)| &times; n<sup>s</sup></p>
+<p>= z(-s)</p>
+<p>The notation is supposed to make these steps seem plausible.  </p>
+<p>Even better, the groupoid Z(-S) has a nice description in plain English: it&#8217;s the groupoid of <i>finite sets equipped with Z-stuff and a map from the set S</i>.  </p>
+<p>Well, okay &#8211; I&#8217;m afraid that&#8217;s what passes for plain English among mathematicians!  We don&#8217;t talk to ordinary people very often.  But the idea is really simple.  Z is some sort of stuff that we can put on a finite set.  So, we can do that and also choose a map from S to that set.  And there&#8217;s a groupoid of finite sets equipped with all this extra baggage, and isomorphisms between those.</p>
+<p>If this sounds too abstract, let&#8217;s do an example.  Say our favorite example, where Z is the groupoid of finite semisimple commutative rings.  Then Z(-S) is the groupoid of finite semisimple commutative rings equipped with a map from the set S.</p>
+<p>If this still sounds too abstract, let&#8217;s do an example. Do I sound repetitious?  Well, you see, category theory is the subject where you need examples to explain your examples &#8211; and n-category theory is the subject where this process needs to be repeated n times. So, suppose S is a 1-element set &#8211; we can just write </p>
+<p>S = 1</p>
+<p>Then Z(-1) is a groupoid where the objects are finite semisimple commutative rings with a chosen element.  The isomorphisms are ring isomorphisms <i>that preserve the chosen element</i>.  And the cardinality of this groupoid is</p>
+<p>|Z(-1)| = &zeta;(-1)  = 1 + 2 + 3 + &#8230;</p>
+<p>Whoops &#8211; it diverges!  Luckily, people who study the Riemann zeta function know that </p>
+<p>1 + 2 + 3 + &#8230; = -1/12</p>
+<p>They get this crazy answer by analytically continuing the Riemann zeta function &zeta;(s) from values of s with a big positive real part, where it converges, over to values where it doesn&#8217;t.  And it turns out that this trick is very important in physics.  In fact, back in &quot;<a href="http://math.ucr.edu/home/baez/week124.html">week124</a>&quot; &#8211; &quot;<a href="http://math.ucr.edu/home/baez/week126.html">week126</a>&quot;, I explained how this formula </p>
+<p>&zeta;(-1) = -1/12</p>
+<p>is the reason bosonic string theory works best when our string has 24 extra dimensions to wiggle around in besides the 2 dimensions of the string worldsheet itself.</p>
+<p>So, if we&#8217;re willing to allow this analytic continuation trick, we can say that </p>
+<div align="center">
+THE GROUPOID OF FINITE SEMISIMPLE COMMUTATIVE RINGS WITH A CHOSEN ELEMENT HAS CARDINALITY -1/12
+</div>
+<p>Someday people will see exactly how this is related to bosonic string theory.  Indeed, it should be just a tiny part of a big story connecting number theory to string theory&#8230; some of which is explained here:</p>
+<p>9) J. M. Luck, P. Moussa, and M. Waldschmidt, eds., Number Theory and Physics, Springer Proceedings in Physics, Vol. 47, Springer-Verlag, Berlin, 1990.</p>
+<p>10) C. Itzykson, J. M. Luck, P. Moussa, and M. Waldschmidt, eds, From Number Theory to Physics, Springer, Berlin, 1992.</p>
+<p>Indeed, as you&#8217;ll see in these books (or in &quot;<a href="http://math.ucr.edu/home/baez/week126.html">week126</a>&quot;), the function we saw earlier:</p>
+<p>1/(1-p<sup>-1</sup>)(1-p<sup>-2</sup>)(1-p<sup>-3</sup>) &#8230; = p(0)/p<sup>0</sup> + p(1)/p<sup>1</sup> + p(2)/p<sup>2</sup> + &#8230;</p>
+<p>is <i>also</i> important in string theory: it shows up as a &#8220;partition function&#8221;, in the physical sense, where the number p(n) counts the number of ways a string can have energy n if it has one extra dimension to wiggle around in besides the 2 dimensions of its worldsheet.  </p>
+<p>But it&#8217;s the <i>24th power</i> of this function that really matters in string theory &#8211; because bosonic string theory works best when our string has <i>24</i> extra dimensions to wiggle around in.  For more details, try:</p>
+<p>11) John Baez, My favorite numbers: 24.  Available at <a href="http://math.ucr.edu/home/baez/numbers/24.pdf">http://math.ucr.edu/home/baez/numbers/24.pdf</a></p>
+<p>But suppose we don&#8217;t want to mess with divergent sums: suppose we want a groupoid whose cardinality is, say,</p>
+<p>&zeta;(2) = 1<sup>-2</sup> + 2<sup>-2</sup> + 3<sup>-2</sup> + &#8230; = &pi;<sup>2</sup>/6</p>
+<p>Then we need to categorify the evalution of Dirichlet series at <i>positive</i> integers.  We can only do this for <i>certain</i> stuff types &#8211; for example, our favorite one.  So, let Z be the groupoid of finite semisimple commutative rings, and let S be a finite set.  How can we make sense of</p>
+<p>Z(S) = &sum;<sub>n &gt; 0</sub> Z(n) &times; n<sup>-S</sup> ?</p>
+<p>The hard part is n<sup>-S</sup>, because this has a minus sign in it.  How can we raise an n-element set to the -Sth power?  If we could figure out some sort of groupoid that serves as the <i>reciprocal</i> of an n-element set, we&#8217;d be done, because then we could take that to the Sth power.  Remember, S is a finite set, so to raise something (even a groupoid) to the Sth power, we just multiply a bunch of copies of that something &#8211; one copy for each element of S.</p>
+<p>So: what&#8217;s the reciprocal of an n-element set?  There&#8217;s no answer in general &#8211; but there&#8217;s a nice answer when that set is a <i>group</i>, because then that group gives a groupoid with one object, and the cardinality of this groupoid is just 1/n.  </p>
+<p>Here is where our particular stuff type Z comes to the rescue.  Each object of Z(n) is a semisimple commutative ring with n elements, so it has an underlying additive group &#8211; which is a group with n elements!</p>
+<p>So, we don&#8217;t interpret  Z(n) &times; n<sup>-S</sup> as an ordinary product, but something a bit sneakier, a &#8220;twisted product&#8221;.   An object in Z(n) &times; n<sup>-S</sup> is just an object of Z(n), that is an n-element semisimple commutative ring.  But we define a symmetry of such an object to be a symmetry of this ring <i>together with</i> an S-tuple of elements of its underlying additive group.  We compose these symmetries with the help of addition in this group.  This ensures that</p>
+<p>|Z(n) &times; n<sup>-S</sup>| = |Z(n)| &times; n<sup>-s</sup></p>
+<p>when |S| = s.  And this in turn means that</p>
+<p>|Z(S)| = |&sum; Z(n) &times; n<sup>-S</sup>|</p>
+<p>= &sum; |Z(n) &times; n<sup>-S</sup>|</p>
+<p>= &sum; |Z(n)| &times; n<sup>-s</sup></p>
+<p>= &zeta;(-s)</p>
+<p>So, in particular, if S is a 2-element set, we can write</p>
+<p>S = 2 </p>
+<p>for short and get</p>
+<p>|Z(2)| = &zeta;(2) = &pi;<sup>2</sup>/6</p>
+<p>Can we describe the groupoid Z(2) in simple English, suitable for a nice bumper sticker?  It&#8217;s a bit tricky.  One reason is that I haven&#8217;t described the objects of Z(2) as mathematical gadgets of an appealing sort, as I did for Z(-1).   Another closely related reason is that I only described the symmetries of any object in Z(2) &#8211; or more technically, morphisms from that object to itself.  It&#8217;s much better if we also describe morphisms from one object to another.</p>
+<p>For this, it&#8217;s best to define Z(n) &times; n<sup>-S</sup> with the help of torsors.  The idea of a torsor is that you can take the one-object groupoid associated to any group G and find a <i>different</i> groupoid, which is nonetheless <i>equivalent</i>, and which is a groupoid of appealing mathematical gadgets.  These gadgets are called &#8220;G-torsors&#8221;.  A &#8220;G-torsor&#8221; is just a nonempty set on which G acts freely and transitively:</p>
+<p>12) John Baez, Torsors made easy, <a href="http://math.ucr.edu/home/baez/torsors.html">http://math.ucr.edu/home/baez/torsors.html</a></p>
+<p>All G-torsors are isomorphic, and the group of symmetries of any G-torsor is G.</p>
+<p>Now, any ring R has an underlying additive group, which I will simply call R.  So, the concept of &#8220;R-torsor&#8221; makes sense.  This lets us define an object of Z(n) &times; n<sup>-S</sup> to be an n-element semisimple commutative ring R together with an S-tuple of R-torsors.  </p>
+<p>But what about the morphisms between these?   We define a morphism between these to be a ring isomorphism together with an S-tuple of torsor isomorphisms. There&#8217;s a trick hiding here: a ring isomorphism f: R &rarr; R&#8217; lets us take any R-torsor and turn it into an R&#8217;-torsor, or vice versa.  So, it lets us talk about an isomorphism from an R-torsor to an R&#8217;-torsor &#8211; a concept that at first might have seemed nonsensical.</p>
+<p>Anyway, it&#8217;s easy to check that this definition is compatible with our earlier one.  So, we see:</p>
+<div align="center">
+THE GROUPOID OF FINITE SEMISIMPLE COMMUTATIVE RINGS EQUIPPED WITH AN n-TUPLE OF TORSORS HAS CARDINALITY &zeta;(n)
+</div>
+<p>I did a silly change of variables here: I thought this bumper sticker would sell better if I said &#8220;n-tuple&#8221; instead of &#8220;S-tuple&#8221;.   Here n is any positive integer.</p>
+<p>While we&#8217;re selling bumper stickers, we might as well include this one:</p>
+<div align="center">
+THE GROUPOID OF FINITE SEMISIMPLE COMMUTATIVE RINGS EQUIPPED WITH A PAIR OF TORSORS HAS CARDINALITY &pi;<sup>2</sup>/6
+</div>
+<p>Now, you might think this fact is just a curiosity.  But I don&#8217;t think so: it&#8217;s actually a step towards categorifying the general theory of zeta functions.  You see, the Riemann zeta function is just one of <i>many</i> zeta functions.  As Hasse and Weil discovered, every sufficiently nice commutative ring R has a zeta function.  The Riemann zeta function is just the simplest example: the one where R is the ring of integers.  And the cool part is that <i>all</i> these zeta functions come from stuff types using the recipe I described!</p>
+<p>How does this work?  Well, from any commutative ring R, we can build a stuff type Z<sub>R</sub> as follows: an object of Z<sub>R</sub> is a finite semisimple commutative ring together with a homomorphism from R to that ring.  Then it turns out the Dirichlet series of this stuff type, say</p>
+<p>&zeta;<sub>R</sub>(s) = &sum;<sub>n &gt; 0</sub> |Z<sub>R</sub>(n)| n<sup>-s</sup></p>
+<p>is the usual Hasse-Weil zeta function of the ring R!  </p>
+<p>Of course, that fact is vastly more interesting if you already know and love Hasse-Weil zeta functions.  You can find a definition of them either in my paper with Jim, or here:</p>
+<p>12) Jean-Pierre Serre, Zeta and L functions, Arithmetical Algebraic Geometry (Proc. Conf. Purdue Univ., 1963), Harper and Row, 1965, pp. 82–92.</p>
+<p>But the basic idea is simple.  You can think of any commutative ring R as the functions on some space &#8211; a funny sort of space called an &#8220;affine scheme&#8221;.  You&#8217;re probably used to spaces where all the points look alike &#8211; just little black dots.  But the points of an affine scheme come in many different colors: for starters, one color for each prime power p<sup>k</sup>!  The Hasse-Weil zeta function of R is a clever trick for encoding the information about the numbers of points of these different colors in a single function.</p>
+<p>Why do we get points of different colors?  I explained this back in &quot;<a href="http://math.ucr.edu/home/baez/week205.html">week205</a>&quot;.  The idea is that for any commutative ring k, we can look at the homomorphisms</p>
+<p>f: R &rarr; k</p>
+<p>and these are called the &#8220;k-points&#8221; of our affine scheme.  In particular, we can take k to be a finite field, say F<sub>p<sup>n</sup></sub>.  So, we get a set of points for each prime power p<sup>n</sup>.  The Hasse-Weil zeta function is a trick for keeping track of many F<sub>p<sup>n</sup></sub>-points there are for each prime power p<sup>n</sup>.</p>
+<p>Given all this, you shouldn&#8217;t be surprised that we can get the Hasse-Weil zeta function of R by taking the Dirichlet series of the stuff type Z<sub>R</sub>, where an object is a finite semisimple commutative ring k together with a homomorphism f: R &rarr; k.  Especially if you remember that finite semisimple commutative rings are built from finite fields!</p>
+<p>In fact, this whole theory of Hasse-Weil zeta functions works for gadgets much more general than commutative rings, also known as affine schemes.  They can be defined for &#8220;schemes of finite type over the integers&#8221;, and that&#8217;s how Serre and other algebraic geometers usually do it.  But Jim and I do it even more generally, in a way that doesn&#8217;t require any expertise in algebraic geometry.   Which is good, because we don&#8217;t have any.</p>
+<p>I won&#8217;t explain that here &#8211; it&#8217;s in our paper. </p>
+<p>I&#8217;ll wrap up by making one more connection explicit &#8211; it&#8217;s sort of lurking in what I&#8217;ve said, but maybe it&#8217;s not quite obvious.  </p>
+<p>First of all, this idea of getting Dirichlet series from stuff types is part of the groupoidification program.  Stuff types are a generalization of &#8220;structure types&#8221;, often called &#8220;species&#8221;.  Andr&eacute; Joyal developed the theory of species and showed how any species gives rise to a formal power series called its generating function.  I told you about this back in  &quot;<a href="http://math.ucr.edu/home/baez/week185.html">week185</a>&quot; and &quot;<a href="http://math.ucr.edu/home/baez/week190.html">week190</a>&quot;.  The recipe gets even simpler when we go up to stuff types: the generating function of a stuff type Z is just</p>
+<p>&sum;<sub>n &ge; 0</sub> |Z(n)| z<sup>n</sup></p>
+<p>Since we can also describe states of the quantum harmonic oscillator as power series, with  z<sup>n</sup> corresponding to the nth energy level, this<br />
+lets us view stuff types as states of a categorified quantum harmonic oscillator! This explains the combinatorics of Feynman diagrams:</p>
+<p>14) Jeffrey Morton, Categorified algebra and quantum mechanics, TAC 16 (2006), 785-854, available at <a href="http://www.emis.de/journals/TAC/volumes/16/29/16-29abs.html">http://www.emis.de/journals/TAC/volumes/16/29/16-29abs.html</a>  Also available as <a href="http://arxiv.org/abs/math/0601458">arXiv:math/0601458</a>.</p>
+<p>And, it&#8217;s a nice test case of the groupoidification program, where we categorify lots of algebra by saying &#8220;wherever we see a number, let&#8217;s try to think of it as the cardinality of a groupoid&#8221;:</p>
+<p>15) John Baez, Alex Hoffnung and Christopher Walker, Higher-dimensional algebra VII: Groupoidification, available as <a href="http://arxiv.org/abs/0908.4305">arXiv:0908.4305</a> </p>
+<p>But now I&#8217;m telling you something new!  I&#8217;m saying that any stuff type also gives a Dirichlet series, namely</p>
+<p>&sum;<sub>n &gt; 0</sub> |Z(n)| n<sup>-s</sup></p>
+<p>This should make you wonder what&#8217;s going on.  My paper with Jim explains it &#8211; at least for structure types.  The point is that the groupoid of finite sets has two monoidal structures: + and &times;.  This gives the category of structure types two monoidal structures, using a trick called &#8220;Day convolution&#8221;.  The first of these categorifies the usual product of formal power series, while the second categorifies the usual product of Dirichlet series.  People in combinatorics love the first one, since they love chopping a set into two disjoint pieces and putting a structure on each piece.  People in number theory secretly love the second one, without fully realizing it, because they love taking a number and decomposing it into prime factors.  But they both fit into a single picture!</p>
+<p>There&#8217;s a lot more to say about this, because actually the category of structure types has <i>five</i> monoidal structures, all fitting together in a nice way.  You can read a bit about this here:</p>
+<p>16) nLab, Schur functors, <a href="http://ncatlab.org/nlab/show/Schur+functor">http://ncatlab.org/nlab/show/Schur+functor</a></p>
+<p>This is something Todd Trimble and I are writing, which will eventually evolve into an actual paper.  We consider structure types for which there is a <i>vector space</i> of structures for each finite set instead of a <i>set</i> of structures.  But much of the abstract theory is similar.  In particular, there are still five monoidal structures.  </p>
+<p>Someday soon, I hope to show that two of the monoidal structures on the category of species make it into a &#8220;ring category&#8221;, while the other two &#8211; the ones I told you about, in fact! &#8211; are better thought of as &#8220;comonoidal&#8221; structures, making it into a &#8220;coring category&#8221;.  Putting these together, the category of species should become a &#8220;biring category&#8221;.  Then the fifth monoidal structure, called &#8220;plethysm&#8221;, should make it into a monoid in the monoidal bicategory of biring categories!  </p>
+<p>This sounds far-out, but it&#8217;s all been worked out at a decategorified level: rings, corings, birings, and monoids in the category of birings:</p>
+<p>17) D. Tall and Gavin Wraith, Representable functors and operations on rings, Proc. London Math. Soc. (3), 1970, 619-643.</p>
+<p>18) James Borger and B. Wieland,  Plethystic algebra, Advances in Mathematics 194 (2005), 246-283.  Also available at <a href="http://wwwmaths.anu.edu.au/~borger/papers/03/paper03.html">http://wwwmaths.anu.edu.au/~borger/papers/03/paper03.html</a></p>
+<p>19) Andrew Stacey and S. Whitehouse, The hunting of the Hopf ring, Homology, Homotopy and Applications, 11 (2009), 75-132, available at <a href="http://intlpress.com/HHA/v11/n2/a6/">http://intlpress.com/HHA/v11/n2/a6/</a>  Also available as <a href="http://arxiv.org/abs/0711.3722">arXiv:0711.3722</a>.</p>
+<p>Borger and Wieland call a monoid in the category of birings a &#8220;plethory&#8221;.  The star example is the algebra of symmetric functions.  But this is basically just a decategorified version of the category of Vect-valued species.  So, the whole story should categorify.</p>
+<p>In short: starting from very simple ideas, we can very quickly find a treasure trove of rich structures.  Indeed, these structures are <i>already staring us in the face</i> &#8211; we just need to open our eyes.  They clarify and unify a lot of seemingly esoteric and disconnected things that mathematicians and physicists love. </p>
+<p><a href="http://antwrp.gsfc.nasa.gov/apod/ap100701.html"><br />
+<img width="400" src="https://i0.wp.com/antwrp.gsfc.nasa.gov/apod/image/1007/ISS023-E-58455sm.jpg" /><br />
+</a></p>
+<p>I think we are just beginning to glimpse the real beauty of math and physics. I bet it will be both simpler and more startling than most people expect.  </p>
+<p>I would love to spend the rest of my life chasing glimpses of this beauty.  I wish we lived in a world where everyone had enough of the bare necessities of life to do the same if they wanted &#8211; or at least a world that was safely heading in that direction, a world where politicians were looking ahead and tackling problems before they became desperately serious, a world where the oceans weren&#8217;t dying.</p>
+<p>But we don&#8217;t. </p>
+<p><i><br />
+Certainty of death. Small chance of success. What are we waiting for?</i> &#8211; Gimli</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://johncarlosbaez.wordpress.com/2010/08/11/this-weeks-finds-in-mathematical-physics-week-300/feed/</wfw:commentRss>
+			<slash:comments>59</slash:comments>
+		
+		
+		
+		<media:content url="https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">John Baez</media:title>
+		</media:content>
+
+		<media:content url="http://antwrp.gsfc.nasa.gov/apod/image/1007/ISS023-E-58455sm.jpg" medium="image" />
+	</item>
+	</channel>
+</rss>

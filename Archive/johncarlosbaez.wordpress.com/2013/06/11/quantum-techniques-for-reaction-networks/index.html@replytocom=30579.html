@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Quantum Techniques for Reaction Networks | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Quantum Techniques for Reaction&nbsp;Networks Comments Feed" href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F06%2F11%2Fquantum-techniques-for-reaction-networks%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2013\/06\/11\/quantum-techniques-for-reaction-networks\/?replytocom=30579","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F06%2F11%2Fquantum-techniques-for-reaction-networks%2F%3Freplytocom%3D30579","postID":"16112","shortlink":"https:\/\/wp.me\/pRBZ9-4bS","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/16112","statsLink":"https:\/\/wordpress.com\/stats\/post\/16112\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F06%2F11%2Fquantum-techniques-for-reaction-networks%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-4bS' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F06%2F11%2Fquantum-techniques-for-reaction-networks%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2013%2F06%2F11%2Fquantum-techniques-for-reaction-networks%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Quantum Techniques for Reaction Networks" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/" />
+<meta property="og:description" content="Fans of the network theory series might like to look at this paper: &bull; John Baez, Quantum techniques for reaction networks, Advances in Mathematical Physics 2018 (2018), 7676309. This paper tac…" />
+<meta property="article:published_time" content="2013-06-11T03:14:03+00:00" />
+<meta property="article:modified_time" content="2018-11-02T00:40:31+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/networks/pictures/chemistryNetBasicA.png" />
+<meta property="og:image:width" content="450" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Quantum Techniques for Reaction&nbsp;Networks" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/networks/pictures/chemistryNetBasicA.png?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="Fans of the network theory series might like to look at this paper: &bull; John Baez, Quantum techniques for reaction networks, Advances in Mathematical Physics 2018 (2018), 7676309. This paper tackles a basic question we never got around to discussing: how the probabilistic description of a system where bunches of things randomly interact and turn&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-16112 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-16112 post type-post status-publish format-standard hentry category-chemistry category-networks category-probability" id="post-16112">
+			<h2>Quantum Techniques for Reaction&nbsp;Networks</h2>
+
+			<div class="entry">
+				<p>Fans of the <a href="http://math.ucr.edu/home/baez/networks/">network theory</a> series might like to look at this paper:</p>
+<p>&bull; John Baez, <a href="http://arxiv.org/abs/1306.3451">Quantum techniques for reaction networks</a>, <i><a href="https://doi.org/10.1155/2018/7676309">Advances in Mathematical Physics</a></i> <b>2018</b> (2018), 7676309.</p>
+<p>This paper tackles a basic question we never got around to discussing: how the <i>probabilistic</i> description of a system where bunches of things randomly interact and turn into other bunches of things can reduce to a <i>deterministic</i> description in the limit where there are lots of things!</p>
+<p>Mathematically, such systems are given by &#8216;stochastic Petri nets&#8217;, or if you prefer, &#8216;stochastic reaction networks&#8217;.   These are just two equivalent pictures of the same thing.  For example, we could describe some chemical reactions using this Petri net:</p>
+<div align="center"><img width="450" src="https://i0.wp.com/math.ucr.edu/home/baez/networks/pictures/chemistryNetBasicA.png" /></div>
+<p>but chemists would use this reaction network:</p>
+<div align="center">
+C + O<sub>2</sub> &rarr; CO<sub>2</sub><br />
+CO<sub>2</sub> + NaOH &rarr; NaHCO<sub>3</sub><br />
+NaHCO<sub>3</sub> + HCl &rarr; H<sub>2</sub>O + NaCl + CO<sub>2</sub>
+</div>
+<p>Making either of them &#8216;stochastic&#8217; merely means that we specify a &#8216;rate constant&#8217; for each reaction, saying how probable it is.</p>
+<p>For any such system we get a &#8216;master equation&#8217; describing how the probability of having any number of things of each kind changes with time.  In the class I taught on this last quarter, the students and I figured out how to derive from this an equation saying how the <i>expected</i> number of things of each kind changes with time.  Later I figured out a much slicker argument&#8230; but either way, we get this result:</p>
+<p><b>Theorem.</b> For any stochastic reaction network and any stochastic state <img src="https://s0.wp.com/latex.php?latex=%5CPsi%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(t)" class="latex" /> evolving in time according to the master equation, then</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd%7D%7Bdt%7D+%5Clangle+N+%5CPsi%28t%29+%5Crangle+%7D+%3D++%5Cdisplaystyle%7B%5Csum_%7B%5Ctau+%5Cin+T%7D%7D+%5C%2C+r%28%5Ctau%29+%5C%2C++%28s%28%5Ctau%29+-+t%28%5Ctau%29%29+%5C%3B++%5Cleft%5Clangle+N%5E%7B%5Cunderline%7Bs%28%5Ctau%29%7D%7D%5C%2C+%5CPsi%28t%29+%5Cright%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d}{dt} &#92;langle N &#92;Psi(t) &#92;rangle } =  &#92;displaystyle{&#92;sum_{&#92;tau &#92;in T}} &#92;, r(&#92;tau) &#92;,  (s(&#92;tau) - t(&#92;tau)) &#92;;  &#92;left&#92;langle N^{&#92;underline{s(&#92;tau)}}&#92;, &#92;Psi(t) &#92;right&#92;rangle " class="latex" /></p>
+<p>assuming the derivative exists.</p>
+<p>Of course this will make no sense yet if you haven&#8217;t been following the network theory series!   But I explain all the notation in the paper, so don&#8217;t be scared.  The main point is that <img src="https://s0.wp.com/latex.php?latex=%5Clangle+N+%5CPsi%28t%29+%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle N &#92;Psi(t) &#92;rangle" class="latex" /> is a vector listing the expected number of things of each kind at time <img src="https://s0.wp.com/latex.php?latex=t.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t." class="latex" />  The equation above says how this changes with time&#8230; but it closely resembles the &#8216;rate equation&#8217;, which describes the evolution of chemical systems in a <i>deterministic</i> way.</p>
+<p>And indeed, the next big theorem says that the master equation actually <i>implies</i> the rate equation when the probability of having various numbers of things of each kind is given by a product of independent Poisson distributions.  In this case <img src="https://s0.wp.com/latex.php?latex=%5CPsi%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(t)" class="latex" /> is what people in quantum physics call a &#8216;coherent state&#8217;.  So:</p>
+<p><b>Theorem.</b>  Given any stochastic reaction network, let<br />
+<img src="https://s0.wp.com/latex.php?latex=%5CPsi%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(t)" class="latex" /> be a mixed state evolving in time according to the master equation.  If <img src="https://s0.wp.com/latex.php?latex=%5CPsi%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(t)" class="latex" /> is a coherent state when <img src="https://s0.wp.com/latex.php?latex=t+%3D+t_0%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t = t_0," class="latex" /> then <img src="https://s0.wp.com/latex.php?latex=%5Clangle+N+%5CPsi%28t%29+%5Crangle+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle N &#92;Psi(t) &#92;rangle " class="latex" /> obeys the rate equation when <img src="https://s0.wp.com/latex.php?latex=t+%3D+t_0.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t = t_0." class="latex" /></p>
+<p>In most cases, this only applies exactly at one moment of time: later <img src="https://s0.wp.com/latex.php?latex=%5CPsi%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(t)" class="latex" /> will cease to be a coherent state.  Then we must resort to the previous theorem to see how the expected number of things of each kind changes with time.</p>
+<p>But sometimes our state <img src="https://s0.wp.com/latex.php?latex=%5CPsi%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(t)" class="latex" /> will stay coherent forever! For one case where this happens, see the companion paper, which I blogged about <a href="https://johncarlosbaez.wordpress.com/2013/05/16/quantum-techniques-for-chemical-reaction-networks/">a little while ago</a>:</p>
+<p>&bull; John Baez and Brendan Fong, <a href="http://math.ucr.edu/home/baez/ACK.pdf">Quantum techniques for studying equilibrium in reaction networks</a>.</p>
+<p>We wrote this first, but logically it comes <i>after</i> the one I just finished now!</p>
+<p>All this material will get folded into the <a href="http://math.ucr.edu/home/baez/networks">book</a> I&#8217;m writing with Jacob Biamonte.  There are just a few remaining loose ends that need to be tied up.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Tuesday, June 11th, 2013 at 3:14 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/chemistry/" rel="category tag">chemistry</a>, <a href="https://johncarlosbaez.wordpress.com/category/networks/" rel="category tag">networks</a>, <a href="https://johncarlosbaez.wordpress.com/category/probability/" rel="category tag">probability</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2013/06/07/the-selected-papers-network-part-1/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2013/06/14/the-selected-papers-network-part-2/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">46 Responses to <em>Quantum Techniques for Reaction&nbsp;Networks</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-30370">
+				<div id="div-comment-30370" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/3447d2596dac865b7c114aac97060bec?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Phillip Harris</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30370">11 June, 2013 at 3:26 am</a>		</div>
+
+		<p>Typo in paper: Hydronium is H3O+ not H2O+</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30370#respond' data-commentid="30370" data-postid="16112" data-belowelement="div-comment-30370" data-respondelement="respond" data-replyto="Reply to Phillip Harris" aria-label='Reply to Phillip Harris'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-30391">
+				<div id="div-comment-30391" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30391">11 June, 2013 at 3:27 pm</a>		</div>
+
+		<p>Yikes&#8212;thanks!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30391#respond' data-commentid="30391" data-postid="16112" data-belowelement="div-comment-30391" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 parent highlander-comment" id="comment-30475">
+				<div id="div-comment-30475" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/3447d2596dac865b7c114aac97060bec?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Phillip Harris</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30475">12 June, 2013 at 10:07 pm</a>		</div>
+
+		<p>Another: &#8220;HIV Virus&#8221; on page 2 = &#8220;Human Immunodeficiency Virus Virus&#8221;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30475#respond' data-commentid="30475" data-postid="16112" data-belowelement="div-comment-30475" data-respondelement="respond" data-replyto="Reply to Phillip Harris" aria-label='Reply to Phillip Harris'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-30550">
+				<div id="div-comment-30550" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30550">13 June, 2013 at 7:18 pm</a>		</div>
+
+		<p>Okay, thanks&#8212;I fixed that now.  There&#8217;s a big joke in this section of the paper, which is that this model of HIV involves 3 species, <b>H</b>ealthy cells, <b>I</b>nfected cells and <b>V</b>irions.  So I want to use the phrase HIV somewhere.  I think it&#8217;s better now.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="comment-30403">
+				<div id="div-comment-30403" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30403">11 June, 2013 at 9:15 pm</a>		</div>
+
+		<p>Grammar nit:</p>
+<blockquote><p>The big surprise one meets at the very beginning of this subject is that the canonical commutation <b>relations</b> between annihilation and creation operators, long viewed as a hallmark of quantum theory, <b>is</b> also perfectly suited to systems of identical <i>classical</i> particles interacting in a probabilistic way.</p></blockquote>
+<p>If the subject is plural (which sounds a little better to me), the verb should be too.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30403#respond' data-commentid="30403" data-postid="16112" data-belowelement="div-comment-30403" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-30405">
+				<div id="div-comment-30405" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30405">11 June, 2013 at 9:19 pm</a>		</div>
+
+		<blockquote><p>For the HIV reaction network in Equation 1, if we also use the Greek letters names of the reactions as names for their rate constants, we get this rate equation:</p></blockquote>
+<p>&#8220;Greek letters names&#8221; -&gt; &#8220;Greek-letter names&#8221;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30405#respond' data-commentid="30405" data-postid="16112" data-belowelement="div-comment-30405" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 highlander-comment" id="comment-30408">
+				<div id="div-comment-30408" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30408">11 June, 2013 at 9:52 pm</a>		</div>
+
+		<p>Thanks for catching these errors!  I hope you like the math when you get to that part.  </p>
+<p>So you don&#8217;t have to redo the work Brendan did, here is his list of corrections:</p>
+<blockquote>
+<p>&#8212; p1, figure and end of first paragraph: hydronium should be H_3O^+<br />
+&#8212; p4, top line: double word &#8220;&#8230;we have have used multi-&#8230;&#8221;<br />
+&#8212; p4, second paragraph: missing space &#8220;&#8230;rest of thispaper we&#8230;&#8221;<br />
+&#8212; p6, last paragraph of proof: the &#8216;because&#8217; in &#8220;This last step is valid even though&#8230; because&#8230;&#8221; might be ambiguous/confusing for a less mathematical audience &#8212; it&#8217;s not clear from the grammar whether you&#8217;re giving a reason why the last step is valid, or whether you&#8217;re giving a reason why the monomials don&#8217;t form a basis. It&#8217;s clear if you understand the content of course, but it&#8217;s a technical point in a less technical paper, so maybe it&#8217;d be nice to be clearer.<br />
+&#8212; p7, before and after lemma 7: you use the vector number operator N in the line before the lemma, but only define it after.<br />
+&#8212; p7, proof of theorem 8: not sure if you want to specify $n \le \ell$, or where that&#8217;s taken care of in the notation. Also, I think the falling power should be n in the displayed maths, not m.<br />
+&#8212; p9, last sentence: maybe you should add &#8220;it&#8221; in &#8220;and follows that&#8230;&#8221;<br />
+&#8212; p10, last displayed maths in proof of theorem 9: I don&#8217;t think you define the overdot notation for time derivative.<br />
+&#8212; p10, end of first line of last paragraph: &#8220;&#8230;continues to be s0&#8230;&#8221;
+</p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30408#respond' data-commentid="30408" data-postid="16112" data-belowelement="div-comment-30408" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-30409">
+				<div id="div-comment-30409" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30409">11 June, 2013 at 10:20 pm</a>		</div>
+
+		<p>I&#8217;ve made all of Brendan and Blake&#8217;s suggested corrections, and a new improved version can be found at the same place, namely <a href="http://math.ucr.edu/home/baez/reaction.pdf" rel="nofollow">here</a>.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30409#respond' data-commentid="30409" data-postid="16112" data-belowelement="div-comment-30409" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-2 parent highlander-comment" id="comment-30413">
+				<div id="div-comment-30413" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30413">12 June, 2013 at 12:11 am</a>		</div>
+
+		<p>I hope I&#8217;ll get a chance to go over the equations in a systematic way soon; this week is a mess of writing and lecturing obligations.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30413#respond' data-commentid="30413" data-postid="16112" data-belowelement="div-comment-30413" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-30416">
+				<div id="div-comment-30416" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30416">12 June, 2013 at 12:40 am</a>		</div>
+
+		<p>Good luck!  If and when you read more, please upload a new version at the <a href="http://math.ucr.edu/home/baez/reaction.pdf" rel="nofollow">usual place</a>, because I keep fixing typos and making other small improvements.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30416#respond' data-commentid="30416" data-postid="16112" data-belowelement="div-comment-30416" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-30414">
+				<div id="div-comment-30414" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/5a2654e80a60c413b40c76472d4de746?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Jon Rowlands</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30414">12 June, 2013 at 12:11 am</a>		</div>
+
+		<p>Few more nits:<br />
+p3: we make the follow/i/ng definition<br />
+p3: that the rate at which a reaction/s/ occurs<br />
+p4: the concentration of each input species i of tau/,/ raised to<br />
+p4: Definition 4. The rate equation for a reaction network (S;K;/R/;s;t) with rate constants r : /R/ (R should be T?)<br />
+p5: Our notation here follows that used /that used/ in quantum<br />
+p7: in def of Nm, is Nm well defined because the Ni commute?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30414#respond' data-commentid="30414" data-postid="16112" data-belowelement="div-comment-30414" data-respondelement="respond" data-replyto="Reply to Jon Rowlands" aria-label='Reply to Jon Rowlands'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 highlander-comment" id="comment-30415">
+				<div id="div-comment-30415" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30415">12 June, 2013 at 12:31 am</a>		</div>
+
+		<p>Thanks for the extra corrections!  I&#8217;ve fixed all those things now.  You and Blake are now in the acknowledgements.</p>
+<p>Yes, what I once called the set R of &#8216;reactions&#8217; should now always be the set T of &#8216;transitions&#8217;&#8230; though in this paper I call them &#8216;reactions&#8217;; the name &#8216;transitions&#8217; comes from Petri net theory.  And yes, the number operators <img src="https://s0.wp.com/latex.php?latex=N_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N_i" class="latex" /> all commute, since annihilation and creation operators with different indices commute.  I should mention that.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30415#respond' data-commentid="30415" data-postid="16112" data-belowelement="div-comment-30415" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-30472">
+				<div id="div-comment-30472" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30472">12 June, 2013 at 7:51 pm</a>		</div>
+
+		<p>There&#8217;s an interesting connection between the creation/annihilation operator formalism and the representation theory of SU(2), which goes back to Schwinger.  I haven&#8217;t made use of it myself, but it might be useful in cases where <a href="http://pre.aps.org/abstract/PRE/v49/i4/p2726_1" rel="nofollow">the number of molecules per site is limited</a>; or, perhaps, where the key quantity is the difference between the sizes of two populations.</p>
+<p>Schwinger&#8217;s idea was to relate the angular momentum Lie algebra to the algebra of two independent harmonic oscillators.  If the oscillator algebras are given in the normal way by<br />
+<img src="https://s0.wp.com/latex.php?latex=%5Ba%2Ca%5E%5Cdag%5D+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[a,a^&#92;dag] = 1" class="latex" /><br />
+and<br />
+<img src="https://s0.wp.com/latex.php?latex=%5Bb%2Cb%5E%5Cdag%5D+%3D+1%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[b,b^&#92;dag] = 1," class="latex" /><br />
+and if we define the operators<br />
+<img src="https://s0.wp.com/latex.php?latex=J_%2B+%3D+a%5E%5Cdag+b%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="J_+ = a^&#92;dag b," class="latex" /><br />
+<img src="https://s0.wp.com/latex.php?latex=J_-+%3D+b%5E%5Cdag+a%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="J_- = b^&#92;dag a," class="latex" /><br />
+<img src="https://s0.wp.com/latex.php?latex=J_z+%3D+%5Cfrac%7B1%7D%7B2%7D%5Cleft%28a%5E%5Cdag+a+-+b%5E%5Cdag+b%5Cright%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="J_z = &#92;frac{1}{2}&#92;left(a^&#92;dag a - b^&#92;dag b&#92;right)," class="latex" /><br />
+then it follows that<br />
+<img src="https://s0.wp.com/latex.php?latex=%5BJ_z%2CJ_%5Cpm%5D+%3D+%5Cpm+J_%5Cpm%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[J_z,J_&#92;pm] = &#92;pm J_&#92;pm," class="latex" /><br />
+and<br />
+<img src="https://s0.wp.com/latex.php?latex=%5BJ_%2B%2CJ_-%5D+%3D+2J_z.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[J_+,J_-] = 2J_z." class="latex" /><br />
+This is just the algebra we use when manipulating angular momentum eigenstates.</p>
+<p>In other words, instead of labeling an angular momentum eigenket <img src="https://s0.wp.com/latex.php?latex=%7Cj%2Cm%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="|j,m&#92;rangle" class="latex" /> by the eigenvalues of <img src="https://s0.wp.com/latex.php?latex=J_z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="J_z" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=J%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="J^2" class="latex" />, we can label it by the eigenvalues of the number operators <img src="https://s0.wp.com/latex.php?latex=a%5E%5Cdag+a&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^&#92;dag a" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=b%5E%5Cdag+b&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="b^&#92;dag b" class="latex" />.  The correspondence is</p>
+<p><img src="https://s0.wp.com/latex.php?latex=N_a+%3D+j+%2B+m%2C%5C+N_b+%3D+j+-+m.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N_a = j + m,&#92; N_b = j - m." class="latex" /></p>
+<p>Sakurai and Napolitano&#8217;s book covers this in the quantum-mechanical context in section 3.9.  The different normalization conventions we use in quantum and in stochastic mechanics turn out not to matter.</p>
+<p>Analogues of the Schwinger oscillator construction can apparently be done for other Lie algebras, too; <a href="http://arxiv.org/abs/quant-ph/0204119v1" rel="nofollow"><i>e.g.,</i> using six independent oscillators for SU(3)</a>.  </p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30472#respond' data-commentid="30472" data-postid="16112" data-belowelement="div-comment-30472" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-30546">
+				<div id="div-comment-30546" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30546">13 June, 2013 at 6:47 pm</a>		</div>
+
+		<p>Hmm.  Maybe the &#8220;<a href="http://arxiv.org/abs/1003.5487" rel="nofollow">Schwinger boson</a>&#8221; construction could be used to give a <a href="http://arxiv.org/abs/0812.4864" rel="nofollow">groupoidification</a> of SU(2)?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30546#respond' data-commentid="30546" data-postid="16112" data-belowelement="div-comment-30546" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-3 highlander-comment" id="comment-30547">
+				<div id="div-comment-30547" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30547">13 June, 2013 at 6:52 pm</a>		</div>
+
+		<p>Yes, I did something on that once and was going to have a grad student work on it, but they got distracted.   I think you could use this to better understand Penrose&#8217;s <a href="http://math.ucr.edu/home/baez/penrose/" rel="nofollow">spin networks</a>, which are all about representations of SU(2) on the one hand, and the combinatorics of graph colorings (and thus groupoidification) on the other hand.   Someone should do that!  The ultimate dream was to groupoidify loop quantum gravity&#8230;</p>
+<p>When it comes to algebra, I think that by now most of the interesting categorified representation theory has been worked out using the Khovanov approach to categorification, which generalizes groupoidification.    I don&#8217;t think the Jordan&#8211;Schwinger stuff has been categorified yet, but it could be and should be.</p>
+<p>The relation between groupoidification and Khovanov-style categorification is not as well-known as it should be.  It was nicely worked out by Jeff Morton and Jamie Vicary.  They showed how Khovanov&#8217;s &#8216;categorified Heisenberg algebra&#8217; could be described by taking my groupoidification of the algebra of annihilation and creation operators and hitting it with a functor that takes <i>groupoids</i> to their categories of representations (which can also be seen as categories of representations of certain <i>algebras</i>) and <i>spans of groupoids</i> to certain functors between these categories (which can also be seen as coming from certain <i>bimodules</i> of algebras).  So, groupoids and spans of groupoids give Khovanov&#8217;s algebras and bimodules.</p>
+<p>But crucially, Jeff and Jamie take groupoidification one step further by looking at <i>spans of spans of groupoids</i>, which correspond to <i>morphisms of bimodules</i>.  And this lets them get a nice purely combinatorial explanation of the interesting new stuff in Khovanov&#8217;s categorified Heisenberg algebra&#8212;the relations that are the &#8216;next layer of structure&#8217; after the canonical commutation relations:</p>
+<p><a href="http://golem.ph.utexas.edu/category/2012/07/morton_and_vicary_on_the_categ.html" rel="nofollow"><br />
+<img width="450" src="https://i2.wp.com/math.ucr.edu/home/baez/categorified_commutation_relations.jpg" /></a></p>
+<p>  For an easy intro, see <a href="http://golem.ph.utexas.edu/category/2012/07/morton_and_vicary_on_the_categ.html" rel="nofollow">my n-Caf&eacute; article</a>.  </p>
+<p>Anyway, since there&#8217;s by now a huge mob of smart people working on categorified Lie algebras and quantum groups, I want to steer clear of that stuff.  A bit more interesting would be to find applications of these in the stochastic setting, as you point out.  We could look at a population moving around on a lattice where each lattice site can have just 0 or 1 individuals, say, and try to write down a stochastic Hamiltonian for this population using the Jordan&#8211;Schwinger formalism, and study that.  If you&#8217;re interested, let me know!</p>
+<p>Over on the pure math side, someone should look at spans of spans of spans of groupoids, and see the <i>next</i> layer of relations after the canonical commutation relations and Khovanov&#8217;s relations.  And on the physics side, it would be interesting to understand what the heck all these higher relations <i>mean for physics</i>.  But I haven&#8217;t been able to get anyone interested in these questions.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30547#respond' data-commentid="30547" data-postid="16112" data-belowelement="div-comment-30547" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-30554">
+				<div id="div-comment-30554" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30554">13 June, 2013 at 8:02 pm</a>		</div>
+
+		<p>Blake wrote:</p>
+<blockquote><p>
+Hmm. Maybe the “Schwinger boson” construction could be used to give a groupoidification of SU(2)?
+</p></blockquote>
+<p>By the way, for some fun, Google &#8220;categorified Jordan-Schwinger&#8221;.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30554#respond' data-commentid="30554" data-postid="16112" data-belowelement="div-comment-30554" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-3 parent highlander-comment" id="comment-30555">
+				<div id="div-comment-30555" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30555">13 June, 2013 at 8:12 pm</a>		</div>
+
+		<p>One of the things I&#8217;ve been juggling this past semester has been working out what happens in spatially-extended reactions where there is a limit to the number of reactant molecules at each location.  For example, we can conceive of a square lattice of cells, where inside each cell the Brusselator dynamics are taking place, and in addition, molecules can pass between neighbouring cells.  Limiting the carrying capacity per cell causes <a href="http://arxiv.org/abs/0910.4984" rel="nofollow">anomalous cross-diffusion terms</a> to appear in the mean-field rate equations.  One can plow through the van Kampen expansion and deduce that the terms are there, but I expect there&#8217;s a more direct way to see it.</p>
+<p>I think there&#8217;s a lot of fancy math which would become more meaningful to me if we could port it into the stochastic-mechanics context.  For example, can the <a href="http://arxiv.org/abs/hep-th/9912092" rel="nofollow">Hopf-algebraic approach to renormalization</a> say anything useful about <a href="http://arxiv.org/abs/cond-mat/0501678" rel="nofollow">RG calculations for reaction-diffusion phenomena</a>?</p>
+<p>(Look at the mess which starts in section 3 of <a href="http://arxiv.org/abs/cond-mat/0409670" rel="nofollow">Janssen and Taeuber (2004)</a> if you need to understand my motivations here.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30555#respond' data-commentid="30555" data-postid="16112" data-belowelement="div-comment-30555" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-30590">
+				<div id="div-comment-30590" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30590">14 June, 2013 at 4:32 pm</a>		</div>
+
+		<p>Those renormalization group calculations for reaction-diffusion phenomena look really impressive and intimidating!</p>
+<p>As far as I know, the only people who use the Hopf-algebraic approach to renormalization to <i>do renormalization</i>, as opposed to prove things about renormalization, are the mad scientists who compute all Feynman diagrams up to 5 loops (say), and need to be very careful about subtleties like overlapping divergences.  The Hopf-algebraic approach deals with these subtleties in a very systematic way and keeps you from going insane (though unfortunately too late, since you have to be insane to want to do these calculations in the first place).</p>
+<p>I could be wrong here; I&#8217;m not an expert on this stuff.  It looks like Janssen and Taeuber are going up to 2 loops, which is complicated enough to be a bit of a nightmare, but probably not complicated enough to require one to <i>automate</i> the process of going through all Feynman diagrams and systematically keep track of overlapping divergences.  </p>
+<p>I&#8217;d really like to find some subject we could work on together, but this hard-core field theory stuff is too removed from my current interests to want to work on it.  I&#8217;m trying to focus on &#8216;networks&#8217; and avoid issues that show up when you try to take some continuum limit.  I used to think about field theory, but I&#8217;ve got a new schtick now.</p>
+<p>The idea of using a Jordan&#8211;Schwinger representation to describe systems where each cell has a maximum carrying capacity&#8212;that&#8217;s more something I can see myself doing.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 parent highlander-comment" id="comment-30603">
+				<div id="div-comment-30603" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30603">14 June, 2013 at 9:50 pm</a>		</div>
+
+		<p>John Baez wrote:</p>
+<blockquote><p>I’m trying to focus on ‘networks’ and avoid issues that show up when you try to take some continuum limit. I used to think about field theory, but I’ve got a new schtick now.</p></blockquote>
+<p>I can appreciate that.  Certainly, the network theory area is interesting&mdash;and I know a few people around my city who <i>are</i> into continuum limits, so on the days when I feel like going in that direction, I still have knowledgeable folks to talk with. :-)</p>
+<p>I&#8217;m trying to keep myself as focused as possible these days.  It&#8217;s a skill I&#8217;ve never really learned:  either I had immediate deadlines which locked me in to particular projects, or I wasn&#8217;t interacting with other people who were always coming up with their own crazy ideas, or I just plain didn&#8217;t know enough to be able to <i>start</i> anything.</p>
+<p>So, to make things as concrete as possible:</p>
+<p>First, as I said, I&#8217;m working on the spatial stochastic Brusselator, which has interesting finite-carrying-capacity behaviours.  There may be something interesting in looking at this in a Jordan&ndash;Schwinger way, perhaps as a multi-cell discrete system.</p>
+<p>Second, I&#8217;m in the midst of revising <a href="http://arxiv.org/abs/1110.3845" rel="nofollow">arXiv:1110.3845 [nlin.CG]</a>.  This paper plots a lot of curves which we found by numerical simulations.  I&#8217;d like to get analytical predictions for as many of those curves as possible.  This is <a href="http://www.azimuthproject.org/azimuth/show/Stochastic+spatial+host-consumer+models" rel="nofollow">what&#8217;s been pushing me into stochastic field theory</a>.  In addition, approximation methods which people already use for the kinds of models we studied <a href="http://www.azimuthproject.org/azimuth/show/Invasion+fitness+in+moment-closure+treatments" rel="nofollow">can be expressed in network-theory language</a>.  So, there are both field-theoretic and Petri-net-theoretic things to do for the model I&#8217;d really like to understand.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-30745">
+				<div id="div-comment-30745" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30745">17 June, 2013 at 2:44 am</a>		</div>
+
+		<p>Here&#8217;s something that might be concrete enough to become a paper yet abstract enough to keep me happy.  </p>
+<p>The Jordan&#8211;Schwinger trick might give a systematic way to reinterpret very general stochastic systems resembling stochastic Petri nets, but having limits on the number of particles of various species, as ordinary stochastic Petri nets.  This might allow the instant application of theorems about stochastic Petri nets (or chemical reaction networks) to these other systems.</p>
+<p>Here&#8217;s a nice intuitive way to think about the Jordan&#8211;Schwinger trick in the stochastic situation.  Say we have a kind of particle&#8212;I need a name for it, so I&#8217;ll call it a <b>klingon</b>&#8212;for which there can&#8217;t be more than <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> particles of this kind. We can&#8217;t force that constraint directly in the stochastic Petri net framework.  But we can do it using this trick.  We make up a stochastic Petri net <i>two</i> species of particles, 1 and 2, which we think of as &#8216;existent&#8217; and &#8216;nonexistent&#8217; klingons.  </p>
+<p>We use the operator <img src="https://s0.wp.com/latex.php?latex=a_1%5E%5Cdagger+a_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_1^&#92;dagger a_2" class="latex" /> to simulate the creation of a klingon: in reality, it converts a &#8216;nonexistent&#8217; klingon into an &#8216;existent one.  Similarly, we use <img src="https://s0.wp.com/latex.php?latex=a_2%5E%5Cdagger+a_1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_2^&#92;dagger a_1" class="latex" /> to simulate the annihilation of a klingon: in reality, it converts an &#8216;existent&#8217; one into an &#8216;existent&#8217; one.  In reality, the total number of klingons, existent and nonexistent:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=N+%3D+N_1+%2B+N_2+%3D+a_1%5E%5Cdagger+a_1+%2B+a_2%5E%5Cdagger+a_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N = N_1 + N_2 = a_1^&#92;dagger a_1 + a_2^&#92;dagger a_2" class="latex" /></p>
+<p>is conserved by both these processes:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5BN%2C+a_1%5E%5Cdagger+a_2%5D+%3D+%5BN%2C+a_2%5E%5Cdagger+a_1%5D+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="[N, a_1^&#92;dagger a_2] = [N, a_2^&#92;dagger a_1] = 0" class="latex" /></p>
+<p>So, if we start out with a state in the sector</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5C%7B+%5Cpsi+%3A+%5C%3B+N%5Cpsi+%3D+n+%5Cpsi+%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;{ &#92;psi : &#92;; N&#92;psi = n &#92;psi &#92;}" class="latex" /></p>
+<p>processes built using the operators <img src="https://s0.wp.com/latex.php?latex=a_1%5E%5Cdagger+a_2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_1^&#92;dagger a_2" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=a_2%5E%5Cdagger+a_1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_2^&#92;dagger a_1" class="latex" /> will keep us in this sector.  So, the total number of <i>existent</i> klingons, measured by the operator <img src="https://s0.wp.com/latex.php?latex=N_1%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N_1," class="latex" /> can never exceed <img src="https://s0.wp.com/latex.php?latex=n.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n." class="latex" /></p>
+<p>Of course this is just another way to describe the raising and lowering operators <img src="https://s0.wp.com/latex.php?latex=J_%7B%5Cpm%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="J_{&#92;pm}" class="latex" /> for the <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" />-dimensional representation of <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BSU%7D%282%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{SU}(2)" class="latex" /> in terms of ordinary annihilation and creation operators.   But I think it brings the idea down to earth a bit, and suggests how we can use stochastic Petri nets to study processes where different kinds of particles have different upper limits on their total particle number.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 parent highlander-comment" id="comment-30795">
+				<div id="div-comment-30795" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30795">18 June, 2013 at 1:22 am</a>		</div>
+
+		<p>Typo:</p>
+<blockquote><p>in reality, it converts an ‘existent’ one into an ‘existent’ one.</p></blockquote>
+<p>I like this idea.  We might have to make it one level more involved in order to connect with the models people like to study.  In the stochastic Brusselator model, one has</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x_i+%2B+y_i+%2B+e_i+%3D+N+%5Cforall+i%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x_i + y_i + e_i = N &#92;forall i," class="latex" /></p>
+<p>that is, the sum total of type-X molecules, type-Y molecules <i>and available empty slots</i> within each cell is the same number <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" /> for all cells.</p>
+<p>In your terminology, this is like saying that the dynamics conserve the total number of smooth klingons, bumpy klingons and nonexistent klingons.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-30798">
+				<div id="div-comment-30798" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30798">18 June, 2013 at 2:21 am</a>		</div>
+
+		<p>Blake wrote:</p>
+<blockquote><p>
+In your terminology, this is like saying that the dynamics conserve the total number of smooth klingons, bumpy klingons and nonexistent klingons.
+</p></blockquote>
+<p>That&#8217;s even more fun!  And not just because I like Klingons.  It&#8217;s because now we&#8217;re getting into the Jordan&#8211;Schwinger representation of <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BSU%7D%283%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{SU}(3)" class="latex" />!  </p>
+<p>If you look at all the triples <img src="https://s0.wp.com/latex.php?latex=%28n_1%2Cn_2%2Cn_3%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(n_1,n_2,n_3)" class="latex" /> of natural numbers obeying </p>
+<p><img src="https://s0.wp.com/latex.php?latex=n_1%2B+n_2+%2B+n_3+%3D+N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n_1+ n_2 + n_3 = N" class="latex" /></p>
+<p>you&#8217;ll get a finite set of dots arranged in a triangular pattern.   If you take <img src="https://s0.wp.com/latex.php?latex=N+%3D+1%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N = 1," class="latex" /> you get Gell&#8211;Mann&#8217;s famous weight diagram for up, down and strange quarks:</p>
+<div align="center">
+<img width="300" src="https://i2.wp.com/www.udel.edu/mvb/PS146htm/146noqu7.jpg" />
+</div>
+<p>If you take <img src="https://s0.wp.com/latex.php?latex=N+%3D+3%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N = 3," class="latex" /> you get his famous weight diagram for the <a href="http://en.wikipedia.org/wiki/Eightfold_Way_%28physics%29" rel="nofollow">&#8216;baryon decuplet&#8217;</a>:</p>
+<div align="center">
+<a href="http://en.wikipedia.org/wiki/Eightfold_Way_%28physics%29" rel="nofollow"><br />
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Baryon-decuplet-small.svg/300px-Baryon-decuplet-small.svg.png" /><br />
+</a></div>
+<p>You can see that up, down and strange quarks are the three species that take the place of smooth, bumpy and nonexistent klingons.  </p>
+<p>In general you can do this for any <img src="https://s0.wp.com/latex.php?latex=N%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N," class="latex" /> and you&#8217;ll get the weight diagram for an irreducible representation of <img src="https://s0.wp.com/latex.php?latex=SU%283%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="SU(3)." class="latex" />   This is the symmetrized <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" />th tensor power of its fundamental representation on <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D%5E3.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{C}^3." class="latex" />   It&#8217;s symmetrized because we&#8217;re dealing with identical particles here.  Its dimension is always a triangle number.</p>
+<p>We get the Jordan&#8211;Schwinger representation by looking at linear combinations of operators that annihilate one kind of particle and then create another:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=a_i%5E%5Cdagger+a_j+%2C+%5Cqquad+i+%2C+j+%3D+1%2C2%2C3&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_i^&#92;dagger a_j , &#92;qquad i , j = 1,2,3" class="latex" /> </p>
+<p>There are 9 of these.  There&#8217;s a special operator that&#8217;s a linear combination of these:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=a_1%5E%5Cdagger+a_1+%2B+a_2%5E%5Cdagger+a_2+%2B+a_3%5E%5Cdagger+a_3&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_1^&#92;dagger a_1 + a_2^&#92;dagger a_2 + a_3^&#92;dagger a_3" class="latex" /></p>
+<p>and this is the total number operator: it takes value <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" /> on the space we&#8217;re talking about.  It commutes with all the rest.  So, we get an 8-dimensional space of <i>other</i> operators, and this is the Lie algebra <img src="https://s0.wp.com/latex.php?latex=%5Cmathfrak%7Bsu%7D%283%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathfrak{su}(3)." class="latex" /></p>
+<p>(Actually we get an 8-dimensional <i>complex</i> space, which is <img src="https://s0.wp.com/latex.php?latex=%5Cmathfrak%7Bsl%7D%283%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathfrak{sl}(3)," class="latex" /> the complexification of <img src="https://s0.wp.com/latex.php?latex=%5Cmathfrak%7Bsu%7D%283%29.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathfrak{su}(3)." class="latex" />   Physicists are often a bit relaxed about this distinction, but we should be clear about it.)</p>
+<p>All this stuff works with more than 3 kinds of particles, too.</p>
+<p>Looking fun yet?</p>
+<p>We are really getting into the groupoidified Jordan&#8211;Schwinger idea here.  We&#8217;re seeing a relation between <img src="https://s0.wp.com/latex.php?latex=N&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N" class="latex" />-colored sets and representations of <img src="https://s0.wp.com/latex.php?latex=%5Cmathrm%7BSU%7D%28N%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathrm{SU}(N)" class="latex" />, which is typical of groupoidification: combinatorics on the one hand, linear algebra on the other.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 highlander-comment" id="comment-30796">
+				<div id="div-comment-30796" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30796">18 June, 2013 at 1:43 am</a>		</div>
+
+		<p>Another idea which might strike the right balance between concreteness and abstraction concerns the relations among <i>different Petri-net descriptions</i> of the <i>same system.</i>  This is territory in between spatial and nonspatial modeling, where we incorporate information more detailed than overall averages or total population sizes, while still coarse-graining away many details which we hope won&#8217;t matter.  For example, instead of considering only the total numbers of <b>S</b>usceptible, <b>I</b>nfected and <b>R</b>ecovered individuals, we can keep track of how many adjacent pairs of each possible combination of types there are.  Both levels of description can have stochastic-Petri-net descriptions, but the species and transitions are different.</p>
+<p>I left a note for myself about this <a href="http://www.azimuthproject.org/azimuth/show/Invasion+fitness+in+moment-closure+treatments+%28part+4%29" rel="nofollow">here</a>:</p>
+<blockquote><p>A Petri net specifies a symmetric monoidal category (Lerman et al. 2011). Each truncation of the moment-dynamics hierarchy for a system yields a Petri net, and so successive truncations of the moment-dynamics hierarchy yield mappings between categories. Going from a pair approximation to a mean-field approximation, for example, transforms a Petri net whose circles are labelled with pair states to one labelled by site states. Category theory might be able to say something interesting here. Anything which can tame the horrible spew of equations which arises in these problems would be great to have. Ought we be considering, say, the strict 2-category whose objects are moment-closure approximations to an ecosystem, and whose morphisms are symmetric monoidal functors between them?</p></blockquote>
+<p>It would be interesting to have some general results about, say, when coarse-graining a stochastic Petri net makes an equilibrium unviable, or makes a new equilibrium appear.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-30801">
+				<div id="div-comment-30801" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30801">18 June, 2013 at 3:03 am</a>		</div>
+
+		<p>Blake wrote:</p>
+<blockquote><p>
+It would be interesting to have some general results about, say, when coarse-graining a stochastic Petri net makes an equilibrium unviable, or makes a new equilibrium appear.
+</p></blockquote>
+<p>That sounds interesting but a bit tough.  Since I&#8217;m pretty good at abstract nonsense, I&#8217;d be tempted to start out by building some general infrastructure: namely, working out the correction notion(s) of <i>morphism</i> between stochastic Petri nets, and figuring out how the rate equations and master equations are related, when we have two stochastic Petri nets related by a morphism.</p>
+<p>Since a Petri net is a free symmetric monoidal category, one obvious notion of morphism, which you mentioned, is a symmetric monoidal functor.  (If we want to intimidate people, we can note that a category of &#8216;free&#8217; gadgets and the obvious morphisms between them is a <a href="http://en.wikipedia.org/wiki/Kleisli_category" rel="nofollow">Kleisli category</a>.  Knowing this can even be useful for things other than intimidation.)  </p>
+<p>A stochastic Petri net is a free symmetric monoidal category equipped with a symmetric monoidal functor to the multiplicative monoid <img src="https://s0.wp.com/latex.php?latex=%280%2C%5Cinfty%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(0,&#92;infty)" class="latex" />, viewed as a symmetric monoidal category.  This again suggests an obvious notion of morphism between stochastic Petri nets, at least to us category geeks.</p>
+<p>But the interesting part is whether these morphisms give rise to some sort of map sending solutions of the master equation of one stochastic Petri net to solutions of the other.  This would probably be &#8216;too perfect&#8217; for anyone interested in realistic coarse-grainings&#8230; but I suspect that if you follow the tao of mathematics, it will quickly lead you to consider these &#8216;perfect&#8217; coarse-grainings.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even depth-4 highlander-comment" id="comment-30855">
+				<div id="div-comment-30855" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30855">20 June, 2013 at 4:44 am</a>		</div>
+
+		<p>I think the <img src="https://s0.wp.com/latex.php?latex=N+%3D+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N = 1" class="latex" /> case has been looked at, after a fashion.  See N. Stollenwerk and M. Aguiar&#8217;s &#8220;The SIRI stochastic model with creation and annihilation operators&#8221; [<a href="http://arxiv.org/abs/0806.4565" rel="nofollow">arXiv:0806.4565</a>].  They cook up a lattice model where each site can be in one of three states (Susceptible, Infected or Recovered), and to write a time-evolution operator, they bring in the Gell-Mann matrices.  I think this is pretty much a special case of what we were saying.  That is, their model has for each site</p>
+<p><img src="https://s0.wp.com/latex.php?latex=S_i+%2B+R_i+%2B+I_i+%3D+1%2C+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S_i + R_i + I_i = 1, " class="latex" /></p>
+<p>as indeed they say at the beginning of section 3.1.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-30856">
+				<div id="div-comment-30856" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30856">20 June, 2013 at 4:53 am</a>		</div>
+
+		<p>Cool!  I think the problems start with <img src="https://s0.wp.com/latex.php?latex=N+%3E+1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="N &gt; 1" class="latex" /> and the precise coefficients of operators like <img src="https://s0.wp.com/latex.php?latex=a%5E%5Cdagger_i+a_j.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^&#92;dagger_i a_j." class="latex" />  You see, if we have such an operator that annihilates a &#8216;nonexistent&#8217; particle and creates an &#8216;existent&#8217; one, its matrix entries will depend on the number of nonexistent particles, since there are <i>different possibilities for which nonexistent particle is destroyed</i>.  This is okay if there are a number of &#8217;empty spots&#8217; and we want to keep track of which one is filled by a new particle.  But in other situations, we may not get the answer we want.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even depth-3 parent highlander-comment" id="comment-30556">
+				<div id="div-comment-30556" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dd50e8b0462cc7fb7fa5bb0785e4f2a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.sunclipse.org' rel='external nofollow ugc' class='url'>Blake Stacey</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30556">13 June, 2013 at 8:18 pm</a>		</div>
+
+		<blockquote><p>By the way, for some fun, Google &#8220;categorified Jordan-Schwinger&#8221;.</p></blockquote>
+<p>The second Google hit for me at the moment is some blog page saying, &#8220;I don&#8217;t think the <b>Jordan–Schwinger</b> stuff has been <b>categorified</b> yet, but it could be and should be.&#8221;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30556#respond' data-commentid="30556" data-postid="16112" data-belowelement="div-comment-30556" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-30558">
+				<div id="div-comment-30558" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30558">13 June, 2013 at 9:34 pm</a>		</div>
+
+		<p>And the first one is my <a href="http://math.ucr.edu/home/baez/diary/fqxi_narrative.pdf" rel="nofollow">grant proposal</a> where I say:</p>
+<blockquote><p>
+For example, it is known that the usual &#8216;Jordan&#8211;Schwinger&#8217; representation of the group SU(n) on the Hilbert space of the quantum harmonic oscillator with n degrees of freedom can be q-deformed [22, 23, 24]; we have already seen how to categorify a substantial portion of this setup, and we hope to do more. We are also categorifying representations of other quantum groups, as well as the theory of Hecke algebras.
+</p></blockquote>
+<p>I got that grant, and my grad students <a href="http://math.ucr.edu/home/baez/groupoidification/" rel="nofollow">groupoidified Hecke and Hall algebras</a> (which are q-deformed universal enveloping algebras of Lie algebras), but they never got around to Jordan&#8211;Schwinger!</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even depth-2 highlander-comment" id="comment-30553">
+				<div id="div-comment-30553" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30553">13 June, 2013 at 7:48 pm</a>		</div>
+
+		<p>By the way, I used to really love this Jordan&#8211;Schwinger stuff, so thanks for reminding me about it.</p>
+<p>The reason the Jordan&#8211;Schwinger stuff works for the groups SU(n) is that these groups are contained in symplectic groups.  The Jordan&#8211;Schwinger idea applies to any symplectic group, and that&#8217;s where the idea really lives (in my opinion).</p>
+<p>The symplectic group Sp(2n) is the group of symmetries of a 2n-dimensional symplectic vector space.  Equivalently, it&#8217;s the group of symmetries of the algebra generated by n creation and n annihilation operators.   These operators span a 2n-dimensional symplectic vector space, say <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" />.   The symplectic group Sp(2n) acts on this vector space.  So, the Lie algebra <img src="https://s0.wp.com/latex.php?latex=%5Cmathfrak%7Bsp%7D%282n%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathfrak{sp}(2n)" class="latex" /> acts on <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> as well.  </p>
+<p>And here&#8217;s the fun part: for each element <img src="https://s0.wp.com/latex.php?latex=T+%5Cin+%5Cmathfrak%7Bsp%7D%282n%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T &#92;in &#92;mathfrak{sp}(2n)" class="latex" />, there&#8217;s a quadratic expression <img src="https://s0.wp.com/latex.php?latex=%5Crho%28T%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho(T)" class="latex" /> in the annihilation and creation operators such that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=T+v+%3D+%5B%5Crho%28T%29%2C+v+%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T v = [&#92;rho(T), v ]" class="latex" /></p>
+<p>where at right I&#8217;m using the commutator bracket in the algebra generated by annihilation and creation operators.  In physics lingo, <img src="https://s0.wp.com/latex.php?latex=%5Crho%28T%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho(T)" class="latex" /> is a way of &#8216;quantizing&#8217; the infinitesimal symmetry <img src="https://s0.wp.com/latex.php?latex=T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T" class="latex" />.  </p>
+<p>How do you define <img src="https://s0.wp.com/latex.php?latex=%5Crho%28T%29%3F&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;rho(T)?" class="latex" />  I forget but I think it&#8217;s something dumb like this.  Since <img src="https://s0.wp.com/latex.php?latex=T&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T" class="latex" /> is a linear transformation of <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> it&#8217;s an element of <img src="https://s0.wp.com/latex.php?latex=V+%5Cotimes+V%5E%2A.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V &#92;otimes V^*." class="latex" />  But a symplectic vector space is canonically isomorphic with its dual so we get an element of <img src="https://s0.wp.com/latex.php?latex=V+%5Cotimes+V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V &#92;otimes V" class="latex" />.  But <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> is the space spanned by annihilation and creation operators, so <img src="https://s0.wp.com/latex.php?latex=V+%5Cotimes+V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V &#92;otimes V" class="latex" /> is the space of all bilinear expressions in annihilation and creation operators.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30553#respond' data-commentid="30553" data-postid="16112" data-belowelement="div-comment-30553" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-30722">
+				<div id="div-comment-30722" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/5a2654e80a60c413b40c76472d4de746?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Jon Rowlands</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30722">16 June, 2013 at 5:36 pm</a>		</div>
+
+		<p>In case this is relevant. See section 7.<br />
+  <a href="http://arxiv.org/abs/cond-mat/0612198" rel="nofollow ugc">http://arxiv.org/abs/cond-mat/0612198</a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30722#respond' data-commentid="30722" data-postid="16112" data-belowelement="div-comment-30722" data-respondelement="respond" data-replyto="Reply to Jon Rowlands" aria-label='Reply to Jon Rowlands'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-3 highlander-comment" id="comment-30742">
+				<div id="div-comment-30742" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30742">17 June, 2013 at 1:26 am</a>		</div>
+
+		<p>Thanks, that&#8217;s great.  Blake Stacey: look!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30742#respond' data-commentid="30742" data-postid="16112" data-belowelement="div-comment-30742" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-arjunjain16 odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-30480">
+				<div id="div-comment-30480" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b301e135f66001af402e86be87e56d51?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://arjunjainblog.wordpress.com' rel='external nofollow ugc' class='url'>Arjun Jain</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30480">13 June, 2013 at 4:20 am</a>		</div>
+
+		<p>In definitions 1 and 2, shouldn&#8217;t a graph be specified as <img src="https://s0.wp.com/latex.php?latex=s+%2C+t+%3A+E+%5Cto+V+%5Ctimes+V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s , t : E &#92;to V &#92;times V" class="latex" /> and  <img src="https://s0.wp.com/latex.php?latex=s+%2C+t+%3A+T+%5Cto+K+%5Ctimes+K&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s , t : T &#92;to K &#92;times K" class="latex" /> ?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30480#respond' data-commentid="30480" data-postid="16112" data-belowelement="div-comment-30480" data-respondelement="respond" data-replyto="Reply to Arjun Jain" aria-label='Reply to Arjun Jain'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-30537">
+				<div id="div-comment-30537" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30537">13 June, 2013 at 5:03 pm</a>		</div>
+
+		<p><img src="https://s0.wp.com/latex.php?latex=s%2C+t+%3A+E+%5Cto+V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s, t : E &#92;to V" class="latex" /> is a pretty standard shorthand for saying we have two functions <img src="https://s0.wp.com/latex.php?latex=s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=t&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t" class="latex" /> that both map <img src="https://s0.wp.com/latex.php?latex=E&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="E" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=V.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V." class="latex" />  It&#8217;s just faster than writing <img src="https://s0.wp.com/latex.php?latex=s+%3A+E+%5Cto+V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s : E &#92;to V" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=t+%3A+E+%5Cto+V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t : E &#92;to V" class="latex" />.</p>
+<p>It&#8217;s just like we often say <img src="https://s0.wp.com/latex.php?latex=x%2C+y+%5Cin+%5Cmathbb%7BR%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x, y &#92;in &#92;mathbb{R}" class="latex" /> when we have two real numbers <img src="https://s0.wp.com/latex.php?latex=x&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=y&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="y" class="latex" />, instead of saying <img src="https://s0.wp.com/latex.php?latex=x+%2C+y+%5Cin+%5Cmathbb%7BR%7D%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x , y &#92;in &#92;mathbb{R}^2" class="latex" /> (which would confuse everyone) or <img src="https://s0.wp.com/latex.php?latex=%28x+%2C+y%29+%5Cin+%5Cmathbb%7BR%7D%5E2&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(x , y) &#92;in &#92;mathbb{R}^2" class="latex" /> (which is sometimes good, but only when we want to make the reader think about <img src="https://s0.wp.com/latex.php?latex=%28x%2Cy%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="(x,y)" class="latex" /> as a point in the plane).</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30537#respond' data-commentid="30537" data-postid="16112" data-belowelement="div-comment-30537" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-arjunjain16 odd alt thread-even depth-1 parent highlander-comment" id="comment-30481">
+				<div id="div-comment-30481" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b301e135f66001af402e86be87e56d51?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://arjunjainblog.wordpress.com' rel='external nofollow ugc' class='url'>Arjun Jain</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30481">13 June, 2013 at 4:58 am</a>		</div>
+
+		<p>In the section on the Master equation:</p>
+<blockquote><p>
+To describe the matrix <img src="https://s0.wp.com/latex.php?latex=H%28%5Ctau%29%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H(&#92;tau)," class="latex" /> this we need `falling powers&#8217;.
+</p></blockquote>
+<p>&#8211; should be corrected.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30481#respond' data-commentid="30481" data-postid="16112" data-belowelement="div-comment-30481" data-respondelement="respond" data-replyto="Reply to Arjun Jain" aria-label='Reply to Arjun Jain'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-30538">
+				<div id="div-comment-30538" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30538">13 June, 2013 at 5:08 pm</a>		</div>
+
+		<p>Thanks!  I&#8217;m really glad you&#8217;re reading this paper; it presents some of the same material as the &#8216;course&#8217;, but more quickly, and it also does some new things.  Please get a copy of the <a href="http://math.ucr.edu/home/baez/reaction.pdf" rel="nofollow">latest version</a> when you read this, because I keep updating it.  Yesterday I added a more detailed explanation of the &#8216;Fock space&#8217;, and in a minute I&#8217;ll probably rename it the &#8216;stochastic Fock space&#8217; to distinguish it from the usual quantum one.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30538#respond' data-commentid="30538" data-postid="16112" data-belowelement="div-comment-30538" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-30579">
+				<div id="div-comment-30579" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/5a2654e80a60c413b40c76472d4de746?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Jon Rowlands</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30579">14 June, 2013 at 8:29 am</a>		</div>
+
+		<p>I think the proof of theorem 5 is funky &#8212; the last line includes <img src="https://s0.wp.com/latex.php?latex=a%5Es%28%5Ctau%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^s(&#92;tau) " class="latex" /> , which I think should be <img src="https://s0.wp.com/latex.php?latex=a%5E%7Bs%28%5Ctau%29%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a^{s(&#92;tau)} " class="latex" />, and otherwise the first and last lines are the same.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30579#respond' data-commentid="30579" data-postid="16112" data-belowelement="div-comment-30579" data-respondelement="respond" data-replyto="Reply to Jon Rowlands" aria-label='Reply to Jon Rowlands'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-30589">
+				<div id="div-comment-30589" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30589">14 June, 2013 at 4:09 pm</a>		</div>
+
+		<p>Blecch!  You&#8217;re obviously the first person to read this proof&#8230; and that includes the author.  <img src="https://i1.wp.com/math.ucr.edu/home/baez/emoticons/redface.gif" alt="" /></p>
+<p>Thanks a million!  It&#8217;s fixed now.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30589#respond' data-commentid="30589" data-postid="16112" data-belowelement="div-comment-30589" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-arjunjain16 odd alt thread-even depth-1 parent highlander-comment" id="comment-30623">
+				<div id="div-comment-30623" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b301e135f66001af402e86be87e56d51?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://arjunjainblog.wordpress.com' rel='external nofollow ugc' class='url'>Arjun Jain</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30623">15 June, 2013 at 6:06 am</a>		</div>
+
+		<p>At the end of the proof of Theorem 5, </p>
+<p>1.typo: You write, &#8230;..n be expressed as an convergent infinite linear combination of these monomials&#8230;.- an -&gt; a</p>
+<p>2. Does the convergence of each coefficient mean that each coefficient is a finite number?</p>
+<p>3. What does this sentence mean?,- .. The annihilation and creation operators, and indeed all the operators discussed in this paper, are continuous in this topology..</p>
+<p>In the proof of Theorem 8,</p>
+<p>4.typo: <img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd%7D%7Bdt%7D+%5Clangle+N+%5CPsi%28t%29+%5Crangle+%7D+%3D+%5Cdisplaystyle%7B%5Csum_%7B%5Ctau+%5Cin+T%7D%7D+%5C%2C+r%28%5Ctau%29+%5C%2C+%28s%28%5Ctau%29+-+t%28%5Ctau%29%29+%5C%3B+%5Cleft%5Clangle+N%5E%7B%5Cunderline%7Bs%28%5Ctau%29%7D%7D%5C%2C+%5CPsi%28t%29+%5Cright%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d}{dt} &#92;langle N &#92;Psi(t) &#92;rangle } = &#92;displaystyle{&#92;sum_{&#92;tau &#92;in T}} &#92;, r(&#92;tau) &#92;, (s(&#92;tau) - t(&#92;tau)) &#92;; &#92;left&#92;langle N^{&#92;underline{s(&#92;tau)}}&#92;, &#92;Psi(t) &#92;right&#92;rangle" class="latex" />  -&gt; <img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd%7D%7Bdt%7D+%5Clangle+N+%5CPsi%28t%29+%5Crangle+%7D+%3D+%5Cdisplaystyle%7B%5Csum_%7B%5Ctau+%5Cin+T%7D%7D+%5C%2C+r%28%5Ctau%29+%5C%2C+%28t%28%5Ctau%29+-+s%28%5Ctau%29%29+%5C%3B+%5Cleft%5Clangle+N%5E%7B%5Cunderline%7Bs%28%5Ctau%29%7D%7D%5C%2C+%5CPsi%28t%29+%5Cright%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d}{dt} &#92;langle N &#92;Psi(t) &#92;rangle } = &#92;displaystyle{&#92;sum_{&#92;tau &#92;in T}} &#92;, r(&#92;tau) &#92;, (t(&#92;tau) - s(&#92;tau)) &#92;; &#92;left&#92;langle N^{&#92;underline{s(&#92;tau)}}&#92;, &#92;Psi(t) &#92;right&#92;rangle" class="latex" />.</p>
+<p>5. You write that the rate equation for <img src="https://s0.wp.com/latex.php?latex=x%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x(t)" class="latex" /> would then follow from the master equation for <img src="https://s0.wp.com/latex.php?latex=%5Cpsi+%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi (t)" class="latex" /> if we had <img src="https://s0.wp.com/latex.php?latex=%5Clangle+N+%5CPsi%28t%29%5Crangle%5Em%3D%5Clangle+N%5E%7B%5Cunderline%7Bm%7D%7D+%5CPsi+%28t%29%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle N &#92;Psi(t)&#92;rangle^m=&#92;langle N^{&#92;underline{m}} &#92;Psi (t)&#92;rangle" class="latex" /> for every multi-index m. Isn&#8217;t this being true only for the source complexes, sufficient?</p>
+<p>6. Can you elaborate on this? : ..However, it should hold approximately in a suitable limit of large numbers. ..</p>
+<p>Lemma 12:</p>
+<p>7. typo: <img src="https://s0.wp.com/latex.php?latex=%5Clangle+%5Cdisplaystyle%7B%5Csum_%7Bl+%5Cin+%5Cmathbb%7BN%7D%5Ek%7D%7D+%5Cpsi_l+z%5E%7Bk%2Bl%7D+%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle &#92;displaystyle{&#92;sum_{l &#92;in &#92;mathbb{N}^k}} &#92;psi_l z^{k+l} &#92;rangle" class="latex" /> -&gt;  <img src="https://s0.wp.com/latex.php?latex=%5Clangle+%5Cdisplaystyle%7B%5Csum_%7Bl+%5Cin+%5Cmathbb%7BN%7D%5Ek%7D%7D+%5Cpsi_l+z%5E%7Bm%2Bl%7D+%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle &#92;displaystyle{&#92;sum_{l &#92;in &#92;mathbb{N}^k}} &#92;psi_l z^{m+l} &#92;rangle" class="latex" />.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30623#respond' data-commentid="30623" data-postid="16112" data-belowelement="div-comment-30623" data-respondelement="respond" data-replyto="Reply to Arjun Jain" aria-label='Reply to Arjun Jain'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-30625">
+				<div id="div-comment-30625" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-30625">15 June, 2013 at 6:38 am</a>		</div>
+
+		<p>Thanks for catching those typos.</p>
+<blockquote><p>
+2. Does the convergence of each coefficient mean that each coefficient is a finite number?
+</p></blockquote>
+<p>Yes <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5B%5Bz_1%2C+%5Cdots%2C+z_k%5D%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}[[z_1, &#92;dots, z_k]]" class="latex" /> is the space of formal power series in the variables <img src="https://s0.wp.com/latex.php?latex=z_1%2C+%5Cdots%2C+z_k&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z_1, &#92;dots, z_k" class="latex" /> <i>where the coefficients are real numbers</i>, which of course are finite.</p>
+<p>We&#8217;re giving this space the topology where a sequence of formal power series <img src="https://s0.wp.com/latex.php?latex=%5CPsi%5Ei&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi^i" class="latex" /> converges to a formal power series <img src="https://s0.wp.com/latex.php?latex=%5CPsi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi" class="latex" /> iff all the coefficients converge: </p>
+<p><img src="https://s0.wp.com/latex.php?latex=%7B%5Cpsi%5Ei%7D_%5Cell+%5Cto+%5Cpsi_%5Cell&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="{&#92;psi^i}_&#92;ell &#92;to &#92;psi_&#92;ell" class="latex" />  </p>
+<p>for ever multi-index <img src="https://s0.wp.com/latex.php?latex=%5Cell+%5Cin+%5Cmathbb%7BN%7D%5Ek.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ell &#92;in &#92;mathbb{N}^k." class="latex" />  (Here <img src="https://s0.wp.com/latex.php?latex=%7B%5Cpsi%5Ei%7D_%5Cell&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="{&#92;psi^i}_&#92;ell" class="latex" /> is the coefficient of  <img src="https://s0.wp.com/latex.php?latex=z%5E%5Cell&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z^&#92;ell" class="latex" /> in the formal power series <img src="https://s0.wp.com/latex.php?latex=%5CPsi%5Ei&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi^i" class="latex" />; I need to use superscripts <img src="https://s0.wp.com/latex.php?latex=i+%3D+1%2C+2%2C+3%2C+%5Cdots&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i = 1, 2, 3, &#92;dots" class="latex" /> to indicate a sequence of formal power series since I&#8217;m using a subscript <img src="https://s0.wp.com/latex.php?latex=%5Cell&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;ell" class="latex" /> to indicate a coefficient.)</p>
+<blockquote><p>
+3. What does this sentence mean?  &#8220;The annihilation and creation operators, and indeed all the operators discussed in this paper, are continuous in this topology&#8230;&#8221;
+</p></blockquote>
+<p>All these operators are maps from <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5B%5Bz_1%2C+%5Cdots%2C+z_k%5D%5D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}[[z_1, &#92;dots, z_k]]" class="latex" /> to itself.  I&#8217;m asserting that they&#8217;re all continuous in the topology I just described.  </p>
+<blockquote><p>
+5.  You write that the rate equation for <img src="https://s0.wp.com/latex.php?latex=x%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x(t)" class="latex" /> would then follow from the master equation for <img src="https://s0.wp.com/latex.php?latex=%5Cpsi+%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;psi (t)" class="latex" /> if we had <img src="https://s0.wp.com/latex.php?latex=%5Clangle+N+%5CPsi%28t%29%5Crangle%5Em%3D%5Clangle+N%5E%7B%5Cunderline%7Bm%7D%7D+%5CPsi+%28t%29%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle N &#92;Psi(t)&#92;rangle^m=&#92;langle N^{&#92;underline{m}} &#92;Psi (t)&#92;rangle" class="latex" /> for every multi-index <img src="https://s0.wp.com/latex.php?latex=m&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="m" class="latex" />. Isn’t this being true only for the source complexes, sufficient?
+</p></blockquote>
+<p>Yes.</p>
+<blockquote><p>
+6. Can you elaborate on this? : &#8220;However, it should hold approximately in a suitable limit of large numbers.&#8221;
+</p></blockquote>
+<p>Making this precise would be easy for me, but it would take a few pages.  That&#8217;s why I didn&#8217;t make that sentence precise, and that&#8217;s why I won&#8217;t do it now.  I&#8217;ll leave it as a puzzle: </p>
+<p>Suppose we are given <img src="https://s0.wp.com/latex.php?latex=%5Cepsilon+%3E+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;epsilon &gt; 0" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=T+%3E+0.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="T &gt; 0." class="latex" />  Find conditions saying that <img src="https://s0.wp.com/latex.php?latex=%5Clangle+N+%5CPsi%28t%29%5Crangle%5Em&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle N &#92;Psi(t)&#92;rangle^m" class="latex" />  is close to <img src="https://s0.wp.com/latex.php?latex=%5Clangle+N%5E%7B%5Cunderline%7Bm%7D%7D+%5CPsi+%28t%29%5Crangle%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;langle N^{&#92;underline{m}} &#92;Psi (t)&#92;rangle," class="latex" /> which guarantee that if <img src="https://s0.wp.com/latex.php?latex=%5CPsi%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Psi(t)" class="latex" /> is a solution of the master equation obeying these conditions at some time <img src="https://s0.wp.com/latex.php?latex=t+%3D+t_0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t = t_0" class="latex" /> then</p>
+<p><img src="https://s0.wp.com/latex.php?latex=x%28t%29+%3D+%5Clangle+N+%5CPsi%28t%29%5Crangle%5Em&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="x(t) = &#92;langle N &#92;Psi(t)&#92;rangle^m" class="latex" /> </p>
+<p>stays within a distance <img src="https://s0.wp.com/latex.php?latex=%5Cepsilon&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;epsilon" class="latex" /> of a solution of the rate equation for <img src="https://s0.wp.com/latex.php?latex=t_0+%5Cle+t+%5Cle+t_0+%2B+T.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="t_0 &#92;le t &#92;le t_0 + T." class="latex" />  This could be a short paper.  This is sort of standard analysis stuff.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30625#respond' data-commentid="30625" data-postid="16112" data-belowelement="div-comment-30625" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-31258">
+				<div id="div-comment-31258" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d707283082331178dd04da841510b82?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Dan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-31258">1 July, 2013 at 1:46 pm</a>		</div>
+
+		<p>I finally got around to reading paper.  I think I found a couple more minor typos:</p>
+<p>In the proof of Lemma 12, I think <img src="https://s0.wp.com/latex.php?latex=z%5E%7Bk%2B%5Cell%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z^{k+&#92;ell}" class="latex" /> should be <img src="https://s0.wp.com/latex.php?latex=z%5E%7Bm%2B%5Cell%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z^{m+&#92;ell}" class="latex" />.  </p>
+<p>In the penultimate sentence, &#8220;&#8230;as show by&#8230;&#8221; should be &#8220;&#8230;as shown by&#8230;&#8221;</p>
+<p>Hope that helps.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=31258#respond' data-commentid="31258" data-postid="16112" data-belowelement="div-comment-31258" data-respondelement="respond" data-replyto="Reply to Dan" aria-label='Reply to Dan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 parent highlander-comment" id="comment-31260">
+				<div id="div-comment-31260" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/7d707283082331178dd04da841510b82?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Dan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-31260">1 July, 2013 at 2:28 pm</a>		</div>
+
+		<p>Oops.  I see Arjun caught the typo in lemma 12.  It must not have been fixed on the version I read.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=31260#respond' data-commentid="31260" data-postid="16112" data-belowelement="div-comment-31260" data-respondelement="respond" data-replyto="Reply to Dan" aria-label='Reply to Dan'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-3 highlander-comment" id="comment-31285">
+				<div id="div-comment-31285" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-31285">2 July, 2013 at 4:06 am</a>		</div>
+
+		<p>Actually I somehow missed Arjun&#8217;s correction of that typo&#8212;he&#8217;s been posting lots of comments, and I&#8217;m having trouble keeping up with them all.  (He&#8217;s working with me here at the Centre for Quantum Technologies now.)  So, thanks a lot for posting your comment!  </p>
+<p>The version on the arXiv is now a bit out of date.  The latest version, with all known corrections made, is <a href="http://math.ucr.edu/home/baez/reaction.pdf" rel="nofollow">on my website</a>.  But I&#8217;ll eventually update the arXiv version.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=31285#respond' data-commentid="31285" data-postid="16112" data-belowelement="div-comment-31285" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-even depth-1 parent highlander-comment" id="comment-137153">
+				<div id="div-comment-137153" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-137153">2 November, 2018 at 12:44 am</a>		</div>
+
+		<p>After more than 5 years, the paper I was discussing is <em>finally</em> published:</p>
+<p>&bull; John Baez, <a href="http://arxiv.org/abs/1306.3451" rel="nofollow">Quantum techniques for reaction networks</a>, <i><a href="https://doi.org/10.1155/2018/7676309" rel="nofollow">Advances in Mathematical Physics</a></i> <b>2018</b> (2018), 7676309.</p>
+<p>It&#8217;s a long and comitragic tale which I feel like blogging about.  Soon.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=137153#respond' data-commentid="137153" data-postid="16112" data-belowelement="div-comment-137153" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-137228">
+				<div id="div-comment-137228" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a4a51b1c5997318428c7022f5a45bb20?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Ishi Crew</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-137228">2 November, 2018 at 7:13 pm</a>		</div>
+
+		<p>I like that style though  its way above my pay grade.  I first saw a paper using path integral techniques in some collection of math biology papers (population genetics) by D Ludwig (1970&#8217;s).  That was &#8216;countertuitive&#8217; to me because it transformed fokker-planck and diffusion equations into a sort of newtonian/hamilton jacobi formalism.  I had been told newtonian mechanics and stochastic processes were opposite processes.  Later i saw a paper (a PhD thesis) on population genetics by someone at U British columbia who also used dirac formalism (ladder operators&#8217;).&#8217;.</p>
+<p><a href="https://arxiv.org/abs/1009.5966" rel="nofollow ugc">https://arxiv.org/abs/1009.5966</a>   is on similar theme i think.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=137228#respond' data-commentid="137228" data-postid="16112" data-belowelement="div-comment-137228" data-respondelement="respond" data-replyto="Reply to Ishi Crew" aria-label='Reply to Ishi Crew'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 parent highlander-comment" id="comment-137229">
+				<div id="div-comment-137229" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='http://graph.facebook.com/v2.9/100001512117381/picture?type=large&#038;_md5=bc31577a8869f7bf2e6ec1017179c8da' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Ishi Crew</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-137229">2 November, 2018 at 7:34 pm</a>		</div>
+
+		<p>The person at U British columbia has his PhD thesis on www,phas.ubc.ca/~birger/bbresearch.htm   &#8211;timothy duty &#8211;&#8216;spontaneous symmetry breaking in stepping stone model&#8217;.  (stepping stone is a famous ong recorded by many people).  i actually found that when i was looking at econophysics stuff&#8211;another kind of network.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=137229#respond' data-commentid="137229" data-postid="16112" data-belowelement="div-comment-137229" data-respondelement="respond" data-replyto="Reply to Ishi Crew" aria-label='Reply to Ishi Crew'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-137230">
+				<div id="div-comment-137230" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='http://graph.facebook.com/v2.9/100001512117381/picture?type=large' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Ishi Crew</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/#comment-137230">2 November, 2018 at 7:36 pm</a>		</div>
+
+		<p><a href="http://www.phas.ubc.ca/~birger/bbresearch.htm" rel="nofollow ugc">http://www.phas.ubc.ca/~birger/bbresearch.htm</a>   &#8216;take 2&#8217;</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-30579">Jon Rowlands</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2013/06/11/quantum-techniques-for-reaction-networks/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30579" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='16112' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='30579' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="ab54311412" /></p>
+<input type="hidden" name="genseq" value="1632624890" />
+<input type="hidden" id="ak_js" name="ak_js" value="113"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2013/06/11/quantum-techniques-for-reaction-networks/?replytocom=30579"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,177,022 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-3447d2596dac865b7c114aac97060bec">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-dd50e8b0462cc7fb7fa5bb0785e4f2a4">
+	</div>
+	<div class="grofile-hash-map-5a2654e80a60c413b40c76472d4de746">
+	</div>
+	<div class="grofile-hash-map-b301e135f66001af402e86be87e56d51">
+	</div>
+	<div class="grofile-hash-map-7d707283082331178dd04da841510b82">
+	</div>
+	<div class="grofile-hash-map-a4a51b1c5997318428c7022f5a45bb20">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"16112","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'16112','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTZVV3RiMkYuKz1XUnVaX0lsJmh3L2xxcHNhKzVFcDhfWklkZkImNjl5OFdzKy5CNHlwT1QvQmduQ2xKY1Z0bVI3JW9+MythaEZ2SG9naWl+fHhYbzFTJlVDVm13LF16UnU3VHlTVnNmPU44bVMzVDZ3fndDSS50XTZYUS0yOC1nemZ5ZHlkRkIwbmNmflpJRXM5Z2hrbU4lU1Y3NT1QeUpuK0h2ZFRfS0pLVmlnXT9QNSVLdEdDeD12Tyt0eWZKS0pfRHdWWW5uWGZJWU5tUjdnb29ORmU1b2JFSQ=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '16112' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

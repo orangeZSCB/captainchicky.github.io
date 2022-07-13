@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en">
+<![endif]-->
+<!--[if (!IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+<meta charset="UTF-8" />
+<title>Remember That &#8220;Blow&#8221; to Supersymmetry (And Other Theories)? | Of Particular Significance</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://profmattstrassler.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large' />
+<meta name="google-site-verification" content="atBcEfQYCIwhTkcOnVU26d7Pp3Jj8sJQ8u-frrJyoi8" />
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.parentNode.removeChild( dom_node ); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[ i ].parentNode.removeChild( dom_nodes[ i ] );
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+					+ '//' + window.location.hostname
+					+ '&postid=4995'
+					+ '&is_singular=1';
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly9wcm9mbWF0dHN0cmFzc2xlci5jb20%3D"
+		+ "&wpcomid=24633746"
+		+ "&time=1633129802";
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//profmattstrassler.wordpress.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Feed" href="https://profmattstrassler.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Comments Feed" href="https://profmattstrassler.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Of Particular Significance &raquo; Remember That &#8220;Blow&#8221; to Supersymmetry (And Other&nbsp;Theories)? Comments Feed" href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkt1SAyEMhV9IFrfOtPbC8Vn4yWDawDIEuvL2UkaddWtXbxgOyZccAnKOwkwhQ8jSFxGpOAws52gmL9gjQV2pwTA/yN+xBKQyWBEnziu1hRGegeUJclTmLLq6Sf/KdaVJDcm1SAJ5GcdhPzxKXZCs1DT1AjqpVCXnSvBdCIOhYq99WHqwqIDAdyMLEUlVSILAKVMHj+FvvMWW+gd033x3urizqlPJwiW0K9v/LpFUxuD4Dr6Y9nVu7dxHdWt+A5vROmiv2lI+9yLD+zbS/43WMQGzaKvH4kV+a736A7/6l3H/tDvuDsfD8+kDj5z1pg==?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s1.wp.com/_static/??-eJyFi0EKAjEMAD9kDAsV9SC+pRtiraRJaVMWf++KF0XQ2wzM4FKBTJ3V0a9cuGMdM5K1KFkZu9+Ft9T7Bv+UWelVw1LJytdTBlQZKWvHxAZiFD2bfghcJOb2a208i6UVE67Vmz6nczlNYXcM4bCfwu0Bks1RNg==?cssminify=yes' type='text/css' media='all' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-4-1' href='https://s1.wp.com/_static/??-eJxti8sKgCAQAH8o297RIfoWE1NjdaVV+v3o0CHqNAzMwBmFopB0SOCziJiNCwyROIkNpTuArTxcMA9LxVzA/8WknESBZOgtnylZ7TWD7cAgrRLvYPFzPbT12PRTX+0XZRA3zg==?cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"24633746","siteName":"Of Particular Significance","siteURL":"https:\/\/profmattstrassler.com","siteHost":"profmattstrassler.com","icon":"<img alt='' src='https:\/\/secure.gravatar.com\/blavatar\/9192dd01619d8fdbea0a34ba4b097323?s=50&d=https%3A%2F%2Fs2.wp.com%2Fi%2Flogo%2Fwpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/coraline","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2012%252F11%252F16%252Fremember-that-blow-to-supersymmetry-and-other-theories%252F","themeURL":"","xhrURL":"https:\/\/profmattstrassler.com\/wp-admin\/admin-ajax.php","nonce":"716d0a60ff","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"c6efabe250\" \/>","referer":"https:\/\/profmattstrassler.com\/2012\/11\/16\/remember-that-blow-to-supersymmetry-and-other-theories\/","canFollow":"1","feedID":"241531","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/profmattstrassler.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fprofmattstrassler.wordpress.com%2F2012%2F11%2F16%2Fremember-that-blow-to-supersymmetry-and-other-theories%2F","postID":"4995","shortlink":"https:\/\/wp.me\/p1Fmmu-1iz","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/profmattstrassler.com\/4995","statsLink":"https:\/\/wordpress.com\/stats\/post\/4995\/profmattstrassler.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Coraline","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 15,952 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fprofmattstrassler.com%252F2012%252F11%252F16%252Fremember-that-blow-to-supersymmetry-and-other-theories%252F\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=profmattstrassler.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??-eJyFjtEKwjAMRX/IrBaZPonfMrdYWpq0Ji1zf28HCnMvPl3CPTlcM2cYExfkYoKanLQQqg4Ou6AH89tSuvuIUBWlAVzA8yPtOaqQY3We1QjGoeAEq3V3fb88j7FOqKs+PCvK8omOPP+FgLyTJt3Cm70SC2RJr6V1N7ra88lejr21fXgDNTpbfw=='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://profmattstrassler.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/" />
+<link rel='shortlink' href='https://wp.me/p1Fmmu-1iz' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fprofmattstrassler.com%2F2012%2F11%2F16%2Fremember-that-blow-to-supersymmetry-and-other-theories%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fprofmattstrassler.com%2F2012%2F11%2F16%2Fremember-that-blow-to-supersymmetry-and-other-theories%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Remember That &#8220;Blow&#8221; to Supersymmetry (And Other Theories)?" />
+<meta property="og:url" content="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/" />
+<meta property="og:description" content="According to the BBC, it was a heavy blow.  According to a member of the LHCb experiment quoted in the article, it put the theory &#8220;in the hospital.&#8221;  The reality?  Nobody even suffered …" />
+<meta property="article:published_time" content="2012-11-16T13:45:46+00:00" />
+<meta property="article:modified_time" content="2012-11-16T14:05:57+00:00" />
+<meta property="og:site_name" content="Of Particular Significance" />
+<meta property="og:image" content="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=200&#038;ts=1633129802" />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:creator" content="@MattStrassler" />
+<meta name="twitter:site" content="@MattStrassler" />
+<meta name="twitter:text:title" content="Remember That &#8220;Blow&#8221; to Supersymmetry (And Other&nbsp;Theories)?" />
+<meta name="twitter:image" content="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=240" />
+<meta name="twitter:card" content="summary" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=32" sizes="16x16" />
+<link rel="apple-touch-icon" href="https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=114" />
+<link rel='openid.server' href='https://profmattstrassler.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://profmattstrassler.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://profmattstrassler.com/osd.xml" title="Of Particular Significance" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<meta name="theme-color" content="#fefae3" />
+<style type="text/css">
+.widget_twitter li {
+	word-wrap: break-word;
+}
+</style>
+<meta name="application-name" content="Of Particular Significance" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="Conversations About Science with Theoretical Physicist Matt Strassler" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://profmattstrassler.com/feed/;icon-uri=https://secure.gravatar.com/blavatar/9192dd01619d8fdbea0a34ba4b097323?s=16" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="According to the BBC, it was a heavy blow.  According to a member of the LHCb experiment quoted in the article, it put the theory &quot;in the hospital.&quot;  The reality?  Nobody even suffered a scratch. On Monday I wrote about a new measurement by the LHCb experiment at the Large Hadron Collider [LHC] of a&hellip;" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #fefae3; }
+</style>
+	<link rel="amphtml" href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/amp/"></head>
+
+<body class="post-template-default single single-post postid-4995 single-format-standard custom-background customizer-styles-applied two-column sidebar-content highlander-enabled highlander-light">
+<div id="container" class="hfeed contain">
+	<div id="header">
+		<div id="masthead" role="banner">
+						<div id="site-title">
+				<span>
+					<a href="https://profmattstrassler.com/" title="Of Particular Significance" rel="home">Of Particular Significance</a>
+				</span>
+			</div>
+			<div id="site-description">Conversations About Science with Theoretical Physicist Matt Strassler</div>
+		</div><!-- #masthead -->
+
+		<div id="access" role="navigation">
+		  			<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+						<div class="menu"><ul>
+<li ><a href="https://profmattstrassler.com/">Home</a></li><li class="page_item page-item-1026 page_item_has_children"><a href="https://profmattstrassler.com/about/">About</a>
+<ul class='children'>
+	<li class="page_item page-item-2 page_item_has_children"><a href="https://profmattstrassler.com/about/about-me/">About Me</a>
+	<ul class='children'>
+		<li class="page_item page-item-5295"><a href="https://profmattstrassler.com/about/about-me/a-new-career-phase/">A New Career&nbsp;Phase</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-1029"><a href="https://profmattstrassler.com/about/about-this-site-and-how-to-use-it/">About This Site and How to Use&nbsp;It</a></li>
+</ul>
+</li>
+<li class="page_item page-item-26 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/">Articles</a>
+<ul class='children'>
+	<li class="page_item page-item-64 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/">Large Hadron Collider&nbsp;FAQ</a>
+	<ul class='children'>
+		<li class="page_item page-item-196"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/how-to-figure-out-what-happened-in-a-microcollision/">How We Learn What Happened in a Proton-Proton&nbsp;Collision</a></li>
+		<li class="page_item page-item-67"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/introduction-to-the-large-hadron-collider/">Introduction to the&nbsp;LHC</a></li>
+		<li class="page_item page-item-70"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/photosofthelhc/">Photos Of The&nbsp;LHC</a></li>
+		<li class="page_item page-item-498 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/">Some Technical Concepts</a>
+		<ul class='children'>
+			<li class="page_item page-item-661"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/fermions-and-bosons/">Fermions and Bosons</a></li>
+			<li class="page_item page-item-497"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-gev-and-tev/">GeV and TeV</a></li>
+			<li class="page_item page-item-461"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/a-technical-concept-invariant-mass/">Invariant Mass</a></li>
+			<li class="page_item page-item-568"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/some-technical-concepts/what-are-anti-particles/">What are anti-particles?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1560 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/">The Trigger: Discarding All But the&nbsp;Gold</a>
+		<ul class='children'>
+			<li class="page_item page-item-7821"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/the-trigger-discarding-all-but-the-gold/trigger-failure-and-repair/">Trigger Failure, and Repair, at the&nbsp;LHC</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-602"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-hadron-as-in-large-hadron-collider/">What&#8217;s a Hadron?</a></li>
+		<li class="page_item page-item-152 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/">What&#8217;s a Proton,&nbsp;Anyway?</a>
+		<ul class='children'>
+			<li class="page_item page-item-2668"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/checking-whats-inside-a-proton/">Checking What&#8217;s Inside a&nbsp;Proton</a></li>
+			<li class="page_item page-item-2613"><a href="https://profmattstrassler.com/articles-and-posts/largehadroncolliderfaq/whats-a-proton-anyway/proton-collisions-vs-quarkgluonantiquark-mini-collisions/">Proton Collisions Vs. Quark/Gluon/Antiquark Mini-Collisions</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-15 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/">Large Hadron Collider&nbsp;News</a>
+	<ul class='children'>
+		<li class="page_item page-item-340"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/a-historic-day-or-just-an-important-one/">A Historic Day? Or Just an Important&nbsp;One?</a></li>
+		<li class="page_item page-item-49"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/gangbusters/">Gangbusters!</a></li>
+		<li class="page_item page-item-10"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/hey-where-did-my-higgs-go/">Hey Where&#8217;d My Higgs&nbsp;Go?</a></li>
+		<li class="page_item page-item-1703"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/higgs-search-atlas-and-cms-summer-data-combined/">Higgs Search: ATLAS and CMS Summer Data&nbsp;Combined</a></li>
+		<li class="page_item page-item-1395"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/multi-lepton-events-a-good-place-to-look-for-new-physics/">Multi-Lepton Events: A Good Place to Look for New&nbsp;Physics</a></li>
+		<li class="page_item page-item-2241 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/">Old Pages (Of Historical&nbsp;Interest)</a>
+		<ul class='children'>
+			<li class="page_item page-item-2240"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-december-higgs-update/">The December 2011 Higgs&nbsp;Update</a></li>
+			<li class="page_item page-item-2251"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/old-pages-of-historical-interest/the-july-2011-higgs-hints/">The July 2011 Higgs&nbsp;Hints</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1049 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/">Searches for New Phenomena (as of&nbsp;9/2011)</a>
+		<ul class='children'>
+			<li class="page_item page-item-1050 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/">Searches Aimed at&nbsp;Supersymmetry</a>
+			<ul class='children'>
+				<li class="page_item page-item-1091"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-new-particles-with-long-lifetimes/">Seeking New Particles with Long&nbsp;Lifetimes</a></li>
+				<li class="page_item page-item-1051"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/searches-for-new-phenomena-as-of-92011/searches-aimed-at-supersymmetry/seeking-photonszs-and-something-undetectable/">Seeking Photons/Zs and Something&nbsp;Undetectable</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-4216 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/">Triggering: Advances in&nbsp;2012</a>
+		<ul class='children'>
+			<li class="page_item page-item-4205"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/triggering-advances-in-2012/data-parking-at-cms/">Data Parking at&nbsp;CMS</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1539"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/two-photons-data-and-theory-disagree/">Two-Photons: Data and Theory&nbsp;Disagree</a></li>
+		<li class="page_item page-item-753"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/what-do-current-mid-august-2011-lhc-results-imply-about-supersymmetry/">What do current LHC results (mid-August 2011) imply about&nbsp;supersymmetry?</a></li>
+		<li class="page_item page-item-114"><a href="https://profmattstrassler.com/articles-and-posts/lhcposts/why-so-quiet-at-lhc/">Why so quiet at&nbsp;LHC?</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-413 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/">Particle Physics Basics</a>
+	<ul class='children'>
+		<li class="page_item page-item-5927"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/c-p-t-and-their-combinations/">C, P, T (And Their&nbsp;Combinations)</a></li>
+		<li class="page_item page-item-1249"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/cerenkov-radiation/">Cerenkov Radiation</a></li>
+		<li class="page_item page-item-4267 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/">Fields and Their Particles: With&nbsp;Math</a>
+		<ul class='children'>
+			<li class="page_item page-item-4269 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/">1. Ball on a Spring&nbsp;(Classical)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4611"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-classical/1a-resonance/">1a. Resonance</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4272"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/ball-on-a-spring-quantum/">2. Ball on a Spring&nbsp;(Quantum)</a></li>
+			<li class="page_item page-item-4376"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-form/">3. Waves (Classical&nbsp;Form)</a></li>
+			<li class="page_item page-item-4402 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/">4. Waves (Classical Equation of&nbsp;Motion)</a>
+			<ul class='children'>
+				<li class="page_item page-item-4442"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/waves-classical-equation-of-motion/waves-the-quick-calculation/">4a. Waves (The Quick&nbsp;Calculation)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4450"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/5-waves-quantum/">5. Waves (Quantum)</a></li>
+			<li class="page_item page-item-4468 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/">6. Fields</a>
+			<ul class='children'>
+				<li class="page_item page-item-4501"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/fields/chicken-and-egg-matter-and-field/">6a. Chicken and Egg; Matter and&nbsp;Field</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4526 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/">7. Particles Are&nbsp;Quanta</a>
+			<ul class='children'>
+				<li class="page_item page-item-4536"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/7-particles-are-quanta/7a-how-bosons-and-fermions-differ/">7a. How Bosons and Fermions&nbsp;Differ</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4627"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/fields-and-their-particles-with-math/8-how-particles-and-fields-interact/">8. How Particles and Fields Interact (an&nbsp;introduction)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4585 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/">How the Higgs Field Works (with&nbsp;math)</a>
+		<ul class='children'>
+			<li class="page_item page-item-4663 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/">1. The Basic&nbsp;Idea</a>
+			<ul class='children'>
+				<li class="page_item page-item-4587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/1-the-basic-idea/1-the-basic-idea/">1. The Basic Idea (1st&nbsp;version)</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-4710"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/2-why-the-higgs-field-is-non-zero-on-average/">2. Why the Higgs Field is Non-Zero on&nbsp;Average</a></li>
+			<li class="page_item page-item-4789"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/3-how-the-higgs-particle-arises/">3. How the Higgs Particle&nbsp;Arises</a></li>
+			<li class="page_item page-item-5032"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/how-the-higgs-field-works-with-math/4-why-the-higgs-field-is-necessary/">4. Why the Higgs Field is&nbsp;Necessary</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3077 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/">Mass, Energy, Matter,&nbsp;Etc.</a>
+		<ul class='children'>
+			<li class="page_item page-item-3118 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/">Mass and Energy</a>
+			<ul class='children'>
+				<li class="page_item page-item-3321"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/mass-and-energy/how-did-einstein-do-it/">How Did Einstein Do&nbsp;It?</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3079"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/matter-and-energy-a-false-dichotomy/">Matter and Energy: A False&nbsp;Dichotomy</a></li>
+			<li class="page_item page-item-6247 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/">More on Mass</a>
+			<ul class='children'>
+				<li class="page_item page-item-6245"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/more-on-mass/the-two-definitions-of-mass-and-why-i-use-only-one/">The Two Definitions of &#8220;Mass&#8221;, And Why I Use Only&nbsp;One</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-3452 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/">The Energy That Holds Things&nbsp;Together</a>
+			<ul class='children'>
+				<li class="page_item page-item-3534"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/mass-energy-matter-etc/the-energy-that-holds-things-together/neutron-stability-in-atomic-nuclei/">Neutron Stability in Atomic&nbsp;Nuclei</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-1213 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/">Neutrinos</a>
+		<ul class='children'>
+			<li class="page_item page-item-1791 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/">How One Detects&nbsp;Neutrinos</a>
+			<ul class='children'>
+				<li class="page_item page-item-6044"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/how-one-detects-neutrinos/icecube-a-giant-frozen-neutrino-catcher/">IceCube: A Giant Frozen Neutrino&nbsp;Catcher</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1793"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/making-neutrino-beams/">Making Neutrino Beams</a></li>
+			<li class="page_item page-item-1212 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/">Neutrino Types and Neutrino&nbsp;Oscillations</a>
+			<ul class='children'>
+				<li class="page_item page-item-1229"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrino-types-and-neutrino-oscillations/velocity-differences-of-neutrinos/">Velocity Differences of&nbsp;Neutrinos</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1737 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/">Neutrinos Faster Than&nbsp;Light?</a>
+			<ul class='children'>
+				<li class="page_item page-item-1811"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-additional-supporting-info/">OPERA: Additional Supporting&nbsp;Info</a></li>
+				<li class="page_item page-item-1736"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-comparing-the-two-versions/">OPERA: Comparing the Two&nbsp;Versions</a></li>
+				<li class="page_item page-item-1799 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/">OPERA: Some Arguments&nbsp;Against</a>
+				<ul class='children'>
+					<li class="page_item page-item-1801"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/cohen-glashow-opera-is-self-contradictory/">Cohen-Glashow: OPERA is Self-Contradictory</a></li>
+					<li class="page_item page-item-1805"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-vs-icarus/">OPERA vs ICARUS</a></li>
+					<li class="page_item page-item-1802"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/opera-another-speed-bump/">OPERA: Another Speed&nbsp;Bump</a></li>
+					<li class="page_item page-item-1782"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-some-arguments-against/supernovas-and-neutrino-speeds/">Supernovas and Neutrino&nbsp;Speeds</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-1795 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/">OPERA: The First Few&nbsp;Days</a>
+				<ul class='children'>
+					<li class="page_item page-item-1784"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-paper-my-initial-reaction/">OPERA&#8217;s Paper: My Initial&nbsp;Reaction</a></li>
+					<li class="page_item page-item-1788"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-the-first-few-days/operas-presentation-my-initial-comments/">OPERA&#8217;s Presentation: My Initial&nbsp;Comments</a></li>
+				</ul>
+</li>
+				<li class="page_item page-item-3160 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/">OPERA: What Went&nbsp;Wrong</a>
+				<ul class='children'>
+					<li class="page_item page-item-3185"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/neutrinos/neutrinos-faster-than-light/opera-what-went-wrong/how-opera-and-lvd-confirmed-operas-problem/">How LVD Helped Solve OPERA&#8217;s&nbsp;Mystery</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-412"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particle-physics-why-do-it-and-why-do-it-that-way/">Particle Physics: Why do it? And why do it *that*&nbsp;way?</a></li>
+		<li class="page_item page-item-3090"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/particleanti-particle-annihilation/">Particle/Anti-Particle Annihilation</a></li>
+		<li class="page_item page-item-6499"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/quantum-fluctuations-and-their-energy/">Quantum Fluctuations and Their&nbsp;Energy</a></li>
+		<li class="page_item page-item-721 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/">The Hierarchy Problem</a>
+		<ul class='children'>
+			<li class="page_item page-item-6461 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/">Naturalness and the Standard&nbsp;Model</a>
+			<ul class='children'>
+				<li class="page_item page-item-6594"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-hierarchy-problem/naturalness/adding-curves/">How to Add 2&nbsp;Curves</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-566 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/">The Known (Apparently-) Elementary&nbsp;Particles</a>
+		<ul class='children'>
+			<li class="page_item page-item-1396 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/">Jets: The Manifestation of Quarks and&nbsp;Gluons</a>
+			<ul class='children'>
+				<li class="page_item page-item-2919"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/jets-the-manifestation-of-quarks-and-gluons/b-tagging-identifying-jets-from-bottom-quarks/">B-tagging: Identifying Jets from Bottom&nbsp;Quarks</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-1401"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/tau-leptons/">Tau Leptons</a></li>
+			<li class="page_item page-item-616"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-apparently-elementary-particles/the-known-particles-if-the-higgs-field-were-zero/">The Known Particles &#8212; If The Higgs Field Were&nbsp;Zero</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-6088 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/">The Known Forces of&nbsp;Nature</a>
+		<ul class='children'>
+			<li class="page_item page-item-6072"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-known-forces-of-nature/the-strength-of-the-known-forces/">The Strengths of the Known&nbsp;Forces</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3621 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/">The Structure of&nbsp;Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5096 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/">Atoms: Building Blocks of&nbsp;Molecules</a>
+			<ul class='children'>
+				<li class="page_item page-item-5184"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-of-an-isotope-are-identical-literally/">Atoms of an Isotope Are Identical,&nbsp;Literally</a></li>
+				<li class="page_item page-item-5363"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/atoms-their-inner-workings/">Atoms: Their Inner&nbsp;Workings</a></li>
+				<li class="page_item page-item-5177"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/atoms-building-blocks-of-molecules/isotopes-variations-on-an-atom/">Isotopes: Variations on an&nbsp;Atom</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-5416"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/electrons-on-the-outskirts-of-atoms/">Electrons: On the Outskirts of&nbsp;Atoms</a></li>
+			<li class="page_item page-item-5815"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/protons-and-neutrons/">Protons and Neutrons: The Massive Pandemonium in&nbsp;Matter</a></li>
+			<li class="page_item page-item-3618"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-molecular-structure-of-matter/">The Molecular Structure of&nbsp;Matter</a></li>
+			<li class="page_item page-item-5564 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/">The Nuclei of Atoms: At the Heart of&nbsp;Matter</a>
+			<ul class='children'>
+				<li class="page_item page-item-5592"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/the-structure-of-matter/the-nuclei-of-atoms-at-the-heart-of-matter/what-holds-nuclei-together/">What Holds Nuclei&nbsp;Together?</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-7624"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/theories-and-vacua/">Theories and Vacua</a></li>
+		<li class="page_item page-item-7587"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/tunneling-a-quantum-process/">Tunneling: A Quantum&nbsp;Process</a></li>
+		<li class="page_item page-item-1285"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/virtual-particles-what-are-they/">Virtual Particles: What are&nbsp;they?</a></li>
+		<li class="page_item page-item-3080 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/">Why Do Particles&nbsp;Decay?</a>
+		<ul class='children'>
+			<li class="page_item page-item-531"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-why/">Most Particles Decay &#8212; But&nbsp;Why?</a></li>
+			<li class="page_item page-item-1333"><a href="https://profmattstrassler.com/articles-and-posts/particle-physics-basics/why-do-particles-decay/most-particles-decay-yet-some-dont/">Most Particles Decay &#8212; Yet Some&nbsp;Don&#8217;t!</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-1819 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/">Relativity, Space, Astronomy and&nbsp;Cosmology</a>
+	<ul class='children'>
+		<li class="page_item page-item-1672"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/big-bang-classic-confusions/">Big Bang, Classic&nbsp;Confusions</a></li>
+		<li class="page_item page-item-7183 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/">Black Holes</a>
+		<ul class='children'>
+			<li class="page_item page-item-7185"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/black-holes/black-hole-information-paradox-an-introduction/">Black Hole Information Paradox: An&nbsp;Introduction</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3366 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/">Dark Matter</a>
+		<ul class='children'>
+			<li class="page_item page-item-5907"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/current-hints-of-dark-matter-413/">Current Hints of Dark Matter&nbsp;(4/13)</a></li>
+			<li class="page_item page-item-7903"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/searching-for-dark-matter-at-the-lhc/">Searching for Dark Matter at the&nbsp;LHC</a></li>
+			<li class="page_item page-item-3365"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/dark-matter/dark-matter-annihilation/">Seeing Signs of Dark Matter&nbsp;Annihilation</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-7383 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/">History of the&nbsp;Universe</a>
+		<ul class='children'>
+			<li class="page_item page-item-7390"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/before-inflation/">Before Inflation</a></li>
+			<li class="page_item page-item-7426"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/big-bang-expansion-not-explosion/">Big Bang: Expansion, NOT&nbsp;Explosion</a></li>
+			<li class="page_item page-item-7407"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/hot-big-bang/">Hot Big Bang</a></li>
+			<li class="page_item page-item-7393 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/">Inflation</a>
+			<ul class='children'>
+				<li class="page_item page-item-7840"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/inflation/dust-thou-art-bicep2/">Dust Thou Art,&nbsp;BICEP2</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-7505"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/history-of-the-universe/some-definitions-for-cosmology/">Some Definitions for&nbsp;Cosmology</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3681"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/parallax-seeing-in-depth/">Parallax: Seeing in&nbsp;Depth</a></li>
+		<li class="page_item page-item-2698"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/reflections-on-beauty-in-motion/">Reflections on Beauty in&nbsp;Motion</a></li>
+		<li class="page_item page-item-1821"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/the-first-principle-of-relativity/">The First Principle of&nbsp;Relativity</a></li>
+		<li class="page_item page-item-3706"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/transit-of-venus-and-the-distance-to-the-sun/">Transit of Venus and the Distance to the&nbsp;Sun</a></li>
+		<li class="page_item page-item-6167 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/">Why Do Astronauts&nbsp;Float?</a>
+		<ul class='children'>
+			<li class="page_item page-item-6231"><a href="https://profmattstrassler.com/articles-and-posts/relativity-space-astronomy-and-cosmology/why-do-astronauts-float/how-strong-is-gravity-at-the-space-station/">How Strong Is Gravity at the Space&nbsp;Station?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-755 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/">Some Speculative Theoretical Ideas for the&nbsp;LHC</a>
+	<ul class='children'>
+		<li class="page_item page-item-1574 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/">Extra Dimensions</a>
+		<ul class='children'>
+			<li class="page_item page-item-1575 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/">Extra Dimensions &#8211; How to Think About&nbsp;Them</a>
+			<ul class='children'>
+				<li class="page_item page-item-1642"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/dimensions-of-physical-space/">Dimensions of Physical&nbsp;Space</a></li>
+				<li class="page_item page-item-2290"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/what-is-an-extra-dimension-an-example/">What is an &#8220;Extra&#8221; Dimension? Some&nbsp;Examples</a></li>
+				<li class="page_item page-item-1584"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-1-spatial-dimension/">Worlds of 1 Spatial&nbsp;Dimension</a></li>
+				<li class="page_item page-item-1668"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/extra-dimensions-how-to-think-about-them/worlds-of-2-spatial-dimensions/">Worlds of 2 Spatial&nbsp;Dimensions</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2331 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/">How to Look for Signs of Extra&nbsp;Dimensions</a>
+			<ul class='children'>
+				<li class="page_item page-item-3815"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/extra-dimensions-newtons-gravity/">Extra Dimensions &amp; Newton&#8217;s&nbsp;Gravity</a></li>
+				<li class="page_item page-item-3764"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/how-big-could-an-extra-dimension-be/">How Big Could an Extra Dimension&nbsp;Be?</a></li>
+				<li class="page_item page-item-2350"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-1/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;1</a></li>
+				<li class="page_item page-item-2364"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/extra-dimensions/how-to-look-for-signs-of-extra-dimensions/kaluza-klein-partners-why-step-2/">Kaluza-Klein Partners &#8212; Why? Step&nbsp;2</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li class="page_item page-item-758 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/">Supersymmetry</a>
+		<ul class='children'>
+			<li class="page_item page-item-697 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/">How to Look for Supersymmetry at the&nbsp;LHC</a>
+			<ul class='children'>
+				<li class="page_item page-item-808 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/">When The Standard Assumptions About Supersymmetry are&nbsp;Relaxed</a>
+				<ul class='children'>
+					<li class="page_item page-item-4172"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/how-to-look-for-supersymmetry-at-the-lhc/when-standard-assumptions-about-supersymmetry-are-relaxed/test-page/">Test Page</a></li>
+				</ul>
+</li>
+			</ul>
+</li>
+			<li class="page_item page-item-660"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-what-is-it/">Supersymmetry &#8212; What Is&nbsp;It?</a></li>
+			<li class="page_item page-item-1399"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/supersymmetry-and-multi-lepton-events/">Supersymmetry and Multi-Lepton&nbsp;Events</a></li>
+			<li class="page_item page-item-7017"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-122013/">Where Stands Supersymmetry (as of&nbsp;12/2013)</a></li>
+			<li class="page_item page-item-3411"><a href="https://profmattstrassler.com/articles-and-posts/some-speculative-theoretical-ideas-for-the-lhc/supersymmetry/where-stands-supersymmetry-as-of-42012/">Where Stands Supersymmetry (as of&nbsp;4/2012)?</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li class="page_item page-item-210 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/">Tevatron News</a>
+	<ul class='children'>
+		<li class="page_item page-item-222"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/a-rare-and-interesting-decay-of-a-b-meson/">A Rare and Interesting Decay of a &#8220;B meson&#8221; &#8211; update&nbsp;2</a></li>
+		<li class="page_item page-item-894"><a href="https://profmattstrassler.com/articles-and-posts/tevatron-news/apparent-unexpected-asymmetries-in-the-production-of-quarks/">Apparent Unexpected Asymmetries in the Production of&nbsp;Quarks</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-362 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/">The Higgs Particle</a>
+	<ul class='children'>
+		<li class="page_item page-item-3956 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/">Discovery of the&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-4009"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-higgs/">Higgs Discovery: Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4015"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-is-it-a-simplest-higgs/">Higgs Discovery: Is it a Simplest&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-4100"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-personal-reflections/">Higgs Discovery: Personal&nbsp;Reflections</a></li>
+			<li class="page_item page-item-3980"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-skill-and-a-little-luck/">Higgs Discovery: Skill and A Little&nbsp;Luck</a></li>
+			<li class="page_item page-item-3958"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-discovery-of-the-higgs/higgs-discovery-the-data/">Higgs Discovery: The&nbsp;Data</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2198"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/holiday-higgs-hints-confidence-inspiring-or-not/">Holiday Higgs Hints: Confidence-Inspiring or&nbsp;Not?</a></li>
+		<li class="page_item page-item-4265"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/how-the-higgs-field-works/">How The Higgs Field&nbsp;Works</a></li>
+		<li class="page_item page-item-960"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/implications-of-higgs-searches-as-of-92011/">Implications of Higgs Searches (as of&nbsp;9/2011)</a></li>
+		<li class="page_item page-item-7236 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/">Non-Standard Decays of the Observed Higgs&nbsp;Particle</a>
+		<ul class='children'>
+			<li class="page_item page-item-7282"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decay-to-unknown-spin-one-particles/">Higgs Decay to Unknown Spin-One&nbsp;Particles</a></li>
+			<li class="page_item page-item-7218"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/non-standard-decays-of-the-observed-higgs-particle/higgs-decays-to-unknown-spin-zero-particles/">Higgs Decays to Unknown Spin-Zero&nbsp;Particles</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-5394 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/">Taking Stock of the &#8220;Higgs&#8221; (Jan.&nbsp;2013)</a>
+		<ul class='children'>
+			<li class="page_item page-item-5446"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/1-is-it-a-higgs/">1. Is it a&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5447"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/2-perhaps-composite/">2. Perhaps Composite?</a></li>
+			<li class="page_item page-item-5448"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/3-a-higgs-of-simplest-type/">3. A Higgs of Simplest&nbsp;Type?</a></li>
+			<li class="page_item page-item-5454"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/4-more-than-one-higgs/">4. More Than One&nbsp;Higgs?</a></li>
+			<li class="page_item page-item-5460"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/5-supersymmetry/">5. Supersymmetry?</a></li>
+			<li class="page_item page-item-5494"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/taking-stock-of-the-higgs-jan-2013/6-surprises/">6. Surprises?</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-4690"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">The Higgs FAQ&nbsp;2.0</a></li>
+		<li class="page_item page-item-4693 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/">The Old Higgs&nbsp;FAQ</a>
+		<ul class='children'>
+			<li class="page_item page-item-360"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/360-2/higgs-faq-1-0/">The Higgs FAQ&nbsp;1.0</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-2000 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/">The Standard Model&nbsp;Higgs</a>
+		<ul class='children'>
+			<li class="page_item page-item-2004"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/decays-of-the-standard-model-higgs/">Decays of the Standard Model&nbsp;Higgs</a></li>
+			<li class="page_item page-item-2509 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/">Lightweight Higgs: A `Sensitive&nbsp;Creature&#8217;</a>
+			<ul class='children'>
+				<li class="page_item page-item-2587 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/">A Quantitative Addendum to the Sensitive&nbsp;Creature</a>
+				<ul class='children'>
+					<li class="page_item page-item-5855 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/">Non-SM h Decays</a>
+					<ul class='children'>
+						<li class="page_item page-item-6041"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/a-quantitative-addendum-to-the-sensitive-creature/non-sm-h-decays/table-of-decays/">Table of Decays</a></li>
+					</ul>
+</li>
+				</ul>
+</li>
+				<li class="page_item page-item-3649"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/lightweight-higgs-a-sensitive-creature/decay-to-unusual-jets/">Decay to Unusual&nbsp;Jets</a></li>
+			</ul>
+</li>
+			<li class="page_item page-item-2002"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/production-of-the-standard-model-higgs-particle/">Production of the Standard Model Higgs&nbsp;Particle</a></li>
+			<li class="page_item page-item-2007"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-standard-model-higgs/seeking-and-studying-the-standard-model-higgs-particle/">Seeking and Studying the Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-1932 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/">Why is it Hard to Find the Higgs&nbsp;Particle?</a>
+		<ul class='children'>
+			<li class="page_item page-item-1935"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-is-it-hard-to-find-the-higgs-particle/a-lightweight-standard-model-higgs-particle/">A Lightweight Standard Model Higgs&nbsp;Particle</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-3892 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/">Why the Higgs Particle&nbsp;Matters</a>
+		<ul class='children'>
+			<li class="page_item page-item-3908"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-higgs-particle-matters/why-the-higgs-particle-matters-2/">Why the Higgs Particle Matters (Old&nbsp;Version)</a></li>
+		</ul>
+</li>
+		<li class="page_item page-item-443"><a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/why-the-hints-of-higgs-currently-rest-on-uncertain-ground/">Why The Hints of Higgs Currently Rest on Uncertain&nbsp;Ground</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-291 page_item_has_children"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/">Thoughts on the Scientific&nbsp;Process</a>
+	<ul class='children'>
+		<li class="page_item page-item-1808"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/scientific-scepticism-isnt-just-politics/">Scientific Scepticism Isn&#8217;t Just&nbsp;Politics</a></li>
+		<li class="page_item page-item-286"><a href="https://profmattstrassler.com/articles-and-posts/thoughts-on-the-scientific-process/why-is-the-tevatron-so-busy-with-hints-of-new-physics/">Why is the Tevatron So Busy with Hints of New&nbsp;Physics?</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="page_item page-item-90"><a href="https://profmattstrassler.com/videoclips/">Movie Clips</a></li>
+<li class="page_item page-item-1032"><a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a></li>
+<li class="page_item page-item-1018 page_item_has_children"><a href="https://profmattstrassler.com/technical-zone/">Technical Zone</a>
+<ul class='children'>
+	<li class="page_item page-item-10344"><a href="https://profmattstrassler.com/technical-zone/test-page/">Test Page</a></li>
+</ul>
+</li>
+<li class="page_item page-item-159 page_item_has_children"><a href="https://profmattstrassler.com/xotica/">Xotica</a>
+<ul class='children'>
+	<li class="page_item page-item-2302"><a href="https://profmattstrassler.com/xotica/hurriquake-2011-what-are-the-chances/">Hurriquake 2011: What are the&nbsp;Chances?</a></li>
+	<li class="page_item page-item-5354 page_item_has_children"><a href="https://profmattstrassler.com/xotica/sunrise/">Sunrise</a>
+	<ul class='children'>
+		<li class="page_item page-item-215"><a href="https://profmattstrassler.com/xotica/sunrise/sunrise_old/">Sunrise (older version)</a></li>
+	</ul>
+</li>
+	<li class="page_item page-item-2300"><a href="https://profmattstrassler.com/xotica/the-grand-si11iness-of-111111-111111/">The Grand Si11iness of 11/11/11&nbsp;11:11:11</a></li>
+</ul>
+</li>
+</ul></div>
+		</div><!-- #access -->
+
+		<div id="branding">
+						<a href="https://profmattstrassler.com/">
+									<img src="https://profmattstrassler.files.wordpress.com/2011/06/cropped-cerntunnel1.jpg" width="990" height="180" alt="" />
+							</a>
+					</div><!-- #branding -->
+	</div><!-- #header -->
+
+	<div id="content-box">
+
+<div id="content-container">
+	<div id="content" role="main">
+
+	
+		<div id="nav-above" class="navigation">
+			<div class="nav-previous"><a href="https://profmattstrassler.com/2012/11/14/why-theories-dont-go-into-hospitals/" rel="prev"><span class="meta-nav">&larr;</span> Why Theories Don&#8217;t Go Into&nbsp;Hospitals</a></div>
+			<div class="nav-next"><a href="https://profmattstrassler.com/2012/11/21/details-behind-last-weeks-supersymmetrystory/" rel="next">Details Behind Last Week&#8217;s Supersymmetry&nbsp;Story <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-above -->
+
+		<div id="post-4995" class="post-4995 post type-post status-publish format-standard hentry category-lhc-news category-particle-physics tag-atlas tag-cms tag-lhc tag-lhcb tag-press">
+
+			
+			<h1 class="entry-title">Remember That &#8220;Blow&#8221; to Supersymmetry (And Other&nbsp;Theories)?</h1>
+							<div class="entry-meta">
+					<span class="meta-prep meta-prep-author">Posted on</span> <a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/" title="8:45 AM" rel="bookmark"><span class="entry-date">November 16, 2012</span></a> <span class="comments-link"><span class="meta-sep">|</span> <a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comments">49 Comments</a></span>
+									</div><!-- .entry-meta -->
+			
+			<div class="entry-content">
+				<p><a href="http://www.bbc.co.uk/news/science-environment-20300100" target="_blank">According to the BBC, it was a heavy blow</a>.  According to a member of the LHCb experiment quoted in the article, it put the theory &#8220;in the hospital.&#8221;  The reality?  <strong>Nobody even suffered a scratch.</strong></p>
+<p><a title="First News from Kyoto Conference" href="https://profmattstrassler.com/2012/11/12/first-news-from-kyoto-conference/">On Monday I wrote about a new measurement by the LHCb experiment at the Large Hadron Collider [LHC] of a rare process</a>, reported at <a href="http://www.icepp.s.u-tokyo.ac.jp/hcp2012/" target="_blank">the HCP 2012 conference in Kyoto <em>(a link to the talks can be found at this link)</em></a>, in which a B_s meson decays to a muon and an anti-muon (<a title="A Rare and Interesting Decay of a “B meson” – update 2" href="https://profmattstrassler.com/articles-and-posts/tevatron-news/a-rare-and-interesting-decay-of-a-b-meson/">click here for more details of the physics process</a>.)  It&#8217;s a very important measurement, definitely!  But whilelistening to theorist Gino Isidori&#8217;s talk in which he briefly discussed this measurement, I was a little puzzled about an inconsistency between what LHCb had done and said in the past, and what they had done and were saying now, in particular as was reported/implied by the BBC.</p>
+<p>When I chatted with him later, Isidori reminded me exactly what LHCb reported in March, and how it compares to what they report now.</p>
+<ul>
+<li>March: LHCb reported that at most <strong>4.5 per billion</strong> B_s mesons decay this way (at 95% confidence)</li>
+<li>November: LHCb reports about 3.5 per billion B_s mesons decay this way, and at 95% confidence the rate is at least 1.1 per billion and at most <strong>6.4 per billion.</strong></li>
+</ul>
+<p><em>Notice that </em><em><span style="color:#ff0000;">the new measurement <strong>raises</strong> the upper limit on how often this process occurs<strong>.</strong></span></em>  This upward shift is not an indication of a problem; it&#8217;s probably just an ordinary statistical effect that arises from having small amounts of data.  But it makes the constraints from this measurement &#8212; on the many variants of supersymmetry, and on other theories &#8212; a little <strong>weaker</strong>, if anything.  Most of the supersymmetric (and other) models that would be constrained by this measurement lead to a <em>higher</em> rate than in the Standard Model (where it is predicted to be about 3.2 ± 0.3 per billion).  So a higher upper limit means fewer of these variants are excluded by the data.  All in all,  the constraints on supersymmetric (and other) models are <strong>little changed, and perhaps somewhat weaker</strong> than they were in March.  Isidori and his colleagues have worked this out, and I&#8217;ll try to get details from them next week.</p>
+<p>No need to take my word for it, or even Isidori&#8217;s.  Professor Michelangelo Mangano of CERN, apparently having spoken independently to other experts, made exactly the same point on page 41 of his summary talk concluding the conference. <em> (By the way, it was a great talk, and I recommend that experts read it.)  </em></p>
+<p>Well!  So much for the big BBC headline!  <em>[Most likely the public will never learn about this; a news report describing more accurately what this really means for supersymmetry etc. probably will not appear at all on the BBC, and even if it does, it certainly won&#8217;t get a big attention-grabbing headline.   It&#8217;s sad that this inherent bias in media reporting ensures the public gets an unhealthy dose of incorrect scientific information and rarely gets the antidote.]</em></p>
+<p>None of this at all diminishes LHCb&#8217;s accomplishment!  They&#8217;ve made a great measurement, for which they deserve big congratulations.  A round of applause, please!!  But let&#8217;s not overstate its immediate impact.  As the measurement becomes more precise, its impact will gradually become greater, and even more so when it is combined with similar measurements from ATLAS and CMS.</p>
+<p>But meanwhile, there were powerful and <em>truly new</em> constraints on supersymmetry (and other theories) reported at this conference, and they came from ATLAS and CMS, in their searches for effects from superpartner (and other) particles.  <a title="Theory Killers at the HCP conference" href="https://profmattstrassler.com/2012/11/13/theory-killers-at-the-hcp-conference/">I told you about a small number of these searches a couple of days ago</a><em> (by the way, I learned meanwhile that CMS has a search that is similar to the one I mentioned from ATLAS  involving bottom quarks)</em> and maybe I&#8217;ll point out a few others next week, if I have the energy.</p>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-4995" class="share-twitter sd-button share-icon" href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/?share=twitter" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-4995" class="share-facebook sd-button share-icon" href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/?share=facebook" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-end"></li></ul></div></div></div><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-24633746-4995-6157954aefa45' data-src='//widgets.wp.com/likes/index.html?ver=20210818#blog_id=24633746&amp;post_id=4995&amp;origin=profmattstrassler.wordpress.com&amp;obj_id=24633746-4995-6157954aefa45&amp;domain=profmattstrassler.com' data-name='like-post-frame-24633746-4995-6157954aefa45' data-title='Like or Reblog'><h3 class='sd-title'>Like this:</h3><div class='likes-widget-placeholder post-likes-widget-placeholder' style='height: 55px;'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>							</div><!-- .entry-content -->
+
+			<div class="entry-info">
+							This entry was posted in <a href="https://profmattstrassler.com/category/lhc-news/" rel="category tag">LHC News</a>, <a href="https://profmattstrassler.com/category/particle-physics/" rel="category tag">Particle Physics</a> and tagged <a href="https://profmattstrassler.com/tag/atlas/" rel="tag">atlas</a>, <a href="https://profmattstrassler.com/tag/cms/" rel="tag">cms</a>, <a href="https://profmattstrassler.com/tag/lhc/" rel="tag">LHC</a>, <a href="https://profmattstrassler.com/tag/lhcb/" rel="tag">LHCb</a>, <a href="https://profmattstrassler.com/tag/press/" rel="tag">press</a>. Bookmark the <a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/" title="Permalink to Remember That &#8220;Blow&#8221; to Supersymmetry (And Other&nbsp;Theories)?" rel="bookmark">permalink</a>.							</div><!-- .entry-info -->
+		</div><!-- #post-## -->
+
+		<div id="nav-below" class="navigation">
+			<div class="nav-previous"><a href="https://profmattstrassler.com/2012/11/14/why-theories-dont-go-into-hospitals/" rel="prev"><span class="meta-nav">&larr;</span> Why Theories Don&#8217;t Go Into&nbsp;Hospitals</a></div>
+			<div class="nav-next"><a href="https://profmattstrassler.com/2012/11/21/details-behind-last-weeks-supersymmetrystory/" rel="next">Details Behind Last Week&#8217;s Supersymmetry&nbsp;Story <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-below -->
+
+		
+<div id="comments">
+
+	
+			<h3 id="comments-title">
+			49 responses to &ldquo;<span>Remember That &#8220;Blow&#8221; to Supersymmetry (And Other&nbsp;Theories)?</span>&rdquo;		</h3>
+
+		
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-27316">
+		<div id="comment-27316">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/ab6a6891fb575b2faddc5825626435c6?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://gravatar.com/randywweeks' rel='external nofollow ugc' class='url'>Randy</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27316">
+				November 16, 2012 at 9:14 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>If you&#8217;ve taught me one thing it&#8217;s to take what&#8217;s reported in the MSM with a grain of salt and wait for the experts to weigh in.</p>
+<p>Thanks for the update.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-27343">
+		<div id="comment-27343">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/51958f87e33a51b6bc9d7049f8fb1feb?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Dilaton</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27343">
+				November 16, 2012 at 11:55 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I fully agree, this is a very nice and interesting update 🙂<br />
+And everybody should learn about it !</p>
+<p>At least the scornful blogger, who always and unnecessarily puts his long nose in here, has obviously seen it too as one can see from his newest pingback 😀</p>
+<p>Cheers</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-3 highlander-comment" id="li-comment-28897">
+		<div id="comment-28897">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/b683da6e488c759bfd2f15a7429891b0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Robert Rehbock</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-28897">
+				November 25, 2012 at 10:16 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Nothing to add on substance to the several blog entiries and the theron comments you  LM and some others have made. I do want to join in thanking Professor Strassler for his thorough and balanced posts and the hard work he puts onto this site.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-27317">
+		<div id="comment-27317">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/4a30daf79334555082253999e517cdc4?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">john mcAllison</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27317">
+				November 16, 2012 at 9:41 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Matt, but some SUSY models are more likely than others, right?</p>
+<p>This is what the public need to know: Are the most likely SUSY models being eliminated right now, leaving the less likely ones, and therefore putting SUSY in hospital?</p>
+<p>Or are the most likely SUSY models distributed fairly evenly throughout the parameter space?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-2 highlander-comment" id="li-comment-27320">
+		<div id="comment-27320">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/51958f87e33a51b6bc9d7049f8fb1feb?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Dilaton</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27320">
+				November 16, 2012 at 10:18 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>How do you want to determine what is &#8220;likely&#8221; from nature&#8217;s point of view? Can such an a priory probability distribution, giving the probability that nature has choosen it for each point in the parameter space, be determined before we have found out how nature really works ? Or is everything we can do just state our human preferences and prejudices?</p>
+<p>You are obviously sure that it can be done, so I&#8217;d like to know why and how ?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-3 highlander-comment" id="li-comment-27348">
+		<div id="comment-27348">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/4a30daf79334555082253999e517cdc4?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">dopey_john</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27348">
+				November 16, 2012 at 12:27 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>@Dilaton with respect, this question was addressed to Matt, so please don&#8217;t hijack it unless you can answer it. Thanks 🙂</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even depth-3 highlander-comment" id="li-comment-27373">
+		<div id="comment-27373">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d2a82d27327e643963026b2c7bb80fa1?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Dilaton</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27373">
+				November 16, 2012 at 4:30 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>@dopey_john<br />
+With respect, if I have some related questions I have the right to ask them too below the post they are related to.<br />
+If Prof. Strassler finds time to come back here, he can answer all of them if he wants to 🙂</p>
+<p>But I can understand that you prefer, as you said earlier, scornful, dishonest, and unfair bloggers  (who try hard to negatively influence science and undermine the natural scientific process) to come here in order to badly insult Prof. Strassler and his colleagues, than seing me asking  questions ;-).</p>
+<p>My reason for coming here is to learn physics from this great site, to defend science and Prof. Strassler who is a very clear headed, reasonable, honest, and great scientist, if he and his colleagues (or their great work) get insulted and attacked by the above mentioned blogger and his fans.</p>
+<p>Cheers</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt depth-3 highlander-comment" id="li-comment-27378">
+		<div id="comment-27378">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d2a82d27327e643963026b2c7bb80fa1?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Dilaton</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27378">
+				November 16, 2012 at 5:45 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>BTW my guess or answer to the question is, that it is not a meaningful question since such an a priory probability, which one would need to answer this question, can not be determined since nobody knows how nature chooses the laws of nature she wants to use (with or without SUSY, if with in what particular realization etc)</p>
+<p>But I would be happy if I&#8217;m told wrong and can learn better from an answer of Prof. Strassler or somebody else. That is what my above questions are there for 🙂</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-27318">
+		<div id="comment-27318">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/8bb640826fe801eccf9dd3e831ec278a?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">amg</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27318">
+				November 16, 2012 at 9:52 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>According to the LHCb preprint (arXiv:1211.2674) they have tightened the upper limit on the related B^0 decay, very slightly, from 1.0 per billion to 0.94 per billion. But (in terms of constraints on SUSY models) presumably this doesn&#8217;t outweigh the loosening of the upper limit on B_s^0?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-ferneysien odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-27321">
+		<div id="comment-27321">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d103f0d83f23a6085ed4a068fa6780c6?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">ferneysien</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27321">
+				November 16, 2012 at 10:28 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Matt </p>
+<p>While I agree with you totally on the Pallab Ghosh piece (I did a totally different  </p>
+<p>one for Reuters on the same day, which was jigged around a bit by deskers </p>
+<p>unfortunately) </p>
+<p><a href="http://www.reuters.com/article/2012/11/12/us-science-cern-idUSBRE8AB1B020121112" rel="nofollow ugc">http://www.reuters.com/article/2012/11/12/us-science-cern-idUSBRE8AB1B020121112</a> </p>
+<p>I must tell you the BBC did go some way to making amends last night in a Radio IV discussion programme </p>
+<p>which referred to “differing views” on SUSY and then interviewed at length  </p>
+<p>LHCb scientist Tara Shears who – without naming him – totally dismantled Ghosh. </p>
+<p>You probably know that folk at CERN banged off protest messages to him on  </p>
+<p>Monday and Tuesday, but of course there was no response. </p>
+<p>Keep up the great work. Vital to dabblers like me trying to write up a subject  </p>
+<p>we only marginally understand for the wider public (and uncomprehending but </p>
+<p>know-better editors). </p>
+<p>Cheers </p>
+<p>Bob</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-timpreece1 even depth-2 highlander-comment" id="li-comment-27418">
+		<div id="comment-27418">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/76538b9c79edcd7377b9a30419f9033d?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Tim Preece</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27418">
+				November 17, 2012 at 3:59 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Guess the radio show may only be accessible from UK.<br />
+<a href="http://www.bbc.co.uk/iplayer/episode/b01ntjpz/Material_World_15_11_2012/" rel="nofollow ugc">http://www.bbc.co.uk/iplayer/episode/b01ntjpz/Material_World_15_11_2012/</a></p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='http://www.math.columbia.edu/~woit/wordpress/?p=5272' rel='external nofollow ugc' class='url'>SUSY in the Hospital? | Not Even Wrong</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-123bielefeld odd alt thread-even depth-1 highlander-comment" id="li-comment-27342">
+		<div id="comment-27342">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cef5970926315df2a16854e3d0879ae9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">veeramohan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27342">
+				November 16, 2012 at 11:51 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>/The decay reported in Japan, at a Kyoto gathering of particle physicists, emerged &#8211; like the presumed Higgs &#8211; from light-speed collisions in the LHC that recreate the primeval disorder that followed the Big Bang some 13.7 billion years ago./&#8211;  reuters.</p>
+<p>LHC is the greatest engineering marvel of our time.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-27345">
+		<div id="comment-27345">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cfabf152b117687976a09db3c16632b8?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://thetasteofscience@wordpress.com' rel='external nofollow ugc' class='url'>thetasteofscience</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27345">
+				November 16, 2012 at 12:04 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Can you give us a link to Professor Michelangelo Mangano&#8217;s summary talk? Non-experts can  find these documents quite interesting even if they don&#8217;t follow every word or equation. Thanks.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-timpreece1 odd alt depth-2 highlander-comment" id="li-comment-27415">
+		<div id="comment-27415">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/76538b9c79edcd7377b9a30419f9033d?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Tim Preece</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27415">
+				November 17, 2012 at 3:54 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>kds.kek.jp/getFile.py/access?contribId=56&amp;sessionId=33&amp;resId=0&amp;materialId=slides&amp;confId=9237</p>
+<p>but not easy without audio/video</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-timpreece1 even depth-3 highlander-comment" id="li-comment-27416">
+		<div id="comment-27416">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/76538b9c79edcd7377b9a30419f9033d?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Tim Preece</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27416">
+				November 17, 2012 at 3:55 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Ah that may not work.<br />
+The URL has my session Id after I had logged on 😦</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-27381">
+		<div id="comment-27381">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6e260b0d51ec7a86c48b3360c8682a32?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://scienceblogs.com/startswithabang/' rel='external nofollow ugc' class='url'>Ethan Siegel</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27381">
+				November 16, 2012 at 7:04 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Your blog is normally very good, Matt, and I&#8217;m normally very happy to link to your pieces.</p>
+<p>But you&#8217;ve got to be kidding me. Perfect agreement with Standard Model, with accurate error bars that still allow some wiggle room for SUSY reachable by the LHC, but no evidence for departure from SM. You are <i>clearly</i> hoping for SUSY at the LHC, but a display of healthy skepticism and nuance &#8212; like you displayed with the FTL/OPERA neutrinos &#8212; would be welcome from you on this issue.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-27391">
+		<div id="comment-27391">
+		<div class="comment-author vcard">
+			<img alt='' src='https://i0.wp.com/a0.twimg.com/profile_images/2047768740/oaktree-1217860-1995077889_normal.jpg?resize=48%2C48' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://twitter.com/Oaktree_' rel='external nofollow ugc' class='url'>Oaktree (@Oaktree_)</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27391">
+				November 16, 2012 at 8:48 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Is the Standard Model, really, the Theory of Chaos? &#8230; i.e. &#8220;parts per billion&#8221;<br />
+Can a plane wave get diffracted?<br />
+What is energy?<br />
+Is dark energy the inner volume of the universal shell (soap bubble) we live in?<br />
+&#8230;<br />
+what would you say if I said the universe is actually 172 billion years old? &#8230; based of the assumption the energy density (eV&#8217;s / unit volume) is uniformed across the universe.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-martenvandijk odd alt thread-even depth-1 highlander-comment" id="li-comment-27420">
+		<div id="comment-27420">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/add29c3c2833c71dc81830b2f8cb6dda?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://cosmicsignals.wordpress.com' rel='external nofollow ugc' class='url'>martenvandijk</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27420">
+				November 17, 2012 at 4:09 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>My horoscope tells me that a lot of dark matter can be found in the constellation of Taurus.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-27436">
+		<div id="comment-27436">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c276998d4eaacaa2aa255359ff438e18?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Peter Onyisi</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27436">
+				November 17, 2012 at 6:30 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Are you sure it makes statistical sense to compare the previous one sided limit with a two sided limit?  Not saying it isn&#8217;t, but it would be good to have LHCb&#8217;s word on it.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-ewj9 odd alt thread-even depth-1 highlander-comment" id="li-comment-27438">
+		<div id="comment-27438">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/722bfe99f81ddf35cfff8e5249f8a4f0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://ewj9.wordpress.com' rel='external nofollow ugc' class='url'>ewj9</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27438">
+				November 17, 2012 at 6:46 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Dear Matt &#8211; Please comment:  If we do in fact cohabit with a Primary dimension of 4D&#8217;s.  Where the primary is responsible for the production of &#8216;Primary New Space second for second&#8217; ( of our linear time ).  Then the x,y,z is the only bit which is stretching ( the existing historic space where the 3D exists because of the presence of  matter in it).  So you have 2 things occurring. 1. &#8216;New space&#8217; being created ( from nowhere but all around us at  value C ).  and 2. That space whence created is stretching.  Can you visualise this scenario?</p>
+<p>Then 3. the historic space ( hubble Z) is dispersing/diluting the objects in it.<br />
+If we then consider the LHC work P New Space is required second for second.  Could it be that the spin detected on some of the particles, are obliged to spin because they have more energy and the availability of New Space is not produced fast enough and therefore obliged to rotate and or curve back on themselves? e.g. They are experiencing a torque against time itself?  So what we observe and measure is not necessarily a function of what they  &#8216;want to do&#8217; &#8211; but what they are physically &#8211; &#8216;obliged to do&#8217;!</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-123bielefeld even depth-2 highlander-comment" id="li-comment-27448">
+		<div id="comment-27448">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cef5970926315df2a16854e3d0879ae9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">veeramohan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27448">
+				November 17, 2012 at 7:53 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Dispersing/diluting the objects in it:<br />
+  With exponentially expanding space, two nearby observers are separated very quickly; so much so, that the distance between them quickly exceeds the limits of communications. The scalar field slowly relaxes to the vacuum, the cosmological constant goes to zero, and space begins to expand normally.<br />
+The new regions which come into view during the normal expansion phase, in the global point of view, are exactly the same regions which were pushed out of the horizon during inflation, and so they are necessarily at nearly the same temperature and curvature, because they come from the same little patch of space. In the local point of view, the cosmological horizon still is at the big bang, and inflation is always going on in a thin skin where time is nearly stopped, and the same process produces new regions as it always did, up to small fluctuations. </p>
+<p>This prediction means that the total ordinary matter, dark matter, and residual vacuum energy in the universe have to add up to the critical density, a prediction which is very accurately confirmed. More strikingly, inflation allows physicists to calculate the minute differences in temperature of different regions from quantum fluctuations during the inflationary era, and these quantitative predictions have also been confirmed.???</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-ewj9 odd alt depth-3 highlander-comment" id="li-comment-27455">
+		<div id="comment-27455">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/722bfe99f81ddf35cfff8e5249f8a4f0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://ewj9.wordpress.com' rel='external nofollow ugc' class='url'>ewj9</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27455">
+				November 17, 2012 at 9:04 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Dear Veeramohan, </p>
+<p>Thanks very much for this. Yes I appreciate much of the established yardstick, although  I do need to be reminded to keep me driving on the left and steering wheel on the right. </p>
+<p>However just in passing is Prof Guth’s theory still hold good?  Ref the isothermal universe?  I understood there is a problem regards Linear time and actual dimension achieved of the universe, or do we just say it was moving faster than  light to achieve it? </p>
+<p>Your valued and appreciated refs relate to 3 dimensions where matter ( observable objects exist ).  In my thinking if no objects exist then there is no 3D spacetime or any relevance to STR and GTR.  What is inflating is the spacetime created by objects in it.  </p>
+<p>What is your opinion regards “Want to move or obliged to move”. E.g. a candle flame always burn bright and up. It is in a  torque with gravity/air.  In the LHC a dispersion of particles are they behaving they want to behave or are they also experiencing a torque?  i.e. Time for instance. </p>
+<p>How does one measure ‘anything’ is stretching if one has no reference frames and the temp is isometric? I will look forward to your answer.  Remove all the objects &#8211; is it  still expanding? Or is it just our local spacetime which is expanding because of matter existing in it? – thanks.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-123bielefeld even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-27489">
+		<div id="comment-27489">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cef5970926315df2a16854e3d0879ae9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">veeramohan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27489">
+				November 17, 2012 at 1:29 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Dear ewj9,<br />
+Iam not an expert. I stay with your question, &#8220;Could it be that the spin detected on some of the particles, are obliged to spin because they have more energy and the availability of New Space is not produced fast enough and therefore obliged to rotate and or curve back on themselves? &#8211; for experts to answer- because&#8230;</p>
+<p>In LHC, a component of spin can be increased or decreased with “raising” and “lowering” operators, and the change is always in natural units of 1. (This is just a result of the universe having three spatial dimensions, so if the answer was any different then the universe would look very different!)</p>
+<p>The expansion of space is in reference to 3-D manifold only; that is, the description involves no structures such as extra dimensions or an exterior universe?. </p>
+<p>Why does our universe look the way it does?: <a href="http://news.discovery.com/space/why-does-our-universe-have-three-dimensions-120119.html" rel="nofollow ugc">http://news.discovery.com/space/why-does-our-universe-have-three-dimensions-120119.html</a></p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-ewj9 odd alt depth-2 highlander-comment" id="li-comment-27498">
+		<div id="comment-27498">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/722bfe99f81ddf35cfff8e5249f8a4f0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://ewj9.wordpress.com' rel='external nofollow ugc' class='url'>ewj9</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27498">
+				November 17, 2012 at 3:18 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Thanks again….actually none of us are experts, and we are just recovering with the news that atoms exist in modern science.  You mention the spin is adjustable! This is very interesting…… and the change is always in natural units of 1. ?? what does that mean please?  </p>
+<p>In a way the universe does look different in 3D when temporal time dilates the faster the clock is moving.  We cannot fathom that.  It is like light – has have the value of C and clocks operate slower the faster they move. But  surely this is an indication of our current inability to understand why? Similarly a few centuries ago the sea would ebb and flo – it was taken for granted ! like light speed and time dilation.  Until that is Mr Galileo had an idea. And now we ignore it because it is rather uninteresting. </p>
+<p>“that is, the description involves no structures such as extra dimensions or an exterior universe?”. </p>
+<p>Could I ask you to go further with this comment so I understand better your meaning. </p>
+<p>A fantastic link you provided thanks………in looking at it very briefly sort of satisfies my intuition of 4D.  Remove matter and with it you strip away 3D spacetime. And what is left?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-123bielefeld even depth-3 highlander-comment" id="li-comment-27632">
+		<div id="comment-27632">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/cef5970926315df2a16854e3d0879ae9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">veeramohan</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27632">
+				November 18, 2012 at 3:51 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>If there is a physical situation in which it is impossible to tell which way it happened, it always interferes; it never fails. The word &#8220;interferes&#8221; in this context is a quick way of saying that such objects fall under the rules of quantum mechanics, in which they behave more like waves that interfere than like everyday large objects.<br />
+A tensor field is a generalization of a scalar field or vector field that assigns, respectively, a scalar or vector to each point of space. For example a vector space of one dimension depending on an angle could look like a Möbius strip as well as a cylinder. Raising and lowering indices: One does this by multiplying by the covariant or contravariant metric tensor and then contracting indices, meaning two indices are set equal and then summing over the repeated indices.  One can raise or lower indices to change a type (a, b) tensor to a (a + 1, b − 1) tensor (raise index) or to a (a − 1, b + 1) tensor (lower index), where the notation (a, b) has been used to denote the tensor order a + b with a upper indices and b lower indices. </p>
+<p>By this, one can only measure the total spin because&#8230; We can never measure the spin of a particle exactly, and the best we can do is measure its total spin, and its projection along a certain axis. The spin along the other two axes remains a mystery, because as soon as we measure its spin along one axis, the other two components of spin become indeterminate- why?</p>
+<p>Measuring the total spin of fermions and bosons is consistent, but why not with Higgs boson?. If it is 0 spin, there is no decay into other particles to measure the spin? </p>
+<p>All massive particles interact with a universal Higgs field in proportion to their bound energy content, and it is this interaction or &#8220;Higgs ether drag&#8221; which causes the inertial resistance to acceleration we characterize as mass.<br />
+In this point The Higgs vev is the order parameter for electroweak symmetry breaking. It behave like photon&#8217;s electromagnectic field but with mass like &#8220;brothers(goldstone bosons) impregnated&#8221; W and Z bosons(weak forces).  </p>
+<p>Uniting &#8220;massless&#8221; photons(field) can create rest mass.<br />
+In above case, the rest mass is given by &#8220;gold stone bosons&#8221; and &#8221; inertial mass&#8221; is given by &#8220;Higgs boson&#8221;. Thus uniting gravitational and electroweak forces?</p>
+<p>The interaction of a massive particle&#8217;s gravitational field with the spacetime metric is an interaction with the same spacetime metric that originally established the weak force. So &#8220;Higgs boson&#8221; intracts and interfers with the metric field of spacetime.<br />
+The forced interaction between these two metric fields, one asymmetric and the other symmetric, also produces the anomalous results of relativistic motion in the spatial, temporal, and mass parameters of the moving or accelerated system- which is not in the case of masless photons or tiny neutrinos which does react with weak foeces but not like &#8220;gold stone bosons(brothers)&#8221; -Higgs boson bond.  </p>
+<p>The spacetime metric didn&#8217;t interfere with symmetry breaking of goldstone bosons, but interfers with &#8220;spontaneous symmetry breaking&#8221; of Higgs boson. So there is a flip in its quantum conservation. </p>
+<p>At the time of big bang, all particles are moving so fast they are essentially the same as photons moving at velocity c. When space expands, further cooled energy level, there are no large, empty dimensions: instead, the metric is densely occupied with particles (quarks and leptons); photons cannot move freely under these conditions in any case. Symmetry is expressed through a &#8220;particle metric&#8221; rather than a dimensional metric. Symmetry-breaking occurs as these particles are released into the large spacetime dimensions of present space.<br />
+Futher expansion will create more space but dimensions..????</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-ewj9 odd alt depth-4 highlander-comment" id="li-comment-27635">
+		<div id="comment-27635">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/722bfe99f81ddf35cfff8e5249f8a4f0?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://ewj9.wordpress.com' rel='external nofollow ugc' class='url'>ewj9</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27635">
+				November 18, 2012 at 4:52 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>“Higgs boson” intracts and interfers with the metric field of spacetime. </p>
+<p>Very detailed reply – thank you very much for your kind and full response!   </p>
+<p>The behavior of the infinitesimal is really beyond me.  I could be pulled into the same fray of trying to comprehend it – but I think it drives us all mad – like trying to comprehend the universe. In trying to get to understand the Big Nature.  I am aware of the components of the StdM and that protons comprise x2 up and x1 down quark etc.  ( the ‘definition’ of matter is the challenge in my mind )  When does it actually become identifiable as matter in the everyday sense)? As the more you look at it the less it appears to be matter at all, just interactive forces between strange little things, which in some instances not only have no mass but also no dimension!  So how can we make sense of these tools? </p>
+<p>Your educated reply brings me great value and I don’t want to simply pass it by without considerate attention.  However, I can’t help but feel that we are on the wrong track for a New View.  Sure, we can continue to research and build larger LHC’s  &#8211; maybe one in space in the future where it is isolated from the gravity of the earth etc. Has anyone thought about that?  We have 200 in a gravity field but none without. We are trying to look at clean particles in the mud of gravity which may well affect the behavior? Maybe that is all we need to do – to put the device into a cleaner environment?  And maybe cheaper as it would not have to be underground with all that stainless conduit? </p>
+<p>“Higgs boson” intracts and interfers with the metric field of spacetime”. </p>
+<p>But we don’t even know if we have an HB. It is intuitive speculation – like ‘M’Th  Maybe? the HB is actually the background energy of new space being created in the first place ( 1. No space = nothing = not even void,  2. It is produced and the infinitesimals are formed )?  </p>
+<p>What happens afterwards is of no interest to nature.  E.g. they happen to form proton’s and baryons is of no importance.  The primary is to create new space. And when you have solid matter ( ?) then you have 3 dimensions as they actually create it by their presence, even though they maybe dimensionless? </p>
+<p>Now that would be interesting and a new way of actually considering it.  It is not an HB at all.  Nothing more than the background energy of the (Primary dimension) just creating new space where nothing existed before? Which is being created constantly at the value of C where we live.  And as this new space is formed it is obliged to coalesce into infinitesimals which have repeated characteristics, which involve time and force?&#8230; </p>
+<p>Maybe we should look at the big picture and not just a small part of it?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-27490">
+		<div id="comment-27490">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/94b39812622aea0271a6dd0d5c3941e5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Bose</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27490">
+				November 17, 2012 at 1:38 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Are the different versions of SUSY independent events? If so, then proving 5 versions out of 10 wrong does not affect the probability of the remaining 5 versions. But if they are not independent events, then conditional on 5 versions being ruled out, the probability of the remaining 5 being lower is lower. Is this a good way to consider the &#8220;Blow&#8221; issue?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-27579">
+		<div id="comment-27579">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/5ea99fbafff278bbcf755e908d8f5ede?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://starflight1.freeyellow.com' rel='external nofollow ugc' class='url'>davesears1</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-27579">
+				November 18, 2012 at 7:26 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Phil Gibbs wrote this piece (<a href="http://blog.vixra.org/2012/10/12/evidence-for-a-charged-higgs-boson/" rel="nofollow ugc">http://blog.vixra.org/2012/10/12/evidence-for-a-charged-higgs-boson/</a>) on 10 October, in which he speculates a charged Higgs is a likely explanation for anomalies seen in the (then available) LHC data.  But there&#8217;s been an avalanche of new information since the Kyoto Conference.  Does this new info still leave any wiggle room for a charged Higgs?</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='https://profmattstrassler.com/2012/11/21/details-behind-last-weeks-supersymmetrystory/' rel='external nofollow ugc' class='url'>Details Behind Last Week&#8217;s Supersymmetry Story | Of Particular Significance</a></p>
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='https://profmattstrassler.com/2013/01/14/conclusion-of-the-higgs-symposium/' rel='external nofollow ugc' class='url'>Conclusion of the Higgs Symposium | Of Particular Significance</a></p>
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='http://glenmartin.wordpress.com/2013/03/03/desperately-seeking-susy/' rel='external nofollow ugc' class='url'>Desperately Seeking SUSY! | Whiskey&#8230;Tango&#8230;Foxtrot?</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-56607">
+		<div id="comment-56607">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a6b977ab5e7879f940b53f6e765ee1a9?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.ballbustingblog.com/toplist/index.php?a=stats&#038;u=haroldrichmond' rel='external nofollow ugc' class='url'>Benito</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-56607">
+				April 30, 2013 at 2:38 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Terrific work! This is the type of information that should be shared around the internet.<br />
+Shame on the seek engines for now not positioning this put up higher!</p>
+<p>Come on over and consult with my site . Thanks =)</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-69201">
+		<div id="comment-69201">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/04286889c42ed33a8b50df119cd2e12e?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://bigddl.com/wsearch.php?q=travellercompare.com&#038;lng=' rel='external nofollow ugc' class='url'>villas</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-69201">
+				July 17, 2013 at 1:14 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Hi there to every body, it&#8217;s my first pay a visit of this web site; this blog carries awesome and truly fine material in favor of visitors.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='https://profmattstrassler.com/2013/07/31/a-few-stories-worth-a-comment/' rel='external nofollow ugc' class='url'>A Couple of Rare Events | Of Particular Significance</a></p>
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href='https://profmattstrassler.com/2013/09/17/did-the-lhc-just-rule-out-string-theory/' rel='external nofollow ugc' class='url'>Did the LHC Just Rule Out String Theory?! | Of Particular Significance</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-91989">
+		<div id="comment-91989">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e0b435762981acaa8f6249bbc9a82038?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn">Vin</cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-91989">
+				October 10, 2013 at 8:46 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>You clearly do not understand how errors work, if you think bota resulta from LHCb are not compatible. Also, I believe you should be more clear about your biases towards one experiment. It&#8217;s okay to cheer for ATLAS/CMS, it&#8217;s not okay to disrespect the work of LHCb physicists.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-225489">
+		<div id="comment-225489">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/32a7f580aa009b4d7a36702b5f526238?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://novumrentacar.tumblr.com/post/96370783875/sfaturi-pentru-alegerea-unei-masini-pe-gustul-tau' rel='external nofollow ugc' class='url'>My Blog</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-225489">
+				September 10, 2014 at 10:48 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>I do trust all the ideas you&#8217;ve presented on your post.<br />
+They&#8217;re really convincing and will definitely work.<br />
+Nonetheless, the posts are very quick for starters. May just you please extend<br />
+them a bit from next time? Thanks for the post.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-227666">
+		<div id="comment-227666">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/0730ec1dba85b43a50a7dddc33dc6db2?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.falkeens.com/falkeensads' rel='external nofollow ugc' class='url'>click</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-227666">
+				September 15, 2014 at 1:24 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>pay per click, edvertise fߋr yojr web site,<br />
+skyynet Һave ѵery goood advertise for yߋur website</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-232738">
+		<div id="comment-232738">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/91bf53c0df9bc022ce34e1b7c78e2b8f?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://netlinks.at' rel='external nofollow ugc' class='url'>netlinks.at</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-232738">
+				September 23, 2014 at 8:01 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>And it has completed many more events than other companies.<br />
+While not usually endorsed by the product manufacturer these<br />
+hacks should not be confused with more nefarious computer hacking.<br />
+Make sure your photographer understands your budget.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-241075">
+		<div id="comment-241075">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d142c925eedd37592c1e8328b94790c5?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://grq.co/714/a-background-in-swift-advice-for-heroes-of-dragon-age/' rel='external nofollow ugc' class='url'>heroes of dragon age cheat tool</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-241075">
+				October 3, 2014 at 10:27 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>With havin so much content and articles do you ever run into any issues of plagorism or copyright violation? My website has a lot of unique content I&#8217;ve either authored<br />
+myself or outsourced but it looks like a lot of it is popping it<br />
+up all over the web without my authorization.<br />
+Do you know any solutions to help stop content from being stolen? I&#8217;d really appreciate it.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-297572">
+		<div id="comment-297572">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9977016df998ee3cbf7f1fa99391e9db?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.iizradasajtova.com' rel='external nofollow ugc' class='url'>joomla izrada sajta</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-297572">
+				January 11, 2015 at 8:39 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>A custom website is built specifically for its targeted<br />
+audience; their taste, their expectations, their interests, and their ease.<br />
+However, if you don&#8217;t have the time to do it right, and then have to<br />
+call a professional to fix it, was it worth all the time and money.<br />
+If you have an on line business or if you are planning to<br />
+start an on line business then it is crucial to have an impressive yet functional website that is different<br />
+from the rest of your competitors.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-298028">
+		<div id="comment-298028">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/48365abc9571cc79f564ee96d9c7f3f4?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.rentbelgradeapartments.com' rel='external nofollow ugc' class='url'>rent belgrade apartments</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-298028">
+				January 12, 2015 at 1:26 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>UK application forms can be downloaded from the RAC<br />
+website. Are you moving into your own place for the first time.<br />
+There are numerous apartments that are available for rent.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-298965">
+		<div id="comment-298965">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/335a4681f4a1a30da7abd30c9ebf2e5c?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://videntemarisol.com/horoscopos.html' rel='external nofollow ugc' class='url'>free tarotista</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-298965">
+				January 14, 2015 at 2:07 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>What&#8217;s up, I read your blog on a reguar basis.</p>
+<p>Yourr humoristic style is witty, keep it up!</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-300541">
+		<div id="comment-300541">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/27d08f3d2654539c4afd32d2673cda1f?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://overwatchgame.pw' rel='external nofollow ugc' class='url'>overwatch beta</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-300541">
+				January 17, 2015 at 11:57 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>” He gives the illustration of Scandinavian international locations, exactly where officials “will be thrown from workplace for what is going to be considered extremely minimum abuses.<br />
+Local Game &#8211; Stop locations in the San Diego area<br />
+are listed below. Bio &#8211; Ware is giving the gaming community a new formula, one that&#8217;s<br />
+as different from Wo &#8211; W&#8217;s model as quantum mechanics is from<br />
+Newtonian physics.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-302268">
+		<div id="comment-302268">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/96cd748d0085df426641a4c2822c2e30?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.rentbelgradeapartments.com/sr/' rel='external nofollow ugc' class='url'>iznajmljivanje apartmana beograd</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-302268">
+				January 22, 2015 at 6:05 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Plus, when you arrange to have several friends come along,<br />
+the price can be split. The strategic and unique Dubai architecture with magnifying power of high standard of facilities including luxury,<br />
+comfort, privacy and last but not the least, efficient staff services that<br />
+force a new visitor to plan a re-visit to Dubai.<br />
+The most famous pictures of the canyon were taken here.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-304036">
+		<div id="comment-304036">
+		<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/0209337efc3a5b818eafd5104e8eab3f?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://mangolistic.com/' rel='external nofollow ugc' class='url'>yoga wear</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-304036">
+				January 28, 2015 at 12:19 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>You need a good yoga mat, a large towel, a bottle of water,<br />
+a block, and straps (optional). So one of the things to consider is buying<br />
+yoga apparel that is comfortable. They have loads more of great<br />
+items from Hard Tail clothing and other designers.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-308487">
+		<div id="comment-308487">
+		<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/410bfb6302d48006678b681ac1c378cf?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.videntenaturalmina.com/horoscopochino.htm' rel='external nofollow ugc' class='url'>psiquico bueno y economico</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-308487">
+				February 15, 2015 at 1:07 PM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>Hurrah, that&#8217;s what I was searching for, what a stuff!<br />
+presennt here at this weblog, thanks admin of this web page.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-319508">
+		<div id="comment-319508">
+		<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/5f5b08e8c27d251b694611bd4e929332?s=48&#038;d=identicon&#038;r=G' class='avatar avatar-48' height='48' width='48' />
+			<cite class="fn"><a href='http://www.ahttransplantacijakose.com' rel='external nofollow ugc' class='url'>presadjivanje kose</a></cite>
+
+			<span class="comment-meta commentmetadata">
+				|
+				<a href="https://profmattstrassler.com/2012/11/16/remember-that-blow-to-supersymmetry-and-other-theories/#comment-319508">
+				April 9, 2015 at 3:15 AM</a>
+					|
+													</span><!-- .comment-meta .commentmetadata -->
+		</div><!-- .comment-author .vcard -->
+		
+		<div class="comment-body"><p>The best thing about re shaping hair loss is the fact that there<br />
+are no chemicals or harmful substances involved in these processes.<br />
+Often, multiple fingers are affected; however, the toes<br />
+are less likely to exhibit any symptoms. Hair<br />
+grafts are exactly hair follicles that are<br />
+removed from the back of the head to the front.</p>
+</div>
+
+	</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+		</ol>
+
+		
+	
+	
+</div><!-- #comments -->
+	
+	</div><!-- #content -->
+</div><!-- #content-container -->
+
+
+		
+		<div id="primary" class="widget-area" role="complementary">
+					<ul class="xoxo">
+
+			<li id="text-2" class="widget-container widget_text"><h3 class="widget-title">First Time Visitor?</h3>			<div class="textwidget">This site addresses various aspects of science, with a current focus on particle physics.  I aim to serve the public, including those with no background knowledge of physics.  If you're not yourself an expert, you might want to click on "<a href="https://profmattstrassler.com/new-start-here/">New? Start Here</a>" or "<a href="https://profmattstrassler.com/about/">About</a>" to get started. If you'd like to watch my hour-long public lecture about the <a href="https://profmattstrassler.com/articles-and-posts/the-higgs-particle/the-higgs-faq-2-0/">Higgs particle</a>, try ``<a href="https://profmattstrassler.com/videoclips/">Movie Clips</a>''.</div>
+		</li><li id="media_image-4" class="widget-container widget_media_image"><style>.widget.widget_media_image { overflow: hidden; }.widget.widget_media_image img { height: auto; max-width: 100%; }</style><div style="width: 310px" class="wp-caption alignnone"><a href="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png"><img width="300" height="172" src="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" class="image wp-image-10515 alignnone attachment-300x172 size-300x172" alt="" loading="lazy" style="max-width: 100%; height: auto;" srcset="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300 300w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=600 600w, https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=150 150w" sizes="(max-width: 300px) 100vw, 300px" data-attachment-id="10515" data-permalink="https://profmattstrassler.com/htogammagamma_v1/" data-orig-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png" data-orig-size="640,366" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="HtoGammaGamma_v1" data-image-description="" data-image-caption="" data-medium-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=300" data-large-file="https://profmattstrassler.files.wordpress.com/2021/04/htogammagamma_v1.png?w=500" /></a><p class="wp-caption-text">From the CMS experiment at the Large Hadron collider, a proton-proton collision that created a Higgs boson, which subsequently decayed to two particles of light (shown as green rods.)</p></div></li><li id="search-3" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="https://profmattstrassler.com/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search" />
+				</div>
+			</form></li>
+		<li id="recent-posts-3" class="widget-container widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="https://profmattstrassler.com/2021/04/12/physics-is-broken/">Physics is Broken!!!</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/11/25/has-a-new-force-of-nature-been-discovered/">Has a New Force of Nature Been&nbsp;Discovered?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/28/the-new-york-times-remembers-a-great-physicist/">The New York Times Remembers A Great&nbsp;Physicist</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/08/06/a-catastrophic-weekend-for-theoretical-high-energy-physics/">A Catastrophic Weekend for Theoretical High Energy&nbsp;Physics</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/06/14/a-ring-of-controversy-around-a-black-hole-photo/">A Ring of Controversy Around a Black Hole&nbsp;Photo</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/16/the-black-hole-photo-seeing-more-clearly/">The Black Hole `Photo&#8217;: Seeing More&nbsp;Clearly</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/15/the-black-hole-photo-what-are-we-looking-at/">The Black Hole `Photo&#8217;: What Are We Looking&nbsp;At?</a>
+									</li>
+											<li>
+					<a href="https://profmattstrassler.com/2019/04/10/a-black-day-and-a-happy-one-in-scientific-history/">A Black Day (and a Happy One) In Scientific&nbsp;History</a>
+									</li>
+					</ul>
+
+		</li><li id="categories-4" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3><form action="https://profmattstrassler.com" method="get"><label class="screen-reader-text" for="cat">Categories</label><select  name='cat' id='cat' class='postform' >
+	<option value='-1'>Select Category</option>
+	<option class="level-0" value="4003">Astronomy</option>
+	<option class="level-0" value="175813">black holes</option>
+	<option class="level-0" value="51517">Dark Matter</option>
+	<option class="level-0" value="545298">Evolution and Biology</option>
+	<option class="level-0" value="39338">Geology</option>
+	<option class="level-0" value="133890">Gravitational Waves</option>
+	<option class="level-0" value="738724">Higgs</option>
+	<option class="level-0" value="27530">History of Science</option>
+	<option class="level-0" value="19640">Housekeeping</option>
+	<option class="level-0" value="59940768">LHC Background Info</option>
+	<option class="level-0" value="11550283">LHC News</option>
+	<option class="level-0" value="59940787">Other Collider News</option>
+	<option class="level-0" value="12547">Particle Physics</option>
+	<option class="level-0" value="1211">Physics</option>
+	<option class="level-0" value="560543">Public Outreach</option>
+	<option class="level-0" value="36114049">Quantum Field Theory</option>
+	<option class="level-0" value="119528">Quantum Gravity</option>
+	<option class="level-0" value="59940867">Science and Modern Society</option>
+	<option class="level-0" value="7682">Science News</option>
+	<option class="level-0" value="26444">String Theory</option>
+	<option class="level-0" value="41175177">The Scientific Process</option>
+	<option class="level-0" value="1">Uncategorized</option>
+</select>
+</form>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+			</li><li id="pd_top_rated-3" class="widget-container top_rated"><h3 class="widget-title">Popular Pages</h3><div id="pd_top_rated_holder" class="pd_top_rated_holder_pages"></div><script language="javascript" src="https://polldaddy.com/js/rating/top-rated.js"></script><script language="javascript" type="text/javascript">PDRTJS_TOP = new PDRTJS_RATING_TOP( 4811599, 0, 0, '010', 5 );PDRTJS_TOP.get_top( 'pages', '0' );</script></li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+		
+			</div><!-- #content-box -->
+
+	<div id="footer" role="contentinfo">
+		
+<div id="footer-widget-area" role="complementary">
+
+	<div id="first" class="widget-area">
+		<ul class="xoxo">
+			<li id="text-3" class="widget-container widget_text">			<div class="textwidget"><font color="FF0000"><b>I went to college at <a href="http://www.simons-rock.edu"> Simon's Rock.  </a></b></font></div>
+		</li>		</ul>
+	</div><!-- #first .widget-area -->
+
+
+	<div id="third" class="widget-area">
+		<ul class="xoxo">
+			<li id="rss_links-3" class="widget-container widget_rss_links"><h3 class="widget-title">Add this site to your RSS feed</h3><p class="size-small"><a class="feed-image-link" href="https://profmattstrassler.com/feed/" title="Subscribe to Posts"><img src="https://profmattstrassler.com/i/rss/red-small.png" alt="RSS Feed" /></a>&nbsp;<a href="https://profmattstrassler.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p>
+</li><li id="linkcat-8548552" class="widget-container widget_links"><h3 class="widget-title">My Facebook Page</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.facebook.com/ProfMattStrassler" rel="me" target="_blank">http://www.facebook.com/ProfMattStrassler</a></li>
+
+	</ul>
+</li>
+		</ul>
+	</div><!-- #third .widget-area -->
+
+	<div id="fourth" class="widget-area">
+		<ul class="xoxo">
+			<li id="twitter-2" class="widget-container widget_twitter"><h3 class="widget-title"><a href='http://twitter.com/MattStrassler'>Follow me on Twitter</a></h3><ul class='tweets'>
+			<li>
+				@<a href='http://twitter.com/StevenLowette'>StevenLowette</a> @<a href='http://twitter.com/CatDogLUofM'>CatDogLUofM</a> @<a href='http://twitter.com/suchi_kulkarni'>suchi_kulkarni</a> @<a href='http://twitter.com/jsheltino'>jsheltino</a> Good to be a part of it.  We need to open these communicatio… <a href="https://twitter.com/i/web/status/1443656122460741633"> twitter.com/i/web/status/1…</a> 				<a href="http://twitter.com/MattStrassler/statuses/1443656122460741633" class="timesince">1&nbsp;day&nbsp;ago</a>
+			</li>
+
+			</ul><a href="http://twitter.com/MattStrassler"  class='twitter-follow-button' data-show-count='false' data-link-color='#0060ff' data-text-color='#333333'>Follow @MattStrassler</a></li>		</ul>
+	</div><!-- #fourth .widget-area -->
+
+</div><!-- #footer-widget-area -->
+		<div id="colophon">
+			<span class="generator-link"><a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a></span>
+					</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #container -->
+
+<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202139y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-ab6a6891fb575b2faddc5825626435c6">
+	</div>
+	<div class="grofile-hash-map-51958f87e33a51b6bc9d7049f8fb1feb">
+	</div>
+	<div class="grofile-hash-map-b683da6e488c759bfd2f15a7429891b0">
+	</div>
+	<div class="grofile-hash-map-4a30daf79334555082253999e517cdc4">
+	</div>
+	<div class="grofile-hash-map-d2a82d27327e643963026b2c7bb80fa1">
+	</div>
+	<div class="grofile-hash-map-8bb640826fe801eccf9dd3e831ec278a">
+	</div>
+	<div class="grofile-hash-map-d103f0d83f23a6085ed4a068fa6780c6">
+	</div>
+	<div class="grofile-hash-map-76538b9c79edcd7377b9a30419f9033d">
+	</div>
+	<div class="grofile-hash-map-cef5970926315df2a16854e3d0879ae9">
+	</div>
+	<div class="grofile-hash-map-cfabf152b117687976a09db3c16632b8">
+	</div>
+	<div class="grofile-hash-map-6e260b0d51ec7a86c48b3360c8682a32">
+	</div>
+	<div class="grofile-hash-map-f823fcedb73242744e03d0b5bef58cf8">
+	</div>
+	<div class="grofile-hash-map-add29c3c2833c71dc81830b2f8cb6dda">
+	</div>
+	<div class="grofile-hash-map-c276998d4eaacaa2aa255359ff438e18">
+	</div>
+	<div class="grofile-hash-map-722bfe99f81ddf35cfff8e5249f8a4f0">
+	</div>
+	<div class="grofile-hash-map-94b39812622aea0271a6dd0d5c3941e5">
+	</div>
+	<div class="grofile-hash-map-5ea99fbafff278bbcf755e908d8f5ede">
+	</div>
+	<div class="grofile-hash-map-a6b977ab5e7879f940b53f6e765ee1a9">
+	</div>
+	<div class="grofile-hash-map-04286889c42ed33a8b50df119cd2e12e">
+	</div>
+	<div class="grofile-hash-map-e0b435762981acaa8f6249bbc9a82038">
+	</div>
+	<div class="grofile-hash-map-32a7f580aa009b4d7a36702b5f526238">
+	</div>
+	<div class="grofile-hash-map-0730ec1dba85b43a50a7dddc33dc6db2">
+	</div>
+	<div class="grofile-hash-map-91bf53c0df9bc022ce34e1b7c78e2b8f">
+	</div>
+	<div class="grofile-hash-map-d142c925eedd37592c1e8328b94790c5">
+	</div>
+	<div class="grofile-hash-map-9977016df998ee3cbf7f1fa99391e9db">
+	</div>
+	<div class="grofile-hash-map-48365abc9571cc79f564ee96d9c7f3f4">
+	</div>
+	<div class="grofile-hash-map-335a4681f4a1a30da7abd30c9ebf2e5c">
+	</div>
+	<div class="grofile-hash-map-27d08f3d2654539c4afd32d2673cda1f">
+	</div>
+	<div class="grofile-hash-map-96cd748d0085df426641a4c2822c2e30">
+	</div>
+	<div class="grofile-hash-map-0209337efc3a5b818eafd5104e8eab3f">
+	</div>
+	<div class="grofile-hash-map-410bfb6302d48006678b681ac1c378cf">
+	</div>
+	<div class="grofile-hash-map-5f5b08e8c27d251b694611bd4e929332">
+	</div>
+	</div>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/profmattstrassler.com\/2012\/11\/16\/remember-that-blow-to-supersymmetry-and-other-theories\/":4995};
+	</script>
+				<script src='https://platform.twitter.com/widgets.js?ver=20111117' id='twitter-widgets-js'></script>
+<script id='sharing-js-js-extra'>
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjskSwiAQRH9IQrkkVR4svwVhNINAcAay+PXOQQ96MKeepV916ykrO6QCqWjP2sGIFvLceN7o75d/VKDlLQ2mEWFatXko2di7ImB8wq89VpVDvWFiHfAOrAWq0JvkAtAfs3ERk7oY0tFwAZJJFZIcXi00ZTtElWmYFyklNy4fBpMN1UkLgWSFeAHXSNCfInngoq7BIGnuDWG6fVSgczxtu1132O3bY+tft6aG7A=='></script>
+<script type='text/javascript'>
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-twitter' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-twitter' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+</script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>	<iframe src='https://widgets.wp.com/likes/master.html?ver=20210818#ver=20210818&amp;origin=https://profmattstrassler.com' scrolling='no' id='likes-master' name='likes-master' style='display:none;'></iframe>
+	<div id='likes-other-gravatars'>
+		<div class="likes-text">
+			<span>%d</span> bloggers like this:		</div>
+		<ul class="wpl-avatars sd-like-gravatars"></ul>
+	</div>
+	
+		<script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'24633746','blog_tz':'-4','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'24633746','v':'wpcom','tz':'-4','user_id':'0','post':'4995','subd':'profmattstrassler'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eXFaMjhuQz1aPzNNMy12XUZlK1VEaF9ZMkRhXS9kfnpXU3U3LUtbLSZsakpoUnExOGVDJWhWOExfZ1M0TW5wbUFZbFdUSXwxSXI0LUdSWVYubU9lVz1iK3xfaHZDeG9LW0VCbXVvaFVFUG0rWldIVUdIZUJlZV04PS1rOEJuMGcvcEJILU0sSUxJK0tdS3pscy8wZisxWGUrdnpELzc4LFh4U000XWZMMltxTnBPQklkTnxIfEVJbWVtU1NwbVs3L3dqbUwrR281PUF4Q3h5dFVUZ2p+UHRxdWJxdjFBZWZ2TmhWRlZOdg=='}]);
+_stq.push([ 'clickTrackerInit', '24633746', '4995' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script></body>
+</html>

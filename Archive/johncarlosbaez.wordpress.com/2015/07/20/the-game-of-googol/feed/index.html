@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:media="http://search.yahoo.com/mrss/"
+	
+	>
+<channel>
+	<title>
+	Comments on: The Game of Googol	</title>
+	<atom:link href="https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/feed/" rel="self" type="application/rss+xml" />
+	<link>https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/</link>
+	<description></description>
+	<lastBuildDate>Sat, 12 Jan 2019 16:47:19 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>http://wordpress.com/</generator>
+	<item>
+		<title>
+		By: Toby Bartels		</title>
+		<link>https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-140757</link>
+
+		<dc:creator><![CDATA[Toby Bartels]]></dc:creator>
+		<pubDate>Sat, 12 Jan 2019 16:47:19 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=19942#comment-140757</guid>
+
+					<description><![CDATA[I don&#039;t think that randomness is really the key here.  In particular, when you write towards the beginning
+
+&lt;blockquote&gt;
+  It turns out that, amazingly, the answer to the puzzle is &lt;em&gt;yes!&lt;/em&gt; You can find a strategy to do better than 50%. But the strategy uses randomness. So, this puzzle is a great illustration of the power of randomness.
+&lt;/blockquote&gt;
+
+I don&#039;t think that this illustrates the power of randomness, because you don&#039;t need randomness to destroy the false intuition that 50% can&#039;t be beat.  And when you write at the end
+
+&lt;blockquote&gt;
+  No matter how randomly $latex z_0$ is generated, once we have it, we know there exist choices for the first player that will guarantee our defeat!
+&lt;/blockquote&gt;
+
+that&amp;apos;s just wrong (unless by ‘defeat’ you mean a 50% chance of success).
+
+As we know from Puzzle 2, there&#039;s no deterministic strategy that guarantees us &lt;em&gt;more than&lt;/em&gt; 50% probability of success for &lt;em&gt;every&lt;/em&gt; method that A might use to choose the numbers.  However, there&#039;s a simple deterministic strategy that guarantees us &lt;em&gt;at least&lt;/em&gt; 50% probability of success for every method that A might use to choose the numbers, while also giving us more than 50% probability of success (in fact, 100% probability!) for &lt;em&gt;some&lt;/em&gt; methods that A might use to choose the numbers.  So already the idea that 50% can&#039;t be beat is flawed.
+
+The simplest such strategy is this: after looking at one number, keep it if it is positive (or zero) and switch if it is negative.  If A chooses two positive numbers (or chooses two negative number), then we have a 50% chance of winning.  But if A chooses one positive number and one negative number, then we have a 100% chance of winning.  If A (supposing that A knows our strategy) wants to give us any specific probability between 50% and 100%, then A can choose the sign of the numbers randomly with appropriate odds.  But nothing that A can do will reduce our probability of success below 50%.
+
+Of course, there&#039;s nothing special about zero here as the cut-off between keeping and switching.  If I had to play this game in real life (and had to use a deterministic strategy), then I would probably estimate (on a psychological basis) the median number that A is likely to pick, and use that as my cut-off point.  I expect that I would do substantially better than 50% in real life in this way, with no randomness.  At any rate, I would do no worse.
+
+What randomness gives us is flexibility.  Since A might always pick very large (or small) numbers, we need to allow our cut-off point to be, at least possibly, arbitrarily large (or small).  And we can&#039;t always use, say, an integer as the cut-off point, because A might pick two fractional numbers with no integer between them.  So we choose the cut-off point randomly by some method (any method) that gives nonzero probability to every nontrivial interval of real numbers.  This is what Greg Egan&#039;s solution theoretically accomplishes.
+
+I say ‘theoretically’, because in practice, when we choose the random number $latex z$, even if we use CERN&#039;s HotBits because a pseudorandom number generator is not good enough, we&#039;re really only going to get $latex z$ to some level of precision.  This means that the cut-off point $latex f^{-1}(z)$ will also have limited precision, as well as an upper and lower bound.  So in practice, a deterministic strategy isn&#039;t necessarily worse, and if A knows exactly what we&#039;re going to do, then A can (by expending more computational effort than we will) still reduce our probability of success to exactly 50%.
+
+So if I were playing this game in real life, then not only would I estimate (psychologically) A&#039;s median number but also A&#039;s precision and bounds.  Then choose a random cut-off point to that precision within those bounds&lt;a href=&quot;#fn-c-4d809010-fn1&quot; rel=&quot;nofollow&quot;&gt;1&lt;/a&gt; from a distribution with that median.  If A knows what I&#039;m doing, then they can outwit me, but that only means reducing my probability of success back down to 50%.  And if A is some random person off the street, then I bet that I can do pretty well.
+
+
+
+
+
+
+Actually, I should go a little beyond my estimate in both precision and bounds, going farther as my estimate is less confident.&#160;&lt;a href=&quot;#fnref-c-4d809010-fn1&quot; rel=&quot;nofollow&quot;&gt;&#8617;&lt;/a&gt;
+
+
+
+]]></description>
+			<content:encoded><![CDATA[<p>I don&#039;t think that randomness is really the key here.  In particular, when you write towards the beginning</p>
+<blockquote><p>
+  It turns out that, amazingly, the answer to the puzzle is <em>yes!</em> You can find a strategy to do better than 50%. But the strategy uses randomness. So, this puzzle is a great illustration of the power of randomness.
+</p></blockquote>
+<p>I don&#039;t think that this illustrates the power of randomness, because you don&#039;t need randomness to destroy the false intuition that 50% can&#039;t be beat.  And when you write at the end</p>
+<blockquote><p>
+  No matter how randomly <img src="https://s0.wp.com/latex.php?latex=z_0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z_0" class="latex" /> is generated, once we have it, we know there exist choices for the first player that will guarantee our defeat!
+</p></blockquote>
+<p>that&apos;s just wrong (unless by ‘defeat’ you mean a 50% chance of success).</p>
+<p>As we know from Puzzle 2, there&#039;s no deterministic strategy that guarantees us <em>more than</em> 50% probability of success for <em>every</em> method that A might use to choose the numbers.  However, there&#039;s a simple deterministic strategy that guarantees us <em>at least</em> 50% probability of success for every method that A might use to choose the numbers, while also giving us more than 50% probability of success (in fact, 100% probability!) for <em>some</em> methods that A might use to choose the numbers.  So already the idea that 50% can&#039;t be beat is flawed.</p>
+<p>The simplest such strategy is this: after looking at one number, keep it if it is positive (or zero) and switch if it is negative.  If A chooses two positive numbers (or chooses two negative number), then we have a 50% chance of winning.  But if A chooses one positive number and one negative number, then we have a 100% chance of winning.  If A (supposing that A knows our strategy) wants to give us any specific probability between 50% and 100%, then A can choose the sign of the numbers randomly with appropriate odds.  But nothing that A can do will reduce our probability of success below 50%.</p>
+<p>Of course, there&#8217;s nothing special about zero here as the cut-off between keeping and switching.  If I had to play this game in real life (and had to use a deterministic strategy), then I would probably estimate (on a psychological basis) the median number that A is likely to pick, and use that as my cut-off point.  I expect that I would do substantially better than 50% in real life in this way, with no randomness.  At any rate, I would do no worse.</p>
+<p>What randomness gives us is flexibility.  Since A might always pick very large (or small) numbers, we need to allow our cut-off point to be, at least possibly, arbitrarily large (or small).  And we can&#039;t always use, say, an integer as the cut-off point, because A might pick two fractional numbers with no integer between them.  So we choose the cut-off point randomly by some method (any method) that gives nonzero probability to every nontrivial interval of real numbers.  This is what Greg Egan&#039;s solution theoretically accomplishes.</p>
+<p>I say ‘theoretically’, because in practice, when we choose the random number <img src="https://s0.wp.com/latex.php?latex=z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z" class="latex" />, even if we use CERN&#039;s HotBits because a pseudorandom number generator is not good enough, we&#039;re really only going to get <img src="https://s0.wp.com/latex.php?latex=z&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z" class="latex" /> to some level of precision.  This means that the cut-off point <img src="https://s0.wp.com/latex.php?latex=f%5E%7B-1%7D%28z%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f^{-1}(z)" class="latex" /> will also have limited precision, as well as an upper and lower bound.  So in practice, a deterministic strategy isn&#039;t necessarily worse, and if A knows exactly what we&#039;re going to do, then A can (by expending more computational effort than we will) still reduce our probability of success to exactly 50%.</p>
+<p>So if I were playing this game in real life, then not only would I estimate (psychologically) A&#039;s median number but also A&#039;s precision and bounds.  Then choose a random cut-off point to that precision within those bounds<a href="#fn-c-4d809010-fn1" rel="nofollow">1</a> from a distribution with that median.  If A knows what I&#039;m doing, then they can outwit me, but that only means reducing my probability of success back down to 50%.  And if A is some random person off the street, then I bet that I can do pretty well.</p>
+<p>Actually, I should go a little beyond my estimate in both precision and bounds, going farther as my estimate is less confident.&#160;<a href="#fnref-c-4d809010-fn1" rel="nofollow">&#8617;</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: John Baez		</title>
+		<link>https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-73955</link>
+
+		<dc:creator><![CDATA[John Baez]]></dc:creator>
+		<pubDate>Sat, 28 Nov 2015 02:02:18 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=19942#comment-73955</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-73953&quot;&gt;Tom&lt;/a&gt;.
+
+I don&#039;t see the similarity except for the obvious one: they&#039;re probabilistic games where naively some information doesn&#039;t seem to help you, but actually it does.
+
+The game here relies crucially for its surprise value on the fact that the numbers range over an infinite line, so knowing the first one seems to help not at all in guessing whether the second will be larger or smaller.  The Monty Hall problem, which is much more elementary, seems to rely for its surprise value on people&#039;s poor understanding of conditional probabilities.  But perhaps there are deeper connections.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-73953">Tom</a>.</p>
+<p>I don&#8217;t see the similarity except for the obvious one: they&#8217;re probabilistic games where naively some information doesn&#8217;t seem to help you, but actually it does.</p>
+<p>The game here relies crucially for its surprise value on the fact that the numbers range over an infinite line, so knowing the first one seems to help not at all in guessing whether the second will be larger or smaller.  The Monty Hall problem, which is much more elementary, seems to rely for its surprise value on people&#8217;s poor understanding of conditional probabilities.  But perhaps there are deeper connections.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Tom		</title>
+		<link>https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-73953</link>
+
+		<dc:creator><![CDATA[Tom]]></dc:creator>
+		<pubDate>Sat, 28 Nov 2015 01:45:34 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=19942#comment-73953</guid>
+
+					<description><![CDATA[The problem description reminds me of the Monty Hall problem. Is this just the continuous analog?]]></description>
+			<content:encoded><![CDATA[<p>The problem description reminds me of the Monty Hall problem. Is this just the continuous analog?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Rob MacDonald		</title>
+		<link>https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-70068</link>
+
+		<dc:creator><![CDATA[Rob MacDonald]]></dc:creator>
+		<pubDate>Fri, 21 Aug 2015 14:46:18 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=19942#comment-70068</guid>
+
+					<description><![CDATA[From the Upshot, a New York Times column, I saw this last night. It is another &quot;pick a number&quot; puzzle. Different than the game of googol. But the graphics the authors used to present their data are very beautiful. Maybe done with R. Readers may enjoy.
+
+&lt;em&gt; &lt;a&gt;Puzzle: Are You Smarter Than 58,164
+Other New York Times Readers?&lt;/a&gt;&lt;/em&gt;]]></description>
+			<content:encoded><![CDATA[<p>From the Upshot, a New York Times column, I saw this last night. It is another &#8220;pick a number&#8221; puzzle. Different than the game of googol. But the graphics the authors used to present their data are very beautiful. Maybe done with R. Readers may enjoy.</p>
+<p><em> <a>Puzzle: Are You Smarter Than 58,164<br />
+Other New York Times Readers?</a></em></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: John Baez		</title>
+		<link>https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69969</link>
+
+		<dc:creator><![CDATA[John Baez]]></dc:creator>
+		<pubDate>Sun, 16 Aug 2015 05:51:15 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=19942#comment-69969</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69918&quot;&gt;abqmathteacher&lt;/a&gt;.
+
+Yes, that&#039;s pretty easy to prove.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69918">abqmathteacher</a>.</p>
+<p>Yes, that&#8217;s pretty easy to prove.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: abqmathteacher		</title>
+		<link>https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69918</link>
+
+		<dc:creator><![CDATA[abqmathteacher]]></dc:creator>
+		<pubDate>Fri, 14 Aug 2015 19:10:33 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=19942#comment-69918</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69215&quot;&gt;John Baez&lt;/a&gt;.
+
+So here&#039;s my question: can one prove that, for every $latex \varepsilon &#062; 0 $, there is no strategy that guarantees a winning probability greater than $latex 1/2 + \varepsilon $? To me that seems like a more &quot;realistic/effective&quot; version of the puzzle.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69215">John Baez</a>.</p>
+<p>So here&#8217;s my question: can one prove that, for every <img src="https://s0.wp.com/latex.php?latex=%5Cvarepsilon+%3E+0+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;varepsilon &gt; 0 " class="latex" />, there is no strategy that guarantees a winning probability greater than <img src="https://s0.wp.com/latex.php?latex=1%2F2+%2B+%5Cvarepsilon+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="1/2 + &#92;varepsilon " class="latex" />? To me that seems like a more &#8220;realistic/effective&#8221; version of the puzzle.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Greg Egan		</title>
+		<link>https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69885</link>
+
+		<dc:creator><![CDATA[Greg Egan]]></dc:creator>
+		<pubDate>Thu, 13 Aug 2015 04:21:48 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=19942#comment-69885</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69884&quot;&gt;arch1&lt;/a&gt;.
+
+Yes, that will do it.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69884">arch1</a>.</p>
+<p>Yes, that will do it.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: arch1		</title>
+		<link>https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69884</link>
+
+		<dc:creator><![CDATA[arch1]]></dc:creator>
+		<pubDate>Thu, 13 Aug 2015 04:13:06 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=19942#comment-69884</guid>
+
+					<description><![CDATA[Greg, to prove the impossibility assertion in your solution to Puzzle 2, isn&#039;t it enough to observe that the cardinality of S&#039;s domain exceeds that of its range (so it can&#039;t be 1-1, so it can&#039;t be strictly increasing)?]]></description>
+			<content:encoded><![CDATA[<p>Greg, to prove the impossibility assertion in your solution to Puzzle 2, isn&#8217;t it enough to observe that the cardinality of S&#8217;s domain exceeds that of its range (so it can&#8217;t be 1-1, so it can&#8217;t be strictly increasing)?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: arch1		</title>
+		<link>https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69805</link>
+
+		<dc:creator><![CDATA[arch1]]></dc:creator>
+		<pubDate>Tue, 11 Aug 2015 13:19:54 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=19942#comment-69805</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69730&quot;&gt;Greg Egan&lt;/a&gt;.
+
+Thanks Greg.   I didn’t do a good job of explaining my precise point of confusion.  On the chance others share it, I’ll try describing it differently.
+
+It involves two different kinds of conditional probability:
+a)  The probability of Greg’s strategy succeeding, conditional on Player 1 picking two specific numbers
+b)  The probability of Greg’s strategy succeeding, conditional on Player 2 initially picking a hand containing a specific number
+
+My would-be counterexample concerned only a conditional probability of type b), which I showed equal to 0.5.
+
+I saw this counterexample as contradicting Greg’s solution, since Greg’s solution proves that the conditional probability of his strategy succeeding &lt;em&gt;exceeds&lt;/em&gt; 0.5 regardless of the specific numbers involved (it “works for every individual pair of distinct numbers”), and regardless of Player 1’s method of choosing those two numbers.
+
+My mistake was in not realizing that Greg’s solution concerned &lt;em&gt;only conditional probabilities of type a), NOT ones of type b)&lt;/em&gt; (regarding which it was silent).  So there &lt;em&gt;was&lt;/em&gt; no contradiction, after all (whew!).]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69730">Greg Egan</a>.</p>
+<p>Thanks Greg.   I didn’t do a good job of explaining my precise point of confusion.  On the chance others share it, I’ll try describing it differently.</p>
+<p>It involves two different kinds of conditional probability:<br />
+a)  The probability of Greg’s strategy succeeding, conditional on Player 1 picking two specific numbers<br />
+b)  The probability of Greg’s strategy succeeding, conditional on Player 2 initially picking a hand containing a specific number</p>
+<p>My would-be counterexample concerned only a conditional probability of type b), which I showed equal to 0.5.</p>
+<p>I saw this counterexample as contradicting Greg’s solution, since Greg’s solution proves that the conditional probability of his strategy succeeding <em>exceeds</em> 0.5 regardless of the specific numbers involved (it “works for every individual pair of distinct numbers”), and regardless of Player 1’s method of choosing those two numbers.</p>
+<p>My mistake was in not realizing that Greg’s solution concerned <em>only conditional probabilities of type a), NOT ones of type b)</em> (regarding which it was silent).  So there <em>was</em> no contradiction, after all (whew!).</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Greg Egan		</title>
+		<link>https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69746</link>
+
+		<dc:creator><![CDATA[Greg Egan]]></dc:creator>
+		<pubDate>Sun, 09 Aug 2015 12:17:14 +0000</pubDate>
+		<guid isPermaLink="false">http://johncarlosbaez.wordpress.com/?p=19942#comment-69746</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69723&quot;&gt;Michael Weiss&lt;/a&gt;.
+
+Michael: &lt;a href=&quot;#comment-69723&quot; rel=&quot;nofollow&quot;&gt;what you describe&lt;/a&gt; is why I like this way of expressing the solution.  You can sum up the entire strategy as:  &lt;i&gt;Ensure that, the greater the number you see, the greater your chance of sticking with it.&lt;/i&gt;  It&#039;s very easy to see why that should work, and not much harder to see how to make it happen.
+
+The alternative formulation in your &lt;a href=&quot;#comment-69726&quot; rel=&quot;nofollow&quot;&gt;other comment&lt;/a&gt; is the version they preferred on the &lt;i&gt;Quanta&lt;/i&gt; web site, and apparently the way the solution was first given historically (using a Gaussian, I think).  And though it&#039;s not too hard to follow when you break it down into cases, I still think the one-sentence slogan above makes the other formulation more intuitively appealing.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="https://johncarlosbaez.wordpress.com/2015/07/20/the-game-of-googol/#comment-69723">Michael Weiss</a>.</p>
+<p>Michael: <a href="#comment-69723" rel="nofollow">what you describe</a> is why I like this way of expressing the solution.  You can sum up the entire strategy as:  <i>Ensure that, the greater the number you see, the greater your chance of sticking with it.</i>  It&#8217;s very easy to see why that should work, and not much harder to see how to make it happen.</p>
+<p>The alternative formulation in your <a href="#comment-69726" rel="nofollow">other comment</a> is the version they preferred on the <i>Quanta</i> web site, and apparently the way the solution was first given historically (using a Gaussian, I think).  And though it&#8217;s not too hard to follow when you break it down into cases, I still think the one-sentence slogan above makes the other formulation more intuitively appealing.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

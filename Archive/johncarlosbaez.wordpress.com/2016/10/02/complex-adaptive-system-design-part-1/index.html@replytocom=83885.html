@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Complex Adaptive System Design (Part 1) | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Complex Adaptive System Design (Part&nbsp;1) Comments Feed" href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F10%2F02%2Fcomplex-adaptive-system-design-part-1%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"677eca7dd0","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"0272f16312\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2016\/10\/02\/complex-adaptive-system-design-part-1\/?replytocom=83885","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F10%2F02%2Fcomplex-adaptive-system-design-part-1%2F%3Freplytocom%3D83885","postID":"22597","shortlink":"https:\/\/wp.me\/pRBZ9-5St","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/22597","statsLink":"https:\/\/wordpress.com\/stats\/post\/22597\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F10%2F02%2Fcomplex-adaptive-system-design-part-1%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-5St' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F10%2F02%2Fcomplex-adaptive-system-design-part-1%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2016%2F10%2F02%2Fcomplex-adaptive-system-design-part-1%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Complex Adaptive System Design (Part 1)" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/" />
+<meta property="og:description" content="In January of this year, I was contacted by a company called Metron Scientific Solutions. They asked if I&#8217;d like to join them in a project to use category theory to design and evaluate comple…" />
+<meta property="article:published_time" content="2016-10-02T22:11:06+00:00" />
+<meta property="article:modified_time" content="2021-06-25T00:47:39+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Complex Adaptive System Design (Part&nbsp;1)" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="In January of this year, I was contacted by a company called Metron Scientific Solutions. They asked if I&#039;d like to join them in a project to use category theory to design and evaluate complex, adaptive systems of systems. What&#039;s a &#039;system of systems&#039;? It&#039;s a system made of many disparate parts, each of which&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-22597 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-22597 post type-post status-publish format-standard hentry category-azimuth category-computer-science category-mathematics category-networks" id="post-22597">
+			<h2>Complex Adaptive System Design (Part&nbsp;1)</h2>
+
+			<div class="entry">
+				<p>In January of this year, I was contacted by a company called <a href="http://www.metsci.com/">Metron Scientific Solutions</a>.  They asked if I&#8217;d like to join them in a project to use category theory to design and evaluate complex, adaptive <a href="https://en.wikipedia.org/wiki/System_of_systems">systems of systems</a>.</p>
+<p>What&#8217;s a &#8216;system of systems&#8217;?</p>
+<p>It&#8217;s a system made of many disparate parts, each of which is a complex system in its own right.  The biosphere is a system of systems.  But so far, people usually use this buzzword for large human-engineered systems where the different components are made by different organizations, perhaps over a long period of time, with changing and/or incompatible standards.   This makes it impossible to fine-tune everything in a top-down way and have everything fit together seamlessly.</p>
+<p>So, systems of systems are inherently messy.  And yet we need them.</p>
+<p>Metron was applying for a grant from <strong>DARPA</strong>, the <a href="http://www.darpa.mil/">Defense Advanced Research Projects Agency</a>, which funds a lot of cutting-edge research for the US military.  It may seem surprising that DARPA is explicitly interested in using <i>category theory</i> to study systems of systems.  But it actually shouldn&#8217;t be surprising: their mission is to try many things and find a few that work.   They are willing to take risks.</p>
+<p>Metron was applying for a grant under a DARPA program run by <a href="http://www.darpa.mil/staff/dr-john-s-paschkewitz">John S. Paschkewitz</a>, who is interested in</p>
+<blockquote><p>
+  new paradigms and foundational approaches for the design of complex systems and system-of-systems (SoS) architectures.
+</p></blockquote>
+<p>This program is called <strong>CASCADE</strong>, short for <a href="http://www.darpa.mil/program/complex-adaptive-system-composition-and-design-environment">Complex Adaptive System Composition and Design Environment</a>.   Here&#8217;s the idea:</p>
+<blockquote><p>
+Complex interconnected systems are increasingly becoming part of everyday life in both military and civilian environments. In the military domain, air-dominance system-of-systems concepts, such as those being developed under DARPA’s SoSITE effort, envision manned and unmanned aircraft linked by networks that seamlessly share data and resources in real time. In civilian settings such as urban “smart cities”, critical infrastructure systems—water, power, transportation, communications and cyber—are similarly integrated within complex networks. Dynamic systems such as these promise capabilities that are greater than the mere sum of their parts, as well as enhanced resilience when challenged by adversaries or natural disasters. But they are difficult to model and cannot be systematically designed using today’s tools, which are simply not up to the task of assessing and predicting the complex interactions among system structures and behaviors that constantly change across time and space.</p>
+<p>To overcome this challenge, DARPA has announced the Complex Adaptive System Composition and Design Environment (CASCADE) program. The goal of CASCADE is to advance and exploit novel mathematical techniques able to provide a deeper understanding of system component interactions and a unified view of system behaviors. The program also aims to develop a formal language for composing and designing complex adaptive systems. A special notice announcing a Proposers Day on Dec. 9, 2015, was released today on FedBizOpps here: <a href="http://go.usa.gov/cT7uR" rel="nofollow">http://go.usa.gov/cT7uR</a>.</p>
+<p>“CASCADE aims to fundamentally change how we design systems for real-time resilient response within dynamic, unexpected environments,” said John Paschkewitz, DARPA program manager. “Existing modeling and design tools invoke static ‘playbook’ concepts that don’t adequately represent the complexity of, say, an airborne system of systems with its constantly changing variables, such as enemy jamming, bad weather, or loss of one or more aircraft. As another example, this program could inform the design of future forward-deployed military surgical capabilities by making sure the functions, structures, behaviors and constraints of the medical system—such as surgeons, helicopters, communication networks, transportation, time, and blood supply—are accurately modeled and understood.”</p>
+<p>CASCADE could also help the Department of Defense fulfill its role of providing humanitarian assistance in response to a devastating earthquake, hurricane or other catastrophe, by developing comprehensive response models that account for the many components and interactions inherent in such missions, whether in urban or austere environs.</p>
+<p>“We need new design and representation tools to ensure resilience of buildings, electricity, drinking water supply, healthcare, roads and sanitation when disaster strikes,” Paschkewitz said. “CASCADE could help develop models that would provide civil authorities, first responders and assisting military commanders with the sequence and timing of critical actions they need to take for saving lives and restoring critical infrastructure. In the stress following a major disaster, models that could do that would be invaluable.”</p>
+<p>The CASCADE program seeks expertise in the following areas:</p>
+<p>&bull; Applied mathematics, especially in category theory, algebraic geometry and topology, and sheaf theory</p>
+<p>&bull; Operations research, control theory and planning, especially in stochastic and non-linear control</p>
+<p>&bull; Modeling and applications responsive to challenges in battlefield medicine logistics and platforms, adaptive logistics, reliability, and maintenance</p>
+<p>&bull; Search and rescue platforms and modeling</p>
+<p>&bull; Adaptive and resilient urban infrastructure</p>
+</blockquote>
+<p>Metron already designs systems of systems used in Coast Guard search and rescue missions.  Their grant proposal was to use category theory and <a href="https://johncarlosbaez.wordpress.com/2016/07/13/operads-for-systems-of-systems/">operads</a> to do this better.  They needed an academic mathematician as part of their team: that was one of the program&#8217;s requirements.  So they asked if I was interested.</p>
+<p>I had mixed feelings.</p>
+<p>On the one hand, I come from a line of peaceniks including Joan Baez, Mimi Fari&ntilde;a, their father the physicist Albert Baez, and my parents.   I don&#8217;t like how the US government puts so much energy into fighting wars rather than solving our economic, social and environmental problems.  It&#8217;s interesting that <a href="https://en.wikipedia.org/wiki/System_of_systems_engineering">&#8216;systems of systems engineering&#8217;</a>, as a field, is so heavily dominated by the US military.  It&#8217;s an important subject that could be useful in many ways.  We need it for better energy grids, better adaptation to climate change, and so on.   I dream of using it to develop &#8216;ecotechnology&#8217;: technology that works <em>with</em> nature instead of trying to battle it and defeat it.  But it seems the US doesn&#8217;t have the money, or the risk-taking spirit, to fund applications of category theory to <em>those</em> subjects.</p>
+<p>On the other hand, I was attracted by the prospect of using category theory to design complex adaptive systems&#8212;and using it not just to tackle foundational issues, but also concrete challenges.  I liked the idea of working with a team of people who are more practical than me.   In this project, a big part of my job would be to write and publish papers: that&#8217;s something I can do.  But Metron had other people who would try to create prototypes of software for helping the Coast Guard design search and rescue missions.</p>
+<p>So I was torn.</p>
+<p>In fact, because of my qualms, I&#8217;d already turned down an offer from another company that was writing a proposal for the CASCADE program.  But the Metron project seemed slightly more attractive&#8212;I&#8217;m not sure why, perhaps because it was described to me in a more concrete way.  And unlike that other company, Metron has a large existing body of software for evaluating complex systems, which should help me focus my theoretical ideas.  The interaction between theory and practice can make theory a lot more interesting.</p>
+<p>Something tipped the scales and I said yes.  We applied for the grant, and we got it.</p>
+<p>And so, an interesting adventure began.  It will last for 3 years, and I&#8217;ll say more about it soon.</p>
+<hr />
+<p>The whole series of posts:</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/">Part 1</a>.  CASCADE: the Complex Adaptive System Composition and Design Environment.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/">Part 2</a>.   Metron’s software for system design.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2017/08/17/complex-adaptive-system-design-part-3/">Part 3</a>.  Operads: the basic idea.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2017/08/22/complex-adaptive-system-design-part-4/">Part 4</a>.  Network operads: an easy example.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2017/09/04/complex-adaptive-systems-part-5/">Part 5</a>.  Algebras of network operads: some easy examples.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2017/10/31/complex-adaptive-systems-part-6/">Part 6</a>.   Network models.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2018/02/19/complex-adaptive-systems-part-7/">Part 7</a>.    Step-by-step compositional design and tasking using commitment networks.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2018/08/22/complex-adaptive-systems-part-8/">Part 8</a>.  Compositional tasking using category-valued network models.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2019/03/24/complex-adaptive-system-design-part-9/">Part 9</a> &#8211; Network models from Petri nets with catalysts.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2021/06/25/complex-adaptive-system-design-part-10/">Part 10</a> &#8211; Two papers reviewing the whole project.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Sunday, October 2nd, 2016 at 10:11 pm and is filed under <a href="https://johncarlosbaez.wordpress.com/category/azimuth/" rel="category tag">azimuth</a>, <a href="https://johncarlosbaez.wordpress.com/category/computer-science/" rel="category tag">computer science</a>, <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/networks/" rel="category tag">networks</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2016/09/25/struggles-with-the-continuum-part-8/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2016/10/07/kosterlitz-thouless-transition/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">27 Responses to <em>Complex Adaptive System Design (Part&nbsp;1)</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-83885">
+				<div id="div-comment-83885" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='http://graph.facebook.com/v2.2/1254328967951066/picture?type=large&#038;_md5=6f899eb2154607f95bdc47d63a4f558d' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://www.facebook.com/app_scoped_user_id/1254328967951066/' rel='external nofollow ugc' class='url'>Julie Sylvia</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83885">2 October, 2016 at 10:41 pm</a>		</div>
+
+		<p>&#8220;May the Force be with you.&#8221;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83885#respond' data-commentid="83885" data-postid="22597" data-belowelement="div-comment-83885" data-respondelement="respond" data-replyto="Reply to Julie Sylvia" aria-label='Reply to Julie Sylvia'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-83887">
+				<div id="div-comment-83887" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83887">3 October, 2016 at 12:03 am</a>		</div>
+
+		<p>Thanks!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83887#respond' data-commentid="83887" data-postid="22597" data-belowelement="div-comment-83887" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-83886">
+				<div id="div-comment-83886" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/4d2116db353e3e02360e832068e886ae?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://www.facebook.com/app_scoped_user_id/100002002650029/' rel='external nofollow ugc' class='url'>Bradley Robinson</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83886">2 October, 2016 at 11:35 pm</a>		</div>
+
+		<p>I read this very, very carefully. It&#8217;s realistically a good choice to make, particularly since the military has so much inherent capability. I&#8217;m very willing to try to help if I can. The part of what you are saying that makes the most sense to me is&#8230; &#8220;What I dream of doing is using (‘systems of systems engineering’) to develop ‘ecotechnology’: technology that works with nature instead of trying to battle it.&#8221;  Follow your dreams, you are not alone.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83886#respond' data-commentid="83886" data-postid="22597" data-belowelement="div-comment-83886" data-respondelement="respond" data-replyto="Reply to Bradley Robinson" aria-label='Reply to Bradley Robinson'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 highlander-comment" id="comment-83888">
+				<div id="div-comment-83888" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83888">3 October, 2016 at 12:09 am</a>		</div>
+
+		<p>Thanks for your encouragement&#8212;and thanks very much for your offer.  Just out of curiosity, what sort of skills could you bring to bear?  I apologize if you&#8217;ve already explained that: I looked back at your older comments on this blog and didn&#8217;t find it.  I see <a href="https://johncarlosbaez.wordpress.com/2013/03/11/geoengineering-report/#comment-26605">at one point</a> you wrote:</p>
+<blockquote><p>
+  My field is more directly related to implementing longer term mitigation strategies&#8230;
+</p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83888#respond' data-commentid="83888" data-postid="22597" data-belowelement="div-comment-83888" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-oresmus even thread-even depth-1 highlander-comment" id="comment-83892">
+				<div id="div-comment-83892" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/911c92abee70c66078c40e7475922486?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://oresmus.wordpress.com' rel='external nofollow ugc' class='url'>Bruce Smith</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83892">3 October, 2016 at 4:50 am</a>		</div>
+
+		<blockquote><p>
+  But it seems the US doesn’t have the money, or the risk-taking spirit, to fund applications of category theory to those subjects.
+</p></blockquote>
+<p>For better or worse, among parts of the US government, the military seems more forward-looking in a serious way than any other part. (It&#8217;s great that they are, and a pity that the other parts aren&#8217;t so much.) It would be interesting to understand the cultural/historical roots of this (or to have some other explanatory idea for it).</p>
+<p>One example I&#8217;ve heard: they take human-caused climate change seriously and have published plans for how they&#8217;ll have to deal with it. I think one of their higher-ups has testified to congress (during a Republican administration, IIRC, which means to a hostile congress) that its various consequences (like political instability) are one of the top future security risks to the US.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83892#respond' data-commentid="83892" data-postid="22597" data-belowelement="div-comment-83892" data-respondelement="respond" data-replyto="Reply to Bruce Smith" aria-label='Reply to Bruce Smith'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-83895">
+				<div id="div-comment-83895" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/d811a68d732c5e89a851223e75629fa2?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Jeff Tansley</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83895">3 October, 2016 at 7:30 am</a>		</div>
+
+		<p>John,<br />
+The key thing is that what is done is public domain, cf ARPANET -&gt; Internet. Hopefully good stuff what ever that means</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83895#respond' data-commentid="83895" data-postid="22597" data-belowelement="div-comment-83895" data-respondelement="respond" data-replyto="Reply to Jeff Tansley" aria-label='Reply to Jeff Tansley'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-83936">
+				<div id="div-comment-83936" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83936">5 October, 2016 at 5:40 am</a>		</div>
+
+		<p>I doubt everything produced by this research will be in the public domain, but I&#8217;m supposed to write math papers and publish them, which for me means&#8212;first of all&#8212;blogging about them and putting them on the arXiv.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83936#respond' data-commentid="83936" data-postid="22597" data-belowelement="div-comment-83936" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-83900">
+				<div id="div-comment-83900" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/80a67a2eebf30854652ad4432eee30c2?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Eugene</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83900">3 October, 2016 at 1:43 pm</a>		</div>
+
+		<p>I too got approached by a company competing for a CASCADE grant some time last November.   I looked at the BAA (the description of what such a grant has to accomplish) and it struck me as a little funny.  To put it crudely I think  DARPA was vastly underestimating the amount of theory that would need to be developed.</p>
+<p>On a related subject I am sceptical that operads will be enough.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83900#respond' data-commentid="83900" data-postid="22597" data-belowelement="div-comment-83900" data-respondelement="respond" data-replyto="Reply to Eugene" aria-label='Reply to Eugene'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-83907">
+				<div id="div-comment-83907" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83907">3 October, 2016 at 5:43 pm</a>		</div>
+
+		<p>Certainly operads won&#8217;t be enough; I keep emphasizing that to everyone I talk to.  We&#8217;ll need lots of new ideas.  To me that&#8217;s what makes the project interesting.  I want to figure out those new ideas.  We&#8217;re starting to develop a series of &#8216;toy model&#8217; problems, ranging from easy to harder, and we&#8217;ll start with the easy ones.  We&#8217;ll see how far we get.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83907#respond' data-commentid="83907" data-postid="22597" data-belowelement="div-comment-83907" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-83903">
+				<div id="div-comment-83903" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/9da39b2892234a88ad150009c1a31702?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://www.weylmann.com' rel='external nofollow ugc' class='url'>Bill</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83903">3 October, 2016 at 4:48 pm</a>		</div>
+
+		<p>Dear John &#8212; Hope springs eternal, and this also applies to the hope that the United States will finally get its act together and do something other than prepare for and/or conduct war or seek a permanent stranglehold on the planet&#8217;s diminishing resources. I hope (!) that you will not consider this deal, and continue on in your search for mathematical beauty in the world.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83903#respond' data-commentid="83903" data-postid="22597" data-belowelement="div-comment-83903" data-respondelement="respond" data-replyto="Reply to Bill" aria-label='Reply to Bill'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-83906">
+				<div id="div-comment-83906" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83906">3 October, 2016 at 5:41 pm</a>		</div>
+
+		<p>As I said at the end of my post, I <em>am</em> working with Metron on this CASCADE project, and I&#8217;ll be doing it for 3 years.  My decision was not predicated on the hope that the US will do anything in particular.  It&#8217;s predicated on the hope that I&#8217;ll make faster progress in my research if I team up with some more practical people and use my math skills to tackle a concrete problem in network theory: namely, optimizing search and rescue missions.   I&#8217;ll get lots of new ideas which I wouldn&#8217;t get otherwise, and I&#8217;ll publish papers on these ideas.</p>
+<p>If I were only searching for mathematical beauty in the word I wouldn&#8217;t feel the need to work on this project, because beauty is so easy to find.   Instead, I&#8217;m trying to develop network theory into a useful set of tools.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83906#respond' data-commentid="83906" data-postid="22597" data-belowelement="div-comment-83906" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-83908">
+				<div id="div-comment-83908" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/763cc4f73f88dbac2b1a828e929a81f5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Roger Joseph Witte</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83908">3 October, 2016 at 6:00 pm</a>		</div>
+
+		<p>I don&#8217;t want to comment on the moral choices that you made because the entire way you describe them means you thought them through carefully and then made the best choice you could in a particular context.  My experience is that taking difficult decisions carelessly or unwittingly makes bad things happen; a slight miscalculation in an agonising analysis of a difficult situation is never to blame.</p>
+<p>On the other hand systems of systems are interesting and commonplace.  Economics, psychology, sociology, ethology, biology, cellular biology, biochemistry &#8230; in nature it iss systems of systems of systems &#8230; all the way down</p>
+<p>I like modelling things on computer, especially transport systems.  A lot of my professional life has been involved with transport economic forecasting.  There are many complex systems involved in supplying transport &#8211; networks, signalling systems, vehicles, fuel/power supply systems &#8230; In practice these systems of systems are not difficult to model.  Sure there is the question of how much detail to model and what simplifying assumptions to make.  However, things only really get out of hand when you have a human decision somewhere in the mix.  We can, at least in principle, understand all the engineered systems but we (comparatively) have no clue about human behaviour.</p>
+<p>We mostly try to model choices that people make using random utility theory.  This says that humans assign a utility value to each alternative and then maximise utility.  This assumption is so weak it ought to cover any decision making system but humans manage to defy it,  Their choices do not display independence of irrelevant alternatives or independence between past choices and future choices.</p>
+<p>I have tried talking to behavioural economists about how to model human deviations from rationality. They are interested in identifying and measuring so-called &#8216;deviations from rationality&#8217; but seem uninterested in making models that can forecast how these will apply in hypothetical future scenarios.  (This may be because their field is immature&#8212;physics couldn&#8217;t predict much until Newton, chemistry didn&#8217;t start predicting until Mendeleev, and Darwin released the predictive theory into biology &#8230; in each case there was a long period of descriptive science before theory could gain traction).</p>
+<p>In my experience the biggest problem in modelling systems of systems is when we don&#8217;t understand how the systems communicate.  In particular, is there a channel of communication between two systems that we don&#8217;t know about.  An example of this might be not recognising that the particulate emissions from diesel engines increase when the engine is cooler.  Hybrid electric vehicles seek to reduce pollution by using regenerative brakes to use the engine less.  However the less you use the engine the cooler it runs.  Consequently, the emissions of particulates from some diesel/electric hybrids are breathtaking.</p>
+<p>Another important issue in modelling is whose model is it anyway.  There are always points during the construction of a model when the modeller must make judgement calls. Typically the involve when it is OK to say &#8216;all other things being equal&#8217; and when more detailed modelling is required.  These decisions are not unbiased and will be influenced by who is paying the modeller&#8217;s wages.  Thus models paid for by scheme developers tend to be biased towards developing land.  Sometimes the line between 60/50 judgement calls and unethical behaviour is crossed and you end up with a Volkswagen scandal (and similar recent allegations regarding TV manufacturers).  If governments want models that are not biased in favour of producers then they cannot ask producers to commission those models.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83908#respond' data-commentid="83908" data-postid="22597" data-belowelement="div-comment-83908" data-respondelement="respond" data-replyto="Reply to Roger Joseph Witte" aria-label='Reply to Roger Joseph Witte'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-83935">
+				<div id="div-comment-83935" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83935">5 October, 2016 at 5:39 am</a>		</div>
+
+		<p>Thanks for all the comments.  I find this particularly intriguing:</p>
+<blockquote><p>
+  My experience is that taking difficult decisions carelessly or unwittingly makes bad things happen; a slight miscalculation in an agonising analysis of a difficult situation is never to blame.
+</p></blockquote>
+<p>One would think a slight miscalculation in a binary choice could lead to the wrong choice and then disaster&#8230; but I guess most important real-world choices are far from binary.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83935#respond' data-commentid="83935" data-postid="22597" data-belowelement="div-comment-83935" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-oresmus odd alt depth-3 highlander-comment" id="comment-83945">
+				<div id="div-comment-83945" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/911c92abee70c66078c40e7475922486?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://oresmus.wordpress.com' rel='external nofollow ugc' class='url'>Bruce Smith</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83945">5 October, 2016 at 5:20 pm</a>		</div>
+
+		<p>Perhaps he means that if you did a careful analysis, then it&#8217;s likely that if you made some mistakes in it, you still got a better overall result (than if you did a quick careless analysis), since the analysis is robust to those mistakes (since they are a small fraction of everything that went into it). I think this implicitly assumes that the nature of a careful analysis should be to combine partial results from many independent points of view.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83945#respond' data-commentid="83945" data-postid="22597" data-belowelement="div-comment-83945" data-respondelement="respond" data-replyto="Reply to Bruce Smith" aria-label='Reply to Bruce Smith'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-webhubtelescope even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-83910">
+				<div id="div-comment-83910" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dc21eed3ebc499422d6c4a927c71ac4f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">WebHubTelescope</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83910">3 October, 2016 at 7:13 pm</a>		</div>
+
+		<p>John, If you need advice on systems-of-systems send me a message. I&#8217;ve been working SOS projects off-and-on for the last 15 years so can give at least some insight.  Congrats on landing a grant where you will get lots of freedom, and good luck !</p>
+<p>The way things work you will make a breakthrough in some related area and save mankind :)</p>
+<p>Paul Pukite (@whut)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83910#respond' data-commentid="83910" data-postid="22597" data-belowelement="div-comment-83910" data-respondelement="respond" data-replyto="Reply to WebHubTelescope" aria-label='Reply to WebHubTelescope'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-83934">
+				<div id="div-comment-83934" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83934">5 October, 2016 at 5:34 am</a>		</div>
+
+		<p>Cool, I didn&#8217;t know you worked on systems of systems!  I will probably need lots of advice; when I get some questions I&#8217;ll ask.  I guess my first question is: what are your favorite books or other references on &#8216;systems engineering&#8217; or &#8216;systems of systems of engineering&#8217;?   The books I&#8217;ve seen on the latter are rather wordy and philosophical, full of interesting general ideas and case studies, but hard to really sink my teeth into.  The former subject, systems engineering, is older, more tractable, and seems to be studied in more mathematical ways&#8212;but I don&#8217;t know the best books on it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83934#respond' data-commentid="83934" data-postid="22597" data-belowelement="div-comment-83934" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-webhubtelescope even depth-3 highlander-comment" id="comment-83950">
+				<div id="div-comment-83950" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dc21eed3ebc499422d6c4a927c71ac4f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">@whut</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83950">6 October, 2016 at 6:07 am</a>		</div>
+
+		<p>Caught me flat-footed on a favorite book. I&#8217;ve got a binder full of slides based on course material.  I don&#8217;t think there is any one go-to text on the topic, as it spreads across disciplines like operations research, decision theory, and AI.  I wanted to apply generic inference, based on a book by Pouly and Kohlas but I think it may be suited for someone other than me to figure it out, see<br />
+<a href="https://www.amazon.com/Generic-Inference-Unifying-Automated-Reasoning/dp/0470527013" rel="nofollow ugc">https://www.amazon.com/Generic-Inference-Unifying-Automated-Reasoning/dp/0470527013</a></p>
+<p>I referenced that in a report I was involved in, and if you want to look at that. <a href="https://www.researchgate.net/publication/270279820_META_Adaptive_Reflective_Robust_Workflow_ARRoW" rel="nofollow ugc">https://www.researchgate.net/publication/270279820_META_Adaptive_Reflective_Robust_Workflow_ARRoW</a></p>
+<p>Based on the premise that everything is a graph, how to use the graph to automatically solve problems is the holy grail of design.</p>
+<p>Paul</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83950#respond' data-commentid="83950" data-postid="22597" data-belowelement="div-comment-83950" data-respondelement="respond" data-replyto="Reply to @whut" aria-label='Reply to @whut'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-even depth-1 highlander-comment" id="comment-83931">
+				<div id="div-comment-83931" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='http://www.math.columbia.edu/~woit/wordpress/?p=8797' rel='external nofollow ugc' class='url'>Not Even Wrong</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83931">5 October, 2016 at 12:03 am</a>		</div>
+
+		<p>[&#8230;] John Baez is involved with a new project, funded by DARPA, that he describes here. [&#8230;]</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83931#respond' data-commentid="83931" data-postid="22597" data-belowelement="div-comment-83931" data-respondelement="respond" data-replyto="Reply to Not Even Wrong" aria-label='Reply to Not Even Wrong'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-83941">
+				<div id="div-comment-83941" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83941">5 October, 2016 at 8:54 am</a>		</div>
+
+		<p>If I understood you correctly you are now working -at least partially- for the Coast guard. How do the formal procedures work &#8211; do you have to speak or sign the corresponding <a href="https://en.wikipedia.org/wiki/United_States_Coast_Guard#The_Coast_Guard_Ethos" rel="nofollow">ethos or </a><a href="https://en.wikipedia.org/wiki/United_States_Coast_Guard#Creed_of_the_United_States_Coast_Guardsman" rel="nofollow">creed:</a>?</p>
+<p>From the creed:</p>
+<blockquote><p>I am proud to be a United States Coast Guardsman.<br />
+I revere that long line of expert seamen who by their devotion to duty and sacrifice of self have made it possible for me to be a member of a service honored and respected, in peace and in war, throughout the world.<br />
+I never, by word or deed, will bring reproach upon the fair name of my service, nor permit others to do so unchallenged.<br />
+I will cheerfully and willingly obey all lawful orders.<br />
+I will always be on time to relieve, and shall endeavor to do more, rather than less, than my share.<br />
+I will always be at my station, alert and attending to my duties.<br />
+I shall, so far as I am able, bring to my seniors solutions, not problems.<br />
+&#8230;..
+</p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83941#respond' data-commentid="83941" data-postid="22597" data-belowelement="div-comment-83941" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-83965">
+				<div id="div-comment-83965" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83965">6 October, 2016 at 6:06 pm</a>		</div>
+
+		<p>No, I&#8217;m not working for the Coast Guard in any sense.  It is however interesting to see their creed.  Most of it sounds reasonable, at least for people who are actually working in the Coast Guard.  Personally I do not &#8216;cheerfully and willingly obey all lawful orders&#8217;, but that&#8217;s one reason I&#8217;m not in the Coast Guard.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83965#respond' data-commentid="83965" data-postid="22597" data-belowelement="div-comment-83965" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-84092">
+				<div id="div-comment-84092" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-84092">9 October, 2016 at 8:19 am</a>		</div>
+
+		<p>John wrote:</p>
+<blockquote><p>No, I’m not working for the Coast Guard in any sense. </p></blockquote>
+<p>If I look at what you wrote:</p>
+<blockquote>
+<blockquote><p>The CASCADE program seeks expertise in the following areas:<br />
+• Search and rescue platforms and modeling
+</p></blockquote>
+<blockquote><p>They needed an academic mathematician as part of their team: that was one of the program’s requirements. So they asked if I was interested.</p></blockquote>
+<blockquote><p>In this project, a big part of my job would be to write and publish papers: that’s something I can do. But Metron had other people who would try to create prototypes of software for helping the Coast Guard design search and rescue missions.</p></blockquote>
+</blockquote>
+<p>then this reads to me as if you are working on concrete problems for the coast guard, That is it seems you are going to help out for example when it comes to conceptional questions, like with respect to certain software solutions etc. So may be from an organisatorial viewpoint this is not directly managed by the coast guard but it seems -by what I understood from what you have written- you are directly tackling problems of the Coast guard.</p>
+<blockquote><p>It is however interesting to see their creed. </p></blockquote>
+<p>Yes their Creed is interesting. I don&#8217;t really know what the function of this creed is, like wether you have to sign this or not etc.</p>
+<blockquote><p>Most of it sounds reasonable, at least for people who are actually working in the Coast Guard. </p></blockquote>
+<p>I am not sure, I guess as a soldier this depends largely on how voluntary your commitment to the Coast Guard really was. When I was in teaching in Amherst quite some of the Army students who were unexpectedly and out of a sudden sent to war in Iraq seemed quite desperate and were definitely questioning their decision to get their studies funded by signing an army contract.</p>
+<blockquote><p>Personally I do not ‘cheerfully and willingly obey all lawful orders’, but that’s one reason I’m not in the Coast Guard.</p></blockquote>
+<p>OK I dont know about the concrete terms and conditions of your commitment, but it is clear that in army projects it is likely that you will in general much easier run into questions which <em>may </em> challenge your (moral) views and wellbeing than in any civilian commitment.</p>
+<p>Especially since the US army has lately been not really purely defensive.</p>
+<p>In particular it seems in the fifties/sixties my West (!) and East Berlin based family -including myself- was lucky that it wasn&#8217;t <a href="http://nsarchive.gwu.edu/nukevault/ebb538-Cold-War-Nuclear-Target-List-Declassified-First-Ever/" rel="nofollow">nuked out </a> by the US army with their <a href="https://en.wikipedia.org/wiki/Strategic_Air_Command" rel="nofollow">strategic air command (SAC):</a></p>
+<blockquote><p>The SAC study includes chilling details. According to its authors,  their target priorities and nuclear bombing tactics would expose nearby civilians and “friendly forces and people” to high levels of deadly radioactive fallout.  Moreover, the authors developed a plan for the “systematic destruction” of Soviet bloc urban-industrial targets that specifically and explicitly targeted “population” in all cities, including Beijing, Moscow, Leningrad, East Berlin, and Warsaw.  </p></blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=84092#respond' data-commentid="84092" data-postid="22597" data-belowelement="div-comment-84092" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-83964">
+				<div id="div-comment-83964" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/54e8da0b1311728899e7ec545f5d283a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">katous</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83964">6 October, 2016 at 4:50 pm</a>		</div>
+
+		<p>Grothendieck and Perelman are right. The mathematical community is decadent. you are a public example now!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83964#respond' data-commentid="83964" data-postid="22597" data-belowelement="div-comment-83964" data-respondelement="respond" data-replyto="Reply to katous" aria-label='Reply to katous'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="comment-83966">
+				<div id="div-comment-83966" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/ae0086295e5ae544bee8586804e54dc9?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Al</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-83966">6 October, 2016 at 6:45 pm</a>		</div>
+
+		<p>Congratulations on winning the grant John! Am sure working on a concrete problem will be good for your creativity in theoretical models. What i wanted to comment on was your vision of applying the System of Systems approach to design of resilient urban infrastructure. I&#8217;m afraid this may be a difficult problem for 2 reasons</p>
+<p>Large Spatial scales of natural disasters (earthquake, extreme rainfall, floods, hurricanes) ~10km imply that every single urban system is collectively affected i.e drainage, roads, electricity, gas lines. Moreover, these infrastructure are literally underground and grouped together. So there is a conflict between long range spatial correlations of disasters and short range spatial corrlelation of infrastructure system.<br />
+Hysterisis i.e History matters: Stripping away historical infra is a) extremely expensive b) Politically difficult: as coastal property in major cities are often occupied by the wealthy who prefer hard defences that deflect floods away from them towards more vulnerable populations downstream.</p>
+<p>The best recent book on the political nature of systems risk due to global warming with extensive case studies of Hurricane sandy, Miami, Bombay, Indonesia etc is &#8216;How the world breaks&#8217; by Paul and Stan cox<br />
+<a href="http://www.howtheworldbreaks.com/" rel="nofollow ugc">http://www.howtheworldbreaks.com/</a></p>
+<p>best,<br />
+al</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83966#respond' data-commentid="83966" data-postid="22597" data-belowelement="div-comment-83966" data-respondelement="respond" data-replyto="Reply to Al" aria-label='Reply to Al'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-84204">
+				<div id="div-comment-84204" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/ff9014a2cf4c32e6c7667591031d8fc8?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://plus.google.com/113084817317194363834' rel='external nofollow ugc' class='url'>João Streibel</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-84204">13 October, 2016 at 12:22 am</a>		</div>
+
+		<p>Hope you still have the time to write for this blog :)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=84204#respond' data-commentid="84204" data-postid="22597" data-belowelement="div-comment-84204" data-respondelement="respond" data-replyto="Reply to João Streibel" aria-label='Reply to João Streibel'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-odd thread-alt depth-1 highlander-comment" id="comment-84206">
+				<div id="div-comment-84206" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-84206">13 October, 2016 at 1:08 am</a>		</div>
+
+		<p>Me too!  I plan to write about the work I&#8217;m doing on this project, among other things.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=84206#respond' data-commentid="84206" data-postid="22597" data-belowelement="div-comment-84206" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-bc9990 odd alt thread-even depth-1 highlander-comment" id="comment-84655">
+				<div id="div-comment-84655" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a4c260e64660b18e85dbf79f836cce5c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">bc9990</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-84655">2 November, 2016 at 5:36 am</a>		</div>
+
+		<p>Hello Mr. Baez&#8230;I&#8217;m a first time commenter but long time reader.  Thank you for hosting such an interesting discussion.  That aside, I am an engineer who has a lot of experience in the private side of ecotechnology, specifically, adaptive infrastructure design.  I have to agree with Mr. Witte that the difficulties lie not only in modeling the connections between systems but also in the problems of judgment. Ultimately,  risks can be weighed mathematically as the product of probability and consequence, but while probability may be measured scientifically, the value of a consequence is in the eye of the beholder.  Add the problem of when the consequence will occur and you have an infinity problem &#8211; how can you possibly model the consequences for all actors over all time?  At this point, judgment always sneaks in again as you&#8217;re forced to select which actors at which time are of interest.  Of course, using judgment isn&#8217;t necessarily a bad thing.  It can lead to really excellent results that are basically acceptable to everyone.  The opposite is also certainly true. The question then becomes how do we make better judgments, and I believe the answer lies in an improved understanding of design.  I&#8217;ve  found the following site helpful in my own work:  <a href="http://www.a-r-t-i-f-i-c-e.net/" rel="nofollow ugc">http://www.a-r-t-i-f-i-c-e.net/</a>  Best of luck to you in yours!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=84655#respond' data-commentid="84655" data-postid="22597" data-belowelement="div-comment-84655" data-respondelement="respond" data-replyto="Reply to bc9990" aria-label='Reply to bc9990'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback even thread-odd thread-alt depth-1 highlander-comment" id="comment-97732">
+				<div id="div-comment-97732" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2017/08/17/complex-adaptive-system-design-part-3/' rel='external nofollow ugc' class='url'>Complex Adaptive System Design (Part 3) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/#comment-97732">17 August, 2017 at 8:42 am</a>		</div>
+
+		<p>It&#8217;s been a long time since I&#8217;ve blogged about the <a href="http://www.darpa.mil/program/complex-adaptive-system-composition-and-design-environment" rel="nofollow">Complex Adaptive System Composition and Design Environment</a> or <strong>CASCADE</strong> project run by <a href="https://www.darpa.mil/staff/dr-john-s-paschkewitz" rel="nofollow">John Paschkewitz</a>.  For a reminder, read these:</p>
+<p>• <a href="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/">Complex adaptive system design (part 1)</a>, <em>Azimuth</em>, 2 October 2016.</p>
+<p>• <a href="https://johncarlosbaez.wordpress.com/2016/10/18/complex-adaptive-system-design-part-2/">Complex adaptive system design (part 2)</a>, <em>Azimuth</em>, 18 October 2016.</p>
+<p>A lot has happened since then, and I want to explain it.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=97732#respond' data-commentid="97732" data-postid="22597" data-belowelement="div-comment-97732" data-respondelement="respond" data-replyto="Reply to Complex Adaptive System Design (Part 3) | Azimuth" aria-label='Reply to Complex Adaptive System Design (Part 3) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-83885">Julie Sylvia</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2016/10/02/complex-adaptive-system-design-part-1/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="6dd877e3cf" /><input type="hidden" name="_wp_http_referer" value="/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83885" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='22597' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='83885' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="51d643da74" /></p>
+<input type="hidden" name="genseq" value="1632609644" />
+<input type="hidden" id="ak_js" name="ak_js" value="11"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2016/10/02/complex-adaptive-system-design-part-1/?replytocom=83885"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="0272f16312" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,176,919 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-e773ed3a541eb70808b10110563763fb">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-4d2116db353e3e02360e832068e886ae">
+	</div>
+	<div class="grofile-hash-map-911c92abee70c66078c40e7475922486">
+	</div>
+	<div class="grofile-hash-map-d811a68d732c5e89a851223e75629fa2">
+	</div>
+	<div class="grofile-hash-map-80a67a2eebf30854652ad4432eee30c2">
+	</div>
+	<div class="grofile-hash-map-9da39b2892234a88ad150009c1a31702">
+	</div>
+	<div class="grofile-hash-map-763cc4f73f88dbac2b1a828e929a81f5">
+	</div>
+	<div class="grofile-hash-map-dc21eed3ebc499422d6c4a927c71ac4f">
+	</div>
+	<div class="grofile-hash-map-a114ddb2d8d68d281202f95cfd64c96c">
+	</div>
+	<div class="grofile-hash-map-54e8da0b1311728899e7ec545f5d283a">
+	</div>
+	<div class="grofile-hash-map-ae0086295e5ae544bee8586804e54dc9">
+	</div>
+	<div class="grofile-hash-map-ff9014a2cf4c32e6c7667591031d8fc8">
+	</div>
+	<div class="grofile-hash-map-a4c260e64660b18e85dbf79f836cce5c">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=f7f58f7d33","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"22597","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'22597','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTY5fnQ/RzQ0TGd+N2VbbVRkJWZubSV4Y3VlNUVXandhdnNPZEVoUCxXenBxdn5GM3ksXUgtPWtrK0xdRmx5QiZMNmJPaWt4a2FDNURXJV0mOCtWRGFoTkRTMmt5R1piQzExc3pSVVJaZDVuMz9ZZTdfSi5UeVpBNC5sR2RNTnIyNkYyfDVrYjNJajdxdFsyaVJRa3UwSFtHcHhkUT9tMUM/dlsmclMtTWhDYURFc2grTVJqTW04Lko9a2JUaFNbOC1Yazh4YXBzUjZNTHV0b1M1cmFPMFhEW1li'}]);
+_stq.push([ 'clickTrackerInit', '12777403', '22597' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

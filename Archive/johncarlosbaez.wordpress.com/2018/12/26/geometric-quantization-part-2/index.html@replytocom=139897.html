@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Geometric Quantization (Part 2) | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Geometric Quantization (Part&nbsp;2) Comments Feed" href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2018%2F12%2F26%2Fgeometric-quantization-part-2%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2018\/12\/26\/geometric-quantization-part-2\/?replytocom=139897","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2018%2F12%2F26%2Fgeometric-quantization-part-2%2F%3Freplytocom%3D139897","postID":"25895","shortlink":"https:\/\/wp.me\/pRBZ9-6JF","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/25895","statsLink":"https:\/\/wordpress.com\/stats\/post\/25895\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2018%2F12%2F26%2Fgeometric-quantization-part-2%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-6JF' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2018%2F12%2F26%2Fgeometric-quantization-part-2%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2018%2F12%2F26%2Fgeometric-quantization-part-2%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Geometric Quantization (Part 2)" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/" />
+<meta property="og:description" content="&nbsp; Geometric quantization is often presented as a way to take a symplectic manifold and construct a Hilbert space, but in fact that&#8217;s a better description of &#8216;prequantization&#8217;…" />
+<meta property="article:published_time" content="2018-12-26T03:14:49+00:00" />
+<meta property="article:modified_time" content="2019-01-21T02:39:32+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="https://blogs.ams.org/visualinsight/files/2016/09/togliatti_quintic_dervish.jpg" />
+<meta property="og:image:width" content="450" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Geometric Quantization (Part&nbsp;2)" />
+<meta name="twitter:image" content="https://blogs.ams.org/visualinsight/files/2016/09/togliatti_quintic_dervish.jpg?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="&nbsp; Geometric quantization is often presented as a way to take a symplectic manifold and construct a Hilbert space, but in fact that&#039;s a better description of &#039;prequantization&#039;, which is just the first step in geometric quantization. Even that&#039;s not completely accurate: we need to equip our symplectic manifold with a bit of extra structure&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-25895 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-25895 post type-post status-publish format-standard hentry category-mathematics category-physics" id="post-25895">
+			<h2>Geometric Quantization (Part&nbsp;2)</h2>
+
+			<div class="entry">
+				<p>&nbsp;</p>
+<p><a href="https://blogs.ams.org/visualinsight/2016/09/15/togliatti-quintic-surface/"><img width="450" src="https://blogs.ams.org/visualinsight/files/2016/09/togliatti_quintic_dervish.jpg" /><br />
+</a></p>
+<p>Geometric quantization is often presented as a way to take a symplectic manifold and construct a Hilbert space, but in fact that&#8217;s a better description of <a href="https://en.wikipedia.org/wiki/Geometric_quantization#Prequantization">&#8216;prequantization&#8217;</a>, which is just the first step in geometric quantization.   Even that&#8217;s not completely accurate: we need to equip our symplectic manifold with a bit of extra structure just to prequantize it.  But more importantly, when we do this, the resulting &#8216;prequantum Hilbert space&#8217; is too big: we need to chop it down significantly to get a Hilbert space suitable for the quantum description of our physical system.  And to chop it down, we need to equip our symplectic manifold with a lot <em>more</em> extra structure.  So much extra structure, in fact, that the whole idea of &#8216;quantizing a symplectic manifold&#8217; starts sounding more like the wistful, nostalgic description of a naive hope than an honest account of what we&#8217;re really doing.</p>
+<p>So, it&#8217;s probably better to admit that &#8216;quantizing a classical system&#8217; is not a real thing.  More precisely&#8212;because people will rightly object to that over-bold statement&#8212;there&#8217;s no systematic procedure that takes us all the way from the mathematical structures used to describe a large class of classical systems to those used to describe quantum systems, with no further inputs required.  Sure, we can make quantization more systematic by limiting the class of systems it&#8217;s supposed to handle.  We can also make it more systematic by having it do less: for example, just prequantization instead of full-fledged quantization.  Both those options have been explored for many decades.  Let&#8217;s instead try something new.</p>
+<p>For starters, let&#8217;s accept the fact that <i>the world was not created classically by God on the first day and quantized on the second</i>.</p>
+<p>The world is quantum; under some conditions it looks approximately classical.  So instead of treating the lack of a purely functorial quantization procedure for symplectic manifolds as a failure, let&#8217;s accept it and try some new ways of thinking about the meaning of geometric quantization.</p>
+<p>To make things specific, let&#8217;s consider K&auml;hler quantization.   Here we start not with a raw symplectic manifold, but much more.  For starters, we take a <a href="https://en.wikipedia.org/wiki/K%C3%A4hler_manifold">K&auml;hler manifold</a>, which is a smooth manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> equipped with a beautiful trio of structures:</p>
+<p>1) a <a href="https://en.wikipedia.org/wiki/Symplectic_manifold">symplectic structure</a> <img src="https://s0.wp.com/latex.php?latex=%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega" class="latex" /></p>
+<p>2) a <a href="https://en.wikipedia.org/wiki/Complex_manifold">complex structure</a> <img src="https://s0.wp.com/latex.php?latex=J&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="J" class="latex" /></p>
+<p>3) a <a href="https://en.wikipedia.org/wiki/Riemannanian_manifold">Riemannian metric</a> <img src="https://s0.wp.com/latex.php?latex=g&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g" class="latex" /></p>
+<p>fitting together in a way that obeys this equation:</p>
+<div align="center">
+<img src="https://s0.wp.com/latex.php?latex=%5Comega%28v%2C+J+w%29+%3D+g%28v%2C+w%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega(v, J w) = g(v, w) " class="latex" />
+</div>
+<p>whenever we have two tangent vectors <img src="https://s0.wp.com/latex.php?latex=v%2Cw&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v,w" class="latex" /> at any point of <img src="https://s0.wp.com/latex.php?latex=M.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M." class="latex" />   This equation says how any two of <img src="https://s0.wp.com/latex.php?latex=%5Comega%2C+g%2C+J&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega, g, J" class="latex" /> are enough to determine the third.</p>
+<p>Each tangent space of a K&auml;hler manifold is a complex Hilbert space&#8212;which is downright suspicious, given that in quantization we&#8217;re aiming to get a complex Hilbert space.  Here&#8217;s how it works:</p>
+<p>1) the symplectic structure <img src="https://s0.wp.com/latex.php?latex=%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega" class="latex" /> gives the imaginary part of the inner product on each tangent space of <img src="https://s0.wp.com/latex.php?latex=M%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M," class="latex" /></p>
+<p>2) the complex structure <img src="https://s0.wp.com/latex.php?latex=J&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="J" class="latex" /> gives the operation of multiplication by <img src="https://s0.wp.com/latex.php?latex=i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i" class="latex" /> on each tangent space, and</p>
+<p>3) the Riemannian metric <img src="https://s0.wp.com/latex.php?latex=g&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="g" class="latex" /> gives the real part of the inner product on each tangent space.</p>
+<p>The equation</p>
+<div align="center">
+<img src="https://s0.wp.com/latex.php?latex=%5Comega%28v%2C+J+w%29+%3D+g%28v%2C+w%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega(v, J w) = g(v, w) " class="latex" />
+</div>
+<p>says that the imaginary part of the inner product of <img src="https://s0.wp.com/latex.php?latex=v&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=i+w&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i w" class="latex" /> equals the real part of the inner product of <img src="https://s0.wp.com/latex.php?latex=v&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=w.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="w." class="latex" /></p>
+<p>In particular, each finite-dimensional Hilbert space <i>is</i> a K&auml;hler manifold.    Similarly, an infinite-dimensional Hilbert space is a kind of infinite-dimensional K&auml;hler manifold.</p>
+<p>So, you can think of a complex Hilbert space as a special kind of K&auml;hler manifold: a flat and simply-connected one.   Or&#8212;less precisely but quite evocatively&#8212;you can think of a K&auml;hler manifold as a curved generalization of a complex Hilbert space!</p>
+<p>If K&auml;hler quantization were a systematic procedure for extracting a Hilbert space from a K&auml;hler manifold, these facts would lead us to a clear view of what this procedure is doing.  Namely, it&#8217;s taking a general K&auml;hler manifold and &#8216;flattening it out&#8217; in a very clever way, producing a Hilbert space.  Perhaps a better word than &#8216;flattening&#8217; would be &#8216;linearizing&#8217;, since this emphasizes the all-important linearity built into quantum mechanics.</p>
+<p>Something like this is true&#8212;but it can&#8217;t be the whole story, because K&auml;hler quantization requires more input than a mere K&auml;hler manifold to produce a Hilbert space!   We also need a complex <a href="https://en.wikipedia.org/wiki/Line_bundle">line bundle</a> <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> over our manifold <img src="https://s0.wp.com/latex.php?latex=M.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M." class="latex" />   Vectors in our Hilbert space will not be just complex-valued functions on <img src="https://s0.wp.com/latex.php?latex=M%3B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M;" class="latex" /> rather, they will be (nice) sections of this line bundle.</p>
+<p>It would be nice to understand this in a deeply physical way.   For example, we might try to insist that the &#8216;true&#8217; space of classical states is not the manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> but something with one extra dimension built from this line bundle <img src="https://s0.wp.com/latex.php?latex=L.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L." class="latex" />  This thing is not a symplectic manifold: it&#8217;s called a <a href="https://en.wikipedia.org/wiki/Contact_geometry">contact manifold</a>.  Fans of contact geometry will argue, quite convincingly, that the &#8216;phases&#8217; so important in quantum mechanics are already lurking in classical mechanics, invisible when we use symplectic manifolds, but evident when we use contact manifolds!   If we take this seriously, maybe we shouldn&#8217;t be trying to geometrically quantize symplectic manifolds in the first place: maybe we should be using contact manifolds.</p>
+<p>However, even taking our K&auml;hler manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> and this complex line bundle <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> over it as input is not enough to systematically construct the long-sought Hilbert space.   We need more!</p>
+<p>1) We need to equip <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> with a <a href="https://webusers.imj-prg.fr/~laurent.charles/IMPA/chapt1.pdf">connection</a> whose curvature is <img src="https://s0.wp.com/latex.php?latex=i+%5Comega.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i &#92;omega." class="latex" />  This is our way of making <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> compatible with the symplectic structure on <img src="https://s0.wp.com/latex.php?latex=M.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M." class="latex" />    We need this even for prequantization: it lets us turn smooth functions on <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> (&#8216;classical observables&#8217;) into operators on the space of sections of <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> (&#8216;quantum observables&#8217;).</p>
+<p>2) We need to equip <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> with the structure of a <a href="https://en.wikipedia.org/wiki/Holomorphic_vector_bundle">holomorphic line bundle</a>.  This is our way of making <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> compatible with the complex structure on <img src="https://s0.wp.com/latex.php?latex=M.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M." class="latex" />   We need this to cut down the big vector space obtained in prequantization to a smaller one: the space of holomorphic sections of <img src="https://s0.wp.com/latex.php?latex=L.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L." class="latex" /></p>
+<p>3) We need to equip <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> with the structure of a <a href="https://www.math.uh.edu/~shanyuji/Complex/Geom/cx-26.pdf">hermitian line bundle</a>.   I would like to say this is our way of making <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> compatible with the Riemannian structure on <img src="https://s0.wp.com/latex.php?latex=M%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M," class="latex" /> since that would make everything very symmetrical&#8212;but it doesn&#8217;t seem correct!  Instead, we need this to put an inner product on the space of holomorphic sections of <img src="https://s0.wp.com/latex.php?latex=L%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L," class="latex" /> so we can get a Hilbert space.</p>
+<p>All this must sound like a real slag-heap of mathematics, if you&#8217;re not already in love with it!  It&#8217;s beautiful when you get to know it, especially when you look at examples.  But I find it difficult to motivate everything on physical grounds, and I also find it a bit difficult to keep track of all these interacting structures.</p>
+<p>So, next time I&#8217;ll present a simplified version of geometric quantization, where we throw out most of these structures and keep only enough to get a complex <em>vector space</em>, not a complex Hilbert space.   In fact I&#8217;ll throw out the symplectic and Riemannian structures on our manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> and only keep the complex structure!  This is pretty heretical from the viewpoint of physics, but in fact it&#8217;s quite standard in mathematics.  Indeed, I don&#8217;t want to get your hopes up too much: if you know some algebraic geometry, you should find most of what I say quite familiar.  But I think this is a good way to get started on setting up a pair of adjoint functors: &#8216;quantization&#8217; and the reverse process I mentioned <a href="https://johncarlosbaez.wordpress.com/2018/12/01/geometric-quantization-part-1/">last time</a>: &#8216;projectivization&#8217;.</p>
+<h3> A question </h3>
+<p>Since I&#8217;ve got your ear, let me ask a question.  Suppose we have a holomorphic hermitian line bundle <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> on a K&auml;hler manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" />.  I can think of three ways in which a connection <img src="https://s0.wp.com/latex.php?latex=D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D" class="latex" /> on <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> can be compatible with all this structure:</p>
+<p>1) We can demand that the curvature of the connection <img src="https://s0.wp.com/latex.php?latex=D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D" class="latex" /> equal <img src="https://s0.wp.com/latex.php?latex=i+%5Comega.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i &#92;omega." class="latex" /></p>
+<p>2) We can demand that the connection <img src="https://s0.wp.com/latex.php?latex=D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D" class="latex" /> be compatible with the holomorphic structure of <img src="https://s0.wp.com/latex.php?latex=L.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L." class="latex" />   Let me spell this out a little.   Since <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> is a holomorphic line bundle there&#8217;s a <img src="https://s0.wp.com/latex.php?latex=%5Coverline%7B%5Cpartial%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;overline{&#92;partial}" class="latex" /> operator that we can apply to any section of <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> and get an <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" />-valued 1-form.  This is an <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" />-valued (0,1)-form, meaning that written out in holomorphic complex coordinates <img src="https://s0.wp.com/latex.php?latex=z%5Ei&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z^i" class="latex" /> it has <img src="https://s0.wp.com/latex.php?latex=d+%5Coverline%7Bz%7D%5Ei&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="d &#92;overline{z}^i" class="latex" /> terms but no <img src="https://s0.wp.com/latex.php?latex=dz%5Ei&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="dz^i" class="latex" /> terms.  On the other had, we can use the connection <img src="https://s0.wp.com/latex.php?latex=D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D" class="latex" /> to take the covariant derivative of <img src="https://s0.wp.com/latex.php?latex=s%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s," class="latex" /> which is a <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" />-valued 1-form <img src="https://s0.wp.com/latex.php?latex=D+s%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D s," class="latex" /> and take its (0,1) part, denoted <img src="https://s0.wp.com/latex.php?latex=%5Cpi_%7B0%2C1%7D+D+s.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;pi_{0,1} D s." class="latex" />    Then, we can demand that these agree:</p>
+<div align="center">
+<img src="https://s0.wp.com/latex.php?latex=%5Coverline%7B%5Cpartial%7D+s+%3D+%5Cpi_%7B0%2C1%7D+D+s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;overline{&#92;partial} s = &#92;pi_{0,1} D s" class="latex" />
+</div>
+<p>3) We can demand that the connection <img src="https://s0.wp.com/latex.php?latex=D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D" class="latex" /> be <a href="https://en.wikipedia.org/wiki/Hermitian_connection">hermitian</a>.  This means that the directional derivative of the inner product of two sections of <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> can be computed using a kind of product rule where we differentiate each section using <img src="https://s0.wp.com/latex.php?latex=D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D." class="latex" />  Namely:</p>
+<div align="center">
+<img src="https://s0.wp.com/latex.php?latex=v+%5Clangle+s%2C+t+%5Crangle+%3D+%5Clangle+D_v+s%2C+t+%5Crangle+%2B+%5Clangle+s%2C+D_v+t+%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v &#92;langle s, t &#92;rangle = &#92;langle D_v s, t &#92;rangle + &#92;langle s, D_v t &#92;rangle" class="latex" />
+</div>
+<p>for any vector field <img src="https://s0.wp.com/latex.php?latex=v&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v" class="latex" /> on <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> and any sections <img src="https://s0.wp.com/latex.php?latex=s%2Ct&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s,t" class="latex" /> of <img src="https://s0.wp.com/latex.php?latex=L.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L." class="latex" /></p>
+<p>I&#8217;m confused by when we can find a connection obeying all three of these conditions.  Here are some things I know.</p>
+<p>First, any holomorphic hermitian line bundle has a unique connection obeying 2) and 3).  This is called the <b>Chern connection</b> and its construction is actually given here:</p>
+<p>&bull; Wikipedia, <a>Hermitian metrics on a holomorphic vector bundle</a>.</p>
+<p>Does this connection also obey 1)?  I see no reason why, in general: condition 1) involves the symplectic structure on <img src="https://s0.wp.com/latex.php?latex=M%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M," class="latex" /> while conditions 2) and 3) don&#8217;t mention the symplectic or Riemannian structure on <img src="https://s0.wp.com/latex.php?latex=M%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M," class="latex" /> just its complex structure.</p>
+<p>Second, we can find a connection obeying 1) iff <img src="https://s0.wp.com/latex.php?latex=%5Comega+%2F2+%5Cpi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega /2 &#92;pi" class="latex" /> represents, in de Rham cohomology, the Chern class of the line bundle <img src="https://s0.wp.com/latex.php?latex=L.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L." class="latex" />   If <img src="https://s0.wp.com/latex.php?latex=%5Comega+%2F+2+%5Cpi&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega / 2 &#92;pi" class="latex" /> is an integral 2-form we can always find <i>some</i> line bundle <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> for which this is true.</p>
+<p>Can we find a <i>holomorphic</i> line bundle for which this is true?   Can we then choose a holomorphic connection on this line bundle obeying 1)?    If I understood Picard groups better, I might know.</p>
+<p>But as you can see, my understanding of how conditions 1)-3) interact is rather weak.   I feel I <i>should</i> have seen this spelled out carefully in a book on geometric quantization&#8212;but I don&#8217;t think I have.</p>
+<hr />
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2018/12/01/geometric-quantization-part-1/">Part 1</a>: the mystery of geometric quantization: how a quantum state space is a special sort of classical state space.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/">Part 2</a>: the structures besides a mere symplectic manifold that are used in geometric quantization.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2018/12/27/geometric-quantization-part-3/">Part 3</a>: geometric quantization as a functor with a right adjoint, &#8216;projectivization&#8217;, making quantum state spaces into a reflective subcategory of classical ones.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2018/12/28/geometric-quantization-part-4/">Part 4</a>: making geometric quantization into a monoidal functor.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2018/12/30/geometric-quantization-part-5/">Part 5</a>: the simplest example of geometric quantization: the spin-1/2 particle.</p>
+<p>&bull; <a href="https://johncarlosbaez.wordpress.com/2019/01/01/geometric-quantization-part-6/">Part 6</a>: quantizing the spin-3/2 particle using the twisted cubic; coherent states via the adjunction between quantization and projectivization.</p>
+<p>• <a href="https://johncarlosbaez.wordpress.com/2019/01/08/geometric-quantization-part-7/">Part 7</a>: the Veronese embedding as a method of &#8216;cloning&#8217; a classical system, and taking the symmetric tensor powers of a Hilbert space as the corresponding method of cloning a quantum system.</p>
+<p>• <a href="https://johncarlosbaez.wordpress.com/2019/01/21/geometric-quantization-part-8/">Part 8</a>: cloning a system as changing the value of Planck&#8217;s constant.</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Wednesday, December 26th, 2018 at 3:14 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/physics/" rel="category tag">physics</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2018/12/14/applied-category-theory-seminar/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2018/12/27/geometric-quantization-part-3/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">25 Responses to <em>Geometric Quantization (Part&nbsp;2)</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-139873">
+				<div id="div-comment-139873" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/912dd979725431441277af412db6c505?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://golem.ph.utexas.edu/~distler/blog/' rel='external nofollow ugc' class='url'>Jacques Distler</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139873">26 December, 2018 at 9:02 am</a>		</div>
+
+		<p>The phrase you are seeking is a <a href="https://en.wikipedia.org/wiki/Kodaira_embedding_theorem" rel="nofollow">Hodge manifold</a>.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139873#respond' data-commentid="139873" data-postid="25895" data-belowelement="div-comment-139873" data-respondelement="respond" data-replyto="Reply to Jacques Distler" aria-label='Reply to Jacques Distler'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-139893">
+				<div id="div-comment-139893" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139893">26 December, 2018 at 8:18 pm</a>		</div>
+
+		<p>I wasn&#8217;t seeking that phrase, but thanks very much: it turns out I was seeking the <a href="https://en.wikipedia.org/wiki/Kodaira_embedding_theorem" rel="nofollow">Kodaira embedding theorem</a>, which is what you linked to!   This is exactly the hole in my education that I was trying to fill.</p>
+<p>For those too lazy to look, here&#8217;s the idea.  Someone please correct me if this is wrong, or add related results if I&#8217;m missing something good.</p>
+<p>Suppose we have a compact complex manifold <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> equipped with a holomorphic complex line bundle <img src="https://s0.wp.com/latex.php?latex=L+%5Cto+M.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L &#92;to M." class="latex" />   Given any hermitian metric on <img src="https://s0.wp.com/latex.php?latex=L%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L," class="latex" /> this bundle has a unique connection <img src="https://s0.wp.com/latex.php?latex=D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D" class="latex" /> called the Chern connection with the properties sketched in my article.  The curvature of this connection is a (1,1)-form; let&#8217;s call it <img src="https://s0.wp.com/latex.php?latex=%5CTheta.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Theta." class="latex" /></p>
+<p>We say <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> is <strong>positive</strong> if there exist a hermitian metric on it such that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Comega+%3D+%5Cfrac%7Bi%7D%7B2%5Cpi%7D+%5CTheta%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;omega = &#92;frac{i}{2&#92;pi} &#92;Theta} " class="latex" /></p>
+<p>is the imaginary part of a K&auml;hler structure on <img src="https://s0.wp.com/latex.php?latex=M.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M." class="latex" />   This is equivalent to demanding that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Comega%28v%2C+Jv%29+%3E+0+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega(v, Jv) &gt; 0 " class="latex" /></p>
+<p>for every nonzero tangent vector <img src="https://s0.wp.com/latex.php?latex=v.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v." class="latex" /></p>
+<p>The Kodaira embedding theorem says that if <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> is positive then <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> can be embedded as a submanifold of <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D%5Cmathrm%7BP%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{C}&#92;mathrm{P}^n" class="latex" /> for some sufficiently large <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> in such a way that for some sufficiently large <img src="https://s0.wp.com/latex.php?latex=k%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="k," class="latex" /> <img src="https://s0.wp.com/latex.php?latex=L%5E%7B%5Cotimes+k%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L^{&#92;otimes k}" class="latex" /> is isomorphic to the pullback of the dual of the <a href="https://en.wikipedia.org/wiki/Tautological_bundle" rel="nofollow">tautological line bundle</a> over <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D%5Cmathrm%7BP%7D%5En.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{C}&#92;mathrm{P}^n." class="latex" /></p>
+<p>In fact it says more because it actually exhibits this embedding, but I&#8217;m too lazy to explain that now.</p>
+<p>We can go further using <a href="https://en.wikipedia.org/wiki/Algebraic_geometry_and_analytic_geometry#Chow.27s_theorem" rel="nofollow">Chow&#8217;s theorem</a>: <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> actually embeds as a projective variety in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D%5Cmathrm%7BP%7D%5En.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{C}&#92;mathrm{P}^n." class="latex" /></p>
+<p>We can say all this a bit differently if we start with a compact K&auml;hler manifold <img src="https://s0.wp.com/latex.php?latex=M.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M." class="latex" />   Then the imaginary part of the K&auml;hler structure is a (1,1)-form <img src="https://s0.wp.com/latex.php?latex=%5Comega.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega." class="latex" />   We say <img src="https://s0.wp.com/latex.php?latex=%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega" class="latex" /> is <strong>integral</strong> if it represents an integral element of deRham cohomology.</p>
+<p>If <img src="https://s0.wp.com/latex.php?latex=%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega" class="latex" /> is integral we say the K&auml;hler structure on <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> is a <strong>Hodge metric</strong> and call <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> a <strong>Hodge manifold</strong>.   In this case we can <em>find</em> a hermitian holomorphic line bundle <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> over <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> whose Chern connection has curvature <img src="https://s0.wp.com/latex.php?latex=%5CTheta&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;Theta" class="latex" /> with</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bi%7D%7B2%5Cpi%7D+%5CTheta%7D+%3D+%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{i}{2&#92;pi} &#92;Theta} = &#92;omega" class="latex" /></p>
+<p>And so, in this case <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> can be embedded as a projective variety in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D%5Cmathrm%7BP%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{C}&#92;mathrm{P}^n" class="latex" /> for some sufficiently large <img src="https://s0.wp.com/latex.php?latex=n&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="n" class="latex" /> in such a way that for some sufficiently large <img src="https://s0.wp.com/latex.php?latex=k%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="k," class="latex" /> <img src="https://s0.wp.com/latex.php?latex=L%5E%7B%5Cotimes+k%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L^{&#92;otimes k}" class="latex" /> is isomorphic to the pullback of the dual of the tautological line bundle.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139893#respond' data-commentid="139893" data-postid="25895" data-belowelement="div-comment-139893" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 parent highlander-comment" id="comment-139904">
+				<div id="div-comment-139904" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/912dd979725431441277af412db6c505?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://golem.ph.utexas.edu/~distler/blog/' rel='external nofollow ugc' class='url'>Jacques Distler</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139904">26 December, 2018 at 11:40 pm</a>		</div>
+
+		<p>So now (aside from the slightly mysterious factor of k), you have a geometrical understanding of the vector space that arises in Kahler quantization.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139904#respond' data-commentid="139904" data-postid="25895" data-belowelement="div-comment-139904" data-respondelement="respond" data-replyto="Reply to Jacques Distler" aria-label='Reply to Jacques Distler'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-4 highlander-comment" id="comment-139906">
+				<div id="div-comment-139906" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139906">27 December, 2018 at 12:16 am</a>		</div>
+
+		<p>Yes, I knew that already: what I didn&#8217;t know was such an absurdly simple sufficient condition for the prequantum line bundle on a compact K&auml;hler manifold to be ample!  That makes everything really nice.</p>
+<p>I have a whole schtick about the factor of <img src="https://s0.wp.com/latex.php?latex=k&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="k" class="latex" /> which I&#8217;m gonna drag into this story later.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-139900">
+				<div id="div-comment-139900" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139900">26 December, 2018 at 10:21 pm</a>		</div>
+
+		<p>By the way, nobody should trust Wolfram Mathworld about <a href="http://mathworld.wolfram.com/KodairaEmbeddingTheorem.html" rel="nofollow">Kodaira&#8217;s embedding theorem</a>.  I used to submit corrections for errors in that site, but now I don&#8217;t even see where to do that.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139900#respond' data-commentid="139900" data-postid="25895" data-belowelement="div-comment-139900" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-reperiendi odd alt depth-3 highlander-comment" id="comment-140517">
+				<div id="div-comment-140517" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/151c18cc6cc3bd1bb7a0528c6ef88c77?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://reperiendi.wordpress.com' rel='external nofollow ugc' class='url'>Mike Stay</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-140517">8 January, 2019 at 11:03 pm</a>		</div>
+
+		<p><a href="http://mathworld.wolfram.com/contact/" rel="nofollow ugc">http://mathworld.wolfram.com/contact/</a></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=140517#respond' data-commentid="140517" data-postid="25895" data-belowelement="div-comment-140517" data-respondelement="respond" data-replyto="Reply to Mike Stay" aria-label='Reply to Mike Stay'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-139888">
+				<div id="div-comment-139888" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/60b31ac814ca5b5daccfd3905f1d088c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">SteveB</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139888">26 December, 2018 at 6:52 pm</a>		</div>
+
+		<p>&#8220;the ‘phases’ so important in quantum mechanics are already lurking in classical mechanics&#8221;</p>
+<p>Can you say more in a few sentences, or point me at something to read?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139888#respond' data-commentid="139888" data-postid="25895" data-belowelement="div-comment-139888" data-respondelement="respond" data-replyto="Reply to SteveB" aria-label='Reply to SteveB'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-139892">
+				<div id="div-comment-139892" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139892">26 December, 2018 at 7:36 pm</a>		</div>
+
+		<p>Ugh&#8212;there really should be a good explanation somewhere, but I don&#8217;t know where!   If you study enough contact geometry you&#8217;ll see this is what&#8217;s really going on, but I&#8217;m not sure anyone comes out and says it.   Someone must have, somewhere: I learned it in conversations.</p>
+<p>Briefly, the symplectic structure in classical mechanics is a 2-form <img src="https://s0.wp.com/latex.php?latex=%5Comega&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega" class="latex" /> on phase space, but locally we have <img src="https://s0.wp.com/latex.php?latex=%5Comega+%3D+d+%5Calpha&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega = d &#92;alpha" class="latex" /> where <img src="https://s0.wp.com/latex.php?latex=%5Calpha&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha" class="latex" /> is a 1-form called the &#8216;symplectic potential&#8217;.  For example, for a particle in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{R}^n" class="latex" /> we have</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Calpha+%3D+%5Csum_%7Bi+%3D+1%7D%5En+p_i+dq%5Ei+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;alpha = &#92;sum_{i = 1}^n p_i dq^i }" class="latex" /></p>
+<p>See <a href="https://en.wikipedia.org/wiki/Tautological_one-form" rel="nofollow">tautological 1-form</a> for more.</p>
+<p>Integrating this 1-form <img src="https://s0.wp.com/latex.php?latex=%5Calpha&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha" class="latex" /> along a path gives the &#8216;action&#8217; of the path, but if we exponentiate this integral:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+e%5E%7B%5Cfrac%7Bi%7D%7B%5Chbar%7D+%5Cint+%5Calpha+%7D%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ e^{&#92;frac{i}{&#92;hbar} &#92;int &#92;alpha }} " class="latex" /></p>
+<p>we get the &#8216;change in phase&#8217; along the path.  We need <img src="https://s0.wp.com/latex.php?latex=%5Chbar&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;hbar" class="latex" /> here to make the quantity in the exponent dimensionless!  However, all this is still classical mechanics.</p>
+<p>We can formalize this further by working with a circle bundle over phase space, which becomes a <a href="https://en.wikipedia.org/wiki/Contact_geometry" rel="nofollow">contact manifold</a> when equipped with this 1-form <img src="https://s0.wp.com/latex.php?latex=%5Calpha.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;alpha." class="latex" />  We can think of this circle bundle as the &#8216;true phase space&#8217; which actually keeps track of the <em>phase</em> of the classical particle, a quantity which is&#8212;ironically&#8212;forgotten when using the ordinary phase space.</p>
+<p>Contact geometry lets us understand how the <a href="https://en.wikipedia.org/wiki/Hamilton%E2%80%93Jacobi_equation" rel="nofollow">Hamilton&#8211;Jacobi equation</a> describes classical particles as &#8216;wavefronts&#8217;: surfaces of constant action.</p>
+<p>Too much to say; sorry.   I am writing a book on classical mechanics and you just reminded me that I need to write a few more chapters!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139892#respond' data-commentid="139892" data-postid="25895" data-belowelement="div-comment-139892" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-139895">
+				<div id="div-comment-139895" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/60b31ac814ca5b5daccfd3905f1d088c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">SteveB</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139895">26 December, 2018 at 9:12 pm</a>		</div>
+
+		<p>Thanks! I look forward to looking into this further over the break.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139895#respond' data-commentid="139895" data-postid="25895" data-belowelement="div-comment-139895" data-respondelement="respond" data-replyto="Reply to SteveB" aria-label='Reply to SteveB'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-roycroft16c odd alt depth-3 parent highlander-comment" id="comment-140069">
+				<div id="div-comment-140069" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/36d28d428a717a9fd2f05ca9bebecc72?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">chaser</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-140069">29 December, 2018 at 11:41 pm</a>		</div>
+
+		<p>You&#8217;re writing a book on classical mechanics? Awesome! Keep us updated.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=140069#respond' data-commentid="140069" data-postid="25895" data-belowelement="div-comment-140069" data-respondelement="respond" data-replyto="Reply to chaser" aria-label='Reply to chaser'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-4 highlander-comment" id="comment-140070">
+				<div id="div-comment-140070" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-140070">29 December, 2018 at 11:54 pm</a>		</div>
+
+		<p>The current draft is <a href="http://math.ucr.edu/home/baez/classical/#lagrangian" rel="nofollow">here</a>.  I&#8217;m moving very slowly on it, e.g. right now not at all.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-170395">
+				<div id="div-comment-170395" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/5f9c49512653eaa772fed0b1e25a9028?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Alex Shpilkin</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-170395">22 April, 2021 at 1:50 pm</a>		</div>
+
+		<p>Arnold talked a lot about contact geometry and its connections with classical mechanics, thermodynamics, optics and Hamilton–Jacobi, so it’s probably in there somewhere.</p>
+<p>If I understood contact manifolds, I’d probably find the relevant parts in <a href="https://www.springer.com/gp/book/97803879689020" rel="nofollow ugc"><em>Mathematical methods of classical mechanics</em></a> appendix 4, “Contact structures”. Other places he talks about contact manifolds are <a href="https://www.springer.com/gp/book/9780387966496" rel="nofollow ugc"><em>Geometric methods in the theory of ordinary differential equations</em></a> §8, “The non-linear first-order partial differential equation”; <a href="https://www.springer.com/gp/book/9783540404484" rel="nofollow ugc"><em>Lectures on partial differential equations</em></a> lecture 4, “Huygens’ principle in the theory of wave propagation”; and <a href="https://bookstore.ams.org/ulect-5" rel="nofollow ugc"><em>Topological invariants of plane curves and caustics</em></a> lecture 2, “Symplectic and contact topology of caustics and wave fronts”.</p>
+<p>The only problem is, (I’ve read the descriptions in all of these places and still) I don’t understand what contact geometry is supposed to be.</p>
+<p>If I look for something “flat” (linear-algebraic) that contact geometry is supposed to be the “curved” (differential-geometric) version of, the best I can do is that it is… a conformal (up-to-scalar-factor) geometry of maximal-rank antisymmetric bilinear forms in odd dimension? Why would anyone want such a thing—in particular, why do we specifically care about “metric” symplectic geometry in the even-dimensional case but “conformal” contact geometry in the odd-dimensional case?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=170395#respond' data-commentid="170395" data-postid="25895" data-belowelement="div-comment-170395" data-respondelement="respond" data-replyto="Reply to Alex Shpilkin" aria-label='Reply to Alex Shpilkin'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-3 highlander-comment" id="comment-170398">
+				<div id="div-comment-170398" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-170398">22 April, 2021 at 3:25 pm</a>		</div>
+
+		<p>Alex wrote:</p>
+<blockquote><p> Arnold talked a lot about contact geometry and its connections with classical mechanics, thermodynamics, optics and Hamilton–Jacobi, so it’s probably in there somewhere.</p></blockquote>
+<p>Maybe, but I don&#8217;t know where.  I think the basic ideas are pretty simple, and a lot of what Arnold writes is more complicated.</p>
+<blockquote><p>
+The only problem is, (I’ve read the descriptions in all of these places and still) I don’t understand what contact geometry is supposed to be.
+</p></blockquote>
+<p>Symplectic geometry is easiest to understand if you think of it as a generalization of the geometry that any cotangent bundle has&#8212;that is, the geometry of position-momentum pairs.</p>
+<p>Similarly, contact geometry is easiest to understand if you think of it as a generalization of the geometry that the trivial circle bundle over the cotangent bundle has&#8212;that is, the geometry of position-momentum-phase triples.  This space is what we <em>really</em> should call &#8220;phase space&#8221;!  Yes, phases are important in classical mechanics too.</p>
+<p>I see that I explained this more carefully here <a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139892">3 years ago</a>.</p>
+<blockquote><p>
+Why would anyone want such a thing—in particular, why do we specifically care about “metric” symplectic geometry in the even-dimensional case but “conformal” contact geometry in the odd-dimensional case?
+</p></blockquote>
+<p>Hmm, maybe because <i>another</i> motivating example of a contact manifold is the projectivized cotangent bundle.  The symplectic structure on the cotangent bundle puts a &#8220;nondegenerate 2-form up to an undetermined scale factor&#8221; on this.</p>
+<p>So, starting from the cotangent bundle there&#8217;s a nice way to get a manifold of dimension one more (the circle bundle over it) and and a manifold of dimension one less (its projectivization), both of which are contact manifolds.  There&#8217;s more about the seccond constructon here, but apparently not the first:</p>
+<p>&bull; Wikipedia, <a href="https://en.wikipedia.org/wiki/Contact_geometry#Relation_with_symplectic_structures" rel="nofollow ugc">Contact geometry: relation with symplectic structures</a>.</p>
+<p>They also mention a third: a surface of constant energy in a cotangent bundle can sometimes be made into a contact manifold.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=170398#respond' data-commentid="170398" data-postid="25895" data-belowelement="div-comment-170398" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-jamespropp odd alt thread-even depth-1 parent highlander-comment" id="comment-139897">
+				<div id="div-comment-139897" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/4fcfa1c7b2c2293f7293b4a864081ab6?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://mathenchant.wordpress.com' rel='external nofollow ugc' class='url'>jamespropp</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139897">26 December, 2018 at 9:56 pm</a>		</div>
+
+		<p>I think it’s time for those of us who write math on WordPress sites to put our heads together and figure out what needs to be done to make WordPress incorporate formulas more gracefully. (This post of yours was especially awkward, with all those short inset formulas. Alas, as you and I and Terry Tao all know, trying to put formulas in-line with dollar-sign latex has its own problems.)</p>
+<p>Maybe we should pay someone to create a new WordPress Theme for mathematicians. (I don’t currently have a grant, but I hope to have one again, one of these years!)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139897#respond' data-commentid="139897" data-postid="25895" data-belowelement="div-comment-139897" data-respondelement="respond" data-replyto="Reply to jamespropp" aria-label='Reply to jamespropp'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-139899">
+				<div id="div-comment-139899" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139899">26 December, 2018 at 10:16 pm</a>		</div>
+
+		<p>I agree that it would be great to make WordPress math look better.  Instead of these disgusting small jpegs for equations we could be using MathJax or something even better.  Jacques Distler, who just happened by, knows better things, which are used on the <i>n</i>Caf&eacute;&#8212;but I don&#8217;t have the technical skills to implement those on a WordPress blog.  MathJax has the advantage of being ridiculously easy&#8212;I use it on my webpages&#8212;but even that, I don&#8217;t know how to do on WordPress.  Someone must know.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139899#respond' data-commentid="139899" data-postid="25895" data-belowelement="div-comment-139899" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-139988">
+				<div id="div-comment-139988" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/912dd979725431441277af412db6c505?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='https://golem.ph.utexas.edu/~distler/blog/' rel='external nofollow ugc' class='url'>Jacques Distler</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139988">28 December, 2018 at 6:58 am</a>		</div>
+
+		<p>I spent several years trying to support the same technology that you see at the nCafé on WordPress. Eventually, I abandoned the effort because the WordPress codebase was too unbearably crappy to make the cost/benefit worthwhile.</p>
+<p>MathJax (which, of course, we use to support browsers without native MathML support) may not be great, but it&#8217;s <em>way</em> better than crappy little GIF images.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139988#respond' data-commentid="139988" data-postid="25895" data-belowelement="div-comment-139988" data-respondelement="respond" data-replyto="Reply to Jacques Distler" aria-label='Reply to Jacques Distler'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-139902">
+				<div id="div-comment-139902" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139902">26 December, 2018 at 11:27 pm</a>		</div>
+
+		<p>Okay, <a href="https://wordpress.org/plugins/mathjax-latex/" rel="nofollow">here&#8217;s how one can use MathJax on WordPress</a>.  Can anyone point me to an example of a blog where someone has done this?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139902#respond' data-commentid="139902" data-postid="25895" data-belowelement="div-comment-139902" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-bstacey odd alt depth-2 highlander-comment" id="comment-140073">
+				<div id="div-comment-140073" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/e0ebde65bbff0575b95d265d9902c8a4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Blake Stacey</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-140073">30 December, 2018 at 1:14 am</a>		</div>
+
+		<p>I have MathJax set up on my WordPress site (which I host on my own website, rather than on WordPress.com). <a href="https://www.sunclipse.org/?p=2595" rel="nofollow">Here&#8217;s an example post with formulae in it</a>.</p>
+<p>I don&#8217;t have experience with blogs hosted on WordPress.com, but you may be able to add MathJax support by <a href="https://docs.mathjax.org/en/v1.1-latest/platforms/wordpress.html" rel="nofollow">editing the theme&#8217;s header file</a>.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=140073#respond' data-commentid="140073" data-postid="25895" data-belowelement="div-comment-140073" data-respondelement="respond" data-replyto="Reply to Blake Stacey" aria-label='Reply to Blake Stacey'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="comment-139903">
+				<div id="div-comment-139903" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a8e84eb5cad1318cd9260aaf9260075c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Jim</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139903">26 December, 2018 at 11:39 pm</a>		</div>
+
+		<p>You might want to try this <a href="https://andrewsun.com/projects/wp-katex/" rel="nofollow ugc">https://andrewsun.com/projects/wp-katex/</a><br />
+It&#8217;s similar to MathJax, but loads math (supposedly) faster</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139903#respond' data-commentid="139903" data-postid="25895" data-belowelement="div-comment-139903" data-respondelement="respond" data-replyto="Reply to Jim" aria-label='Reply to Jim'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-even depth-1 highlander-comment" id="comment-139907">
+				<div id="div-comment-139907" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2018/12/27/geometric-quantization-part-3/' rel='external nofollow ugc' class='url'>Geometric Quantization (Part 3) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139907">27 December, 2018 at 12:42 am</a>		</div>
+
+		<p>Furthermore, <img src="https://s0.wp.com/latex.php?latex=M+%5Csubseteq+%5Cmathbb%7BC%7D%5Cmathrm%7BP%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M &#92;subseteq &#92;mathbb{C}&#92;mathrm{P}^n" class="latex" /> has a god-given line bundle over it.  You see, any point <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D%5Cmathrm%7BP%7D%5En&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{C}&#92;mathrm{P}^n" class="latex" /> is really a line in <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D%5E%7Bn%2B1%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{C}^{n+1}" class="latex" /> (by which I mean a 1-dimensional subspace), and these lines define a line bundle over <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D%5Cmathrm%7BP%7D%5En.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{C}&#92;mathrm{P}^n." class="latex" />   This construction is so ridiculously tautological that people call the resulting bundle the <b><a href="https://en.wikipedia.org/wiki/Tautological_bundle#Tautological_line_bundle_in_algebraic_geometry" rel="nofollow">tautological line bundle</a></b>.   This bundle has no holomorphic sections, but its dual has lots: every linear functional on <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D%5E%7Bn%2B1%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{C}^{n+1}" class="latex" /> gives one, and that&#8217;s how they all arise!  I&#8217;ll call this dual bundle I&#8217;ll call it <img src="https://s0.wp.com/latex.php?latex=L_%7B%5Cmathbb%7BC%7D%5Cmathrm%7BP%7D%5En%7D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L_{&#92;mathbb{C}&#92;mathrm{P}^n}." class="latex" />    If we restrict <img src="https://s0.wp.com/latex.php?latex=L_%7B%5Cmathbb%7BC%7D%5Cmathrm%7BP%7D%5En%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L_{&#92;mathbb{C}&#92;mathrm{P}^n}" class="latex" /> to <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" />, we get a holomorphic line bundle with enough sections to be useful in geometric quantization.  I&#8217;ll call this bundle <img src="https://s0.wp.com/latex.php?latex=L_M.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L_M." class="latex" /></p>
+<p>Even better, <img src="https://s0.wp.com/latex.php?latex=M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="M" class="latex" /> and this line bundle <img src="https://s0.wp.com/latex.php?latex=L_M&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L_M" class="latex" /> have the whole laundry list of extra structure and properties that I was bemoaning <a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/">last time</a>.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139907#respond' data-commentid="139907" data-postid="25895" data-belowelement="div-comment-139907" data-respondelement="respond" data-replyto="Reply to Geometric Quantization (Part 3) | Azimuth" aria-label='Reply to Geometric Quantization (Part 3) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-topologicalmusings311017 even thread-odd thread-alt depth-1 highlander-comment" id="comment-139947">
+				<div id="div-comment-139947" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/563bc4b0fe01b601813163f0485f4d78?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Todd Trimble</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139947">27 December, 2018 at 1:31 pm</a>		</div>
+
+		<p>Back <a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139893">here</a>, you mentioned an article of yours. Sorry if this is a dumb question, but which article is that?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139947#respond' data-commentid="139947" data-postid="25895" data-belowelement="div-comment-139947" data-respondelement="respond" data-replyto="Reply to Todd Trimble" aria-label='Reply to Todd Trimble'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-topologicalmusings311017 odd alt thread-even depth-1 parent highlander-comment" id="comment-139948">
+				<div id="div-comment-139948" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/563bc4b0fe01b601813163f0485f4d78?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Todd Trimble</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139948">27 December, 2018 at 1:33 pm</a>		</div>
+
+		<p>Oh, maybe you mean the post we&#8217;re commenting under?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139948#respond' data-commentid="139948" data-postid="25895" data-belowelement="div-comment-139948" data-respondelement="respond" data-replyto="Reply to Todd Trimble" aria-label='Reply to Todd Trimble'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 highlander-comment" id="comment-139958">
+				<div id="div-comment-139958" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139958">27 December, 2018 at 5:40 pm</a>		</div>
+
+		<p>Yes.  In this article (okay, post) I explained the concept of a Chern connection:</p>
+<blockquote>
+<p>2) We can demand that the connection <img src="https://s0.wp.com/latex.php?latex=D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D" class="latex" /> be compatible with the holomorphic structure of <img src="https://s0.wp.com/latex.php?latex=L.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L." class="latex" />   Let me spell this out a little.   Since <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> is a holomorphic line bundle there&#8217;s a <img src="https://s0.wp.com/latex.php?latex=%5Coverline%7B%5Cpartial%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;overline{&#92;partial}" class="latex" /> operator that we can apply to any section of <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> and get an <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" />-valued 1-form.  This is an <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" />-valued (0,1)-form, meaning that written out in holomorphic complex coordinates <img src="https://s0.wp.com/latex.php?latex=z%5Ei&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="z^i" class="latex" /> it has <img src="https://s0.wp.com/latex.php?latex=d+%5Coverline%7Bz%7D%5Ei&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="d &#92;overline{z}^i" class="latex" /> terms but no <img src="https://s0.wp.com/latex.php?latex=dz%5Ei&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="dz^i" class="latex" /> terms.  On the other had, we can use the connection <img src="https://s0.wp.com/latex.php?latex=D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D" class="latex" /> to take the covariant derivative of <img src="https://s0.wp.com/latex.php?latex=s%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="s," class="latex" /> which is a <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" />-valued 1-form <img src="https://s0.wp.com/latex.php?latex=D+s%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D s," class="latex" /> and take its (0,1) part, denoted <img src="https://s0.wp.com/latex.php?latex=%5Cpi_%7B0%2C1%7D+D+s.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;pi_{0,1} D s." class="latex" />    Then, we can demand that these agree:</p>
+<div align="center">
+<img src="https://s0.wp.com/latex.php?latex=%5Coverline%7B%5Cpartial%7D+s+%3D+%5Cpi_%7B0%2C1%7D+D+s&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;overline{&#92;partial} s = &#92;pi_{0,1} D s" class="latex" />
+</div>
+<p>3) We can demand that the connection <img src="https://s0.wp.com/latex.php?latex=D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D" class="latex" /> be <a href="https://en.wikipedia.org/wiki/Hermitian_connection" rel="nofollow">hermitian</a>.  This means that the directional derivative of the inner product of two sections of <img src="https://s0.wp.com/latex.php?latex=L&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="L" class="latex" /> can be computed using a kind of product rule where we differentiate each section using <img src="https://s0.wp.com/latex.php?latex=D.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="D." class="latex" />  Namely:</p>
+<div align="center">
+<img src="https://s0.wp.com/latex.php?latex=v+%5Clangle+s%2C+t+%5Crangle+%3D+%5Clangle+D_v+s%2C+t+%5Crangle+%2B+%5Clangle+s%2C+D_v+t+%5Crangle&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="v &#92;langle s, t &#92;rangle = &#92;langle D_v s, t &#92;rangle + &#92;langle s, D_v t &#92;rangle" class="latex" />
+</div>
+<p>Any holomorphic hermitian line bundle has a unique connection obeying 2) and 3).  This is called the <b>Chern connection</b> and its construction is actually given here:</p>
+<p>&bull; Wikipedia, <a>Hermitian metrics on a holomorphic vector bundle</a>.</p>
+</blockquote>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139958#respond' data-commentid="139958" data-postid="25895" data-belowelement="div-comment-139958" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-139977">
+				<div id="div-comment-139977" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2018/12/28/geometric-quantization-part-4/' rel='external nofollow ugc' class='url'>Geometric Quantization (Part 4) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-139977">28 December, 2018 at 1:15 am</a>		</div>
+
+		<p>In <a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/">Part 2</a> I sketched the usual version of K&auml;hler quantization, which is fairly complicated.  <a href="https://johncarlosbaez.wordpress.com/2018/12/27/geometric-quantization-part-3/">Last time</a> I switched to a stripped-down version where these complications are removed&#8230; but tried to explain how it was &#8216;backwards-compatible&#8217; with the usual story, by showing how all the complications could easily be restored if you want them.  Unfortunately this makes things look more complicated than they are!</p>
+<p>So let me present the same construction again, more cleanly.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139977#respond' data-commentid="139977" data-postid="25895" data-belowelement="div-comment-139977" data-respondelement="respond" data-replyto="Reply to Geometric Quantization (Part 4) | Azimuth" aria-label='Reply to Geometric Quantization (Part 4) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="pingback even thread-even depth-1 highlander-comment" id="comment-140114">
+				<div id="div-comment-140114" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2018/12/30/geometric-quantization-part-5/' rel='external nofollow ugc' class='url'>Geometric Quantization (Part 5) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/#comment-140114">30 December, 2018 at 9:00 pm</a>		</div>
+
+		<p>To geometrically quantize our symplectic manifold using K&auml;hler quantization, we need to equip it with lots of extra structure, as explained in <a href="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/">Part 2</a>.    For starters, we need to give it a complex structure.  There&#8217;s a unique one invariant under rotations, namely the one that makes our sphere into a copy of the Riemann sphere <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D%5Cmathrm%7BP%7D%5E1.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{C}&#92;mathrm{P}^1." class="latex" />   There is then a unique K&auml;hler structure on <img src="https://s0.wp.com/latex.php?latex=%5Cmathbb%7BC%7D%5Cmathrm%7BP%7D%5E1&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;mathbb{C}&#92;mathrm{P}^1" class="latex" /> whose imaginary part is our symplectic structure <img src="https://s0.wp.com/latex.php?latex=%5Comega.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;omega." class="latex" /></p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=140114#respond' data-commentid="140114" data-postid="25895" data-belowelement="div-comment-140114" data-respondelement="respond" data-replyto="Reply to Geometric Quantization (Part 5) | Azimuth" aria-label='Reply to Geometric Quantization (Part 5) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-139897">jamespropp</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2018/12/26/geometric-quantization-part-2/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2018/12/26/geometric-quantization-part-2/?replytocom=139897" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='25895' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='139897' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="52a4aeb1d2" /></p>
+<input type="hidden" name="genseq" value="1632621036" />
+<input type="hidden" id="ak_js" name="ak_js" value="22"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2018/12/26/geometric-quantization-part-2/?replytocom=139897"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,177,001 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-912dd979725431441277af412db6c505">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-151c18cc6cc3bd1bb7a0528c6ef88c77">
+	</div>
+	<div class="grofile-hash-map-60b31ac814ca5b5daccfd3905f1d088c">
+	</div>
+	<div class="grofile-hash-map-36d28d428a717a9fd2f05ca9bebecc72">
+	</div>
+	<div class="grofile-hash-map-5f9c49512653eaa772fed0b1e25a9028">
+	</div>
+	<div class="grofile-hash-map-4fcfa1c7b2c2293f7293b4a864081ab6">
+	</div>
+	<div class="grofile-hash-map-e0ebde65bbff0575b95d265d9902c8a4">
+	</div>
+	<div class="grofile-hash-map-a8e84eb5cad1318cd9260aaf9260075c">
+	</div>
+	<div class="grofile-hash-map-563bc4b0fe01b601813163f0485f4d78">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"25895","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'25895','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTY5JWlCdmFjdjg1VU9zMXpVcXg4b1hYYW01dmVwWTBkQnpHOC98M1EmQW5pdlkrJUNnZVY5LXRwbFhjUFRqWlhCeHNmMi1qQWVNLlpwb0Q9YmhOL1hUej8mRG84fml5fC5zb3wtbVY0TEcyUVo9Qmg2ODJfeVlFRH5xL11ycmlQcXcmenFYWURmYWc0NDlsSCtWZTBBK2RoN3ZCdDQ1X2VnVmFNP216Q0UxKy1PRFI1Sj16Smw/JWZtSm9qZCVIP0Zkb3JaRmpwYndxdWRERy9PL2FtY0FdPUs2UA=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '25895' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

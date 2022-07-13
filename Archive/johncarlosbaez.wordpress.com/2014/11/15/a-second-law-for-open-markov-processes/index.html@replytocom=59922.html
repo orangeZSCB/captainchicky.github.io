@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>A Second Law for Open Markov Processes | Azimuth</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://johncarlosbaez.wordpress.com/xmlrpc.php" />
+<meta name='robots' content='max-image-preview:large, noindex, follow' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Feed" href="https://johncarlosbaez.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; Comments Feed" href="https://johncarlosbaez.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Azimuth &raquo; A Second Law for Open Markov&nbsp;Processes Comments Feed" href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1625065786h&ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s0.wp.com/_static/??-eJyNkdtSAyEMhl9INkWnOl44PguHiKnAMhCsvL3Zepi1tdUbhj/Jl/yTwL4oN2fGzJC6KrEHyg0qRsPoVZkbH6nJtXYFv2OUnygTD+BnTNigdAuHslT4hPuCQhdpsQbJVIRXraftpMF2ih5snN2LimSrqQMaj4jfjSi72L2M2TVI6MlglKmLo5Uo0QysKmIwbkyJ8t+45Nb6B3Te/MGpNEMuZrFsxtxZhUr+yPa/W1TDlEM7g6/WvuxN4qmYU/MXsD35gHJeKfn8K8a3y0iRMcraUrE1JW+intTHtRfuMT3o2xt9d7/dbK5375l75CE=?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--huge: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+</style>
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKgCAQAD+ULYJRHaK3qJhY666o0fezW126zcAMGNR09LaUDq4kLFN1VCGeIuHpAxXwjgWy1TUwfURsqEP+W7MzyL6hh1a99JnWuEg1zEpNo1T7DZLtMYQ=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-3-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-6-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script id='jetpack_related-posts-js-extra'>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script id='wpcom-actionbar-placeholder-js-extra'>
+var actionbardata = {"siteID":"12777403","siteName":"Azimuth","siteURL":"http:\/\/johncarlosbaez.wordpress.com","siteHost":"johncarlosbaez.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/contempt","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2014%2F11%2F15%2Fa-second-law-for-open-markov-processes%2F&signup_flow=account","themeURL":"","xhrURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"c031e776ae","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"8f1337fe87\" \/>","referer":"https:\/\/johncarlosbaez.wordpress.com\/2014\/11\/15\/a-second-law-for-open-markov-processes\/?replytocom=59922","canFollow":"1","feedID":"62242","statusMessage":"","subsEmailDefault":"instantly","customizeLink":"https:\/\/johncarlosbaez.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2014%2F11%2F15%2Fa-second-law-for-open-markov-processes%2F%3Freplytocom%3D59922","postID":"19011","shortlink":"https:\/\/wp.me\/pRBZ9-4WD","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/johncarlosbaez.wordpress.com\/19011","statsLink":"https:\/\/wordpress.com\/stats\/post\/19011\/johncarlosbaez.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Contempt","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 5,227 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2014%2F11%2F15%2Fa-second-law-for-open-markov-processes%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats","notifyNewPosts":"Notify me of new posts","notifyNewPostsDetails":"Receive web and mobile notifications for new posts from this site.","emailNewPosts":"Email me new posts","emailNewPostsDetails":"You can customize your notification settings further <a href=\"https:\/\/wordpress.com\/following\/manage?s=johncarlosbaez.wordpress.com\">here<\/a>.","emailNewComments":"Email me new comments","instantly":"Instantly","daily":"Daily","weekly":"Weekly"}};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s0.wp.com/_static/??-eJyFjcEKwjAQRH/IbQxSPYnfUtu1bMhuYnZD7d/bQj1YBE/D8B4zbsrQJzEUc0FdTmqMqt2ITdCD+6ac7hQRqmJZBDEgeaS9xxVyrCOJuoKxMxxgXd21H+slGuSSXvOHkfSxDqgrDM+KZd6iYZK/EjCNZTnc5Btf/fnkL8fW+za8ASssW38='></script>
+<script type='text/javascript'>
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1625210320h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://johncarlosbaez.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/" />
+<link rel='shortlink' href='https://wp.me/pRBZ9-4WD' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2014%2F11%2F15%2Fa-second-law-for-open-markov-processes%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fjohncarlosbaez.wordpress.com%2F2014%2F11%2F15%2Fa-second-law-for-open-markov-processes%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="A Second Law for Open Markov Processes" />
+<meta property="og:url" content="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/" />
+<meta property="og:description" content="guest post by Blake Pollard What comes to mind when you hear the term &#8216;random process&#8217;? Do you think of Brownian motion? Do you think of particles hopping around? Do you think of a drun…" />
+<meta property="article:published_time" content="2014-11-15T03:00:53+00:00" />
+<meta property="article:modified_time" content="2016-04-18T04:50:21+00:00" />
+<meta property="og:site_name" content="Azimuth" />
+<meta property="og:image" content="http://math.ucr.edu/home/baez/mathematical/pollard_markov/drunkwalk.png" />
+<meta property="og:image:width" content="450" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="A Second Law for Open Markov&nbsp;Processes" />
+<meta name="twitter:image" content="http://math.ucr.edu/home/baez/mathematical/pollard_markov/drunkwalk.png?w=144" />
+<meta name="twitter:card" content="summary" />
+<meta property="fb:app_id" content="249643311490" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://johncarlosbaez.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://johncarlosbaez.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://johncarlosbaez.wordpress.com/osd.xml" title="Azimuth" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Azimuth" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://johncarlosbaez.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="guest post by Blake Pollard What comes to mind when you hear the term &#039;random process&#039;? Do you think of Brownian motion? Do you think of particles hopping around? Do you think of a drunkard staggering home? Today I’m going to tell you about a version of the drunkard’s walk with a few modifications. Firstly,&hellip;" />
+<style type="text/css">
+#headerimg{
+	background: url(https://johncarlosbaez.files.wordpress.com/2010/08/azimuth_header.jpg) no-repeat;
+}
+#header h1 a, .description {
+	color:#E5F2E9;
+}
+</style>
+<link rel="amphtml" href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/amp/">		<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s0.wp.com/?custom-css=1&#038;csblog=RBZ9&#038;cscache=6&#038;csrev=7" />
+		</head>
+<body class="post-template-default single single-post postid-19011 single-format-standard customizer-styles-applied highlander-enabled highlander-light">
+
+<div id="page">
+
+<div id="header">
+	<div id="headerimg" onclick="location.href='https://johncarlosbaez.wordpress.com';" style="cursor: pointer;">
+		<h1><a href="https://johncarlosbaez.wordpress.com/">Azimuth</a></h1>
+		<div class="description"></div>
+	</div>
+</div>
+
+<ul id="pagebar" class="menu pagebar"><li ><a href="https://johncarlosbaez.wordpress.com/">Home</a></li><li class="page_item page-item-2"><a href="https://johncarlosbaez.wordpress.com/about/">About</a></li>
+</ul>
+
+<div id="grad" style="height: 65px; width: 100%; background: url(https://s2.wp.com/wp-content/themes/pub/contempt/images/blue_flower/topgrad.jpg);">&nbsp;</div>
+
+	<div id="content" class="widecolumn">
+
+  
+
+
+		<div class="post-19011 post type-post status-publish format-standard hentry category-information-and-entropy category-mathematics category-physics" id="post-19011">
+			<h2>A Second Law for Open Markov&nbsp;Processes</h2>
+
+			<div class="entry">
+				<p><i>guest post by <b><a href="http://www.azimuthproject.org/azimuth/show/Blake+Pollard">Blake Pollard</a></b></i></p>
+<p>What comes to mind when you hear the term &#8216;random process&#8217;? Do you think of Brownian motion? Do you think of particles hopping around? Do you think of a drunkard staggering home?</p>
+<p>Today I’m going to tell you about a version of the drunkard’s walk with a few modifications. Firstly, we don’t have just one drunkard: we can have any positive real number of drunkards. Secondly, our drunkards have no memory; where they go next doesn’t depend on where they’ve been. Thirdly, there are special places, such as entrances to bars, where drunkards magically appear and disappear.</p>
+<p>The second condition says that our drunkards satisfy the Markov property, making their random walk into a <b>Markov process</b>. The third condition is really what I want to tell you about, because it makes our Markov process into a more general ‘open Markov process’.</p>
+<p>There are a collection of places the drunkards can be, for example:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=V%3D+%5C%7B+%5Ctext%7Bbar%7D%2C%5Ctext%7Bsidewalk%7D%2C+%5Ctext%7Bstreet%7D%2C+%5Ctext%7Btaco+truck%7D%2C+%5Ctext%7Bhome%7D+%5C%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V= &#92;{ &#92;text{bar},&#92;text{sidewalk}, &#92;text{street}, &#92;text{taco truck}, &#92;text{home} &#92;} " class="latex" /></p>
+<p>We call this set <img src="https://s0.wp.com/latex.php?latex=V&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V" class="latex" /> the set of <b>states</b>. There are certain probabilities associated with traveling between these places. We call these <b>transition rates</b>. For example it is more likely for a drunkard to go from the bar to the taco truck than to go from the bar to home so the transition rate between the bar and the taco truck should be greater than the transition rate from the bar to home. Sometimes you can’t get from one place to another without passing through intermediate places. In reality the drunkard can’t go directly from the bar to the taco truck: he or she has to go from the bar to sidewalk to the taco truck.</p>
+<p>This information can all be summarized by drawing a directed graph where the positive numbers labelling the edges are the transition rates:</p>
+<div align="center"><a href="http://math.ucr.edu/home/baez/mathematical/pollard_markov/drunkwalk.png"><img width="450" src="https://i2.wp.com/math.ucr.edu/home/baez/mathematical/pollard_markov/drunkwalk.png" /></a></div>
+<p>For simplicity we draw only three states: home, bar, taco truck. Drunkards go from home to the bar and back, but they never go straight from home to the taco truck.</p>
+<p>We can keep track of where all of our drunkards are using a vector with 3 entries:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+p%28t%29+%3D+%5Cleft%28+%5Cbegin%7Barray%7D%7Bc%7D+p_h%28t%29+%5C%5C+p_b%28t%29+%5C%5C+p_%7Btt%7D%28t%29+%5Cend%7Barray%7D+%5Cright%29+%5Cin+%5Cmathbb%7BR%7D%5E3+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ p(t) = &#92;left( &#92;begin{array}{c} p_h(t) &#92;&#92; p_b(t) &#92;&#92; p_{tt}(t) &#92;end{array} &#92;right) &#92;in &#92;mathbb{R}^3 } " class="latex" /></p>
+<p>We call this our <b>population distribution</b>. The first entry <img src="https://s0.wp.com/latex.php?latex=p_h&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_h" class="latex" /> is the number of drunkards that are at home, the second <img src="https://s0.wp.com/latex.php?latex=p_b&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_b" class="latex" /> is how many are at the bar, and the third <img src="https://s0.wp.com/latex.php?latex=p_%7Btt%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_{tt}" class="latex" /> is how many are at the taco truck.</p>
+<p>There is a set of coupled, linear, first-order differential equations we can write down using the information in our graph that tells us how the number of drunkards in each place change with time.  This is called the <b>master equation</b>:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bd+p%7D%7Bd+t%7D+%3D+H+p+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{d p}{d t} = H p } " class="latex" /></p>
+<p>where <img src="https://s0.wp.com/latex.php?latex=H&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H" class="latex" /> is a 3&times;3 matrix which we call the <b>Hamiltonian</b>. The off-diagonal entries are nonnegative:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H_%7Bij%7D+%5Cgeq+0%2C+i+%5Cneq+j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H_{ij} &#92;geq 0, i &#92;neq j" class="latex" /></p>
+<p>and the columns sum to zero:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Csum_i+H_%7Bij%7D%3D0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_i H_{ij}=0" class="latex" /></p>
+<p>We call a matrix satisfying these conditions <b>infinitesimal stochastic</b>. <b>Stochastic</b> matrices have columns that sum to one. If we take the exponential of an infinitesimal stochastic matrix we get one whose columns sum to one, hence the label &#8216;infinitesimal&#8217;.</p>
+<p>The Hamiltonian for the graph above is</p>
+<p><img src="https://s0.wp.com/latex.php?latex=H+%3D+%5Cleft%28+%5Cbegin%7Barray%7D%7Bccc%7D+-2+%26+5+%26+10+%5C%5C+2+%26+-12+%26+0+%5C%5C+0+%26+7+%26+-10+%5Cend%7Barray%7D+%5Cright%29+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H = &#92;left( &#92;begin{array}{ccc} -2 &amp; 5 &amp; 10 &#92;&#92; 2 &amp; -12 &amp; 0 &#92;&#92; 0 &amp; 7 &amp; -10 &#92;end{array} &#92;right) " class="latex" /></p>
+<p>John has written a lot about Markov processes and infinitesimal stochastic Hamiltonians in previous posts.</p>
+<p>Given two vectors <img src="https://s0.wp.com/latex.php?latex=p%2Cq+%5Cin+%5Cmathbb%7BR%7D%5E3&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p,q &#92;in &#92;mathbb{R}^3" class="latex" /> describing the populations of drunkards which obey the same master equation, we can calculate the <b>relative entropy</b> of <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> relative to <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" />:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+S%28p%2Cq%29+%3D+%5Csum_%7B+i+%5Cin+V%7D+p_i+%5Cln+%5Cleft%28+%5Cfrac%7Bp_i%7D%7Bq_i%7D+%5Cright%29+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ S(p,q) = &#92;sum_{ i &#92;in V} p_i &#92;ln &#92;left( &#92;frac{p_i}{q_i} &#92;right) } " class="latex" /></p>
+<p>This is an example of a &#8216;divergence&#8217;.  In statistics, a <a href="https://en.wikipedia.org/wiki/Divergence_%28statistics%29">divergence</a> a way of measuring the distance between probability distributions, which may not be symmetrical and may even not obey the triangle inequality.</p>
+<p>The relative entropy is important because it decreases monotonically with time, making it a <a href="https://en.wikipedia.org/wiki/Lyapunov_function">Lyapunov function</a> for Markov processes. Indeed, it is a well known fact that</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7BdS%28p%28t%29%2Cq%28t%29+%29+%7D+%7Bdt%7D+%5Cleq+0+%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{dS(p(t),q(t) ) } {dt} &#92;leq 0 }" class="latex" /></p>
+<p>This is true for any two population distributions which evolve according to the same master equation, though you have to allow infinity as a possible value for the relative entropy and negative infinity for its time derivative.</p>
+<p>Why is entropy <i>decreasing?</i>  Doesn&#8217;t the Second Law of Thermodynamics say entropy <i>increases?</i></p>
+<p>Don&#8217;t worry: the reason is that I have not put a minus sign in my definition of relative entropy.  Put one in if you like, and then it will increase.  Sometimes without the minus sign it&#8217;s called the <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback&#8211;Leibler divergence</a>.  This <i>decreases</i> with the passage of time, saying that any two population distributions <img src="https://s0.wp.com/latex.php?latex=p%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(t)" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=q%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q(t)" class="latex" /> get &#8216;closer together&#8217; as they get randomized with the passage of time.</p>
+<p>That itself is a nice result, but I want to tell you what happens when you allow drunkards to appear and disappear at certain states. Drunkards appear at the bar once they’ve had enough to drink and once they are home for long enough they can disappear. The set of places where drunkards can appear or disappear <img src="https://s0.wp.com/latex.php?latex=B&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B" class="latex" /> is called the set of <b>boundary states</b>.  So for the above process</p>
+<p><img src="https://s0.wp.com/latex.php?latex=B+%3D+%5C%7B+%5Ctext%7Bhome%7D%2C%5Ctext%7Bbar%7D+%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B = &#92;{ &#92;text{home},&#92;text{bar} &#92;}" class="latex" /></p>
+<p>is the set of boundary states. This changes the way in which the population of drunkards changes with time!</p>
+<p>The drunkards at the taco truck obey the master equation. For them,</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7Bdp_%7Btt%7D%7D%7Bdt%7D+%3D+7p_b+-10+p_%7Btt%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{dp_{tt}}{dt} = 7p_b -10 p_{tt} } " class="latex" /></p>
+<p>still holds.  But because the populations can appear or disappear at the boundary states the master equation no longer holds at those states! Instead it is useful to define the flow of drunkards into the <img src="https://s0.wp.com/latex.php?latex=i%5E%7Bth%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i^{th}" class="latex" /> state by</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7BDp_i%7D%7BDt%7D+%3D+%5Cfrac%7Bdp_i%7D%7Bdt%7D-%5Csum_j+H_%7Bij%7D+p_j%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{Dp_i}{Dt} = &#92;frac{dp_i}{dt}-&#92;sum_j H_{ij} p_j} " class="latex" /></p>
+<p>This quantity describes by how much the rate of change of the populations at the boundary states differ from that given by the master equation.</p>
+<p>The reason why we are interested in open Markov processes is because you can take two open Markov processes and glue them together along some subset of their boundary states to get a new open Markov process! This allows us to build up or break down complicated Markov processes using open Markov processes as the building blocks.</p>
+<p>For example we can draw the graph corresponding to the drunkards’ walk again, only now we will distinguish boundary states from internal states by coloring internal states blue and having boundary states be white:</p>
+<div align="center"><a href="http://math.ucr.edu/home/baez/mathematical/pollard_markov/drunkopen.png"><img width="450" src="https://i2.wp.com/math.ucr.edu/home/baez/mathematical/pollard_markov/drunkopen.png" /></a></div>
+<p>Consider another open Markov process with states</p>
+<p><img src="https://s0.wp.com/latex.php?latex=V%3D%5C%7B+%5Ctext%7Bhome%7D%2C%5Ctext%7Bwork%7D%2C%5Ctext%7Bbar%7D+%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="V=&#92;{ &#92;text{home},&#92;text{work},&#92;text{bar} &#92;}" class="latex" /></p>
+<p>where</p>
+<p><img src="https://s0.wp.com/latex.php?latex=B%3D%5C%7B+%5Ctext%7Bhome%7D%2C+%5Ctext%7Bbar%7D%5C%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="B=&#92;{ &#92;text{home}, &#92;text{bar}&#92;} " class="latex" /></p>
+<p>are the boundary states, leaving</p>
+<p><img src="https://s0.wp.com/latex.php?latex=I%3D%5C%7B%5Ctext%7Bwork%7D%5C%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="I=&#92;{&#92;text{work}&#92;}" class="latex" /></p>
+<p>as an internal state:</p>
+<div align="center"><a href="http://math.ucr.edu/home/baez/mathematical/pollard_markov/drunkopen2.png"><img width="450" src="https://i2.wp.com/math.ucr.edu/home/baez/mathematical/pollard_markov/drunkopen2.png" /></a></div>
+<p>Since the boundary states of this process overlap with the boundary states of the first process we can compose the two to form a new Markov process:</p>
+<div align="center"><a href="http://math.ucr.edu/home/baez/mathematical/pollard_markov/drunkcomposite.png"><img width="450" src="https://i2.wp.com/math.ucr.edu/home/baez/mathematical/pollard_markov/drunkcomposite.png" /></a></div>
+<p>Notice the boundary states are now internal states. I hope any Markov process that could approximately model your behavior has more interesting nodes! There is a nice way to figure out the Hamiltonian of the composite from the Hamiltonians of the pieces, but we will leave that for another time.</p>
+<p>We can ask ourselves, how does relative entropy change with time in open Markov processes?  You can read my paper for the details, but here is the punchline:</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7BdS%28p%28t%29%2Cq%28t%29+%29+%7D%7Bdt%7D+%5Cleq+%5Csum_%7Bi+%5Cin+B%7D+%5Cfrac%7BDp_i%7D%7BDt%7D%5Cfrac%7B%5Cpartial+S%7D%7B%5Cpartial+p_i%7D+%2B+%5Cfrac%7BDq_i%7D%7BDt%7D%5Cfrac%7B%5Cpartial+S%7D%7B%5Cpartial+q_i%7D+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{dS(p(t),q(t) ) }{dt} &#92;leq &#92;sum_{i &#92;in B} &#92;frac{Dp_i}{Dt}&#92;frac{&#92;partial S}{&#92;partial p_i} + &#92;frac{Dq_i}{Dt}&#92;frac{&#92;partial S}{&#92;partial q_i} } " class="latex" /></p>
+<p>This is a version of the Second Law of Thermodynamics for open Markov processes.</p>
+<p>It is important to notice that the sum is only over the boundary states! This inequality tells us that relative entropy still decreases inside our process, but depending on the flow of populations through the boundary states the relative entropy of the whole process could either increase or decrease! This inequality will be important when we study how the relative entropy changes in different parts of a bigger more complicated process.</p>
+<p>That is all for now, but I leave it as an exercise for you to imagine a Markov process that describes your life. How many states does it have? What are the relative transition rates? Are there states you would like to spend more or less time in? Are there states somewhere you would like to visit?</p>
+<p>Here is my paper, which proves the above inequality:</p>
+<p>&bull; Blake Pollard, <a href="http://arxiv.org/abs/1410.6531">A Second Law for open Markov processes</a>, <i>Open Systems and Information Dynamics</i> <b>23</b> (2016), 1650006.</p>
+<p>If you have comments or corrections, let me know!</p>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>
+				
+				<p class="postmetadata alt">
+					<small>
+					This entry was posted  on Saturday, November 15th, 2014 at 3:00 am and is filed under <a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/" rel="category tag">information and entropy</a>, <a href="https://johncarlosbaez.wordpress.com/category/mathematics/" rel="category tag">mathematics</a>, <a href="https://johncarlosbaez.wordpress.com/category/physics/" rel="category tag">physics</a>.					You can follow any responses to this entry through the <a href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/feed/'>RSS 2.0</a> feed.
+											You can <a href="#respond">leave a response</a>, or <a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/trackback/" rel="trackback">trackback</a> from your own site.
+					
+					</small>
+				</p>
+
+				<nav id="nav-below">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://johncarlosbaez.wordpress.com/2014/11/05/network-theory-seminar-part-4/" rel="prev">&laquo; Previous Post</a></span>
+					<span class="nav-next"><a href="https://johncarlosbaez.wordpress.com/2014/11/29/climate-networks/" rel="next">Next Post &raquo;</a></span>
+				</nav><!-- #nav-below -->
+
+			</div>
+		</div>
+
+	<div id="comments">
+
+
+<h3 id="comments-title">29 Responses to <em>A Second Law for Open Markov&nbsp;Processes</em></h3>
+
+
+<ol class="commentlist">
+			<li class="comment byuser comment-author-feguerrapujol even thread-even depth-1 highlander-comment" id="comment-59843">
+				<div id="div-comment-59843" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6f180930e1a2d418a7af1802440b212d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://priorprobability.com' rel='external nofollow ugc' class='url'>enrique</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59843">15 November, 2014 at 5:45 pm</a>		</div>
+
+		<p>Reblogged this on <a href="http://priorprobability.com/2014/11/15/a-second-law-for-open-markov-processes/" rel="nofollow">prior probability</a> and commented:<br />
+If you are fascinated by the concept of randomness and by Markov processes, there is a high probability that you will enjoy the post below &#8230;</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59843#respond' data-commentid="59843" data-postid="19011" data-belowelement="div-comment-59843" data-respondelement="respond" data-replyto="Reply to enrique" aria-label='Reply to enrique'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-oresmus odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-59846">
+				<div id="div-comment-59846" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/911c92abee70c66078c40e7475922486?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Bruce Smith</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59846">15 November, 2014 at 7:11 pm</a>		</div>
+
+		<p>How are the diagonal entries of the Hamiltonian computed from the transition graph, in your first example? (I guessed &#8220;total incoming rate minus total outgoing rate&#8221;, but that doesn&#8217;t quite fit the numbers given.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59846#respond' data-commentid="59846" data-postid="19011" data-belowelement="div-comment-59846" data-respondelement="respond" data-replyto="Reply to Bruce Smith" aria-label='Reply to Bruce Smith'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-oresmus even depth-2 parent highlander-comment" id="comment-59848">
+				<div id="div-comment-59848" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/911c92abee70c66078c40e7475922486?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Bruce Smith</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59848">15 November, 2014 at 7:39 pm</a>		</div>
+
+		<p>Ah, I see you answered this already by saying that the columns should sum to zero. Sorry, nevermind!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59848#respond' data-commentid="59848" data-postid="19011" data-belowelement="div-comment-59848" data-respondelement="respond" data-replyto="Reply to Bruce Smith" aria-label='Reply to Bruce Smith'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-59918">
+				<div id="div-comment-59918" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c2df100295875c5087ef5c44b8f38d4a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Blake Pollard</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59918">17 November, 2014 at 8:06 pm</a>		</div>
+
+		<p>Hi Bruce, thanks for your question. I just wanted to mention that people in different fields often work with &#8216;row infinitesimal stochastic&#8217; meaning that the rows sum to zero. Then when you take the exponential you get a stochastic matrix whose rows sum to one. People often use the terms left stochastic for when the columns sum to one, because you multiply on the left of your probability distribution. Similarly right stochastic is used to refer to row stochastic because you multiply that matrix on the right of your probability distribution. So there is plenty of room for confusion!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59918#respond' data-commentid="59918" data-postid="19011" data-belowelement="div-comment-59918" data-respondelement="respond" data-replyto="Reply to Blake Pollard" aria-label='Reply to Blake Pollard'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-59903">
+				<div id="div-comment-59903" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">domenico</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59903">17 November, 2014 at 11:53 am</a>		</div>
+
+		<p>I write some thing, but I don&#8217;t know if they are trivial.<br />
+The master equation can be transformed in higher order derivative<br />
+<img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7Bd%5E2+p%7D%7Bdt%5E2%7D+%3D+H+%5Cfrac%7Bd+p%7D%7Bdt%7D+%3D+H%5E2+p+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{d^2 p}{dt^2} = H &#92;frac{d p}{dt} = H^2 p " class="latex" /><br />
+so that it is simple to obtain<br />
+<img src="https://s0.wp.com/latex.php?latex=e%5E%7B%5Cfrac%7Bd%7D%7Bdt%7D%7D+%3D+e%5E%7BH%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="e^{&#92;frac{d}{dt}} = e^{H} " class="latex" /><br />
+I think that it is ever possible to obtain a polynomial equation with degree equal to the dimension of the matrix H:<br />
+<img src="https://s0.wp.com/latex.php?latex=%5Csum_i+a_i+H%5Ei+%3D+0+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_i a_i H^i = 0 " class="latex" /><br />
+where the coefficients are obtained from the coefficient the product:<br />
+<img src="https://s0.wp.com/latex.php?latex=%5Cprod_i+%28%5Clambda+-+%5Clambda_i%29+%3D+0+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;prod_i (&#92;lambda - &#92;lambda_i) = 0 " class="latex" /><br />
+where the parameters are the eigenvalues of the Hamiltonian (this is simple if it is possible the eigendecomposition of the Hamiltonian, so that the diagonalized polynomial  have only eigenvalues).<br />
+So that exist a linear differential equation with the same solution of the eigendecomposition polynomial:<br />
+<img src="https://s0.wp.com/latex.php?latex=%5Csum_i+a_i+%5Cfrac%7Bd%5Ei+p%7D%7Bdt%5Ei%7D+%3D+%5Csum_i+a_i+H%5Ei+p+%3D+0+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_i a_i &#92;frac{d^i p}{dt^i} = &#92;sum_i a_i H^i p = 0 " class="latex" /><br />
+it is interesting (if it is all right) that a differential equation have the same dynamic of the master equation, and that there is a Second Law for a differential equation, and that the dynamic of a differential equation depends only on the eigenvalues of a Hamiltonian (the geometry, the form of the surface covered by possible the trajectories depends only on the eigenvalue).</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59903#respond' data-commentid="59903" data-postid="19011" data-belowelement="div-comment-59903" data-respondelement="respond" data-replyto="Reply to domenico" aria-label='Reply to domenico'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-59919">
+				<div id="div-comment-59919" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c2df100295875c5087ef5c44b8f38d4a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Blake Pollard</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59919">17 November, 2014 at 8:11 pm</a>		</div>
+
+		<p>I&#8217;m not sure I understand your comment. Let me just mention that it is true that we get solutions of the form <img src="https://s0.wp.com/latex.php?latex=p%28t%29+%3D+p%280%29+e%5E%7BHt%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(t) = p(0) e^{Ht}" class="latex" /> to the master equation. When you say you get a polynomial equation, <img src="https://s0.wp.com/latex.php?latex=%5Csum_i+a_i+H%5Ei&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;sum_i a_i H^i" class="latex" />, do you mean some numbers times different powers of <img src="https://s0.wp.com/latex.php?latex=H&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="H" class="latex" />? So for a 3&#215;3 Hamiltonian you mean an equation like <img src="https://s0.wp.com/latex.php?latex=a_1H%2Ba_2H%5E2%2Ba_3H%5E3+%3D+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="a_1H+a_2H^2+a_3H^3 = 0" class="latex" />?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59919#respond' data-commentid="59919" data-postid="19011" data-belowelement="div-comment-59919" data-respondelement="respond" data-replyto="Reply to Blake Pollard" aria-label='Reply to Blake Pollard'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 highlander-comment" id="comment-59922">
+				<div id="div-comment-59922" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">domenico</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59922">17 November, 2014 at 10:16 pm</a>		</div>
+
+		<p>Yes, a polynomial with Hamiltonian matrices instead of numbers.<br />
+The exponential was an example, because each function of derivative is a function of Hamiltonian<br />
+<img src="https://s0.wp.com/latex.php?latex=f%5Cleft%28%5Cfrac%7Bd%7D%7Bdt%7D%5Cright%29+p+%3D+f%5Cleft%28H+%5Cright%29+p+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="f&#92;left(&#92;frac{d}{dt}&#92;right) p = f&#92;left(H &#92;right) p " class="latex" /><br />
+so that the exponential was the first example that came to my mind.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59922#respond' data-commentid="59922" data-postid="19011" data-belowelement="div-comment-59922" data-respondelement="respond" data-replyto="Reply to domenico" aria-label='Reply to domenico'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-59920">
+				<div id="div-comment-59920" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59920">17 November, 2014 at 8:34 pm</a>		</div>
+
+		<p>Blake: I wrote a very simplified introduction to this blog article <a href="https://plus.google.com/u/0/117663015413546257905/posts/EYi7EpSirwU" rel="nofollow">on Google+</a>.  I hope some people go from that to reading the actual blog article, because the intro just provides context; it doesn&#8217;t delve into what you&#8217;ve actually done!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59920#respond' data-commentid="59920" data-postid="19011" data-belowelement="div-comment-59920" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-59957">
+				<div id="div-comment-59957" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59957">18 November, 2014 at 2:47 pm</a>		</div>
+
+		<p>John wrote on Google+:</p>
+<blockquote><p>
+Very roughly speaking, he shows that for these systems, entropy can only decrease if it flows out of the system.
+</p></blockquote>
+<p>Do you interpret an entropy change at the boundary ( <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial+S%7D%7B%5Cpartial+p_i+%7D+%5Cneq+0&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial S}{&#92;partial p_i } &#92;neq 0" class="latex" />) as an entropy which flows in/out of the system?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59957#respond' data-commentid="59957" data-postid="19011" data-belowelement="div-comment-59957" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-2 parent highlander-comment" id="comment-59966">
+				<div id="div-comment-59966" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c2df100295875c5087ef5c44b8f38d4a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://gravatar.com/blackashley' rel='external nofollow ugc' class='url'>Blake Pollard</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59966">18 November, 2014 at 6:35 pm</a>		</div>
+
+		<p>The term <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7BDp_i%7D%7BDt%7D+%3D+%5Cfrac%7Bdp_i%7D%7Bdt%7D+-+%5Csum_j+H_%7Bij%7D+p_j+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{Dp_i}{Dt} = &#92;frac{dp_i}{dt} - &#92;sum_j H_{ij} p_j " class="latex" /> is the &#8216;flow&#8217; of probability &#8216;into&#8217; the <img src="https://s0.wp.com/latex.php?latex=i%5E%7Bth%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i^{th} " class="latex" /> vertex. The term <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial+S%7D%7B%5Cpartial+p_i%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial S}{&#92;partial p_i} " class="latex" /> tells you how the relative entropy changes when you change <img src="https://s0.wp.com/latex.php?latex=p_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_i" class="latex" />. So the term <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7BDp_i%7D%7BDt%7D%5Cfrac%7B%5Cpartial+S%7D%7B%5Cpartial+p_i%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{Dp_i}{Dt}&#92;frac{&#92;partial S}{&#92;partial p_i} " class="latex" /> gives the rate at which relative entropy flows into the system at the <img src="https://s0.wp.com/latex.php?latex=i%5E%7Bth%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i^{th}" class="latex" /> vertex.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59966#respond' data-commentid="59966" data-postid="19011" data-belowelement="div-comment-59966" data-respondelement="respond" data-replyto="Reply to Blake Pollard" aria-label='Reply to Blake Pollard'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-3 parent highlander-comment" id="comment-59968">
+				<div id="div-comment-59968" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/a114ddb2d8d68d281202f95cfd64c96c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">nad</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59968">18 November, 2014 at 7:22 pm</a>		</div>
+
+		<p>Thanks for the answer. </p>
+<p>I have a little problem to see this &#8220;flow of probabilities&#8221; as such that is I miss somehow some words on what happens with respect to the &#8220;probabilities sum to one&#8221; feature, but then this is probably mentioned in your article. Furthermore I am not sure whether I would call a change in entropy multiplied by a &#8220;probability flow at the boundary&#8221; an &#8220;entropy flow rate&#8221;.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59968#respond' data-commentid="59968" data-postid="19011" data-belowelement="div-comment-59968" data-respondelement="respond" data-replyto="Reply to nad" aria-label='Reply to nad'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-4 highlander-comment" id="comment-59979">
+				<div id="div-comment-59979" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c2df100295875c5087ef5c44b8f38d4a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://gravatar.com/blackashley' rel='external nofollow ugc' class='url'>Blake Pollard</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59979">18 November, 2014 at 11:35 pm</a>		</div>
+
+		<p>Your point about probabilities summing to one is a valid one. For open systems the <img src="https://s0.wp.com/latex.php?latex=p_i&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_i" class="latex" />’s don&#8217;t sum to one! When considering open systems I should always be using the word &#8216;populations&#8217; instead of &#8216;probabilities&#8217;. We called the term <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7BDp_i%7D%7BDt%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{Dp_i}{Dt} " class="latex" /> the &#8216;flow&#8217; of population into the <img src="https://s0.wp.com/latex.php?latex=i%5E%7Bth%7D&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i^{th}" class="latex" /> vertex, really it is the amount by which the rate of change of the population differs from that given by the master equation. So it tells you how &#8216;un-Markovian&#8217; the populations at the boundaries are. The term <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B+%5Cpartial+S%7D%7B%5Cpartial+p_i%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{ &#92;partial S}{&#92;partial p_i} " class="latex" /> is the change is relative entropy when you change the population at the <img src="https://s0.wp.com/latex.php?latex=i%5E%7Bth%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i^{th} " class="latex" /> vertex. And the product of the two, <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7BDp_i%7D%7BDt%7D+%5Cfrac%7B%5Cpartial+S%7D%7Bp_i%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{Dp_i}{Dt} &#92;frac{&#92;partial S}{p_i} " class="latex" /> is the rate of change of relative entropy of coming from the &#8216;non-Markovian&#8217; behavior at the boundaries. </p>
+<p>Part of the fun of thinking about these open Markov processes is seeing how far you can get with populations that don&#8217;t sum to one. Some things change, such as the values which relative entropy can take, but other results for Markov processes still hold. Depending on what kind of question you want to ask you could think of a way to cook up probabilities from the populations at a particular moment in time.</p>
+
+		
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-3 highlander-comment" id="comment-60023">
+				<div id="div-comment-60023" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-60023">19 November, 2014 at 11:34 pm</a>		</div>
+
+		<p>John wrote:</p>
+<blockquote><p>
+Very roughly speaking, he shows that for these systems, entropy can only decrease if it flows out of the system.
+</p></blockquote>
+<p>Nad wrote:</p>
+<blockquote><p>
+Do you interpret an entropy change at the boundary ( <img src="https://s0.wp.com/latex.php?latex=%5Cfrac%7B%5Cpartial+S%7D%7B%5Cpartial+p_i+%5Cneq+0%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;frac{&#92;partial S}{&#92;partial p_i &#92;neq 0} " class="latex" />) as an entropy which flows in/out of the system?
+</p></blockquote>
+<p><b><i>Very roughly,</i></b> yes.  If I had wanted to be precise, I would have said</p>
+<p><img src="https://s0.wp.com/latex.php?latex=%5Cdisplaystyle%7B+%5Cfrac%7B%5Cpartial+S%7D%7B%5Cpartial+p_i%7D+%5Cneq+0+%7D+&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="&#92;displaystyle{ &#92;frac{&#92;partial S}{&#92;partial p_i} &#92;neq 0 } " class="latex" /></p>
+<p>But I was writing for an impatient nontechnical audience.   I don&#8217;t know a better one-sentence way to summarize Blake&#8217;s result.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=60023#respond' data-commentid="60023" data-postid="19011" data-belowelement="div-comment-60023" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-59965">
+				<div id="div-comment-59965" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6c65b3d3fc035beec559f878228d7d43?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">arch1</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59965">18 November, 2014 at 6:23 pm</a>		</div>
+
+		<p>&#8220;Firstly, we don’t have just one drunkard: we can have any positive real number of drunkards.&#8221;</p>
+<p>I always get stuck on the basics.  How could one even *distinguish* (say) 10^(-30) drunkards from the same quantity of non-drunkards?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59965#respond' data-commentid="59965" data-postid="19011" data-belowelement="div-comment-59965" data-respondelement="respond" data-replyto="Reply to arch1" aria-label='Reply to arch1'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment even depth-2 parent highlander-comment" id="comment-59967">
+				<div id="div-comment-59967" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c2df100295875c5087ef5c44b8f38d4a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://gravatar.com/blackashley' rel='external nofollow ugc' class='url'>Blake Pollard</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59967">18 November, 2014 at 6:50 pm</a>		</div>
+
+		<p>In the above discussion we were only modelling the behavior of drunkards. So there aren&#8217;t any non-drunkards to distinguish them from. For open Markov processes the appearance/disappearance of populations at the boundaries doesn&#8217;t say anything about where they came from or what they turned into. That kind of information has to be supplied by the outside world, which tells you how the populations behave at the boundaries.</p>
+<p>One way to think of this is that a Markov process is a chemical reaction with only one species. We could have a chemical reaction network with multiple species, but then the analogy with the above example can get confusing. A typical chemical reaction network says something like two A&#8217;s and a B turn into a C at some rate. It doesn&#8217;t say anything about where this happened. </p>
+<p>If we wanted to model the behavior of drunkards where we also included non-drunkards in the mix, then we could have our states be something like drunkards at the bar, non-drunkards at the bar, drunkards at home, non-drunkards at home, drunkards at the taco truck, non-drunkards at the taco truck. Then our transitions would be more like non-drunkard at the bar turns into drunkard at the bar or drunkard at the taco truck turns into non-drunkard at home and so on.</p>
+<p>The whole framework is really flexible. I don&#8217;t think any of that answers your question of how to really distinguish between two species. By giving them different labels in your reactions you are assuming that you can distinguish them somehow. In practice though this might be more difficult than distinguishing a drunkard from a non-drunkard.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59967#respond' data-commentid="59967" data-postid="19011" data-belowelement="div-comment-59967" data-respondelement="respond" data-replyto="Reply to Blake Pollard" aria-label='Reply to Blake Pollard'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-59972">
+				<div id="div-comment-59972" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/6c65b3d3fc035beec559f878228d7d43?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">arch1</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-59972">18 November, 2014 at 9:03 pm</a>		</div>
+
+		<p>Blake, thanks much for clarifiying Markov processes vs the more general network model.  OK time for me to start reading in earnest.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59972#respond' data-commentid="59972" data-postid="19011" data-belowelement="div-comment-59972" data-respondelement="respond" data-replyto="Reply to arch1" aria-label='Reply to arch1'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even thread-even depth-1 parent highlander-comment" id="comment-60024">
+				<div id="div-comment-60024" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-60024">19 November, 2014 at 11:36 pm</a>		</div>
+
+		<p>Here is your <a href="https://en.wikipedia.org/wiki/15_minutes_of_fame" rel="nofollow">15 minutes of fame</a>, Blake:</p>
+<p><img src="https://i1.wp.com/math.ucr.edu/home/baez/azimuth-statistics_open_markov_processes_11-19-2014.jpg" alt="" /></p>
+<p>This shows the number of people viewing this site per hour for the last two days.  Your post was noted on <a href="https://hn.algolia.com/?q=markov#!/story/past_week/0/markov" rel="nofollow">Hacker News</a> a little while ago.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=60024#respond' data-commentid="60024" data-postid="19011" data-belowelement="div-comment-60024" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-blackashley odd alt depth-2 highlander-comment" id="comment-60053">
+				<div id="div-comment-60053" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/c2df100295875c5087ef5c44b8f38d4a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://blackashley.wordpress.com' rel='external nofollow ugc' class='url'>Dr. P</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-60053">20 November, 2014 at 6:55 pm</a>		</div>
+
+		<p>That&#8217;s a nice spike!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=60053#respond' data-commentid="60053" data-postid="19011" data-belowelement="div-comment-60053" data-respondelement="respond" data-replyto="Reply to Dr. P" aria-label='Reply to Dr. P'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-webhubtelescope even thread-odd thread-alt depth-1 highlander-comment" id="comment-60028">
+				<div id="div-comment-60028" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://1.gravatar.com/avatar/dc21eed3ebc499422d6c4a927c71ac4f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">WebHubTelescope</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-60028">20 November, 2014 at 12:26 am</a>		</div>
+
+		<p>Markov diagrams are often used in modeling continuous failure rates in systems.  Every transition points in an outward direction towards a failure, or greater entropy. Yet those same diagrams can be used to model maintenance, whereby the part is repaired and the arrow points in the other direction.  That is one way of looking at it &#8212; that any closing of a loop regains order in the system.  </p>
+<p>Just a suggestion for an application!</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=60028#respond' data-commentid="60028" data-postid="19011" data-belowelement="div-comment-60028" data-respondelement="respond" data-replyto="Reply to WebHubTelescope" aria-label='Reply to WebHubTelescope'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-60076">
+				<div id="div-comment-60076" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/5457bfdde71e7d8531bb9fac0aa8db10?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Curious</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-60076">21 November, 2014 at 6:24 am</a>		</div>
+
+		<p>Can you motivate why it is okay to think of the KL divergence as being relevant for a 2nd law analogy? It seems like the more natural comparison would have been with the entropy, and in that case, the entropy of the stationary distribution need not be greater than the original entropy.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=60076#respond' data-commentid="60076" data-postid="19011" data-belowelement="div-comment-60076" data-respondelement="respond" data-replyto="Reply to Curious" aria-label='Reply to Curious'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-60090">
+				<div id="div-comment-60090" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-60090">21 November, 2014 at 7:26 pm</a>		</div>
+
+		<p>Up to some minor fudge factors, the entropy of a probability distribution <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> is the Kullback-Leibler divergence of <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> relative to the uniform distribution.  Every Markov process with a finite set of states has at least one equilibium distribution.   For Markov processes where the equilibrium distribution is the uniform distribution, entropy increases.  This is the simplest version of the Second Law.  Equivalently, the Kullback-Leibler divergence of <img src="https://s0.wp.com/latex.php?latex=p%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(t)" class="latex" /> relative to the uniform distribution decreases.  </p>
+<p>For Markov processes where the equilibrium distribution is some other distribution <img src="https://s0.wp.com/latex.php?latex=q%2C&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q," class="latex" /> the Kullback-Leibler divergence of <img src="https://s0.wp.com/latex.php?latex=p%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(t)" class="latex" /> relative to <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> decreases.  This is the simplest version of the Second Law that applies to all Markov processes with a finite set of states.</p>
+<p>But in fact there&#8217;s a more powerful generalization, which is what Blake uses.  For any Markov process, if we take two probability distributions <img src="https://s0.wp.com/latex.php?latex=p&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=q&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q" class="latex" /> and evolve them forward in time, the Kullback-Leibler divergence of <img src="https://s0.wp.com/latex.php?latex=p%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(t)" class="latex" /> relative to <img src="https://s0.wp.com/latex.php?latex=q%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q(t)" class="latex" /> decreases!</p>
+<p>This subsumes all the results I mentioned previously.  It has the great advantage that we don&#8217;t need to know an equilibrium distribution to apply it.  This, I claim, is the right way to think about the Second Law for Markov processes.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=60090#respond' data-commentid="60090" data-postid="19011" data-belowelement="div-comment-60090" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment odd alt depth-3 highlander-comment" id="comment-60110">
+				<div id="div-comment-60110" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://2.gravatar.com/avatar/5457bfdde71e7d8531bb9fac0aa8db10?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn">Curious</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-60110">22 November, 2014 at 5:59 am</a>		</div>
+
+		<p>Call me convinced.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=60110#respond' data-commentid="60110" data-postid="19011" data-belowelement="div-comment-60110" data-respondelement="respond" data-replyto="Reply to Curious" aria-label='Reply to Curious'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-buscemif even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-61082">
+				<div id="div-comment-61082" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/f99face86ffec35347c981a170d7b5a3?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://fbuscemi.wordpress.com' rel='external nofollow ugc' class='url'>francesco</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-61082">15 December, 2014 at 2:57 am</a>		</div>
+
+		<p>Very nice post! Landed here after googling &#8220;markov second law.&#8221; Not sure whether I am going to contravene any blogosphere etiquette now (in which case, I apologise in advance), but I would like to point out that a sort of information-theoretic &#8220;second-law&#8211;like&#8221; converse also hold, i.e., that any process that makes any ensemble of initial distributions less and less distinguishable over time is necessarily Markovian? I would be happy to discuss this further, in case you are interested.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=61082#respond' data-commentid="61082" data-postid="19011" data-belowelement="div-comment-61082" data-respondelement="respond" data-replyto="Reply to francesco" aria-label='Reply to francesco'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor odd alt depth-2 parent highlander-comment" id="comment-61088">
+				<div id="div-comment-61088" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-61088">15 December, 2014 at 4:10 am</a>		</div>
+
+		<p>Francesco wrote:</p>
+<blockquote><p>
+I would like to point out that a sort of information-theoretic “second-law–like” converse also hold, i.e., that any process that makes any ensemble of initial distributions less and less distinguishable over time is necessarily Markovian?
+</p></blockquote>
+<p>The question mark at the end confuses me.  Are you pointing out a fact, or asking a question?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=61088#respond' data-commentid="61088" data-postid="19011" data-belowelement="div-comment-61088" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-buscemif even depth-3 highlander-comment" id="comment-61104">
+				<div id="div-comment-61104" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/f99face86ffec35347c981a170d7b5a3?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://fbuscemi.wordpress.com' rel='external nofollow ugc' class='url'>francesco</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-61104">15 December, 2014 at 7:50 am</a>		</div>
+
+		<p>Sorry, that&#8217;s meant to be a fact. :)<br />
+(The question mark was left behind after reformulating my comment.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=61104#respond' data-commentid="61104" data-postid="19011" data-belowelement="div-comment-61104" data-respondelement="respond" data-replyto="Reply to francesco" aria-label='Reply to francesco'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-zhangwfjh odd alt thread-even depth-1 parent highlander-comment" id="comment-65297">
+				<div id="div-comment-65297" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/02de0cf3e2d88fb4cbb34ac60762e391?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://zhangwfjh.wordpress.com' rel='external nofollow ugc' class='url'>zhangwfjh</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-65297">27 March, 2015 at 8:07 am</a>		</div>
+
+		<p>Very interesting post. I have a question. Why do we consider relative entropy for Markov processes rather than entropy? As far as I know, the entropy doesn&#8217;t always increase along the time evolution of Markov process, instead relative entropy does. How to explain the differences?</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=65297#respond' data-commentid="65297" data-postid="19011" data-belowelement="div-comment-65297" data-respondelement="respond" data-replyto="Reply to zhangwfjh" aria-label='Reply to zhangwfjh'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-johncarlosbaez bypostauthor even depth-2 parent highlander-comment" id="comment-65314">
+				<div id="div-comment-65314" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://math.ucr.edu/home/baez/' rel='external nofollow ugc' class='url'>John Baez</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-65314">27 March, 2015 at 4:06 pm</a>		</div>
+
+		<p>Entropy is maximized by the &#8220;flat&#8221; or &#8220;constant&#8221; probability distribution: the one with</p>
+<p><img src="https://s0.wp.com/latex.php?latex=p_i+%3D+p_j&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p_i = p_j" class="latex" /></p>
+<p>for all <img src="https://s0.wp.com/latex.php?latex=i%2C+j.&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="i, j." class="latex" />  So, it&#8217;s not surprising that entropy increases for any Markov process for which the flat probability distribution is an equilibrium state.  This happens if and only if time evolution is given by  <a href="https://en.wikipedia.org/wiki/Doubly_stochastic_matrix" rel="nofollow">doubly stochastic</a> matrices: matrices of nonnegative numbers where the entries in any column <em>and in any row</em> sum to 1.</p>
+<p>But for most Markov processes, time evolution is <em>not</em> doubly stochastic.  For most Markov processes, the flat probability distribution is <em>not</em> an equilibrium.</p>
+<p>So, for most Markov processes we need to use relative entropy.  If we evolve a probability distribution according to a Markov process, its entropy <em>relative to any equilibrium distribution</em> will increase.  (Blake says it decreases, but that&#8217;s just because he&#8217;s leaving the minus sign out of the definition of relative entropy.  It&#8217;s just a different convention.)</p>
+<p>This is the best way to generalize the 2nd law from doubly stochastic Markov processes to general Markov processes.  I have argued that <a href="http://math.ucr.edu/home/baez/information/information_geometry_6.html" rel="nofollow">relative entropy is more fundamental than entropy</a>, because how much information you gain when you learn something depends on what you already knew.   Note that the ordinary entropy is &#8212; up to a constant factor and additive constant &#8212; the same as entropy relative to the flat probability distribution.  So even ordinary entropy is relative entropy in disguise.</p>
+<p>But the really nice thing is that when we use relative entropy, we don&#8217;t need to worry about the equilibrium state!  If <img src="https://s0.wp.com/latex.php?latex=p%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="p(t)" class="latex" /> and <img src="https://s0.wp.com/latex.php?latex=q%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q(t)" class="latex" /> are two probability distributions evolving in time according to a Markov process, the relative entropy <img src="https://s0.wp.com/latex.php?latex=S%28p%28t%29%2C+q%28t%29%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="S(p(t), q(t))" class="latex" /> always increases!   The case where <img src="https://s0.wp.com/latex.php?latex=q%28t%29&#038;bg=ffffff&#038;fg=333333&#038;s=0&#038;c=20201002" alt="q(t)" class="latex" /> is an equilibrium solution &mdash; constant in time &mdash; is just a special case.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=65314#respond' data-commentid="65314" data-postid="19011" data-belowelement="div-comment-65314" data-respondelement="respond" data-replyto="Reply to John Baez" aria-label='Reply to John Baez'>Reply</a></div>
+				</div>
+				<ul class="children">
+		<li class="comment byuser comment-author-zhangwfjh odd alt depth-3 highlander-comment" id="comment-65345">
+				<div id="div-comment-65345" class="comment-body">
+				<div class="comment-author vcard">
+			<img alt='' src='https://0.gravatar.com/avatar/02de0cf3e2d88fb4cbb34ac60762e391?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />			<cite class="fn"><a href='http://zhangwfjh.wordpress.com' rel='external nofollow ugc' class='url'>zhangwfjh</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-65345">28 March, 2015 at 5:59 am</a>		</div>
+
+		<p>Got it. Thank you very much.</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=65345#respond' data-commentid="65345" data-postid="19011" data-belowelement="div-comment-65345" data-respondelement="respond" data-replyto="Reply to zhangwfjh" aria-label='Reply to zhangwfjh'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="pingback even thread-odd thread-alt depth-1 highlander-comment" id="comment-76229">
+				<div id="div-comment-76229" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href='https://johncarlosbaez.wordpress.com/2016/01/14/information-geometry-part-16/' rel='external nofollow ugc' class='url'>Information Geometry (Part 16) | Azimuth</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata">
+			<a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/#comment-76229">14 January, 2016 at 7:04 am</a>		</div>
+
+		<p>Lately we&#8217;ve been thinking about open Markov processes.  These are random processes where something can hop randomly from one state to another (that&#8217;s the &#8216;Markov process&#8217; part) but also enter or leave the system (that&#8217;s the &#8216;open&#8217; part).</p>
+<p>The ultimate goal is to understand the nonequilibrium thermodynamics of open systems&#8212;systems where energy and maybe matter flows in and out.  If we could understand this well enough, we could understand in detail how <i>life</i> works.  That&#8217;s a difficult job!  But one has to start somewhere, and this is one place to start.</p>
+<p>We have a few papers on this subject:</p>
+<p>&bull; Blake Pollard, <a href="http://arxiv.org/abs/1410.6531" rel="nofollow">A Second Law for open Markov processes</a>.  (Blog article <a href="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/" rel="nofollow">here</a>.)</p>
+<p>&bull; John Baez, Brendan Fong and Blake Pollard, <a href="http://arxiv.org/abs/1504.05625" rel="nofollow">A compositional framework for Markov processes</a>.  (Blog article <a href="https://johncarlosbaez.wordpress.com/2015/09/04/a-compositional-framework-for-markov-processes/" rel="nofollow">here</a>.)</p>
+<p>&bull; Blake Pollard, <a href="http://arxiv.org/abs/1601.00711" rel="nofollow">Open Markov processes: A compositional perspective on non-equilibrium steady states in biology</a>.  (Blog article <a href="https://johncarlosbaez.wordpress.com/2016/01/11/information-geometry-part-15/" rel="nofollow">here</a>.)</p>
+
+		<div class="reply"><a rel='nofollow' class='comment-reply-link' href='https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=76229#respond' data-commentid="76229" data-postid="19011" data-belowelement="div-comment-76229" data-respondelement="respond" data-replyto="Reply to Information Geometry (Part 16) | Azimuth" aria-label='Reply to Information Geometry (Part 16) | Azimuth'>Reply</a></div>
+				</div>
+				</li><!-- #comment-## -->
+</ol>
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="#comment-59922">domenico</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2014/11/15/a-second-law-for-open-markov-processes/#respond">Cancel reply</a></small></h3><form action="https://johncarlosbaez.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="43cb85f550" /><input type="hidden" name="_wp_http_referer" value="/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59922" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="https://public-api.wordpress.com/connect/?googleplus-sign-in=https%3A%2F%2Fjohncarlosbaez.wordpress.com&#038;color_scheme=light" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function () {
+
+	function hide( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.setProperty( 'display', 'none' );
+		}
+	}
+
+	function show( sel ) {
+		var el = document.querySelector( sel );
+		if ( el ) {
+			el.style.removeProperty( 'display' );
+		}
+	}
+
+	var input = document.createElement( 'input' );
+	var comment = document.querySelector( '#comment' );
+
+	if ( input && comment && 'placeholder' in input ) {
+		var label = document.querySelector( '.comment-textarea label' );
+		if ( label ) {
+			var text = label.textContent;
+			label.parentNode.removeChild( label );
+			comment.setAttribute( 'placeholder', text );
+		}
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	hide( '#comment-form-identity' );
+	hide( '#comment-form-subscribe' );
+	hide( '#commentform .form-submit' );
+
+	if ( comment ) {
+		comment.style.height = '10px';
+
+		var handler = function () {
+			comment.style.height = HighlanderComments.initialHeight + 'px';
+			show( '#comment-form-identity' );
+			show( '#comment-form-subscribe' );
+			show( '#commentform .form-submit' );
+			HighlanderComments.resizeCallback();
+
+			comment.removeEventListener( 'focus', handler );
+		};
+
+		comment.addEventListener( 'focus', handler );
+	}
+}
+
+if ( document.readyState !== 'loading' ) {
+	highlander_expando_javascript();
+} else {
+	if ( typeof window.jQuery === 'function' ) {
+		// Use jQuery's `ready` if available.
+		// This solves some scheduling issues between this script and the main highlander script.
+		jQuery( document ).ready( highlander_expando_javascript );
+	} else {
+		// If not available, add a vanilla event listener.
+		document.addEventListener( 'DOMContentLoaded', highlander_expando_javascript );
+	}
+}
+
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog"  style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit wp-block-button"><input name="submit" type="submit" id="comment-submit" class="submit wp-block-button__link" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='19011' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='59922' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="42f170aa1a" /></p>
+<input type="hidden" name="genseq" value="1632628564" />
+<input type="hidden" id="ak_js" name="ak_js" value="242"/><textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100" style="display: none !important;"></textarea><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></form>	</div><!-- #respond -->
+	<div style="clear: both"></div><p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>
+</div><!-- #comments -->
+	
+	</div>
+
+
+
+	<div id="sidebar">
+				<ul>
+
+		
+		<li id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widgettitle">latest posts:</h2>
+
+		<ul>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/">Classical Mechanics versus Thermodynamics (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/">Maxwell&#8217;s Relations (Part&nbsp;3)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/">Maxwell&#8217;s Relations (Part&nbsp;2)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/">Maxwell&#8217;s Relations (Part&nbsp;1)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/">The Cyclic Identity for Partial&nbsp;Derivatives</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/17/information-geometry-part-21/">Information Geometry (Part&nbsp;21)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/14/information-geometry-part-20/">Information Geometry (Part&nbsp;20)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/08/information-geometry-part-19/">Information Geometry (Part&nbsp;19)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/08/05/information-geometry-part-18/">Information Geometry (Part&nbsp;18)</a>
+									</li>
+											<li>
+					<a href="https://johncarlosbaez.wordpress.com/2021/07/29/structured-vs-decorated-cospans-part-2/">Structured vs Decorated Cospans (Part&nbsp;2)</a>
+									</li>
+					</ul>
+
+		</li>
+<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">latest comments:</h2>
+				<table class="recentcommentsavatar" cellspacing="0" cellpadding="0" border="0">
+					<tr><td title="amarashiki" class="recentcommentsavatartop" style="height:32px; width:32px;"><a href="http://gravatar.com/amarashiki" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/62b2df0762257e75433ad6f161488c3a?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstexttop" style=""><a href="http://gravatar.com/amarashiki" rel="nofollow">amarashiki</a> on <a href="https://johncarlosbaez.wordpress.com/2012/01/23/classical-mechanics-versus-thermodynamics-part-2/#comment-172566">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172560">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172559">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="domenico" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://2.gravatar.com/avatar/ba06491deb8346d20356ac2ae05893ee?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">domenico on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172558">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/22/maxwells-relations-part-3/#comment-172557">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/18/maxwells-relations-part-two/#comment-172556">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Maxwell Relations | Equivalent eXchange" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow"></a></td><td class="recentcommentstextend" style=""><a href="http://equivalentexchange.blog/2021/09/25/maxwell-relations/" rel="nofollow">Maxwell Relations |&hellip;</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/17/maxwells-relations-part-1/#comment-172555">Maxwell&#8217;s Relations (Par&hellip;</a></td></tr><tr><td title="Robert A. Wilson" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="https://robwilson1.wordpress.com" rel="nofollow"><img alt='' src='https://2.gravatar.com/avatar/24dc7e2371491f36fd4538b3474920b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="https://robwilson1.wordpress.com" rel="nofollow">Robert A. Wilson</a> on <a href="https://johncarlosbaez.wordpress.com/2021/04/04/the-koide-formula/#comment-172553">The Koide Formula</a></td></tr><tr><td title="John Baez" class="recentcommentsavatarend" style="height:32px; width:32px;"><a href="http://math.ucr.edu/home/baez/" rel="nofollow"><img alt='' src='https://0.gravatar.com/avatar/34784534843022b3541c8ddd693718cb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></a></td><td class="recentcommentstextend" style=""><a href="http://math.ucr.edu/home/baez/" rel="nofollow">John Baez</a> on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172545">Classical Mechanics versus The&hellip;</a></td></tr><tr><td title="Wolfgang" class="recentcommentsavatarend" style="height:32px; width:32px;"><img alt='' src='https://1.gravatar.com/avatar/d3c6d7ec8069e25c08a0a11263581925?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' /></td><td class="recentcommentstextend" style="">Wolfgang on <a href="https://johncarlosbaez.wordpress.com/2021/09/23/classical-mechanics-versus-thermodynamics-part-3/#comment-172543">Classical Mechanics versus The&hellip;</a></td></tr>				</table>
+				</li>
+<li id="text-3" class="widget widget_text"><h2 class="widgettitle">How To Write Math Here:</h2>
+			<div class="textwidget"><p>You can <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">include math in your comments using LaTeX</a>,  but you need to do it this way:</p>
+<p>&#036;latex  E = mc^2&#036;</p>
+<p>You need the word 'latex' right after the first dollar sign, and it needs a space after it.  Double dollar signs don't work, and other limitations apply, some described <a href="http://en.support.wordpress.com/latex/">here</a>.  You can't preview comments here, but I'm happy to fix errors.</p>
+</div>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Read Posts On:</h2>
+
+			<ul>
+					<li class="cat-item cat-item-177"><a href="https://johncarlosbaez.wordpress.com/category/art/">art</a> (3)
+</li>
+	<li class="cat-item cat-item-4003"><a href="https://johncarlosbaez.wordpress.com/category/astronomy/">astronomy</a> (29)
+</li>
+	<li class="cat-item cat-item-8262191"><a href="https://johncarlosbaez.wordpress.com/category/azimuth/">azimuth</a> (60)
+</li>
+	<li class="cat-item cat-item-86856"><a href="https://johncarlosbaez.wordpress.com/category/biodiversity/">biodiversity</a> (38)
+</li>
+	<li class="cat-item cat-item-4936"><a href="https://johncarlosbaez.wordpress.com/category/biology/">biology</a> (107)
+</li>
+	<li class="cat-item cat-item-355244"><a href="https://johncarlosbaez.wordpress.com/category/carbon-emissions/">carbon emissions</a> (78)
+</li>
+	<li class="cat-item cat-item-5936"><a href="https://johncarlosbaez.wordpress.com/category/chemistry/">chemistry</a> (74)
+</li>
+	<li class="cat-item cat-item-6108"><a href="https://johncarlosbaez.wordpress.com/category/climate/">climate</a> (155)
+</li>
+	<li class="cat-item cat-item-5043"><a href="https://johncarlosbaez.wordpress.com/category/computer-science/">computer science</a> (57)
+</li>
+	<li class="cat-item cat-item-9204"><a href="https://johncarlosbaez.wordpress.com/category/conferences/">conferences</a> (81)
+</li>
+	<li class="cat-item cat-item-1098"><a href="https://johncarlosbaez.wordpress.com/category/culture/">culture</a> (4)
+</li>
+	<li class="cat-item cat-item-657"><a href="https://johncarlosbaez.wordpress.com/category/economics/">economics</a> (32)
+</li>
+	<li class="cat-item cat-item-1212"><a href="https://johncarlosbaez.wordpress.com/category/energy/">energy</a> (50)
+</li>
+	<li class="cat-item cat-item-25393"><a href="https://johncarlosbaez.wordpress.com/category/engineering/">engineering</a> (11)
+</li>
+	<li class="cat-item cat-item-14852"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/game-theory/">game theory</a> (29)
+</li>
+	<li class="cat-item cat-item-1215"><a href="https://johncarlosbaez.wordpress.com/category/geography/">geography</a> (4)
+</li>
+	<li class="cat-item cat-item-337"><a href="https://johncarlosbaez.wordpress.com/category/health/">health</a> (4)
+</li>
+	<li class="cat-item cat-item-678"><a href="https://johncarlosbaez.wordpress.com/category/history/">history</a> (2)
+</li>
+	<li class="cat-item cat-item-23375499"><a href="https://johncarlosbaez.wordpress.com/category/information-and-entropy/">information and entropy</a> (92)
+</li>
+	<li class="cat-item cat-item-3558"><a href="https://johncarlosbaez.wordpress.com/category/jobs/">jobs</a> (11)
+</li>
+	<li class="cat-item cat-item-5465"><a href="https://johncarlosbaez.wordpress.com/category/journals/">journals</a> (5)
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://johncarlosbaez.wordpress.com/category/mathematics/">mathematics</a> (478)
+</li>
+	<li class="cat-item cat-item-18"><a href="https://johncarlosbaez.wordpress.com/category/music/">music</a> (3)
+</li>
+	<li class="cat-item cat-item-3968"><a href="https://johncarlosbaez.wordpress.com/category/networks/">networks</a> (185)
+</li>
+	<li class="cat-item cat-item-154934"><a href="https://johncarlosbaez.wordpress.com/category/oceans/">oceans</a> (13)
+</li>
+	<li class="cat-item cat-item-1211"><a href="https://johncarlosbaez.wordpress.com/category/physics/">physics</a> (204)
+</li>
+	<li class="cat-item cat-item-10451"><a href="https://johncarlosbaez.wordpress.com/category/probability/">probability</a> (92)
+</li>
+	<li class="cat-item cat-item-4909"><a href="https://johncarlosbaez.wordpress.com/category/psychology/">psychology</a> (6)
+</li>
+	<li class="cat-item cat-item-3330"><a href="https://johncarlosbaez.wordpress.com/category/publishing/">publishing</a> (19)
+</li>
+	<li class="cat-item cat-item-46615"><a href="https://johncarlosbaez.wordpress.com/category/puzzles/">puzzles</a> (14)
+</li>
+	<li class="cat-item cat-item-4140243"><a href="https://johncarlosbaez.wordpress.com/category/quantum-technologies/">quantum technologies</a> (28)
+</li>
+	<li class="cat-item cat-item-562"><a href="https://johncarlosbaez.wordpress.com/category/questions/">questions</a> (3)
+</li>
+	<li class="cat-item cat-item-93974"><a href="https://johncarlosbaez.wordpress.com/category/risks/">risks</a> (48)
+</li>
+	<li class="cat-item cat-item-37893"><a href="https://johncarlosbaez.wordpress.com/category/seminars/">seminars</a> (21)
+</li>
+	<li class="cat-item cat-item-581"><a href="https://johncarlosbaez.wordpress.com/category/software/">software</a> (19)
+</li>
+	<li class="cat-item cat-item-39438"><a href="https://johncarlosbaez.wordpress.com/category/strategies/">strategies</a> (36)
+</li>
+	<li class="cat-item cat-item-6877"><a href="https://johncarlosbaez.wordpress.com/category/sustainability/">sustainability</a> (71)
+</li>
+	<li class="cat-item cat-item-66608272"><a href="https://johncarlosbaez.wordpress.com/category/the-practice-of-science/">the practice of science</a> (27)
+</li>
+	<li class="cat-item cat-item-61590"><a href="https://johncarlosbaez.wordpress.com/category/this-weeks-finds/">this week&#039;s finds</a> (18)
+</li>
+			</ul>
+
+			</li>
+<li id="linkcat-20924250" class="widget widget_links"><h2 class="widgettitle">also visit these:</h2>
+
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.azimuthproject.org/azimuth/show/Azimuth+Blog" title="Go here to see what’s on this blog, organized by topic or author!">Azimuth Blog Overview</a></li>
+<li><a href="http://www.azimuthproject.org/azimuth/show/HomePage" title="for scientists and engineers who want to save the planet">Azimuth Project</a></li>
+<li><a href="http://bittooth.blogspot.com/" title="David Summers on energy: oil, gas and more">Bit Tooth Energy</a></li>
+<li><a href="http://bravenewclimate.com/" title="Barry Brooks on climate and energy policy">Brave New Climate</a></li>
+<li><a href="http://physics.ucsd.edu/do-the-math/" title="UC San Diego prof uses physics and estimation to assess energy, growth, options">Do the Math</a></li>
+<li><a href="http://dotearth.blogs.nytimes.com/" title="Andrew Revkin’s environmental blog on the New York Times">Dot Earth</a></li>
+<li><a href="http://e360.yale.edu/" title="News from the Yale School of Forestry &amp; Environmental Studies">Environment 360</a></li>
+<li><a href="http://planet3.org/" title="A metablog on sustainability">Planet3.0</a></li>
+<li><a href="http://www.realclimate.org/" title="climate science from climate scientists">RealClimate</a></li>
+<li><a href="http://www.easterbrook.ca/steve/" title="Steve Easterbrook&#8217;s blog on software engineering and climate modeling">Serendipity</a></li>
+<li><a href="http://scienceofdoom.com/" title="climate science in perspective">The Science of Doom</a></li>
+<li><a href="http://e360.yale.edu/" title="opinion, analysis, reporting and debate on environmental issues">Yale Environment 360</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS feeds:</h2>
+<p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></p><p class="size-small"><a class="feed-image-link" href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments"><img src="https://johncarlosbaez.wordpress.com/i/rss/red-small.png?m=1391188133h" alt="RSS Feed" /></a>&nbsp;<a href="https://johncarlosbaez.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></p>
+</li>
+<li id="blog_subscription-3" class="widget widget_blog_subscription jetpack_subscription_widget"><h2 class="widgettitle"><label for="subscribe-field">Email Subscription:</label></h2>
+
+			<form
+				action="https://subscribe.wordpress.com"
+				method="post"
+				accept-charset="utf-8"
+				id=""
+			>
+				<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+					<div class="jetpack-subscribe-count">
+						<p>
+						Join 5,227 other followers						</p>
+					</div>
+									<p id="subscribe-email">
+					<label
+						id="subscribe-field-label"
+						for="subscribe-field"
+						class="screen-reader-text"
+					>
+						Email Address:					</label>
+
+					<input
+							type="email"
+							name="email"
+							
+							style="width: 95%; padding: 1px 10px"
+							placeholder="Enter your email address"
+							value=""
+							id="subscribe-field"
+						/>				</p>
+
+				<p id="subscribe-submit"
+									>
+                    <input type="hidden" name="action" value="subscribe"/>
+                    <input type="hidden" name="blog_id" value="12777403"/>
+                    <input type="hidden" name="source" value="https://johncarlosbaez.wordpress.com/2014/11/15/a-second-law-for-open-markov-processes/?replytocom=59922"/>
+                    <input type="hidden" name="sub-type" value="widget"/>
+                    <input type="hidden" name="redirect_fragment" value="blog_subscription-3"/>
+					<input type="hidden" id="_wpnonce" name="_wpnonce" value="8f1337fe87" />                    <button type="submit"
+	                    	                        class="wp-block-button__link"
+	                    		                	                >
+	                    Sign me up!                    </button>
+                </p>
+            </form>
+			
+</li>
+<li id="search-3" class="widget widget_search"><h2 class="widgettitle">SEARCH:</h2>
+<form method="get" id="searchform" action="https://johncarlosbaez.wordpress.com/">
+<div><label for="s" class="search-label">Search</label><input type="text" value="" name="s" id="s" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div>
+</form></li>
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats:</h2>
+		<ul>
+			<li>4,177,056 hits</li>
+		</ul>
+		</li>
+		</ul>
+	</div>
+
+
+
+<div id="footer">
+	<p>
+	<br />
+	<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</p>
+</div>
+
+</div>
+
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202138y' id='grofiles-cards-js'></script>
+<script id='wpgroho-js-extra'>
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240h'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-6f180930e1a2d418a7af1802440b212d">
+	</div>
+	<div class="grofile-hash-map-911c92abee70c66078c40e7475922486">
+	</div>
+	<div class="grofile-hash-map-c2df100295875c5087ef5c44b8f38d4a">
+	</div>
+	<div class="grofile-hash-map-ba06491deb8346d20356ac2ae05893ee">
+	</div>
+	<div class="grofile-hash-map-34784534843022b3541c8ddd693718cb">
+	</div>
+	<div class="grofile-hash-map-a114ddb2d8d68d281202f95cfd64c96c">
+	</div>
+	<div class="grofile-hash-map-6c65b3d3fc035beec559f878228d7d43">
+	</div>
+	<div class="grofile-hash-map-c2df100295875c5087ef5c44b8f38d4a">
+	</div>
+	<div class="grofile-hash-map-dc21eed3ebc499422d6c4a927c71ac4f">
+	</div>
+	<div class="grofile-hash-map-5457bfdde71e7d8531bb9fac0aa8db10">
+	</div>
+	<div class="grofile-hash-map-f99face86ffec35347c981a170d7b5a3">
+	</div>
+	<div class="grofile-hash-map-02de0cf3e2d88fb4cbb34ac60762e391">
+	</div>
+	<div class="grofile-hash-map-62b2df0762257e75433ad6f161488c3a">
+	</div>
+	<div class="grofile-hash-map-24dc7e2371491f36fd4538b3474920b5">
+	</div>
+	<div class="grofile-hash-map-d3c6d7ec8069e25c08a0a11263581925">
+	</div>
+	</div>
+<script id='highlander-comments-js-extra'>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/johncarlosbaez.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/johncarlosbaez.wordpress.com\/wp-login.php?action=logout&_wpnonce=598fb2ebe8","homeURL":"https:\/\/johncarlosbaez.wordpress.com\/","postID":"19011","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script crossorigin='anonymous' type='text/javascript' src='https://s1.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1626677336j'></script>
+
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20210915";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20210920";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	<script crossorigin='anonymous' type='text/javascript' src='https://s2.wp.com/_static/??-eJyFTs0OgjAMfiHHAgcTDsZnGVtDNuk2207g7S2JXIyJp/58v3atxpcskMUmtgFe0UPdusQXq1DMfmkB+MB8QVSaIajL3mHMJ+nUYzN1aXPMbF1Q3EyOLDoWIN2MkPMP/hapcXo2oP0zurVqkKlUtl2j9Mfyq42egBOEP0XWGGYQttwm9hSrxJKPDne89ddhHPthuPbpDZCYYT4='></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="//stats.wp.com/w.js?62" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'12777403','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'12777403','v':'wpcom','tz':'0','user_id':'0','post':'19011','subd':'johncarlosbaez'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1d6eVImTEouL2UleTBRZmlNdkp0aWJaNFJhPS0uTVpHa1hIc25EbVJyQmw/SkZ+Q3lLcjU/NDBvQTY5VDVHd2NlRGhKP0Z2P1JSbD1BU3w/SDd0RFdGNWt5L1J8JSsxfk1fNFl2RGptPSZhNS0tRE9henxPdFpKb3E5azc4flNnLHRddFZ1bXNreX5iWmQ5WGxVdjdBQTlkS0pTc05zc1poJSZmXS02dnd4M2hOQ2o1aTBLN282M1ZqRzRfTlJ5ZTdbRjVoQVZ5T1E3Sn5oc3EzWi05LndqcXVlc1ddVUQxSXBiTVplaUlqWWhxZzFxW3haYV1KVTBqX2N5OTQrSllhbDQmNXFRX21lWjdQW3xkU3w5Rw=='}]);
+_stq.push([ 'clickTrackerInit', '12777403', '19011' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>
