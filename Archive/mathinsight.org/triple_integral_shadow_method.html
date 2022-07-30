@@ -23,8 +23,14 @@
 <script src="static/js/ajaxcsrf.js" type="text/javascript"></script>
 
 
-
-<script type="text/javascript" src="static/MathJax/MathJax.js@config=TeX-AMS_HTML-full,%252Fstatic%252Fmathjaxconfig%252Fmidefault"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+</script>
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -179,19 +185,19 @@
 
 <p>In the shadow method, you imagine there is a light source, such as the sun, positioned far away along one of the coordinate axis (such as the positive $z$-axis).  We'll think of this sun as being straight up in the sky and think of the chosen coordinate axis as though it were vertical.</p>
 
-<p>As this sun is shining on the three-dimesional region $\dlv$ of our integral, it is casting a shadow onto the flat ground below the region, i.e., on a plane perpendicular to the axis the sun is coming from.  This shadow is a two-dimensional region, and we turn the triple integral over $\dlv$ into a double integral over the shadow.  Inside the double integral, we still need to include a single integral in the third &ldquo;vertical&rdquo; variable, where this variable ranges from the bottom of $\dlv$ to its top.  If, for example, we had chosen $z$ to be the &ldquo;vertical&rdquo; variable where the sun is coming from, the shadow method for integrating a function $f$ over $\dlv$ would be of the form
+<p>As this sun is shining on the three-dimesional region $W$ of our integral, it is casting a shadow onto the flat ground below the region, i.e., on a plane perpendicular to the axis the sun is coming from.  This shadow is a two-dimensional region, and we turn the triple integral over $W$ into a double integral over the shadow.  Inside the double integral, we still need to include a single integral in the third &ldquo;vertical&rdquo; variable, where this variable ranges from the bottom of $W$ to its top.  If, for example, we had chosen $z$ to be the &ldquo;vertical&rdquo; variable where the sun is coming from, the shadow method for integrating a function $f$ over $W$ would be of the form
 \begin{gather*}
-  \iiint_{\dlv}f(x,y,z)dV = \iint_{\text{shadow}} \left( \int_{\text{bottom}(x,y)}^{\text{top}(x,y)} f(x,y,z) dz\right) dx\,dy.
+  \iiint_{W}f(x,y,z)dV = \iint_{\text{shadow}} \left( \int_{\text{bottom}(x,y)}^{\text{top}(x,y)} f(x,y,z) dz\right) dx\,dy.
 \end{gather*}
 But, we don't need to have the sun coming from the $z$ direction.  It might be easier to let the sun be in the $x$ direction, giving an integral of the form
 \begin{gather*}
-  \iiint_{\dlv}f(x,y,z) dV= \iint_{\text{shadow}} \left( \int_{\text{bottom}(y,z)}^{\text{top}(y,z)} f(x,y,z) dx\right) dy\,dz,
+  \iiint_{W}f(x,y,z) dV= \iint_{\text{shadow}} \left( \int_{\text{bottom}(y,z)}^{\text{top}(y,z)} f(x,y,z) dx\right) dy\,dz,
 \end{gather*}
 or let the sun being in the $y$ direction, giving an integral of the form
 \begin{gather*}
-  \iiint_{\dlv}f(x,y,z)dV = \iint_{\text{shadow}} \left( \int_{\text{bottom}(x,z)}^{\text{top}(x,z)} f(x,y,z) dy\right) dx\,dz.
+  \iiint_{W}f(x,y,z)dV = \iint_{\text{shadow}} \left( \int_{\text{bottom}(x,z)}^{\text{top}(x,z)} f(x,y,z) dy\right) dx\,dz.
 \end{gather*}
-We can choose the axis we use for the &ldquo;vertical&rdquo; direction based on the shape of the region $\dlv$.
+We can choose the axis we use for the &ldquo;vertical&rdquo; direction based on the shape of the region $W$.
 </p>
 
 <p>The use of the shadow method is best illustrated by examples.</p>
@@ -199,13 +205,13 @@ We can choose the axis we use for the &ldquo;vertical&rdquo; direction based on 
 <a id="example1" class="anchor"></a>
 <h4>Example 1</h4>
 
-<p>Let $\dlv$ be the three-dimesional region bounded by the vertical planes $x=0$, $y=1$, and $x=y$ as well as the angled planes $z=2+x-y$ and $z=x-y$.  Let $f(x,y,z)=xy$ and compute the integral of $f$ over $\dlv$.</p>
+<p>Let $W$ be the three-dimesional region bounded by the vertical planes $x=0$, $y=1$, and $x=y$ as well as the angled planes $z=2+x-y$ and $z=x-y$.  Let $f(x,y,z)=xy$ and compute the integral of $f$ over $W$.</p>
 
-<p><b>Solution</b>: Given that there are three planes parallel to the $z$-axis, we'll use the $z$ direction as the vertical direction.  We'll think of the sun as coming from that direction and casting a shadow below it.  As shown by the below figure, those three vertical planes cause $\dlv$ to cast a triangular shadow.</p>
+<p><b>Solution</b>: Given that there are three planes parallel to the $z$-axis, we'll use the $z$ direction as the vertical direction.  We'll think of the sun as coming from that direction and casting a shadow below it.  As shown by the below figure, those three vertical planes cause $W$ to cast a triangular shadow.</p>
 
-<a id="applet:triple_integral_shadow_example_planes" class="anchor"></a><section class="appletbox" ><div class="javascriptapplet"><div class="threeapplet" id="container_three_applet_AppletTripleIntegralShadowExamplePlanes01" ><div class="appletimagecontainer" style="width:400px; max-width:100%" ><img src="media/applet/image/large/triple_integral_shadow_example_planes.png" alt="Applet: Region bounded by planes demonstrating the shadow method" width ="400" height="400" style="display: block; width: 100%; height: auto;" /><h4 style="position: absolute; top: 200.0px; width: 100%;" class="three_applet_loading_message">Applet loading</h4></div></div><div class="appleterror three_load_error"></div></div><p><i>Region bounded by planes demonstrating the shadow method.</i> The region $\dlv$ is bounded by the vertical planes $x=0$, $y=1$, and $x=y$ and the angled planes $z=2+x-y$ and $z=x-y$.  If the sun is viewed to be in the direction of the positive $z$-axis, the resulting shadow on a plane perpendicular to the $z$-axis is a triangle, as illustrated by the blue triangle below the region.</p><p><a href="https://mathinsight.org/applet/triple_integral_shadow_example_planes" title="A three-dimensional region that demonstrates the shadow method for computing triple integral limits." class="applet">More information about applet.</a> </p></section>
+<a id="applet:triple_integral_shadow_example_planes" class="anchor"></a><section class="appletbox" ><div class="javascriptapplet"><div class="threeapplet" id="container_three_applet_AppletTripleIntegralShadowExamplePlanes01" ><div class="appletimagecontainer" style="width:400px; max-width:100%" ><img src="media/applet/image/large/triple_integral_shadow_example_planes.png" alt="Applet: Region bounded by planes demonstrating the shadow method" width ="400" height="400" style="display: block; width: 100%; height: auto;" /><h4 style="position: absolute; top: 200.0px; width: 100%;" class="three_applet_loading_message">Applet loading</h4></div></div><div class="appleterror three_load_error"></div></div><p><i>Region bounded by planes demonstrating the shadow method.</i> The region $W$ is bounded by the vertical planes $x=0$, $y=1$, and $x=y$ and the angled planes $z=2+x-y$ and $z=x-y$.  If the sun is viewed to be in the direction of the positive $z$-axis, the resulting shadow on a plane perpendicular to the $z$-axis is a triangle, as illustrated by the blue triangle below the region.</p><p><a href="https://mathinsight.org/applet/triple_integral_shadow_example_planes" title="A three-dimensional region that demonstrates the shadow method for computing triple integral limits." class="applet">More information about applet.</a> </p></section>
 
-<p>According to the shadow method, we need to integrate $x$ and $y$ over this shadow.  Then, for each point $(x,y)$ in the shadow, we need to integrate $z$ from the bottom to the top of $\dlv$.  The bottom and top are formed by the angled planes, so the range of $z$ for each point in the shadow is
+<p>According to the shadow method, we need to integrate $x$ and $y$ over this shadow.  Then, for each point $(x,y)$ in the shadow, we need to integrate $z$ from the bottom to the top of $W$.  The bottom and top are formed by the angled planes, so the range of $z$ for each point in the shadow is
   \begin{gather*}
   x-y \lt z \lt 2+x-y.
   \end{gather*}
@@ -215,7 +221,7 @@ We can choose the axis we use for the &ldquo;vertical&rdquo; direction based on 
   \end{gather*}
 </p>
 
-<p>The outer double integral is an integral over the shadow. The shadow is the maximal extend of $\dlv$ in the $x$ and $y$ directions.  For this example, the shadow is fairly simple, since the extent of $\dlv$ is determined by the three vertical planes $x=0$, $y=1$ and $x=y$.  In any plane parallel to the $xy$-plane, these planes become lines given by the same equations (as the original equations don't contain a $z$).  The shadow is the triangle bounded by the lines $x=0$, $y=1$ and $x=y$.</p>
+<p>The outer double integral is an integral over the shadow. The shadow is the maximal extend of $W$ in the $x$ and $y$ directions.  For this example, the shadow is fairly simple, since the extent of $W$ is determined by the three vertical planes $x=0$, $y=1$ and $x=y$.  In any plane parallel to the $xy$-plane, these planes become lines given by the same equations (as the original equations don't contain a $z$).  The shadow is the triangle bounded by the lines $x=0$, $y=1$ and $x=y$.</p>
 	    
 <p class="centeredImage"><a id="image:triple_integral_triangle_shadow" class="anchor"></a><a href="https://mathinsight.org/image/triple_integral_triangle_shadow" title="Triangular region determined by the shadow method for computing triple integral limits of a three-dimensional region."><img class="displayed" src="media/image/image/triple_integral_triangle_shadow.png" alt="Triangular region determined by the shadow method" width ="349" height="311" /></a></p>
 
@@ -235,7 +241,7 @@ Therefore, the double integral over the shadow is of the form
 
 <p>Putting all the limits of integration together and inserting the integrand $f(x,y,z)=xy$, we calculate the integral:
 \begin{align*}
-\iiint_{\dlv}f(x,y,z)dV &amp;=\int_0^1 \int_0^y \int_{x-y}^{2+x-y} xy\, dz\,dx\,dy\\
+\iiint_{W}f(x,y,z)dV &amp;=\int_0^1 \int_0^y \int_{x-y}^{2+x-y} xy\, dz\,dx\,dy\\
 &amp;= \int_0^1 \int_0^y xyz \bigg|_{z=x-y}^{z=2+x-y} dx\,dy\\
 &amp;= \int_0^1 \int_0^y 2xy dx\,dy\\
 &amp;= \int_0^1 x^2y \bigg|_{x=0}^{x=y}dy\\
@@ -245,15 +251,15 @@ Therefore, the double integral over the shadow is of the form
 <a id="example2" class="anchor"></a>
 <h4>Example 2</h4>
 
-<p>Let $\rho(x,y,z)$ be the charge density at the point $(x,y,z)$ inside an object $\dlv$ bounded by the <a href="https://mathinsight.org/elliptic_paraboloid" class="content" title="The elliptic paraboloid: Description of the elliptic paraboloid with interactive graphics that illustrate cross sections and the effect of changing parameters.">elliptic paraboloids</a> $y=5-4 x^2-z^2$ and $y=x^2+z^2/4$.  Set up the integral giving the total charge inside $\dlv$.</p>
+<p>Let $\rho(x,y,z)$ be the charge density at the point $(x,y,z)$ inside an object $W$ bounded by the <a href="https://mathinsight.org/elliptic_paraboloid" class="content" title="The elliptic paraboloid: Description of the elliptic paraboloid with interactive graphics that illustrate cross sections and the effect of changing parameters.">elliptic paraboloids</a> $y=5-4 x^2-z^2$ and $y=x^2+z^2/4$.  Set up the integral giving the total charge inside $W$.</p>
 
-<p><b>Solution:</b> The total charge is the integral of the charge density $\rho$ over the region $\dlv$:
+<p><b>Solution:</b> The total charge is the integral of the charge density $\rho$ over the region $W$:
 \begin{gather*}
-  \text{total charge} = \iiint_{\dlv} \rho(x,y,z) \, dV.
+  \text{total charge} = \iiint_{W} \rho(x,y,z) \, dV.
 \end{gather*}
-Our task is to calculate the limits of integration determined by $\dlv$.</p>
+Our task is to calculate the limits of integration determined by $W$.</p>
 
-<p>For this region, the shadow method will work well if we choose the $y$-axis as the &ldquo;vertical&rdquo; direction, i.e., the direction where the sun comes from.  If the positive $y$ direction is upward, then one boundary, $y=5-4 x^2-z^2$, is a paraboloid opening downward that intersects the $y$-axis at $y=5$.  The other boundary, $y=x^2+z^2/4$ is a paraboloid that opens upward and intersects the $y$-axis at the origin.  Therefore, the bounded region $\dlv$ between the surfaces will be the region below $y=5-4 x^2-z^2$ and above $y=x^2+z^2/4$, i.e., the region described by 
+<p>For this region, the shadow method will work well if we choose the $y$-axis as the &ldquo;vertical&rdquo; direction, i.e., the direction where the sun comes from.  If the positive $y$ direction is upward, then one boundary, $y=5-4 x^2-z^2$, is a paraboloid opening downward that intersects the $y$-axis at $y=5$.  The other boundary, $y=x^2+z^2/4$ is a paraboloid that opens upward and intersects the $y$-axis at the origin.  Therefore, the bounded region $W$ between the surfaces will be the region below $y=5-4 x^2-z^2$ and above $y=x^2+z^2/4$, i.e., the region described by 
 $$x^2+\frac{z^2}{4} \le y \le 5-4 x^2-z^2,$$
 as illustrated below.  The two paraboloid surfaces are the top and bottom limits for the shadow method,
   \begin{gather*}
@@ -261,9 +267,9 @@ as illustrated below.  The two paraboloid surfaces are the top and bottom limits
   \end{gather*}
 </p>
 
-<a id="applet:triple_integral_shadow_example_paraboloids" class="anchor"></a><section class="appletbox" ><div class="javascriptapplet"><div class="threeapplet" id="container_three_applet_AppletTripleIntegralShadowExampleParaboloids02" ><div class="appletimagecontainer" style="width:400px; max-width:100%" ><img src="media/applet/image/large/triple_integral_shadow_example_paraboloids.png" alt="Applet: Region bounded by paraboloids demonstrating the shadow method" width ="400" height="400" style="display: block; width: 100%; height: auto;" /><h4 style="position: absolute; top: 200.0px; width: 100%;" class="three_applet_loading_message">Applet loading</h4></div></div><div class="appleterror three_load_error"></div></div><p><i>Region bounded by paraboloids demonstrating the shadow method.</i> The region $\dlv$ is bounded by the elliptic paraboloids $y=5-4 x^2-z^2$ and $y=x^2+z^2/4$.  If the sun is viewed to be in the direction of the positive $y$-axis, the shadow of $\dlv$ in a plane perpendicular to the $y$-axis is the region inside the ellipse $x^2+z^2/4=1$.</p><p><a href="https://mathinsight.org/applet/triple_integral_shadow_example_paraboloids" title="A three-dimensional region that demonstrates the shadow method for computing triple integral limits." class="applet">More information about applet.</a> </p></section>
+<a id="applet:triple_integral_shadow_example_paraboloids" class="anchor"></a><section class="appletbox" ><div class="javascriptapplet"><div class="threeapplet" id="container_three_applet_AppletTripleIntegralShadowExampleParaboloids02" ><div class="appletimagecontainer" style="width:400px; max-width:100%" ><img src="media/applet/image/large/triple_integral_shadow_example_paraboloids.png" alt="Applet: Region bounded by paraboloids demonstrating the shadow method" width ="400" height="400" style="display: block; width: 100%; height: auto;" /><h4 style="position: absolute; top: 200.0px; width: 100%;" class="three_applet_loading_message">Applet loading</h4></div></div><div class="appleterror three_load_error"></div></div><p><i>Region bounded by paraboloids demonstrating the shadow method.</i> The region $W$ is bounded by the elliptic paraboloids $y=5-4 x^2-z^2$ and $y=x^2+z^2/4$.  If the sun is viewed to be in the direction of the positive $y$-axis, the shadow of $W$ in a plane perpendicular to the $y$-axis is the region inside the ellipse $x^2+z^2/4=1$.</p><p><a href="https://mathinsight.org/applet/triple_integral_shadow_example_paraboloids" title="A three-dimensional region that demonstrates the shadow method for computing triple integral limits." class="applet">More information about applet.</a> </p></section>
 
-<p>The remaining task is to determine the shadow of $\dlv$, illustrated by the ellipse, above.  The widest part of $\dlv$ is where the two paraboloids intersect, i.e., where
+<p>The remaining task is to determine the shadow of $W$, illustrated by the ellipse, above.  The widest part of $W$ is where the two paraboloids intersect, i.e., where
 $$x^2+\frac{z^2}{4} = 5-4 x^2-z^2,$$
 which can be written more simply as
 $$x^2+\frac{z^2}{4} = 1.$$
@@ -281,9 +287,9 @@ The maximum range of $z$ is $-2 \le z \le 2$, so the integration limits for the 
 \end{gather*}
 </p>
 
-<p>Putting the top and bottom limits together with the shadow, we conclude that the total charge inside $\dlv$ is the integral
+<p>Putting the top and bottom limits together with the shadow, we conclude that the total charge inside $W$ is the integral
 \begin{align*}
-  \text{total charge} &amp;= \iiint_{\dlv} \rho(x,y,z) \, dV\\
+  \text{total charge} &amp;= \iiint_{W} \rho(x,y,z) \, dV\\
   &amp;=\int_{-2}^2 \int_{-\sqrt{1-z^2/4}}^{\sqrt{1-z^2/4}}\int_{x^2+z^2/4}^{5-4 x^2-z^2}\rho(x,y,z)dy\,dx\,dz.
 \end{align*}
 </p>

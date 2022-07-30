@@ -23,8 +23,14 @@
 <script src="static/js/ajaxcsrf.js" type="text/javascript"></script>
 
 
-
-<script type="text/javascript" src="static/MathJax/MathJax.js@config=TeX-AMS_HTML-full,%252Fstatic%252Fmathjaxconfig%252Fmidefault"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -170,16 +176,16 @@
 <a id="overview" class="anchor"></a>
 <p>One tricky part of calculating <a href="https://mathinsight.org/triple_integral_introduction" class="content" title="Introduction to triple integrals: An introduction to the definition of triple integrals as well as their formulation as iterated integrals.">define triple integrals</a> is determining the bounds of integration.  To help you in this endeavor, we outline a couple methods for reducing the task of finding these bounds to the simpler task of finding bounds on a double integral combined with a single integral.  One such method is one we call the &ldquo;shadow method,&rdquo; which we describe <a href="https://mathinsight.org/triple_integral_shadow_method" class="content" title="The shadow method for determining triple integral bounds: Explanation of the shadow method for turning a triple integral into a double integral combined with a single integral in order to compute the limits of integration.">another page</a>.  Here we describe a method we call the &ldquo;cross section method.&rdquo;</p>
 
-<p>To begin, imagine taking a big meat cleaver and chopping the three-dimensional region $\dlv$ into slices perpendicular to one of the coordinate axes (in a similar manner to the way in which we take <a href="https://mathinsight.org/surface_cross_sections" class="content" title="Cross sections of a surface: A sketch of how to determine the cross sections of surfaces and use them to understand the shape of a surface.">cross sections of a surface</a>).  If you view the axis perpendicular to the slices as being vertical, then you could view the region $\dlv$ as being composed of a bunch of these cross sections stacked on top of each other.  For example, for the below <a href="https://mathinsight.org/ellipsoid" class="content" title="The ellipsoid: Description of the ellipsoid with interactive graphics that illustrate cross sections and the effect of changing parameters.">ellipsoidal</a> region, we would view the $x$-axis as being vertical.</p>
+<p>To begin, imagine taking a big meat cleaver and chopping the three-dimensional region $W$ into slices perpendicular to one of the coordinate axes (in a similar manner to the way in which we take <a href="https://mathinsight.org/surface_cross_sections" class="content" title="Cross sections of a surface: A sketch of how to determine the cross sections of surfaces and use them to understand the shape of a surface.">cross sections of a surface</a>).  If you view the axis perpendicular to the slices as being vertical, then you could view the region $W$ as being composed of a bunch of these cross sections stacked on top of each other.  For example, for the below <a href="https://mathinsight.org/ellipsoid" class="content" title="The ellipsoid: Description of the ellipsoid with interactive graphics that illustrate cross sections and the effect of changing parameters.">ellipsoidal</a> region, we would view the $x$-axis as being vertical.</p>
 
 <a id="applet:cross_section_stack" class="anchor"></a><section class="appletbox" ><div class="javascriptapplet"><div class="threeapplet" id="container_three_applet_AppletCrossSectionStack01" ><div class="appletimagecontainer" style="width:400px; max-width:100%" ><img src="media/applet/image/large/cross_section_stack.png" alt="Applet: Stack of cross sections" width ="400" height="400" style="display: block; width: 100%; height: auto;" /><h4 style="position: absolute; top: 200.0px; width: 100%;" class="three_applet_loading_message">Applet loading</h4></div></div><div class="appleterror three_load_error"></div></div><p><i>Stack of cross sections.</i> Inside the transparent ellipsoidal region $x^2/16+y^2+z^2/4 \le 1$ are a stack of cross sections that are cut perpendicular to the $x$-axis.  If you view the $x$-axis as being vertical, then the cross sections are stacked on top of each other.  You can drag the cyan point on the slider to change the number of cross sections.</p><p><a href="https://mathinsight.org/applet/cross_section_stack" title="An ellipsiodal region visualized as a stack of cross sections." class="applet">More information about applet.</a> </p></section>
 
-<p>Unless $\dlv$ happens to be a cylinder, the size and/or shape of the cross section will vary as a function of the location along the &ldquo;vertical&rdquo; coordinate axis (i.e., the coordinate axis perpendicular to the cross sections).  The integral over $\dlv$ will correspond to the double integrals over all these cross sections, summed up from the bottom cross section up to the top cross section.  If the &ldquo;vertical&rdquo; axis is the $z$-axis, we can write the integral of $f(x,y,z)$ over $\dlv$ as
-$$\iiint_{\dlv} f(x,y,z)dV = \int_{\text{bottom}}^{\text{top}} \left(\iint_{\text{cross section}(z)} f(x,y,z) dx\,dy\right)dz.$$
+<p>Unless $W$ happens to be a cylinder, the size and/or shape of the cross section will vary as a function of the location along the &ldquo;vertical&rdquo; coordinate axis (i.e., the coordinate axis perpendicular to the cross sections).  The integral over $W$ will correspond to the double integrals over all these cross sections, summed up from the bottom cross section up to the top cross section.  If the &ldquo;vertical&rdquo; axis is the $z$-axis, we can write the integral of $f(x,y,z)$ over $W$ as
+$$\iiint_{W} f(x,y,z)dV = \int_{\text{bottom}}^{\text{top}} \left(\iint_{\text{cross section}(z)} f(x,y,z) dx\,dy\right)dz.$$
 On the other hand, if the $y$-axis is the &ldquo;vertical&rdquo; axis, the integral is
-$$\iiint_{\dlv} f(x,y,z)dV = \int_{\text{bottom}}^{\text{top}} \left(\iint_{\text{cross section}(y)} f(x,y,z) dx\,dz\right)dy.$$
+$$\iiint_{W} f(x,y,z)dV = \int_{\text{bottom}}^{\text{top}} \left(\iint_{\text{cross section}(y)} f(x,y,z) dx\,dz\right)dy.$$
 If the $x$-axis is the &ldquo;vertical&rdquo; axis, the integral is
-$$\iiint_{\dlv} f(x,y,z)dV = \int_{\text{bottom}}^{\text{top}} \left(\iint_{\text{cross section}(x)} f(x,y,z) dy\,dz\right)dx.$$
+$$\iiint_{W} f(x,y,z)dV = \int_{\text{bottom}}^{\text{top}} \left(\iint_{\text{cross section}(x)} f(x,y,z) dy\,dz\right)dx.$$
 </p>
 
 <p>Note that the differences between the cross section method and the <a href="https://mathinsight.org/triple_integral_shadow_method" class="content" title="The shadow method for determining triple integral bounds: Explanation of the shadow method for turning a triple integral into a double integral combined with a single integral in order to compute the limits of integration.">shadow method</a>.  For the shadow method, the double integral is on the outside (with constant bounds) and the single integral is on the inside (with variable bounds).  In contrast, for the cross section method, the double integral is on the inside (with variable bounds) and the single integral is on the outside (with constant bounds).  This result is consistent with the idea that the cross sections change size or shape with height while the shadow is just a single shape.</p>
@@ -189,13 +195,13 @@ $$\iiint_{\dlv} f(x,y,z)dV = \int_{\text{bottom}}^{\text{top}} \left(\iint_{\tex
 <a id="example" class="anchor"></a>
 <h4>Example</h4>
 
-<p>Let $\dlv$ be the pyramid bounded by the planes $z=0$, $z=4-2x$, $z=2-y$, $z=2x$, and $z=2+y$.  Let the density of the pyramid at point $(x,y,z)$ be $f(x,y,z)=xz$.  Find the mass of the pyramid.</p>
+<p>Let $W$ be the pyramid bounded by the planes $z=0$, $z=4-2x$, $z=2-y$, $z=2x$, and $z=2+y$.  Let the density of the pyramid at point $(x,y,z)$ be $f(x,y,z)=xz$.  Find the mass of the pyramid.</p>
 
 <p><b>Solution:</b> The mass of the pyramid is the integral of its density:
-$$\text{mass of pyramid} = \iiint_{\dlv} f(x,y,z) dV,$$
-where $\dlv$ is the pyramid.  The first task is to determine the integration limits given by $\dlv$.</p>
+$$\text{mass of pyramid} = \iiint_{W} f(x,y,z) dV,$$
+where $W$ is the pyramid.  The first task is to determine the integration limits given by $W$.</p>
 
-<p>The shape of the pyramid $\dlv$ is shown below.  Given that it points in the positive $z$-direction, we choose the $z$-axis as the &ldquo;vertical&rdquo; axis and make the cross sections perpendicular to the $z$-axis.  As illustrated in the below applet, the cross sections are rectangles.</p>
+<p>The shape of the pyramid $W$ is shown below.  Given that it points in the positive $z$-direction, we choose the $z$-axis as the &ldquo;vertical&rdquo; axis and make the cross sections perpendicular to the $z$-axis.  As illustrated in the below applet, the cross sections are rectangles.</p>
 
 <a id="applet:triple_integral_cross_section_example_pyramid" class="anchor"></a><section class="appletbox" ><div class="javascriptapplet"><div class="threeapplet" id="container_three_applet_AppletTripleIntegralCrossSectionExamplePyramid02" ><div class="appletimagecontainer" style="width:400px; max-width:100%" ><img src="media/applet/image/large/triple_integral_cross_section_example_pyramid.png" alt="Applet: Demonstrating the cross section method for computing triple integral limits" width ="400" height="400" style="display: block; width: 100%; height: auto;" /><h4 style="position: absolute; top: 200.0px; width: 100%;" class="three_applet_loading_message">Applet loading</h4></div></div><div class="appleterror three_load_error"></div></div><p><i>Demonstrating the cross section method for computing triple integral limits.</i> The transparent region is a pyramid bounded by the planes $z=0$, $z=4-2x$, $z=2-y$, $z=2x$, and $z=2+y$.  The cross sections perpendicular to the $z$-axis are rectangles, as illustrated by the single green cross section shown.  By moving the rectangle up or down, you can change the value of $z$ at which the cross section is calculated.</p><p><a href="https://mathinsight.org/applet/triple_integral_cross_section_example_pyramid" title="A three-dimensional region that demonstrates the shadow method for computing triple integral limits." class="applet">More information about applet.</a> </p></section>
 
@@ -219,7 +225,7 @@ $$\int_{\text{bottom}}^{\text{top}} \cdots dz = \int_0^2 \cdots dz.$$
 
 <p>Putting the top and bottom integration limits together with the cross section integration limits, we can calculate that the mass of the pyramid is
 \begin{align*}
-\text{mass of pyramid} &amp;= \iiint_{\dlv} f(x,y,z) dV\\
+\text{mass of pyramid} &amp;= \iiint_{W} f(x,y,z) dV\\
 &amp;=\int_{\text{bottom}}^{\text{top}} \left(\iint_{\text{cross section}(z)} f(x,y,z) dx\,dy\right)dz\\
 &amp;=\int_0^2  \int_{z/2}^{2-z/2} \int_{z-2}^{2-z}xz \,dy\,dx\,dz\\
 &amp;=\int_0^2  \int_{z/2}^{2-z/2} xyz \bigg|_{y=z-2}^{y=2-z} dx\,dz\\
